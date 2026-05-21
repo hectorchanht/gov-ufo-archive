@@ -22,18 +22,22 @@ cd "$ROOT"
 
 DO_WARGOV=1
 DO_AARO=1
+DO_NASA=1
+DO_NARA=1
 DO_BUILD=1
 DO_VIDEOS=1
 INTERACTIVE=1
 for arg in "$@"; do
   case "$arg" in
     --all)          INTERACTIVE=0 ;;
-    --aaro-only)    DO_WARGOV=0; INTERACTIVE=0 ;;
-    --wargov-only)  DO_AARO=0;   INTERACTIVE=0 ;;
+    --aaro-only)    DO_WARGOV=0; DO_NASA=0; DO_NARA=0; INTERACTIVE=0 ;;
+    --wargov-only)  DO_AARO=0; DO_NASA=0; DO_NARA=0; INTERACTIVE=0 ;;
+    --nasa-only)    DO_WARGOV=0; DO_AARO=0; DO_NARA=0; INTERACTIVE=0 ;;
+    --nara-only)    DO_WARGOV=0; DO_AARO=0; DO_NASA=0; INTERACTIVE=0 ;;
     --no-build)     DO_BUILD=0 ;;
     --no-videos)    DO_VIDEOS=0 ;;
     -h|--help)
-      sed -n '2,18p' "$0" | sed 's/^# \?//'
+      sed -n '2,20p' "$0" | sed 's/^# \?//'
       exit 0 ;;
     *) echo "unknown arg: $arg" >&2; exit 2 ;;
   esac
@@ -42,20 +46,33 @@ done
 # Interactive site picker — only when stdin is a TTY and no explicit flag given.
 if [ "$INTERACTIVE" -eq 1 ] && [ -t 0 ]; then
   echo ""
-  echo "Which sites do you want to sync?"
+  echo "Which sites do you want to sync? (multi-select with comma, e.g. 1,3)"
   echo "  [1] war.gov / UFO Release 01  (slideshow + Release_1 + DVIDS bundle)"
   echo "  [2] AARO                       (pages + PDFs + cloudfront videos)"
-  echo "  [3] Both  (default)"
+  echo "  [3] NASA UAP Independent Study (4 PDFs + 2 images)"
+  echo "  [4] NARA UAP records gateway   (9 topic pages + NDAA PDF)"
+  echo "  [5] ALL (default)"
   echo "  [q] quit"
   printf "Select: "
   read -r CHOICE
-  case "${CHOICE:-3}" in
-    1)   DO_AARO=0 ;;
-    2)   DO_WARGOV=0 ;;
-    3|"") : ;;  # both
-    q|Q) echo "aborted."; exit 0 ;;
-    *)   echo "unknown selection — defaulting to both" ;;
-  esac
+  CHOICE="${CHOICE:-5}"
+  if [ "$CHOICE" = "q" ] || [ "$CHOICE" = "Q" ]; then
+    echo "aborted."; exit 0
+  fi
+  if [ "$CHOICE" != "5" ]; then
+    # Reset all to 0 then enable the picked ones.
+    DO_WARGOV=0; DO_AARO=0; DO_NASA=0; DO_NARA=0
+    IFS=',' read -ra PICKS <<< "$CHOICE"
+    for p in "${PICKS[@]}"; do
+      case "$(echo "$p" | tr -d ' ')" in
+        1) DO_WARGOV=1 ;;
+        2) DO_AARO=1 ;;
+        3) DO_NASA=1 ;;
+        4) DO_NARA=1 ;;
+        *) echo "  ignored: $p" ;;
+      esac
+    done
+  fi
   if [ "$DO_AARO" -eq 1 ] && [ "$DO_VIDEOS" -eq 1 ]; then
     printf "Include AARO cloudfront videos (~2.7 GB)? [Y/n]: "
     read -r VR
@@ -96,15 +113,31 @@ if [ "$DO_AARO" -eq 1 ]; then
   fi
 fi
 
+# ---------- NASA ----------
+if [ "$DO_NASA" -eq 1 ]; then
+  echo ""
+  echo "──── NASA UAP downloader ────"
+  bash "$ROOT/scripts/dl-nasa.sh"
+fi
+
+# ---------- NARA ----------
+if [ "$DO_NARA" -eq 1 ]; then
+  echo ""
+  echo "──── NARA topic-page downloader ────"
+  bash "$ROOT/scripts/dl-nara.sh"
+fi
+
 # ---------- Rebuild HTML ----------
 if [ "$DO_BUILD" -eq 1 ]; then
   echo ""
-  echo "──── 4/4  Rebuild both mirror pages ────"
+  echo "──── Rebuild mirror pages ────"
   python3 "$ROOT/scripts/build-wargov.py"
   python3 "$ROOT/scripts/parse-aaro.py"
   python3 "$ROOT/scripts/extract-evidence.py"
   python3 "$ROOT/scripts/build-aaro.py"
   python3 "$ROOT/scripts/build-details.py"
+  python3 "$ROOT/scripts/build-nasa.py"
+  python3 "$ROOT/scripts/build-nara.py"
   echo "  Mirror pages rebuilt."
 fi
 

@@ -737,8 +737,12 @@ footer .colophon {
 <div class="gov-banner">
   <div class="container">
     <span class="flag-dot"></span>
-    <span><strong>OFFLINE MIRROR</strong> · Snapshot of aaro.mil — for archival reference</span>
-    <a href="../index.html">← war.gov/UFO mirror</a>
+    <span><strong>OFFLINE MIRROR</strong> · Snapshot of aaro.mil</span>
+    <span style="margin-left:auto;display:flex;gap:14px;flex-wrap:wrap;">
+      <a href="../index.html">war.gov ↗</a>
+      <a href="../nasa-mirror/index.html">NASA ↗</a>
+      <a href="../nara-mirror/index.html">NARA ↗</a>
+    </span>
   </div>
 </div>
 
@@ -758,7 +762,9 @@ footer .colophon {
         <li><a href="#headlines">Headlines</a></li>
         <li><a href="#archive" class="active">Evidence</a></li>
         <li><a href="./details.html">About / FAQ ↗</a></li>
-        <li><a href="../index.html">war.gov/UFO ↗</a></li>
+        <li><a href="../index.html">war.gov ↗</a></li>
+        <li><a href="../nasa-mirror/index.html">NASA ↗</a></li>
+        <li><a href="../nara-mirror/index.html">NARA ↗</a></li>
       </ul>
     </nav>
   </div>
