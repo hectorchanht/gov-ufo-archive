@@ -656,7 +656,32 @@ h2 {
   width: 40px; height: 40px;
   background: var(--bg-2); border: 1px solid var(--rule-strong); color: var(--ink);
   display: grid; place-items: center; cursor: pointer;
-  font-family: var(--mono); font-size: 22px; z-index: 1;
+  font-family: var(--mono); font-size: 22px; z-index: 2;
+}
+.lb-nav {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 52px; height: 52px;
+  background: rgba(20,20,24,0.6);
+  border: 1px solid var(--rule-strong);
+  color: var(--ink);
+  display: grid; place-items: center; cursor: pointer;
+  font-family: var(--serif); font-size: 32px; line-height: 1;
+  z-index: 2;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.lb-nav:hover { background: rgba(0,0,0,0.85); color: var(--caution); border-color: var(--caution); }
+.lb-nav.prev { left: 16px; }
+.lb-nav.next { right: 16px; }
+.lb-counter {
+  position: absolute; top: 24px; left: 50%; transform: translateX(-50%);
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em;
+  color: var(--ink-dim); background: var(--bg-2);
+  border: 1px solid var(--rule); padding: 4px 12px; z-index: 2;
+}
+@media (max-width: 720px) {
+  .lb-nav { width: 40px; height: 40px; font-size: 24px; }
+  .lb-nav.prev { left: 8px; }
+  .lb-nav.next { right: 8px; }
 }
 
 /* CALL TO READ */
@@ -921,6 +946,9 @@ footer .colophon {
 
 <div class="lightbox" id="lightbox" aria-hidden="true">
   <div class="lb-close" id="lb-close">×</div>
+  <button class="lb-nav prev" id="lb-prev" aria-label="Previous (←)">‹</button>
+  <button class="lb-nav next" id="lb-next" aria-label="Next (→)">›</button>
+  <div class="lb-counter" id="lb-counter"></div>
   <div class="lb-inner" id="lb-inner"></div>
 </div>
 
@@ -1174,58 +1202,117 @@ footer .colophon {
     else state.page = parseInt(g,10);
     render(true);
   });
+  // Latest filtered+sorted asset list (used by lightbox navigation).
+  let lbList = [];
+  let lbIdx = 0;
   function render(scroll=false){
     const list = filtered();
+    lbList = list;
     const { slice, pages, total, start } = paginate(list);
     countEl.innerHTML = `Showing <b>${slice.length}</b> of ${total} assets${state.q?` matching "${esc(state.q)}"`:''}`;
-    grid.innerHTML = slice.map(cardHtml).join('');
+    grid.innerHTML = slice.map((a, i) => cardHtml(a).replace('<article class="card"', `<article class="card" data-idx="${start+i}"`)).join('');
     emptyEl.hidden = total > 0;
     renderPagination(pages, total, start);
     if (scroll) document.getElementById('archive').scrollIntoView({ behavior:'smooth', block:'start' });
   }
   render();
 
-  // Lightbox
+  // === Lightbox with navigation (arrow keys, swipe, prev/next buttons) ===
   const lb = document.getElementById('lightbox');
   const lbI = document.getElementById('lb-inner');
   const lbC = document.getElementById('lb-close');
-  function openMedia(local, title, remote) {
-    // Open `local` if given, otherwise fall back to the remote source URL.
-    // For <video> we render BOTH so the browser picks first that loads.
+  const lbPrev = document.getElementById('lb-prev');
+  const lbNext = document.getElementById('lb-next');
+  const lbCounter = document.getElementById('lb-counter');
+
+  function renderLightbox() {
+    const a = lbList[lbIdx];
+    if (!a) return;
+    const local = a.l || '';
+    const remote = a.u || '';
+    const title = a.ti || '';
     const target = local || remote;
-    if (!target) return;
+    if (!target) { lbI.innerHTML = `<div class="lb-meta">${esc(title)} — file not available; run <code>./scripts/sync.sh</code> or visit the source.</div>`; return; }
     const ext = target.split('?')[0].split('#')[0].split('.').pop().toLowerCase();
     const localHref = local ? './' + local : '';
+    const meta = `<div class="lb-meta">${esc(title)}</div>`;
     let html;
     if (['jpg','jpeg','png','gif','webp','svg'].includes(ext)) {
       const fb = remote ? `onerror="this.onerror=null;this.src='${esc(remote)}';"` : '';
-      const src = localHref || remote;
-      html = `<img src="${esc(src)}" alt="${esc(title)}" ${fb}><div class="lb-meta">${esc(title)}</div>`;
+      html = `<img src="${esc(localHref || remote)}" alt="${esc(title)}" ${fb}>${meta}`;
     } else if (['mp4','webm','mov'].includes(ext)) {
       const srcs = [];
       if (localHref) srcs.push(`<source src="${esc(localHref)}" type="video/mp4">`);
       if (remote)    srcs.push(`<source src="${esc(remote)}" type="video/mp4">`);
-      html = `<video controls autoplay>${srcs.join('')}</video><div class="lb-meta">${esc(title)}</div>`;
+      html = `<video controls autoplay playsinline>${srcs.join('')}</video>${meta}`;
     } else if (['mp3','wav','ogg','m4a'].includes(ext)) {
-      html = `<audio controls autoplay src="${esc(localHref || remote)}"></audio><div class="lb-meta">${esc(title)}</div>`;
+      html = `<audio controls autoplay src="${esc(localHref || remote)}"></audio>${meta}`;
     } else if (ext === 'pdf') {
       const src = localHref || remote;
       html = `<iframe src="${esc(src)}#view=FitH"></iframe><div class="lb-meta">${esc(title)} — <a href="${esc(src)}" target="_blank">open in new tab ↗</a></div>`;
     } else {
-      window.open(localHref || remote, '_blank'); return;
+      window.open(localHref || remote, '_blank'); closeLb(); return;
     }
     lbI.innerHTML = html;
-    lb.classList.add('open');
+    if (lbCounter) lbCounter.textContent = (lbIdx + 1) + ' / ' + lbList.length;
+    if (lbPrev) lbPrev.style.visibility = lbList.length > 1 ? 'visible' : 'hidden';
+    if (lbNext) lbNext.style.visibility = lbList.length > 1 ? 'visible' : 'hidden';
   }
-  function close(){ lb.classList.remove('open'); lbI.innerHTML=''; }
-  lbC.addEventListener('click', close);
-  lb.addEventListener('click', e => { if (e.target === lb) close(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+  function openAt(idx) {
+    if (!lbList.length) return;
+    lbIdx = (idx + lbList.length) % lbList.length;
+    renderLightbox();
+    lb.classList.add('open');
+    lb.setAttribute('aria-hidden', 'false');
+  }
+  function navLb(delta) {
+    if (!lbList.length) return;
+    lbIdx = (lbIdx + delta + lbList.length) % lbList.length;
+    renderLightbox();
+  }
+  function closeLb() {
+    lb.classList.remove('open');
+    lb.setAttribute('aria-hidden', 'true');
+    lbI.innerHTML = '';
+  }
+  lbC.addEventListener('click', closeLb);
+  if (lbPrev) lbPrev.addEventListener('click', e => { e.stopPropagation(); navLb(-1); });
+  if (lbNext) lbNext.addEventListener('click', e => { e.stopPropagation(); navLb( 1); });
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLb();
+    else if (e.key === 'ArrowRight') navLb(1);
+    else if (e.key === 'ArrowLeft')  navLb(-1);
+  });
+  // Touch swipe
+  let touchX = 0, touchY = 0, touchT = 0;
+  lb.addEventListener('touchstart', e => {
+    if (!e.touches.length) return;
+    touchX = e.touches[0].clientX; touchY = e.touches[0].clientY; touchT = Date.now();
+  }, { passive: true });
+  lb.addEventListener('touchend', e => {
+    if (!e.changedTouches.length) return;
+    const dx = e.changedTouches[0].clientX - touchX;
+    const dy = e.changedTouches[0].clientY - touchY;
+    const dt = Date.now() - touchT;
+    if (dt < 800 && Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+      navLb(dx < 0 ? 1 : -1);
+    }
+  }, { passive: true });
+
   grid.addEventListener('click', e => {
     const a = e.target.closest('a[data-action]');
-    if (a) { e.preventDefault(); openMedia(a.dataset.local, a.dataset.title, a.dataset.remote); return; }
+    const card = e.target.closest('.card');
+    if (a) {
+      e.preventDefault();
+      if (card && card.dataset.idx !== undefined) openAt(parseInt(card.dataset.idx, 10));
+      return;
+    }
     const m = e.target.closest('.card-media');
-    if (m && (m.dataset.local || m.dataset.remote)) openMedia(m.dataset.local, m.dataset.title, m.dataset.remote);
+    if (m && card && card.dataset.idx !== undefined) {
+      openAt(parseInt(card.dataset.idx, 10));
+    }
   });
 })();
 </script>

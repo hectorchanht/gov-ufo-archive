@@ -8,11 +8,12 @@
 # Idempotent — safe to re-run on a schedule (cron, launchd, …).
 #
 # Usage:
-#   ./scripts/sync.sh                # full run
-#   ./scripts/sync.sh --aaro-only    # skip war.gov side
-#   ./scripts/sync.sh --wargov-only  # skip aaro side
-#   ./scripts/sync.sh --no-build     # download only, no HTML rebuild
-#   ./scripts/sync.sh --no-videos    # skip the big AARO videos
+#   ./scripts/sync.sh                # interactive site picker
+#   ./scripts/sync.sh --all          # all sites, no prompt
+#   ./scripts/sync.sh --aaro-only    # only AARO
+#   ./scripts/sync.sh --wargov-only  # only war.gov
+#   ./scripts/sync.sh --no-build     # skip HTML rebuild
+#   ./scripts/sync.sh --no-videos    # skip big AARO videos
 # ============================================================
 set -uo pipefail
 
@@ -23,10 +24,12 @@ DO_WARGOV=1
 DO_AARO=1
 DO_BUILD=1
 DO_VIDEOS=1
+INTERACTIVE=1
 for arg in "$@"; do
   case "$arg" in
-    --aaro-only)    DO_WARGOV=0 ;;
-    --wargov-only)  DO_AARO=0 ;;
+    --all)          INTERACTIVE=0 ;;
+    --aaro-only)    DO_WARGOV=0; INTERACTIVE=0 ;;
+    --wargov-only)  DO_AARO=0;   INTERACTIVE=0 ;;
     --no-build)     DO_BUILD=0 ;;
     --no-videos)    DO_VIDEOS=0 ;;
     -h|--help)
@@ -35,6 +38,30 @@ for arg in "$@"; do
     *) echo "unknown arg: $arg" >&2; exit 2 ;;
   esac
 done
+
+# Interactive site picker — only when stdin is a TTY and no explicit flag given.
+if [ "$INTERACTIVE" -eq 1 ] && [ -t 0 ]; then
+  echo ""
+  echo "Which sites do you want to sync?"
+  echo "  [1] war.gov / UFO Release 01  (slideshow + Release_1 + DVIDS bundle)"
+  echo "  [2] AARO                       (pages + PDFs + cloudfront videos)"
+  echo "  [3] Both  (default)"
+  echo "  [q] quit"
+  printf "Select: "
+  read -r CHOICE
+  case "${CHOICE:-3}" in
+    1)   DO_AARO=0 ;;
+    2)   DO_WARGOV=0 ;;
+    3|"") : ;;  # both
+    q|Q) echo "aborted."; exit 0 ;;
+    *)   echo "unknown selection — defaulting to both" ;;
+  esac
+  if [ "$DO_AARO" -eq 1 ] && [ "$DO_VIDEOS" -eq 1 ]; then
+    printf "Include AARO cloudfront videos (~2.7 GB)? [Y/n]: "
+    read -r VR
+    case "${VR:-Y}" in n|N) DO_VIDEOS=0 ;; esac
+  fi
+fi
 
 echo "=========================================================="
 echo "  PURSUE × AARO offline mirror sync"
