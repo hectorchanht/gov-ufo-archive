@@ -1,0 +1,39 @@
+# ============================================================
+# OFFLINE MIRROR — large files excluded from Git
+# Run ./scripts/sync.sh after clone to populate locally.
+# ============================================================
+
+# Bundle archives (big zips)
+bundles/Release_1.zip
+bundles/uapvideos.zip
+
+# DVIDS / DOD bulk videos (each often >100 MB)
+bundles/uapvideos/
+
+# Huge Release_1 PDFs (>50 MB) — listed individually
+bundles/Release_1/342_HS1-416511228_box186_319.1-Flying-Discs-1949.pdf
+bundles/Release_1/38_143685_box7_Incident_Summaries_173-233.pdf
+bundles/Release_1/65_HS1-834228961_62-HQ-83894_Section_6.pdf
+bundles/Release_1/65_HS1-834228961_62-HQ-83894_Section_8.pdf
+bundles/Release_1/65_HS1-834228961_62-HQ-83894_Section_10.pdf
+
+# Local extraction cache
+download.zip
+
+# AARO official UAP videos (cloudfront, often >100 MB)
+aaro-mirror/videos/
+
+# Build / runtime artifacts
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+venv/
+node_modules/
+
+# Generated manifest cache (rebuilt by scripts)
+.cache/
+
+# Editor cruft
+.vscode/
+.idea/

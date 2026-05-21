@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AARO — Details · About / FAQ / Reading Room (Offline Mirror)</title>
+<meta name="description" content="Full text of all aaro.mil pages — mission, leadership, FAQ, EFOIA reading room — archived offline.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#0a0a0c; --bg-2:#111114; --panel:#15151a;
+  --ink:#e8e3d8; --ink-dim:#a8a298; --ink-faint:#6b665d;
+  --rule:rgba(232,227,216,0.12); --rule-strong:rgba(232,227,216,0.28);
+  --stamp:#b91c1c; --caution:#4a9eff; --warm:#d4a017;
+  --serif:"Source Serif 4","Iowan Old Style",Georgia,serif;
+  --mono:"JetBrains Mono","SF Mono",Consolas,monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--serif); font-size: 16px; line-height: 1.65;
+  background-image:
+    radial-gradient(ellipse at 20% 0%, rgba(74,158,255,0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 100%, rgba(212,160,23,0.04) 0%, transparent 50%);
+  background-attachment: fixed;
+}
+.container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+
+.gov-banner {
+  background: #1a1a1f; border-bottom: 1px solid var(--rule);
+  font-family: var(--mono); font-size: 11px; color: var(--ink-dim); letter-spacing: 0.04em;
+}
+.gov-banner .container { display: flex; align-items: center; gap: 16px; padding: 10px 32px; }
+.gov-banner a { color: var(--caution); text-decoration: none; margin-left: auto; }
+.flag-dot { width: 10px; height: 10px; border-radius: 50%;
+  background: linear-gradient(45deg,#b91c1c 0,#b91c1c 50%,#1e3a8a 50%,#1e3a8a 100%); }
+
+.header-wrap {
+  position: sticky; top: 0; z-index: 40;
+  background: rgba(10,10,12,0.95);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--rule);
+}
+header { padding: 16px 0; }
+header .container { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+.brand { display: flex; align-items: center; gap: 14px; text-decoration: none; color: var(--ink); }
+.seal {
+  width: 44px; height: 44px;
+  background: radial-gradient(circle at 50% 50%, #1e3a8a, #102560 60%, #061238);
+  border-radius: 50%; display: grid; place-items: center;
+  box-shadow: 0 0 0 2px var(--ink), 0 0 0 4px var(--bg), 0 0 0 5px var(--ink-faint);
+  font-family: var(--mono); font-weight: 700; font-size: 11px; color: var(--ink);
+}
+.brand-text { display: flex; flex-direction: column; line-height: 1.1; }
+.brand-text .super { font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em; color: var(--ink-dim); text-transform: uppercase; }
+.brand-text .name { font-family: var(--serif); font-size: 18px; font-weight: 600; margin-top: 2px; }
+nav.primary { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; flex: 1; }
+nav.primary ul { display: flex; gap: 4px 14px; list-style: none; flex-wrap: wrap; justify-content: flex-end; }
+nav.primary a { color: var(--ink-dim); text-decoration: none; text-transform: uppercase; }
+nav.primary a:hover { color: var(--caution); }
+
+/* Page hero */
+.hero { padding: 56px 0 32px; border-bottom: 1px solid var(--rule); }
+.hero .coords {
+  font-family: var(--mono); font-size: 12px; color: var(--caution);
+  letter-spacing: 0.12em; margin-bottom: 16px;
+}
+h1 { font-family: var(--serif); font-size: clamp(28px,4vw,42px); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; }
+.hero p { max-width: 70ch; color: var(--ink-dim); margin-top: 16px; font-size: 16px; }
+
+/* TOC */
+.toc {
+  margin: 28px 0 0; padding: 16px 20px;
+  background: var(--panel); border: 1px solid var(--rule);
+}
+.toc h4 {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--ink-faint); margin-bottom: 8px;
+}
+.toc ul { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 6px 16px; }
+.toc a { color: var(--ink-dim); text-decoration: none; font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em; }
+.toc a:hover { color: var(--caution); }
+
+section { padding: 56px 0; border-bottom: 1px solid var(--rule); }
+.section-label {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.24em;
+  text-transform: uppercase; color: var(--ink-faint);
+  display: flex; align-items: center; gap: 16px; margin-bottom: 18px;
+}
+.section-label::before { content: ""; width: 28px; height: 1px; background: var(--ink-faint); }
+h2 { font-family: var(--serif); font-size: clamp(24px,3vw,34px); font-weight: 700; letter-spacing: -0.015em; margin-bottom: 20px; }
+h3.sub {
+  font-family: var(--mono); font-size: 12px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--ink-faint); margin: 28px 0 12px;
+  padding-bottom: 8px; border-bottom: 1px dashed var(--rule);
+}
+.pg-content { max-width: 72ch; }
+.pg-content p { margin-bottom: 12px; color: var(--ink); }
+
+.pg-imgs {
+  margin-top: 28px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+}
+.pg-img { background: var(--panel); border: 1px solid var(--rule); overflow: hidden; }
+.pg-img img { width: 100%; aspect-ratio: 16/10; object-fit: cover; display: block; }
+.pg-img figcaption {
+  padding: 8px 10px; font-family: var(--mono); font-size: 10px;
+  color: var(--ink-dim); letter-spacing: 0.04em; border-top: 1px solid var(--rule);
+}
+
+ul.lk-list {
+  list-style: none; display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 4px 20px; max-width: 90ch;
+}
+ul.lk-list a {
+  display: block; padding: 6px 0;
+  color: var(--ink); text-decoration: none; font-size: 13px;
+  border-bottom: 1px dashed var(--rule);
+}
+ul.lk-list a:hover { color: var(--caution); }
+ul.lk-list .lk-meta {
+  font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em;
+  color: var(--warm); text-transform: uppercase; margin-left: 6px;
+}
+ul.lk-list a.ext { color: var(--ink-dim); }
+
+footer {
+  background: #060608; padding: 40px 0 24px;
+  color: var(--ink-dim); font-family: var(--mono); font-size: 12px;
+}
+footer .container { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+footer a { color: var(--ink-dim); text-decoration: none; }
+footer a:hover { color: var(--caution); }
+</style>
+</head>
+<body>
+
+<div class="gov-banner">
+  <div class="container">
+    <span class="flag-dot"></span>
+    <span>OFFLINE MIRROR · aaro.mil details</span>
+    <a href="./index.html">← Evidence Browser</a>
+  </div>
+</div>
+
+<div class="header-wrap">
+<header>
+  <div class="container">
+    <a href="./index.html" class="brand">
+      <div class="seal">AARO</div>
+      <div class="brand-text">
+        <span class="super">All-domain Anomaly Resolution Office</span>
+        <span class="name">Details · About / FAQ</span>
+      </div>
+    </a>
+    <nav class="primary">
+      <ul>
+        <li><a href="./index.html">← Evidence</a></li>
+        <li><a href="#top">Top</a></li>
+        <li><a href="../index.html">war.gov/UFO ↗</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+</div>
+
+<div class="hero" id="top">
+  <div class="container">
+    <div class="coords">◉ AARO · Full Text Archive · For deep reading</div>
+    <h1>AARO Pages — Full Mirror</h1>
+    <p>
+      The long-form content from every aaro.mil page mirrored here. Mission, leadership,
+      the FAQ, reading room indexes, and the official background. For the actual UAP
+      videos and case-resolution PDFs, go to the <a href="./index.html" style="color:var(--caution)">Evidence Browser</a>.
+    </p>
+    <div class="toc">
+      <h4>Jump to a section</h4>
+      <ul>
+        <li><a href="#mission-vision">Mission / Vision</a></li>
+        <li><a href="#leaders">Leaders</a></li>
+        <li><a href="#official-uap-imagery">Official UAP Imagery</a></li>
+        <li><a href="#uap-case-resolution-reports">Case Resolution Reports</a></li>
+        <li><a href="#uap-reporting-trends">UAP Reporting Trends</a></li>
+        <li><a href="#uap-records">UAP Records</a></li>
+        <li><a href="#congressional-press-products">Congressional / Press</a></li>
+        <li><a href="#resources">Resources</a></li>
+        <li><a href="#efoia-reading-room">EFOIA Reading Room</a></li>
+        <li><a href="#submit-a-report">Submit A Report</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<section id="mission-vision">
+  <div class="container">
+    <div class="section-label">§ Mission / Vision</div>
+    <h2>Mission/Vision</h2>
+    <div class="pg-content"><p>Mission/Vision</p>
+<p>Mission</p>
+<p>Minimize technical and intelligence surprise by synchronizing identification, attribution, and mitigation of UAP in the vicinity of national security areas.</p>
+<p>Vision</p>
+<p>Effectively and efficiently detect, track, analyze, and manage anomalous detections and UAP via normalized and systematized DoW, IC, and civil business practices adhering to the highest scientific and intelligence-tradecraft standards with transparency and shared awareness.</p>
+<p>AARO Mission Overview</p>
+<p>UAP Imagery</p>
+<p>UAP Records</p>
+<p>Congressional/Press</p>
+<p>Products</p>
+<p>Submit A Report</p>
+<p>FAQ</p></div>
+    <div class="pg-imgs">
+<figure class="pg-img"><img loading="lazy" src="https://www.aaro.mil/portals/136/Images/AARO%20SEAL/AARO%20Logo%202025-01.png" alt="All-domain Anomaly Resolution Office (AARO) logo"><figcaption>All-domain Anomaly Resolution Office (AARO) logo</figcaption></figure>
+</div>
+    <h3 class="sub">Related Links</h3><ul class="lk-list">
+<li><a href="https://www.aaro.mil/Portals/136/PDFs/AARO_Mission_Brief_2025.pdf" target="_blank" rel="noopener">AARO Mission Overview <span class="lk-meta">[PDF · source]</span></a></li>
+<li><a href="https://www.aaro.mil/UAP-Cases/Official-UAP-Imagery/" target="_blank" rel="noopener">UAP Imagery</a></li>
+<li><a href="https://www.aaro.mil/UAP-Records/" target="_blank" rel="noopener">UAP Records</a></li>
+<li><a href="https://www.aaro.mil/Congressional-Press-Products/" target="_blank" rel="noopener">Congressional/Press
+Products</a></li>
+<li><a href="https://www.aaro.mil/Submit-A-Report/" target="_blank" rel="noopener">Submit A Report</a></li>
+<li><a href="https://www.aaro.mil/FAQ/" target="_blank" rel="noopener">FAQ</a></li>
+</ul>
+  </div>
+</section>
+<section id="leaders">
+  <div class="container">
+    <div class="section-label">§ Leaders</div>
+    <h2>Leaders</h2>
+    <div class="pg-content"><p>Leaders</p>
+<p>HomeAboutLeaders</p>
+<p>Dr. Jon T. Kosloski</p>
+<p>Director</p>
+<p>Dr. Jon T. Kosloski serves as the Director of the All-domain Anomaly Resolution Office (AARO). Prior to that, Dr. Kosloski held technical and leadership positions within the Research Directorate of the National Security Agency (NSA). In that capacity, he led advanced mission-oriented research in the fields of networking and computing, and served as a subject matter expert in the area of Free Space Optics, advising various DoW agencies. In addition to his optics research and crypto-mathematics, Dr. Kosloski invented an advanced language-agnostic search engine and served at the DoW Special Communications Enterprise Office.</p>
+<p>Dr. Kosloski received Bachelor’s degrees in Mathematics and Physics from California State University, San Bernardino, and a Ph.D. in Electrical Engineering from Johns Hopkins University. The focus of his Doctoral research was the invention of novel devices that leverage principles from quantum optics to receive very weak phase-encoded signals. After completing the theoretical analysis of two new optical receiver designs, Dr. Kosloski worked with scientists from the National Institute of Standards and Technology to demonstrate the abilities of his designs to achieve record sensitivities. Dr. Kosloski is also a graduate from NSA’s Cryptanalysis Development Program.</p>
+<p>UAP Imagery</p>
+<p>UAP Records</p>
+<p>Congressional/Press</p>
+<p>Products</p>
+<p>Submit A Report</p>
+<p>FAQ</p></div>
+    
+    <h3 class="sub">Related Links</h3><ul class="lk-list">
+<li><a href="https://www.aaro.mil/" target="_blank" rel="noopener">Home</a></li>
+<li><a href="https://www.aaro.mil/About/Leaders/" target="_blank" rel="noopener">Leaders</a></li>
+<li><a href="https://media.defense.gov/2024/Aug/26/2003591083/-1/-1/0/240826-D-D0439-030.JPG" target="_blank" rel="noopener" class="ext">Download ↗</a></li>
+<li><a href="https://www.aaro.mil/DesktopModules/ArticleCS/Print.aspx?PortalId=136&amp;ModuleId=54873&amp;Article=3973108" target="_blank" rel="noopener">PRINT</a></li>
+<li><a href="https://www.aaro.mil/UAP-Cases/Official-UAP-Imagery/" target="_blank" rel="noopener">UAP Imagery</a></li>
+<li><a href="https://www.aaro.mil/UAP-Records/" target="_blank" rel="noopener">UAP Records</a></li>
+<li><a href="https://www.aaro.mil/Congressional-Press-Products/" target="_blank" rel="noopener">Congressional/Press
+Products</a></li>
+<li><a href="https://www.aaro.mil/Submit-A-Report/" target="_blank" rel="noopener">Submit A Report</a></li>
+<li><a href="https://www.aaro.mil/FAQ/" target="_blank" rel="noopener">FAQ</a></li>
+</ul>
+  </div>
+</section>
+<section id="official-uap-imagery">
+  <div class="container">
+    <div class="section-label">§ Official UAP Imagery</div>
+    <h2>UAP Imagery</h2>
+    <div class="pg-content"><p>UAP Imagery</p>
+<p>Click here for more information on the use of DoW Visual Imagery</p>
+<p>New Videos</p>
+<p>Title</p>
+<p>Date Added</p>
+<p>PR-013, Unresolved UAP Report, Europe 2022</p>
+<p>January 6, 2026</p>
+<p>PR-011, UAP Report Undergoing Analysis, Europe 2021</p>
+<p>January 6, 2026</p>
+<p>PR-015, Unresolved UAP Report, Europe 2022</p>
+<p>December 9, 2025</p>
+<p>PR-014, Unresolved UAP Report, Europe 2022</p>
+<p>December 9, 2025</p>
+<p>PR-012, Unresolved UAP Report, Europe 2022</p>
+<p>December 9, 2025</p>
+<p>PR-018, Unresolved UAP Report, Europe 2024</p>
+<p>December 4, 2025</p>
+<p>PR-017, Unresolved UAP Report, Europe 2024</p>
+<p>December 4, 2025</p>
+<p>PR-016, Resolved as Birds, Europe 2023</p>
+<p>December 4, 2025</p>
+<p>UAP Imagery</p>
+<p>Videos Title DVIDS Page Description</p>
+<p>+ Expand row details PR-018, Unresolved UAP Report, Europe 2024 PR-018, Unresolved UAP Report, Europe 2024 The United States European Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of ten minutes and thirty seconds of video footage from an infrared sensor aboard a U.S. military platform in 2024. AARO assesses, with high confidence, that the footage depicts the presence of a physical object. The object’s morphological features, performance characteristics, and behaviors are unremarkable and do not warrant further analysis. AARO will continue to investigate this case should further information become available to enable a more conclusive attribution. This unresolved report contributes to AARO’s historical and locational trend analyses.</p>
+<p>+ Expand row details PR-017, Unresolved UAP Report, Europe 2024 PR-017, Unresolved UAP Report, Europe 2024 The United States European Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of thirty seconds of video footage from a commercially available cellular device’s rear-facing digital camera in 2024. The video footage associated with this report is insufficient for AARO to render a determination on its subject matter. This unresolved report contributes to AARO’s historical and locational trend analyses.</p>
+<p>+ Expand row details PR-016, Resolved as Birds, Europe 2023 PR-016, Resolved as Birds, Europe 2023 The United States European Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of twenty-five seconds of video footage from an infrared sensor aboard a U.S. military platform in 2023. AARO assesses, with high confidence, that the objects depicted in the video are almost certainly (&gt;95% likelihood) birds. AARO bases its assessment on the objects’ strong morphological consistency with other resolved imagery featuring birds and the objects’ behavioral characteristics strongly aligning with those of birds, e.g. maintaining relative positioning for energy conservation during flight, pulsating infrared return at a frequency consistent with wing beats.</p>
+<p>+ Expand row details PR-015, Unresolved UAP Report, Europe 2022 PR-015, Unresolved UAP Report, Europe 2022 The United States European Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of thirteen seconds of video footage from an infrared sensor aboard a U.S. military platform in 2022.</p>
+<p>AARO assesses, with high confidence, that the footage depicts the presence of a physical object. The object’s morphological features, performance characteristics, and behaviors are unremarkable and do not warrant further analysis. AARO will continue to investigate this case should further information become available to enable a more conclusive attribution. This unresolved report contributes to AARO’s historical and locational trend analyses.</p>
+<p>+ Expand row details PR-014, Unresolved UAP Report, Europe 2022 PR-014, Unresolved UAP Report, Europe 2022 The United States European Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of forty-three seconds of video footage from an infrared sensor aboard a U.S. military platform in 2022.</p>
+<p>AARO assesses, with high confidence, that the footage depicts the presence of a physical object. The object’s morphological features, performance characteristics, and behaviors are unremarkable and do not warrant further analysis. AARO will continue to investigate this case should further information become available to enable a more conclusive attribution. This unresolved report contributes to AARO’s historical and locational trend analyses.</p>
+<p>+ Expand row details PR-013, Unresolved UAP Report, Europe 2022 PR-013, Unresolved UAP Report, Europe 2022 The United States European Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of twenty seconds of video footage from an infrared sensor aboard a U.S. military platform in 2022. AARO assesses, with high confidence, that the footage depicts the presence of a physical object. The object’s morphological features, performance characteristics, and behaviors are unremarkable and do not warrant further analysis. AARO will continue to investigate this case should further information become available to enable a more conclusive attribution. This unresolved report contributes to AARO’s historical and locational trend analyses.</p>
+<p>+ Expand row details PR-012, Unresolved UAP Report, Europe 2022 PR-012, Unresolved UAP Report, Europe 2022 The United States European Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of fifty-five seconds of video footage from an infrared sensor aboard a U.S. military platform in 2022.</p>
+<p>AARO assesses, with high confidence, that the footage depicts the presence of a physical object. The object’s morphological features, performance characteristics, and behaviors are unremarkable and do not warrant further analysis. AARO will continue to investigate this case should further information become available to enable a more conclusive attribution. This unresolved report contributes to AARO’s historical and locational trend analyses.</p>
+<p>+ Expand row details PR-011, UAP Report Undergoing Analysis, Europe 2021 PR-011, UAP Report Undergoing Analysis, Europe 2021 The United States European Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of two minutes and eight seconds of video footage from an infrared sensor aboard a U.S. military platform in 2021. The footage depicts an area of contrast in the infrared sensor display, suggesting the presence of a physical object. Analysis of the object’s physical attributes and performance characteristics is ongoing.</p>
+<p>+ Expand row details PR-010, UAP Report Resolved as a Balloon, Europe 2022 PR-010, UAP Report Resolved as a Balloon, Europe 2022 The United States European Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of seven minutes and fifty-six seconds of video footage from an infrared sensor aboard a U.S. military platform in 2022.</p>
+<p>AARO assesses, with high confidence, that the object depicted in the video is almost certainly (≥95% likelihood) a balloon. AARO bases its assessment on the object’s strong morphological consistency with other resolved imagery featuring balloons and the object’s performance characteristics strongly aligning with those of lighter-than-air objects, e.g., drifting at wind speed and direction.</p>
+<p>+ Expand row details PR-009, UAP Report Resolved as a Balloon, Europe 2022 PR-009, UAP Report Resolved as a Balloon, Europe 2022 The United States European Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of twenty seconds of video footage from an infrared sensor aboard a U.S. military platform in 2022.</p>
+<p>AARO assesses, with high confidence, that the object depicted in the video is almost certainly (≥95% likelihood) a balloon. AARO bases its assessment on the object’s strong morphological consistency with other resolved imagery featuring balloons and the object’s performance characteristics strongly aligning with those of lighter-than-air objects, e.g., drifting at wind speed and direction.</p>
+<p>+ Expand row details PR-008, Unresolved UAP Report, Europe 2022 PR-008, Unresolved UAP Report, Europe 2022 The United States European Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of one minute and twenty-one seconds of video footage from an infrared sensor aboard a U.S. military platform in 2022.</p>
+<p>The footage depicts an apparent heat signature with characteristics consistent with those of a physical object, However, AARO cannot determine whether the observed signature originates from a physical source, either as a thermal emission or a thermal reflection, or other source, such as a heat differential in the environment or sensor display error. The available data is insufficient to evaluate the phenomenon’s performance characteristics.</p>
+<p>+ Expand row details PR-007, UAP Report Closed as Not Anomalous, Europe 2022 PR-007, UAP Report Closed as Not Anomalous, Europe 2022 The United States European Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of six seconds of video footage from an infrared sensor aboard a U.S. military platform in 2022.</p>
+<p>AARO assesses, with high confidence, that the object depicted in the video demonstrates performance characteristics consistent with those of a prosaic aircraft. However, the available data is insufficient to attribute the object to a specific origin or render a determination on its type or application. Though AARO cannot conclusively resolve this object, it does not meet the morphological or performance criteria to warrant further analysis.</p>
+<p>+ Expand row details PR-006, UAP Report Resolved as a Balloon, Europe 2022 PR-006, UAP Report Resolved as a Balloon, Europe 2022 The United States European Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of twenty seconds of video footage from an infrared sensor aboard a U.S. military platform in 2022.</p>
+<p>AARO assesses, with high confidence, that the object depicted in the video is almost certainly (≥95% likelihood) a balloon. AARO bases its assessment on the object’s strong morphological consistency with other resolved imagery featuring balloons and the object’s performance characteristics strongly aligning with those of lighter-than-air objects, e.g., drifting at wind speed and direction.</p>
+<p>+ Expand row details PR-005, UAP Report Resolved as a Balloon, Europe 2022 PR-005, UAP Report Resolved as a Balloon, Europe 2022 The United States European Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of thirty-two seconds of video footage from an infrared sensor aboard a U.S. military platform in 2022.</p>
+<p>AARO assesses, with high confidence, that the object depicted in the video is almost certainly (≥95% likelihood) a balloon. AARO bases its assessment on the object’s strong morphological consistency with other resolved imagery featuring balloons and the object’s performance characteristics strongly aligning with those of lighter-than-air objects, e.g., drifting at wind speed and direction.</p>
+<p>+ Expand row details PR-004, UAP Report Resolved as a Balloon, Europe 2022 PR-004, UAP Report Resolved as a Balloon, Europe 2022 The United States European Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of thirty-one seconds of video footage from an infrared sensor aboard a U.S. military platform in 2022.</p>
+<p>AARO assesses, with high confidence, that the object depicted in the video is almost certainly (≥95% likelihood) a balloon. AARO bases its assessment on the object’s strong morphological consistency with other resolved imagery featuring balloons and the object’s performance characteristics strongly aligning with those of lighter-than-air objects, e.g., drifting at wind speed and direction.</p>
+<p>+ Expand row details PR-003, Resolved as Migratory Birds, Africa 2023 PR-003, Unresolved UAP Report, Africa 2023 In 2023, the United States Africa Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of four minutes and fifty-eight seconds of video footage from an infrared sensor aboard a U.S. military platform.</p>
+<p>The footage shows an apparent heat signature with characteristics consistent with those of a physical object. However, AARO cannot determine whether the observed signature originates from a physical source, either as a thermal emission or a thermal reflection, or other source, such as a heat differential in the environment or sensor display error. The available data is insufficient to evaluate the phenomenon’s performance characteristics.</p>
+<p>+ Expand row details PR-002, Resolved as Migratory Birds, Africa 2024 PR-002, Resolved as Migratory Birds, Africa 2024 In 2024, the United States Africa Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of one minute and eighteen seconds of video footage from an infrared sensor aboard a U.S. military platform.</p>
+<p>AARO assesses, with high confidence, that the objects depicted in the video are almost certainly (≥95% likelihood) a group of migratory birds. AARO bases its assessment on the objects’ strong morphological consistency with other resolved imagery depicting birds and the objects’ flight behavior corresponding to known migration routes. An external Intelligence Community partner concurred with AARO’s assessment.</p>
+<p>+ Expand row details PR-001, Unresolved UAP Report, Africa 2022 PR-001, Unresolved UAP Report, Africa 2022 In 2022, the United States Africa Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of thirty-one seconds of video footage from an infrared sensor aboard a U.S. military platform.</p>
+<p>The footage shows an apparent heat signature with characteristics consistent with those of a physical object. However, AARO cannot determine whether the observed signature originates from a physical source, either as a thermal emission or a thermal reflection, or other source, such as a heat differential in the environment or sensor display error. The available data is insufficient to evaluate the phenomenon’s performance characteristics.</p>
+<p>+ Expand row details Middle East Red Balloon 2024 Middle East Red Balloon 2024 The All-domain Anomaly Resolution Office received a report from a U.S. military Service consisting of one minute and thirty-six seconds of full-motion video footage captured by a camera aboard a U.S. military platform in the Middle East in 2024. According to the reporting Service, the recording likely depicts a slow-moving spheroidal object.</p>
+<p>AARO assesses, with high confidence, that the object depicted in the video is almost certainly (≥95% likelihood) a consumer-grade reflective foil balloon. AARO bases its assessment on the object&#x27;s strong morphological consistency with other resolved imagery depicting balloons and its behavioral correlation with recorded wind speed and direction during the event.</p>
+<p>+ Expand row details Unresolved UAP Report: Middle East 2024 Middle East 2024 The All-domain Anomaly Resolution Office received a report from a U.S. military Service consisting of six minutes and forty-two seconds of video footage from an infrared sensor aboard a U.S. military platform. The recording, captured in the Middle East in 2024, depicts an apparent thermal contrast within the sensor’s field of view. The area of apparent contrast exhibited characteristics that may be consistent with the presence of a physical object. However, due to the absence of corroborating telemetry or multi-modal sensor data, AARO cannot determine whether the observed signature represents a sensor artifact or a thermal emission or reflection from a physical source. The available data does not support a conclusive analytic evaluation.</p>
+<p>+ Expand row details Unresolved UAP Report: Middle East 2023 Middle East 2023 The All-domain Anomaly Resolution Office received a report from a U.S. military Service consisting of eight minutes and fifteen seconds of video footage from an infrared sensor aboard a U.S. military platform. The recording, captured in the Middle East in 2023, depicts an apparent thermal contrast within the sensor’s field of view. The area of apparent contrast exhibited characteristics that may be consistent with the presence of a physical object. However, due to the absence of corroborating telemetry or multi-modal sensor data, AARO cannot determine whether the observed signature represents a sensor artifact or a thermal emission or reflection from a physical source. The available data does not support a conclusive analytic evaluation.</p>
+<p>+ Expand row details Al Taqaddum Object Al Taqaddum Object In October 2017, an infrared sensor onboard a force protection aerostat near Al Taqaddum Air Base, Iraq, captured 17 minutes of video of an unidentified object.</p>
+<p>AARO assesses that the object was a cluster of partially and fully inflated balloons. The object&#x27;s appearance is consistent with other recorded observations featuring balloon clusters. AARO employed full-motion video analysis and pixel examination techniques to inform its assessment.</p>
+<p>AARO assesses that the object did not demonstrate anomalous performance characteristics. AARO used geo-locational data from the aerostat to assess the object&#x27;s speed and direction of travel.</p>
+<p>Al Taqaddum Case Resolution</p>
+<p>+ Expand row details Mt. Etna Object Mt. Etna Object In December 2018, a forward-looking infrared video sensor aboard an uncrewed U.S. Air Force platform captured this footage while operating over the Mediterranean Sea. This footage depicts an object that appears to be transiting a plume of superheated gas and ash produced by an eruption of Mt. Etna, a volcano in Sicily, Italy. AARO coordinated an interagency and international analytical effort that determined that optical effects from the intense atmospheric conditions near the volcano distorted the video, causing the object to appear to transit the plume. AARO assesses with moderate confidence that the footage instead depicts a balloon approximately 170 kilometers from the caldera traveling at wind speed and direction.</p>
+<p>Mt. Etna Case Resolution</p>
+<p>+ Expand row details Puerto Rico Object Puerto Rico Object Video On April 26, 2013, an infrared sensor onboard a U.S. Customs and Border Protection aircraft captured footage of a UAP event over the Rafael Hernandez Airport near Aguadilla, Puerto Rico. The footage appears to depict a UAP moving at high speed, splitting into two objects, and entering and exiting the water before disappearing into the ocean off Puerto Rico&#x27;s northwestern coast. AARO assesses with high confidence that the objects did not demonstrate anomalous speeds or flight behaviors. An Intelligence Community partner&#x27;s reconstruction of the flight path and look angle from the infrared sensor indicates that the video instead depicts two objects traveling near each other rather than a single object splitting into two. This reconstruction also demonstrates that the objects traveled in a straight line at wind speed and did not enter the water at any point.</p>
+<p>Puerto Rico Case Resolution</p>
+<p>Puerto Rico Object Digital Systems Toolkit Reconstruction</p>
+<p>+ Expand row details &quot;Go Fast&quot; Object NAVAIR - FOIA: Case: &quot;GO FAST&quot; Video Forward-Looking Infrared video footage of an unidentified object recorded by the aircrew of a U.S. Navy F/A-18F in 2015.</p>
+<p>&quot;Go Fast&quot; Case Resolution</p>
+<p>+ Expand row details Western U.S. Objects UAP Video: Western U.S. Objects Analysis of the full motion video, combined with commercial flight data in the region, led AARO to assess that the objects were three separate commercial aircraft flying at a great distance from the infrared sensor. The radar tracks for commercial aircraft aligned with the objects, which were only seen as small dots due to their significant distance from the sensor.</p>
+<p>Western United States Case Resolution</p>
+<p>+ Expand row details Atmospheric Wake - South Asian Object (Sensor #1) UAP Video: Atmospheric Wake - South Asian Object (Sensor #1) An MQ-9 forward-looking infrared video sensor captured this footage in South Asia as it was recording another MQ-9. After analysis of the full motion video, inclusion of additional footage with a longer focal length, and analysis of commercial flight data in the region, AARO assesses that the object likely is a commercial aircraft and that the trailing cavitation is a sensor artifact resultant of video compression.</p>
+<p>Atmospheric Wakes Case Resolution</p>
+<p>+ Expand row details Atmospheric Wake - South Asian Object (Sensor #2) UAP Video: Atmospheric Wake - South Asian Object (Sensor #2) An MQ-9 forward-looking infrared video sensor captured this footage in South Asia as it was recording another MQ-9. After analysis of the full motion video, inclusion of additional footage with a longer focal length, and analysis of commercial flight data in the region, AARO assesses that the object likely is a commercial aircraft and that the trailing cavitation is a sensor artifact resultant of video compression.</p>
+<p>Atmospheric Wakes Case Resolution</p>
+<p>+ Expand row details Middle East Object UAP Video: Middle East Object This clip was taken by an MQ-9 in the Middle East, and while AARO assesses the object in the clip is not exhibiting anomalous behavior, the object remains unidentified.</p>
+<p>+ Expand row details Unresolved Case: Navy 2021 &quot;Flyby&quot; Unresolved Case: Navy 2021 Flyby This video, captured by the pilot in the cockpit of a Navy fighter jet, demonstrates the typical speed at which military aircraft may approach an unknown object.</p>
+<p>+ Expand row details NAVAIR - FOIA: Unresolved Case: FLIR Video NAVAIR - FOIA: Unresolved Case: FLIR Video Forward Looking Infrared - Video of a U.S. Navy F/A-18 jet crew’s encounter with an unexplained anomalous phenomena (UAP).</p>
+<p>+ Expand row details NAVAIR - FOIA: Unresolved Case: Gimbal Video NAVAIR - FOIA: Unresolved Case: GIMBAL Video Video of a U.S. Navy F/A-18 jet crew’s encounter with an unexplained anomalous phenomena (UAP).</p>
+<p>UAP Imagery</p>
+<p>Title DVIDS Page Description Video</p>
+<p>PR-018, Unresolved UAP Report, Europe 2024 PR-018, Unresolved UAP Report, Europe 2024 The United States European Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of ten minutes and thirty seconds of video footage from an infrared sensor aboard a U.S. military platform in 2024. AARO assesses, with high confidence, that the footage depicts the presence of a physical object. The object’s morphological features, performance characteristics, and behaviors are unremarkable and do not warrant further analysis. AARO will continue to investigate this case should further information become available to enable a more conclusive attribution. This unresolved report contributes to AARO’s historical and locational trend analyses.</p>
+<p>PR-017, Unresolved UAP Report, Europe 2024 PR-017, Unresolved UAP Report, Europe 2024 The United States European Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of thirty seconds of video footage from a commercially available cellular device’s rear-facing digital camera in 2024. The video footage associated with this report is insufficient for AARO to render a determination on its subject matter. This unresolved report contributes to AARO’s historical and locational trend analyses.</p>
+<p>PR-016, Resolved as Birds, Europe 2023 PR-016, Resolved as Birds, Europe 2023 The United States European Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of twenty-five seconds of video footage from an infrared sensor aboard a U.S. military platform in 2023. AARO assesses, with high confidence, that the objects depicted in the video are almost certainly (&gt;95% likelihood) birds. AARO bases its assessment on the objects’ strong morphological consistency with other resolved imagery featuring birds and the objects’ behavioral characteristics strongly aligning with those of birds, e.g. maintaining relative positioning for energy conservation during flight, pulsating infrared return at a frequency consistent with wing beats.</p>
+<p>PR-015, Unresolved UAP Report, Europe 2022 PR-015, Unresolved UAP Report, Europe 2022 The United States European Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of thirteen seconds of video footage from an infrared sensor aboard a U.S. military platform in 2022.</p>
+<p>AARO assesses, with high confidence, that the footage depicts the presence of a physical object. The object’s morphological features, performance characteristics, and behaviors are unremarkable and do not warrant further analysis. AARO will continue to investigate this case should further information become available to enable a more conclusive attribution. This unresolved report contributes to AARO’s historical and locational trend analyses.</p>
+<p>PR-014, Unresolved UAP Report, Europe 2022 PR-014, Unresolved UAP Report, Europe 2022 The United States European Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of forty-three seconds of video footage from an infrared sensor aboard a U.S. military platform in 2022.</p>
+<p>AARO assesses, with high confidence, that the footage depicts the presence of a physical object. The object’s morphological features, performance characteristics, and behaviors are unremarkable and do not warrant further analysis. AARO will continue to investigate this case should further information become available to enable a more conclusive attribution. This unresolved report contributes to AARO’s historical and locational trend analyses.</p>
+<p>PR-013, Unresolved UAP Report, Europe 2022 PR-013, Unresolved UAP Report, Europe 2022 The United States European Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of twenty seconds of video footage from an infrared sensor aboard a U.S. military platform in 2022. AARO assesses, with high confidence, that the footage depicts the presence of a physical object. The object’s morphological features, performance characteristics, and behaviors are unremarkable and do not warrant further analysis. AARO will continue to investigate this case should further information become available to enable a more conclusive attribution. This unresolved report contributes to AARO’s historical and locational trend analyses.</p>
+<p>PR-012, Unresolved UAP Report, Europe 2022 PR-012, Unresolved UAP Report, Europe 2022 The United States European Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of fifty-five seconds of video footage from an infrared sensor aboard a U.S. military platform in 2022.</p>
+<p>AARO assesses, with high confidence, that the footage depicts the presence of a physical object. The object’s morphological features, performance characteristics, and behaviors are unremarkable and do not warrant further analysis. AARO will continue to investigate this case should further information become available to enable a more conclusive attribution. This unresolved report contributes to AARO’s historical and locational trend analyses.</p>
+<p>PR-011, UAP Report Undergoing Analysis, Europe 2021 PR-011, UAP Report Undergoing Analysis, Europe 2021 The United States European Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of two minutes and eight seconds of video footage from an infrared sensor aboard a U.S. military platform in 2021. The footage depicts an area of contrast in the infrared sensor display, suggesting the presence of a physical object. Analysis of the object’s physical attributes and performance characteristics is ongoing.</p>
+<p>PR-010, UAP Report Resolved as a Balloon, Europe 2022 PR-010, UAP Report Resolved as a Balloon, Europe 2022 The United States European Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of seven minutes and fifty-six seconds of video footage from an infrared sensor aboard a U.S. military platform in 2022.</p>
+<p>AARO assesses, with high confidence, that the object depicted in the video is almost certainly (≥95% likelihood) a balloon. AARO bases its assessment on the object’s strong morphological consistency with other resolved imagery featuring balloons and the object’s performance characteristics strongly aligning with those of lighter-than-air objects, e.g., drifting at wind speed and direction.</p>
+<p>PR-009, UAP Report Resolved as a Balloon, Europe 2022 PR-009, UAP Report Resolved as a Balloon, Europe 2022 The United States European Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of twenty seconds of video footage from an infrared sensor aboard a U.S. military platform in 2022.</p>
+<p>AARO assesses, with high confidence, that the object depicted in the video is almost certainly (≥95% likelihood) a balloon. AARO bases its assessment on the object’s strong morphological consistency with other resolved imagery featuring b</p></div>
+    
+    <h3 class="sub">Related Links</h3><ul class="lk-list">
+<li><a href="https://www.dvidshub.net/about/copyright" target="_blank" rel="noopener" class="ext">Click here for more information on the use of DoW Visual Imagery ↗</a></li>
+<li><a href="https://www.dvidshub.net/video/992262/pr-013-unresolved-uap-report-europe-2022" target="_blank" rel="noopener" class="ext">PR-013, Unresolved UAP Report, Europe 2022 ↗</a></li>
+<li><a href="https://www.dvidshub.net/video/992261/pr-011-uap-report-undergoing-analysis-europe-2021" target="_blank" rel="noopener" class="ext">PR-011, UAP Report Undergoing Analysis, Europe 2021 ↗</a></li>
+<li><a href="https://www.dvidshub.net/video/989430/pr-015-unresolved-uap-report-europe-2022" target="_blank" rel="noopener" class="ext">PR-015, Unresolved UAP Report, Europe 2022 ↗</a></li>
+<li><a href="https://www.dvidshub.net/video/989429/pr-014-unresolved-uap-report-europe-2022" target="_blank" rel="noopener" class="ext">PR-014, Unresolved UAP Report, Europe 2022 ↗</a></li>
+<li><a href="https://www.dvidshub.net/video/989428/pr-012-unresolved-uap-report-europe-2022" target="_blank" rel="noopener" class="ext">PR-012, Unresolved UAP Report, Europe 2022 ↗</a></li>
+<li><a href="https://www.dvidshub.net/video/988676/pr-018-unresolved-uap-report-europe-2024" target="_blank" rel="noopener" class="ext">PR-018, Unresolved UAP Report, Europe 2024 ↗</a></li>
+<li><a href="https://www.dvidshub.net/video/988675/pr-017-unresolved-uap-report-europe-2024" target="_blank" rel="noopener" class="ext">PR-017, Unresolved UAP Report, Europe 2024 ↗</a></li>
+<li><a href="https://www.dvidshub.net/video/988673/pr-016-resolved-birds-europe-2023" target="_blank" rel="noopener" class="ext">PR-016, Resolved as Birds, Europe 2023 ↗</a></li>
+<li><a href="https://www.dvidshub.net/video/976937/pr-010-uap-report-resolved-balloon-europe-2022" target="_blank" rel="noopener" class="ext">PR-010, UAP Report Resolved as a Balloon, Europe 2022 ↗</a></li>
+<li><a href="https://www.dvidshub.net/video/977840/pr-009-uap-report-resolved-balloon-europe-2022" target="_blank" rel="noopener" class="ext">PR-009, UAP Report Resolved as a Balloon, Europe 2022 ↗</a></li>
+<li><a href="https://www.dvidshub.net/video/977839/pr-008-unresolved-uap-report-europe-2022" target="_blank" rel="noopener" class="ext">PR-008, Unresolved UAP Report, Europe 2022 ↗</a></li>
+<li><a href="https://www.dvidshub.net/video/977838/pr-007-uap-report-closed-not-anomalous-europe-2022" target="_blank" rel="noopener" class="ext">PR-007, UAP Report Closed as Not Anomalous, Europe 2022 ↗</a></li>
+<li><a href="https://www.dvidshub.net/video/977837/pr-006-uap-report-resolved-balloon-europe-2022" target="_blank" rel="noopener" class="ext">PR-006, UAP Report Resolved as a Balloon, Europe 2022 ↗</a></li>
+<li><a href="https://www.dvidshub.net/video/977834/pr-005-uap-report-resolved-balloon-europe-2022" target="_blank" rel="noopener" class="ext">PR-005, UAP Report Resolved as a Balloon, Europe 2022 ↗</a></li>
+<li><a href="https://www.dvidshub.net/video/977221/pr-004-uap-report-resolved-balloon-europe-2022" target="_blank" rel="noopener" class="ext">PR-004, UAP Report Resolved as a Balloon, Europe 2022 ↗</a></li>
+<li><a href="https://www.dvidshub.net/video/973055/pr-003-unresolved-uap-report-africa-2023" target="_blank" rel="noopener" class="ext">PR-003, Unresolved UAP Report, Africa 2023 ↗</a></li>
+<li><a href="https://www.dvidshub.net/video/973048/pr-002-resolved-migratory-birds-africa-2024" target="_blank" rel="noopener" class="ext">PR-002, Resolved as Migratory Birds, Africa 2024 ↗</a></li>
+<li><a href="https://www.dvidshub.net/video/973045/pr-001-unresolved-uap-report-africa-2022" target="_blank" rel="noopener" class="ext">PR-001, Unresolved UAP Report, Africa 2022 ↗</a></li>
+<li><a href="https://www.dvidshub.net//video/964843/25-scr150-middle-east-red-balloon-2024" target="_blank" rel="noopener" class="ext">Middle East Red Balloon 2024 ↗</a></li>
+<li><a href="https://www.dvidshub.net//video/962722/unresolved-uap-report-middle-east-2024" target="_blank" rel="noopener" class="ext">Middle East 2024 ↗</a></li>
+<li><a href="https://www.dvidshub.net//video/961723/unresolved-uap-report-middle-east-2023" target="_blank" rel="noopener" class="ext">Middle East 2023 ↗</a></li>
+<li><a href="https://www.dvidshub.net//video/960331/al-taqaddum-object" target="_blank" rel="noopener" class="ext">Al Taqaddum Object ↗</a></li>
+<li><a href="./pdfs/AARO_Al_Taqaddam_Case_Resolution_Final.pdf" target="_blank">Al Taqaddum Case Resolution <span class="lk-meta">[PDF · local]</span></a></li>
+<li><a href="https://www.dvidshub.net/video/944201/mt-etna-object" target="_blank" rel="noopener" class="ext">Mt. Etna Object ↗</a></li>
+<li><a href="https://www.aaro.mil/Portals/136/PDFs/case_resolution_reports/Mt-Etna-Object.pdf" target="_blank" rel="noopener">Mt. Etna Case Resolution <span class="lk-meta">[PDF · source]</span></a></li>
+<li><a href="https://www.dvidshub.net/video/944204/puerto-rico-objects" target="_blank" rel="noopener" class="ext">Puerto Rico Object Video ↗</a></li>
+<li><a href="https://www.aaro.mil/Portals/136/PDFs/case_resolution_reports/AARO_Puerto_Rico_UAP_Case_Resolution.pdf" target="_blank" rel="noopener">Puerto Rico Case Resolution <span class="lk-meta">[PDF · source]</span></a></li>
+<li><a href="https://www.dvidshub.net//video/955936/2013-puerto-rico-object-reconstruction" target="_blank" rel="noopener" class="ext">Puerto Rico Object Digital Systems Toolkit Reconstruction ↗</a></li>
+<li><a href="https://www.dvidshub.net/video/956683/gofast-uap" target="_blank" rel="noopener" class="ext">NAVAIR - FOIA: Case: &quot;GO FAST&quot; Video ↗</a></li>
+<li><a href="https://www.aaro.mil/Portals/136/PDFs/case_resolution_reports/AARO_GoFast_Case_Resolution_Card_Methodology_Final.pdf" target="_blank" rel="noopener">&quot;Go Fast&quot; Case Resolution <span class="lk-meta">[PDF · source]</span></a></li>
+<li><a href="https://www.dvidshub.net/video/885193/western-us-objects" target="_blank" rel="noopener" class="ext">UAP Video: Western U.S. Objects ↗</a></li>
+<li><a href="https://www.aaro.mil/Portals/136/PDFs/case_resolution_reports/Case_Resolution_of _Western_United_States_Uap_508-02262024.pdf" target="_blank" rel="noopener">Western United States Case Resolution <span class="lk-meta">[PDF · source]</span></a></li>
+<li><a href="https://www.dvidshub.net/video/880270/south-asian-object-1" target="_blank" rel="noopener" class="ext">UAP Video: Atmospheric Wake - South Asian Object (Sensor #1) ↗</a></li>
+<li><a href="https://www.aaro.mil/Portals/136/PDFs/case_resolution_reports/Case_Resolution_of_Atmospheric_Wakes_508-02262024.pdf" target="_blank" rel="noopener">Atmospheric Wakes Case Resolution <span class="lk-meta">[PDF · source]</span></a></li>
+<li><a href="https://www.dvidshub.net/video/880271/south-asian-object-2" target="_blank" rel="noopener" class="ext">UAP Video: Atmospheric Wake - South Asian Object (Sensor #2) ↗</a></li>
+<li><a href="https://www.dvidshub.net/video/880273/middle-east-object" target="_blank" rel="noopener" class="ext">UAP Video: Middle East Object ↗</a></li>
+<li><a href="https://www.dvidshub.net/video/843620/navy-2021-flyby-video" target="_blank" rel="noopener" class="ext">Unresolved Case: Navy 2021 Flyby ↗</a></li>
+<li><a href="https://www.dvidshub.net/video/955825/flir-uap" target="_blank" rel="noopener" class="ext">NAVAIR - FOIA: Unresolved Case: FLIR Video ↗</a></li>
+<li><a href="https://www.dvidshub.net/video/956955/gimbal-uap" target="_blank" rel="noopener" class="ext">NAVAIR - FOIA: Unresolved Case: GIMBAL Video ↗</a></li>
+<li><a href="https://www.dvidshub.net/video/973048/pr-003-resolved-migratory-birds-africa-2023" target="_blank" rel="noopener" class="ext">PR-003, Resolved as Migratory Birds, Africa 2024 ↗</a></li>
+</ul>
+  </div>
+</section>
+<section id="uap-case-resolution-reports">
+  <div class="container">
+    <div class="section-label">§ Case Resolution Reports</div>
+    <h2>UAP Case Resolution Reports</h2>
+    <div class="pg-content"><p>UAP Case Resolution Reports</p>
+<p>UAP Case Resolution Reports</p>
+<p>Name Description Links</p>
+<p>Al Taqaddam Case Resolution</p>
+<p>On October 23, 2017, an infrared (IR) sensor aboard an aerostat force protection dirigible (blimp) operating at 2,700 feet above Al Taqaddum Air Base, Iraq, recorded 17 minutes and 30 seconds of footage featuring an unidentified object that appears to be floating above the ground.</p>
+<p>AARO assesses with high confidence that the Al Taqaddum object did not exhibit anomalous behavior or capabilities. AARO assesses with high confidence that the object was consistent with a cluster of fully and partially inflated balloons.</p>
+<p>Al Taqaddum Case Resolution</p>
+<p>Al Taqaddum Object Video</p>
+<p>Mt. Etna Case Resolution</p>
+<p>In December 2018, a shortwave infrared (SWIR) camera onboard a U.S. military uncrewed aerial system (UAS) operating near U.S. Naval Air Station Sigonella over the Mediterranean Sea south of Sicily, Italy, captured 12 minutes of infrared video of an eruption of Mt. Etna. For approximately four and a half minutes, a round object appears on the video and seems to exhibit anomalous performance characteristics by moving at high speeds and transiting a superheated gas and ash plume produced by the eruption.</p>
+<p>Mt. Etna Object Case Resolution</p>
+<p>Mt. Etna Object Video</p>
+<p>Puerto Rico Case Resolution</p>
+<p>On April 26, 2013, an infrared sensor onboard a U.S. Customs and Border Protection aircraft captured footage of a UAP event over the Rafael Hernandez Airport near Aguadilla, Puerto Rico. The footage appears to depict a UAP moving at high speed, splitting into two objects, and entering and exiting the water before disappearing into the ocean off Puerto Rico&#x27;s northwestern coast. AARO assesses with high confidence that the objects did not demonstrate anomalous speeds or flight behaviors. An Intelligence Community partner&#x27;s reconstruction of the flight path and look angle from the infrared sensor indicates that the video instead depicts two objects traveling near each other rather than a single object splitting into two. This reconstruction also demonstrates that the objects traveled in a straight line at wind speed and did not enter the water at any point.</p>
+<p>Puerto Rico Case Resolution</p>
+<p>Puerto Rico Object Video</p>
+<p>Puerto Rico Object Digital Systems Toolkit Reconstruction</p>
+<p>GoFast Case Resolution</p>
+<p>In January 2015, a U.S. Navy F/A-18F pilot recorded an object using a Forward Looking Infrared (FLIR) sensor about 13,000 feet above the Atlantic Ocean off the coast of Florida.</p>
+<p>GoFast Case Resolution</p>
+<p>GOFAST - UAP Video</p>
+<p>Eglin Case Resolution</p>
+<p>A military pilot reported the object due to its potential as a flight safety hazard and an incursion into a sensitive training range.</p>
+<p>Eglin Case Resolution Report</p>
+<p>Atmospheric Wake Case Resolution</p>
+<p>These reports were submitted after three different missions in the Middle East, and the Mediterranean Sea in 2022 and 2023. The reports were filed due to the potential hazard posed to the mission and because the videos depict a potentially anomalous propulsion signature.</p>
+<p>Atmospheric Wake Case Resolution Report</p>
+<p>South Asian Object 1 Video</p>
+<p>South Asian Object 2 Video</p>
+<p>Southeast Asia Triangles Case Resolution</p>
+<p>Six triangular objects in a formation were originally flagged as potentially anomalous and potentially posing a risk to navigation.</p>
+<p>Southeast Asia Triangles Case Resolution Report</p>
+<p>Western United States Case Resolution</p>
+<p>Military personnel reported this observation as UAP presenting a potential incursion into restricted airspace. They described equidistant lights flying at a relatively constant pace.</p>
+<p>Western United States Case Resolution Report</p>
+<p>Western U.S. Objects Video</p></div>
+    <div class="pg-imgs">
+<figure class="pg-img"><img loading="lazy" src="./assets/images/Al_Taqaddum_Object.png" alt=""><figcaption>Image</figcaption></figure>
+<figure class="pg-img"><img loading="lazy" src="./assets/images/Mt_Etna_Object.jpg" alt=""><figcaption>Image</figcaption></figure>
+<figure class="pg-img"><img loading="lazy" src="./assets/images/Puerto_Rico_Objects.jpg" alt=""><figcaption>Image</figcaption></figure>
+<figure class="pg-img"><img loading="lazy" src="./assets/images/Go_Fast_UAP.jpg" alt=""><figcaption>Image</figcaption></figure>
+<figure class="pg-img"><img loading="lazy" src="./assets/images/Eglin_UAP_Thumbnail.png" alt=""><figcaption>Image</figcaption></figure>
+<figure class="pg-img"><img loading="lazy" src="./assets/images/Atmospheric_Wakes_Image.jpg" alt=""><figcaption>Image</figcaption></figure>
+<figure class="pg-img"><img loading="lazy" src="https://www.aaro.mil/portals/136/PDFs/case_resolution_reports/Southeast_Asia_Triangles_Image.jpg" alt=""><figcaption>Image</figcaption></figure>
+<figure class="pg-img"><img loading="lazy" src="./assets/images/Western_US_Image.jpg" alt=""><figcaption>Image</figcaption></figure>
+</div>
+    <h3 class="sub">Related Links</h3><ul class="lk-list">
+<li><a href="./pdfs/AARO_Al_Taqaddam_Case_Resolution_Final.pdf" target="_blank">Al Taqaddum Case Resolution <span class="lk-meta">[PDF · local]</span></a></li>
+<li><a href="https://www.dvidshub.net//video/960331/al-taqaddum-object" target="_blank" rel="noopener" class="ext">Al Taqaddum Object Video ↗</a></li>
+<li><a href="https://www.aaro.mil/Portals/136/PDFs/case_resolution_reports/Mt-Etna-Object.pdf" target="_blank" rel="noopener">Mt. Etna Object Case Resolution <span class="lk-meta">[PDF · source]</span></a></li>
+<li><a href="https://www.dvidshub.net/video/944201/mt-etna-object" target="_blank" rel="noopener" class="ext">Mt. Etna Object Video ↗</a></li>
+<li><a href="https://www.aaro.mil/Portals/136/PDFs/case_resolution_reports/AARO_Puerto_Rico_UAP_Case_Resolution.pdf" target="_blank" rel="noopener">Puerto Rico Case Resolution <span class="lk-meta">[PDF · source]</span></a></li>
+<li><a href="https://www.dvidshub.net/video/944204/puerto-rico-objects" target="_blank" rel="noopener" class="ext">Puerto Rico Object Video ↗</a></li>
+<li><a href="https://www.dvidshub.net//video/955936/2013-puerto-rico-object-reconstruction" target="_blank" rel="noopener" class="ext">Puerto Rico Object Digital Systems Toolkit Reconstruction ↗</a></li>
+<li><a href="https://www.aaro.mil/Portals/136/PDFs/case_resolution_reports/AARO_GoFast_Case_Resolution_Card_Methodology_Final.pdf" target="_blank" rel="noopener">GoFast Case Resolution <span class="lk-meta">[PDF · source]</span></a></li>
+<li><a href="https://www.dvidshub.net/video/956683/gofast-uap" target="_blank" rel="noopener" class="ext">GOFAST - UAP Video ↗</a></li>
+<li><a href="https://www.aaro.mil/Portals/136/PDFs/case_resolution_reports/Case_Resolution_of_Eglin_UAP_2_508_.pdf" target="_blank" rel="noopener">Eglin Case Resolution Report <span class="lk-meta">[PDF · source]</span></a></li>
+<li><a href="https://www.aaro.mil/Portals/136/PDFs/case_resolution_reports/Case_Resolution_of_Atmospheric_Wakes_508-02262024.pdf" target="_blank" rel="noopener">Atmospheric Wake Case Resolution Report <span class="lk-meta">[PDF · source]</span></a></li>
+<li><a href="https://www.dvidshub.net/video/880270/south-asian-object-1" target="_blank" rel="noopener" class="ext">South Asian Object 1 Video ↗</a></li>
+<li><a href="https://www.dvidshub.net/video/880271/south-asian-object-2" target="_blank" rel="noopener" class="ext">South Asian Object 2 Video ↗</a></li>
+<li><a href="./pdfs/Case_Resolution_of_Southeast_Asia_Triangles_508-02262024.pdf" target="_blank">Southeast Asia Triangles Case Resolution Report <span class="lk-meta">[PDF · local]</span></a></li>
+<li><a href="./pdfs/Case_Resolution_of_Western_United_States_Uap_508-02262024.pdf" target="_blank">Western United States Case Resolution Report <span class="lk-meta">[PDF · local]</span></a></li>
+<li><a href="https://www.dvidshub.net/video/885193/western-us-objects" target="_blank" rel="noopener" class="ext">Western U.S. Objects Video ↗</a></li>
+</ul>
+  </div>
+</section>
+<section id="uap-reporting-trends">
+  <div class="container">
+    <div class="section-label">§ UAP Reporting Trends</div>
+    <h2>UAP Reporting Trends</h2>
+    <div class="pg-content"><p>UAP Reporting Trends</p>
+<p>January 1, 1996 - January 15, 2026</p>
+<p>Closed Cases Resolution Outcomes</p>
+<p>Reported UAP Morphology</p>
+<p>Not all UAP reports to AARO contain morphology data.</p>
+<p>Reported UAP Altitudes</p>
+<p>* = (Kármán Line)</p>
+<p>Toggle Orientation</p></div>
+    
+    
+  </div>
+</section>
+<section id="uap-records">
+  <div class="container">
+    <div class="section-label">§ UAP Records</div>
+    <h2>UAP Records/Information Papers</h2>
+    <div class="pg-content"><p>UAP Records/Information Papers</p>
+<p>New Content</p>
+<p>Content</p>
+<p>Type</p>
+<p>Date Added</p>
+<p>White Paper: 2025 UAP Workshop - Narrative Data, Infrastructures, and Analysis</p>
+<p>Information Papers</p>
+<p>Februrary 13, 2026</p>
+<p>Records</p>
+<p>Information Papers</p>
+<p>UAP Records</p>
+<p>Name Description Papers</p>
+<p>National Archives and Records Administration (NARA) The National Archives and Records Administration (NARA) provides access to many government records on Unidentified Flying Objects (UFOs) and Unidentified Anomalous Phenomena (UAPs) through the National Archives Catalog and NARA&#x27;s website. Additionally, NARA has been actively digitizing historical records from its holdings over the past few months, in support of the Department of War. Digitized records are being made available in the Catalog on a rolling basis as the work is completed. AARO recognizes the importance of NARA in supporting AARO’s mission to review and document historical UAP reports. UAP Records from NARA</p>
+<p>National Aeronautics and Space Administration (NASA) On September 14, 2023, the NASA Unidentified Anomalous Phenomena Independent Study Team published its final report containing a series of recommendations for how the agency could help to move our understanding of UAP forward. NASA Unidentified Anomalous Phenomena Independent Study</p>
+<p>Department of Homeland Security (DHS) KONA BLUE Information Release The All-domain Anomaly Resolution Office (AARO) first learned of the KONA BLUE program from interviews conducted as part of its historical review. Multiple interviewees identified KONA BLUE as a Department of Homeland Security (DHS) sensitive compartment established to protect the retrieval and exploitation of &quot;non-human biologics.&quot; AARO researched the information provided by the interviewees and learned KONA BLUE was a Prospective Special Access Program (PSAP) that had been proposed to DHS leadership but was never approved or formally established. KONA BLUE never received any materials or funding, and there is no information beyond the proposal presentation marked with the KONA BLUE name. History and Origin of Kona Blue</p>
+<p>Department of Homeland Security (DHS) KONA BLUE Information Release</p>
+<p>Information Papers</p>
+<p>Name Description Papers</p>
+<p>White Paper: 2025 UAP Workshop - Narrative Data, Infrastructures, and Analysis In August 2025, AARO sponsored a workshop on UAP Narrative Data, Infrastructures, and Analysis in partnership with Associated Universities, Inc. (AUI). The workshop brought together 40 participants from government, academia, and independent research organizations and focused on the challenges and opportunities of working with UAP narrative reports and related data sources. White Paper: 2025 UAP Workshop - Narrative Data, Infrastructures, and Analysis</p>
+<p>Oak Ridge National Laboratory (ORNL) In 2024, the All-domain Anomaly Resolution Office (AARO) contracted Oak Ridge National Laboratory (ORNL) to evaluate a metallic specimen. This specimen, reportedly recovered from a private property in Ohio, in the mid-1990s, allegedly possessed anomalous compositional and structural characteristics. ORNL assessed that the specimen, as received, is consistent with &quot;an ordinary aluminum alloy made for common applications.&quot; ORNL Synopsis: Analysis of an Aluminum Specimen</p>
+<p>AARO&#x27;s Supplement to ORNL&#x27;s Analysis of an Aluminum Specimen</p>
+<p>AARO and the Declassification Process AARO is committed to facilitating the declassification and public release of as much UAP-related information as possible. Why is so much UAP-related information classified? How does AARO declassify and release UAP-related information? Learn more about AARO and the declassification process. AARO Declassification Information Paper 2025</p>
+<p>Oak Ridge National Laboratory (ORNL) In 2022, The All-domain Anomaly Resolution Office (AARO) contracted with Oak Ridge National Laboratory (ORNL) to conduct materials testing on a magnesium (Mg) alloy specimen. This specimen has been publicly alleged to be a component recovered from a crashed extraterrestrial vehicle in 1947, and purportedly exhibits extraordinary properties, such as functioning as a terahertz waveguide to generate antigravity capabilities. In April 2024, ORNL produced a summary of findings documenting the laboratory’s methodology to assess this specimen’s elemental and structural characteristics. ORNL Synopsis: Analysis of a Metallic Specimen</p>
+<p>AARO&#x27;s Supplement to ORNL’s Analysis of a Metallic Specimen</p>
+<p>Starlink Satellite Flaring Paper and Animation Satellite flaring is an optical phenomenon which occurs when sunlight reflects off a satellite&#x27;s surfaces, such as antennas or solar panels. This paper discusses specular and diffuse reflection of sunlight from man-made satellites and how these effects can be misinterpreted as unidentified anomalous phenomena (UAP). It also provides a method for observers to determine whether observations may be attributable to satellite flaring. Correlations of Starlink Satellite Flaring with UAP Observations</p>
+<p>Animation: The Satellite Flaring Phenomenon</p>
+<p>Effect of Forced Perspective and Parallax View on UAP Observations While no single explanation or method of analysis can account for all UAP cases, the effects of forced perspective and parallax can frequently explain excessively large sizes or high speeds described in UAP reports. This informational paper provides an overview of these visual effects. Effect of Forced Perspective and Parallax View on UAP Observations</p></div>
+    
+    <h3 class="sub">Related Links</h3><ul class="lk-list">
+<li><a href="./pdfs/2025_UAP_Workshop_Paper.pdf" target="_blank">White Paper: 2025 UAP Workshop - Narrative Data, Infrastructures, and Analysis <span class="lk-meta">[PDF · local]</span></a></li>
+<li><a href="https://www.archives.gov/research/topics/uaps" target="_blank" rel="noopener" class="ext">UAP Records from NARA ↗</a></li>
+<li><a href="https://science.nasa.gov/uap" target="_blank" rel="noopener" class="ext">NASA Unidentified Anomalous Phenomena Independent Study ↗</a></li>
+<li><a href="./pdfs/History_and_Origin_of_KONA_BLUE_FINAL_508.pdf" target="_blank">History and Origin of Kona Blue <span class="lk-meta">[PDF · local]</span></a></li>
+<li><a href="./pdfs/AARO_DHS_Kona_Blue.pdf" target="_blank">Department of Homeland Security (DHS) KONA BLUE Information Release <span class="lk-meta">[PDF · local]</span></a></li>
+<li><a href="./pdfs/ORNL_ANALYSIS_OF_AN_ALUMINUM_SPECIMEN.pdf" target="_blank">ORNL Synopsis: Analysis of an Aluminum Specimen <span class="lk-meta">[PDF · local]</span></a></li>
+<li><a href="./pdfs/AARO_Aluminum_Materials_Analysis_Supplement_Jan2026.pdf" target="_blank">AARO&#x27;s Supplement to ORNL&#x27;s Analysis of an Aluminum Specimen <span class="lk-meta">[PDF · local]</span></a></li>
+<li><a href="https://www.aaro.mil/Portals/136/PDFs/Information Papers/AARO_Declassification_Info_Paper_2025.pdf" target="_blank" rel="noopener">AARO Declassification Information Paper 2025 <span class="lk-meta">[PDF · source]</span></a></li>
+<li><a href="https://www.aaro.mil/Portals/136/PDFs/Information Papers/ORNL-Synopsis_Analysis_of_a_Metallic_Specimen.pdf" target="_blank" rel="noopener">ORNL Synopsis: Analysis of a Metallic Specimen <span class="lk-meta">[PDF · source]</span></a></li>
+<li><a href="https://www.aaro.mil/Portals/136/PDFs/Information Papers/AAROs_Supplement_to_ORNLs_Analysis_of_a_Metallic_Specimen.pdf" target="_blank" rel="noopener">AARO&#x27;s Supplement to ORNL’s Analysis of a Metallic Specimen <span class="lk-meta">[PDF · source]</span></a></li>
+<li><a href="./pdfs/AARO_Satellite_Flaring_Paper_508_FINAL_04222025.pdf" target="_blank">Correlations of Starlink Satellite Flaring with UAP Observations <span class="lk-meta">[PDF · local]</span></a></li>
+<li><a href="https://www.dvidshub.net/video/950338/satellite-flaring-phenomenon" target="_blank" rel="noopener" class="ext">Animation: The Satellite Flaring Phenomenon ↗</a></li>
+<li><a href="https://www.aaro.mil/Portals/136/PDFs/Information%20Papers/AARO_Effect_of_Forced_Perspective_and_Parallax_View_on_UAP_Observations_2024.pdf" target="_blank" rel="noopener">Effect of Forced Perspective and Parallax View on UAP Observations <span class="lk-meta">[PDF · source]</span></a></li>
+</ul>
+  </div>
+</section>
+<section id="congressional-press-products">
+  <div class="container">
+    <div class="section-label">§ Congressional / Press</div>
+    <h2>Congressional/Press Products</h2>
+    <div class="pg-content"><p>Congressional/Press Products</p>
+<p>New Content</p>
+<p>Content</p>
+<p>Type</p>
+<p>Date Added</p>
+<p>This Week in DOW: Honoring Heroes, Patrolling Oceans, Uncovering Truth, Out There; February 27, 2026</p>
+<p>News &amp; Press Products</p>
+<p>March 2, 2026</p>
+<p>Congressional Reports &amp; Briefings</p>
+<p>News &amp; Press Products</p>
+<p>Congressional Reports and Briefings</p>
+<p>Year Topic Report/Brief</p>
+<p>2024 Open Hearing Dr. Jon Kosloski Statement for the Record to the Senate Armed Services Committee, Subcommittee on Emerging Threats and Capabilities - Open Hearing; November 19, 2024</p>
+<p>2024 Open Hearing Video: Briefing to the Senate Armed Services Committee, Subcommittee on Emerging Threats and Capabilities - Open Hearing; November 19, 2024</p>
+<p>2024 Open Hearing Presentation: Briefing to the Senate Armed Services Committee, Subcommittee on Emerging Threats and Capabilities - Open Hearing; November 19, 2024</p>
+<p>2024 UAP Annual Report 2024 Report: All-domain Anomaly Resolution Office Annual Report on Unidentified Anomalous Phenomena</p>
+<p>2024 AARO Historical Record Report AARO Historical Record Report: Volume 1; 2024</p>
+<p>2023 UAP Annual Report 2023 Report: All-domain Anomaly Resolution Office Annual Report on Unidentified Anomalous Phenomena</p>
+<p>2023 Open Hearing Transcript: Briefing to the Senate Armed Services Committee, Subcommittee on Emerging Threats and Capabilities - Open Hearing: April 19, 2023</p>
+<p>2023 Open Hearing Video: Briefing to the Senate Armed Services Committee, Subcommittee on Emerging Threats and Capabilities - Open Hearing: April 19, 2023</p>
+<p>2023 Open Hearing Presentation: Briefing to the Senate Armed Services Committee, Subcommittee on Emerging Threats and Capabilities - Open Hearing: April 19, 2023</p>
+<p>2022 ODNI UAP Assessment 2022 Report: Office of the Director of National Intelligence Annual Report on Unidentified Anomalous Phenomena</p>
+<p>2022 Open Hearing Transcript: Briefing to the Permanent Select Committee on Intelligence, Subcommittee on Counterterrorism, Counterintelligence, and Counterproliferation – Open Hearing; May 17, 2022</p>
+<p>2021 ODNI UAP Assessment 2021 Report: Office of the Director of National Intelligence Preliminary Assessment on Unidentified Aerial Phenomena</p>
+<p>NEWS MEDIA INTERVIEWS - The Director, AARO has also had on-the-record interviews with members of the news media. For a current list of those engagements, please contact the Office of the Assistant to the Secretary of Defense for Public Affairs at OSD.PA.DutyOfficer@mail.mil.</p>
+<p>News &amp; Press Products</p>
+<p>Date Category Paper</p>
+<p>02/27/2026 DoW NEWS STORIES This Week in DOW: Honoring Heroes, Patrolling Oceans, Uncovering Truth, Out There; February 27, 2026.</p>
+<p>01/11/2023 BRIEFINGS Dr. Sean Kirkpatrick&#x27;s Briefing to the Transportation Research Board Annual Meeting; January 11, 2023</p>
+<p>11/14/2024 PRESS RELEASES DoD Releases the Annual Report on Unidentified Anomalous Phenomena (UAP); November 14, 2024</p>
+<p>08/26/2024 PRESS RELEASES DoD Announces the New Director of AARO: Dr. Jon Kosloski; August 26, 2024</p>
+<p>03/08/2024 PRESS RELEASES Statement by Pentagon Press Secretary Maj. Gen. Pat Ryder on the Historical Record Report on Unidentified Anomalous Phenomena, Volume 1; March 8, 2024</p>
+<p>01/12/2022 PRESS RELEASES Statement by Pentagon Press Secretary Air Force Brig. Gen. Pat Ryder on the Annual Report on UAP; January 12, 2023</p>
+<p>07/20/2022 PRESS RELEASES DoD Announces the Establishment of the All-domain Anomaly Resolution Office; July 20, 2022</p>
+<p>06/25/2021 PRESS RELEASES Statement by Pentagon Press Secretary John Kirby on UAP Assessment; June 25, 2021</p>
+<p>11/14/2024 TRANSCRIPTS Dr. Jon Kosloski, Director, AARO, Media Roundtable on the FY24 Consolidated Annual Report on UAP; November 14, 2024</p>
+<p>03/08/2024 TRANSCRIPTS Media Engagement With Acting AARO Director Tim Phillips on the Historical Record Report Volume 1; March 8, 2024</p>
+<p>10/31/2023 TRANSCRIPTS AARO Director Dr. Sean Kirkpatrick Holds an Off-Camera Media Roundtable; October 31, 2023</p>
+<p>08/31/2023 TRANSCRIPTS Pentagon Press Secretary Air Force Brig. Gen. Pat Ryder Holds a Press Briefing; August 31, 2023</p>
+<p>05/31/2023 TRANSCRIPTS Opening Remarks Dr. Sean Kirkpatrick, Director, AARO NASA Public Meeting on UAP; May 31, 2023 (No longer available from NASA&#x27;s website)</p>
+<p>12/16/2022 TRANSCRIPTS USD(I&amp;S;) Ronald Moultrie and Dr. Sean Kirkpatrick Media Roundtable on the All-domain Anomaly Resolution Office; December 16, 2022</p>
+<p>11/14/2024 DoW NEWS STORIES DOD Examining Unidentified Anomalous Phenomena; November 14, 2024</p>
+<p>03/08/2024 DoW NEWS STORIES DOD Report Discounts Sightings of Extraterrestrial Technology; March 8, 2024</p>
+<p>04/19/2024 DoW NEWS STORIES DoD Working to Better Understand, Resolve Anomalous Phenomena; April 19, 2023</p>
+<p>12/17/2022 DoW NEWS STORIES DoD Office Moving Ahead in Mission to Identify &#x27;Anomalous Phenomena&#x27;; December 17, 2022</p></div>
+    
+    <h3 class="sub">Related Links</h3><ul class="lk-list">
+<li><a href="https://www.war.gov/News/News-Stories/Article/Article/4418161/this-week-in-dow-honoring-heroes-patrolling-oceans-uncovering-truth-out-there/" target="_blank" rel="noopener" class="ext">This Week in DOW: Honoring Heroes, Patrolling Oceans, Uncovering Truth, Out There; February 27, 2026 ↗</a></li>
+<li><a href="./pdfs/Dr_Jon_Kosloski_Statement_for_the_Record_SASC_Open_Hearing_Nov2024.pdf" target="_blank">Dr. Jon Kosloski Statement for the Record to the Senate Armed Services Committee, Subcommittee on Emerging Threats and Capabilities - Open Hearing; November 19, 2024 <span class="lk-meta">[PDF · local]</span></a></li>
+<li><a href="https://www.armed-services.senate.gov/hearings/to-receive-testimony-on-the-activities-of-the-all-domain-anomaly-resolution-office" target="_blank" rel="noopener" class="ext">Video: Briefing to the Senate Armed Services Committee, Subcommittee on Emerging Threats and Capabilities - Open Hearing; November 19, 2024 ↗</a></li>
+<li><a href="https://www.aaro.mil/Portals/136/PDFs/SASC_AARO_Open_Hearing_Case_Slides_19Nov2024.pdf" target="_blank" rel="noopener">Presentation: Briefing to the Senate Armed Services Committee, Subcommittee on Emerging Threats and Capabilities - Open Hearing; November 19, 2024 <span class="lk-meta">[PDF · source]</span></a></li>
+<li><a href="https://media.defense.gov/2024/Nov/14/2003583603/-1/-1/0/FY24-CONSOLIDATED-ANNUAL-REPORT-ON-UAP-508.PDF" target="_blank" rel="noopener" class="ext">2024 Report: All-domain Anomaly Resolution Office Annual Report on Unidentified Anomalous Phenomena ↗</a></li>
+<li><a href="./pdfs/AARO_Historical_Record_Report_Vol_1_2024.pdf" target="_blank">AARO Historical Record Report: Volume 1; 2024 <span class="lk-meta">[PDF · local]</span></a></li>
+<li><a href="./pdfs/UNCLASSIFIED-FY23_Consolidated_Annual_Report_on_UAP-Oct_25_2023_1236.pdf" target="_blank">2023 Report: All-domain Anomaly Resolution Office Annual Report on Unidentified Anomalous Phenomena <span class="lk-meta">[PDF · local]</span></a></li>
+<li><a href="https://www.armed-services.senate.gov/imo/media/doc/23-31_04-19-2023.pdf" target="_blank" rel="noopener" class="ext">Transcript: Briefing to the Senate Armed Services Committee, Subcommittee on Emerging Threats and Capabilities - Open Hearing: April 19, 2023 ↗</a></li>
+<li><a href="https://www.armed-services.senate.gov/hearings/to-receive-testimony-on-the-mission-activities-oversight-and-budget-of-the-all-domain-anomaly-resolution-office" target="_blank" rel="noopener" class="ext">Video: Briefing to the Senate Armed Services Committee, Subcommittee on Emerging Threats and Capabilities - Open Hearing: April 19, 2023 ↗</a></li>
+<li><a href="./pdfs/AARO_Brief_to_SASC-DoD_UAP_Mission-April_19_2023_508.pdf" target="_blank">Presentation: Briefing to the Senate Armed Services Committee, Subcommittee on Emerging Threats and Capabilities - Open Hearing: April 19, 2023 <span class="lk-meta">[PDF · local]</span></a></li>
+<li><a href="https://www.dni.gov/files/ODNI/documents/assessments/Unclassified-2022-Annual-Report-UAP.pdf" target="_blank" rel="noopener" class="ext">2022 Report: Office of the Director of National Intelligence Annual Report on Unidentified Anomalous Phenomena ↗</a></li>
+<li><a href="https://docs.house.gov/meetings/IG/IG05/20220517/114761/HHRG-117-IG05-Transcript-20220517.pdf" target="_blank" rel="noopener" class="ext">Transcript: Briefing to the Permanent Select Committee on Intelligence, Subcommittee on Counterterrorism, Counterintelligence, and Counterproliferation – Open Hearing; May 17, 2022 ↗</a></li>
+<li><a href="https://www.dni.gov/files/ODNI/documents/assessments/Prelimary-Assessment-UAP-20210625.pdf" target="_blank" rel="noopener" class="ext">2021 Report: Office of the Director of National Intelligence Preliminary Assessment on Unidentified Aerial Phenomena ↗</a></li>
+<li><a href="./pdfs/AARO_Brief_at_Annual_Transportation_Research_Board-January_11_2023_508.pdf" target="_blank">Dr. Sean Kirkpatrick&#x27;s Briefing to the Transportation Research Board Annual Meeting; January 11, 2023 <span class="lk-meta">[PDF · local]</span></a></li>
+<li><a href="https://www.defense.gov/News/Releases/Release/Article/3964824/department-of-defense-releases-the-annual-report-on-unidentified-anomalous-phen/" target="_blank" rel="noopener" class="ext">DoD Releases the Annual Report on Unidentified Anomalous Phenomena (UAP); November 14, 2024 ↗</a></li>
+<li><a href="https://www.defense.gov/News/Releases/Release/Article/3884318/department-of-defense-announces-the-new-director-all-domain-anomaly-resolution/" target="_blank" rel="noopener" class="ext">DoD Announces the New Director of AARO: Dr. Jon Kosloski; August 26, 2024 ↗</a></li>
+<li><a href="https://www.defense.gov/News/Releases/Release/Article/3700894/statement-by-pentagon-press-secretary-maj-gen-pat-ryder-on-the-historical-recor/" target="_blank" rel="noopener" class="ext">Statement by Pentagon Press Secretary Maj. Gen. Pat Ryder on the Historical Record Report on Unidentified Anomalous Phenomena, Volume 1; March 8, 2024 ↗</a></li>
+<li><a href="https://www.defense.gov/News/Releases/Release/Article/3266229/statement-by-pentagon-press-secretary-air-force-brig-gen-pat-ryder-on-the-annua/" target="_blank" rel="noopener" class="ext">Statement by Pentagon Press Secretary Air Force Brig. Gen. Pat Ryder on the Annual Report on UAP; January 12, 2023 ↗</a></li>
+<li><a href="https://www.defense.gov/News/Releases/Release/Article/3100053/dod-announces-the-establishment-of-the-all-domain-anomaly-resolution-office/" target="_blank" rel="noopener" class="ext">DoD Announces the Establishment of the All-domain Anomaly Resolution Office; July 20, 2022 ↗</a></li>
+<li><a href="https://www.defense.gov/News/Releases/Release/Article/2672732/statement-by-pentagon-press-secretary-john-kirby-on-unidentified-aerial-phenome/" target="_blank" rel="noopener" class="ext">Statement by Pentagon Press Secretary John Kirby on UAP Assessment; June 25, 2021 ↗</a></li>
+<li><a href="https://www.defense.gov/News/Transcripts/Transcript/Article/3965734/dr-jon-kosloski-director-aaro-media-roundtable-on-the-fy24-consolidated-annual/" target="_blank" rel="noopener" class="ext">Dr. Jon Kosloski, Director, AARO, Media Roundtable on the FY24 Consolidated Annual Report on UAP; November 14, 2024 ↗</a></li>
+<li><a href="https://www.defense.gov/News/Transcripts/Transcript/Article/3702219/media-engagement-with-acting-aaro-director-tim-phillips-on-the-historical-recor/" target="_blank" rel="noopener" class="ext">Media Engagement With Acting AARO Director Tim Phillips on the Historical Record Report Volume 1; March 8, 2024 ↗</a></li>
+<li><a href="https://www.defense.gov/News/Transcripts/Transcript/Article/3575588/aaro-director-dr-sean-kirkpatrick-holds-an-off-camera-media-roundtable/" target="_blank" rel="noopener" class="ext">AARO Director Dr. Sean Kirkpatrick Holds an Off-Camera Media Roundtable; October 31, 2023 ↗</a></li>
+<li><a href="https://www.defense.gov/News/Transcripts/Transcript/Article/3513447/pentagon-press-secretary-air-force-brig-gen-pat-ryder-holds-a-press-briefing/" target="_blank" rel="noopener" class="ext">Pentagon Press Secretary Air Force Brig. Gen. Pat Ryder Holds a Press Briefing; August 31, 2023 ↗</a></li>
+<li><a href="https://www.defense.gov/News/Transcripts/Transcript/Article/3249303/usdis-ronald-moultrie-and-dr-sean-kirkpatrick-media-roundtable-on-the-all-domai/" target="_blank" rel="noopener" class="ext">USD(I&amp;S;) Ronald Moultrie and Dr. Sean Kirkpatrick Media Roundtable on the All-domain Anomaly Resolution Office; December 16, 2022 ↗</a></li>
+<li><a href="https://www.defense.gov/News/News-Stories/Article/Article/3965403/dod-examining-unidentified-anomalous-phenomena/" target="_blank" rel="noopener" class="ext">DOD Examining Unidentified Anomalous Phenomena; November 14, 2024 ↗</a></li>
+<li><a href="https://www.defense.gov/News/News-Stories/Article/Article/3701297/dod-report-discounts-sightings-of-extraterrestrial-technology/" target="_blank" rel="noopener" class="ext">DOD Report Discounts Sightings of Extraterrestrial Technology; March 8, 2024 ↗</a></li>
+<li><a href="https://www.defense.gov/News/News-Stories/Article/Article/3368109/dod-working-to-better-understand-resolve-anomalous-phenomena/" target="_blank" rel="noopener" class="ext">DoD Working to Better Understand, Resolve Anomalous Phenomena; April 19, 2023 ↗</a></li>
+<li><a href="https://www.defense.gov/News/News-Stories/Article/Article/3249317/dod-office-moving-ahead-in-mission-to-identify-anomalous-phenomena/" target="_blank" rel="noopener" class="ext">DoD Office Moving Ahead in Mission to Identify &#x27;Anomalous Phenomena&#x27;; December 17, 2022 ↗</a></li>
+</ul>
+  </div>
+</section>
+<section id="resources">
+  <div class="container">
+    <div class="section-label">§ Resources</div>
+    <h2>Resources</h2>
+    <div class="pg-content"><p>Resources</p>
+<p>Education &amp; Resources</p>
+<p>Space / NASA Trackers</p>
+<p>Aircraft Trackers</p>
+<p>Balloon/Satellite Trackers</p>
+<p>LAW</p>
+<p>50 USC 3373: Establishment of All-domain Anomaly Resolution Office</p>
+<p>50 USC 3373a: Support for and oversight of Unidentified Aerial Phenomena Task Force</p>
+<p>50 USC 3373b: Unidentified Anomalous Phenomena Reporting Procedures</p>
+<p>MEMOS DoD and Intelligence Community Authorization to Provide Information to AARO</p>
+<p>Deputy Secretary of Defense - Establishment of the All-domain Anomaly Resolution Office: July 15, 2022</p>
+<p>USD(I&amp;S;)- Establishment, Resourcing, and Leadership of the All-domain Anomaly Resolution Office: July 20, 2022</p>
+<p>FOIA FOIA.gov</p>
+<p>DoD Defense Intelligence Agency Freedom of Information Act (FOIA) Electronic Reading Room</p>
+<p>OSD/JS FOIA Requester Service Center</p>
+<p>SPHERICAL DRONES PAPERS</p>
+<p>This is not an exhaustive list; these papers are illustrative of current state-of-the-art technology.</p>
+<p>Spherical Indoor Coandă Effect Drone (SpICED): A Spherical Blimp sUAS for Safe Indoor Use</p>
+<p>Numerical and Experimental Comparative Performance Analysis of Emerging Spherical-Caged Drones</p>
+<p>Close Visual Bridge Inspection Using a UAV with a Passive Rotating Spherical Shell</p>
+<p>UNI-Copter: A portable Single-Rotor-Powered Spherical Unmanned Aerial Vehicle (UAV) with an Easy-to-Assemble and Flexible Structure</p>
+<p>Adaptive Control with Neural Networks-based Disturbance Observer for a Spherical UAV</p>
+<p>COMMERCIAL ION PROPULSION PAPERS</p>
+<p>This is not an exhaustive list; these papers are illustrative of advanced propulsion systems that are consistent with UAP observations.</p>
+<p>Undefined&#x27;s Next-Gen &quot;Silent&quot; Ion Propulsion Drone</p>
+<p>Penny-Sized Ionocraft Flies With No Moving Parts</p>
+<p>MIT Engineers Fly First-Ever Plane with No Moving Parts</p>
+<p>A Comprehensive Review of Atmosphere-Breathing Electric Propulsion Systems</p>
+<p>INFORMATION PAPERS Effect of Forced Perspective and Parallax View on UAP Observations</p>
+<p>Correlations of Starlink Satellite Flaring with UAP Observations</p>
+<p>The appearance of hyperlinks does not constitute endorsement by AARO or the Department of War of non-U.S. Government sites or the information, products, or services contained therein. Although AARO or the Department of War may or may not use these sites as additional distribution channels for Department of War information, it does not exercise editorial control over all of the information that you may find at these locations. Such hyperlinks are provided consistent with the stated purpose of this website.</p>
+<p>ISS Live Space Station Tracking Map</p>
+<p>NASA Science Program Map</p>
+<p>NASA Center for Near Earth Object Studies (CNEOS)</p>
+<p>Space Object Tracker</p>
+<p>The appearance of hyperlinks does not constitute endorsement by AARO or the Department of War of non-U.S. Government sites or the information, products, or services contained therein. Although AARO or the Department of War may or may not use these sites as additional distribution channels for Department of War information, it does not exercise editorial control over all of the information that you may find at these locations. Such hyperlinks are provided consistent with the stated purpose of this website.</p>
+<p>Flightradar24 Live Air Traffic Map</p>
+<p>FlightAware Flight Tracking Map</p>
+<p>planefinder Flight Tracking Map</p>
+<p>AirNav RadarBox Flight Tracking Map</p>
+<p>The appearance of hyperlinks does not constitute endorsement by AARO or the Department of War of non-U.S. Government sites or the information, products, or services contained therein. Although AARO or the Department of War may or may not use these sites as additional distribution channels for Department of War information, it does not exercise editorial control over all of the information that you may find at these locations. Such hyperlinks are provided consistent with the stated purpose of this website.</p>
+<p>SondeHub Amateur Radio High-Altitude Balloon Launches Map</p>
+<p>SondeHub Meteorological Tracker</p>
+<p>NY2O Satellite Tracking Website</p>
+<p>Satellite Map</p>
+<p>In-The-Sky.org Live World Map of Satellite Positions</p></div>
+    
+    <h3 class="sub">Related Links</h3><ul class="lk-list">
+<li><a href="https://uscode.house.gov/view.xhtml?hl=false&amp;edition=prelim&amp;req=granuleid%3AUSC-prelim-title50-section3373" target="_blank" rel="noopener" class="ext">50 USC 3373: Establishment of All-domain Anomaly Resolution Office ↗</a></li>
+<li><a href="https://uscode.house.gov/view.xhtml?hl=false&amp;edition=prelim&amp;req=granuleid%3AUSC-prelim-title50-section3373a" target="_blank" rel="noopener" class="ext">50 USC 3373a: Support for and oversight of Unidentified Aerial Phenomena Task Force ↗</a></li>
+<li><a href="https://uscode.house.gov/view.xhtml?hl=false&amp;edition=prelim&amp;req=granuleid%3AUSC-prelim-title50-section3373b" target="_blank" rel="noopener" class="ext">50 USC 3373b: Unidentified Anomalous Phenomena Reporting Procedures ↗</a></li>
+<li><a href="./pdfs/AARO_SAPCO_CAPCO_Memos_on_AARO_Authorities.pdf" target="_blank">DoD and Intelligence Community Authorization to Provide Information to AARO <span class="lk-meta">[PDF · local]</span></a></li>
+<li><a href="https://media.defense.gov/2022/Jul/20/2003039074/-1/-1/1/ESTABLISHMENT-OF-THE-ALL-DOMAIN-ANOMALY-RESOLUTION-OFFICE.PDF" target="_blank" rel="noopener" class="ext">Deputy Secretary of Defense - Establishment of the All-domain Anomaly Resolution Office: July 15, 2022 ↗</a></li>
+<li><a href="https://media.defense.gov/2022/Jul/20/2003039081/-1/-1/1/ESTABLISHMENT-RESOURCING-AND-LEADERSHIP-OF-THE-ALL-DOMAIN-ANOMALY-RESOLUTION-OFFICE.PDF" target="_blank" rel="noopener" class="ext">USD(I&amp;S;)- Establishment, Resourcing, and Leadership of the All-domain Anomaly Resolution Office: July 20, 2022 ↗</a></li>
+<li><a href="https://www.foia.gov/" target="_blank" rel="noopener" class="ext">FOIA.gov ↗</a></li>
+<li><a href="https://www.dia.mil/FOIA/FOIA-Electronic-Reading-Room/" target="_blank" rel="noopener" class="ext">DoD Defense Intelligence Agency Freedom of Information Act (FOIA) Electronic Reading Room ↗</a></li>
+<li><a href="https://www.esd.whs.mil/FOID/" target="_blank" rel="noopener" class="ext">OSD/JS FOIA Requester Service Center ↗</a></li>
+<li><a href="https://www.mdpi.com/2504-446X/6/9/260" target="_blank" rel="noopener" class="ext">Spherical Indoor Coandă Effect Drone (SpICED): A Spherical Blimp sUAS for Safe Indoor Use ↗</a></li>
+<li><a href="https://www.sciencedirect.com/science/article/abs/pii/S1270963819323193" target="_blank" rel="noopener" class="ext">Numerical and Experimental Comparative Performance Analysis of Emerging Spherical-Caged Drones ↗</a></li>
+<li><a href="https://onlinelibrary.wiley.com/doi/10.1002/rob.21781" target="_blank" rel="noopener" class="ext">Close Visual Bridge Inspection Using a UAV with a Passive Rotating Spherical Shell ↗</a></li>
+<li><a href="https://link.springer.com/article/10.1007/s12206-018-0440-1" target="_blank" rel="noopener" class="ext">UNI-Copter: A portable Single-Rotor-Powered Spherical Unmanned Aerial Vehicle (UAV) with an Easy-to-Assemble and Flexible Structure ↗</a></li>
+<li><a href="https://www.sciencedirect.com/science/article/pii/S2405896316315257" target="_blank" rel="noopener" class="ext">Adaptive Control with Neural Networks-based Disturbance Observer for a Spherical UAV ↗</a></li>
+<li><a href="https://newatlas.com/drones/ion-propulsion-drone/" target="_blank" rel="noopener" class="ext">Undefined&#x27;s Next-Gen &quot;Silent&quot; Ion Propulsion Drone ↗</a></li>
+<li><a href="https://spectrum.ieee.org/pennysized-ionocraft-flies-with-no-moving-parts" target="_blank" rel="noopener" class="ext">Penny-Sized Ionocraft Flies With No Moving Parts ↗</a></li>
+<li><a href="https://news.mit.edu/2018/first-ionic-wind-plane-no-moving-parts-1121" target="_blank" rel="noopener" class="ext">MIT Engineers Fly First-Ever Plane with No Moving Parts ↗</a></li>
+<li><a href="https://www.hindawi.com/journals/ijae/2020/8811847/" target="_blank" rel="noopener" class="ext">A Comprehensive Review of Atmosphere-Breathing Electric Propulsion Systems ↗</a></li>
+<li><a href="https://www.aaro.mil/Portals/136/PDFs/Information Papers/AARO_Effect_of_Forced_Perspective_and_Parallax_View_on_UAP_Observations_2024.pdf" target="_blank" rel="noopener">Effect of Forced Perspective and Parallax View on UAP Observations <span class="lk-meta">[PDF · source]</span></a></li>
+<li><a href="./pdfs/AARO_Satellite_Flaring_Paper_508_FINAL_04222025.pdf" target="_blank">Correlations of Starlink Satellite Flaring with UAP Observations <span class="lk-meta">[PDF · local]</span></a></li>
+<li><a href="https://spotthestation.nasa.gov/tracking_map.cfm" target="_blank" rel="noopener" class="ext">ISS Live Space Station Tracking Map ↗</a></li>
+<li><a href="https://airbornescience.nasa.gov/tracker/" target="_blank" rel="noopener" class="ext">NASA Science Program Map ↗</a></li>
+<li><a href="https://cneos.jpl.nasa.gov/" target="_blank" rel="noopener" class="ext">NASA Center for Near Earth Object Studies (CNEOS) ↗</a></li>
+<li><a href="http://astria.tacc.utexas.edu/AstriaGraph/" target="_blank" rel="noopener" class="ext">Space Object Tracker ↗</a></li>
+<li><a href="https://www.flightradar24.com/" target="_blank" rel="noopener" class="ext">Flightradar24 Live Air Traffic Map ↗</a></li>
+<li><a href="https://flightaware.com/live/" target="_blank" rel="noopener" class="ext">FlightAware Flight Tracking Map ↗</a></li>
+<li><a href="https://planefinder.net/" target="_blank" rel="noopener" class="ext">planefinder Flight Tracking Map ↗</a></li>
+<li><a href="https://www.radarbox.com/" target="_blank" rel="noopener" class="ext">AirNav RadarBox Flight Tracking Map ↗</a></li>
+<li><a href="https://amateur.sondehub.org/" target="_blank" rel="noopener" class="ext">SondeHub Amateur Radio High-Altitude Balloon Launches Map ↗</a></li>
+<li><a href="https://tracker.sondehub.org/" target="_blank" rel="noopener" class="ext">SondeHub Meteorological Tracker ↗</a></li>
+<li><a href="https://www.n2yo.com/" target="_blank" rel="noopener" class="ext">NY2O Satellite Tracking Website ↗</a></li>
+<li><a href="https://satellitemap.space/" target="_blank" rel="noopener" class="ext">Satellite Map ↗</a></li>
+<li><a href="https://in-the-sky.org/satmap_worldmap.php" target="_blank" rel="noopener" class="ext">In-The-Sky.org Live World Map of Satellite Positions ↗</a></li>
+</ul>
+  </div>
+</section>
+<section id="efoia-reading-room">
+  <div class="container">
+    <div class="section-label">§ EFOIA Reading Room</div>
+    <h2>EFOIA Reading Room</h2>
+    <div class="pg-content"><p>EFOIA Reading Room</p>
+<p>The Freedom of Information Act (FOIA) provides a statutory right of public access to federal government records. FOIA was established to ensure an informed citizenry and to ensure that the United States Government remains accountable to the public for its actions and policies. FOIA requires Federal Agencies to establish an Electronic FOIA (EFOIA) Reading Room. The All-domain Anomaly Resolution Office (AARO) EFOIA Reading Room contains a collection of responses to UAP-related FOIA requests.</p>
+<p>This collection contains responsive documents to FOIA requests relating to AARO since its establishment in July 2022. This collection is not intended to serve as an exhaustive reference for UAP record requests across the U.S. Government.</p>
+<p>AARO will update this archive periodically. The information you seek may have already been requested by another individual. Please check here before submitting a FOIA request. This EFOIA Reading Room contains FOIA request descriptions as originally submitted without comments, edits, or redactions.</p>
+<p>For more information about FOIA or to submit a request, please visit the following:</p>
+<p>FOIA.gov</p>
+<p>OSD/JS FOIA Requester Service Center</p>
+<p>OSD/JS FOIA UFO and UAP FOIA Reading Room</p>
+<p>EFOIA Reading Room</p>
+<p>Fiscal Year Subject Request Description FOIA Case Number File(s)</p>
+<p>2025 Prepublication Security Review Requests for Materials Relating to or Requested by Mr. Timothy Phillips All prepublication review requests, correspondence, memoranda, determinations, or related materials involving Mr. Phillips during his tenure or after his departure from AARO, from January 1, 2023 to the present. Any communications between DOPSR and Mr. Phillips or on behalf of Mr. Phillips regarding or reviewing information, manuscripts, statements, or publications (Date Range from Record Search: From 1/1/2023 To 6/11/2025) 25-F-3452 25-F-3452_1.pdf,   25-F-3452_2.pdf,  25-F-3452_3.pdf</p>
+<p>2025 AARO Organizational Chart I hereby request access to and copies of the organizational chart of all individuals associated with the &quot;All Domain Anomaly Resolution Office&quot; within the Department of the Navy as well as contact information including phone numbers and email addresses. 25-F-1218 25-F-1218.pdf</p>
+<p>2024 AARO Interview Participation Verbal Legal Agreement I respectfully request a copy the &quot;Verbal Legal Advisement&quot; document that was sent to David Grusch by the AARO on November 13, 2023. This is said to be reviewed before the start of every review AARO conducts. I ask that you provide a complete copy of this document as responsive to this request. (Date Range for Record Search: From 1/1/2022 To 4/24/2024) 24-F-1138 24-F-1138.pdf</p>
+<p>2024 Media Engagement Invitation The names of all invited press and media participants for the media interview with Interim Director Timothy Phillips. The full transcript of the discussion during the media interview with Interim Director Timothy Phillips. The requested records concern the activities of the Department of Defense, specifically the media and public relations efforts involving the office of the interim director. 24-F-0922 24-F-0922.pdf</p>
+<p>2024 AARO Organizational Chart I am seeking the most recent organizational chart for AARO, which should include details such as the hierarchical structure, names of offices, position duty titles of the individuals heading those offices and, where permitted by the law, the names of individuals heading those offices. 24-F-0448 24-F-0448.pdf</p>
+<p>2024 AARO Records Pertaining to &quot;Five Eye (FVEY) Caucus Working Group&quot; I respectfully request a copy of records (which includes videos/photos), electronic or otherwise, pertaining to the May 2023 “FVEY Inaugural UAP Caucus Working Group”. This was revealed in FOIA request 23-F-1049. I ask that you include a search of all emails within the AARO office with the phrase &quot;UAP Caucus Working Group&quot; from the dates of January 1, 2022 through to the date of processing this request. I ask that you include all meeting agendas, emails, memos, letters, reports, handouts, photos, videos, and all other material related to the meeting(s) of this working group. I also ask that you include all material supplied by Five Eyes partners, and if not releasable by OSD, they be forwarded to their respective offices/agencies for release. Please include all classified and unclassified records pertaining to this request. (Date Range for Record Search: From 1/1/2022 To 6/18/2024) 24-F-1426 24-F-1426.pdf</p>
+<p>2024 Communication Between AARO and Mr. David Grusch I respectfully request a copy of records, electronic or otherwise, of the following: all forms of documentation that show the above attempts to invite David Grusch to speak with AARO. I understand part of this request may overlap FOIA 24-F-0265, but feel this may extend beyond just emails, hence the request seeking out documentation relating to the above statement given to the media by Dr. Kirkpatrick. I agree to limit the scope of the search to all records dated July 20, 2022 through to the date of processing this request. (Date Range for Record Search: From 7/20/2022 To 11/2/2023) 24-F-0266 24-F-0266.pdf</p>
+<p>2024 Communication Between AARO and Mr. David Grusch This is a request to the All-Domain Anomaly Resolution Office. I hereby request a copy of all communications between AARO and David Grusch, including but not limited to emails, text messages, and postal mail. The purpose of this request is to confirm the accuracy of a statement made by AARO Director Sean Kirkpatrick on October 31, 2023. In his statement, Mr. Kirkpatrick said that Mr. David Grusch was contacted by AARO but never replied. See Mr. Kirkpatrick’s interview with TheDrive.com here : https://www.thedrive.com/the-war-zone/balloons-no-ufos-found-by-satellites-shoot-down-video-coming-says-aaro-chief). Mr. David Grusch denies such allegations and made this comment on NewsNation the next day : “I have zero e.mails or calls from them. This is a lie” 24-F-0250 24-F-0250.pdf</p>
+<p>2023 AARO Organizational Chart I kindly request copies of emails and supporting file attachments sent from personnel assigned to the All-Domain Anomaly Resolution Office (AARO) to email addresses containing the email suffix of &quot;defence.gov.au&quot;. The date range for the record search is from 20 July 2022 through to 19 July 2023 (inclusive). 23-F-1486 23-F-1486_1.pdf,  23-F-1486_2.pdf</p>
+<p>2023 Joint Staff GENADMIN on Unidentified Anomalous Phenomena Reporting and Material Disposition In this article https://defensescoop.com/2023/08/30/hicks-takes-direct-oversight-of-pentagons-uap-office-new-reporting-website-to-be-launched/ , it is mentioned that in May 2023, a Joint Staff Genadmin message was published titled &quot;Unidentified Anomalous Phenomena Reporting and Material Disposition&quot;. I would like to receive a digital or hardcopy of the full text of this Joint Staff Genadmin. 23-F-1423 23-F-1423.pdf</p>
+<p>2023 AARO Records Pertaining to &quot;Five Eyes (FVEY) Forum&quot; I kindly request copies of emails (including supporting file attachments) sent from/to/cc&#x27;d Dr. Sean Kirkpatrick pertaining to the Five Eyes forum on Unidentified Anomalous Phenomena (UAP) hosted in May 2023. I also kindly request copies of AARO meeting agendas, attendee lists, meeting transcripts, meeting documents, briefing documents, talking points, reports, assessments, slide deck presentations pertaining to the Five Eyes forum on Unidentified Anomalous Phenomena (UAP). 23-F-0949 23-F-0949_1.pdf,  23-F-0949_2.pdf</p>
+<p>2023 Communication Between AARO and SPACE COMMAND I am seeking access to all communication, reports, analyses, emails, briefings, slides, meeting notes, or any other relevant documents exchanged: - between AARO (All-domain Anomaly Resolution Office) and US SPACE COMMAND, or by US SPACE COMMAND to AARO. - between Office of the Under Secretary of Defense for Intelligence &amp; Security and US SPACE COMMAND, or by US SPACE COMMAND to OUSD(I&amp;S) - between Office of the Director of National Intelligence and US SPACE COMMAND, or by US SPACE COMMAND to ODNI for terms such as: UUP (or “Unidentified Undersea Phenomena”), UAP (or “Unidentified Anomalous Phenomena” or “Unidentified Aerial Phenomena”) (Date Range for Record Search: From 7/1/2022 To 6/5/2023) 23-F-0922 23-F-0922_1.pdf,  23-F-0922_2.pdf,  23-F-0922_3.pdf,  23-F-0922_4.pdf</p>
+<p>2023 Records Pertaining to &quot;Classified UAP Reporting Portal&quot; I respectfully request a copy of all intranet pages for the classified UAP reporting portal as described by Dr. Sean Kirkpatrick at the UAP hearing in April of 2023. Specifically, he stated: &quot;We’re putting a lot of these on our classified web portal, where we can then collaborate with the rest of the community so they can see what’s going on.&quot; I ask that you include a copy of the main page for this classified portal. I also ask that you include a copy of all pages &quot;one click&quot; down from the main page, which would be a copy of every page directly linked to that home page by one click. (Date Range for Record Search: From 1/1/2022 To 4/25/2023) 23-F-0740 23-F-0740.pdf</p>
+<p>2023 National Oceanic and Atmospheric Administration Records on AARO and UAP Any and all National Oceanic and Atmospheric Administration (NOAA) records pertaining to the All-domain Awareness Resolution Office (AARO). This request includes all communications, information-sharing policies and procedures regarding unidentified aerial phenomena (UAP) and the AARO, as well as any and all documents involving actual UAP reporting to the AARO and all other responsive records. This request includes all emails, email attachments, memorandums, photographs, videos, official reports, meeting minutes, agendas, spreadsheets, slide shows and any and all presentations, and any and all other responsive records and otherwise segregable materials. Please include any and all responsive and otherwise segregable materials from July 20, 2022 up to and including the date this request is officially processed. 23-F-0241 23-F-0241.pdf</p>
+<p>2023 AARO Case Inventory from 1/1/2021 to 12/6/2022 I respectfully request a copy of any LIST of all cases and/or media assets currently archived at, being analyzed by, or were analyzed by the All-domain Anomaly Resolution Office (AARO). This would include any list of Videos, photographs, individual cases, or all of the above. (Date Range for Record Search: From 1/1/2021 To 12/6/2022) 23-F-0204 23-F-0204.pdf</p>
+<p>2023 Correspondence Between AARO and Harvard University I respectfully request a copy of all emails and correspondence (in whatever means), between the All-domain Anomaly Resolution Office (AARO) or the UAP Task Force office when it was in operation, and [ ], Harvard University&#x27;s [ ] Professor of Science. One email he uses is [ ], however, there could be others. I ask, if applicable, you search for classified communications along with unclassified communications. It is unknown if [ ] would be communicating via classified channels, so I ask you include a search for those records. Should any videos/photos/attachments be found in any communication, I ask that you please include those as well. I believe there WILL be responsive records, due to the fact that an email between [ ], and a popular podcast host, was posted on the internet revealing the director of the new UAP office had a meeting at [ ]&#x27;s house just days ago. Based on this fact alone, I believe there would be communications and responsive records. (Date Range for Record Search: From 1/1/2021 To 10/5/2022) 23-F-0010 23-F-0010.pdf</p>
+<p>2022 Email Correspondence Records for Former Under Secretary of Defense for Intelligence and Security, Ronald Moultrie, on Certain Matters To whom it may concern, This is a non-commercial request made under the provisions of the Freedom of Information Act 5 U.S.C. S 552. My FOIA requester status as a &quot;representative of the news media.&quot; I am a freelance television producer often working on documentaries related to my FOIA requests, my work is commonly featured throughout major news organizations, and I freelance writer for news sites as well. Examples can be given, if needed. I prefer electronic delivery of the requested material either via email to [ ] or via CD-ROM or DVD via postal mail. Please contact me should this FOIA request should incur a charge. I respectfully request a copy of records, electronic or otherwise, of the following: a copy of all emails, sent to and/or from and/or cc&#x27;d and/or bcc&#x27;d Under Secretary of Defense for Intelligence &amp; Security (USDI&amp;S), Ronald S. Moultrie, which contain the following keywords/phrases: “UNIDENTIFIED AERIAL” and/or UAP and/or UFO and/or &quot;UNIDENTIFIED FLYING&quot; and/or AATIP and/or ADVANCED AEROSPACE And/or ADVANCED AVIATION and/or AAWSAP and/or AOIMSG and/or &quot;Airborne Object Identification and Management Synchronization Group&quot; (Date Range for Record Search: From 6/1/2021 To 4/24/2022) 22-F-0863 22-F-0863.pdf</p>
+<p>2022 AARO Records from 1/1/2021 to 9/21/2022 I respectfully request a copy of records (which includes videos/photos), electronic or otherwise, of the following: All records pertaining to the All-domain Anomaly Resolution Office or AARO. (Date Range for Record Search: From 1/1/2021 To 9/21/2022) 22-F-1364 22-F-1364_1.pdf,  22-F-1364_2.pdf,  22-F-1364_3.pdf</p></div>
+    
+    <h3 class="sub">Related Links</h3><ul class="lk-list">
+<li><a href="https://www.foia.gov/" target="_blank" rel="noopener" class="ext">FOIA.gov ↗</a></li>
+<li><a href="https://www.esd.whs.mil/FOID/" target="_blank" rel="noopener" class="ext">OSD/JS FOIA Requester Service Center ↗</a></li>
+<li><a href="https://www.esd.whs.mil/FOIA/Reading-Room/Reading-Room-List_2/UFOsandUAPs/" target="_blank" rel="noopener" class="ext">OSD/JS FOIA UFO and UAP FOIA Reading Room ↗</a></li>
+<li><a href="https://www.aaro.mil/Portals/136/PDFs/FOIA/2025%20FOIAs/25-F-3452_1.pdf" target="_blank" rel="noopener">25-F-3452_1.pdf <span class="lk-meta">[PDF · source]</span></a></li>
+<li><a href="https://www.aaro.mil/Portals/136/PDFs/FOIA/2025%20FOIAs/25-F-3452_2.pdf" target="_blank" rel="noopener">25-F-3452_2.pdf <span class="lk-meta">[PDF · source]</span></a></li>
+<li><a href="https://www.aaro.mil/Portals/136/PDFs/FOIA/2025%20FOIAs/25-F-3452_3.pdf" target="_blank" rel="noopener">25-F-3452_3.pdf <span class="lk-meta">[PDF · source]</span></a></li>
+<li><a href="https://www.aaro.mil/Portals/136/PDFs/FOIA/2025%20FOIAs/25-F-1218.pdf" target="_blank" rel="noopener">25-F-1218.pdf <span class="lk-meta">[PDF · source]</span></a></li>
+<li><a href="./pdfs/24-F-1138.pdf" target="_blank">24-F-1138.pdf <span class="lk-meta">[PDF · local]</span></a></li>
+<li><a href="./pdfs/24-F-0922.pdf" target="_blank">24-F-0922.pdf <span class="lk-meta">[PDF · local]</span></a></li>
+<li><a href="https://www.aaro.mil/Portals/136/PDFs/FOIA/2024%20FOIAs/24-F-0448.pdf" target="_blank" rel="noopener">24-F-0448.pdf <span class="lk-meta">[PDF · source]</span></a></li>
+<li><a href="https://www.aaro.mil/Portals/136/PDFs/FOIA/2024%20FOIAs/24-F-1426.pdf" target="_blank" rel="noopener">24-F-1426.pdf <span class="lk-meta">[PDF · source]</span></a></li>
+<li><a href="./pdfs/24-F-0266.pdf" target="_blank">24-F-0266.pdf <span class="lk-meta">[PDF · local]</span></a></li>
+<li><a href="https://www.thedrive.com/the-war-zone/balloons-no-ufos-found-by-satellites-shoot-down-video-coming-says-aaro-chief" target="_blank" rel="noopener" class="ext">https://www.thedrive.com/the-war-zone/balloons-no-ufos-found-by-satellites-shoot-down-video-coming-says-aaro-chief ↗</a></li>
+<li><a href="./pdfs/24-F-0250.pdf" target="_blank">24-F-0250.pdf <span class="lk-meta">[PDF · local]</span></a></li>
+<li><a href="./pdfs/23-F-1486_1.pdf" target="_blank">23-F-1486_1.pdf <span class="lk-meta">[PDF · local]</span></a></li>
+<li><a href="./pdfs/23-F-1486_2.pdf" target="_blank">23-F-1486_2.pdf <span class="lk-meta">[PDF · local]</span></a></li>
+<li><a href="https://defensescoop.com/2023/08/30/hicks-takes-direct-oversight-of-pentagons-uap-office-new-reporting-website-to-be-launched/" target="_blank" rel="noopener" class="ext">https://defensescoop.com/2023/08/30/hicks-takes-direct-oversight-of-pentagons-uap-office-new-reporting-website-to-be-launched/ ↗</a></li>
+<li><a href="https://www.aaro.mil/Portals/136/PDFs/FOIA/2023%20FOIAs/23-F-1423.pdf" target="_blank" rel="noopener">23-F-1423.pdf <span class="lk-meta">[PDF · source]</span></a></li>
+<li><a href="./pdfs/23-F-0949_1.pdf" target="_blank">23-F-0949_1.pdf <span class="lk-meta">[PDF · local]</span></a></li>
+<li><a href="./pdfs/23-F-0949_2.pdf" target="_blank">23-F-0949_2.pdf <span class="lk-meta">[PDF · local]</span></a></li>
+<li><a href="./pdfs/23-F-0922_1.pdf" target="_blank">23-F-0922_1.pdf <span class="lk-meta">[PDF · local]</span></a></li>
+<li><a href="./pdfs/23-F-0922_2.pdf" target="_blank">23-F-0922_2.pdf <span class="lk-meta">[PDF · local]</span></a></li>
+<li><a href="./pdfs/23-F-0922_3.pdf" target="_blank">23-F-0922_3.pdf <span class="lk-meta">[PDF · local]</span></a></li>
+<li><a href="./pdfs/23-F-0922_4.pdf" target="_blank">23-F-0922_4.pdf <span class="lk-meta">[PDF · local]</span></a></li>
+<li><a href="./pdfs/23-F-0740.pdf" target="_blank">23-F-0740.pdf <span class="lk-meta">[PDF · local]</span></a></li>
+<li><a href="./pdfs/23-F-0241.pdf" target="_blank">23-F-0241.pdf <span class="lk-meta">[PDF · local]</span></a></li>
+<li><a href="./pdfs/23-F-0204.pdf" target="_blank">23-F-0204.pdf <span class="lk-meta">[PDF · local]</span></a></li>
+<li><a href="./pdfs/23-F-0010.pdf" target="_blank">23-F-0010.pdf <span class="lk-meta">[PDF · local]</span></a></li>
+<li><a href="./pdfs/22-F-0863.pdf" target="_blank">22-F-0863.pdf <span class="lk-meta">[PDF · local]</span></a></li>
+<li><a href="./pdfs/22-F-1364_1.pdf" target="_blank">22-F-1364_1.pdf <span class="lk-meta">[PDF · local]</span></a></li>
+<li><a href="https://www.aaro.mil/Portals/136/PDFs/FOIA/2022%20FOIAs/22-F-1364_2.pdf" target="_blank" rel="noopener">22-F-1364_2.pdf <span class="lk-meta">[PDF · source]</span></a></li>
+<li><a href="./pdfs/22-F-1364_3.pdf" target="_blank">22-F-1364_3.pdf <span class="lk-meta">[PDF · local]</span></a></li>
+</ul>
+  </div>
+</section>
+<section id="submit-a-report">
+  <div class="container">
+    <div class="section-label">§ Submit A Report</div>
+    <h2>Submit A Report</h2>
+    <div class="pg-content"><p>Submit A Report</p>
+<p>U.S. Government UAP-Related Program/Activity Reporting</p>
+<p>AARO is accepting reports from current or former U.S. Government employees, service members, or contractor personnel with direct knowledge of U.S. Government programs or activities related to UAP dating back to 1945*.  These reports will be used to inform AARO’s congressionally directed Historical Record Report.</p>
+<p>This form is intended as an initial point of contact with AARO; it is not intended for conveying potentially sensitive or classified information.  Following the submission of your report, AARO staff may reach out to request additional detail or arrange for an informational interview.</p>
+<p>* By law, AARO may receive all UAP-related information, including any classified national security information involving military, intelligence, and intelligence-related activities, at all levels of classification regardless of any restrictive access controls, special access programs, or compartmented access programs.  Moreover, there is no restriction to AARO receiving any past or present UAP-related information, regardless of the organizational affiliation of the original classification authority within DoD, the Intelligence Community, or any other U.S. Government department or agency. Any classified national security information may be provided to AARO in a secure location, but may not be provided through this form. Do not submit classified national security information or unclassified information that is not publicly releasable (e.g. subject to export control regulations) through this form.</p>
+<p>NDAA for FY2023, section 1673(b)(1): An authorized disclosure shall not be subject to a nondisclosure agreement entered into by the individual who makes the disclosure; shall be deemed to comply with any regulation or order issued under the authority of Executive Order 13526 (50 U.S.C. 31617 note; relating to classified national security information) or chapter 18 of the Atomic Energy Act of 1954 (42 U.S.D. 2271 et seq.); and is not a violation of section 798 of title 18, United States Code, or other provision of law relating to the disclosure of information.</p>
+<p>DoD and Intelligence Community Authorization to Provide Information to AARO</p>
+<p>Current Operational UAP Reporting</p>
+<p>Military and DoW civilian personnel must report through their command or service in accordance with GENADMIN Joint Staff J3 Washington DC 251807ZFEB25 &quot;Updated Unidentified Anomalous Phenomena Reporting and Material Disposition.&quot;</p>
+<p>Civilian pilots are encouraged to promptly report UAP sightings to air traffic control.  AARO receives UAP-related Pilot Reports (PIREPs) from the Federal Aviation Administration.</p>
+<p>AARO will announce when a reporting mechanism is available to the public.</p>
+<p>Who is eligible to report?</p>
+<p>What should I NOT report?</p>
+<p>What should I expect after filing a report?</p>
+<p>I signed a Nondisclosure Agreement. Can I still report to AARO?</p>
+<p>What do I need to know about Prohibition on Reprisal?</p>
+<p>You must meet the criteria below in order to complete and submit a UAP Program Report at this time.</p>
+<p>I am a former or current U.S. Government employee, service member, or contractor personnel.  Yes / No</p>
+<p>I have first-hand knowledge of a U.S. Government program or activity related to UAP.  Yes / No</p>
+<p>Step 1: Download Blank Report Form</p>
+<p>Click on image to obtain AARO&#x27;s Report Form</p>
+<p>To ensure your data is saved properly, please open the blank AARO Report Form using Adobe Acrobat instead of your web browser. Some browsers may not support saving form data correctly. If the file opens in your browser, save it to your computer before entering any data and then open it with Adobe Acrobat Reader.</p>
+<p>STEP 2: Select and Send Completed Report to AARO</p>
+<p>This email is for official reports from current or former U.S. Government employees, service members, or contractor personnel with direct knowledge of U.S. Government programs or activities related to UAP. Please do not submit reports of UAP sightings or information other than that solicited in the form. You may be contacted by AARO if additional information is needed.</p>
+<p>This form is to be used for official business with the Department of Defense. Knowing and willful false reporting can be punished by fine or imprisonment, or both (see 18 U.S.C. 1001). Additionally, falsifying information may have a negative effect on your security clearance, employment prospects, or job status, up to and including denial or revocation of your security clearance, or your removal and debarment from federal service, if applicable.</p>
+<p>Send Report to AARO</p>
+<p>If your email application doesn&#x27;t open, please follow the instruction on the form for returning your completed report.</p></div>
+    <div class="pg-imgs">
+<figure class="pg-img"><img loading="lazy" src="https://www.aaro.mil/portals/136/Images/PDFSolutionThumbnail.jpg?ver=jvA8PTzA5AK7B3V2Wk3t9Q%3d%3d" alt="AARO UAP Program Report Form"><figcaption>AARO UAP Program Report Form</figcaption></figure>
+</div>
+    <h3 class="sub">Related Links</h3><ul class="lk-list">
+<li><a href="https://www.congress.gov/bill/117th-congress/house-bill/7776/text" target="_blank" rel="noopener" class="ext">congressionally directed ↗</a></li>
+<li><a href="./pdfs/AARO_SAPCO_CAPCO_Memos_on_AARO_Authorities.pdf" target="_blank">DoD and Intelligence Community Authorization to Provide Information to AARO <span class="lk-meta">[PDF · local]</span></a></li>
+</ul>
+  </div>
+</section>
+<section id="faq">
+  <div class="container">
+    <div class="section-label">§ FAQ</div>
+    <h2>Frequently Asked Questions</h2>
+    <div class="pg-content"><p>Frequently Asked Questions</p>
+<p>How can I share information with AARO or report a UAP?</p>
+<p>What are the leading explanations to account for UAP reports?</p>
+<p>What are some common objects/causes frequently reported as UAP?</p>
+<p>What makes AARO different from previous U.S. government efforts focused on UAP?</p>
+<p>What accounts for UAP that have appeared to observers as very fast moving, but are formally assessed to have been stationary or slow moving?</p>
+<p>What kind of UAP reports are most scientifically useful?</p>
+<p>What constitutes firsthand knowledge of a UAP-related U.S. Government program or activity?</p>
+<p>Has the Department found any evidence of extraterrestrial technology?</p></div>
+    
+    
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <span>Offline mirror · Source: aaro.mil · Captured via Wayback Machine</span>
+    <span><a href="./index.html">Evidence Browser</a> · <a href="../index.html">war.gov/UFO mirror</a> · <a href="https://www.aaro.mil/" target="_blank" rel="noopener">Live aaro.mil ↗</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
