@@ -7,8 +7,14 @@
 bundles/Release_1.zip
 bundles/uapvideos.zip
 
-# DVIDS / DOD bulk videos (each often >100 MB)
-bundles/uapvideos/
+# DVIDS / DOD bulk videos — small ones (<100 MB) are tracked so they
+# play directly on GitHub Pages. Only the 6 huge ones are excluded.
+bundles/uapvideos/DOD_111688825.mp4
+bundles/uapvideos/DOD_111689011.mp4
+bundles/uapvideos/DOD_111689030.mp4
+bundles/uapvideos/DOD_111689083.mp4
+bundles/uapvideos/DOD_111689090.mp4
+bundles/uapvideos/DOD_111689167.mp4
 
 # Huge Release_1 PDFs (>50 MB) — listed individually
 bundles/Release_1/342_HS1-416511228_box186_319.1-Flying-Discs-1949.pdf
