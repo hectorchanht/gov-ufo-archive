@@ -1346,8 +1346,11 @@
       const fb = a.url ? `onerror="this.onerror=null;this.src='${esc(a.url)}';"` : '';
       return `<img loading="lazy" src="./${a.local}" alt="${esc(a.alt||a.title)}" ${fb}>`;
     }
-    if (a.type==='VID-FILE' && a.local)
-      return `<video preload="metadata" muted><source src="./${a.local}#t=0.5" type="video/mp4"></video>`;
+    if (a.type==='VID-FILE' && a.local) {
+      // Local DVIDS bundle file. Gitignored on GH Pages — on `<video>` error
+      // swap to poster glyph so the card stays usable.
+      return `<video preload="metadata" muted onerror="this.outerHTML='<div class=&quot;pdf-glyph&quot;><span class=&quot;ico&quot;>▶</span><span>${esc(a.title).replace(/'/g, "&apos;")}</span></div>';"><source src="./${a.local}#t=0.5" type="video/mp4"></video>`;
+    }
     if (a.type==='AUD')
       return `<div class="pdf-glyph"><span class="ico">♪</span><span>Audio recording</span></div>`;
     if (a.type==='VID')

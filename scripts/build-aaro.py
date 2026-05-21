@@ -162,17 +162,45 @@ stats = {
 
 # Carousel slides: pick up to 8 highest-priority videos (with local files);
 # fall back to local case-resolution images. Dedupe by local path.
+# Each slide carries BOTH local + remote URL so the carousel still works
+# on GitHub Pages where gitignored videos are absent — the <video> element
+# uses two <source> children, browser picks first that loads.
 carousel = []
 seen = set()
 for a in assets:
     if a['type']=='VID' and a['local'] and a['local'] not in seen:
-        carousel.append({'local': a['local'], 'title': a['title'], 'dod_id': a.get('dod_id'), 'kind':'video'})
+        carousel.append({
+            'local': a['local'],
+            'url':   a.get('url') or '',
+            'title': a['title'],
+            'dod_id': a.get('dod_id'),
+            'kind': 'video',
+        })
         seen.add(a['local'])
         if len(carousel) >= 8: break
+# If we didn't get 8 videos locally, fill with VID assets where we only
+# have a remote URL — they will still play in the carousel via cloudfront.
+if len(carousel) < 8:
+    for a in assets:
+        if a['type']=='VID' and not a['local'] and a.get('url') and a['url'] not in seen:
+            carousel.append({
+                'local': '',
+                'url': a['url'],
+                'title': a['title'],
+                'dod_id': a.get('dod_id'),
+                'kind': 'video',
+            })
+            seen.add(a['url'])
+            if len(carousel) >= 8: break
 if len(carousel) < 8:
     for a in assets:
         if a['type']=='IMG' and a['local'] and a['local'] not in seen:
-            carousel.append({'local': a['local'], 'title': a['title'], 'kind':'image'})
+            carousel.append({
+                'local': a['local'],
+                'url':   a.get('url') or '',
+                'title': a['title'],
+                'kind': 'image',
+            })
             seen.add(a['local'])
             if len(carousel) >= 8: break
 
@@ -908,9 +936,16 @@ footer .colophon {
       const slide = document.createElement('div');
       slide.className = 'carousel-slide' + (i === 0 ? ' active' : '');
       if (s.kind === 'video') {
-        slide.innerHTML = `<video src="./${s.local}#t=0.5" muted playsinline preload="metadata"></video>`;
+        // Two <source> children: local first, source URL second.
+        // Browser walks the list and uses first that loads — so the
+        // carousel works whether or not the local file was committed.
+        const srcs = [];
+        if (s.local) srcs.push(`<source src="./${s.local}#t=0.5" type="video/mp4">`);
+        if (s.url)   srcs.push(`<source src="${esc(s.url)}#t=0.5" type="video/mp4">`);
+        slide.innerHTML = `<video muted playsinline preload="metadata" crossorigin="anonymous">${srcs.join('')}</video>`;
       } else {
-        slide.innerHTML = `<img src="./${s.local}" alt="${esc(s.title)}" loading="${i===0?'eager':'lazy'}">`;
+        const fb = s.url ? `onerror="this.onerror=null;this.src='${esc(s.url)}';"` : '';
+        slide.innerHTML = `<img src="./${s.local || s.url}" alt="${esc(s.title)}" loading="${i===0?'eager':'lazy'}" ${fb}>`;
       }
       cTrack.appendChild(slide);
       const dot = document.createElement('button');
@@ -945,7 +980,7 @@ footer .colophon {
     heroEl.addEventListener('mouseenter', () => clearInterval(timer));
     heroEl.addEventListener('mouseleave', restart);
     cTrack.addEventListener('click', () => {
-      openMedia(CAR[cIdx].local, CAR[cIdx].title);
+      openMedia(CAR[cIdx].local, CAR[cIdx].title, CAR[cIdx].url);
     });
   } else {
     document.getElementById('hero-carousel').style.display = 'none';
@@ -998,7 +1033,12 @@ footer .colophon {
       return `<img loading="lazy" src="./${a.l}" alt="${esc(a.ti)}" ${fb}>`;
     }
     if (a.t === 'IMG' && a.u) return `<img loading="lazy" src="${esc(a.u)}" alt="${esc(a.ti)}" onerror="this.style.display='none';this.parentElement.classList.add('pdf-glyph');this.parentElement.innerHTML='<span class=&quot;ico&quot;>IMG</span><span>not archived</span>';">`;
-    if (a.t === 'VID' && a.l) return `<video preload="metadata" muted playsinline><source src="./${a.l}#t=0.5" type="video/mp4"></video>`;
+    if (a.t === 'VID' && (a.l || a.u)) {
+      const srcs = [];
+      if (a.l) srcs.push(`<source src="./${a.l}#t=0.5" type="video/mp4">`);
+      if (a.u) srcs.push(`<source src="${esc(a.u)}#t=0.5" type="video/mp4">`);
+      return `<video preload="metadata" muted playsinline crossorigin="anonymous">${srcs.join('')}</video>`;
+    }
     if (a.t === 'VID') return `<div class="pdf-glyph video-glyph"><span class="ico">▶</span><span>${esc(a.dd||'')}</span></div>`;
     return `<div class="pdf-glyph"><span class="ico">PDF</span><span>${esc(a.ag||'')}</span></div>`;
   }
@@ -1018,7 +1058,7 @@ footer .colophon {
     const out = [];
     if (a.l) {
       const verb = a.t === 'PDF' ? 'Open PDF' : (a.t === 'VID' ? 'Play' : 'View');
-      out.push(`<a href="#" data-action="open" data-local="${esc(a.l)}" data-title="${esc(a.ti)}">${verb}</a>`);
+      out.push(`<a href="#" data-action="open" data-local="${esc(a.l)}" data-remote="${esc(a.u||'')}" data-title="${esc(a.ti)}">${verb}</a>`);
       out.push(`<a href="./${esc(a.l)}" download>Download</a>`);
     }
     if (a.u) {
@@ -1030,7 +1070,7 @@ footer .colophon {
   function cardHtml(a) {
     const localBadge = a.l ? `<span class="badge local">LOCAL</span>` : `<span class="badge source">SOURCE</span>`;
     return `<article class="card">
-      <div class="card-media" data-local="${esc(a.l)}" data-title="${esc(a.ti)}" data-action="${a.l?'open':'source'}">
+      <div class="card-media" data-local="${esc(a.l)}" data-remote="${esc(a.u||'')}" data-title="${esc(a.ti)}" data-action="${a.l?'open':'source'}">
         ${mediaFor(a)}
         <span class="badge">${esc(a.k||a.t)}</span>
         ${statusBadge(a.st)}
@@ -1125,17 +1165,31 @@ footer .colophon {
   const lb = document.getElementById('lightbox');
   const lbI = document.getElementById('lb-inner');
   const lbC = document.getElementById('lb-close');
-  function openMedia(local, title) {
-    if (!local) return;
-    const ext = local.split('.').pop().toLowerCase();
+  function openMedia(local, title, remote) {
+    // Open `local` if given, otherwise fall back to the remote source URL.
+    // For <video> we render BOTH so the browser picks first that loads.
+    const target = local || remote;
+    if (!target) return;
+    const ext = target.split('?')[0].split('#')[0].split('.').pop().toLowerCase();
+    const localHref = local ? './' + local : '';
     let html;
-    if (['jpg','jpeg','png','gif','webp','svg'].includes(ext))
-      html = `<img src="./${local}" alt="${esc(title)}"><div class="lb-meta">${esc(title)}</div>`;
-    else if (['mp4','webm','mov'].includes(ext))
-      html = `<video controls autoplay src="./${local}"></video><div class="lb-meta">${esc(title)}</div>`;
-    else if (ext === 'pdf')
-      html = `<iframe src="./${local}#view=FitH"></iframe><div class="lb-meta">${esc(title)} — <a href="./${local}" target="_blank">open in new tab ↗</a></div>`;
-    else { window.open('./' + local, '_blank'); return; }
+    if (['jpg','jpeg','png','gif','webp','svg'].includes(ext)) {
+      const fb = remote ? `onerror="this.onerror=null;this.src='${esc(remote)}';"` : '';
+      const src = localHref || remote;
+      html = `<img src="${esc(src)}" alt="${esc(title)}" ${fb}><div class="lb-meta">${esc(title)}</div>`;
+    } else if (['mp4','webm','mov'].includes(ext)) {
+      const srcs = [];
+      if (localHref) srcs.push(`<source src="${esc(localHref)}" type="video/mp4">`);
+      if (remote)    srcs.push(`<source src="${esc(remote)}" type="video/mp4">`);
+      html = `<video controls autoplay crossorigin="anonymous">${srcs.join('')}</video><div class="lb-meta">${esc(title)}</div>`;
+    } else if (['mp3','wav','ogg','m4a'].includes(ext)) {
+      html = `<audio controls autoplay src="${esc(localHref || remote)}"></audio><div class="lb-meta">${esc(title)}</div>`;
+    } else if (ext === 'pdf') {
+      const src = localHref || remote;
+      html = `<iframe src="${esc(src)}#view=FitH"></iframe><div class="lb-meta">${esc(title)} — <a href="${esc(src)}" target="_blank">open in new tab ↗</a></div>`;
+    } else {
+      window.open(localHref || remote, '_blank'); return;
+    }
     lbI.innerHTML = html;
     lb.classList.add('open');
   }
@@ -1145,9 +1199,9 @@ footer .colophon {
   document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
   grid.addEventListener('click', e => {
     const a = e.target.closest('a[data-action]');
-    if (a) { e.preventDefault(); openMedia(a.dataset.local, a.dataset.title); return; }
+    if (a) { e.preventDefault(); openMedia(a.dataset.local, a.dataset.title, a.dataset.remote); return; }
     const m = e.target.closest('.card-media');
-    if (m && m.dataset.local) openMedia(m.dataset.local, m.dataset.title);
+    if (m && (m.dataset.local || m.dataset.remote)) openMedia(m.dataset.local, m.dataset.title, m.dataset.remote);
   });
 })();
 </script>
