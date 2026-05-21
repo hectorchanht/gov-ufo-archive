@@ -27,7 +27,7 @@
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
 
   body {
     background: var(--bg);
@@ -77,9 +77,15 @@
     flex-shrink: 0; }
 
   /* ============ HEADER ============ */
-  header {
+  .header-wrap {
+    position: sticky; top: 0; z-index: 40;
+    background: rgba(10, 10, 12, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--rule);
-    padding: 28px 0 24px;
+  }
+  header {
+    padding: 18px 0 16px;
     position: relative;
   }
   header .container {
@@ -490,7 +496,7 @@
     letter-spacing: 0.16em; text-transform: uppercase; margin-top: 6px;
   }
   #archive .controls {
-    position: sticky; top: 0; z-index: 30;
+    position: sticky; top: 64px; z-index: 30;
     background: rgba(10,10,12,0.92);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -744,7 +750,7 @@
 
   /* ============ ARCHIVE controls + sort + filter ============ */
   #archive .arch-controls-bar {
-    position: sticky; top: 0; z-index: 30;
+    position: sticky; top: 64px; z-index: 30;
     background: rgba(10,10,12,0.95);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -872,6 +878,7 @@
 </div>
 
 <!-- ============ HEADER ============ -->
+<div class="header-wrap">
 <header>
   <div class="container">
     <a href="#" class="brand">
@@ -893,6 +900,7 @@
     </nav>
   </div>
 </header>
+</div>
 
 <!-- ============ HERO ============ -->
 <div class="hero" id="intro">
@@ -1092,17 +1100,17 @@
       <h4>Source</h4>
       <ul>
         <li><a href="https://www.war.gov/UFO/" target="_blank">war.gov/UFO ↗</a></li>
-        <li><a href="./aaro-mirror/index.html">AARO Mirror</a></li>
         <li><a href="https://www.aaro.mil/" target="_blank">AARO.mil ↗</a></li>
         <li><a href="./uap-release001.csv">Manifest CSV</a></li>
       </ul>
     </div>
     <div>
-      <h4>Downloads</h4>
+      <h4>Downloads (official source)</h4>
       <ul>
-        <li><a href="./bundles/Release_1.zip">Release_1.zip</a></li>
-        <li><a href="./bundles/uapvideos.zip">uapvideos.zip</a></li>
-        <li><a href="./slideshow/">/slideshow</a></li>
+        <li><a href="https://www.war.gov/medialink/ufo/bundle/Release_1.zip" target="_blank" rel="noopener">Release_1.zip ↗</a></li>
+        <li><a href="https://cdn.dvidshub.net/press/uapvideos.zip" target="_blank" rel="noopener">uapvideos.zip ↗</a></li>
+        <li><a href="https://www.war.gov/portals/1/Interactive/2026/UFO/Slideshow/" target="_blank" rel="noopener">Slideshow folder ↗</a></li>
+        <li><a href="https://www.war.gov/Portals/1/Interactive/2026/UFO/uap-release001.csv" target="_blank" rel="noopener">Manifest CSV ↗</a></li>
       </ul>
     </div>
     <div class="colophon">
@@ -1332,14 +1340,20 @@
     return ({'PDF':'PDF','IMG':'IMG','SLIDE':'SLIDE','AUD':'AUD','VID':'VID·CATALOG','VID-FILE':'VID·FILE'})[a.type] || a.type;
   }
   function mediaFor(a){
-    if ((a.type==='IMG' || a.type==='SLIDE') && a.local)
-      return `<img loading="lazy" src="./${a.local}" alt="${esc(a.alt||a.title)}">`;
-    if (a.type==='VID-FILE')
+    if ((a.type==='IMG' || a.type==='SLIDE') && a.local) {
+      // Local-first, source-URL-fallback via <img onerror> — works whether
+      // the file is in the repo, on a synced disk, or only on the origin.
+      const fb = a.url ? `onerror="this.onerror=null;this.src='${esc(a.url)}';"` : '';
+      return `<img loading="lazy" src="./${a.local}" alt="${esc(a.alt||a.title)}" ${fb}>`;
+    }
+    if (a.type==='VID-FILE' && a.local)
       return `<video preload="metadata" muted><source src="./${a.local}#t=0.5" type="video/mp4"></video>`;
     if (a.type==='AUD')
       return `<div class="pdf-glyph"><span class="ico">♪</span><span>Audio recording</span></div>`;
     if (a.type==='VID')
       return `<div class="pdf-glyph"><span class="ico">▶</span><span>DVIDS ID: ${esc(a.dvidsId||'—')}</span></div>`;
+    if (a.type==='VID-FILE')
+      return `<div class="pdf-glyph"><span class="ico">▶</span><span>${esc(a.title)}</span></div>`;
     return `<div class="pdf-glyph"><span class="ico">PDF</span><span>${esc(a.agency||'Document')}</span></div>`;
   }
   function metaFor(a){
@@ -1355,15 +1369,17 @@
     return `<dl class="card-meta">` + rows.map(r => `<dt>${r[0]}</dt><dd${r[2]?' class="'+r[2]+'"':''}>${esc(r[1])}</dd>`).join('') + `</dl>`;
   }
   function actionsFor(a){
+    // Always show Local actions when file is on disk AND a Source ↗ button
+    // when URL is known, so the visitor gets a working route in every context.
     const out = [];
     if (a.local) {
       const action = ['IMG','SLIDE','VID-FILE','AUD','PDF'].includes(a.type) ? 'view' : 'open';
       const label = (['IMG','SLIDE'].includes(a.type)) ? 'View' : (a.type==='PDF' ? 'Open PDF' : (a.type==='AUD' ? 'Play' : (a.type==='VID-FILE' ? 'Play' : 'Open')));
       out.push(`<a href="#" data-action="${action}" data-local="${esc(a.local)}" data-title="${esc(a.title)}">${label}</a>`);
       out.push(`<a href="./${a.local}" download>Download</a>`);
-    } else if (a.url) {
-      out.push(`<a class="warn" href="${esc(a.url)}" target="_blank" rel="noopener">Source ↗</a>`);
     }
+    if (a.url)
+      out.push(`<a class="warn" href="${esc(a.url)}" target="_blank" rel="noopener">Source ↗</a>`);
     if (a.dvidsId && a.type==='VID')
       out.push(`<a class="warn" href="https://www.dvidshub.net/video/${encodeURIComponent(a.dvidsId)}" target="_blank" rel="noopener">DVIDS ↗</a>`);
     return `<div class="card-actions">${out.join('')}</div>`;

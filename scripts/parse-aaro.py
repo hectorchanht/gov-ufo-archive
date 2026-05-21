@@ -179,12 +179,28 @@ for fn in sorted(os.listdir(PAGES_DIR)):
         page_images.append(I)
         if 'aaro.mil' in s: all_images.add(s)
 
+    # Extract DNN af2AccordionMenu items (Q&A pairs) — used on FAQ + similar pages
+    accordion = []
+    for item_html in re.findall(r'<li[^>]*class="[^"]*af2AccordionMenuListItem[^"]*"[^>]*>(.*?)</li>', src, re.S):
+        # Title = first <span>… or first <a>… text
+        m_title = re.search(r'<(?:span|a)[^>]*>([^<]{4,300})</(?:span|a)>', item_html)
+        title_txt = m_title.group(1).strip() if m_title else ''
+        # Body = full plain text minus title
+        body_text = re.sub(r'<[^>]+>', ' ', item_html)
+        body_text = re.sub(r'\s+', ' ', body_text).strip()
+        # Strip title prefix if present
+        if title_txt and body_text.startswith(title_txt):
+            body_text = body_text[len(title_txt):].strip()
+        if title_txt and body_text:
+            accordion.append({'q': title_txt, 'a': body_text})
+
     results[slug] = {
         'title': title,
         'text': clean_text[:30000],
         'headings': ex.headings,
         'links': page_links[:300],
         'images': page_images[:80],
+        'accordion': accordion,
     }
 
 with open(os.path.join(CACHE_DIR, 'parsed.json'),'w') as f:

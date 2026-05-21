@@ -15,7 +15,13 @@ CACHE = os.path.join(ROOT, '.cache')
 parsed = json.load(open(os.path.join(CACHE, 'parsed.json')))
 evidence = json.load(open(os.path.join(CACHE, 'evidence.json')))
 
-# Local inventories (refreshed each build)
+# Local inventories — set on every build from whatever is on disk right now.
+# `local` is set whenever a file exists locally. The rendered card always
+# carries BOTH a local path and the original source URL, so:
+#   - local checkouts (where you ran sync.sh) → local download works
+#   - GitHub Pages clones (where gitignored files are absent) → image cards
+#     auto-swap to source via <img onerror>, and the Source ↗ button is
+#     always visible alongside the Download button
 def lsdir(p):
     return set(os.listdir(p)) if os.path.isdir(p) else set()
 local_pdfs = lsdir(os.path.join(ROOT,'pdfs'))
@@ -154,17 +160,21 @@ stats = {
     'local_total':  sum(1 for a in assets if a['local']),
 }
 
-# Carousel slides: pick 8 highest-priority videos (with local files) or fall back to images
+# Carousel slides: pick up to 8 highest-priority videos (with local files);
+# fall back to local case-resolution images. Dedupe by local path.
 carousel = []
+seen = set()
 for a in assets:
-    if a['type']=='VID' and a['local']:
+    if a['type']=='VID' and a['local'] and a['local'] not in seen:
         carousel.append({'local': a['local'], 'title': a['title'], 'dod_id': a.get('dod_id'), 'kind':'video'})
+        seen.add(a['local'])
         if len(carousel) >= 8: break
-# Fill with local images if needed
-if len(carousel) < 6:
+if len(carousel) < 8:
     for a in assets:
-        if a['type']=='IMG' and a['local'] and len(carousel)<8:
+        if a['type']=='IMG' and a['local'] and a['local'] not in seen:
             carousel.append({'local': a['local'], 'title': a['title'], 'kind':'image'})
+            seen.add(a['local'])
+            if len(carousel) >= 8: break
 
 # Asset data for JS (compact)
 asset_data = []
@@ -980,8 +990,14 @@ footer .colophon {
     return `<span class="badge status ${cls}">${esc(st)}</span>`;
   }
   function mediaFor(a) {
-    if (a.t === 'IMG' && a.l) return `<img loading="lazy" src="./${a.l}" alt="${esc(a.ti)}">`;
-    if (a.t === 'IMG' && !a.l && a.u) return `<img loading="lazy" src="${esc(a.u)}" alt="${esc(a.ti)}" onerror="this.style.display='none';this.parentElement.classList.add('pdf-glyph');this.parentElement.innerHTML='<span class=&quot;ico&quot;>IMG</span><span>not archived</span>';">`;
+    // For images: try local first, fall back to source URL on error.
+    // Browser-native — works on both fully-synced local checkouts and on
+    // GitHub Pages where gitignored files are absent.
+    if (a.t === 'IMG' && a.l) {
+      const fb = a.u ? `onerror="this.onerror=null;this.src='${esc(a.u)}';"` : '';
+      return `<img loading="lazy" src="./${a.l}" alt="${esc(a.ti)}" ${fb}>`;
+    }
+    if (a.t === 'IMG' && a.u) return `<img loading="lazy" src="${esc(a.u)}" alt="${esc(a.ti)}" onerror="this.style.display='none';this.parentElement.classList.add('pdf-glyph');this.parentElement.innerHTML='<span class=&quot;ico&quot;>IMG</span><span>not archived</span>';">`;
     if (a.t === 'VID' && a.l) return `<video preload="metadata" muted playsinline><source src="./${a.l}#t=0.5" type="video/mp4"></video>`;
     if (a.t === 'VID') return `<div class="pdf-glyph video-glyph"><span class="ico">▶</span><span>${esc(a.dd||'')}</span></div>`;
     return `<div class="pdf-glyph"><span class="ico">PDF</span><span>${esc(a.ag||'')}</span></div>`;
@@ -997,12 +1013,15 @@ footer .colophon {
     return `<dl class="card-meta">` + rows.map(r => `<dt>${r[0]}</dt><dd${r[2]?' class="'+r[2]+'"':''}>${esc(r[1])}</dd>`).join('') + `</dl>`;
   }
   function actionsFor(a) {
+    // Show both local (if file present at build time) AND source (if URL known).
+    // Visitor gets a working button no matter where the page is hosted.
     const out = [];
     if (a.l) {
       const verb = a.t === 'PDF' ? 'Open PDF' : (a.t === 'VID' ? 'Play' : 'View');
       out.push(`<a href="#" data-action="open" data-local="${esc(a.l)}" data-title="${esc(a.ti)}">${verb}</a>`);
       out.push(`<a href="./${esc(a.l)}" download>Download</a>`);
-    } else if (a.u) {
+    }
+    if (a.u) {
       out.push(`<a class="warn" href="${esc(a.u)}" target="_blank" rel="noopener">Source ↗</a>`);
     }
     if (a.di && a.t==='VID') out.push(`<a class="warn" href="https://www.dvidshub.net/video/${encodeURIComponent(a.di)}" target="_blank" rel="noopener">DVIDS ↗</a>`);

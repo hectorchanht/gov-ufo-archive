@@ -127,6 +127,30 @@ links straight back to the official URL (war.gov, aaro.mil, the DVIDS CDN).
 Visitors who want a fully local copy just clone the repo and run
 `./scripts/sync.sh`.
 
+### How the local-vs-source switch actually works
+
+Every asset card carries **both** a local relative path and the original
+source URL. The page chooses dynamically:
+
+- **Images** use `<img src="./local.jpg" onerror="this.src='source_url'">` —
+  if the local file is missing (e.g. on GitHub Pages where the file was
+  gitignored), the browser silently swaps in the official URL.
+- **Buttons** always show a `Source ↗` chip alongside the `Download` chip
+  when both a local file and a source URL exist. Two routes, always one
+  that works.
+- **The HTML never has to change**. The build scripts (`build-wargov.py`,
+  `build-aaro.py`) regenerate the embedded manifest from current disk
+  state on every run — newly-downloaded files automatically pick up
+  local routing, missing files automatically fall back to source.
+
+So the workflow is:
+
+```bash
+./scripts/sync.sh        # downloads new files, rebuilds manifests
+git add -A && git commit # commit whatever the .gitignore lets through
+git push                 # ship — visitors get the right route per asset
+```
+
 ### Enable Pages
 
 ```bash

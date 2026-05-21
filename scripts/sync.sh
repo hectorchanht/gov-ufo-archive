@@ -73,6 +73,7 @@ fi
 if [ "$DO_BUILD" -eq 1 ]; then
   echo ""
   echo "──── 4/4  Rebuild both mirror pages ────"
+  python3 "$ROOT/scripts/build-wargov.py"
   python3 "$ROOT/scripts/parse-aaro.py"
   python3 "$ROOT/scripts/extract-evidence.py"
   python3 "$ROOT/scripts/build-aaro.py"

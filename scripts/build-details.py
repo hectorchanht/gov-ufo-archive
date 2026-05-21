@@ -108,20 +108,39 @@ def render_images(images):
         out.append(f'<figure class="pg-img"><img loading="lazy" src="{html.escape(url)}" alt="{html.escape(alt)}"><figcaption>{html.escape(ttl)}</figcaption></figure>')
     return '<div class="pg-imgs">\n' + '\n'.join(out) + '\n</div>' if out else ''
 
+def render_accordion(items):
+    """Render accordion Q&A as native <details>/<summary> blocks."""
+    if not items: return ''
+    out = ['<div class="qa-list">']
+    for it in items:
+        q = html.escape(it.get('q','').strip())
+        a = html.escape(it.get('a','').strip())
+        if not q or not a: continue
+        out.append(f'<details class="qa"><summary>{q}</summary><div class="qa-body">{a}</div></details>')
+    out.append('</div>')
+    return '\n'.join(out)
+
 # Build sections
 sections = []
 for slug in ORDER:
     if slug not in parsed['pages']: continue
     p = parsed['pages'][slug]
-    body = text_to_html(p['text'])
+    accordion = p.get('accordion') or []
+    # On FAQ page, suppress the (now-redundant) flat text rendering of the same Q list
+    if slug == 'faq' and accordion:
+        body = ''
+    else:
+        body = text_to_html(p['text'])
     imgs = render_images([i for i in p['images'] if 'aaro.mil' in i['src']][:24])
     links = render_links(p['links'], max_n=80)
+    qa = render_accordion(accordion)
     h1 = next((h['text'] for h in p['headings'] if h['level']=='h1'), LABELS.get(slug, slug))
     sections.append(f'''<section id="{slug}">
   <div class="container">
     <div class="section-label">§ {LABELS[slug]}</div>
     <h2>{html.escape(h1)}</h2>
     <div class="pg-content">{body}</div>
+    {qa}
     {imgs}
     {('<h3 class="sub">Related Links</h3>'+links) if links else ''}
   </div>
@@ -260,6 +279,33 @@ ul.lk-list .lk-meta {
   color: var(--warm); text-transform: uppercase; margin-left: 6px;
 }
 ul.lk-list a.ext { color: var(--ink-dim); }
+
+/* Accordion (Q&A) */
+.qa-list { display: flex; flex-direction: column; gap: 8px; max-width: 80ch; margin-top: 12px; }
+.qa {
+  background: var(--panel); border: 1px solid var(--rule);
+  transition: border-color .15s;
+}
+.qa[open] { border-color: var(--caution); }
+.qa summary {
+  cursor: pointer; padding: 14px 18px;
+  font-family: var(--serif); font-size: 15px; font-weight: 600;
+  color: var(--ink); list-style: none;
+  display: flex; align-items: center; gap: 12px;
+}
+.qa summary::-webkit-details-marker { display: none; }
+.qa summary::before {
+  content: "+"; flex-shrink: 0;
+  font-family: var(--mono); font-size: 18px; color: var(--caution);
+  width: 18px; text-align: center;
+}
+.qa[open] summary::before { content: "−"; }
+.qa summary:hover { color: var(--caution); }
+.qa-body {
+  padding: 0 18px 16px 48px;
+  font-family: var(--serif); font-size: 14px; line-height: 1.6;
+  color: var(--ink-dim);
+}
 
 footer {
   background: #060608; padding: 40px 0 24px;
