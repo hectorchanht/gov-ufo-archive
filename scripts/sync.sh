@@ -28,24 +28,38 @@ DO_GEIPAN=1
 DO_UK=1
 DO_BRAZIL=1
 DO_CHILE=1
+DO_NZ=1
+DO_CANADA=1
+DO_ARGENTINA=1
+DO_URUGUAY=1
+DO_PERU=1
+DO_SPAIN=1
+DO_ITALY=1
 DO_BUILD=1
 DO_VIDEOS=1
 INTERACTIVE=1
 
 # Helper: set all DO_* to 0
-reset_all() { DO_WARGOV=0; DO_AARO=0; DO_NASA=0; DO_NARA=0; DO_GEIPAN=0; DO_UK=0; DO_BRAZIL=0; DO_CHILE=0; }
+reset_all() { DO_WARGOV=0; DO_AARO=0; DO_NASA=0; DO_NARA=0; DO_GEIPAN=0; DO_UK=0; DO_BRAZIL=0; DO_CHILE=0; DO_NZ=0; DO_CANADA=0; DO_ARGENTINA=0; DO_URUGUAY=0; DO_PERU=0; DO_SPAIN=0; DO_ITALY=0; }
 
 for arg in "$@"; do
   case "$arg" in
     --all)          INTERACTIVE=0 ;;
-    --wargov-only)  reset_all; DO_WARGOV=1; INTERACTIVE=0 ;;
-    --aaro-only)    reset_all; DO_AARO=1;   INTERACTIVE=0 ;;
-    --nasa-only)    reset_all; DO_NASA=1;   INTERACTIVE=0 ;;
-    --nara-only)    reset_all; DO_NARA=1;   INTERACTIVE=0 ;;
-    --geipan-only)  reset_all; DO_GEIPAN=1; INTERACTIVE=0 ;;
-    --uk-only)      reset_all; DO_UK=1;     INTERACTIVE=0 ;;
-    --brazil-only)  reset_all; DO_BRAZIL=1; INTERACTIVE=0 ;;
-    --chile-only)   reset_all; DO_CHILE=1;  INTERACTIVE=0 ;;
+    --wargov-only)    reset_all; DO_WARGOV=1; INTERACTIVE=0 ;;
+    --aaro-only)      reset_all; DO_AARO=1;   INTERACTIVE=0 ;;
+    --nasa-only)      reset_all; DO_NASA=1;   INTERACTIVE=0 ;;
+    --nara-only)      reset_all; DO_NARA=1;   INTERACTIVE=0 ;;
+    --geipan-only)    reset_all; DO_GEIPAN=1; INTERACTIVE=0 ;;
+    --uk-only)        reset_all; DO_UK=1;     INTERACTIVE=0 ;;
+    --brazil-only)    reset_all; DO_BRAZIL=1; INTERACTIVE=0 ;;
+    --chile-only)     reset_all; DO_CHILE=1;  INTERACTIVE=0 ;;
+    --nz-only)        reset_all; DO_NZ=1;        INTERACTIVE=0 ;;
+    --canada-only)    reset_all; DO_CANADA=1;    INTERACTIVE=0 ;;
+    --argentina-only) reset_all; DO_ARGENTINA=1; INTERACTIVE=0 ;;
+    --uruguay-only)   reset_all; DO_URUGUAY=1;   INTERACTIVE=0 ;;
+    --peru-only)      reset_all; DO_PERU=1;      INTERACTIVE=0 ;;
+    --spain-only)     reset_all; DO_SPAIN=1;     INTERACTIVE=0 ;;
+    --italy-only)     reset_all; DO_ITALY=1;     INTERACTIVE=0 ;;
     --no-build)     DO_BUILD=0 ;;
     --no-videos)    DO_VIDEOS=0 ;;
     -h|--help)
@@ -59,36 +73,50 @@ done
 if [ "$INTERACTIVE" -eq 1 ] && [ -t 0 ]; then
   echo ""
   echo "Which sites? (comma-separated, e.g. 1,3,5)"
-  echo "  [1] war.gov / UFO Release 01    (slideshow + Release_1 + DVIDS bundle)"
-  echo "  [2] AARO                          (pages + PDFs + cloudfront videos)"
-  echo "  [3] NASA UAP Independent Study    (4 PDFs + 2 images)"
-  echo "  [4] NARA UAP records gateway      (9 topic pages + NDAA PDF)"
-  echo "  [5] France GEIPAN (CNES)          (4 PDFs + 2 videos + statistics)"
-  echo "  [6] UK MoD UFO Files              (press release + Discovery deep-links)"
-  echo "  [7] Brazil FAB / Arquivo Nacional (catalog deep-links only)"
-  echo "  [8] Chile SEFAA / DGAC            (1 PDF + monthly dispatches link)"
-  echo "  [9] ALL (default)"
-  echo "  [q] quit"
+  echo "  [1]  war.gov / UFO Release 01"
+  echo "  [2]  AARO (U.S.)"
+  echo "  [3]  NASA UAP Independent Study"
+  echo "  [4]  NARA UAP records gateway"
+  echo "  [5]  France GEIPAN (CNES)"
+  echo "  [6]  UK MoD UFO Files"
+  echo "  [7]  Brazil FAB / Arquivo Nacional"
+  echo "  [8]  Chile SEFAA / DGAC"
+  echo "  [9]  New Zealand NZDF"
+  echo "  [10] Canada Operation Magnet (LAC)"
+  echo "  [11] Argentina CEFAe"
+  echo "  [12] Uruguay CRIDOVNI"
+  echo "  [13] Peru OIFAA"
+  echo "  [14] Spain Ejército del Aire"
+  echo "  [15] Italy Aeronautica Militare"
+  echo "  [a]  ALL (default)"
+  echo "  [q]  quit"
   printf "Select: "
   read -r CHOICE
-  CHOICE="${CHOICE:-9}"
+  CHOICE="${CHOICE:-a}"
   if [ "$CHOICE" = "q" ] || [ "$CHOICE" = "Q" ]; then
     echo "aborted."; exit 0
   fi
-  if [ "$CHOICE" != "9" ]; then
+  if [ "$CHOICE" != "a" ] && [ "$CHOICE" != "A" ]; then
     reset_all
     IFS=',' read -ra PICKS <<< "$CHOICE"
     for p in "${PICKS[@]}"; do
       case "$(echo "$p" | tr -d ' ')" in
-        1) DO_WARGOV=1 ;;
-        2) DO_AARO=1 ;;
-        3) DO_NASA=1 ;;
-        4) DO_NARA=1 ;;
-        5) DO_GEIPAN=1 ;;
-        6) DO_UK=1 ;;
-        7) DO_BRAZIL=1 ;;
-        8) DO_CHILE=1 ;;
-        *) echo "  ignored: $p" ;;
+        1)  DO_WARGOV=1 ;;
+        2)  DO_AARO=1 ;;
+        3)  DO_NASA=1 ;;
+        4)  DO_NARA=1 ;;
+        5)  DO_GEIPAN=1 ;;
+        6)  DO_UK=1 ;;
+        7)  DO_BRAZIL=1 ;;
+        8)  DO_CHILE=1 ;;
+        9)  DO_NZ=1 ;;
+        10) DO_CANADA=1 ;;
+        11) DO_ARGENTINA=1 ;;
+        12) DO_URUGUAY=1 ;;
+        13) DO_PERU=1 ;;
+        14) DO_SPAIN=1 ;;
+        15) DO_ITALY=1 ;;
+        *)  echo "  ignored: $p" ;;
       esac
     done
   fi
@@ -189,6 +217,8 @@ if [ "$DO_BUILD" -eq 1 ]; then
   python3 "$ROOT/scripts/build-uk.py"
   python3 "$ROOT/scripts/build-brazil.py"
   python3 "$ROOT/scripts/build-chile.py"
+  # Catalog-only mirrors (NZ, Canada, Argentina, Uruguay, Peru, Spain, Italy)
+  python3 "$ROOT/scripts/build_batch3.py"
   echo "  Mirror pages rebuilt."
 fi
 

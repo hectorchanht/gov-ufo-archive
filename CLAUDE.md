@@ -39,7 +39,14 @@ shared.
 | **France GEIPAN** | `#0055a4` (French blue) | radial `#0055a4 → #003278 → #001f4d` |
 | **UK National Archives** | `#012169` (Royal Navy) | radial `#012169 → #001440 → #000820` |
 | **Brazil FAB** | `#009c3b` (Brazilian green) | radial `#ffdc00 → #009c3b → #002776` |
-| **Chile CEFAA** | `#d52b1e` (Chilean red) | radial `#d52b1e → #8b1413 → #3d0908` |
+| **Chile CEFAA / SEFAA** | `#d52b1e` (Chilean red) | radial `#d52b1e → #8b1413 → #3d0908` |
+| **NZ NZDF** | `#5b8def` | radial `#000000 → #333 → #000` |
+| **Canada (LAC Magnet)** | `#ff6b6b` | radial `#ff0000 → #990000 → #330000` |
+| **Argentina CEFAe** | `#74acdf` (sky blue) | radial `#74acdf → #3d6a9c → #1e3a5e` |
+| **Uruguay CRIDOVNI** | `#3ba0d8` | radial `#3ba0d8 → #1e5d80 → #0d2c3e` |
+| **Peru OIFAA** | `#ff6b6b` | radial `#d91023 → #7d0b14 → #3a0508` |
+| **Spain Ejército del Aire** | `#f4c542` | radial `#aa151b → #700c10 → #350608` |
+| **Italy Aeronautica Militare** | `#5cb85c` | radial `#009246 → #005a2b → #002612` |
 
 ### 2.2 Shared palette (do not deviate)
 
