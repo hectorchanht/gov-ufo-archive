@@ -87,24 +87,24 @@
     border-bottom: 1px solid var(--rule);
   }
   header {
-    padding: 18px 0 16px;
+    padding: 16px 0;
     position: relative;
   }
   header .container {
-    display: flex; justify-content: space-between; align-items: center; gap: 24px;
+    display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
   }
   .brand {
-    display: flex; align-items: center; gap: 16px;
-    text-decoration: none; color: var(--ink);
+    display: flex; align-items: center; gap: 14px;
+    text-decoration: none; color: var(--ink); flex-shrink: 0;
   }
   .seal {
-    width: 52px; height: 52px;
+    width: 44px; height: 44px;
     background: radial-gradient(circle at 50% 50%, #b91c1c 0%, #6b1010 60%, #2a0606 100%);
     border-radius: 50%;
     display: grid; place-items: center;
     box-shadow: 0 0 0 2px var(--ink), 0 0 0 4px var(--bg), 0 0 0 5px var(--ink-faint);
-    font-family: var(--mono); font-weight: 700; font-size: 18px; color: var(--ink);
-    letter-spacing: -0.05em;
+    font-family: var(--mono); font-weight: 700; font-size: 13px; color: var(--ink);
+    letter-spacing: 0.02em;
     position: relative;
   }
   .seal::after {
@@ -112,11 +112,11 @@
     border: 1px dashed rgba(232, 227, 216, 0.4); border-radius: 50%;
   }
   .brand-text { display: flex; flex-direction: column; line-height: 1.1; }
-  .brand-text .super { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; color: var(--ink-dim); text-transform: uppercase; }
-  .brand-text .name { font-family: var(--serif); font-size: 22px; font-weight: 600; letter-spacing: -0.01em; margin-top: 2px; }
+  .brand-text .super { font-family: var(--mono); font-size: 9px; letter-spacing: 0.2em; color: var(--ink-dim); text-transform: uppercase; }
+  .brand-text .name { font-family: var(--serif); font-size: 18px; font-weight: 600; letter-spacing: -0.01em; margin-top: 2px; }
 
-  nav { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
-  nav ul { display: flex; gap: 28px; list-style: none; flex-wrap: wrap; }
+  nav { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; flex: 1; }
+  nav ul { display: flex; gap: 4px 22px; list-style: none; flex-wrap: wrap; justify-content: flex-end; }
   nav a { color: var(--ink-dim); text-decoration: none; transition: color 0.2s; }
   nav a:hover { color: var(--ink); }
   nav a.active { color: var(--caution); }
@@ -588,6 +588,8 @@
     font-weight: 700; letter-spacing: 0.05em;
     display: inline-block;
   }
+  #archive .video-glyph { background: linear-gradient(135deg, rgba(212,160,23,0.12), rgba(185,28,28,0.05)); }
+  #archive .video-glyph .ico { color: var(--caution); border-color: var(--caution); }
   #archive .badge {
     position: absolute; top: 8px; left: 8px;
     background: rgba(0,0,0,0.78);
@@ -1405,9 +1407,9 @@
       return `<img loading="lazy" src="./${a.local}" alt="${esc(a.alt||a.title)}" ${fb}>`;
     }
     if (a.type==='VID-FILE' && a.local) {
-      // Local DVIDS bundle file. Gitignored on GH Pages — on `<video>` error
-      // swap to poster glyph so the card stays usable.
-      return `<video preload="metadata" muted onerror="this.outerHTML='<div class=&quot;pdf-glyph&quot;><span class=&quot;ico&quot;>▶</span><span>${esc(a.title).replace(/'/g, "&apos;")}</span></div>';"><source src="./${a.local}#t=0.5" type="video/mp4"></video>`;
+      // Glyph in card (no <video preload>) — 22 simultaneous video loads
+      // hammers the browser. Lightbox plays the file on click.
+      return `<div class="pdf-glyph video-glyph"><span class="ico">▶</span><span>${esc(a.title.replace(/\.mp4$/i,''))}</span></div>`;
     }
     if (a.type==='AUD')
       return `<div class="pdf-glyph"><span class="ico">♪</span><span>Audio recording</span></div>`;
@@ -1453,7 +1455,7 @@
     if (a.alt) extra.push(`<div class="card-extra"><b>Alt:</b> ${esc(a.alt)}</div>`);
     if (a.videoTitle) extra.push(`<div class="card-extra"><b>Video title:</b> ${esc(a.videoTitle)}</div>`);
     return `<article class="card" data-type="${a.type}">
-      <div class="card-media" data-local="${esc(a.local)}" data-title="${esc(a.title)}">
+      <div class="card-media" data-local="${esc(a.local)}" data-title="${esc(a.title)}" data-action="${a.syncNeeded?'sync-info':''}">
         ${mediaFor(a)}
         <span class="badge">${tagFor(a)}</span>
         ${a.redacted ? '<span class="badge redacted">Redacted</span>' : ''}
@@ -1587,6 +1589,7 @@ ${cmd}</code></pre>
       return;
     }
     const m = e.target.closest('.card-media');
+    if (m && m.dataset.action === 'sync-info') { showSyncModal(m.dataset.title); return; }
     if (m && m.dataset.local) openMedia(m.dataset.local, m.dataset.title);
   });
 })();

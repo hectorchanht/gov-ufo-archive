@@ -1051,16 +1051,13 @@ footer .colophon {
       return `<img loading="lazy" src="./${a.l}" alt="${esc(a.ti)}" ${fb}>`;
     }
     if (a.t === 'IMG' && a.u) return `<img loading="lazy" src="${esc(a.u)}" alt="${esc(a.ti)}" onerror="this.style.display='none';this.parentElement.classList.add('pdf-glyph');this.parentElement.innerHTML='<span class=&quot;ico&quot;>IMG</span><span>not archived</span>';">`;
-    if (a.t === 'VID' && (a.l || a.u)) {
-      // Two <source> children: local first when tracked, remote second.
-      // No crossorigin attr — that triggers CORS preflight and breaks
-      // cloudfront playback. Plain playback doesn't need CORS.
-      const srcs = [];
-      if (a.l) srcs.push(`<source src="./${a.l}#t=0.5" type="video/mp4">`);
-      if (a.u) srcs.push(`<source src="${esc(a.u)}#t=0.5" type="video/mp4">`);
-      return `<video preload="metadata" muted playsinline>${srcs.join('')}</video>`;
+    if (a.t === 'VID') {
+      // Card preview uses a static glyph (no <video preload>) — rendering
+      // 24 simultaneous cloudfront preloads chokes the page on mobile.
+      // The lightbox creates a single <video> on click and streams directly.
+      const label = esc(a.dd || a.ti.slice(0, 30));
+      return `<div class="pdf-glyph video-glyph"><span class="ico">▶</span><span>${label}</span></div>`;
     }
-    if (a.t === 'VID') return `<div class="pdf-glyph video-glyph"><span class="ico">▶</span><span>${esc(a.dd||'')}</span></div>`;
     return `<div class="pdf-glyph"><span class="ico">PDF</span><span>${esc(a.ag||'')}</span></div>`;
   }
   function metaFor(a) {
