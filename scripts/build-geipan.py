@@ -181,6 +181,17 @@ PAGE = r'''<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GEIPAN — Groupe d'Études et d'Informations sur les Phénomènes Aérospatiaux Non identifiés (Offline Mirror)</title>
 <meta name="description" content="Offline mirror of France's GEIPAN (CNES) — the world's longest-running official civilian UAP investigation programme. 3,351 classified cases.">
+<link rel="canonical" href="https://realufo.org/geipan-mirror/">
+<meta property="og:title" content="GEIPAN — France's Civilian UAP Office (CNES) | realufo.org">
+<meta property="og:description" content="GEIPAN at CNES — the world's longest-running civilian UAP programme (1977-). 3,351 classified cases. PAN A/B/C/D taxonomy. Live database + offline mirror.">
+<meta property="og:image" content="https://realufo.org/geipan-mirror/assets/images/IPACO-team-2025.jpg">
+<meta property="og:url" content="https://realufo.org/geipan-mirror/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="realufo.org">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="GEIPAN — France's Civilian UAP Office (CNES) | realufo.org">
+<meta name="twitter:description" content="GEIPAN at CNES — the world's longest-running civilian UAP programme (1977-). 3,351 classified cases. PAN A/B/C/D taxonomy. Live database + offline mirror.">
+<meta name="twitter:image" content="https://realufo.org/geipan-mirror/assets/images/IPACO-team-2025.jpg">
 <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
 <link rel="apple-touch-icon" href="./assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">

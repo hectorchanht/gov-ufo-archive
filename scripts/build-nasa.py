@@ -167,6 +167,17 @@ PAGE = '''<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NASA UAP Independent Study — Offline Mirror</title>
 <meta name="description" content="Offline mirror of NASA's UAP Independent Study Team final report, briefings, and public meeting record.">
+<link rel="canonical" href="https://realufo.org/nasa-mirror/">
+<meta property="og:title" content="NASA UAP Independent Study | realufo.org">
+<meta property="og:description" content="NASA's UAP Independent Study Team final report (Sep 2023). 4 PDFs + 3 YouTube briefings + study-team imagery. Led by Dr David Spergel.">
+<meta property="og:image" content="https://realufo.org/nasa-mirror/assets/images/uap-report-cover.png">
+<meta property="og:url" content="https://realufo.org/nasa-mirror/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="realufo.org">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="NASA UAP Independent Study | realufo.org">
+<meta name="twitter:description" content="NASA's UAP Independent Study Team final report (Sep 2023). 4 PDFs + 3 YouTube briefings + study-team imagery. Led by Dr David Spergel.">
+<meta name="twitter:image" content="https://realufo.org/nasa-mirror/assets/images/uap-report-cover.png">
 <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
 <link rel="apple-touch-icon" href="./assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">

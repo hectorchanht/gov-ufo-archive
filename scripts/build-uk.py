@@ -143,6 +143,17 @@ PAGE = r'''<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>UK MoD UFO Files — The National Archives (Offline Mirror)</title>
 <meta name="description" content="Offline mirror of the UK's Ministry of Defence UFO files at The National Archives, Kew. 52,000+ pages transferred 2008–2017.">
+<link rel="canonical" href="https://realufo.org/uk-mirror/">
+<meta property="og:title" content="UK MoD UFO Files — National Archives at Kew | realufo.org">
+<meta property="og:description" content="Britain's Ministry of Defence UFO desk (1950-2009). 52,000+ pages transferred to The National Archives at Kew. Deep-links into Discovery: Rendlesham Forest, DEFE 24, AIR 2.">
+<meta property="og:image" content="https://realufo.org/slideshow/FBI-Photo-1.jpg">
+<meta property="og:url" content="https://realufo.org/uk-mirror/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="realufo.org">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="UK MoD UFO Files — National Archives at Kew | realufo.org">
+<meta name="twitter:description" content="Britain's Ministry of Defence UFO desk (1950-2009). 52,000+ pages transferred to The National Archives at Kew. Deep-links into Discovery: Rendlesham Forest, DEFE 24, AIR 2.">
+<meta name="twitter:image" content="https://realufo.org/slideshow/FBI-Photo-1.jpg">
 <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
 <link rel="apple-touch-icon" href="./assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">

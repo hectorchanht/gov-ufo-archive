@@ -155,6 +155,17 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AARO — Details · About / FAQ / Reading Room (Offline Mirror)</title>
 <meta name="description" content="Full text of all aaro.mil pages — mission, leadership, FAQ, EFOIA reading room — archived offline.">
+<link rel="canonical" href="https://realufo.org/aaro-mirror/details.html">
+<meta property="og:title" content="AARO Details — Mission, Leaders, FAQ | realufo.org">
+<meta property="og:description" content="Long-form pages from aaro.mil — mission/vision, leaders, FAQ accordion, congressional/press products, EFOIA reading room. Offline-mirrored.">
+<meta property="og:image" content="https://realufo.org/aaro-mirror/assets/images/Al_Taqaddum_Object.png">
+<meta property="og:url" content="https://realufo.org/aaro-mirror/details.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="realufo.org">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AARO Details — Mission, Leaders, FAQ | realufo.org">
+<meta name="twitter:description" content="Long-form pages from aaro.mil — mission/vision, leaders, FAQ accordion, congressional/press products, EFOIA reading room. Offline-mirrored.">
+<meta name="twitter:image" content="https://realufo.org/aaro-mirror/assets/images/Al_Taqaddum_Object.png">
 <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
 <link rel="apple-touch-icon" href="./assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">

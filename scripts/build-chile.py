@@ -105,6 +105,17 @@ PAGE = r'''<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SEFAA — Sección de Estudios de Fenómenos Aéreos Anómalos · Chile (Offline Mirror)</title>
 <meta name="description" content="Offline mirror of Chile's SEFAA (formerly CEFAA) — the world's only civil-aviation UAP unit, at DGAC.">
+<link rel="canonical" href="https://realufo.org/chile-mirror/">
+<meta property="og:title" content="SEFAA / CEFAA — Chile's Civil-Aviation UAP Unit | realufo.org">
+<meta property="og:description" content="Chile's SEFAA (formerly CEFAA) at DGAC — the world's only UAP unit embedded in a civil aviation authority. Monthly resolved-case dispatches since 2020.">
+<meta property="og:image" content="https://realufo.org/slideshow/FBI-Photo-B18.jpg">
+<meta property="og:url" content="https://realufo.org/chile-mirror/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="realufo.org">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SEFAA / CEFAA — Chile's Civil-Aviation UAP Unit | realufo.org">
+<meta name="twitter:description" content="Chile's SEFAA (formerly CEFAA) at DGAC — the world's only UAP unit embedded in a civil aviation authority. Monthly resolved-case dispatches since 2020.">
+<meta name="twitter:image" content="https://realufo.org/slideshow/FBI-Photo-B18.jpg">
 <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
 <link rel="apple-touch-icon" href="./assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
