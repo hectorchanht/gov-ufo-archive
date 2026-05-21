@@ -43,10 +43,25 @@ def basename(url: str) -> str:
     return url.rstrip('/').rsplit('/', 1)[-1].split('?')[0]
 
 
+# Canonical list of DVIDS bundle videos shipped inside uapvideos.zip.
+# Always advertised on the page so users see the full catalog. Whether each
+# file is "local" (tracked + clonable) or "sync-needed" is decided per file
+# below using the git-tracked set.
+EXPECTED_VIDEOS = [
+    f"DOD_{n}.mp4" for n in (
+        111688723, 111688762, 111688775, 111688809, 111688816, 111688825,
+        111688954, 111688964, 111688970, 111688997, 111689005, 111689011,
+        111689022, 111689030, 111689044, 111689051, 111689057, 111689082,
+        111689083, 111689090, 111689115, 111689123, 111689133, 111689142,
+        111689167, 111689168, 111689232, 111689759,
+    )
+]
+
 # === Build the manifest ===
 slideshow_files = sorted(lsdir('slideshow'))
 pdf_files       = sorted(lsdir('bundles/Release_1'))
-video_files     = sorted(lsdir('bundles/uapvideos'))
+tracked_videos  = lsdir('bundles/uapvideos')             # what's in the repo
+video_files     = sorted(set(EXPECTED_VIDEOS) | tracked_videos)
 
 slide_l = {f.lower(): f for f in slideshow_files}
 pdf_l   = {f.lower(): f for f in pdf_files}
@@ -74,6 +89,7 @@ manifest = {
     'slideshow_files': slideshow_files,
     'pdf_files': pdf_files,
     'video_files': video_files,
+    'tracked_videos': sorted(tracked_videos),
 }
 manifest_json = json.dumps(manifest, ensure_ascii=False, separators=(',', ':'))
 manifest_json = manifest_json.replace('</script', '<\\/script')
