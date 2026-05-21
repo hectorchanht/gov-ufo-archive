@@ -440,6 +440,44 @@
   .learn a.external:hover { background: var(--caution); color: var(--bg); }
   .learn a.external::after { content: " ↗"; }
 
+  /* Mirrors grid (Learn More section) */
+  .mirrors-grid {
+    display: grid; gap: 14px;
+    grid-template-columns: 1fr;
+    max-width: 960px; margin: 0 auto;
+  }
+  @media (min-width: 540px) { .mirrors-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; } }
+  @media (min-width: 900px) { .mirrors-grid { grid-template-columns: repeat(3, 1fr); } }
+  .mirror-card {
+    display: block; text-align: left; text-decoration: none;
+    padding: 20px 22px;
+    background: var(--panel);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--accent, var(--caution));
+    color: var(--ink);
+    transition: border-color .15s, transform .15s, background .15s;
+  }
+  .mirror-card:hover {
+    border-color: var(--accent, var(--caution));
+    transform: translateY(-2px);
+    background: var(--bg-2);
+  }
+  .mirror-card .mc-tag {
+    font-family: var(--mono); font-size: 10px;
+    color: var(--accent, var(--caution));
+    letter-spacing: 0.16em; text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .mirror-card .mc-title {
+    font-family: var(--serif); font-size: 17px; font-weight: 600;
+    line-height: 1.3; margin-bottom: 6px;
+  }
+  .mirror-card .mc-meta {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--ink-faint); letter-spacing: 0.04em;
+    line-height: 1.5;
+  }
+
   /* ============ FOOTER ============ */
   footer {
     background: #060608;
@@ -1178,13 +1216,48 @@
 <section id="learn">
   <div class="container learn">
     <div class="section-label" style="justify-content: center;">Further Records</div>
-    <h2 style="margin-left:auto;margin-right:auto;">Looking for other historical UAP records?</h2>
-    <p class="lede" style="margin: 0 auto;">
-      The All-domain Anomaly Resolution Office maintains separate archives of resolved and historical
-      cases, mandated by statute.
+    <h2 style="margin-left:auto;margin-right:auto;">Eight government archives, all mirrored.</h2>
+    <p class="lede" style="margin: 0 auto 32px;">
+      Every official UAP investigation programme with public records — U.S., France, UK, Brazil, Chile —
+      side-by-side, offline-ready, in one place.
     </p>
-    <a class="external" href="./aaro-mirror/index.html">Open AARO Offline Mirror</a>
-    <a class="external" href="https://www.aaro.mil/" target="_blank" style="margin-left: 12px;">Live AARO.mil ↗</a>
+    <div class="mirrors-grid">
+      <a class="mirror-card" href="./aaro-mirror/index.html" style="--accent:#4a9eff">
+        <div class="mc-tag">AARO · U.S.</div>
+        <div class="mc-title">All-domain Anomaly Resolution Office</div>
+        <div class="mc-meta">32 videos · 44 PDFs · live programme</div>
+      </a>
+      <a class="mirror-card" href="./nasa-mirror/index.html" style="--accent:#fc3d21">
+        <div class="mc-tag">NASA · U.S.</div>
+        <div class="mc-title">UAP Independent Study</div>
+        <div class="mc-meta">2023 final report · 16-member team · Spergel</div>
+      </a>
+      <a class="mirror-card" href="./nara-mirror/index.html" style="--accent:#cbd5e1">
+        <div class="mc-tag">NARA · U.S.</div>
+        <div class="mc-title">National Archives UAP Records</div>
+        <div class="mc-meta">Record Group 615 · Project Blue Book · FBI Vault</div>
+      </a>
+      <a class="mirror-card" href="./geipan-mirror/index.html" style="--accent:#5b9bd5">
+        <div class="mc-tag">GEIPAN · France</div>
+        <div class="mc-title">CNES civilian UAP office</div>
+        <div class="mc-meta">3,351 classified cases · since 1977</div>
+      </a>
+      <a class="mirror-card" href="./uk-mirror/index.html" style="--accent:#5b8def">
+        <div class="mc-tag">MoD · United Kingdom</div>
+        <div class="mc-title">National Archives at Kew</div>
+        <div class="mc-meta">52,000+ pages · 1950–2009 · Rendlesham</div>
+      </a>
+      <a class="mirror-card" href="./brazil-mirror/index.html" style="--accent:#4ade80">
+        <div class="mc-tag">FAB · Brazil</div>
+        <div class="mc-title">Arquivo Nacional OVNI</div>
+        <div class="mc-meta">~4,500 documents · 5 tranches 2008-2016</div>
+      </a>
+      <a class="mirror-card" href="./chile-mirror/index.html" style="--accent:#f87171">
+        <div class="mc-tag">SEFAA · Chile</div>
+        <div class="mc-title">DGAC civil-aviation UAP unit</div>
+        <div class="mc-meta">Only one of its kind · monthly dispatches</div>
+      </a>
+    </div>
   </div>
 </section>
 
