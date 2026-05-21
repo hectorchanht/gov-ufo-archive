@@ -111,10 +111,9 @@ h2 { font-family: var(--serif); font-size: clamp(22px,3.5vw,34px); font-weight: 
 
 .arch-controls-bar { position: sticky; top: 64px; z-index: 30; background: rgba(10,10,12,0.95); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin: 24px -16px 0; padding: 12px 16px; display: flex; flex-direction: column; gap: 10px; }
 @media (min-width: 720px) { .arch-controls-bar { margin: 24px -32px 0; padding: 14px 32px; flex-direction: row; align-items: center; gap: 14px; } }
-.tabs { display: flex; gap: 6px; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; -webkit-overflow-scrolling: touch; }
-.tabs::-webkit-scrollbar { height: 0; }
-.tab { flex: 0 0 auto; font-family: var(--mono); font-size: 10px; padding: 6px 10px; border: 1px solid var(--rule-strong); background: var(--panel); color: var(--ink-dim); cursor: pointer; letter-spacing: 0.08em; text-transform: uppercase; }
-@media (min-width: 720px) { .tab { font-size: 11px; padding: 8px 14px; } }
+.tabs { display: flex; gap: 6px; flex-wrap: wrap; width: 100%; }
+.tab { font-family: var(--mono); font-size: 10px; padding: 6px 10px; border: 1px solid var(--rule-strong); background: var(--panel); color: var(--ink-dim); cursor: pointer; letter-spacing: 0.08em; text-transform: uppercase; }
+@media (min-width: 720px) { .tab { font-size: 11px; padding: 8px 14px; } .tabs { width: auto; } }
 .tab:hover { color: var(--ink); border-color: var(--ink-faint); }
 .tab.active { background: var(--caution); color: var(--bg); border-color: var(--caution); font-weight: 700; }
 .tab .count { opacity: 0.6; margin-left: 6px; font-size: 10px; }

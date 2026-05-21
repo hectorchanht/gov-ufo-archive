@@ -258,7 +258,7 @@ function closeLb() { /* lb.classList.remove('open') */ }
 - Single-column card grid below 720 px.
 - Hamburger (☰) below 720 px. Above: inline nav.
 - Sticky filter bar: vertical stack with full-width inputs below 720 px.
-- Horizontally-scrolling tab strip (no wrap) on mobile.
+- Tab strip **wraps** to multiple rows on mobile — never horizontal-scrolls. Predictable layout, no hidden overflow.
 - Touch targets ≥ 44 × 44 px. Use `padding: 12px 0` for nav links.
 - Lightbox nav buttons: 52 × 52 desktop, 40 × 40 mobile, edge-pinned (`left/right: 8px`).
 - All `<input>` / `<select>` reach full container width on mobile.
