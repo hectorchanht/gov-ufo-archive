@@ -17,18 +17,26 @@ INDEX = os.path.join(REPO, 'index.html')
 CSV   = os.path.join(REPO, 'uap-release001.csv')
 
 
-def lsdir(rel_dir: str) -> set[str]:
-    """Set of filenames present on disk under <repo>/<rel_dir>/.
+import subprocess
 
-    `local` is set whenever a file is on disk now. The card UI always also
-    carries the original source URL, so:
-      - on a synced local checkout → local link works
-      - on GitHub Pages (gitignored files absent) → image cards use
-        `<img onerror>` to swap to the source URL, and the Source ↗ button
-        is always shown alongside the Download button.
+def lsdir(rel_dir: str) -> set[str]:
+    """Set of filenames *committed* under <repo>/<rel_dir>/.
+
+    Git-tracking-aware so Download buttons on the deployed site only point
+    at files that will actually be served — gitignored files always route
+    through their source URL instead.
     """
-    p = os.path.join(REPO, rel_dir)
-    return set(os.listdir(p)) if os.path.isdir(p) else set()
+    try:
+        out = subprocess.run(
+            ['git', '-C', REPO, 'ls-files', f'{rel_dir}/'],
+            capture_output=True, text=True, check=True,
+        ).stdout
+        prefix = f'{rel_dir}/'
+        return {ln[len(prefix):] for ln in out.splitlines() if ln.startswith(prefix)}
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        # No git yet — fall back to disk so the page builds at all.
+        p = os.path.join(REPO, rel_dir)
+        return set(os.listdir(p)) if os.path.isdir(p) else set()
 
 
 def basename(url: str) -> str:

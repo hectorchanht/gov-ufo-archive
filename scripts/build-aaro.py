@@ -15,18 +15,34 @@ CACHE = os.path.join(ROOT, '.cache')
 parsed = json.load(open(os.path.join(CACHE, 'parsed.json')))
 evidence = json.load(open(os.path.join(CACHE, 'evidence.json')))
 
-# Local inventories — set on every build from whatever is on disk right now.
-# `local` is set whenever a file exists locally. The rendered card always
-# carries BOTH a local path and the original source URL, so:
-#   - local checkouts (where you ran sync.sh) → local download works
-#   - GitHub Pages clones (where gitignored files are absent) → image cards
-#     auto-swap to source via <img onerror>, and the Source ↗ button is
-#     always visible alongside the Download button
-def lsdir(p):
-    return set(os.listdir(p)) if os.path.isdir(p) else set()
-local_pdfs = lsdir(os.path.join(ROOT,'pdfs'))
-local_imgs = lsdir(os.path.join(ROOT,'assets/images'))
-local_vids = lsdir(os.path.join(ROOT,'videos'))
+# Local inventories — git-tracking-aware so the manifest matches what will
+# actually be served from GitHub Pages (or any deployed clone).
+#
+# A file is marked `local` ONLY if it is committed to the repo. Files that
+# exist on disk but are gitignored stay routed through their source URL,
+# so Download buttons can't return a 404 HTML page on Pages.
+#
+# Local users who want to browse their full sync'd disk can still get to
+# the files via the OS file manager — buttons on the page reflect what
+# the public site will serve.
+import subprocess
+def git_tracked(rel_dir):
+    """Set of filenames committed under <repo>/aaro-mirror/<rel_dir>/."""
+    try:
+        out = subprocess.run(
+            ['git', '-C', REPO, 'ls-files', f'aaro-mirror/{rel_dir}/'],
+            capture_output=True, text=True, check=True,
+        ).stdout
+        prefix = f'aaro-mirror/{rel_dir}/'
+        return {ln[len(prefix):] for ln in out.splitlines() if ln.startswith(prefix)}
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        # No git or no checkout — fall back to disk, so this script still works
+        # before the first commit.
+        p = os.path.join(ROOT, rel_dir)
+        return set(os.listdir(p)) if os.path.isdir(p) else set()
+local_pdfs = git_tracked('pdfs')
+local_imgs = git_tracked('assets/images')
+local_vids = git_tracked('videos')
 
 def basename(url):
     return urllib.parse.unquote(url.rsplit('/',1)[-1].split('?')[0])
@@ -942,7 +958,7 @@ footer .colophon {
         const srcs = [];
         if (s.local) srcs.push(`<source src="./${s.local}#t=0.5" type="video/mp4">`);
         if (s.url)   srcs.push(`<source src="${esc(s.url)}#t=0.5" type="video/mp4">`);
-        slide.innerHTML = `<video muted playsinline preload="metadata" crossorigin="anonymous">${srcs.join('')}</video>`;
+        slide.innerHTML = `<video muted playsinline preload="metadata">${srcs.join('')}</video>`;
       } else {
         const fb = s.url ? `onerror="this.onerror=null;this.src='${esc(s.url)}';"` : '';
         slide.innerHTML = `<img src="./${s.local || s.url}" alt="${esc(s.title)}" loading="${i===0?'eager':'lazy'}" ${fb}>`;
@@ -1034,10 +1050,13 @@ footer .colophon {
     }
     if (a.t === 'IMG' && a.u) return `<img loading="lazy" src="${esc(a.u)}" alt="${esc(a.ti)}" onerror="this.style.display='none';this.parentElement.classList.add('pdf-glyph');this.parentElement.innerHTML='<span class=&quot;ico&quot;>IMG</span><span>not archived</span>';">`;
     if (a.t === 'VID' && (a.l || a.u)) {
+      // Two <source> children: local first when tracked, remote second.
+      // No crossorigin attr — that triggers CORS preflight and breaks
+      // cloudfront playback. Plain playback doesn't need CORS.
       const srcs = [];
       if (a.l) srcs.push(`<source src="./${a.l}#t=0.5" type="video/mp4">`);
       if (a.u) srcs.push(`<source src="${esc(a.u)}#t=0.5" type="video/mp4">`);
-      return `<video preload="metadata" muted playsinline crossorigin="anonymous">${srcs.join('')}</video>`;
+      return `<video preload="metadata" muted playsinline>${srcs.join('')}</video>`;
     }
     if (a.t === 'VID') return `<div class="pdf-glyph video-glyph"><span class="ico">▶</span><span>${esc(a.dd||'')}</span></div>`;
     return `<div class="pdf-glyph"><span class="ico">PDF</span><span>${esc(a.ag||'')}</span></div>`;
@@ -1053,13 +1072,19 @@ footer .colophon {
     return `<dl class="card-meta">` + rows.map(r => `<dt>${r[0]}</dt><dd${r[2]?' class="'+r[2]+'"':''}>${esc(r[1])}</dd>`).join('') + `</dl>`;
   }
   function actionsFor(a) {
-    // Show both local (if file present at build time) AND source (if URL known).
-    // Visitor gets a working button no matter where the page is hosted.
+    // `local` is set ONLY for files that are committed to the repo.
+    // For everything else we route through the source URL — that's why the
+    // Download button can never return GitHub Pages' 404 HTML page.
     const out = [];
+    const verb = a.t === 'PDF' ? 'Open PDF' : (a.t === 'VID' ? 'Play' : 'View');
     if (a.l) {
-      const verb = a.t === 'PDF' ? 'Open PDF' : (a.t === 'VID' ? 'Play' : 'View');
       out.push(`<a href="#" data-action="open" data-local="${esc(a.l)}" data-remote="${esc(a.u||'')}" data-title="${esc(a.ti)}">${verb}</a>`);
       out.push(`<a href="./${esc(a.l)}" download>Download</a>`);
+    } else if (a.u) {
+      // No local file — Play/View opens the source URL in the lightbox
+      // (browser-native streaming for video, in-iframe for PDF).
+      out.push(`<a href="#" data-action="open" data-local="" data-remote="${esc(a.u)}" data-title="${esc(a.ti)}">${verb}</a>`);
+      out.push(`<a href="${esc(a.u)}" target="_blank" rel="noopener" download>Download</a>`);
     }
     if (a.u) {
       out.push(`<a class="warn" href="${esc(a.u)}" target="_blank" rel="noopener">Source ↗</a>`);
@@ -1181,7 +1206,7 @@ footer .colophon {
       const srcs = [];
       if (localHref) srcs.push(`<source src="${esc(localHref)}" type="video/mp4">`);
       if (remote)    srcs.push(`<source src="${esc(remote)}" type="video/mp4">`);
-      html = `<video controls autoplay crossorigin="anonymous">${srcs.join('')}</video><div class="lb-meta">${esc(title)}</div>`;
+      html = `<video controls autoplay>${srcs.join('')}</video><div class="lb-meta">${esc(title)}</div>`;
     } else if (['mp3','wav','ogg','m4a'].includes(ext)) {
       html = `<audio controls autoplay src="${esc(localHref || remote)}"></audio><div class="lb-meta">${esc(title)}</div>`;
     } else if (ext === 'pdf') {
