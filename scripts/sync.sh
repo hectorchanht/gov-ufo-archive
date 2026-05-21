@@ -24,16 +24,28 @@ DO_WARGOV=1
 DO_AARO=1
 DO_NASA=1
 DO_NARA=1
+DO_GEIPAN=1
+DO_UK=1
+DO_BRAZIL=1
+DO_CHILE=1
 DO_BUILD=1
 DO_VIDEOS=1
 INTERACTIVE=1
+
+# Helper: set all DO_* to 0
+reset_all() { DO_WARGOV=0; DO_AARO=0; DO_NASA=0; DO_NARA=0; DO_GEIPAN=0; DO_UK=0; DO_BRAZIL=0; DO_CHILE=0; }
+
 for arg in "$@"; do
   case "$arg" in
     --all)          INTERACTIVE=0 ;;
-    --aaro-only)    DO_WARGOV=0; DO_NASA=0; DO_NARA=0; INTERACTIVE=0 ;;
-    --wargov-only)  DO_AARO=0; DO_NASA=0; DO_NARA=0; INTERACTIVE=0 ;;
-    --nasa-only)    DO_WARGOV=0; DO_AARO=0; DO_NARA=0; INTERACTIVE=0 ;;
-    --nara-only)    DO_WARGOV=0; DO_AARO=0; DO_NASA=0; INTERACTIVE=0 ;;
+    --wargov-only)  reset_all; DO_WARGOV=1; INTERACTIVE=0 ;;
+    --aaro-only)    reset_all; DO_AARO=1;   INTERACTIVE=0 ;;
+    --nasa-only)    reset_all; DO_NASA=1;   INTERACTIVE=0 ;;
+    --nara-only)    reset_all; DO_NARA=1;   INTERACTIVE=0 ;;
+    --geipan-only)  reset_all; DO_GEIPAN=1; INTERACTIVE=0 ;;
+    --uk-only)      reset_all; DO_UK=1;     INTERACTIVE=0 ;;
+    --brazil-only)  reset_all; DO_BRAZIL=1; INTERACTIVE=0 ;;
+    --chile-only)   reset_all; DO_CHILE=1;  INTERACTIVE=0 ;;
     --no-build)     DO_BUILD=0 ;;
     --no-videos)    DO_VIDEOS=0 ;;
     -h|--help)
@@ -43,25 +55,28 @@ for arg in "$@"; do
   esac
 done
 
-# Interactive site picker — only when stdin is a TTY and no explicit flag given.
+# Interactive picker — only on TTY, no explicit flag.
 if [ "$INTERACTIVE" -eq 1 ] && [ -t 0 ]; then
   echo ""
-  echo "Which sites do you want to sync? (multi-select with comma, e.g. 1,3)"
-  echo "  [1] war.gov / UFO Release 01  (slideshow + Release_1 + DVIDS bundle)"
-  echo "  [2] AARO                       (pages + PDFs + cloudfront videos)"
-  echo "  [3] NASA UAP Independent Study (4 PDFs + 2 images)"
-  echo "  [4] NARA UAP records gateway   (9 topic pages + NDAA PDF)"
-  echo "  [5] ALL (default)"
+  echo "Which sites? (comma-separated, e.g. 1,3,5)"
+  echo "  [1] war.gov / UFO Release 01    (slideshow + Release_1 + DVIDS bundle)"
+  echo "  [2] AARO                          (pages + PDFs + cloudfront videos)"
+  echo "  [3] NASA UAP Independent Study    (4 PDFs + 2 images)"
+  echo "  [4] NARA UAP records gateway      (9 topic pages + NDAA PDF)"
+  echo "  [5] France GEIPAN (CNES)          (4 PDFs + 2 videos + statistics)"
+  echo "  [6] UK MoD UFO Files              (press release + Discovery deep-links)"
+  echo "  [7] Brazil FAB / Arquivo Nacional (catalog deep-links only)"
+  echo "  [8] Chile SEFAA / DGAC            (1 PDF + monthly dispatches link)"
+  echo "  [9] ALL (default)"
   echo "  [q] quit"
   printf "Select: "
   read -r CHOICE
-  CHOICE="${CHOICE:-5}"
+  CHOICE="${CHOICE:-9}"
   if [ "$CHOICE" = "q" ] || [ "$CHOICE" = "Q" ]; then
     echo "aborted."; exit 0
   fi
-  if [ "$CHOICE" != "5" ]; then
-    # Reset all to 0 then enable the picked ones.
-    DO_WARGOV=0; DO_AARO=0; DO_NASA=0; DO_NARA=0
+  if [ "$CHOICE" != "9" ]; then
+    reset_all
     IFS=',' read -ra PICKS <<< "$CHOICE"
     for p in "${PICKS[@]}"; do
       case "$(echo "$p" | tr -d ' ')" in
@@ -69,6 +84,10 @@ if [ "$INTERACTIVE" -eq 1 ] && [ -t 0 ]; then
         2) DO_AARO=1 ;;
         3) DO_NASA=1 ;;
         4) DO_NARA=1 ;;
+        5) DO_GEIPAN=1 ;;
+        6) DO_UK=1 ;;
+        7) DO_BRAZIL=1 ;;
+        8) DO_CHILE=1 ;;
         *) echo "  ignored: $p" ;;
       esac
     done
@@ -127,6 +146,34 @@ if [ "$DO_NARA" -eq 1 ]; then
   bash "$ROOT/scripts/dl-nara.sh"
 fi
 
+# ---------- France GEIPAN ----------
+if [ "$DO_GEIPAN" -eq 1 ]; then
+  echo ""
+  echo "──── France GEIPAN downloader ────"
+  bash "$ROOT/scripts/dl-geipan.sh"
+fi
+
+# ---------- UK National Archives ----------
+if [ "$DO_UK" -eq 1 ]; then
+  echo ""
+  echo "──── UK National Archives downloader ────"
+  bash "$ROOT/scripts/dl-uk.sh"
+fi
+
+# ---------- Brazil ----------
+if [ "$DO_BRAZIL" -eq 1 ]; then
+  echo ""
+  echo "──── Brazil FAB / Arquivo Nacional downloader ────"
+  bash "$ROOT/scripts/dl-brazil.sh"
+fi
+
+# ---------- Chile ----------
+if [ "$DO_CHILE" -eq 1 ]; then
+  echo ""
+  echo "──── Chile SEFAA / DGAC downloader ────"
+  bash "$ROOT/scripts/dl-chile.sh"
+fi
+
 # ---------- Rebuild HTML ----------
 if [ "$DO_BUILD" -eq 1 ]; then
   echo ""
@@ -138,6 +185,10 @@ if [ "$DO_BUILD" -eq 1 ]; then
   python3 "$ROOT/scripts/build-details.py"
   python3 "$ROOT/scripts/build-nasa.py"
   python3 "$ROOT/scripts/build-nara.py"
+  python3 "$ROOT/scripts/build-geipan.py"
+  python3 "$ROOT/scripts/build-uk.py"
+  python3 "$ROOT/scripts/build-brazil.py"
+  python3 "$ROOT/scripts/build-chile.py"
   echo "  Mirror pages rebuilt."
 fi
 

@@ -25,6 +25,11 @@ body { background: var(--bg); color: var(--ink); font-family: var(--serif); font
   background-image: radial-gradient(ellipse at 20% 0%, rgba(156,163,175,0.05) 0%, transparent 50%); background-attachment: fixed; }
 .scanlines { position: fixed; inset: 0; background: repeating-linear-gradient(to bottom, transparent 0, transparent 2px, rgba(255,255,255,0.012) 3px, transparent 4px); pointer-events: none; z-index: 50; }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 2; }
+.gov-banner { background: #1a1a1f; border-bottom: 1px solid var(--rule); font-family: var(--mono); font-size: 11px; color: var(--ink-dim); letter-spacing: 0.04em; }
+.gov-banner .container { display: flex; align-items: center; gap: 16px; padding: 10px 32px; flex-wrap: wrap; }
+.gov-banner a { color: var(--caution); text-decoration: none; }
+.gov-banner .nav-mirrors { margin-left: auto; display: flex; gap: 14px; flex-wrap: wrap; }
+.flag-dot { width: 10px; height: 10px; border-radius: 50%; background: linear-gradient(45deg,#b91c1c 0,#b91c1c 50%,#1e3a8a 50%,#1e3a8a 100%); flex-shrink: 0; }
 .header-wrap { position: sticky; top: 0; z-index: 40; background: rgba(10,10,12,0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--rule); }
 header { padding: 16px 0; }
 header .container { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
@@ -174,6 +179,10 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
         <li><a href="../index.html">war.gov</a></li>
         <li><a href="../aaro-mirror/index.html">AARO</a></li>
         <li><a href="../nasa-mirror/index.html">NASA</a></li>
+        <li><a href="../geipan-mirror/index.html">GEIPAN</a></li>
+        <li><a href="../uk-mirror/index.html">UK</a></li>
+        <li><a href="../brazil-mirror/index.html">Brazil</a></li>
+        <li><a href="../chile-mirror/index.html">Chile</a></li>
       </ul>
     </nav>
   </div>

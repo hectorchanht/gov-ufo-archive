@@ -780,6 +780,10 @@ footer .colophon {
         <li><a href="../index.html">war.gov</a></li>
         <li><a href="../nasa-mirror/index.html">NASA</a></li>
         <li><a href="../nara-mirror/index.html">NARA</a></li>
+        <li><a href="../geipan-mirror/index.html">GEIPAN</a></li>
+        <li><a href="../uk-mirror/index.html">UK</a></li>
+        <li><a href="../brazil-mirror/index.html">Brazil</a></li>
+        <li><a href="../chile-mirror/index.html">Chile</a></li>
       </ul>
     </nav>
   </div>

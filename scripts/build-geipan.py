@@ -1,0 +1,713 @@
+#!/usr/bin/env python3
+"""Build geipan-mirror/index.html — France GEIPAN (CNES) UAP mirror.
+
+GEIPAN has 3,351 classified cases in their public database; we surface
+the headline statistics + official FAQ / mission PDFs + two example
+case videos. The full case search stays on cnes-geipan.fr/fr/recherche/cas.
+Tone: French blue (#0055a4).
+"""
+import json, os, subprocess
+
+REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ROOT = os.path.join(REPO, 'geipan-mirror')
+
+
+def git_tracked(rel_dir):
+    try:
+        out = subprocess.run(
+            ['git', '-C', REPO, 'ls-files', f'geipan-mirror/{rel_dir}/'],
+            capture_output=True, text=True, check=True,
+        ).stdout
+        prefix = f'geipan-mirror/{rel_dir}/'
+        return {ln[len(prefix):] for ln in out.splitlines() if ln.startswith(prefix)}
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        p = os.path.join(ROOT, rel_dir)
+        return set(os.listdir(p)) if os.path.isdir(p) else set()
+
+
+tracked_pdfs = git_tracked('pdfs')
+tracked_vids = git_tracked('videos')
+tracked_imgs = git_tracked('assets/images')
+
+def Lp(fname): return f'pdfs/{fname}' if fname in tracked_pdfs else ''
+def Lv(fname): return f'videos/{fname}' if fname in tracked_vids else ''
+def Li(fname): return f'assets/images/{fname}' if fname in tracked_imgs else ''
+
+
+ASSETS = [
+    {
+        't': 'PDF',
+        'ti': 'GEIPAN — FAQ (English)',
+        'de': "Official press FAQ covering GEIPAN's history, methodology, classification scheme, and the questions journalists most often ask. English translation of the French press kit.",
+        'ag': 'GEIPAN / CNES',
+        'cat': 'FAQ',
+        'date': '2021',
+        'l': Lp('GEIPAN-FAQ-English.pdf'),
+        'u': Lp('GEIPAN-FAQ-English.pdf') or 'https://www.cnes-geipan.fr/sites/default/files/2021-08/FAQ%20-%20Press%20-%20English.pdf',
+        's': 'https://www.cnes-geipan.fr/sites/default/files/2021-08/FAQ%20-%20Press%20-%20English.pdf',
+    },
+    {
+        't': 'PDF',
+        'ti': 'GEIPAN — FAQ (Dossier presse · Français)',
+        'de': "Dossier de presse officiel — historique, méthodologie, classification PAN A/B/C/D, questions fréquemment posées par les journalistes.",
+        'ag': 'GEIPAN / CNES',
+        'cat': 'FAQ',
+        'date': '2021',
+        'l': Lp('GEIPAN-FAQ-Francais.pdf'),
+        'u': Lp('GEIPAN-FAQ-Francais.pdf') or 'https://www.cnes-geipan.fr/sites/default/files/2021-08/FAQ%20-%20Dossier%20presse.pdf',
+        's': 'https://www.cnes-geipan.fr/sites/default/files/2021-08/FAQ%20-%20Dossier%20presse.pdf',
+    },
+    {
+        't': 'PDF',
+        'ti': 'GEIPAN — Mission, History, Methodology & Classification (English)',
+        'de': "GEIPAN's authoritative overview: mission statement, 1977-present history, scientific methodology, and the PAN A/B/C/D classification taxonomy.",
+        'ag': 'GEIPAN / CNES',
+        'cat': 'Mission',
+        'date': '2021',
+        'l': Lp('GEIPAN-Mission-Method-English.pdf'),
+        'u': Lp('GEIPAN-Mission-Method-English.pdf') or 'https://www.cnes-geipan.fr/sites/default/files/2021-08/GEIPAN-informationenglish.pdf',
+        's': 'https://www.cnes-geipan.fr/sites/default/files/2021-08/GEIPAN-informationenglish.pdf',
+    },
+    {
+        't': 'PDF',
+        'ti': 'GEIPAN — Mission, Historique, Méthodologie & Classification (Français)',
+        'de': "Document officiel — mission du GEIPAN, historique depuis 1977, méthodologie scientifique, et taxonomie de classification PAN A/B/C/D.",
+        'ag': 'GEIPAN / CNES',
+        'cat': 'Mission',
+        'date': '2021',
+        'l': Lp('GEIPAN-Mission-Methode-Francais.pdf'),
+        'u': Lp('GEIPAN-Mission-Methode-Francais.pdf') or 'https://www.cnes-geipan.fr/sites/default/files/2021-08/GEIPAN-informations.pdf',
+        's': 'https://www.cnes-geipan.fr/sites/default/files/2021-08/GEIPAN-informations.pdf',
+    },
+    {
+        't': 'VID',
+        'ti': 'Saint-Germain-en-Laye Case (78) — 30 May 2020',
+        'de': "Witness video of an unidentified luminous object filmed at Saint-Germain-en-Laye on May 30, 2020. Part of GEIPAN's case file 2020-XX in the public database.",
+        'ag': 'GEIPAN',
+        'cat': 'Case Video',
+        'date': '30 May 2020',
+        'region': 'Île-de-France (78)',
+        'l': Lv('Saint-Germain-en-Laye-2020-05-30.mp4'),
+        'u': Lv('Saint-Germain-en-Laye-2020-05-30.mp4') or 'https://www.cnes-geipan.fr/sites/default/files/2021-08/SAINT-GERMAIN-EN-LAYE%20%2878%29%2030.05.2020.mp4',
+        's': 'https://www.cnes-geipan.fr/fr/recherche/cas',
+    },
+    {
+        't': 'VID',
+        'ti': 'Lyon Case (69) — 19 December 2019',
+        'de': "Witness video of an unidentified phenomenon filmed in Lyon on December 19, 2019. Part of GEIPAN's case database.",
+        'ag': 'GEIPAN',
+        'cat': 'Case Video',
+        'date': '19 Dec 2019',
+        'region': 'Auvergne-Rhône-Alpes (69)',
+        'l': Lv('Lyon-2019-12-19.mp4'),
+        'u': Lv('Lyon-2019-12-19.mp4') or 'https://www.cnes-geipan.fr/sites/default/files/2021-08/LYON%20%2869%29%2019.12.2019.mp4',
+        's': 'https://www.cnes-geipan.fr/fr/recherche/cas',
+    },
+    {
+        't': 'IMG',
+        'ti': 'Cases by Phenomenon Type (2024 diagram)',
+        'de': "GEIPAN's 2024 breakdown of identified phenomena (PAN A & B) — Starlink satellite flares now dominate misidentifications, alongside aircraft lights, balloons, lasers, and meteors.",
+        'ag': 'GEIPAN',
+        'cat': 'Statistics',
+        'date': '2024',
+        'l': Li('GEIPAN-Cases-By-Phenomenon-2024.png'),
+        'u': Li('GEIPAN-Cases-By-Phenomenon-2024.png') or 'https://www.cnes-geipan.fr/sites/default/files/styles/large/public/2024-12/2024-509%20Diagramme%20Geipan.png',
+        's': 'https://www.cnes-geipan.fr/fr/stats',
+    },
+    {
+        't': 'IMG',
+        'ti': 'IPACO® Team (2025)',
+        'de': "The team behind IPACO® — GEIPAN's image and video authentication software, used in-house and shared with select academic partners.",
+        'ag': 'GEIPAN / CNES',
+        'cat': 'Imagery',
+        'date': '2025',
+        'l': Li('IPACO-team-2025.jpg'),
+        'u': Li('IPACO-team-2025.jpg') or 'https://www.cnes-geipan.fr/sites/default/files/styles/vignette_a_la_une/public/2025-05/ipaco.jpg',
+        's': 'https://www.cnes-geipan.fr/',
+    },
+    {
+        't': 'IMG',
+        'ti': 'Starlink Satellite Flare Note',
+        'de': "GEIPAN's 2024 information note explaining the surge in Starlink-related UAP reports — satellite-train flares account for a growing share of misidentified phenomena.",
+        'ag': 'GEIPAN',
+        'cat': 'Imagery',
+        'date': '2024',
+        'l': Li('Starlink-flare-note-2024.jpg'),
+        'u': Li('Starlink-flare-note-2024.jpg') or 'https://www.cnes-geipan.fr/sites/default/files/styles/vignette/public/2024-07/starlink_note.jpg',
+        's': 'https://www.cnes-geipan.fr/',
+    },
+    {
+        't': 'CATALOG',
+        'ti': 'GEIPAN Case Search — full public database',
+        'de': "3,351 classified cases (as of Apr 2026), searchable by department, year, classification, and phenomenon type. Each case has its full investigative file.",
+        'ag': 'GEIPAN',
+        'cat': 'Catalog',
+        'l': '',
+        'u': 'https://www.cnes-geipan.fr/fr/recherche/cas',
+        's': 'https://www.cnes-geipan.fr/fr/recherche/cas',
+    },
+    {
+        't': 'CATALOG',
+        'ti': 'GEIPAN Statistics — live breakdown',
+        'de': "Live statistics: classification breakdown (PAN A 27.81% · B 38.76% · C 30.26% · D 2.18%), distribution by year and region.",
+        'ag': 'GEIPAN',
+        'cat': 'Statistics',
+        'l': '',
+        'u': 'https://www.cnes-geipan.fr/fr/stats',
+        's': 'https://www.cnes-geipan.fr/fr/stats',
+    },
+]
+
+stats = {
+    'total': len(ASSETS),
+    'local_total': sum(1 for a in ASSETS if a.get('l')),
+    'pdf_total': sum(1 for a in ASSETS if a['t'] == 'PDF'),
+    'vid_total': sum(1 for a in ASSETS if a['t'] == 'VID'),
+    'img_total': sum(1 for a in ASSETS if a['t'] == 'IMG'),
+    'catalog_total': sum(1 for a in ASSETS if a['t'] == 'CATALOG'),
+}
+
+carousel = []
+for a in ASSETS:
+    if a['t'] == 'IMG' and a.get('l'):
+        carousel.append({'local': a['l'], 'url': a.get('u', ''), 'title': a['ti'], 'kind': 'image'})
+
+data_json = json.dumps({'assets': ASSETS, 'carousel': carousel, 'stats': stats}, ensure_ascii=False).replace('</script', '<\\/script')
+
+PAGE = r'''<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GEIPAN — Groupe d'Études et d'Informations sur les Phénomènes Aérospatiaux Non identifiés (Offline Mirror)</title>
+<meta name="description" content="Offline mirror of France's GEIPAN (CNES) — the world's longest-running official civilian UAP investigation programme. 3,351 classified cases.">
+<link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
+<link rel="apple-touch-icon" href="./assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#0a0a0c; --bg-2:#111114; --panel:#15151a;
+  --ink:#e8e3d8; --ink-dim:#a8a298; --ink-faint:#6b665d;
+  --rule:rgba(232,227,216,0.12); --rule-strong:rgba(232,227,216,0.28);
+  --stamp:#ef4135; --caution:#5b9bd5; --warm:#d4a017; --classified:#c9362c;
+  --serif:"Source Serif 4","Iowan Old Style",Georgia,serif;
+  --mono:"JetBrains Mono","SF Mono",Consolas,monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--serif);
+  font-size: 15px; line-height: 1.65; overflow-x: hidden;
+  background-image:
+    radial-gradient(ellipse at 20% 0%, rgba(0,85,164,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 100%, rgba(239,65,53,0.04) 0%, transparent 50%);
+  background-attachment: fixed;
+}
+@media (min-width: 720px) { body { font-size: 16px; } }
+.scanlines { position: fixed; inset: 0; background: repeating-linear-gradient(to bottom, transparent 0, transparent 2px, rgba(255,255,255,0.012) 3px, transparent 4px); pointer-events: none; z-index: 50; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 16px; position: relative; z-index: 2; }
+@media (min-width: 720px) { .container { padding: 0 32px; } }
+
+.header-wrap { position: sticky; top: 0; z-index: 40; background: rgba(10,10,12,0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--rule); }
+header { padding: 14px 0; }
+header .container { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); flex: 1; min-width: 0; }
+.seal { width: 40px; height: 40px; background: radial-gradient(circle at 50% 50%, #0055a4, #003278 60%, #001f4d); border-radius: 50%; display: grid; place-items: center; box-shadow: 0 0 0 2px var(--ink), 0 0 0 4px var(--bg), 0 0 0 5px var(--ink-faint); font-family: var(--mono); font-weight: 700; font-size: 9px; color: var(--ink); flex-shrink: 0; }
+.brand-text { display: flex; flex-direction: column; line-height: 1.1; min-width: 0; }
+.brand-text .super { font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em; color: var(--ink-dim); text-transform: uppercase; }
+.brand-text .name { font-family: var(--serif); font-size: 16px; font-weight: 600; margin-top: 2px; }
+@media (min-width: 720px) { .seal { width: 44px; height: 44px; font-size: 9px; } .brand-text .name { font-size: 18px; } }
+
+.nav-toggle { display: flex; background: transparent; border: 1px solid var(--rule-strong); width: 40px; height: 40px; cursor: pointer; padding: 0; flex-direction: column; justify-content: center; align-items: center; gap: 4px; flex-shrink: 0; }
+.nav-toggle span { display: block; width: 18px; height: 2px; background: var(--ink); transition: transform .2s, opacity .2s; }
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+nav.primary { display: none; flex-basis: 100%; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; }
+nav.primary.open { display: block; }
+nav.primary ul { display: flex; flex-direction: column; gap: 0; list-style: none; padding-top: 12px; margin-top: 12px; border-top: 1px solid var(--rule); }
+nav.primary ul li { width: 100%; }
+nav.primary a { color: var(--ink-dim); text-decoration: none; text-transform: uppercase; display: block; padding: 12px 0; border-bottom: 1px solid var(--rule); }
+nav.primary a:hover, nav.primary a.active { color: var(--caution); }
+@media (min-width: 720px) {
+  .nav-toggle { display: none; }
+  nav.primary { display: block; flex: 1; flex-basis: auto; }
+  nav.primary ul { flex-direction: row; gap: 4px 22px; flex-wrap: wrap; justify-content: flex-end; padding-top: 0; margin-top: 0; border: 0; }
+  nav.primary ul li { width: auto; }
+  nav.primary a { padding: 0; border: 0; }
+}
+
+.hero { padding: 48px 0 32px; border-bottom: 1px solid var(--rule); }
+@media (min-width: 720px) { .hero { padding: 64px 0 48px; } }
+.coords { font-family: var(--mono); font-size: 11px; color: var(--caution); letter-spacing: 0.12em; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.coords::before { content: "◉"; color: var(--stamp); }
+h1.hero-title { font-family: var(--serif); font-weight: 700; font-size: clamp(26px,5.5vw,52px); line-height: 1.05; letter-spacing: -0.02em; max-width: 24ch; margin-bottom: 18px; }
+h1.hero-title em { color: var(--caution); font-style: italic; }
+.hero-sub { max-width: 65ch; color: var(--ink-dim); font-size: 16px; line-height: 1.65; }
+.hero-sub a { color: var(--caution); }
+
+.hero-carousel { position: relative; border: 1px solid var(--rule-strong); background: var(--bg-2); aspect-ratio: 16/9; overflow: hidden; max-width: 960px; margin-top: 24px; }
+.carousel-slide { position: absolute; inset: 0; opacity: 0; transition: opacity .8s ease; pointer-events: none; }
+.carousel-slide.active { opacity: 1; pointer-events: auto; }
+.carousel-slide img { width: 100%; height: 100%; object-fit: cover; display: block; filter: contrast(1.04) saturate(0.9); }
+.carousel-slide::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.78), transparent 50%); pointer-events: none; }
+.carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; background: rgba(0,0,0,0.6); border: 1px solid var(--rule-strong); color: var(--ink); font-family: var(--serif); font-size: 24px; cursor: pointer; z-index: 3; }
+.carousel-btn:hover { background: rgba(0,0,0,0.9); border-color: var(--caution); color: var(--caution); }
+.carousel-btn.prev { left: 8px; } .carousel-btn.next { right: 8px; }
+@media (min-width: 720px) { .carousel-btn { width: 46px; height: 46px; font-size: 28px; } .carousel-btn.prev { left: 14px; } .carousel-btn.next { right: 14px; } }
+.carousel-dots { position: absolute; bottom: 48px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; z-index: 3; }
+.carousel-dots button { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.4); border: 0; cursor: pointer; padding: 0; transition: transform .15s, background .15s; }
+.carousel-dots button.active { background: var(--caution); transform: scale(1.4); }
+.carousel-caption { position: absolute; bottom: 14px; left: 0; right: 0; text-align: center; font-family: var(--mono); font-size: 10px; color: var(--ink); letter-spacing: 0.06em; padding: 0 56px; z-index: 2; text-shadow: 0 1px 4px rgba(0,0,0,0.9); }
+.carousel-caption .badge { color: var(--caution); margin-right: 8px; font-weight: 700; }
+
+.headlines { padding: 32px 0; border-bottom: 1px solid var(--rule); }
+.head-grid { display: grid; gap: 16px; grid-template-columns: 1fr; }
+@media (min-width: 540px) { .head-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); } }
+.head-card { padding: 18px 20px; background: var(--panel); border: 1px solid var(--rule); border-left: 3px solid var(--caution); }
+.head-card .h-label { font-family: var(--mono); font-size: 10px; color: var(--caution); letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 10px; }
+.head-card .h-text { font-size: 16px; line-height: 1.4; color: var(--ink); }
+.head-card .h-num { font-family: var(--mono); font-size: 28px; color: var(--ink); font-weight: 600; display: block; margin-bottom: 4px; }
+
+section { padding: 40px 0; border-bottom: 1px solid var(--rule); }
+@media (min-width: 720px) { section { padding: 56px 0; } }
+.section-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-faint); display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+.section-label::before { content: ""; width: 28px; height: 1px; background: var(--ink-faint); }
+h2 { font-family: var(--serif); font-size: clamp(22px,3.5vw,34px); font-weight: 700; letter-spacing: -0.015em; margin-bottom: 18px; max-width: 28ch; word-break: break-word; }
+.lede { max-width: 70ch; color: var(--ink); font-size: 16px; }
+.lede a { color: var(--caution); }
+
+.stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin: 20px 0 24px; }
+@media (min-width: 540px) { .stats-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); } }
+.stat { background: var(--panel); padding: 14px 18px; font-family: var(--mono); }
+.stat b { display: block; font-size: 24px; color: var(--ink); font-weight: 500; }
+.stat small { display: block; font-size: 10px; color: var(--ink-faint); letter-spacing: 0.16em; text-transform: uppercase; margin-top: 6px; }
+
+.arch-controls-bar { position: sticky; top: 64px; z-index: 30; background: rgba(10,10,12,0.95); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin: 24px -16px 0; padding: 12px 16px; display: flex; flex-direction: column; gap: 10px; }
+@media (min-width: 720px) { .arch-controls-bar { margin: 24px -32px 0; padding: 14px 32px; flex-direction: row; align-items: center; gap: 14px; } }
+.tabs { display: flex; gap: 6px; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; -webkit-overflow-scrolling: touch; }
+.tabs::-webkit-scrollbar { height: 0; }
+.tab { flex: 0 0 auto; font-family: var(--mono); font-size: 10px; padding: 6px 10px; border: 1px solid var(--rule-strong); background: var(--panel); color: var(--ink-dim); cursor: pointer; letter-spacing: 0.08em; text-transform: uppercase; }
+@media (min-width: 720px) { .tab { font-size: 11px; padding: 8px 14px; } }
+.tab:hover { color: var(--ink); border-color: var(--ink-faint); }
+.tab.active { background: var(--caution); color: var(--bg); border-color: var(--caution); font-weight: 700; }
+.tab .count { opacity: 0.6; margin-left: 6px; font-size: 10px; }
+.search-wrap { display: flex; align-items: center; gap: 8px; background: var(--panel); border: 1px solid var(--rule-strong); padding: 6px 12px; width: 100%; }
+@media (min-width: 720px) { .search-wrap { margin-left: auto; min-width: 240px; width: auto; } }
+.search-wrap::before { content: "⌕"; color: var(--ink-faint); font-family: var(--mono); }
+.search-wrap input { background: transparent; border: 0; outline: 0; color: var(--ink); font-family: var(--mono); font-size: 12px; flex: 1; }
+.search-wrap input::placeholder { color: var(--ink-faint); }
+
+.arch-grid { display: grid; grid-template-columns: 1fr; gap: 14px; padding: 16px 0 24px; }
+@media (min-width: 540px) { .arch-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; } }
+.card { background: var(--panel); border: 1px solid var(--rule); display: flex; flex-direction: column; overflow: hidden; transition: border-color .2s, transform .2s; }
+.card:hover { border-color: var(--caution); transform: translateY(-2px); }
+.card-media { aspect-ratio: 16/9; background: var(--bg-2); position: relative; overflow: hidden; display: grid; place-items: center; border-bottom: 1px solid var(--rule); cursor: pointer; }
+.card-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pdf-glyph { font-family: var(--mono); font-size: 12px; color: var(--ink-faint); background: repeating-linear-gradient(45deg,#1a1a1f,#1a1a1f 8px,#15151a 8px,#15151a 16px); width: 100%; height: 100%; display: grid; place-items: center; text-align: center; padding: 16px; }
+.pdf-glyph .ico { font-size: 22px; color: var(--caution); margin-bottom: 6px; border: 2px solid var(--caution); padding: 4px 10px; font-weight: 700; letter-spacing: 0.04em; display: inline-block; }
+.video-glyph { background: linear-gradient(135deg, rgba(0,85,164,0.14), rgba(239,65,53,0.05)); }
+.glyph-cat { background: linear-gradient(135deg, rgba(212,160,23,0.12), transparent); }
+.glyph-cat .ico { color: var(--warm); border-color: var(--warm); }
+.badge { position: absolute; top: 8px; left: 8px; background: rgba(0,0,0,0.78); color: var(--caution); font-family: var(--mono); font-size: 9px; padding: 3px 8px; letter-spacing: 0.14em; text-transform: uppercase; }
+.badge.local { bottom: 8px; left: 8px; top: auto; color: var(--warm); }
+.badge.source { bottom: 8px; left: 8px; top: auto; color: var(--ink-faint); }
+.card-body { padding: 14px 16px; flex: 1; display: flex; flex-direction: column; gap: 6px; }
+.card-title { font-family: var(--serif); font-size: 14px; font-weight: 600; line-height: 1.35; color: var(--ink); overflow-wrap: anywhere; }
+.card-desc { font-family: var(--serif); font-size: 12.5px; color: var(--ink-dim); line-height: 1.5; margin-top: 4px; }
+.card-meta { display: grid; grid-template-columns: 72px 1fr; gap: 4px 12px; margin-top: 8px; padding: 10px 0; border-top: 1px solid var(--rule); }
+.card-meta dt { font-family: var(--mono); font-size: 9px; color: var(--ink-faint); letter-spacing: 0.14em; text-transform: uppercase; }
+.card-meta dd { font-family: var(--serif); color: var(--ink); font-size: 12px; line-height: 1.4; }
+.card-actions { display: flex; gap: 8px; margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--rule); flex-wrap: wrap; }
+.card-actions a { font-family: var(--mono); font-size: 10px; color: var(--caution); text-decoration: none; letter-spacing: 0.12em; text-transform: uppercase; padding: 6px 10px; border: 1px solid var(--rule-strong); min-height: 30px; display: inline-flex; align-items: center; }
+.card-actions a:hover { background: var(--caution); color: var(--bg); border-color: var(--caution); }
+.card-actions a.warn { color: var(--ink-faint); }
+.card-actions a.warn:hover { background: var(--ink-faint); color: var(--bg); }
+.empty { padding: 60px 0; text-align: center; color: var(--ink-faint); font-family: var(--mono); font-size: 13px; }
+
+.lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.94); display: none; place-items: center; z-index: 200; padding: 16px; }
+@media (min-width: 720px) { .lightbox { padding: 32px; } }
+.lightbox.open { display: grid; }
+.lb-inner { max-width: 92vw; max-height: 92vh; display: flex; flex-direction: column; gap: 10px; align-items: center; }
+.lb-inner img, .lb-inner video { max-width: 90vw; max-height: 78vh; border: 1px solid var(--rule-strong); background: #000; }
+.lb-inner iframe { width: 92vw; height: 84vh; border: 1px solid var(--rule-strong); background: #fff; }
+.lb-meta { font-family: var(--mono); font-size: 11px; color: var(--ink); background: var(--bg-2); border: 1px solid var(--rule-strong); padding: 8px 14px; max-width: 90vw; text-align: center; }
+.lb-meta a { color: var(--caution); }
+.lb-close { position: absolute; top: 12px; right: 12px; width: 40px; height: 40px; background: var(--bg-2); border: 1px solid var(--rule-strong); color: var(--ink); display: grid; place-items: center; cursor: pointer; font-family: var(--mono); font-size: 22px; z-index: 2; }
+.lb-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; background: rgba(20,20,24,0.6); border: 1px solid var(--rule-strong); color: var(--ink); display: grid; place-items: center; cursor: pointer; font-family: var(--serif); font-size: 24px; z-index: 2; }
+@media (min-width: 720px) { .lb-nav { width: 52px; height: 52px; font-size: 32px; } }
+.lb-nav:hover { background: rgba(0,0,0,0.85); color: var(--caution); border-color: var(--caution); }
+.lb-nav.prev { left: 8px; } .lb-nav.next { right: 8px; }
+@media (min-width: 720px) { .lb-nav.prev { left: 16px; } .lb-nav.next { right: 16px; } }
+.lb-counter { position: absolute; top: 16px; left: 50%; transform: translateX(-50%); font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; color: var(--ink-dim); background: var(--bg-2); border: 1px solid var(--rule); padding: 4px 12px; z-index: 2; }
+
+footer { background: #060608; padding: 32px 0 24px; color: var(--ink-dim); font-family: var(--mono); font-size: 12px; }
+footer .container { display: grid; grid-template-columns: 1fr; gap: 24px; }
+@media (min-width: 720px) { footer .container { grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; } }
+footer h4 { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink); margin-bottom: 14px; }
+footer ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+footer a { color: var(--ink-dim); text-decoration: none; }
+footer a:hover { color: var(--caution); }
+footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); padding-top: 20px; margin-top: 12px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; font-size: 10px; color: var(--ink-faint); letter-spacing: 0.1em; }
+</style>
+</head>
+<body>
+<div class="scanlines"></div>
+
+<div class="header-wrap">
+<header>
+  <div class="container">
+    <a href="#top" class="brand">
+      <div class="seal">GEIPAN</div>
+      <div class="brand-text">
+        <span class="super">Groupe d'Études et d'Informations sur les PAN</span>
+        <span class="name">GEIPAN · CNES</span>
+      </div>
+    </a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="primary" id="primary-nav">
+      <ul>
+        <li><a href="#top">Intro</a></li>
+        <li><a href="#headlines">Headlines</a></li>
+        <li><a href="#archive" class="active">Records</a></li>
+        <li><a href="../index.html">war.gov</a></li>
+        <li><a href="../aaro-mirror/index.html">AARO</a></li>
+        <li><a href="../nasa-mirror/index.html">NASA</a></li>
+        <li><a href="../nara-mirror/index.html">NARA</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+</div>
+
+<div class="hero" id="top">
+  <div class="container">
+    <div class="coords">43°33′N, 1°28′E · CENTRE NATIONAL D'ÉTUDES SPATIALES · TOULOUSE</div>
+    <h1 class="hero-title">France's <em>civilian</em> UAP office, since 1977.</h1>
+    <p class="hero-sub">
+      <strong>GEIPAN</strong> — the Groupe d'Études et d'Informations sur les Phénomènes Aérospatiaux Non identifiés —
+      is a department of <a href="https://cnes.fr/" target="_blank" rel="noopener">CNES</a> (France's space agency) and the
+      longest-running official civilian UAP investigation programme in the world. Every classified case is published
+      to the <a href="https://www.cnes-geipan.fr/fr/recherche/cas" target="_blank" rel="noopener">public database</a> with
+      its full investigative file. <strong>3,351 cases</strong> classified to date (April 2026). Source: <a href="https://www.cnes-geipan.fr/" target="_blank" rel="noopener">cnes-geipan.fr</a>.
+    </p>
+
+    <div class="hero-carousel" id="hero-carousel" aria-label="Featured GEIPAN imagery">
+      <div id="carousel-track"></div>
+      <button class="carousel-btn prev" id="carousel-prev" aria-label="Previous">‹</button>
+      <button class="carousel-btn next" id="carousel-next" aria-label="Next">›</button>
+      <div class="carousel-dots" id="carousel-dots"></div>
+      <div class="carousel-caption" id="carousel-caption"></div>
+    </div>
+  </div>
+</div>
+
+<section id="headlines" class="headlines">
+  <div class="container">
+    <div class="section-label">§ Headlines · GEIPAN, distilled</div>
+    <div class="head-grid">
+      <div class="head-card"><div class="h-label">Established</div><span class="h-num">1977</span><div class="h-text">As GEPAN; renamed SEPRA (1988), then GEIPAN (2005).</div></div>
+      <div class="head-card"><div class="h-label">Total cases</div><span class="h-num">3 351</span><div class="h-text">Classified and published since 1977 (Apr 2026).</div></div>
+      <div class="head-card"><div class="h-label">PAN A</div><div class="h-text"><strong>27.81%</strong> — phenomenon perfectly identified.</div></div>
+      <div class="head-card"><div class="h-label">PAN B</div><div class="h-text"><strong>38.76%</strong> — phenomenon probably identified.</div></div>
+      <div class="head-card"><div class="h-label">PAN C</div><div class="h-text"><strong>30.26%</strong> — unidentified (insufficient data).</div></div>
+      <div class="head-card"><div class="h-label">PAN D</div><div class="h-text"><strong>2.18%</strong> — unidentified after full investigation.</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="archive">
+  <div class="container">
+    <div class="section-label">§ Records · FAQs, methodology, case videos</div>
+    <h2>Official documentation, sample case videos, and live catalog deep-links.</h2>
+    <p class="lede">
+      Curated essentials: GEIPAN's mission, history, and methodology in French and English;
+      two sample case videos from the public database; the live GEIPAN statistics dashboard; and the
+      <a href="https://www.cnes-geipan.fr/fr/recherche/cas" target="_blank" rel="noopener">full case search</a> covering all 3,351 records.
+    </p>
+
+    <div class="stats-grid" id="arch-stats"></div>
+
+    <div class="arch-controls-bar">
+      <div class="tabs" id="arch-tabs"></div>
+      <div class="search-wrap">
+        <input id="arch-search" type="search" placeholder="Search title, agency, category…" autocomplete="off">
+      </div>
+    </div>
+
+    <div class="arch-grid" id="arch-grid"></div>
+    <div class="empty" id="arch-empty" hidden>No records match.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>
+      <h4>GEIPAN Mirror</h4>
+      <p style="color: var(--ink-dim); font-family: var(--serif); margin-bottom: 14px;">
+        Offline archival mirror of GEIPAN at CNES. French public-sector works are reusable under
+        Loi n° 78-753 (information publique).
+      </p>
+      <p style="color: var(--ink-faint); font-size: 10px; letter-spacing: 0.1em;">Source: cnes-geipan.fr · captured 2026.</p>
+    </div>
+    <div>
+      <h4>Related Mirrors</h4>
+      <ul>
+        <li><a href="../index.html">war.gov / UFO Release 01</a></li>
+        <li><a href="../aaro-mirror/index.html">AARO — DoW</a></li>
+        <li><a href="../nasa-mirror/index.html">NASA UAP Study</a></li>
+        <li><a href="../nara-mirror/index.html">NARA UAP Records</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Source</h4>
+      <ul>
+        <li><a href="https://www.cnes-geipan.fr/" target="_blank" rel="noopener">cnes-geipan.fr ↗</a></li>
+        <li><a href="https://www.cnes-geipan.fr/fr/recherche/cas" target="_blank" rel="noopener">Case search ↗</a></li>
+        <li><a href="https://www.cnes-geipan.fr/fr/stats" target="_blank" rel="noopener">Statistics ↗</a></li>
+        <li><a href="https://cnes.fr/" target="_blank" rel="noopener">CNES ↗</a></li>
+      </ul>
+    </div>
+    <div class="colophon">
+      <span>Offline mirror · For research and reference</span>
+      <span>Built from public GEIPAN source · 17 U.S.C. § 105 / Loi 78-753</span>
+    </div>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <div class="lb-close" id="lb-close">×</div>
+  <button class="lb-nav prev" id="lb-prev" aria-label="Previous (←)">‹</button>
+  <button class="lb-nav next" id="lb-next" aria-label="Next (→)">›</button>
+  <div class="lb-counter" id="lb-counter"></div>
+  <div class="lb-inner" id="lb-inner"></div>
+</div>
+
+<script id="arch-data" type="application/json">__DATA__</script>
+<script>
+(() => {
+  const navToggle = document.getElementById('nav-toggle');
+  const primaryNav = document.getElementById('primary-nav');
+  if (navToggle && primaryNav) {
+    navToggle.addEventListener('click', () => {
+      const open = primaryNav.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    primaryNav.addEventListener('click', e => {
+      if (e.target.tagName === 'A') { primaryNav.classList.remove('open'); navToggle.setAttribute('aria-expanded', 'false'); }
+    });
+  }
+
+  const D = JSON.parse(document.getElementById('arch-data').textContent);
+  const items = D.assets;
+  const CAR = D.carousel;
+  const STATS = D.stats;
+  function esc(s){return (s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+
+  document.getElementById('arch-stats').innerHTML = [
+    ['Total', STATS.total],
+    ['Local', STATS.local_total],
+    ['Documents', STATS.pdf_total],
+    ['Videos', STATS.vid_total],
+    ['Images', STATS.img_total],
+    ['Catalog', STATS.catalog_total],
+  ].map(([k,v]) => `<div class="stat"><b>${v}</b><small>${k}</small></div>`).join('');
+
+  // Carousel
+  const cTrack = document.getElementById('carousel-track');
+  const cDots = document.getElementById('carousel-dots');
+  const cCap = document.getElementById('carousel-caption');
+  if (CAR.length) {
+    CAR.forEach((s, i) => {
+      const slide = document.createElement('div');
+      slide.className = 'carousel-slide' + (i === 0 ? ' active' : '');
+      const fb = s.url ? `onerror="this.onerror=null;this.src='${esc(s.url)}';"` : '';
+      slide.innerHTML = `<img src="./${s.local}" alt="${esc(s.title)}" ${fb}>`;
+      cTrack.appendChild(slide);
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      if (i === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => goTo(i));
+      cDots.appendChild(dot);
+    });
+    cCap.innerHTML = `<span class="badge">GEIPAN</span>${esc(CAR[0].title)}`;
+    let cIdx = 0, timer;
+    function goTo(i){
+      const slides = cTrack.children, dots = cDots.children;
+      slides[cIdx].classList.remove('active'); dots[cIdx].classList.remove('active');
+      cIdx = (i + slides.length) % slides.length;
+      slides[cIdx].classList.add('active'); dots[cIdx].classList.add('active');
+      cCap.innerHTML = `<span class="badge">GEIPAN</span>${esc(CAR[cIdx].title)}`;
+    }
+    document.getElementById('carousel-prev').addEventListener('click', () => { goTo(cIdx-1); restart(); });
+    document.getElementById('carousel-next').addEventListener('click', () => { goTo(cIdx+1); restart(); });
+    function start(){ timer = setInterval(() => goTo(cIdx+1), 6500); }
+    function restart(){ clearInterval(timer); start(); }
+    start();
+    const heroEl = document.getElementById('hero-carousel');
+    heroEl.addEventListener('mouseenter', () => clearInterval(timer));
+    heroEl.addEventListener('mouseleave', restart);
+  } else {
+    document.getElementById('hero-carousel').style.display = 'none';
+  }
+
+  const TABS = [
+    {key:'ALL', label:'All'},
+    {key:'PDF', label:'Documents'},
+    {key:'VID', label:'Videos'},
+    {key:'IMG', label:'Images'},
+    {key:'CATALOG', label:'Catalog'},
+  ];
+  const state = { tab: 'ALL', q: '' };
+  const tabsEl = document.getElementById('arch-tabs');
+  function count(k){ return k === 'ALL' ? items.length : items.filter(a => a.t === k).length; }
+  tabsEl.innerHTML = TABS.map(t => `<button class="tab${t.key===state.tab?' active':''}" data-key="${t.key}">${t.label}<span class="count">${count(t.key)}</span></button>`).join('');
+  tabsEl.addEventListener('click', e => {
+    const t = e.target.closest('.tab'); if (!t) return;
+    state.tab = t.dataset.key;
+    tabsEl.querySelectorAll('.tab').forEach(x => x.classList.toggle('active', x.dataset.key === state.tab));
+    render();
+  });
+  document.getElementById('arch-search').addEventListener('input', e => { state.q = e.target.value.trim().toLowerCase(); render(); });
+
+  function mediaFor(a) {
+    if (a.t === 'IMG' && a.l) {
+      const fb = a.s ? `onerror="this.onerror=null;this.src='${esc(a.s)}';"` : '';
+      return `<img loading="lazy" src="./${a.l}" alt="${esc(a.ti)}" ${fb}>`;
+    }
+    if (a.t === 'VID') return `<div class="pdf-glyph video-glyph"><span class="ico">▶</span><span>${esc(a.region||a.cat||'Case')}</span></div>`;
+    if (a.t === 'CATALOG') return `<div class="pdf-glyph glyph-cat"><span class="ico">⌕</span><span>${esc(a.cat||'Catalog')}</span></div>`;
+    return `<div class="pdf-glyph"><span class="ico">PDF</span><span>${esc(a.ag||'Document')}</span></div>`;
+  }
+  function metaFor(a) {
+    const rows = [];
+    if (a.ag) rows.push(['Agency', a.ag]);
+    if (a.cat) rows.push(['Category', a.cat]);
+    if (a.region) rows.push(['Region', a.region]);
+    if (a.date) rows.push(['Date', a.date]);
+    return `<dl class="card-meta">${rows.map(r => `<dt>${r[0]}</dt><dd>${esc(r[1])}</dd>`).join('')}</dl>`;
+  }
+  function actionsFor(a) {
+    const out = [];
+    const verb = a.t==='PDF'?'Open PDF': a.t==='VID'?'▶ Play': a.t==='IMG'?'View':'Open';
+    const dl = a.l ? './' + a.l : a.u;
+    if (a.l || (a.u && a.t !== 'CATALOG')) {
+      out.push(`<a href="#" data-action="open" data-title="${esc(a.ti)}">${verb}</a>`);
+      if (dl) out.push(`<a href="${esc(dl)}" ${a.l?'download':'target="_blank" rel="noopener"'}>Download</a>`);
+    }
+    const src = a.s || a.u;
+    if (src) out.push(`<a class="warn" href="${esc(src)}" target="_blank" rel="noopener">${a.t==='CATALOG'?'Open ↗':'Source ↗'}</a>`);
+    return `<div class="card-actions">${out.join('')}</div>`;
+  }
+  function cardHtml(a, gidx) {
+    const localBadge = a.l ? '<span class="badge local">LOCAL</span>' : '<span class="badge source">SOURCE</span>';
+    return `<article class="card" data-idx="${gidx}">
+      <div class="card-media">
+        ${mediaFor(a)}
+        <span class="badge">${esc(a.t)}</span>
+        ${a.t!=='CATALOG' ? localBadge : ''}
+      </div>
+      <div class="card-body">
+        <div class="card-title">${esc(a.ti)}</div>
+        ${a.de ? `<div class="card-desc">${esc(a.de)}</div>` : ''}
+        ${metaFor(a)}
+        ${actionsFor(a)}
+      </div>
+    </article>`;
+  }
+
+  let lbList = [], lbIdx = 0;
+  function filtered() {
+    return items.filter(a => {
+      if (state.tab !== 'ALL' && a.t !== state.tab) return false;
+      if (state.q) {
+        const hay = [a.ti, a.de, a.ag, a.cat, a.date, a.region].join(' ').toLowerCase();
+        if (!hay.includes(state.q)) return false;
+      }
+      return true;
+    });
+  }
+  const grid = document.getElementById('arch-grid');
+  const emptyEl = document.getElementById('arch-empty');
+  function render() {
+    const list = filtered(); lbList = list;
+    grid.innerHTML = list.map((a, i) => cardHtml(a, i)).join('');
+    emptyEl.hidden = list.length > 0;
+  }
+  render();
+
+  const lb = document.getElementById('lightbox');
+  const lbI = document.getElementById('lb-inner');
+  const lbC = document.getElementById('lb-close');
+  const lbPrev = document.getElementById('lb-prev');
+  const lbNext = document.getElementById('lb-next');
+  const lbCounter = document.getElementById('lb-counter');
+
+  function renderLb() {
+    const a = lbList[lbIdx]; if (!a) return;
+    const title = a.ti;
+    const meta = `<div class="lb-meta">${esc(title)}</div>`;
+    let html;
+    if (a.t === 'IMG') {
+      const src = a.l ? './' + a.l : a.s;
+      const fb = a.s && a.l ? `onerror="this.onerror=null;this.src='${esc(a.s)}';"` : '';
+      html = `<img src="${esc(src)}" alt="${esc(title)}" ${fb}>${meta}`;
+    } else if (a.t === 'VID') {
+      const srcs = [];
+      if (a.l) srcs.push(`<source src="./${esc(a.l)}" type="video/mp4">`);
+      if (a.s && !a.l) srcs.push(`<source src="${esc(a.s)}" type="video/mp4">`);
+      html = `<video controls autoplay playsinline>${srcs.join('')}</video>${meta}`;
+    } else if (a.t === 'PDF') {
+      if (a.l) {
+        html = `<iframe src="./${esc(a.l)}#view=FitH"></iframe><div class="lb-meta">${esc(title)} — <a href="./${esc(a.l)}" target="_blank">open in new tab ↗</a></div>`;
+      } else if (a.u) {
+        window.open(a.u, '_blank'); closeLb(); return;
+      }
+    } else if (a.t === 'CATALOG') {
+      window.open(a.u || a.s, '_blank'); closeLb(); return;
+    }
+    lbI.innerHTML = html;
+    if (lbCounter) lbCounter.textContent = (lbIdx + 1) + ' / ' + lbList.length;
+    if (lbPrev) lbPrev.style.visibility = lbList.length > 1 ? 'visible' : 'hidden';
+    if (lbNext) lbNext.style.visibility = lbList.length > 1 ? 'visible' : 'hidden';
+  }
+  function openAt(idx) { if (!lbList.length) return; lbIdx = (idx + lbList.length) % lbList.length; renderLb(); lb.classList.add('open'); }
+  function navLb(d) { if (!lbList.length) return; lbIdx = (lbIdx + d + lbList.length) % lbList.length; renderLb(); }
+  function closeLb() { lb.classList.remove('open'); lbI.innerHTML = ''; }
+  lbC.addEventListener('click', closeLb);
+  if (lbPrev) lbPrev.addEventListener('click', e => { e.stopPropagation(); navLb(-1); });
+  if (lbNext) lbNext.addEventListener('click', e => { e.stopPropagation(); navLb(1); });
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLb();
+    else if (e.key === 'ArrowRight') navLb(1);
+    else if (e.key === 'ArrowLeft')  navLb(-1);
+  });
+  let touchX=0, touchY=0, touchT=0;
+  lb.addEventListener('touchstart', e => { if (!e.touches.length) return; touchX = e.touches[0].clientX; touchY = e.touches[0].clientY; touchT = Date.now(); }, { passive:true });
+  lb.addEventListener('touchend', e => {
+    if (!e.changedTouches.length) return;
+    const dx = e.changedTouches[0].clientX - touchX, dy = e.changedTouches[0].clientY - touchY;
+    if (Date.now() - touchT < 800 && Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) navLb(dx < 0 ? 1 : -1);
+  }, { passive:true });
+
+  grid.addEventListener('click', e => {
+    const action = e.target.closest('a[data-action]');
+    const card = e.target.closest('.card');
+    const media = e.target.closest('.card-media');
+    if (action) e.preventDefault();
+    if (card && card.dataset.idx !== undefined && (action || media)) {
+      openAt(parseInt(card.dataset.idx, 10));
+    }
+  });
+})();
+</script>
+</body>
+</html>
+'''
+PAGE = PAGE.replace('__DATA__', data_json)
+open(os.path.join(ROOT, 'index.html'), 'w', encoding='utf-8').write(PAGE)
+print(f'wrote {ROOT}/index.html ({len(PAGE):,} bytes) · {stats["local_total"]}/{stats["total"]} local')
