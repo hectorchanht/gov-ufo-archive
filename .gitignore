@@ -12,12 +12,12 @@ bundles/uapvideos.zip
 #   https://github.com/hectorchanht/war-gov-ufo-release/releases/tag/videos-v1
 bundles/uapvideos/
 
-# Huge Release_1 PDFs (>50 MB) — listed individually
-bundles/Release_1/342_HS1-416511228_box186_319.1-Flying-Discs-1949.pdf
-bundles/Release_1/38_143685_box7_Incident_Summaries_173-233.pdf
-bundles/Release_1/65_HS1-834228961_62-HQ-83894_Section_6.pdf
-bundles/Release_1/65_HS1-834228961_62-HQ-83894_Section_8.pdf
-bundles/Release_1/65_HS1-834228961_62-HQ-83894_Section_10.pdf
+# PDFs all moved to GitHub Releases (pdfs-v1) — the repo keeps only
+# images for fast page loads. Source: ./scripts/sync.sh re-populates.
+bundles/Release_1/*.pdf
+aaro-mirror/pdfs/
+nasa-mirror/pdfs/
+nara-mirror/pdfs/
 
 # Local extraction cache
 download.zip

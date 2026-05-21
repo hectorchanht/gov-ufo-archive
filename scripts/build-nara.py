@@ -42,7 +42,8 @@ ASSETS = [
         'cat': 'Legal',
         'date': 'Dec 22, 2023',
         'l': Lf('2024-NDAA-Public-Law-118-31.pdf'),
-        'u': 'https://www.congress.gov/118/bills/hr2670/BILLS-118hr2670enr.pdf',
+        'u': 'https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/2024-NDAA-Public-Law-118-31.pdf',
+        's': 'https://www.congress.gov/118/bills/hr2670/BILLS-118hr2670enr.pdf',
     },
     # NARA topic pages (one card per page)
     {
@@ -216,6 +217,26 @@ header .container { display: flex; align-items: center; gap: 24px; flex-wrap: wr
 .brand-text .super { font-family: var(--mono); font-size: 9px; letter-spacing: 0.2em; color: var(--ink-dim); text-transform: uppercase; }
 .brand-text .name { font-family: var(--serif); font-size: 18px; font-weight: 600; margin-top: 2px; }
 nav.primary { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; flex: 1; }
+.nav-toggle { display: none; background: transparent; border: 1px solid var(--rule-strong); width: 40px; height: 40px; cursor: pointer; padding: 0; flex-direction: column; justify-content: center; align-items: center; gap: 4px; }
+.nav-toggle span { display: block; width: 18px; height: 2px; background: var(--ink); transition: transform .2s, opacity .2s; }
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+@media (max-width: 720px) {
+  .nav-toggle { display: flex; }
+  nav.primary { display: none; flex-basis: 100%; }
+  nav.primary.open { display: block; }
+  nav.primary ul { flex-direction: column; gap: 0; padding-top: 12px; margin-top: 12px; border-top: 1px solid var(--rule); justify-content: flex-start; }
+  nav.primary ul li { width: 100%; }
+  nav.primary ul a { display: block; padding: 12px 0; border-bottom: 1px solid var(--rule); }
+  .arch-controls-bar { flex-direction: column; align-items: stretch; gap: 10px; }
+  .tabs { gap: 6px; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; -webkit-overflow-scrolling: touch; }
+  .tabs::-webkit-scrollbar { height: 0; }
+  .tab { flex: 0 0 auto; padding: 6px 10px; font-size: 10px; }
+  .search-wrap { margin: 0; width: 100%; }
+  .arch-grid { grid-template-columns: 1fr; gap: 12px; }
+  body { font-size: 15px; }
+}
 nav.primary ul { display: flex; gap: 4px 22px; list-style: none; flex-wrap: wrap; justify-content: flex-end; }
 nav.primary a { color: var(--ink-dim); text-decoration: none; text-transform: uppercase; }
 nav.primary a:hover { color: var(--caution); }
@@ -316,17 +337,6 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
 </head>
 <body>
 <div class="scanlines"></div>
-<div class="gov-banner">
-  <div class="container">
-    <span class="flag-dot"></span>
-    <span><strong style="color:var(--ink)">OFFLINE MIRROR</strong> · NARA UAP Records Gateway</span>
-    <span class="nav-mirrors">
-      <a href="../index.html">war.gov ↗</a>
-      <a href="../aaro-mirror/index.html">AARO ↗</a>
-      <a href="../nasa-mirror/index.html">NASA ↗</a>
-    </span>
-  </div>
-</div>
 
 <div class="header-wrap">
 <header>
@@ -338,12 +348,15 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
         <span class="name">UAP Records Gateway</span>
       </div>
     </a>
-    <nav class="primary">
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="primary" id="primary-nav">
       <ul>
         <li><a href="#top">Intro</a></li>
         <li><a href="#headlines">Headlines</a></li>
         <li><a href="#archive" class="active">Records</a></li>
-        <li><a href="https://www.archives.gov/research/topics/uaps" target="_blank" rel="noopener">archives.gov ↗</a></li>
+        <li><a href="../index.html">war.gov</a></li>
+        <li><a href="../aaro-mirror/index.html">AARO</a></li>
+        <li><a href="../nasa-mirror/index.html">NASA</a></li>
       </ul>
     </nav>
   </div>
@@ -449,6 +462,17 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
 <script id="arch-data" type="application/json">__DATA__</script>
 <script>
 (() => {
+  const navToggle = document.getElementById('nav-toggle');
+  const primaryNav = document.getElementById('primary-nav');
+  if (navToggle && primaryNav) {
+    navToggle.addEventListener('click', () => {
+      const open = primaryNav.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    primaryNav.addEventListener('click', e => {
+      if (e.target.tagName === 'A') { primaryNav.classList.remove('open'); navToggle.setAttribute('aria-expanded', 'false'); }
+    });
+  }
   const D = JSON.parse(document.getElementById('arch-data').textContent);
   const items = D.assets;
   const STATS = D.stats;
@@ -494,12 +518,14 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
   }
   function actionsFor(a) {
     const out = [];
-    if (a.l) {
-      const verb = a.t === 'PDF' ? 'Open PDF' : 'Open Snapshot';
+    const verb = a.t === 'PDF' ? 'Open PDF' : a.t === 'PAGE' ? 'Open Snapshot' : 'Open';
+    if (a.l || (a.u && a.t === 'PDF')) {
       out.push(`<a href="#" data-action="open" data-title="${esc(a.ti)}">${verb}</a>`);
-      out.push(`<a href="./${esc(a.l)}" download>Download</a>`);
+      const dl = a.l ? './' + a.l : a.u;
+      if (dl) out.push(`<a href="${esc(dl)}" ${a.l?'download':'target="_blank" rel="noopener"'}>Download</a>`);
     }
-    if (a.u) out.push(`<a class="warn" href="${esc(a.u)}" target="_blank" rel="noopener">Live ↗</a>`);
+    const src = a.s || a.u;
+    if (src) out.push(`<a class="warn" href="${esc(src)}" target="_blank" rel="noopener">${a.t==='CATALOG' ? 'Catalog ↗' : 'Source ↗'}</a>`);
     return `<div class="card-actions">${out.join('')}</div>`;
   }
   function cardHtml(a, gidx) {

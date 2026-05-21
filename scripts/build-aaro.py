@@ -78,6 +78,7 @@ for v in evidence['videos']:
         'dod_id': v['dod_id'],
         'dvids_id': v.get('dvids_id'),
         'url': v['url'],
+        'src': f"https://www.dvidshub.net/video/{v['dvids_id']}" if v.get('dvids_id') else 'https://www.aaro.mil/UAP-Cases/Official-UAP-Imagery/',
         'local': local,
     })
 
@@ -98,14 +99,16 @@ PRIORITY_PDFS = [
     ('Dr_Jon_Kosloski_Statement_for_the_Record_SASC_Open_Hearing_Nov2024.pdf', 'Director Kosloski — SASC Open Hearing Statement (Nov 2024)', 'Statement for the record by AARO Director Dr. Jon T. Kosloski before the Senate Armed Services Committee.', 'Congressional'),
 ]
 priority_set = {p[0] for p in PRIORITY_PDFS}
+PDF_RELEASE_BASE = 'https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/'
+import urllib.parse as _up
+def release_url(fname):
+    return PDF_RELEASE_BASE + _up.quote(fname)
 
 # Add priority PDFs first
 for fname, title, desc, category in PRIORITY_PDFS:
     local = 'pdfs/' + fname if fname in local_pdfs else ''
-    # Find source URL
     src_url = next((p['url'] for p in evidence['pdfs'] if basename(p['url']) == fname), '')
     if not src_url:
-        # Search case-insensitive
         for p in evidence['pdfs']:
             if basename(p['url']).lower() == fname.lower():
                 src_url = p['url']; break
@@ -116,7 +119,8 @@ for fname, title, desc, category in PRIORITY_PDFS:
         'desc': desc,
         'agency': 'AARO',
         'category': category,
-        'url': src_url,
+        'url': release_url(fname),
+        'src': src_url,
         'local': local,
     })
 
@@ -125,14 +129,11 @@ for p in evidence['pdfs']:
     bn = basename(p['url'])
     if bn in priority_set: continue
     local = 'pdfs/' + bn if bn in local_pdfs else ''
-    # Detect category from URL path
     url_low = p['url'].lower()
     category = 'FOIA' if 'foia' in url_low else \
                'Case Resolution' if 'case_resolution' in url_low else \
                'Document'
-    # Derive title from filename
     title = bn.rsplit('.',1)[0].replace('_',' ').replace('-',' ').strip()
-    # Detect agency
     agency = 'FBI' if 'fbi' in bn.lower() else \
              'NARA' if 'nara' in bn.lower() else \
              'AARO'
@@ -140,10 +141,11 @@ for p in evidence['pdfs']:
         'type': 'PDF',
         'kind_label': 'Document',
         'title': title,
-        'desc': 'Released document — see source page for context.',
+        'desc': '',
         'agency': agency,
         'category': category,
-        'url': p['url'],
+        'url': release_url(bn),
+        'src': p['url'],
         'local': local,
     })
 
@@ -158,9 +160,10 @@ for i in evidence['images']:
         'type': 'IMG',
         'kind_label': 'Image',
         'title': bn.rsplit('.',1)[0].replace('_',' ').replace('-',' '),
-        'desc': 'Imagery from ' + (i.get('src_page') or 'AARO').replace('-',' '),
+        'desc': '',
         'agency': 'AARO',
-        'url': i['url'],
+        'url': local or i['url'],
+        'src': i['url'],
         'local': local,
     })
 
@@ -235,6 +238,7 @@ for a in assets:
         'di': a.get('dvids_id') or '',
         'dd': a.get('dod_id') or '',
         'u': a.get('url','') or '',
+        's': a.get('src','') or '',
         'l': a.get('local','') or '',
     })
 
@@ -319,6 +323,28 @@ header .container { display: flex; align-items: center; gap: 24px; flex-wrap: wr
 .brand-text .super { font-family: var(--mono); font-size: 9px; letter-spacing: 0.2em; color: var(--ink-dim); text-transform: uppercase; }
 .brand-text .name { font-family: var(--serif); font-size: 20px; font-weight: 600; margin-top: 2px; }
 nav.primary { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; flex: 1; }
+.nav-toggle { display: none; background: transparent; border: 1px solid var(--rule-strong); width: 40px; height: 40px; cursor: pointer; padding: 0; flex-direction: column; justify-content: center; align-items: center; gap: 4px; }
+.nav-toggle span { display: block; width: 18px; height: 2px; background: var(--ink); transition: transform .2s, opacity .2s; }
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+@media (max-width: 720px) {
+  .nav-toggle { display: flex; }
+  nav.primary { display: none; flex-basis: 100%; }
+  nav.primary.open { display: block; }
+  nav.primary ul { flex-direction: column; gap: 0; padding-top: 12px; margin-top: 12px; border-top: 1px solid var(--rule); justify-content: flex-start; }
+  nav.primary ul li { width: 100%; }
+  nav.primary ul a { display: block; padding: 12px 0; border-bottom: 1px solid var(--rule); }
+  .arch-controls-bar { flex-direction: column; align-items: stretch; gap: 10px; }
+  .tabs { gap: 6px; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; -webkit-overflow-scrolling: touch; }
+  .tabs::-webkit-scrollbar { height: 0; }
+  .tab { flex: 0 0 auto; padding: 6px 10px; font-size: 10px; }
+  .sort-wrap, .search-wrap { margin: 0; width: 100%; }
+  .filter-bar { gap: 12px; }
+  .filter-bar label { font-size: 10px; }
+  .arch-grid { grid-template-columns: 1fr; gap: 12px; }
+  body { font-size: 15px; }
+}
 nav.primary ul { display: flex; gap: 4px 22px; list-style: none; flex-wrap: wrap; justify-content: flex-end; }
 nav.primary a { color: var(--ink-dim); text-decoration: none; transition: color .15s; text-transform: uppercase; }
 nav.primary a:hover { color: var(--caution); }
@@ -734,18 +760,6 @@ footer .colophon {
 
 <div class="scanlines"></div>
 
-<div class="gov-banner">
-  <div class="container">
-    <span class="flag-dot"></span>
-    <span><strong>OFFLINE MIRROR</strong> · Snapshot of aaro.mil</span>
-    <span style="margin-left:auto;display:flex;gap:14px;flex-wrap:wrap;">
-      <a href="../index.html">war.gov ↗</a>
-      <a href="../nasa-mirror/index.html">NASA ↗</a>
-      <a href="../nara-mirror/index.html">NARA ↗</a>
-    </span>
-  </div>
-</div>
-
 <div class="header-wrap">
 <header>
   <div class="container">
@@ -756,15 +770,16 @@ footer .colophon {
         <span class="name">AARO</span>
       </div>
     </a>
-    <nav class="primary">
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="primary" id="primary-nav">
       <ul>
         <li><a href="#top">Intro</a></li>
         <li><a href="#headlines">Headlines</a></li>
         <li><a href="#archive" class="active">Evidence</a></li>
-        <li><a href="./details.html">About / FAQ ↗</a></li>
-        <li><a href="../index.html">war.gov ↗</a></li>
-        <li><a href="../nasa-mirror/index.html">NASA ↗</a></li>
-        <li><a href="../nara-mirror/index.html">NARA ↗</a></li>
+        <li><a href="./details.html">About / FAQ</a></li>
+        <li><a href="../index.html">war.gov</a></li>
+        <li><a href="../nasa-mirror/index.html">NASA</a></li>
+        <li><a href="../nara-mirror/index.html">NARA</a></li>
       </ul>
     </nav>
   </div>
@@ -961,6 +976,19 @@ footer .colophon {
 <script id="arch-data" type="application/json">__DATA__</script>
 <script>
 (() => {
+  // Hamburger toggle
+  const navToggle = document.getElementById('nav-toggle');
+  const primaryNav = document.getElementById('primary-nav');
+  if (navToggle && primaryNav) {
+    navToggle.addEventListener('click', () => {
+      const open = primaryNav.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    primaryNav.addEventListener('click', e => {
+      if (e.target.tagName === 'A') { primaryNav.classList.remove('open'); navToggle.setAttribute('aria-expanded', 'false'); }
+    });
+  }
+
   const D = JSON.parse(document.getElementById('arch-data').textContent);
   const items = D.assets;
   const CAR = D.carousel;
@@ -1105,24 +1133,15 @@ footer .colophon {
     return `<dl class="card-meta">` + rows.map(r => `<dt>${r[0]}</dt><dd${r[2]?' class="'+r[2]+'"':''}>${esc(r[1])}</dd>`).join('') + `</dl>`;
   }
   function actionsFor(a) {
-    // `local` is set ONLY for files that are committed to the repo.
-    // For everything else we route through the source URL — that's why the
-    // Download button can never return GitHub Pages' 404 HTML page.
+    // Source = official site (a.s). Download = local file or release URL (a.u).
     const out = [];
-    const verb = a.t === 'PDF' ? 'Open PDF' : (a.t === 'VID' ? 'Play' : 'View');
-    if (a.l) {
-      out.push(`<a href="#" data-action="open" data-local="${esc(a.l)}" data-remote="${esc(a.u||'')}" data-title="${esc(a.ti)}">${verb}</a>`);
-      out.push(`<a href="./${esc(a.l)}" download>Download</a>`);
-    } else if (a.u) {
-      // No local file — Play/View opens the source URL in the lightbox
-      // (browser-native streaming for video, in-iframe for PDF).
-      out.push(`<a href="#" data-action="open" data-local="" data-remote="${esc(a.u)}" data-title="${esc(a.ti)}">${verb}</a>`);
-      out.push(`<a href="${esc(a.u)}" target="_blank" rel="noopener" download>Download</a>`);
+    const verb = a.t === 'PDF' ? 'Open PDF' : (a.t === 'VID' ? '▶ Play' : 'View');
+    const dl = a.l ? './' + a.l : a.u;
+    if (a.l || a.u) {
+      out.push(`<a href="#" data-action="open" data-title="${esc(a.ti)}">${verb}</a>`);
+      out.push(`<a href="${esc(dl)}" ${a.l?'download':'target="_blank" rel="noopener"'}>Download</a>`);
     }
-    if (a.u) {
-      out.push(`<a class="warn" href="${esc(a.u)}" target="_blank" rel="noopener">Source ↗</a>`);
-    }
-    if (a.di && a.t==='VID') out.push(`<a class="warn" href="https://www.dvidshub.net/video/${encodeURIComponent(a.di)}" target="_blank" rel="noopener">DVIDS ↗</a>`);
+    if (a.s) out.push(`<a class="warn" href="${esc(a.s)}" target="_blank" rel="noopener">Source ↗</a>`);
     return `<div class="card-actions">${out.join('')}</div>`;
   }
   function cardHtml(a) {

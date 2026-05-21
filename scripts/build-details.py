@@ -320,14 +320,6 @@ footer a:hover { color: var(--caution); }
 </head>
 <body>
 
-<div class="gov-banner">
-  <div class="container">
-    <span class="flag-dot"></span>
-    <span>OFFLINE MIRROR · aaro.mil details</span>
-    <a href="./index.html">← Evidence Browser</a>
-  </div>
-</div>
-
 <div class="header-wrap">
 <header>
   <div class="container">

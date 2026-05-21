@@ -25,11 +25,6 @@ body { background: var(--bg); color: var(--ink); font-family: var(--serif); font
   background-image: radial-gradient(ellipse at 20% 0%, rgba(156,163,175,0.05) 0%, transparent 50%); background-attachment: fixed; }
 .scanlines { position: fixed; inset: 0; background: repeating-linear-gradient(to bottom, transparent 0, transparent 2px, rgba(255,255,255,0.012) 3px, transparent 4px); pointer-events: none; z-index: 50; }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 2; }
-.gov-banner { background: #1a1a1f; border-bottom: 1px solid var(--rule); font-family: var(--mono); font-size: 11px; color: var(--ink-dim); letter-spacing: 0.04em; }
-.gov-banner .container { display: flex; align-items: center; gap: 16px; padding: 10px 32px; flex-wrap: wrap; }
-.gov-banner a { color: var(--caution); text-decoration: none; }
-.gov-banner .nav-mirrors { margin-left: auto; display: flex; gap: 14px; flex-wrap: wrap; }
-.flag-dot { width: 10px; height: 10px; border-radius: 50%; background: linear-gradient(45deg,#b91c1c 0,#b91c1c 50%,#1e3a8a 50%,#1e3a8a 100%); flex-shrink: 0; }
 .header-wrap { position: sticky; top: 0; z-index: 40; background: rgba(10,10,12,0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--rule); }
 header { padding: 16px 0; }
 header .container { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
@@ -39,6 +34,26 @@ header .container { display: flex; align-items: center; gap: 24px; flex-wrap: wr
 .brand-text .super { font-family: var(--mono); font-size: 9px; letter-spacing: 0.2em; color: var(--ink-dim); text-transform: uppercase; }
 .brand-text .name { font-family: var(--serif); font-size: 18px; font-weight: 600; margin-top: 2px; }
 nav.primary { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; flex: 1; }
+.nav-toggle { display: none; background: transparent; border: 1px solid var(--rule-strong); width: 40px; height: 40px; cursor: pointer; padding: 0; flex-direction: column; justify-content: center; align-items: center; gap: 4px; }
+.nav-toggle span { display: block; width: 18px; height: 2px; background: var(--ink); transition: transform .2s, opacity .2s; }
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+@media (max-width: 720px) {
+  .nav-toggle { display: flex; }
+  nav.primary { display: none; flex-basis: 100%; }
+  nav.primary.open { display: block; }
+  nav.primary ul { flex-direction: column; gap: 0; padding-top: 12px; margin-top: 12px; border-top: 1px solid var(--rule); justify-content: flex-start; }
+  nav.primary ul li { width: 100%; }
+  nav.primary ul a { display: block; padding: 12px 0; border-bottom: 1px solid var(--rule); }
+  .arch-controls-bar { flex-direction: column; align-items: stretch; gap: 10px; }
+  .tabs { gap: 6px; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; -webkit-overflow-scrolling: touch; }
+  .tabs::-webkit-scrollbar { height: 0; }
+  .tab { flex: 0 0 auto; padding: 6px 10px; font-size: 10px; }
+  .search-wrap { margin: 0; width: 100%; }
+  .arch-grid { grid-template-columns: 1fr; gap: 12px; }
+  body { font-size: 15px; }
+}
 nav.primary ul { display: flex; gap: 4px 22px; list-style: none; flex-wrap: wrap; justify-content: flex-end; }
 nav.primary a { color: var(--ink-dim); text-decoration: none; text-transform: uppercase; }
 nav.primary a:hover { color: var(--caution); }
@@ -139,17 +154,6 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
 </head>
 <body>
 <div class="scanlines"></div>
-<div class="gov-banner">
-  <div class="container">
-    <span class="flag-dot"></span>
-    <span><strong style="color:var(--ink)">OFFLINE MIRROR</strong> · NARA UAP Records Gateway</span>
-    <span class="nav-mirrors">
-      <a href="../index.html">war.gov ↗</a>
-      <a href="../aaro-mirror/index.html">AARO ↗</a>
-      <a href="../nasa-mirror/index.html">NASA ↗</a>
-    </span>
-  </div>
-</div>
 
 <div class="header-wrap">
 <header>
@@ -161,12 +165,15 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
         <span class="name">UAP Records Gateway</span>
       </div>
     </a>
-    <nav class="primary">
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="primary" id="primary-nav">
       <ul>
         <li><a href="#top">Intro</a></li>
         <li><a href="#headlines">Headlines</a></li>
         <li><a href="#archive" class="active">Records</a></li>
-        <li><a href="https://www.archives.gov/research/topics/uaps" target="_blank" rel="noopener">archives.gov ↗</a></li>
+        <li><a href="../index.html">war.gov</a></li>
+        <li><a href="../aaro-mirror/index.html">AARO</a></li>
+        <li><a href="../nasa-mirror/index.html">NASA</a></li>
       </ul>
     </nav>
   </div>
@@ -269,9 +276,20 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
   <div class="lb-inner" id="lb-inner"></div>
 </div>
 
-<script id="arch-data" type="application/json">{"assets": [{"t": "PDF", "ti": "2024 National Defense Authorization Act — Public Law 118-31", "de": "The 2024 NDAA established Record Group 615 ('Unidentified Anomalous Phenomena Records Collection') at NARA, mandating that federal agencies transfer UAP records and authorising a 25-year sealing review.", "ag": "U.S. Congress", "cat": "Legal", "date": "Dec 22, 2023", "l": "pdfs/2024-NDAA-Public-Law-118-31.pdf", "u": "https://www.congress.gov/118/bills/hr2670/BILLS-118hr2670enr.pdf"}, {"t": "PAGE", "ti": "UAP Records — Topic Gateway", "de": "NARA's top-level gateway to UAP-related records across every collection it holds.", "ag": "NARA", "cat": "Gateway", "l": "pages/topic.html", "u": "https://www.archives.gov/research/topics/uaps"}, {"t": "PAGE", "ti": "Record Group 615 — Unidentified Anomalous Phenomena Records Collection", "de": "The dedicated RG established by the 2024 NDAA. Holdings transferred from DoD, ODNI, AARO, FBI, CIA, NASA, DOE, NSA, and others.", "ag": "NARA", "cat": "Record Group", "l": "pages/rg-615.html", "u": "https://www.archives.gov/research/topics/uaps/rg-615"}, {"t": "PAGE", "ti": "Photographs", "de": "NARA's photographic UAP holdings — Air Force Project Blue Book stills, NICAP files, presidential library photos.", "ag": "NARA", "cat": "Imagery", "l": "pages/photographs.html", "u": "https://www.archives.gov/research/topics/uaps/photographs"}, {"t": "PAGE", "ti": "Moving Images and Sound Recordings", "de": "Films and audio relating to UAP investigations across federal agencies.", "ag": "NARA", "cat": "A/V", "l": "pages/moving-images-and-sound.html", "u": "https://www.archives.gov/research/topics/uaps/moving-images-and-sound"}, {"t": "PAGE", "ti": "Textual and Microfilm", "de": "Paper records and microfilm — including Project Blue Book's 12,618-case textual file, J. Allen Hynek collection, and FBI HQ files.", "ag": "NARA", "cat": "Textual", "l": "pages/textual-and-microfilm.html", "u": "https://www.archives.gov/research/topics/uaps/textual-and-microfilm"}, {"t": "PAGE", "ti": "Presidential Libraries", "de": "UAP-related material held in the presidential libraries (Truman, Eisenhower, Kennedy, Johnson, Nixon, Carter, Reagan, Clinton).", "ag": "NARA", "cat": "Presidential", "l": "pages/presidential-libraries.html", "u": "https://www.archives.gov/research/topics/uaps/presidential-libraries"}, {"t": "PAGE", "ti": "Research by Record Group or Collection", "de": "Cross-index of every NARA record group containing UAP material — RG 18 (Army Air Forces), RG 65 (FBI), RG 341 (Air Staff), and many more.", "ag": "NARA", "cat": "Index", "l": "pages/federal-agency.html", "u": "https://www.archives.gov/research/topics/uaps/federal-agency"}, {"t": "PAGE", "ti": "NARA Publications, Blogs & Articles", "de": "NARA-authored publications, archivist blog posts, and Prologue magazine articles about UAP collections.", "ag": "NARA", "cat": "Reference", "l": "pages/blogs-and-articles.html", "u": "https://www.archives.gov/research/topics/uaps/blogs-and-articles"}, {"t": "PAGE", "ti": "Frequently Asked Questions", "de": "Common research questions about the UAP collection and how to request materials.", "ag": "NARA", "cat": "FAQ", "l": "pages/faqs.html", "u": "https://www.archives.gov/research/topics/uaps/faqs"}, {"t": "CATALOG", "ti": "NARA Catalog — Bulk UAP Download Manifest", "de": "Curated bulk-download index of digitised UAP records in the NARA online catalog — Project Blue Book, FBI HQ files, etc.", "ag": "NARA", "cat": "Catalog", "l": "", "u": "https://www.archives.gov/research/catalog/catalog-bulk-downloads/uap-bulk-download"}, {"t": "CATALOG", "ti": "NARA Catalog — Full Search", "de": "Search the entire NARA Catalog for keywords across all 600 million digitised pages.", "ag": "NARA", "cat": "Catalog", "l": "", "u": "https://catalog.archives.gov/"}, {"t": "CATALOG", "ti": "Project Blue Book — Online File", "de": "Air Force's 1947-1969 UFO investigation files: 12,618 cases, 130,000+ pages, fully digitised.", "ag": "NARA", "cat": "Catalog", "l": "", "u": "https://catalog.archives.gov/search?q=project+blue+book"}, {"t": "CATALOG", "ti": "FBI Vault — UFO files", "de": "FBI's declassified UFO holdings hosted on the FBI Vault — Hottel memo, Roswell-era memos, internal investigations.", "ag": "FBI", "cat": "Catalog", "l": "", "u": "https://vault.fbi.gov/UFO"}], "stats": {"total": 14, "local_total": 10, "pages_total": 9, "pdf_total": 1, "catalog_total": 4}}</script>
+<script id="arch-data" type="application/json">{"assets": [{"t": "PDF", "ti": "2024 National Defense Authorization Act — Public Law 118-31", "de": "The 2024 NDAA established Record Group 615 ('Unidentified Anomalous Phenomena Records Collection') at NARA, mandating that federal agencies transfer UAP records and authorising a 25-year sealing review.", "ag": "U.S. Congress", "cat": "Legal", "date": "Dec 22, 2023", "l": "", "u": "https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/2024-NDAA-Public-Law-118-31.pdf", "s": "https://www.congress.gov/118/bills/hr2670/BILLS-118hr2670enr.pdf"}, {"t": "PAGE", "ti": "UAP Records — Topic Gateway", "de": "NARA's top-level gateway to UAP-related records across every collection it holds.", "ag": "NARA", "cat": "Gateway", "l": "pages/topic.html", "u": "https://www.archives.gov/research/topics/uaps"}, {"t": "PAGE", "ti": "Record Group 615 — Unidentified Anomalous Phenomena Records Collection", "de": "The dedicated RG established by the 2024 NDAA. Holdings transferred from DoD, ODNI, AARO, FBI, CIA, NASA, DOE, NSA, and others.", "ag": "NARA", "cat": "Record Group", "l": "pages/rg-615.html", "u": "https://www.archives.gov/research/topics/uaps/rg-615"}, {"t": "PAGE", "ti": "Photographs", "de": "NARA's photographic UAP holdings — Air Force Project Blue Book stills, NICAP files, presidential library photos.", "ag": "NARA", "cat": "Imagery", "l": "pages/photographs.html", "u": "https://www.archives.gov/research/topics/uaps/photographs"}, {"t": "PAGE", "ti": "Moving Images and Sound Recordings", "de": "Films and audio relating to UAP investigations across federal agencies.", "ag": "NARA", "cat": "A/V", "l": "pages/moving-images-and-sound.html", "u": "https://www.archives.gov/research/topics/uaps/moving-images-and-sound"}, {"t": "PAGE", "ti": "Textual and Microfilm", "de": "Paper records and microfilm — including Project Blue Book's 12,618-case textual file, J. Allen Hynek collection, and FBI HQ files.", "ag": "NARA", "cat": "Textual", "l": "pages/textual-and-microfilm.html", "u": "https://www.archives.gov/research/topics/uaps/textual-and-microfilm"}, {"t": "PAGE", "ti": "Presidential Libraries", "de": "UAP-related material held in the presidential libraries (Truman, Eisenhower, Kennedy, Johnson, Nixon, Carter, Reagan, Clinton).", "ag": "NARA", "cat": "Presidential", "l": "pages/presidential-libraries.html", "u": "https://www.archives.gov/research/topics/uaps/presidential-libraries"}, {"t": "PAGE", "ti": "Research by Record Group or Collection", "de": "Cross-index of every NARA record group containing UAP material — RG 18 (Army Air Forces), RG 65 (FBI), RG 341 (Air Staff), and many more.", "ag": "NARA", "cat": "Index", "l": "pages/federal-agency.html", "u": "https://www.archives.gov/research/topics/uaps/federal-agency"}, {"t": "PAGE", "ti": "NARA Publications, Blogs & Articles", "de": "NARA-authored publications, archivist blog posts, and Prologue magazine articles about UAP collections.", "ag": "NARA", "cat": "Reference", "l": "pages/blogs-and-articles.html", "u": "https://www.archives.gov/research/topics/uaps/blogs-and-articles"}, {"t": "PAGE", "ti": "Frequently Asked Questions", "de": "Common research questions about the UAP collection and how to request materials.", "ag": "NARA", "cat": "FAQ", "l": "pages/faqs.html", "u": "https://www.archives.gov/research/topics/uaps/faqs"}, {"t": "CATALOG", "ti": "NARA Catalog — Bulk UAP Download Manifest", "de": "Curated bulk-download index of digitised UAP records in the NARA online catalog — Project Blue Book, FBI HQ files, etc.", "ag": "NARA", "cat": "Catalog", "l": "", "u": "https://www.archives.gov/research/catalog/catalog-bulk-downloads/uap-bulk-download"}, {"t": "CATALOG", "ti": "NARA Catalog — Full Search", "de": "Search the entire NARA Catalog for keywords across all 600 million digitised pages.", "ag": "NARA", "cat": "Catalog", "l": "", "u": "https://catalog.archives.gov/"}, {"t": "CATALOG", "ti": "Project Blue Book — Online File", "de": "Air Force's 1947-1969 UFO investigation files: 12,618 cases, 130,000+ pages, fully digitised.", "ag": "NARA", "cat": "Catalog", "l": "", "u": "https://catalog.archives.gov/search?q=project+blue+book"}, {"t": "CATALOG", "ti": "FBI Vault — UFO files", "de": "FBI's declassified UFO holdings hosted on the FBI Vault — Hottel memo, Roswell-era memos, internal investigations.", "ag": "FBI", "cat": "Catalog", "l": "", "u": "https://vault.fbi.gov/UFO"}], "stats": {"total": 14, "local_total": 9, "pages_total": 9, "pdf_total": 1, "catalog_total": 4}}</script>
 <script>
 (() => {
+  const navToggle = document.getElementById('nav-toggle');
+  const primaryNav = document.getElementById('primary-nav');
+  if (navToggle && primaryNav) {
+    navToggle.addEventListener('click', () => {
+      const open = primaryNav.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    primaryNav.addEventListener('click', e => {
+      if (e.target.tagName === 'A') { primaryNav.classList.remove('open'); navToggle.setAttribute('aria-expanded', 'false'); }
+    });
+  }
   const D = JSON.parse(document.getElementById('arch-data').textContent);
   const items = D.assets;
   const STATS = D.stats;
@@ -317,12 +335,14 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
   }
   function actionsFor(a) {
     const out = [];
-    if (a.l) {
-      const verb = a.t === 'PDF' ? 'Open PDF' : 'Open Snapshot';
+    const verb = a.t === 'PDF' ? 'Open PDF' : a.t === 'PAGE' ? 'Open Snapshot' : 'Open';
+    if (a.l || (a.u && a.t === 'PDF')) {
       out.push(`<a href="#" data-action="open" data-title="${esc(a.ti)}">${verb}</a>`);
-      out.push(`<a href="./${esc(a.l)}" download>Download</a>`);
+      const dl = a.l ? './' + a.l : a.u;
+      if (dl) out.push(`<a href="${esc(dl)}" ${a.l?'download':'target="_blank" rel="noopener"'}>Download</a>`);
     }
-    if (a.u) out.push(`<a class="warn" href="${esc(a.u)}" target="_blank" rel="noopener">Live ↗</a>`);
+    const src = a.s || a.u;
+    if (src) out.push(`<a class="warn" href="${esc(src)}" target="_blank" rel="noopener">${a.t==='CATALOG' ? 'Catalog ↗' : 'Source ↗'}</a>`);
     return `<div class="card-actions">${out.join('')}</div>`;
   }
   function cardHtml(a, gidx) {

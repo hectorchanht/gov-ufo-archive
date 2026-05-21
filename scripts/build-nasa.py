@@ -32,6 +32,10 @@ def L(rel_dir, fname):
     pool = tracked_imgs if rel_dir == 'assets/images' else tracked_pdfs
     return f'{rel_dir}/{fname}' if fname in pool else ''
 
+import urllib.parse as _up
+PDF_RELEASE_BASE = 'https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/'
+def R(fname): return PDF_RELEASE_BASE + _up.quote(fname)
+
 
 ASSETS = [
     # ----- PDFs -----
@@ -43,7 +47,8 @@ ASSETS = [
         'cat': 'Study Report',
         'date': 'Sep 2023',
         'l': L('pdfs', 'uap-independent-study-team-final-report.pdf'),
-        'u': 'https://science.nasa.gov/wp-content/uploads/2023/09/uap-independent-study-team-final-report.pdf',
+        'u': R('uap-independent-study-team-final-report.pdf'),
+        's': 'https://science.nasa.gov/wp-content/uploads/2023/09/uap-independent-study-team-final-report.pdf',
     },
     {
         't': 'PDF',
@@ -53,7 +58,8 @@ ASSETS = [
         'cat': 'Charter',
         'date': 'Apr 2023',
         'l': L('pdfs', 'UAPISTTermsofReference_Signed.pdf'),
-        'u': 'https://science.nasa.gov/wp-content/uploads/2023/04/UAPISTTermsofReference_Signed.pdf',
+        'u': R('UAPISTTermsofReference_Signed.pdf'),
+        's': 'https://science.nasa.gov/wp-content/uploads/2023/04/UAPISTTermsofReference_Signed.pdf',
     },
     {
         't': 'PDF',
@@ -63,7 +69,8 @@ ASSETS = [
         'cat': 'Public Meeting',
         'date': 'May 2023',
         'l': L('pdfs', 'public-meeting-agenda-tagged.pdf'),
-        'u': 'https://science.nasa.gov/wp-content/uploads/2024/01/public-meeting-agenda-tagged.pdf',
+        'u': R('public-meeting-agenda-tagged.pdf'),
+        's': 'https://science.nasa.gov/wp-content/uploads/2024/01/public-meeting-agenda-tagged.pdf',
     },
     {
         't': 'PDF',
@@ -73,7 +80,8 @@ ASSETS = [
         'cat': 'Public Meeting',
         'date': 'May 2023',
         'l': L('pdfs', 'frn-uapist-public-meeting-tagged.pdf'),
-        'u': 'https://science.nasa.gov/wp-content/uploads/2024/01/frn-uapist-public-meeting-tagged.pdf',
+        'u': R('frn-uapist-public-meeting-tagged.pdf'),
+        's': 'https://science.nasa.gov/wp-content/uploads/2024/01/frn-uapist-public-meeting-tagged.pdf',
     },
     # ----- YouTube videos (iframe embed only — YouTube doesn't expose mp4) -----
     {
@@ -217,6 +225,26 @@ header .container { display: flex; align-items: center; gap: 24px; flex-wrap: wr
 .brand-text .super { font-family: var(--mono); font-size: 9px; letter-spacing: 0.2em; color: var(--ink-dim); text-transform: uppercase; }
 .brand-text .name { font-family: var(--serif); font-size: 18px; font-weight: 600; margin-top: 2px; }
 nav.primary { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; flex: 1; }
+.nav-toggle { display: none; background: transparent; border: 1px solid var(--rule-strong); width: 40px; height: 40px; cursor: pointer; padding: 0; flex-direction: column; justify-content: center; align-items: center; gap: 4px; }
+.nav-toggle span { display: block; width: 18px; height: 2px; background: var(--ink); transition: transform .2s, opacity .2s; }
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+@media (max-width: 720px) {
+  .nav-toggle { display: flex; }
+  nav.primary { display: none; flex-basis: 100%; }
+  nav.primary.open { display: block; }
+  nav.primary ul { flex-direction: column; gap: 0; padding-top: 12px; margin-top: 12px; border-top: 1px solid var(--rule); justify-content: flex-start; }
+  nav.primary ul li { width: 100%; }
+  nav.primary ul a { display: block; padding: 12px 0; border-bottom: 1px solid var(--rule); }
+  .arch-controls-bar { flex-direction: column; align-items: stretch; gap: 10px; }
+  .tabs { gap: 6px; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; -webkit-overflow-scrolling: touch; }
+  .tabs::-webkit-scrollbar { height: 0; }
+  .tab { flex: 0 0 auto; padding: 6px 10px; font-size: 10px; }
+  .search-wrap { margin: 0; width: 100%; }
+  .arch-grid { grid-template-columns: 1fr; gap: 12px; }
+  body { font-size: 15px; }
+}
 nav.primary ul { display: flex; gap: 4px 22px; list-style: none; flex-wrap: wrap; justify-content: flex-end; }
 nav.primary a { color: var(--ink-dim); text-decoration: none; text-transform: uppercase; }
 nav.primary a:hover { color: var(--caution); }
@@ -373,18 +401,6 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
 <body>
 <div class="scanlines"></div>
 
-<div class="gov-banner">
-  <div class="container">
-    <span class="flag-dot"></span>
-    <span><strong style="color:var(--ink)">OFFLINE MIRROR</strong> · NASA UAP Independent Study</span>
-    <span class="nav-mirrors">
-      <a href="../index.html">war.gov ↗</a>
-      <a href="../aaro-mirror/index.html">AARO ↗</a>
-      <a href="../nara-mirror/index.html">NARA ↗</a>
-    </span>
-  </div>
-</div>
-
 <div class="header-wrap">
 <header>
   <div class="container">
@@ -395,12 +411,15 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
         <span class="name">UAP Independent Study</span>
       </div>
     </a>
-    <nav class="primary">
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="primary" id="primary-nav">
       <ul>
         <li><a href="#top">Intro</a></li>
         <li><a href="#headlines">Headlines</a></li>
         <li><a href="#archive" class="active">Evidence</a></li>
-        <li><a href="https://science.nasa.gov/uap/" target="_blank" rel="noopener">science.nasa.gov ↗</a></li>
+        <li><a href="../index.html">war.gov</a></li>
+        <li><a href="../aaro-mirror/index.html">AARO</a></li>
+        <li><a href="../nara-mirror/index.html">NARA</a></li>
       </ul>
     </nav>
   </div>
@@ -510,6 +529,17 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
 <script id="arch-data" type="application/json">__DATA__</script>
 <script>
 (() => {
+  const navToggle = document.getElementById('nav-toggle');
+  const primaryNav = document.getElementById('primary-nav');
+  if (navToggle && primaryNav) {
+    navToggle.addEventListener('click', () => {
+      const open = primaryNav.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    primaryNav.addEventListener('click', e => {
+      if (e.target.tagName === 'A') { primaryNav.classList.remove('open'); navToggle.setAttribute('aria-expanded', 'false'); }
+    });
+  }
   const D = JSON.parse(document.getElementById('arch-data').textContent);
   const items = D.assets;
   const CAR = D.carousel;
@@ -603,15 +633,14 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
   }
   function actionsFor(a) {
     const out = [];
-    if (a.l) {
-      out.push(`<a href="#" data-action="open" data-title="${esc(a.ti)}">${a.t==='PDF'?'Open PDF':'View'}</a>`);
-      out.push(`<a href="./${esc(a.l)}" download>Download</a>`);
-    } else if (a.embed) {
-      out.push(`<a href="#" data-action="open" data-title="${esc(a.ti)}">▶ Play</a>`);
-    } else if (a.u) {
-      out.push(`<a href="#" data-action="open" data-title="${esc(a.ti)}">Open</a>`);
+    const verb = a.t==='PDF'?'Open PDF': a.embed?'▶ Play': a.t==='IMG'?'View':'Open';
+    if (a.l || a.u || a.embed) {
+      out.push(`<a href="#" data-action="open" data-title="${esc(a.ti)}">${verb}</a>`);
+      const dl = a.l ? './' + a.l : a.u;
+      if (dl && !a.embed) out.push(`<a href="${esc(dl)}" ${a.l?'download':'target="_blank" rel="noopener"'}>Download</a>`);
     }
-    if (a.u) out.push(`<a class="warn" href="${esc(a.u)}" target="_blank" rel="noopener">Source ↗</a>`);
+    const src = a.s || a.u;
+    if (src) out.push(`<a class="warn" href="${esc(src)}" target="_blank" rel="noopener">Source ↗</a>`);
     return `<div class="card-actions">${out.join('')}</div>`;
   }
   function cardHtml(a, gidx) {
@@ -672,8 +701,14 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
     } else if (a.t === 'VID' && a.embed) {
       html = `<iframe src="${esc(a.embed)}?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>${meta}`;
     } else if (a.t === 'PDF') {
-      const src = a.l ? './' + a.l : a.u;
-      html = `<iframe src="${esc(src)}#view=FitH"></iframe><div class="lb-meta">${esc(title)} — <a href="${esc(src)}" target="_blank">open in new tab ↗</a></div>`;
+      // Inline iframe only works for local PDFs; GitHub Release URLs serve
+      // with attachment disposition so they download instead of rendering.
+      if (a.l) {
+        const src = './' + a.l;
+        html = `<iframe src="${esc(src)}#view=FitH"></iframe><div class="lb-meta">${esc(title)} — <a href="${esc(src)}" target="_blank">open in new tab ↗</a></div>`;
+      } else if (a.u) {
+        window.open(a.u, '_blank'); closeLb(); return;
+      }
     } else {
       window.open(a.l ? './' + a.l : a.u, '_blank'); closeLb(); return;
     }
