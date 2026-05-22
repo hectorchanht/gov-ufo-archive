@@ -50,6 +50,12 @@ CASE_PAGES = [
     'aaro/stephenville.html',
     'nara/lubbock-lights.html',
     'nara/mantell.html',
+    'nara/chiles-whitted.html',
+    'nara/levelland.html',
+    'nara/mcminnville.html',
+    'canada/shag-harbour.html',
+    'canada/falcon-lake.html',
+    'uk/cosford.html',
 ]
 
 

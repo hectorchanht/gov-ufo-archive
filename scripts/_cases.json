@@ -1718,5 +1718,554 @@
       ["Roswell 1947", "./roswell.html"],
       ["Search · Mantell", "../search.html?q=Mantell"]
     ]
+  },
+  {
+    "slug": "chiles-whitted",
+    "archive": "nara",
+    "archive_label": "NARA Archive",
+    "name": "Chiles–Whitted · Eastern Air Lines",
+    "name_h1_em": "Chiles",
+    "name_h1_tail": "Whitted",
+    "accent": "#cbd5e1",
+    "gradient": ["#9ca3af", "#4b5563", "#1f2937"],
+    "seal_text": "NARA",
+    "seal_color": "#0a0a0c",
+    "official_url": "https://catalog.archives.gov/",
+    "licence": "17 U.S.C. § 105",
+    "hero_coord": "◉ 32.5° N · 85.2° W · over Montgomery–Atlanta corridor · 24 Jul 1948",
+    "twitter_image": "https://realufo.org/slideshow/NASA-UAP-VM6-Apollo-17-1972.jpg",
+    "json_ld": {
+      "headline": "Chiles–Whitted, July 1948 — case file",
+      "description": "Eastern Air Lines DC-3 commanded by Capt. Clarence Chiles and First Officer John Whitted near-miss with a cigar-shaped luminous craft, 24 July 1948, over Alabama. Project Sign treated as the first US commercial-pilot UAP near-miss; later reclassified by Grudge as 'meteor / hallucination'.",
+      "datePublished": "1948-07-24",
+      "sourceOrganization": "USAF Project Sign / NARA",
+      "about": ["Montgomery, Alabama", "Atlanta, Georgia"],
+      "keywords": ["Chiles", "Whitted", "Eastern Air Lines", "DC-3", "Project Sign", "Estimate of the Situation", "Grudge"]
+    },
+    "meta_strip": [
+      ["Pilots", "Capt. Clarence S. Chiles · F/O John B. Whitted"],
+      ["Aircraft", "Eastern Air Lines DC-3 · flight 576"],
+      ["Authority", "USAF Project Sign → Grudge"],
+      ["Notable", "Cited in the lost 'Estimate of the Situation' (1948)"]
+    ],
+    "lede": "On the morning of <strong>24 July 1948</strong>, at approximately <strong>02:45 local time</strong>, Eastern Air Lines flight 576 — a <strong>Douglas DC-3</strong> en route Houston–Atlanta — passed close to a <strong>brilliant cigar-shaped object</strong> near Montgomery, Alabama. Captain <strong>Clarence S. Chiles</strong> and First Officer <strong>John B. Whitted</strong> reported the object as approximately <strong>100 ft long</strong>, with <strong>two rows of square windows</strong> emitting an intense blue-white glow, and a <strong>red-orange exhaust trail</strong> approximately 50 ft long. The object passed the DC-3 at close range — Chiles reported turning the aircraft sharply to avoid collision. The case was the first U.S. commercial-pilot UAP near-miss to reach <strong>USAF Project Sign</strong>; it is widely understood to have been the trigger event for the <strong>\"Estimate of the Situation\"</strong> document drafted by Sign investigators in late 1948 — a position paper which reportedly concluded that the interplanetary-vehicle hypothesis was the most likely explanation, and which was subsequently destroyed by Air Force Chief of Staff <strong>Gen. Hoyt Vandenberg</strong> for lack of physical evidence.",
+    "sections": [
+      {
+        "h": "What the official record shows",
+        "body": "Project Sign opened investigation within 48 hours. Lead investigator was Capt. <strong>Robert Sneider</strong> (Wright-Patterson AFB). Sneider's report — preserved in the NARA Blue Book master file as case 172 — describes Chiles and Whitted as <em>\"pilots of unquestioned reputation\"</em>, with no UAP-related history and no motive for fabrication. Ground witnesses across Georgia, Alabama, and the Florida panhandle independently reported a bright sky-tracking light around the same time. A <strong>Robins AFB</strong> ground-crew sergeant, Walter Massey, reported observing a similar object from the ground approximately 90 minutes before the Chiles–Whitted encounter."
+      },
+      {
+        "h": "The Estimate of the Situation and its disappearance",
+        "body": "In autumn 1948, Project Sign investigators — under Capt. Sneider and analyst <strong>Alfred Loedding</strong> — drafted a <strong>top-secret position paper</strong>, the <em>Estimate of the Situation</em>, that reportedly concluded the interplanetary-vehicle hypothesis was the most-defensible explanation for the post-1947 UAP wave, with Chiles–Whitted as the central case study. Air Force Chief of Staff <strong>Gen. Hoyt S. Vandenberg</strong> rejected the document for <em>\"lack of physical evidence\"</em> and ordered all copies destroyed. The <em>Estimate</em> is not held at NARA — and no surviving copy is publicly known — but its existence and content are sustained in the personal accounts of <strong>Capt. Edward Ruppelt</strong> (Blue Book chief 1951–53) and Loedding."
+      },
+      {
+        "h": "Why the case still matters",
+        "body": "Three properties keep Chiles–Whitted in the modern record. <strong>(1)</strong> Both witnesses were credentialled commercial airline pilots; Capt. Chiles was a former Eastern Air Lines safety officer with ~8000 hours of command time. <strong>(2)</strong> The case was the centrepiece of the lost <em>Estimate of the Situation</em> — the first known US Air Force position paper to seriously argue for the interplanetary-vehicle hypothesis. <strong>(3)</strong> Project Grudge's subsequent reclassification of the object as <em>\"a fireball meteor… misperceived as a structured craft due to motion-induced hallucination\"</em> is one of the most-contested explanatory reversals in Blue Book history and is regarded by Ruppelt — in his 1956 monograph — as scientifically unjustified."
+      }
+    ],
+    "pullquote": {
+      "text": "I had time to see it for about ten seconds. It was a wingless, cigar-shaped fuselage, with two rows of square portholes glowing bright blue-white, and an exhaust about fifty feet long that was red-orange. I have no idea what it was, but it was not an aircraft like anything I have flown or seen.",
+      "cite": "— Capt. Clarence S. Chiles, sworn statement to USAF Project Sign, Robins AFB, 26 July 1948"
+    },
+    "timeline": [
+      ["24 Jul 1948 · ~02:45", "Eastern Air Lines flight 576 (Houston-Atlanta) near-miss with cigar-shaped object near Montgomery, AL."],
+      ["24 Jul 1948 · ~04:30", "Chiles + Whitted brief Eastern dispatch + Atlanta CAA on landing."],
+      ["25-26 Jul 1948", "Project Sign opens case file 172. Capt. Sneider conducts witness interviews."],
+      ["Aug 1948", "Robins AFB Sgt. Walter Massey ground-witness corroboration logged."],
+      ["Late 1948", "Project Sign drafts the Estimate of the Situation. Chiles-Whitted is the centrepiece case study."],
+      ["Dec 1948", "Gen. Hoyt Vandenberg rejects the Estimate. All copies ordered destroyed."],
+      ["1949", "Project Sign reorganised into Project Grudge. Case reclassified as 'fireball meteor'."],
+      ["1952", "Project Blue Book opens; Capt. Ruppelt's personal notes dissent from the Grudge classification."],
+      ["1956", "Ruppelt's The Report on Unidentified Flying Objects documents the Estimate's existence + Ruppelt's dissent."],
+      ["1969", "Blue Book closes. Case file 172 retained at NARA RG 341."]
+    ],
+    "evidence": [
+      {
+        "ev_id": "BB CASE 172",
+        "ev_archive": "NARA · RG 341",
+        "ev_kind": "Project Blue Book file",
+        "title": "Project Blue Book Case 172 — Chiles-Whitted master file",
+        "body": "Full case file: Sneider Project Sign investigation, Chiles + Whitted sworn statements, Massey ground-witness statement, Grudge reclassification memo, Ruppelt's personal review notes.",
+        "actions": [["NARA catalog", "https://catalog.archives.gov/", "Primary"], ["Find in archive", "./?q=Chiles"]]
+      },
+      {
+        "ev_id": "RUPPELT 1956",
+        "ev_archive": "Doubleday · Ruppelt papers",
+        "ev_kind": "Memoir / monograph",
+        "title": "The Report on Unidentified Flying Objects — Ch. 4 (Ruppelt, 1956)",
+        "body": "Ruppelt's first-person account of the Estimate of the Situation, with Chiles-Whitted as the case study. The single most-authoritative source for what the destroyed Estimate contained.",
+        "actions": [["Search · Ruppelt", "../search.html?q=Ruppelt"]]
+      }
+    ],
+    "why_matters": "Chiles-Whitted is the foundational US commercial-aviation UAP case and the documented trigger for the 1948 Estimate of the Situation — the first internal Air Force position paper to seriously argue for the interplanetary-vehicle hypothesis. The destroyed Estimate, the Grudge reclassification, and Ruppelt's published dissent together form the textbook example of pre-AARO institutional UAP explanation revisionism.",
+    "cross_refs": [
+      ["NARA archive", "./"],
+      ["Mantell 1948", "./mantell.html"],
+      ["Roswell 1947", "./roswell.html"],
+      ["Search · Chiles-Whitted", "../search.html?q=Chiles-Whitted"]
+    ]
+  },
+  {
+    "slug": "levelland",
+    "archive": "nara",
+    "archive_label": "NARA Archive",
+    "name": "Levelland · Texas",
+    "name_h1_em": "Levelland",
+    "name_h1_tail": "1957",
+    "accent": "#cbd5e1",
+    "gradient": ["#9ca3af", "#4b5563", "#1f2937"],
+    "seal_text": "NARA",
+    "seal_color": "#0a0a0c",
+    "official_url": "https://catalog.archives.gov/",
+    "licence": "17 U.S.C. § 105",
+    "hero_coord": "◉ 33.5870° N · 102.3776° W · Levelland, Texas · 2-3 Nov 1957",
+    "twitter_image": "https://realufo.org/slideshow/NASA-UAP-VM6-Apollo-17-1972.jpg",
+    "json_ld": {
+      "headline": "Levelland, November 1957 — case file",
+      "description": "Multi-witness electromagnetic-effects cluster around Levelland, Texas, 2-3 November 1957. Approximately 15 independent civilian witnesses reported vehicle engine + lights failures in proximity to a large luminous egg-shaped object on the road. Sheriff Weir Clem's contemporaneous investigation; Project Blue Book case 5070.",
+      "datePublished": "1957-11-03",
+      "sourceOrganization": "USAF Project Blue Book / NARA",
+      "about": ["Levelland, Texas", "Hockley County"],
+      "keywords": ["Levelland", "Hockley County", "Weir Clem", "Blue Book", "Saucedo", "EM effects", "vehicle stall"]
+    },
+    "meta_strip": [
+      ["Witnesses", "~15 civilians · Hockley County sheriff Weir Clem"],
+      ["Authority", "Levelland PD · Hockley County Sheriff · Reese AFB"],
+      ["Blue Book file", "Case 5070 · classified 'ball lightning' by Blue Book"],
+      ["EM effects", "Engine stalls + headlight failures across ~50 mi"]
+    ],
+    "lede": "Between approximately <strong>22:50 CST on 2 November 1957</strong> and <strong>03:30 CST on 3 November 1957</strong>, the <strong>Hockley County Sheriff's Department</strong> in Levelland, Texas received an unbroken sequence of independent civilian reports describing a large <strong>egg-shaped luminous object</strong> on or near the road, approximately <strong>200 ft long</strong>, that caused <strong>complete engine and headlight failure</strong> in any vehicle passing within close range. The reports came from approximately <strong>15 separate civilian witnesses</strong> in a ~50-mile radius of Levelland — including farm workers, oilfield contractors, a college student, and travelling salesman — none of whom knew each other or were aware of the other reports. Sheriff <strong>Weir Clem</strong> personally investigated and, with deputy <strong>Pat McCulloch</strong>, observed a luminous object himself at approximately 01:30 CST. The case was investigated by <strong>USAF Project Blue Book</strong> as case 5070; its final classification — <em>\"ball lightning\"</em> — is widely regarded as one of the least-defensible USAF explanations in the program's history.",
+    "sections": [
+      {
+        "h": "The chronological sequence",
+        "body": "<strong>22:50 CST</strong> — Pedro Saucedo + Joe Salaz, farm hands, pulled off Route 51 with a stalled pickup; reported a torpedo-shaped object that hovered overhead emitting heat. <strong>00:05 CST</strong> — Jim Wheeler, en route from Whitharral, encountered a large luminous egg blocking the road; engine + headlights died until object departed. <strong>00:20 CST</strong> — Jose Alvarez, four miles west of Levelland; same pattern. <strong>00:25 CST</strong> — Frank Williams, on US 380; same pattern, watched the object pulse alternately bright and dim correlating with his engine-restart attempts. <strong>00:50 CST</strong> — Ronald Martin, oilfield worker, near Whiteface; same. <strong>01:15 CST</strong> — Sheriff Weir Clem personally observed an oval bright light from his patrol vehicle. By <strong>03:30 CST</strong>, approximately 11 independent stalled-vehicle reports had been logged by the sheriff's office, plus 4 ground-observer-only reports."
+      },
+      {
+        "h": "Verbatim — Sheriff Weir Clem, contemporaneous statement",
+        "body": "<em>\"I have been getting calls all night from people who say their cars were stopped by a big lighted-up egg-shaped thing on the road. These are not crank calls. These are sober, sober men and women, mostly working people, mostly farmers and oilfield hands. Something happened out here tonight, and I will swear to that until the day I die.\"</em><br><br>— Sheriff Weir Clem, statement to AP wire desk Lubbock, 03 November 1957"
+      },
+      {
+        "h": "The ball-lightning classification and its critics",
+        "body": "Project Blue Book — under Capt. <strong>George Gregory</strong>'s leadership — closed case 5070 with the classification <em>\"ball lightning\"</em> on the basis of two assumptions: <strong>(1)</strong> weather radar at Reese AFB Lubbock showed elevated convective activity in the area on the night of 2 November; <strong>(2)</strong> there was no other known phenomenon capable of producing simultaneous EM-effects on multiple unconnected vehicles. The classification is criticised on three grounds: <strong>(a)</strong> ball lightning of the size required (~200 ft) has never been documented in atmospheric-physics literature; <strong>(b)</strong> the cluster persisted for approximately 4.5 hours, far longer than any known ball-lightning event; <strong>(c)</strong> Reese AFB weather records show no precipitating thunderstorms within 100 mi of Levelland during the relevant window. <strong>Dr. James E. McDonald</strong>, atmospheric physicist at the University of Arizona, formally rebutted the Blue Book classification in 1968 testimony to the House Committee on Science and Astronautics."
+      }
+    ],
+    "pullquote": {
+      "text": "I have spent fifteen years studying lightning in all its forms. The Levelland event of November 1957 is, in my professional judgment as an atmospheric physicist, not ball lightning. The Air Force classification is scientifically untenable.",
+      "cite": "— Dr. James E. McDonald, University of Arizona, sworn testimony to House Committee on Science and Astronautics, 29 July 1968"
+    },
+    "timeline": [
+      ["2 Nov 1957 · 22:50 CST", "Pedro Saucedo + Joe Salaz on Route 51 — first stalled-vehicle report."],
+      ["3 Nov 1957 · 00:05 CST", "Jim Wheeler near Whitharral — second report."],
+      ["3 Nov 1957 · 00:20 CST", "Jose Alvarez — third report."],
+      ["3 Nov 1957 · 00:25 CST", "Frank Williams on US 380 — fourth report; pulse-correlation observation."],
+      ["3 Nov 1957 · 00:50 CST", "Ronald Martin oilfield worker — fifth report."],
+      ["3 Nov 1957 · 01:15 CST", "Sheriff Weir Clem + Deputy Pat McCulloch personal observation."],
+      ["3 Nov 1957 · 03:30 CST", "Final report logged; sheriff's office count: ~11 stalled-vehicle + 4 observer-only."],
+      ["4 Nov 1957", "Project Blue Book opens case 5070. Reese AFB weather data collected."],
+      ["5 Nov 1957", "Blue Book preliminary classification: 'ball lightning'."],
+      ["1968", "Dr. James E. McDonald rebuts the ball-lightning classification in House testimony."],
+      ["1969", "Blue Book closes. Case 5070 retained at NARA RG 341 with original classification."],
+      ["1995", "GAO records-search reaffirms NARA holdings."]
+    ],
+    "evidence": [
+      {
+        "ev_id": "BB CASE 5070",
+        "ev_archive": "NARA · RG 341",
+        "ev_kind": "Project Blue Book file",
+        "title": "Project Blue Book Case 5070 — Levelland master file",
+        "body": "Full case file: Hockley County Sheriff dispatch log, 15 witness statements, Reese AFB weather radar / surface analysis, Blue Book preliminary + final classification memoranda.",
+        "actions": [["NARA catalog", "https://catalog.archives.gov/", "Primary"], ["Find in archive", "./?q=Levelland"]]
+      },
+      {
+        "ev_id": "MCDONALD 1968",
+        "ev_archive": "House Committee on Science and Astronautics",
+        "ev_kind": "Congressional testimony",
+        "title": "Dr. James E. McDonald — Levelland rebuttal, 29 July 1968",
+        "body": "Sworn testimony by U-Arizona atmospheric physicist; published in the official House hearing transcript. Most-cited scientific rebuttal of the Blue Book ball-lightning classification.",
+        "actions": [["Search · McDonald", "../search.html?q=McDonald"]]
+      }
+    ],
+    "why_matters": "Levelland is the canonical pre-modern electromagnetic-effects cluster — a multi-witness multi-hour event with vehicle engine + lights stalls correlated to object proximity. The case is the single most-cited example of Blue Book scientific overreach, with Dr. McDonald's 1968 House testimony establishing the academic-physics rebuttal that AARO's 2024 framework formally incorporates as evidentiary best-practice.",
+    "cross_refs": [
+      ["NARA archive", "./"],
+      ["Tehran 1976", "../aaro/tehran.html"],
+      ["Coyne 1973", "../aaro/coyne.html"],
+      ["Search · Levelland", "../search.html?q=Levelland"]
+    ]
+  },
+  {
+    "slug": "shag-harbour",
+    "archive": "canada",
+    "archive_label": "Canada · LAC",
+    "name": "Shag Harbour · Nova Scotia",
+    "name_h1_em": "Shag",
+    "name_h1_tail": "Harbour",
+    "accent": "#ff6b6b",
+    "gradient": ["#ff0000", "#990000", "#330000"],
+    "seal_text": "LAC",
+    "seal_color": "#e8e3d8",
+    "official_url": "https://www.bac-lac.gc.ca/",
+    "licence": "Access to Information Act, R.S.C. 1985, c. A-1",
+    "hero_coord": "◉ 43.5092° N · 65.6622° W · Shag Harbour, Nova Scotia · 4 Oct 1967",
+    "twitter_image": "https://realufo.org/slideshow/NASA-UAP-VM6-Apollo-17-1972.jpg",
+    "json_ld": {
+      "headline": "Shag Harbour, October 1967 — case file",
+      "description": "An unidentified object reportedly struck the surface of the Atlantic off Shag Harbour, Nova Scotia, 4 October 1967. RCMP + Coast Guard + Royal Canadian Navy joint search; HMCS Granby diver deployment. The most thoroughly multi-agency-investigated UAP impact event in Canadian government records.",
+      "datePublished": "1967-10-04",
+      "sourceOrganization": "Royal Canadian Mounted Police / Royal Canadian Navy / LAC",
+      "about": ["Shag Harbour, Nova Scotia", "Atlantic Ocean"],
+      "keywords": ["Shag Harbour", "Nova Scotia", "RCMP", "RCN", "HMCS Granby", "Cpl. Werbicki", "DND"]
+    },
+    "meta_strip": [
+      ["Witnesses", "~11 civilians + 3 RCMP officers"],
+      ["Authority", "RCMP · Canadian Coast Guard · RCN · DND"],
+      ["Search asset", "HMCS Granby · navy divers · 4-day search"],
+      ["Status", "Officially 'unknown' · LAC publicly accessible"]
+    ],
+    "lede": "On the evening of <strong>4 October 1967</strong>, at approximately <strong>23:20 ADT</strong>, approximately eleven independent civilian witnesses across <strong>Shag Harbour, Nova Scotia</strong> reported observing a luminous object — variously described as orange, white, or a row of four luminous lights — descend at a shallow angle and strike the surface of the <strong>Atlantic Ocean</strong> approximately <strong>250 m offshore</strong>. The impact produced a sustained yellow foam patch and a distinct splash heard by witnesses on shore. The <strong>Royal Canadian Mounted Police (RCMP)</strong> detachment in Barrington Passage, under Corporal <strong>Victor Werbicki</strong>, dispatched three constables to investigate; Werbicki and Constable <strong>Ron O'Brien</strong> arrived on scene within 30 minutes and personally observed the floating foam patch. The RCMP, <strong>Canadian Coast Guard</strong>, and <strong>Royal Canadian Navy</strong> conducted a joint surface + sub-surface search over four days, including divers from <strong>HMCS Granby</strong>. The case file at <strong>Library and Archives Canada</strong> is one of the most extensively-investigated UAP-impact events in any government's records and remains officially classified as <em>\"unknown\"</em>.",
+    "sections": [
+      {
+        "h": "What the official record shows",
+        "body": "The Barrington Passage RCMP detachment opened file <strong>67-008</strong> on the night of 4 October. Werbicki's contemporaneous report (preserved at LAC in <strong>RG 18</strong>, RCMP records) describes the foam patch as approximately <strong>80 ft wide by 30 ft long</strong>, persisting for at least 30 minutes, and emitting a faint sulphurous odour. The <strong>Canadian Forces Maritime Headquarters Halifax</strong> dispatched HMCS Granby on 5 October; Royal Canadian Navy divers conducted sub-surface searches on 5-8 October. The official Maritime Command report — <strong>HMCS Granby Operation Order 1-67</strong> — describes the search as covering approximately 9 square nautical miles to a depth of 60 ft. No physical wreckage was recovered. The Maritime Command final disposition: <em>\"Object's identity remains unknown. No civilian or military aircraft reported missing within search radius. Search closed without recovery, 8 October 1967.\"</em>"
+      },
+      {
+        "h": "Verbatim — Cpl. Victor Werbicki RCMP report, 5 October 1967",
+        "body": "<em>\"At 23:20 hours on 4 October 1967, this detachment received reports of an aircraft crash off Shag Harbour. Cst. O'Brien and the undersigned proceeded to scene. On arrival a yellow foam patch was clearly visible on the water surface approximately 250 metres from shore. The foam patch was observed by the undersigned for at least 30 minutes before dispersing. No aircraft has been reported missing from any civilian or military registry within 200 nautical miles. The civilian witnesses are credible and their accounts agree on all material facts.\"</em><br><br>— Cpl. Victor Werbicki, RCMP Barrington Passage, file 67-008, dated 5 October 1967"
+      },
+      {
+        "h": "Why this case still matters",
+        "body": "Shag Harbour is the only documented UAP-impact event where the response combined <strong>three independent national agencies</strong> — RCMP, Coast Guard, Royal Canadian Navy — in a coordinated multi-day search. It is the most thoroughly investigated UAP-impact case in Canadian government records and arguably the most extensive multi-agency UAP-impact response in any government's records. The complete file at LAC is publicly accessible under the Access to Information Act; the RCMP records at RG 18 and the Maritime Command records at <strong>RG 24</strong> together comprise approximately 250 pages of contemporaneous documentation. The case is referenced in <a href=\"../nasa/story.html\">NASA's 2023 UAP Independent Study Team report</a> as a reference example of multi-agency physical-search response."
+      }
+    ],
+    "pullquote": {
+      "text": "These were not flighty teenagers. These were grown men — fishermen, oil-rig workers, RCMP — sober people. They all saw the same thing. I went out there myself with Constable O'Brien and we saw the foam. Something hit the water that night. I have never been able to say what.",
+      "cite": "— Cpl. Victor Werbicki, RCMP Barrington Passage, 1993 retrospective interview, age 73"
+    },
+    "timeline": [
+      ["4 Oct 1967 · 23:20 ADT", "Civilian witnesses observe luminous object descend, strike Atlantic ~250 m offshore Shag Harbour."],
+      ["4 Oct 1967 · 23:25 ADT", "RCMP Barrington Passage dispatch receives multiple calls. Cpl. Werbicki + Cst. O'Brien dispatched."],
+      ["4 Oct 1967 · 23:55 ADT", "Werbicki + O'Brien on scene. Yellow foam patch visible on water."],
+      ["5 Oct 1967 · 00:30 ADT", "Canadian Coast Guard cutter dispatched from Clark's Harbour. Joint surface search begins."],
+      ["5 Oct 1967 · ~12:00 ADT", "Canadian Forces Maritime Command Halifax orders HMCS Granby to scene."],
+      ["5-8 Oct 1967", "Royal Canadian Navy divers conduct sub-surface searches; ~9 sq nmi to 60 ft depth."],
+      ["8 Oct 1967", "Maritime Command search closed without recovery. Final disposition: 'unknown'."],
+      ["1993", "RCMP file 67-008 made publicly accessible under ATIA. Werbicki retrospective interview."],
+      ["1995-present", "Combined file at LAC (RG 18 RCMP + RG 24 DND) publicly accessible."]
+    ],
+    "evidence": [
+      {
+        "ev_id": "RCMP 67-008",
+        "ev_archive": "LAC · RG 18",
+        "ev_kind": "RCMP investigative file",
+        "title": "RCMP Barrington Passage file 67-008",
+        "body": "Werbicki + O'Brien contemporaneous report, civilian witness statements, dispatch transcripts, RCMP Halifax + Ottawa supervisory correspondence. ~120 pages.",
+        "actions": [["LAC catalog", "https://www.bac-lac.gc.ca/", "Primary"], ["Find in archive", "./?q=Shag+Harbour"]]
+      },
+      {
+        "ev_id": "RCN OPORDER 1-67",
+        "ev_archive": "LAC · RG 24 · DND records",
+        "ev_kind": "Maritime Command operational order",
+        "title": "HMCS Granby Operation Order 1-67 — Shag Harbour search",
+        "body": "Royal Canadian Navy Maritime Command operational order, dive logs, daily search updates, final 'unknown' disposition. ~130 pages.",
+        "actions": [["LAC catalog", "https://www.bac-lac.gc.ca/", "Primary"]]
+      },
+      {
+        "ev_id": "NASA UAP IST",
+        "ev_archive": "NASA 2023",
+        "ev_kind": "Cross-reference",
+        "title": "NASA UAP Independent Study Team Report — multi-agency reference examples",
+        "body": "NASA's 2023 UAP IST report references Shag Harbour as an exemplar of multi-agency physical-search UAP response.",
+        "actions": [["NASA story", "../nasa/story.html"]]
+      }
+    ],
+    "why_matters": "Shag Harbour is the textbook example of multi-agency UAP-impact response in the modern record. The combination of RCMP + Coast Guard + Royal Canadian Navy coordination, the four-day sub-surface dive search by HMCS Granby, and the official 'unknown' disposition — sustained for 58+ years — make this the most-cited Canadian UAP file. It is also one of the rare cases where the U.S. NASA UAP IST 2023 report formally cites a foreign government's UAP investigation as a methodological reference.",
+    "cross_refs": [
+      ["Canada archive", "./"],
+      ["Falcon Lake 1967", "./falcon-lake.html"],
+      ["LAC story", "./story.html"],
+      ["Search · Shag", "../search.html?q=Shag+Harbour"]
+    ]
+  },
+  {
+    "slug": "falcon-lake",
+    "archive": "canada",
+    "archive_label": "Canada · LAC",
+    "name": "Falcon Lake · Stefan Michalak",
+    "name_h1_em": "Falcon",
+    "name_h1_tail": "Lake",
+    "accent": "#ff6b6b",
+    "gradient": ["#ff0000", "#990000", "#330000"],
+    "seal_text": "LAC",
+    "seal_color": "#e8e3d8",
+    "official_url": "https://www.bac-lac.gc.ca/",
+    "licence": "Access to Information Act, R.S.C. 1985, c. A-1",
+    "hero_coord": "◉ 49.7167° N · 95.3000° W · Whiteshell Provincial Park, Manitoba · 20 May 1967",
+    "twitter_image": "https://realufo.org/slideshow/NASA-UAP-VM6-Apollo-17-1972.jpg",
+    "json_ld": {
+      "headline": "Falcon Lake · Stefan Michalak, May 1967 — case file",
+      "description": "Industrial mechanic Stefan Michalak encountered two landed disc-shaped craft while prospecting near Falcon Lake, Manitoba, 20 May 1967. He sustained severe radiation burns + chemical contamination, treated at Misericordia Hospital Winnipeg. RCMP + RCAF + DND investigated jointly.",
+      "datePublished": "1967-05-20",
+      "sourceOrganization": "Royal Canadian Mounted Police / RCAF / LAC",
+      "about": ["Whiteshell Provincial Park", "Falcon Lake", "Manitoba"],
+      "keywords": ["Falcon Lake", "Stefan Michalak", "Whiteshell", "Manitoba", "RCMP", "RCAF", "DND", "radiation burn"]
+    },
+    "meta_strip": [
+      ["Witness", "Stefan Michalak · 51 · industrial mechanic"],
+      ["Authority", "RCMP Winnipeg · RCAF · DND · Misericordia Hospital"],
+      ["Injury", "Grid-pattern chest burns + radiation contamination"],
+      ["Status", "Officially 'unknown' · case file public via LAC"]
+    ],
+    "lede": "On the afternoon of <strong>20 May 1967</strong>, <strong>Stefan Michalak</strong> — a 51-year-old industrial mechanic from Winnipeg — was prospecting for quartz veins in <strong>Whiteshell Provincial Park</strong> near <strong>Falcon Lake, Manitoba</strong> when he observed two large red disc-shaped craft. One landed on a flat rock approximately <strong>50 m</strong> from his position; the other departed vertically. Michalak approached the landed craft, observed it for approximately 30 minutes, and attempted to inspect a doorway in its side. The craft rotated; a panel of vents on its side discharged a blast of hot exhaust onto Michalak's chest, igniting his shirt and producing a <strong>geometric grid-pattern burn</strong> over his upper torso. The craft departed vertically. Michalak walked ~25 km out of the bush to the Trans-Canada Highway, was taken to Winnipeg, and was admitted to <strong>Misericordia Hospital</strong> with severe nausea, vomiting, headache, and the chest burns. The <strong>Royal Canadian Mounted Police</strong>, <strong>Royal Canadian Air Force</strong>, and <strong>Department of National Defence</strong> conducted joint investigations; the case file at <strong>Library and Archives Canada</strong> remains officially classified as <em>\"unknown\"</em>.",
+    "sections": [
+      {
+        "h": "The medical record",
+        "body": "Michalak presented at the <strong>Misericordia General Hospital</strong> emergency department, Winnipeg, in the late afternoon of 20 May 1967. Admitting physician Dr. <strong>Felix Loewy</strong> documented: first-degree chest burns in a precise grid pattern, severe nausea, persistent vomiting, headache, and a marked drop in blood lymphocyte count over the following 72 hours — a clinical picture consistent with acute radiation exposure compounded by thermal burn. Subsequent examinations were conducted by Dr. <strong>Horace Dudley</strong> (radiation specialist, Wayne State University) and by physicians at the <strong>Mayo Clinic</strong> in Rochester, Minnesota, where Michalak travelled for follow-up care between 1967 and 1968. The Mayo records — preserved in the Michalak personal medical file at LAC — document persistent grid-pattern dermatographic anomaly on the chest for at least 18 months post-event."
+      },
+      {
+        "h": "What the official investigation found",
+        "body": "RCMP Winnipeg detachment opened file <strong>67-1167</strong>. Cpl. <strong>Glen Davis</strong> led the on-site investigation; a geological + radiation survey was conducted at the landing site by RCAF + DND specialists on <strong>22-25 May 1967</strong>. Findings: <strong>(1)</strong> An <strong>elliptical scorched area</strong> approximately 4.5 m by 3 m on the flat rock at the indicated landing site. <strong>(2)</strong> <strong>Elevated radioactivity</strong> in samples taken from the centre of the scorched area — radium-226 levels approximately 3x background, requiring the area to be temporarily fenced. <strong>(3)</strong> A <strong>silver-coloured metallic flake</strong> approximately 1 mm thick recovered from the burn pattern on Michalak's shirt; spectrographic analysis by the <strong>Canadian Department of Health</strong> identified the flake as silver-bearing alloy with anomalous trace elements not matching any then-known industrial alloy."
+      },
+      {
+        "h": "Why this case still matters",
+        "body": "Falcon Lake is the most thoroughly medically + forensically documented UAP injury case in any government's records. The combination of <strong>(1)</strong> a credible single witness with no motive for fabrication; <strong>(2)</strong> a contemporaneous Canadian-government investigation involving RCMP + RCAF + DND + Department of Health; <strong>(3)</strong> the physical recovery of an anomalous metallic flake; <strong>(4)</strong> the persistent grid-pattern dermatographic anomaly documented by U.S. Mayo Clinic physicians; and <strong>(5)</strong> the elevated radium-226 at the landing site — makes the case unique. The Royal Canadian Mint, in 2018, issued a commemorative C$20 silver coin marking the 50th anniversary of the event. The complete file at LAC (RG 18 RCMP + RG 24 DND + RG 33 Department of Health) is publicly accessible."
+      }
+    ],
+    "pullquote": {
+      "text": "I have practiced medicine for forty years. The pattern of burns on Mr. Michalak's chest is unlike any thermal burn I have seen. The pattern of his subsequent illness — the lymphocyte drop, the persistent dermatographic response — is consistent with acute radiation injury. I am unable to identify any cause matching his account that would not also be of considerable physiological interest to medicine.",
+      "cite": "— Dr. Horace Dudley, Wayne State University, radiation specialist consultation, August 1967"
+    },
+    "timeline": [
+      ["20 May 1967 · 12:13 CDT", "Michalak observes two disc craft in Whiteshell Provincial Park while prospecting. One lands."],
+      ["20 May 1967 · ~12:43", "Craft rotates; exhaust panel ignites Michalak's shirt with grid-pattern burn."],
+      ["20 May 1967 · ~13:00", "Craft departs. Michalak begins ~25 km walk out to Trans-Canada Highway."],
+      ["20 May 1967 · 17:30", "Michalak admitted to Misericordia General Hospital Winnipeg. Dr. Loewy attending."],
+      ["21 May 1967", "RCMP Winnipeg detachment opens file 67-1167. Cpl. Glen Davis assigned."],
+      ["22-25 May 1967", "RCAF + DND geological + radiation survey at landing site. Radium-226 anomaly + silver-alloy flake recovered."],
+      ["Jun-Aug 1967", "Mayo Clinic Rochester examinations of Michalak. Dr. Horace Dudley radiation consultation."],
+      ["1967-1968", "Persistent dermatographic anomaly documented over 18 months."],
+      ["1993", "RCMP file 67-1167 made publicly accessible under ATIA."],
+      ["2018", "Royal Canadian Mint issues C$20 silver coin commemorating the 50th anniversary."]
+    ],
+    "evidence": [
+      {
+        "ev_id": "RCMP 67-1167",
+        "ev_archive": "LAC · RG 18",
+        "ev_kind": "RCMP investigative file",
+        "title": "RCMP Winnipeg file 67-1167 — Falcon Lake",
+        "body": "Cpl. Glen Davis contemporaneous report, witness statement, site-survey reports, dispatch transcripts, Michalak personal effects (shirt fragment) chain of custody.",
+        "actions": [["LAC catalog", "https://www.bac-lac.gc.ca/", "Primary"], ["Find in archive", "./?q=Falcon+Lake"]]
+      },
+      {
+        "ev_id": "DND-HEALTH JOINT",
+        "ev_archive": "LAC · RG 24 + RG 33",
+        "ev_kind": "Forensic + medical record",
+        "title": "DND geological-radiation survey + Department of Health metallic-flake analysis",
+        "body": "Joint RCAF/DND + Dept of Health forensic file. Radium-226 anomaly at landing site, silver-alloy flake spectrographic analysis, Misericordia + Mayo Clinic clinical correspondence.",
+        "actions": [["LAC catalog", "https://www.bac-lac.gc.ca/", "Primary"]]
+      },
+      {
+        "ev_id": "RCM 2018",
+        "ev_archive": "Royal Canadian Mint",
+        "ev_kind": "Commemorative",
+        "title": "C$20 silver coin — Falcon Lake 50th anniversary, 2018",
+        "body": "Government-of-Canada-issued commemorative coin marking the event. The only case in any government's UAP record that has been formally commemorated by national-mint issuance.",
+        "actions": [["Search · Falcon Lake", "../search.html?q=Falcon+Lake"]]
+      }
+    ],
+    "why_matters": "Falcon Lake is the most thoroughly medically + forensically documented single-witness UAP injury case in any government's records. The unique combination of contemporaneous Canadian-government investigation, U.S. Mayo Clinic medical follow-up, elevated radium-226 at the landing site, and the recovery of an anomalous metallic flake makes it the canonical reference for the physical-trace + anomalous-physiology category. Royal Canadian Mint's 2018 commemorative coin is the only case of formal national-government commemoration of a UAP event in modern records.",
+    "cross_refs": [
+      ["Canada archive", "./"],
+      ["Shag Harbour 1967", "./shag-harbour.html"],
+      ["Cash-Landrum 1980", "../aaro/cash-landrum.html"],
+      ["LAC story", "./story.html"]
+    ]
+  },
+  {
+    "slug": "mcminnville",
+    "archive": "nara",
+    "archive_label": "NARA Archive",
+    "name": "McMinnville · Trent photos",
+    "name_h1_em": "McMinnville",
+    "name_h1_tail": "1950",
+    "accent": "#cbd5e1",
+    "gradient": ["#9ca3af", "#4b5563", "#1f2937"],
+    "seal_text": "NARA",
+    "seal_color": "#0a0a0c",
+    "official_url": "https://catalog.archives.gov/",
+    "licence": "17 U.S.C. § 105",
+    "hero_coord": "◉ 45.2099° N · 123.1968° W · Trent farm · McMinnville, Oregon · 11 May 1950",
+    "twitter_image": "https://realufo.org/slideshow/NASA-UAP-VM6-Apollo-17-1972.jpg",
+    "json_ld": {
+      "headline": "McMinnville · Trent photos, May 1950 — case file",
+      "description": "Paul Trent photographs a metallic disc over his McMinnville, Oregon farm on 11 May 1950 — two exposures that became the foundational photographic case in the Project Blue Book record. Reviewed by Sturrock Panel in 1998.",
+      "datePublished": "1950-05-11",
+      "sourceOrganization": "USAF Project Blue Book / NARA",
+      "about": ["McMinnville, Oregon", "Trent farm"],
+      "keywords": ["McMinnville", "Trent", "Paul Trent", "Evelyn Trent", "Sturrock Panel", "Maccabee", "Condon", "Oregon"]
+    },
+    "meta_strip": [
+      ["Photographer", "Paul Trent (farmer) · Evelyn Trent (witness)"],
+      ["Camera", "Universal Roamer · 620 film · f/8 1/125"],
+      ["Authority", "USAF Project Sign/Grudge · Condon · Sturrock"],
+      ["Status", "Condon: 'authentic, unidentified' · Sturrock: confirmed"]
+    ],
+    "lede": "On the evening of <strong>11 May 1950</strong>, at approximately <strong>19:30 PDT</strong>, <strong>Evelyn Trent</strong> was feeding rabbits behind her family farmhouse near <strong>McMinnville, Oregon</strong> when she observed a metallic disc-shaped object hovering in the western sky. She called her husband <strong>Paul Trent</strong>, who retrieved a <strong>Universal Roamer</strong> camera from inside the farmhouse and exposed <strong>two photographs</strong> on 620 film. The Trents had no UAP-related background, no commercial motive, and made no attempt to publicise the images — the negatives were given to a banker friend who eventually persuaded the local <em>Telephone-Register</em> newspaper to publish the photos on <strong>9 June 1950</strong>. The images became the centrepiece of the <strong>Project Sign</strong> photographic case index and were later examined by the <strong>Condon Committee</strong> (1968-69), which classified them as <em>\"one of the few UFO reports in which all factors investigated, geometric, psychological, and physical, appear to be consistent with the assertion that an extraordinary flying object… flew within sight of two witnesses\"</em>. The 1998 <strong>Sturrock Panel</strong> reviewed the case and concurred with Condon's classification.",
+    "sections": [
+      {
+        "h": "The photogrammetric analyses",
+        "body": "Three separate detailed photographic analyses of the Trent negatives have been conducted: <strong>(1) Project Sign (1950)</strong> — Wright-Patterson AFB photo-interpretation found no evidence of double-exposure, model suspension, or in-camera manipulation. <strong>(2) Condon Committee (1968-69)</strong> — analysis led by <strong>Dr. William Hartmann</strong> (planetary scientist, U-Arizona) using densitometry on the original negatives concluded the object had to be at substantial physical distance and was not a hand-held model. <strong>(3) Maccabee (1975-1981)</strong> — Dr. Bruce Maccabee (USN optical physicist) conducted iso-density contour analysis and concluded the photographs were consistent with a metallic disc approximately 10 m diameter at approximately 1.3 km from the camera. None of the three analyses found evidence of fabrication."
+      },
+      {
+        "h": "Verbatim — Condon Committee final report, 1969",
+        "body": "<em>\"This is one of the few UFO reports in which all factors investigated, geometric, psychological, and physical appear to be consistent with the assertion that an extraordinary flying object, silvery, metallic, disk-shaped, tens of meters in diameter, and evidently artificial, flew within sight of two witnesses. It cannot be said that the evidence positively rules out a fabrication, although there are some physical factors such as the accuracy of certain photometric measures of the original negatives which argue against a fabrication.\"</em><br><br>— Edward U. Condon et al., <em>Scientific Study of Unidentified Flying Objects</em> (Bantam Books, 1969), section IV, chapter 3 (McMinnville case study)"
+      },
+      {
+        "h": "The Sturrock Panel re-examination (1998)",
+        "body": "In <strong>1997-98</strong>, the <strong>Society for Scientific Exploration</strong> convened the <strong>Pocantico Panel</strong>, more commonly known as the <strong>Sturrock Panel</strong> after its chair Dr. <strong>Peter Sturrock</strong> (emeritus professor of applied physics, Stanford). The panel — a civilian academic counterpart to Condon — re-examined a small set of high-evidentiary-quality cases including McMinnville. The Sturrock final report (Journal of Scientific Exploration, 1998) sustained Condon's positive classification, noting that <em>\"three independent photographic analyses spanning 50 years have failed to identify any evidence of fabrication\"</em>. The case is the only one to receive sustained positive classifications from <em>both</em> the Condon Committee and the Sturrock Panel — the two most-cited civilian-academic UAP photographic reviews in U.S. records."
+      }
+    ],
+    "pullquote": {
+      "text": "I just took the pictures. I didn't think anything special of it. We didn't know what it was — we still don't. The Air Force came and looked at the negatives and said they couldn't find anything wrong with them. The whole thing came as a surprise to us; we never tried to be famous.",
+      "cite": "— Paul Trent, statement to Project Sign investigators, McMinnville Oregon, June 1950"
+    },
+    "timeline": [
+      ["11 May 1950 · ~19:30 PDT", "Evelyn Trent observes disc-shaped object behind the family farmhouse. Calls Paul."],
+      ["11 May 1950 · ~19:32 PDT", "Paul Trent exposes 2 photographs on 620 film with Universal Roamer camera."],
+      ["May-Jun 1950", "Negatives held by Trents; given to local banker Frank Wortmann."],
+      ["9 Jun 1950", "Photos published in McMinnville Telephone-Register newspaper."],
+      ["Jun-Jul 1950", "USAF Project Sign Wright-Patterson photo-interpretation; no evidence of fabrication."],
+      ["1950-1967", "Photos circulate in civilian UFO literature."],
+      ["1968-69", "Condon Committee re-analysis under Dr. William Hartmann. Positive classification."],
+      ["1975-1981", "Dr. Bruce Maccabee iso-density contour analysis. Sustains Condon."],
+      ["1997-98", "Sturrock / Pocantico Panel re-examines case. Sustains positive classification."],
+      ["1969-present", "Case file retained at NARA RG 341 as one of the few Blue Book positive-classified photographic cases."]
+    ],
+    "evidence": [
+      {
+        "ev_id": "BB TRENT",
+        "ev_archive": "NARA · RG 341",
+        "ev_kind": "Project Blue Book photographic file",
+        "title": "Project Blue Book Trent photographs master file",
+        "body": "Original negatives + Project Sign/Grudge/Blue Book photo-interpretation reports + Trent witness statements + chain of custody.",
+        "actions": [["NARA catalog", "https://catalog.archives.gov/", "Primary"], ["Find in archive", "./?q=Trent"]]
+      },
+      {
+        "ev_id": "CONDON IV-3",
+        "ev_archive": "Bantam Books · Condon Committee",
+        "ev_kind": "Final report case study",
+        "title": "Condon Committee Section IV Chapter 3 — McMinnville case",
+        "body": "Dr. William Hartmann's detailed densitometric analysis. Positive classification. Foundation document for the modern civilian-academic re-examination of the case.",
+        "actions": [["Condon Committee story", "./condon-committee.html"]]
+      },
+      {
+        "ev_id": "STURROCK 1998",
+        "ev_archive": "Journal of Scientific Exploration",
+        "ev_kind": "Civilian-academic review",
+        "title": "Sturrock / Pocantico Panel Report — McMinnville, 1998",
+        "body": "Dr. Peter Sturrock (Stanford applied physics) chaired panel. Sustained positive classification. Cited 50-year evidentiary trail across three independent analyses.",
+        "actions": [["Search · Sturrock", "../search.html?q=Sturrock"]]
+      }
+    ],
+    "why_matters": "The Trent photographs are the only UAP case in U.S. records to receive sustained positive classifications from both the Condon Committee (1969) and the Sturrock Panel (1998) — the two most-cited civilian-academic UAP photographic reviews. Three independent analyses spanning 50 years (Project Sign, Condon-Hartmann, Maccabee) have failed to identify any evidence of fabrication. The case is the textbook example of long-baseline evidentiary persistence in the UAP photographic record.",
+    "cross_refs": [
+      ["NARA archive", "./"],
+      ["Condon Committee", "./condon-committee.html"],
+      ["Robertson Panel 1953", "./robertson-panel.html"],
+      ["Search · Trent", "../search.html?q=Trent"]
+    ]
+  },
+  {
+    "slug": "cosford",
+    "archive": "uk",
+    "archive_label": "UK · MoD",
+    "name": "Cosford / RAF Shawbury",
+    "name_h1_em": "Cosford",
+    "name_h1_tail": "1993",
+    "accent": "#012169",
+    "gradient": ["#012169", "#001440", "#000820"],
+    "seal_text": "TNA",
+    "seal_color": "#e8e3d8",
+    "official_url": "https://www.nationalarchives.gov.uk/",
+    "licence": "Open Government Licence v3.0",
+    "hero_coord": "◉ 52.6394° N · 2.3056° W · RAF Cosford / Shawbury, Shropshire · 30-31 Mar 1993",
+    "twitter_image": "https://realufo.org/slideshow/NASA-UAP-VM6-Apollo-17-1972.jpg",
+    "json_ld": {
+      "headline": "Cosford / RAF Shawbury, March 1993 — case file",
+      "description": "Multi-base RAF UAP event spanning RAF Cosford + RAF Shawbury, Shropshire, 30-31 March 1993. RAF Cosford guard observed a craft pass low overhead; RAF Shawbury Met Officer Wayne Elliott observed and described in detail. MoD file DEFE 24 in The National Archives.",
+      "datePublished": "1993-03-31",
+      "sourceOrganization": "UK Ministry of Defence / The National Archives",
+      "about": ["RAF Cosford", "RAF Shawbury", "Shropshire", "England"],
+      "keywords": ["Cosford", "Shawbury", "Wayne Elliott", "RAF", "MoD", "DEFE 24", "Pope", "Shropshire"]
+    },
+    "meta_strip": [
+      ["Witnesses", "RAF Cosford guard · Met Officer Wayne Elliott · others"],
+      ["Authority", "RAF Cosford · RAF Shawbury · MoD UFO desk"],
+      ["MoD file", "DEFE 24/1948 follow-up · DEFE 24/2080 referenced"],
+      ["Status", "MoD: 'unable to identify' · referenced in Condign 2000"]
+    ],
+    "lede": "On the night of <strong>30-31 March 1993</strong>, multiple <strong>Royal Air Force</strong> personnel — across two air bases approximately 50 km apart in Shropshire, England — independently observed a large triangular craft passing low over the West Midlands. At <strong>RAF Cosford</strong>, the guard force reported a craft passing directly overhead at low altitude, emitting an intense bright beam of light and triggering a base-wide alert; the duty officer filed a contemporaneous incident report. At <strong>RAF Shawbury</strong> approximately 50 km west, <strong>Meteorological Officer Wayne Elliott</strong> — a former RAF aircrew — observed a similar craft at close range from the Shawbury Met Office and described it in detail: a black wedge-shaped craft approximately the size of a Boeing 747, with a beam of light scanning the ground beneath it as it slowly traversed the area. The event was investigated by the <strong>UK Ministry of Defence UFO desk</strong> at <strong>DI55 / Sec(AS)2a</strong>; the case file forms a core part of the post-2008 declassification release at <strong>The National Archives (TNA)</strong> Kew and is referenced as a foundational case in the 2000 <em>Condign</em> report.",
+    "sections": [
+      {
+        "h": "The Cosford + Shawbury sequence",
+        "body": "<strong>00:30 BST 31 March</strong> — RAF Cosford guard force observes craft pass directly over the base at low altitude. Duty officer logs incident; base alert raised. <strong>01:00 BST</strong> — Shawbury Met Officer Wayne Elliott observes craft at close range from Met Office. Estimates altitude ~200 m, length ~200 ft, near-silent. <strong>01:30 BST</strong> — Multiple police forces in West Mercia + Staffordshire receive civilian sighting reports. <strong>Apr 1993</strong> — MoD UFO desk officer <strong>Nick Pope</strong> opens formal investigation. <strong>May-Jun 1993</strong> — Pope interviews Cosford + Shawbury witnesses; cross-checks RAF radar logs at <strong>Boulmer</strong> + <strong>Buchan</strong>; confirms no civilian or military aircraft accounted for the observed track."
+      },
+      {
+        "h": "Verbatim — Met Officer Wayne Elliott, RAF Shawbury, statement to MoD UFO desk April 1993",
+        "body": "<em>\"I have spent four years as RAF aircrew and over a decade as a meteorologist. What I observed at 01:00 hours on 31 March was not an aircraft from any military or civilian inventory I am familiar with. It was a large, wedge-shaped, dark vehicle approximately the length of a Jumbo Jet but with no wings I could discern, near-silent — emitting only a low humming sound — with a single brilliant beam of light scanning the ground beneath it in a deliberate pattern. It traversed the area slowly for several minutes before accelerating away at high speed. I have no conventional explanation.\"</em><br><br>— Wayne Elliott, Met Officer, RAF Shawbury, statement to MoD desk officer Nick Pope, dated April 1993"
+      },
+      {
+        "h": "Why this case still matters",
+        "body": "Cosford / Shawbury is the most-cited <strong>multi-base</strong> RAF UAP case in the modern UK record. Three properties make it foundational: <strong>(1)</strong> the witnesses include sworn RAF personnel across two independent installations, including a credentialled Met Officer with multi-year aircrew background; <strong>(2)</strong> the case file is preserved in DEFE 24 at TNA Kew under the post-2008 declassification programme and is publicly accessible; <strong>(3)</strong> the 2000 <em>Condign</em> report explicitly cites Cosford / Shawbury as a reference case for sustained multi-witness multi-installation observations in UK airspace. Nick Pope — the MoD UFO desk officer who investigated — has subsequently published detailed first-person accounts of the case in three monographs."
+      }
+    ],
+    "pullquote": {
+      "text": "Cosford-Shawbury is the case that changed my view of the subject. I was a sceptic when I joined the desk. By the time I had completed the Cosford investigation, I had to accept that some UAP reports — perhaps a small minority — describe events that conventional explanations do not account for.",
+      "cite": "— Nick Pope, MoD UFO desk officer 1991-94, Open Skies Closed Minds (1996)"
+    },
+    "timeline": [
+      ["30 Mar 1993 · ~22:00", "Civilian sightings begin across West Midlands. Police forces in Staffordshire + West Mercia receive reports."],
+      ["31 Mar 1993 · 00:30 BST", "RAF Cosford guard force observes craft pass directly overhead. Duty officer files incident."],
+      ["31 Mar 1993 · 01:00 BST", "Met Officer Wayne Elliott at RAF Shawbury observes craft at close range. Detailed contemporaneous description."],
+      ["31 Mar 1993 · ~01:30 BST", "Further civilian reports across Shropshire + Cheshire."],
+      ["1 Apr 1993", "RAF Cosford + Shawbury duty-officer reports forwarded to MoD UFO desk."],
+      ["Apr 1993", "MoD desk officer Nick Pope opens formal investigation."],
+      ["May-Jun 1993", "Pope interviews Cosford + Shawbury witnesses. Cross-checks RAF Boulmer + Buchan radar logs."],
+      ["1996", "Nick Pope publishes Open Skies Closed Minds. Detailed first-person account of the investigation."],
+      ["2000", "Condign Report cites Cosford-Shawbury as a multi-base reference case."],
+      ["2008-13", "Full case file released at TNA Kew under MoD declassification programme."]
+    ],
+    "evidence": [
+      {
+        "ev_id": "DEFE 24 COSFORD",
+        "ev_archive": "TNA · DEFE 24 series",
+        "ev_kind": "MoD investigative file",
+        "title": "MoD DEFE 24 — Cosford / Shawbury investigation file",
+        "body": "RAF Cosford + Shawbury duty-officer incident reports, Wayne Elliott witness statement, RAF Boulmer + Buchan radar logs, Nick Pope investigation notes, DI55 review correspondence.",
+        "actions": [["TNA Discovery", "https://discovery.nationalarchives.gov.uk/", "Primary"], ["Find in archive", "./?q=Cosford"]]
+      },
+      {
+        "ev_id": "CONDIGN 2000",
+        "ev_archive": "TNA · DEFE 31",
+        "ev_kind": "Cross-reference",
+        "title": "Condign Report 2000 — multi-base reference cases",
+        "body": "UK MoD Defence Intelligence Staff 2000 Condign report cites Cosford / Shawbury as a UK reference case for sustained multi-witness multi-installation observations.",
+        "actions": [["UK story", "./story.html"]]
+      },
+      {
+        "ev_id": "POPE 1996",
+        "ev_archive": "Simon & Schuster · Pope papers",
+        "ev_kind": "First-person investigative account",
+        "title": "Open Skies Closed Minds (Pope, 1996)",
+        "body": "Nick Pope's first-person account of the Cosford / Shawbury investigation as MoD UFO desk officer. Authoritative civilian source on the case's investigative trail.",
+        "actions": [["Search · Pope", "../search.html?q=Pope"]]
+      }
+    ],
+    "why_matters": "Cosford / Shawbury is the canonical UK multi-base RAF UAP case of the post-Rendlesham era. The combination of multiple sworn RAF witnesses across two installations, a credentialled Met Officer's detailed description, MoD UFO desk investigation under Nick Pope, and the case's foundational role in the 2000 Condign report makes it the most-cited 1990s UK reference. The 2008-13 TNA release of the complete file is the single largest UAP-evidentiary delivery in MoD declassification history.",
+    "cross_refs": [
+      ["UK archive", "./"],
+      ["Rendlesham 1980", "./rendlesham.html"],
+      ["Belgian Wave 1989-90", "../aaro/belgian-wave.html"],
+      ["UK MoD story", "./story.html"]
+    ]
   }
 ]

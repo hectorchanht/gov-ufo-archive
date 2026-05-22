@@ -19,13 +19,21 @@
      by hand when new cases land; alternatively this can be hydrated from
      /api/geo.json's `cases[].href`. */
   var RANDOM_CASES = [
-    '/uk/rendlesham.html', '/aaro/tic-tac.html', '/aaro/gimbal.html',
+    '/uk/rendlesham.html', '/uk/cosford.html',
+    '/aaro/tic-tac.html', '/aaro/gimbal.html',
     '/aaro/phoenix-lights.html', '/aaro/belgian-wave.html',
     '/aaro/tehran.html', '/aaro/jal-1628.html', '/aaro/coyne.html',
+    '/aaro/travis-walton.html', '/aaro/cash-landrum.html',
+    '/aaro/ohare-2006.html', '/aaro/stephenville.html',
     '/brazil/operacao-prato.html', '/brazil/varginha.html', '/brazil/trindade.html',
     '/nz/kaikoura.html', '/spain/manises.html',
-    '/geipan/trans-en-provence.html',
-    '/nara/roswell.html', '/nara/socorro.html',
+    '/geipan/trans-en-provence.html', '/geipan/valensole.html',
+    '/chile/el-bosque.html',
+    '/nara/roswell.html', '/nara/socorro.html', '/nara/mantell.html',
+    '/nara/chiles-whitted.html', '/nara/mcminnville.html',
+    '/nara/lubbock-lights.html', '/nara/levelland.html',
+    '/nara/robertson-panel.html', '/nara/condon-committee.html',
+    '/canada/shag-harbour.html', '/canada/falcon-lake.html',
   ];
 
   var DEST = {

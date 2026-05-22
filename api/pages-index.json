@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "Per-page index for case + story pages, so the cross-archive search can index narrative prose alongside per-archive manifests.",
-    "count": 40,
+    "count": 46,
     "kinds": [
       "case",
       "story"
@@ -264,6 +264,36 @@
       "kind": "case"
     },
     {
+      "title": "Falcon Lake · Stefan Michalak",
+      "desc": "Industrial mechanic Stefan Michalak encountered two landed disc-shaped craft while prospecting near Falcon Lake, Manitoba, 20 May 1967. He sustained severe radiation burns + chemical contamination, treated at Misericordia Hospital Winnipeg. RCMP + RCAF + DND investigated jointly.",
+      "agency": "Royal Canadian Mounted Police / RCAF / LAC",
+      "type": "Case",
+      "date": "1967-05-20",
+      "region": "Whiteshell Provincial Park, Manitoba",
+      "url": "/canada/falcon-lake.html",
+      "src": "",
+      "local": "",
+      "site": "Canada",
+      "siteId": "canada",
+      "siteDir": "canada/",
+      "kind": "case"
+    },
+    {
+      "title": "Shag Harbour · Nova Scotia",
+      "desc": "An unidentified object reportedly struck the surface of the Atlantic off Shag Harbour, Nova Scotia, 4 October 1967. RCMP + Coast Guard + Royal Canadian Navy joint search; HMCS Granby diver deployment. The most thoroughly multi-agency-investigated UAP impact event in Canadian government records.",
+      "agency": "Royal Canadian Mounted Police / Royal Canadian Navy / LAC",
+      "type": "Case",
+      "date": "1967-10-04",
+      "region": "Shag Harbour, Nova Scotia",
+      "url": "/canada/shag-harbour.html",
+      "src": "",
+      "local": "",
+      "site": "Canada",
+      "siteId": "canada",
+      "siteDir": "canada/",
+      "kind": "case"
+    },
+    {
       "title": "Canada · LAC + Project Magnet — story",
       "desc": "The mission, history, and public record of Canada · LAC + Project Magnet, as published by the source agency. Verbatim official-source text mirrored from www.bac-lac.gc.ca.",
       "agency": "Canada · LAC + Project Magnet",
@@ -369,6 +399,21 @@
       "kind": "story"
     },
     {
+      "title": "Chiles–Whitted · Eastern Air Lines",
+      "desc": "Eastern Air Lines DC-3 commanded by Capt. Clarence Chiles and First Officer John Whitted near-miss with a cigar-shaped luminous craft, 24 July 1948, over Alabama. Project Sign treated as the first US commercial-pilot UAP near-miss; later reclassified by Grudge as &#x27;meteor / hallucination&#x27;.",
+      "agency": "USAF Project Sign / NARA",
+      "type": "Case",
+      "date": "1948-07-24",
+      "region": "over Montgomery–Atlanta corridor",
+      "url": "/nara/chiles-whitted.html",
+      "src": "",
+      "local": "",
+      "site": "NARA",
+      "siteId": "nara",
+      "siteDir": "nara/",
+      "kind": "case"
+    },
+    {
       "title": "The Condon Committee",
       "desc": "U.S. Air Force-funded scientific study of UFOs led by physicist Edward U. Condon at the University of Colorado, 1966–1969. 1485-page final report. Used as the formal basis for closing Project Blue Book in December 1969.",
       "agency": "U.S. Air Force / University of Colorado / NARA",
@@ -376,6 +421,21 @@
       "date": "1969-01-08",
       "region": "University of Colorado, Boulder",
       "url": "/nara/condon-committee.html",
+      "src": "",
+      "local": "",
+      "site": "NARA",
+      "siteId": "nara",
+      "siteDir": "nara/",
+      "kind": "case"
+    },
+    {
+      "title": "Levelland · Texas",
+      "desc": "Multi-witness electromagnetic-effects cluster around Levelland, Texas, 2-3 November 1957. Approximately 15 independent civilian witnesses reported vehicle engine + lights failures in proximity to a large luminous egg-shaped object on the road. Sheriff Weir Clem&#x27;s contemporaneous investigation; Proje",
+      "agency": "USAF Project Blue Book / NARA",
+      "type": "Case",
+      "date": "1957-11-03",
+      "region": "Levelland, Texas",
+      "url": "/nara/levelland.html",
       "src": "",
       "local": "",
       "site": "NARA",
@@ -406,6 +466,21 @@
       "date": "1948-01-07",
       "region": "Godman Field",
       "url": "/nara/mantell.html",
+      "src": "",
+      "local": "",
+      "site": "NARA",
+      "siteId": "nara",
+      "siteDir": "nara/",
+      "kind": "case"
+    },
+    {
+      "title": "McMinnville · Trent photos",
+      "desc": "Paul Trent photographs a metallic disc over his McMinnville, Oregon farm on 11 May 1950 — two exposures that became the foundational photographic case in the Project Blue Book record. Reviewed by Sturrock Panel in 1998.",
+      "agency": "USAF Project Blue Book / NARA",
+      "type": "Case",
+      "date": "1950-05-11",
+      "region": "Trent farm",
+      "url": "/nara/mcminnville.html",
       "src": "",
       "local": "",
       "site": "NARA",
@@ -562,6 +637,21 @@
       "siteId": "spain",
       "siteDir": "spain/",
       "kind": "story"
+    },
+    {
+      "title": "Cosford / RAF Shawbury",
+      "desc": "Multi-base RAF UAP event spanning RAF Cosford + RAF Shawbury, Shropshire, 30-31 March 1993. RAF Cosford guard observed a craft pass low overhead; RAF Shawbury Met Officer Wayne Elliott observed and described in detail. MoD file DEFE 24 in The National Archives.",
+      "agency": "UK Ministry of Defence / The National Archives",
+      "type": "Case",
+      "date": "1993-03-31",
+      "region": "RAF Cosford / Shawbury, Shropshire",
+      "url": "/uk/cosford.html",
+      "src": "",
+      "local": "",
+      "site": "UK",
+      "siteId": "uk",
+      "siteDir": "uk/",
+      "kind": "case"
     },
     {
       "title": "Rendlesham Forest, Dec 1980",

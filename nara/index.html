@@ -185,6 +185,16 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
 .arch-controls-bar.bar-hidden { top: -160px; }
 @media (max-width: 719px) { .nav-more-btn { padding: 11px 0; } .nav-dropdown { position: static; right: auto; top: auto; min-width: 0; width: 100%; } .has-dropdown.open .nav-dropdown { margin-left: 12px; border: 0; background: transparent; box-shadow: none; padding: 0; } .lang-btn { border: 0; margin: 0; padding: 11px 0; font-size: 11px; border-bottom: 1px solid var(--rule); } .lang-picker.open .lang-menu { margin-left: 12px; border: 0; background: transparent; } }
 @media (min-width: 720px) { .nav-more-btn { padding: 0; border: 0; font-size: 10.5px; } .nav-dropdown { position: absolute; right: 0; top: calc(100% + 10px); min-width: 240px; max-height: 70vh; overflow-y: auto;; } .has-dropdown.open .nav-dropdown { display: block; } .lang-btn { width: auto; margin: 0; padding: 3px 8px; } .lang-menu { position: absolute; right: 0; top: calc(100% + 10px); min-width: 130px; } }
+.featured-cases{padding:48px 0;background:linear-gradient(to bottom,var(--bg),var(--bg-2) 50%,var(--bg))}
+.featured-cases h2{font-family:var(--mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--caution);margin-bottom:20px;display:flex;align-items:baseline;gap:12px}
+.featured-cases h2 .sub{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--ink-dim);text-transform:none;letter-spacing:0}
+.case-grid{display:grid;gap:14px;grid-template-columns:1fr}
+@media (min-width:540px){.case-grid{grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}}
+.case-card{display:block;padding:18px 20px;background:var(--panel);border:1px solid var(--rule);border-left:3px solid var(--caution);text-decoration:none;transition:border-color .15s,transform .15s}
+.case-card:hover{border-color:var(--rule-strong);transform:translateY(-2px)}
+.case-card .c-when{font-family:var(--mono);font-size:10px;color:var(--caution);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:8px}
+.case-card .c-name{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--ink);margin-bottom:6px}
+.case-card .c-desc{font-family:var(--serif);font-size:13px;color:var(--ink-dim);line-height:1.5}
 </style>
 </head>
 <body>
@@ -201,7 +211,7 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
       </div>
     </a>
     <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
-        <nav class="primary" id="primary-nav">
+            <nav class="primary" id="primary-nav">
       <ul>
         <li><a href="../">War.gov</a></li><li><a href="../aaro/">AARO</a></li><li><a href="../nasa/">NASA</a></li><li><a href="../nara/" class="active">NARA</a></li>
         <li class="has-dropdown" id="nav-site-wrap">
@@ -216,7 +226,7 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
           <details>
             <summary class="nav-more-btn" id="nav-story-btn">Story ▾</summary>
             <ul class="nav-dropdown" id="nav-story-dropdown" role="menu">
-              <li><a href="../aaro/tic-tac.html">Tic-Tac (Nimitz · 2004)</a></li><li><a href="../aaro/gimbal.html">GIMBAL (Roosevelt · 2015)</a></li><li><a href="../aaro/phoenix-lights.html">Phoenix Lights (1997)</a></li><li><a href="../aaro/belgian-wave.html">Belgian Wave (1989-90)</a></li><li><a href="../aaro/cash-landrum.html">Cash–Landrum (1980)</a></li><li><a href="../aaro/coyne.html">Coyne helicopter (1973)</a></li><li><a href="../aaro/jal-1628.html">JAL Flight 1628 (1986)</a></li><li><a href="../aaro/tehran.html">Tehran F-4 (1976)</a></li><li><a href="../aaro/travis-walton.html">Travis Walton (1975)</a></li><li><a href="../aaro/story.html">AARO story</a></li><li><a href="../uk/rendlesham.html">Rendlesham Forest (1980)</a></li><li><a href="../uk/story.html">UK MoD story</a></li><li><a href="../brazil/operacao-prato.html">Operação Prato (1977)</a></li><li><a href="../brazil/varginha.html">Varginha (1996)</a></li><li><a href="../brazil/trindade.html">Trindade Island (1958)</a></li><li><a href="../brazil/story.html">Brazil OVNI story</a></li><li><a href="../nasa/story.html">NASA UAP story</a></li><li><a href="../nara/roswell.html">NARA — Roswell (1947)</a></li><li><a href="../nara/socorro.html">NARA — Socorro (1964)</a></li><li><a href="../nara/robertson-panel.html">NARA — Robertson Panel (1953)</a></li><li><a href="../nara/condon-committee.html">NARA — Condon Committee (1966-69)</a></li><li><a href="../nara/story.html">NARA story</a></li><li><a href="../geipan/trans-en-provence.html">GEIPAN — Trans-en-Provence (81)</a></li><li><a href="../geipan/valensole.html">GEIPAN — Valensole (1965)</a></li><li><a href="../geipan/story.html">GEIPAN story</a></li><li><a href="../chile/el-bosque.html">Chile — El Bosque (2010)</a></li><li><a href="../chile/story.html">Chile SEFAA story</a></li><li><a href="../nz/kaikoura.html">NZ — Kaikoura (1978)</a></li><li><a href="../nz/story.html">NZ NZDF story</a></li><li><a href="../spain/manises.html">Spain — Manises (1979)</a></li><li><a href="../spain/story.html">Spain Ejército story</a></li><li><a href="../argentina/story.html">Argentina CEFAe story</a></li><li><a href="../canada/story.html">Canada LAC story</a></li><li><a href="../italy/story.html">Italy AM story</a></li><li><a href="../peru/story.html">Peru OIFAA story</a></li><li><a href="../uruguay/story.html">Uruguay CRIDOVNI story</a></li>
+              <li><a href="../aaro/tic-tac.html">Tic-Tac (Nimitz · 2004)</a></li><li><a href="../aaro/gimbal.html">GIMBAL (Roosevelt · 2015)</a></li><li><a href="../aaro/phoenix-lights.html">Phoenix Lights (1997)</a></li><li><a href="../aaro/belgian-wave.html">Belgian Wave (1989-90)</a></li><li><a href="../aaro/cash-landrum.html">Cash–Landrum (1980)</a></li><li><a href="../aaro/coyne.html">Coyne helicopter (1973)</a></li><li><a href="../aaro/jal-1628.html">JAL Flight 1628 (1986)</a></li><li><a href="../aaro/tehran.html">Tehran F-4 (1976)</a></li><li><a href="../aaro/travis-walton.html">Travis Walton (1975)</a></li><li><a href="../aaro/ohare-2006.html">O’Hare Airport (2006)</a></li><li><a href="../aaro/stephenville.html">Stephenville (2008)</a></li><li><a href="../aaro/story.html">AARO story</a></li><li><a href="../uk/rendlesham.html">Rendlesham Forest (1980)</a></li><li><a href="../uk/cosford.html">Cosford / Shawbury (1993)</a></li><li><a href="../uk/story.html">UK MoD story</a></li><li><a href="../brazil/operacao-prato.html">Operação Prato (1977)</a></li><li><a href="../brazil/varginha.html">Varginha (1996)</a></li><li><a href="../brazil/trindade.html">Trindade Island (1958)</a></li><li><a href="../brazil/story.html">Brazil OVNI story</a></li><li><a href="../nasa/story.html">NASA UAP story</a></li><li><a href="../nara/roswell.html">NARA — Roswell (1947)</a></li><li><a href="../nara/socorro.html">NARA — Socorro (1964)</a></li><li><a href="../nara/mantell.html">NARA — Mantell (1948)</a></li><li><a href="../nara/chiles-whitted.html">NARA — Chiles-Whitted (1948)</a></li><li><a href="../nara/mcminnville.html">NARA — McMinnville (1950)</a></li><li><a href="../nara/lubbock-lights.html">NARA — Lubbock Lights (1951)</a></li><li><a href="../nara/levelland.html">NARA — Levelland (1957)</a></li><li><a href="../nara/robertson-panel.html">NARA — Robertson Panel (1953)</a></li><li><a href="../nara/condon-committee.html">NARA — Condon Committee (1966-69)</a></li><li><a href="../nara/story.html">NARA story</a></li><li><a href="../geipan/trans-en-provence.html">GEIPAN — Trans-en-Provence (81)</a></li><li><a href="../geipan/valensole.html">GEIPAN — Valensole (1965)</a></li><li><a href="../geipan/story.html">GEIPAN story</a></li><li><a href="../chile/el-bosque.html">Chile — El Bosque (2010)</a></li><li><a href="../chile/story.html">Chile SEFAA story</a></li><li><a href="../nz/kaikoura.html">NZ — Kaikoura (1978)</a></li><li><a href="../nz/story.html">NZ NZDF story</a></li><li><a href="../spain/manises.html">Spain — Manises (1979)</a></li><li><a href="../spain/story.html">Spain Ejército story</a></li><li><a href="../argentina/story.html">Argentina CEFAe story</a></li><li><a href="../canada/shag-harbour.html">Canada — Shag Harbour (1967)</a></li><li><a href="../canada/falcon-lake.html">Canada — Falcon Lake (1967)</a></li><li><a href="../canada/story.html">Canada LAC story</a></li><li><a href="../italy/story.html">Italy AM story</a></li><li><a href="../peru/story.html">Peru OIFAA story</a></li><li><a href="../uruguay/story.html">Uruguay CRIDOVNI story</a></li>
             </ul>
           </details>
         </li>
@@ -260,6 +270,24 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
       <div class="head-card"><div class="h-label">Catalog</div><span class="h-num">600M+</span><div class="h-text">Digitised pages searchable via catalog.archives.gov.</div></div>
       <div class="head-card"><div class="h-label">Format</div><div class="h-text">Textual · Microfilm · Photographs · Moving Images · Sound.</div></div>
       <div class="head-card"><div class="h-label">Review</div><div class="h-text">25-year automatic declassification review mandated by statute.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="featured-cases" id="cases">
+  <div class="container">
+    <h2>Featured cases <span class="sub">— deep-dive stories</span></h2>
+    <div class="case-grid">
+      <a class="case-card" href="./roswell.html"><div class="c-when">Roswell · Jul 1947</div><div class="c-name">Roswell incident</div><div class="c-desc">RG 341 GAO/NSAM-95-187 chain-of-custody report</div></a>
+      <a class="case-card" href="./mantell.html"><div class="c-when">Fort Knox · Jan 1948</div><div class="c-name">Mantell pursuit</div><div class="c-desc">First USAF UFO fatality; Skyhook balloon resolution</div></a>
+      <a class="case-card" href="./chiles-whitted.html"><div class="c-when">Alabama-Georgia · Jul 1948</div><div class="c-name">Chiles-Whitted</div><div class="c-desc">Eastern Air Lines DC-3 near-miss; triggered Estimate of Situation</div></a>
+      <a class="case-card" href="./mcminnville.html"><div class="c-when">Oregon · May 1950</div><div class="c-name">McMinnville photos</div><div class="c-desc">Paul Trent farm imagery; Condon &amp; Sturrock positive classifications</div></a>
+      <a class="case-card" href="./lubbock-lights.html"><div class="c-when">Texas · Aug 1951</div><div class="c-name">Lubbock Lights</div><div class="c-desc">Carl Hart Jr. photos of V-formation lights</div></a>
+      <a class="case-card" href="./robertson-panel.html"><div class="c-when">CIA · Jan 1953</div><div class="c-name">Robertson Panel</div><div class="c-desc">Five-day classified review at Langley</div></a>
+      <a class="case-card" href="./levelland.html"><div class="c-when">Texas · Nov 1957</div><div class="c-name">Levelland EM cluster</div><div class="c-desc">~15 stalled-vehicle reports in one night</div></a>
+      <a class="case-card" href="./socorro.html"><div class="c-when">New Mexico · Apr 1964</div><div class="c-name">Socorro landing</div><div class="c-desc">Officer Lonnie Zamora · physical trace case</div></a>
+      <a class="case-card" href="./condon-committee.html"><div class="c-when">Boulder · 1966-69</div><div class="c-name">Condon Committee</div><div class="c-desc">University of Colorado USAF-funded review</div></a>
+      <a class="case-card" href="./story.html"><div class="c-when">RG 615 · 75 years</div><div class="c-name">NARA — full story</div><div class="c-desc">Blue Book → JFK → 2024 NDAA UAP collection</div></a>
     </div>
   </div>
 </section>
