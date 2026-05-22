@@ -40,6 +40,31 @@ MORE = [
     ('Spain Ejército',     'spain'),
     ('Italy Aeronautica',  'italy'),
 ]
+# "Story ▾" dropdown — every story page across every mirror. Root-relative.
+STORIES = [
+    ('Tic-Tac (Nimitz · 2004)',     'aaro/tic-tac.html'),
+    ('GIMBAL (Roosevelt · 2015)',   'aaro/gimbal.html'),
+    ('Phoenix Lights (1997)',       'aaro/phoenix-lights.html'),
+    ('Belgian Wave (1989-90)',      'aaro/belgian-wave.html'),
+    ('AARO story',                  'aaro/story.html'),
+    ('Rendlesham Forest (1980)',    'uk/rendlesham.html'),
+    ('UK MoD story',                'uk/story.html'),
+    ('Operação Prato (1977)',       'brazil/operacao-prato.html'),
+    ('Varginha (1996)',             'brazil/varginha.html'),
+    ('Trindade Island (1958)',      'brazil/trindade.html'),
+    ('Brazil OVNI story',           'brazil/story.html'),
+    ('NASA UAP story',              'nasa/story.html'),
+    ('NARA story',                  'nara/story.html'),
+    ('GEIPAN story',                'geipan/story.html'),
+    ('Chile SEFAA story',           'chile/story.html'),
+    ('Argentina CEFAe story',       'argentina/story.html'),
+    ('Canada LAC story',            'canada/story.html'),
+    ('Italy AM story',              'italy/story.html'),
+    ('NZ NZDF story',               'nz/story.html'),
+    ('Peru OIFAA story',            'peru/story.html'),
+    ('Spain Ejército story',        'spain/story.html'),
+    ('Uruguay CRIDOVNI story',      'uruguay/story.html'),
+]
 
 
 def _href(slug, depth):
@@ -51,19 +76,13 @@ def _href(slug, depth):
 
 
 def make_nav(current_slug: str, depth: int = 1, internal_links=None) -> str:
-    """Return <nav> HTML for the sticky header.
+    """Return <nav> HTML — canonical structure, identical everywhere.
 
-    current_slug  — 'aaro', 'nasa', 'wargov', 'geipan', etc.
-    depth         — 0 = root, 1 = mirror top, 2 = sub-page
-    internal_links — list of (label, href, data_i18n_key)
+    current_slug  — used only to highlight the active item.
+    depth         — 0 = root, 1 = mirror or root utility, 2 = story page.
+    internal_links — kept for API compatibility, IGNORED (no per-page deviation).
     """
-    # Internal (page-section) links
-    int_html = ''
-    if internal_links:
-        for label, href, i18n_key in internal_links:
-            int_html += (
-                f'<li><a href="{href}" data-i18n="{i18n_key}">{label}</a></li>'
-            )
+    root = _href(None, depth)
 
     # Pinned US archives (4 — rich content stays at top level)
     pinned_html = ''
@@ -72,15 +91,22 @@ def make_nav(current_slug: str, depth: int = 1, internal_links=None) -> str:
         active = ' class="active"' if key == current_slug else ''
         pinned_html += f'<li><a href="{href}"{active}>{name}</a></li>'
 
-    # "Site ▾" — pages about the site. Root-relative.
-    root = _href(None, depth)
+    # "Site ▾" — pages about the site itself.
     site_active = any(k == current_slug for _, _, k in SITE_PAGES)
     site_items = ''.join(
         f'<li><a href="{root}{file}"{" class=\"active\"" if k == current_slug else ""}>{name}</a></li>'
         for name, file, k in SITE_PAGES
     )
 
-    # "Nations ▾" — 11 national mirrors
+    # "Story ▾" — every story page across every mirror.
+    cur_story_path = current_slug if current_slug and ('/' in current_slug) else ''
+    story_active = any(path == cur_story_path for _, path in STORIES)
+    story_items = ''.join(
+        f'<li><a href="{root}{path}"{" class=\"active\"" if path == cur_story_path else ""}>{label}</a></li>'
+        for label, path in STORIES
+    )
+
+    # "Nations ▾" — 11 national mirrors.
     nations_active = any(slug == current_slug for _, slug in MORE)
     more_items = ''.join(
         f'<li><a href="{_href(slug, depth)}"{" class=\"active\"" if slug == current_slug else ""}>{name}</a></li>'
@@ -90,13 +116,17 @@ def make_nav(current_slug: str, depth: int = 1, internal_links=None) -> str:
     return f'''\
     <nav class="primary" id="primary-nav">
       <ul>
-        {int_html}
-        <li class="nav-sep"></li>
         {pinned_html}
         <li class="has-dropdown" id="nav-site-wrap">
           <button class="nav-more-btn{' active' if site_active else ''}" id="nav-site-btn" aria-expanded="false">Site ▾</button>
           <ul class="nav-dropdown" id="nav-site-dropdown" role="menu">
             {site_items}
+          </ul>
+        </li>
+        <li class="has-dropdown" id="nav-story-wrap">
+          <button class="nav-more-btn{' active' if story_active else ''}" id="nav-story-btn" aria-expanded="false">Story ▾</button>
+          <ul class="nav-dropdown" id="nav-story-dropdown" role="menu">
+            {story_items}
           </ul>
         </li>
         <li class="has-dropdown" id="nav-more-wrap">
@@ -275,7 +305,7 @@ nav.primary a:hover, nav.primary a.active { color: var(--caution); }
 /* Desktop: floating dropdown — click-only (hover/focus-within caused sticky-open bug) */
 @media (min-width: 720px) {
   .nav-more-btn { padding: 0; border: 0; width: auto; font-size: 10.5px; }
-  .nav-dropdown { position: absolute; right: 0; top: calc(100% + 10px); min-width: 180px; }
+  .nav-dropdown { position: absolute; right: 0; top: calc(100% + 10px); min-width: 180px; max-height: 70vh; overflow-y: auto; }
   .has-dropdown.open .nav-dropdown { display: block; }
 }
 
@@ -505,11 +535,13 @@ SHARED_JS = r'''
     }
   }
 
-  /* ── "Site ▾" + "Nations ▾" dropdowns ─────────────────────────────── */
-  const moreWrap = document.getElementById('nav-more-wrap');
-  const moreBtn  = document.getElementById('nav-more-btn');
-  const siteWrap = document.getElementById('nav-site-wrap');
-  const siteBtn  = document.getElementById('nav-site-btn');
+  /* ── "Site ▾" + "Story ▾" + "Nations ▾" dropdowns ─────────────────── */
+  const moreWrap  = document.getElementById('nav-more-wrap');
+  const moreBtn   = document.getElementById('nav-more-btn');
+  const siteWrap  = document.getElementById('nav-site-wrap');
+  const siteBtn   = document.getElementById('nav-site-btn');
+  const storyWrap = document.getElementById('nav-story-wrap');
+  const storyBtn  = document.getElementById('nav-story-btn');
   function wireDropdown(wrap, btn, others) {
     if (!wrap || !btn) return;
     btn.addEventListener('click', e => {
@@ -519,14 +551,16 @@ SHARED_JS = r'''
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
   }
-  wireDropdown(moreWrap, moreBtn, [siteWrap]);
-  wireDropdown(siteWrap, siteBtn, [moreWrap]);
+  wireDropdown(moreWrap,  moreBtn,  [siteWrap, storyWrap]);
+  wireDropdown(siteWrap,  siteBtn,  [moreWrap, storyWrap]);
+  wireDropdown(storyWrap, storyBtn, [moreWrap, siteWrap]);
 
   /* Close dropdowns on outside click */
   document.addEventListener('click', () => {
     if (langPicker) { langPicker.classList.remove('open'); if (langBtn) langBtn.setAttribute('aria-expanded','false'); }
     if (moreWrap)  { moreWrap.classList.remove('open');  if (moreBtn) moreBtn.setAttribute('aria-expanded','false'); }
     if (siteWrap)  { siteWrap.classList.remove('open');  if (siteBtn) siteBtn.setAttribute('aria-expanded','false'); }
+    if (storyWrap) { storyWrap.classList.remove('open'); if (storyBtn) storyBtn.setAttribute('aria-expanded','false'); }
   });
 
   /* ── Hamburger toggle ─────────────────────────────────────────────── */

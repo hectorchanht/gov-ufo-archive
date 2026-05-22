@@ -105,7 +105,7 @@ nav.primary a:hover, nav.primary a.active { color: var(--caution); }
 /* Desktop: floating dropdown — click-only (hover/focus-within caused sticky-open bug) */
 @media (min-width: 720px) {
   .nav-more-btn { padding: 0; border: 0; width: auto; font-size: 10.5px; }
-  .nav-dropdown { position: absolute; right: 0; top: calc(100% + 10px); min-width: 180px; }
+  .nav-dropdown { position: absolute; right: 0; top: calc(100% + 10px); min-width: 180px; max-height: 70vh; overflow-y: auto; }
   .has-dropdown.open .nav-dropdown { display: block; }
 }
 
@@ -280,13 +280,17 @@ body { background-image:
     <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
         <nav class="primary" id="primary-nav">
       <ul>
-        <li><a href="#top" data-i18n="intro">Intro</a></li><li><a href="#headlines" data-i18n="headlines">Headlines</a></li><li><a href="#archive" data-i18n="archive">Records</a></li><li><a href="./story.html">Story</a></li>
-        <li class="nav-sep"></li>
         <li><a href="../">War.gov</a></li><li><a href="../aaro/">AARO</a></li><li><a href="../nasa/">NASA</a></li><li><a href="../nara/">NARA</a></li>
         <li class="has-dropdown" id="nav-site-wrap">
           <button class="nav-more-btn" id="nav-site-btn" aria-expanded="false">Site ▾</button>
           <ul class="nav-dropdown" id="nav-site-dropdown" role="menu">
             <li><a href="../search.html">Search</a></li><li><a href="../timeline.html">Timeline</a></li><li><a href="../map.html">Map</a></li><li><a href="../about.html">About</a></li><li><a href="../donate.html">Support</a></li>
+          </ul>
+        </li>
+        <li class="has-dropdown" id="nav-story-wrap">
+          <button class="nav-more-btn" id="nav-story-btn" aria-expanded="false">Story ▾</button>
+          <ul class="nav-dropdown" id="nav-story-dropdown" role="menu">
+            <li><a href="../aaro/tic-tac.html">Tic-Tac (Nimitz · 2004)</a></li><li><a href="../aaro/gimbal.html">GIMBAL (Roosevelt · 2015)</a></li><li><a href="../aaro/phoenix-lights.html">Phoenix Lights (1997)</a></li><li><a href="../aaro/belgian-wave.html">Belgian Wave (1989-90)</a></li><li><a href="../aaro/story.html">AARO story</a></li><li><a href="../uk/rendlesham.html">Rendlesham Forest (1980)</a></li><li><a href="../uk/story.html">UK MoD story</a></li><li><a href="../brazil/operacao-prato.html">Operação Prato (1977)</a></li><li><a href="../brazil/varginha.html">Varginha (1996)</a></li><li><a href="../brazil/trindade.html">Trindade Island (1958)</a></li><li><a href="../brazil/story.html">Brazil OVNI story</a></li><li><a href="../nasa/story.html">NASA UAP story</a></li><li><a href="../nara/story.html">NARA story</a></li><li><a href="../geipan/story.html">GEIPAN story</a></li><li><a href="../chile/story.html">Chile SEFAA story</a></li><li><a href="../argentina/story.html">Argentina CEFAe story</a></li><li><a href="../canada/story.html">Canada LAC story</a></li><li><a href="../italy/story.html">Italy AM story</a></li><li><a href="../nz/story.html">NZ NZDF story</a></li><li><a href="../peru/story.html">Peru OIFAA story</a></li><li><a href="../spain/story.html">Spain Ejército story</a></li><li><a href="../uruguay/story.html">Uruguay CRIDOVNI story</a></li>
           </ul>
         </li>
         <li class="has-dropdown" id="nav-more-wrap">
@@ -459,11 +463,13 @@ body { background-image:
     }
   }
 
-  /* ── "Site ▾" + "Nations ▾" dropdowns ─────────────────────────────── */
-  const moreWrap = document.getElementById('nav-more-wrap');
-  const moreBtn  = document.getElementById('nav-more-btn');
-  const siteWrap = document.getElementById('nav-site-wrap');
-  const siteBtn  = document.getElementById('nav-site-btn');
+  /* ── "Site ▾" + "Story ▾" + "Nations ▾" dropdowns ─────────────────── */
+  const moreWrap  = document.getElementById('nav-more-wrap');
+  const moreBtn   = document.getElementById('nav-more-btn');
+  const siteWrap  = document.getElementById('nav-site-wrap');
+  const siteBtn   = document.getElementById('nav-site-btn');
+  const storyWrap = document.getElementById('nav-story-wrap');
+  const storyBtn  = document.getElementById('nav-story-btn');
   function wireDropdown(wrap, btn, others) {
     if (!wrap || !btn) return;
     btn.addEventListener('click', e => {
@@ -473,14 +479,16 @@ body { background-image:
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
   }
-  wireDropdown(moreWrap, moreBtn, [siteWrap]);
-  wireDropdown(siteWrap, siteBtn, [moreWrap]);
+  wireDropdown(moreWrap,  moreBtn,  [siteWrap, storyWrap]);
+  wireDropdown(siteWrap,  siteBtn,  [moreWrap, storyWrap]);
+  wireDropdown(storyWrap, storyBtn, [moreWrap, siteWrap]);
 
   /* Close dropdowns on outside click */
   document.addEventListener('click', () => {
     if (langPicker) { langPicker.classList.remove('open'); if (langBtn) langBtn.setAttribute('aria-expanded','false'); }
     if (moreWrap)  { moreWrap.classList.remove('open');  if (moreBtn) moreBtn.setAttribute('aria-expanded','false'); }
     if (siteWrap)  { siteWrap.classList.remove('open');  if (siteBtn) siteBtn.setAttribute('aria-expanded','false'); }
+    if (storyWrap) { storyWrap.classList.remove('open'); if (storyBtn) storyBtn.setAttribute('aria-expanded','false'); }
   });
 
   /* ── Hamburger toggle ─────────────────────────────────────────────── */
