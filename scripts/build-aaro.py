@@ -818,7 +818,7 @@ footer .colophon {
 @media (min-width: 720px) {
   .nav-more-btn { padding: 0; border: 0; font-size: 10.5px; }
   .nav-dropdown { position: absolute; right: 0; top: calc(100% + 10px); min-width: 180px; }
-  .has-dropdown:hover .nav-dropdown, .has-dropdown:focus-within .nav-dropdown { display: block; }
+  .has-dropdown.open .nav-dropdown { display: block; }
   .lang-btn { width: auto; margin: 0; padding: 3px 8px; }
   .lang-menu { position: absolute; right: 0; top: calc(100% + 10px); min-width: 130px; }
 }

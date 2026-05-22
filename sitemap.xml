@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Root = global search landing -->
+  <!-- Root = War.gov / PURSUE landing -->
   <url><loc>https://realufo.org/</loc><lastmod>2026-05-22</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://realufo.org/search.html</loc><lastmod>2026-05-22</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <!-- U.S. archives -->
-  <url><loc>https://realufo.org/wargov/</loc><lastmod>2026-05-22</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://realufo.org/aaro/</loc><lastmod>2026-05-22</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://realufo.org/aaro/details.html</loc><lastmod>2026-05-22</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://realufo.org/nasa/</loc><lastmod>2026-05-22</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>

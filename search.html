@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>realufo.org — Search every government UAP archive</title>
+<meta name="description" content="One search across 14 official government UAP / UFO disclosure archives: AARO, NASA, NARA, GEIPAN, UK MoD, FAB, SEFAA, NZDF, LAC, CEFAe, CRIDOVNI, OIFAA, Ejército, AM — and War.gov.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://realufo.org/">
+<meta property="og:title" content="realufo.org — Every government UAP file. One search.">
+<meta property="og:description" content="14 official UAP / UFO disclosure archives. Aggregated. Searchable.">
+<meta property="og:url" content="https://realufo.org/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://realufo.org/slideshow/NASA-UAP-VM6-Apollo-17-1972.jpg">
+<meta property="og:site_name" content="realufo.org">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="realufo.org — Every government UAP file. One search.">
+<meta name="twitter:description" content="14 official UAP / UFO disclosure archives. Aggregated. Searchable.">
+<meta name="twitter:image" content="https://realufo.org/slideshow/NASA-UAP-VM6-Apollo-17-1972.jpg">
+<link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
+<link rel="apple-touch-icon" href="./assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a0c; --bg-2:#111114; --panel:#15151a;
+  --ink:#e8e3d8; --ink-dim:#a8a298; --ink-faint:#6b665d;
+  --rule:rgba(232,227,216,0.12); --rule-strong:rgba(232,227,216,0.28);
+  --caution:#d4a017; --stamp:#b91c1c; --warm:#d4a017; --classified:#c9362c;
+  --serif:"Source Serif 4",Georgia,serif;
+  --mono:"JetBrains Mono",monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--serif);font-size:16px;line-height:1.6;overflow-x:hidden;min-height:100vh}
+.scanlines{position:fixed;inset:0;pointer-events:none;z-index:9999;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.03) 2px,rgba(0,0,0,0.03) 4px)}
+
+/* header */
+.header-wrap{position:sticky;top:0;z-index:900;background:rgba(21,21,26,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--rule);height:64px}
+.header{max-width:1400px;margin:0 auto;padding:0 16px;height:100%;display:flex;align-items:center;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.brand-seal{width:36px;height:36px;border-radius:50%;background:radial-gradient(circle,#b91c1c,#6b1010,#2a0606);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;color:var(--caution);letter-spacing:0.1em;border:1px solid rgba(212,160,23,0.35);flex-shrink:0}
+.brand-name{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--ink);letter-spacing:0.12em;text-transform:uppercase}
+nav.primary{display:flex;align-items:center;gap:4px;margin-left:auto;list-style:none}
+nav.primary a{font-family:var(--mono);font-size:11px;font-weight:500;color:var(--ink-dim);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;padding:10px 10px;border-radius:4px;transition:color 0.15s,background 0.15s;display:block;white-space:nowrap}
+nav.primary a:hover{color:var(--ink);background:rgba(232,227,216,0.06)}
+nav.primary a.active{color:var(--caution)}
+.nav-dropdown{position:relative}
+.nav-dropdown-btn{font-family:var(--mono);font-size:11px;font-weight:500;color:var(--ink-dim);background:none;border:none;cursor:pointer;letter-spacing:0.1em;text-transform:uppercase;padding:10px 10px;border-radius:4px;transition:color 0.15s,background 0.15s;white-space:nowrap;display:flex;align-items:center;gap:4px}
+.nav-dropdown-btn:hover{color:var(--ink);background:rgba(232,227,216,0.06)}
+.nav-dropdown-menu{display:none;position:absolute;top:calc(100% + 4px);right:0;background:var(--panel);border:1px solid var(--rule-strong);border-radius:6px;min-width:180px;padding:4px 0;z-index:1000;box-shadow:0 8px 24px rgba(0,0,0,0.6)}
+.nav-dropdown-menu a{font-family:var(--mono);font-size:11px;color:var(--ink-dim);text-decoration:none;display:block;padding:8px 14px;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.15s,background 0.15s}
+.nav-dropdown-menu a:hover{color:var(--ink);background:rgba(232,227,216,0.06)}
+.nav-dropdown.open .nav-dropdown-menu{display:block}
+.nav-lang{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--caution);background:rgba(212,160,23,0.12);border:1px solid rgba(212,160,23,0.3);border-radius:3px;padding:4px 8px;letter-spacing:0.1em;cursor:default;flex-shrink:0}
+.nav-toggle{display:none;background:none;border:none;color:var(--ink);font-size:22px;cursor:pointer;padding:10px 8px;flex-shrink:0;margin-left:auto;line-height:1}
+@media(max-width:719px){
+  .nav-toggle{display:flex;align-items:center;justify-content:center}
+  nav.primary{display:none;position:fixed;top:64px;left:0;right:0;background:var(--panel);border-bottom:1px solid var(--rule-strong);flex-direction:column;align-items:stretch;padding:8px 0 16px;margin-left:0;gap:0;max-height:calc(100vh - 64px);overflow-y:auto;z-index:800}
+  nav.primary.open{display:flex}
+  nav.primary a{padding:12px 20px;font-size:12px}
+  .nav-dropdown-btn{padding:12px 20px;font-size:12px;width:100%}
+  .nav-dropdown-menu{position:static;border:none;border-top:1px solid var(--rule);border-radius:0;background:rgba(255,255,255,0.03);box-shadow:none;display:none;padding:0}
+  .nav-dropdown-menu a{padding:10px 32px;font-size:11px}
+  .nav-dropdown.open .nav-dropdown-menu{display:block}
+  .nav-lang{margin:12px 20px 0;align-self:flex-start}
+}
+
+/* hero carousel */
+.hero{max-width:1100px;margin:0 auto;padding:32px 16px 8px}
+.hero-carousel{position:relative;width:100%;aspect-ratio:16/9;background:#000;border:1px solid var(--rule);border-radius:8px;overflow:hidden}
+.carousel-track{position:relative;width:100%;height:100%}
+.carousel-slide{position:absolute;inset:0;opacity:0;transition:opacity 0.6s ease;pointer-events:none}
+.carousel-slide.active{opacity:1;pointer-events:auto}
+.carousel-slide img,.carousel-slide video{width:100%;height:100%;object-fit:cover;display:block;cursor:zoom-in}
+.carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.55);border:1px solid var(--rule);color:var(--ink);font-size:24px;line-height:1;width:44px;height:44px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.15s,color 0.15s,border-color 0.15s;z-index:3}
+.carousel-btn:hover{background:rgba(0,0,0,0.85);border-color:var(--caution);color:var(--caution)}
+.carousel-btn.prev{left:12px}
+.carousel-btn.next{right:12px}
+.carousel-dots{position:absolute;bottom:48px;left:0;right:0;display:flex;justify-content:center;gap:6px;z-index:3}
+.carousel-dots button{width:8px;height:8px;border-radius:50%;border:none;background:rgba(255,255,255,0.35);padding:0;cursor:pointer;transition:background 0.15s,transform 0.15s}
+.carousel-dots button.active{background:var(--caution);transform:scale(1.3)}
+.carousel-caption{position:absolute;bottom:12px;left:0;right:0;text-align:center;font-family:var(--mono);font-size:11px;color:var(--ink-dim);letter-spacing:0.06em;padding:0 56px;line-height:1.5;text-shadow:0 1px 4px rgba(0,0,0,0.9);z-index:2;pointer-events:none}
+.carousel-caption .id{display:inline-block;color:var(--caution);font-weight:700;margin-right:8px;letter-spacing:0.1em}
+@media(max-width:600px){
+  .hero{padding:16px 12px 4px}
+  .hero-carousel{aspect-ratio:16/10}
+  .carousel-btn{width:38px;height:38px;font-size:20px}
+  .carousel-btn.prev{left:6px}.carousel-btn.next{right:6px}
+  .carousel-caption{font-size:10px;padding:0 48px;bottom:10px}
+  .carousel-dots{bottom:32px}
+}
+
+/* search hero */
+main{max-width:1100px;margin:0 auto;padding:24px 16px 80px}
+.search-hero{text-align:center;padding:32px 0 28px}
+.search-hero h1{font-family:var(--serif);font-size:clamp(24px,5vw,42px);font-weight:600;color:var(--ink);letter-spacing:-0.01em;margin-bottom:10px}
+.search-hero h1 em{color:var(--caution);font-style:italic}
+.search-hero p{font-family:var(--mono);font-size:12px;color:var(--ink-faint);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:28px}
+.search-box-wrap{position:relative;max-width:680px;margin:0 auto}
+#q{width:100%;background:var(--bg-2);border:1px solid var(--rule-strong);border-radius:6px;color:var(--ink);font-family:var(--serif);font-size:18px;padding:16px 48px 16px 20px;outline:none;transition:border-color 0.2s,box-shadow 0.2s;-webkit-appearance:none;appearance:none}
+#q::placeholder{color:var(--ink-faint)}
+#q:focus{border-color:rgba(212,160,23,0.5);box-shadow:0 0 0 3px rgba(212,160,23,0.1)}
+.search-clear{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--ink-faint);font-size:18px;cursor:pointer;padding:4px;display:none;line-height:1}
+.search-clear.visible{display:block}
+
+/* stats bar — pills are now <a> links */
+.stats-bar{display:flex;flex-direction:column;gap:10px;margin:20px 0 0}
+.stats-total{font-family:var(--mono);font-size:12px;color:var(--ink-dim);letter-spacing:0.08em}
+.stats-total strong{color:var(--caution)}
+.archive-pills{display:flex;flex-wrap:wrap;gap:6px}
+.archive-pill{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;padding:5px 10px;border-radius:3px;border:1px solid var(--rule);background:var(--bg-2);color:var(--ink-faint);display:inline-flex;align-items:center;gap:6px;transition:border-color 0.2s,color 0.2s,background 0.2s;text-decoration:none;min-height:28px}
+.archive-pill:hover{color:var(--ink);border-color:var(--caution);background:rgba(212,160,23,0.08)}
+.archive-pill.loaded{color:var(--ink-dim);border-color:var(--rule-strong)}
+.archive-pill.error{color:var(--classified);border-color:rgba(201,54,44,0.3)}
+.pill-spinner{width:8px;height:8px;border:1.5px solid var(--ink-faint);border-top-color:var(--caution);border-radius:50%;animation:spin 0.7s linear infinite;flex-shrink:0}
+.archive-pill.loaded .pill-spinner,.archive-pill.error .pill-spinner{display:none}
+.pill-count{font-weight:700}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* result info */
+.result-info{font-family:var(--mono);font-size:12px;color:var(--ink-faint);letter-spacing:0.08em;margin:24px 0 16px;min-height:20px}
+.result-info strong{color:var(--ink-dim)}
+
+/* results grid */
+#results{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+@media(max-width:600px){#results{grid-template-columns:1fr}}
+.res-card{background:var(--bg-2);border:1px solid var(--rule);border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:10px;transition:border-color 0.2s}
+.res-card:hover{border-color:var(--rule-strong)}
+.card-badges{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.badge{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:3px 7px;border-radius:3px}
+.badge-site{background:rgba(212,160,23,0.15);color:var(--caution);border:1px solid rgba(212,160,23,0.3)}
+.badge-type{background:rgba(232,227,216,0.07);color:var(--ink-dim);border:1px solid var(--rule)}
+.card-title{font-family:var(--serif);font-size:15px;font-weight:600;color:var(--ink);line-height:1.4;overflow-wrap:anywhere}
+.card-desc{font-family:var(--serif);font-size:13px;color:var(--ink-dim);line-height:1.5;overflow-wrap:anywhere}
+.card-meta{font-family:var(--mono);font-size:10px;color:var(--ink-faint);letter-spacing:0.08em;display:flex;flex-wrap:wrap;gap:4px 12px}
+.card-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}
+.btn{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;border-radius:4px;text-decoration:none;cursor:pointer;border:1px solid transparent;transition:background 0.15s,color 0.15s,border-color 0.15s;display:inline-flex;align-items:center;gap:4px;white-space:nowrap;min-height:36px}
+.btn-source{background:transparent;border-color:var(--rule-strong);color:var(--ink-dim)}
+.btn-source:hover{background:rgba(232,227,216,0.07);color:var(--ink);border-color:rgba(232,227,216,0.4)}
+.btn-open{background:rgba(212,160,23,0.15);border-color:rgba(212,160,23,0.4);color:var(--caution)}
+.btn-open:hover{background:rgba(212,160,23,0.25);border-color:rgba(212,160,23,0.6)}
+
+/* state messages */
+.state-message{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--ink-faint);font-family:var(--mono);font-size:13px;letter-spacing:0.08em;line-height:1.7}
+.state-message strong{display:block;color:var(--ink-dim);font-size:15px;font-family:var(--serif);margin-bottom:8px}
+
+/* pagination */
+.pagination{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:36px;flex-wrap:wrap}
+.page-btn{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:0.08em;padding:8px 14px;border-radius:4px;border:1px solid var(--rule-strong);background:var(--bg-2);color:var(--ink-dim);cursor:pointer;transition:background 0.15s,color 0.15s;min-height:36px}
+.page-btn:hover:not(:disabled){background:rgba(232,227,216,0.07);color:var(--ink)}
+.page-btn:disabled{opacity:0.35;cursor:default}
+.page-btn.active{background:rgba(212,160,23,0.15);border-color:rgba(212,160,23,0.4);color:var(--caution)}
+.page-info{font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:0.08em}
+
+/* lightbox */
+.lightbox{position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,0.92);display:none;align-items:center;justify-content:center;padding:24px}
+.lightbox.open{display:flex}
+.lb-inner{max-width:96vw;max-height:90vh;display:flex;flex-direction:column;align-items:center;gap:10px}
+.lb-inner img,.lb-inner video{max-width:96vw;max-height:80vh;border:1px solid var(--rule)}
+.lb-meta{font-family:var(--mono);font-size:11px;color:var(--ink-dim);letter-spacing:0.08em;text-align:center;max-width:680px;line-height:1.6}
+.lb-close{position:absolute;top:16px;right:16px;background:rgba(0,0,0,0.5);color:var(--ink);border:1px solid var(--rule);width:40px;height:40px;border-radius:50%;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1}
+.lb-close:hover{color:var(--caution);border-color:var(--caution)}
+
+/* footer */
+footer{border-top:1px solid var(--rule);margin-top:60px;padding:32px 16px;text-align:center}
+footer p{font-family:var(--mono);font-size:10px;color:var(--ink-faint);letter-spacing:0.08em;line-height:1.8}
+footer a{color:var(--ink-dim);text-decoration:none}
+footer a:hover{color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="scanlines" aria-hidden="true"></div>
+
+<div class="header-wrap">
+  <div class="header">
+    <a href="/" class="brand" aria-label="realufo.org home">
+      <div class="brand-seal" aria-hidden="true">UAP</div>
+      <span class="brand-name">realufo.org</span>
+    </a>
+
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav">&#9776;</button>
+
+    <nav class="primary" id="primary-nav" aria-label="Main navigation">
+      <a href="/">War.gov</a>
+      <a href="aaro/">AARO</a>
+      <a href="nasa/">NASA</a>
+      <a href="nara/">NARA</a>
+      <div class="nav-dropdown" id="more-dropdown">
+        <button class="nav-dropdown-btn" id="more-btn" aria-haspopup="true" aria-expanded="false" aria-controls="more-menu">
+          More &#9660;
+        </button>
+        <div class="nav-dropdown-menu" id="more-menu" role="menu">
+          <a href="geipan/" role="menuitem">France GEIPAN</a>
+          <a href="uk/" role="menuitem">UK Archives</a>
+          <a href="brazil/" role="menuitem">Brazil FAB</a>
+          <a href="chile/" role="menuitem">Chile CEFAA</a>
+          <a href="nz/" role="menuitem">New Zealand</a>
+          <a href="canada/" role="menuitem">Canada LAC</a>
+          <a href="argentina/" role="menuitem">Argentina CEFAe</a>
+          <a href="uruguay/" role="menuitem">Uruguay CRIDOVNI</a>
+          <a href="peru/" role="menuitem">Peru OIFAA</a>
+          <a href="spain/" role="menuitem">Spain Ejército</a>
+          <a href="italy/" role="menuitem">Italy AM</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="hero-carousel" id="hero-carousel" aria-label="Featured UAP imagery and video">
+    <div class="carousel-track" id="carousel-track"></div>
+    <button class="carousel-btn prev" id="carousel-prev" aria-label="Previous">&lsaquo;</button>
+    <button class="carousel-btn next" id="carousel-next" aria-label="Next">&rsaquo;</button>
+    <div class="carousel-dots" id="carousel-dots"></div>
+    <div class="carousel-caption" id="carousel-caption"></div>
+  </div>
+</section>
+
+<main>
+  <div class="search-hero">
+    <h1>Search <em>every</em> government UAP archive</h1>
+    <p>15 official sources &mdash; one query</p>
+    <div class="search-box-wrap">
+      <input type="search" id="q" placeholder="Search across every archive&hellip;" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-label="Search all archives">
+      <button class="search-clear" id="search-clear" aria-label="Clear search" title="Clear">&times;</button>
+    </div>
+  </div>
+
+  <div class="stats-bar" id="stats-bar">
+    <span class="stats-total" id="stats-total">Loading archives&hellip;</span>
+    <div class="archive-pills" id="archive-pills" aria-label="Per-archive jump links and counts"></div>
+  </div>
+
+  <div class="result-info" id="result-info" aria-live="polite" aria-atomic="true"></div>
+  <div id="results" role="list" aria-label="Search results"></div>
+  <div class="pagination" id="pagination"></div>
+</main>
+
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog">
+  <button class="lb-close" id="lb-close" aria-label="Close">&times;</button>
+  <div class="lb-inner" id="lb-inner"></div>
+</div>
+
+<footer>
+  <p>
+    <a href="/">realufo.org</a> &mdash;
+    Global search across official government UAP disclosure archives.<br>
+    All content public domain under applicable law (17 U.S.C. &sect;105, OGL v3, LAI, Ley n&deg; 20.285, etc.).<br>
+    Not affiliated with any government agency.
+  </p>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+
+  /* ── Hero carousel: pictures + videos from War.gov / AARO releases ── */
+  var SLIDES = [
+    { id: 'VM6',  type:'img', file: 'slideshow/NASA-UAP-VM6-Apollo-17-1972.jpg',                                  caption: 'NASA · Apollo 17 lunar surface frame — 1972' },
+    { id: 'PR19', type:'img', file: 'slideshow/DOW-UAP-PR19-Unresolved-UAP-Report-Middle-East-May-2022.jpg',     caption: 'DOW · Unresolved UAP — Middle East, May 2022' },
+    { id: 'PR26', type:'img', file: 'slideshow/DOW-UAP-PR26-Unresolved-UAP-Report-United-Arab-Emirates-October-2023.jpg', caption: 'DOW · UAP encounter — UAE, Oct 2023' },
+    { id: 'PR34', type:'img', file: 'slideshow/DOW-UAP-PR34-Unresolved-UAP-Report-Greece-October-2023.jpg',      caption: 'DOW · UAP over Greece — Oct 2023' },
+    { id: 'PR43', type:'img', file: 'slideshow/DOW-UAP-PR43-Unresolved-UAP-Report-Africa-2025.jpg',              caption: 'DOW · UAP in African airspace — 2025' },
+    { id: 'PR46', type:'img', file: 'slideshow/DOW-UAP-PR46-Unresolved-UAP-Report-INDOPACOM-2024.jpg',           caption: 'INDOPACOM · Football-shaped UAP near Japan — 2024' },
+    { id: 'PR49', type:'img', file: 'slideshow/DOW-UAP-PR49-Unresolved-UAP-Report-Department-of-the-Army-2026.jpg', caption: 'U.S. Army · UAP in North America — 2026' },
+    { id: 'GOFAST', type:'video', file: 'https://github.com/hectorchanht/war-gov-ufo-release/releases/download/videos-v1/GoFast.mp4',
+      caption: 'AARO · GO FAST — declassified Navy FLIR (2015)' },
+    { id: 'GIMBAL', type:'video', file: 'https://github.com/hectorchanht/war-gov-ufo-release/releases/download/videos-v1/Gimbal.mp4',
+      caption: 'AARO · GIMBAL — declassified Navy FLIR (2015)' },
+    { id: 'FLIR1',  type:'video', file: 'https://github.com/hectorchanht/war-gov-ufo-release/releases/download/videos-v1/FLIR1.mp4',
+      caption: 'AARO · FLIR1 (Tic-Tac) — declassified F/A-18 footage (2004)' }
+  ];
+
+  function esc(s){return String(s||'').replace(/[&<>"']/g,function(c){return({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]})}
+
+  var cTrack = document.getElementById('carousel-track');
+  var cDots  = document.getElementById('carousel-dots');
+  var cCap   = document.getElementById('carousel-caption');
+  SLIDES.forEach(function(s, i) {
+    var slide = document.createElement('div');
+    slide.className = 'carousel-slide' + (i === 0 ? ' active' : '');
+    if (s.type === 'video') {
+      slide.innerHTML = '<video muted loop playsinline ' + (i === 0 ? 'autoplay' : '') + ' preload="' + (i === 0 ? 'auto' : 'none') + '"><source src="' + esc(s.file) + '" type="video/mp4"></video>';
+    } else {
+      slide.innerHTML = '<img src="./' + esc(s.file) + '" alt="' + esc(s.caption) + '" loading="' + (i === 0 ? 'eager' : 'lazy') + '">';
+    }
+    cTrack.appendChild(slide);
+    var dot = document.createElement('button');
+    dot.type = 'button';
+    if (i === 0) dot.classList.add('active');
+    dot.setAttribute('aria-label', 'Slide ' + (i+1) + ' of ' + SLIDES.length);
+    dot.addEventListener('click', function() { goTo(i); restart(); });
+    cDots.appendChild(dot);
+  });
+  cCap.innerHTML = '<span class="id">' + esc(SLIDES[0].id) + '</span>' + esc(SLIDES[0].caption);
+
+  var cIdx = 0;
+  function goTo(i) {
+    var slides = cTrack.children;
+    var dots = cDots.children;
+    /* pause any video on the outgoing slide */
+    var outgoing = slides[cIdx].querySelector('video');
+    if (outgoing) { try { outgoing.pause(); } catch(_){} }
+    slides[cIdx].classList.remove('active');
+    dots[cIdx].classList.remove('active');
+    cIdx = (i + slides.length) % slides.length;
+    slides[cIdx].classList.add('active');
+    dots[cIdx].classList.add('active');
+    cCap.innerHTML = '<span class="id">' + esc(SLIDES[cIdx].id) + '</span>' + esc(SLIDES[cIdx].caption);
+    var incoming = slides[cIdx].querySelector('video');
+    if (incoming) { try { incoming.play(); } catch(_){} }
+  }
+  document.getElementById('carousel-prev').addEventListener('click', function(){ goTo(cIdx - 1); restart(); });
+  document.getElementById('carousel-next').addEventListener('click', function(){ goTo(cIdx + 1); restart(); });
+  var carouselTimer = setInterval(function(){ goTo(cIdx + 1); }, 6500);
+  function restart(){ clearInterval(carouselTimer); carouselTimer = setInterval(function(){ goTo(cIdx + 1); }, 8500); }
+  var heroEl = document.getElementById('hero-carousel');
+  heroEl.addEventListener('mouseenter', function(){ clearInterval(carouselTimer); });
+  heroEl.addEventListener('mouseleave', restart);
+  /* click image/video → lightbox */
+  cTrack.addEventListener('click', function(e) {
+    var tag = e.target.tagName;
+    if (tag !== 'IMG' && tag !== 'VIDEO') return;
+    openLb(SLIDES[cIdx]);
+  });
+
+  /* ── Lightbox (carousel only) ── */
+  var lb = document.getElementById('lightbox');
+  var lbInner = document.getElementById('lb-inner');
+  document.getElementById('lb-close').addEventListener('click', closeLb);
+  lb.addEventListener('click', function(e){ if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeLb(); });
+  function openLb(s){
+    var meta = '<div class="lb-meta">' + esc(s.id) + ' &middot; ' + esc(s.caption) + '</div>';
+    var html;
+    if (s.type === 'video') {
+      html = '<video controls autoplay playsinline><source src="' + esc(s.file) + '" type="video/mp4"></video>' + meta;
+    } else {
+      html = '<img src="./' + esc(s.file) + '" alt="' + esc(s.caption) + '">' + meta;
+    }
+    lbInner.innerHTML = html;
+    lb.classList.add('open');
+    lb.setAttribute('aria-hidden','false');
+  }
+  function closeLb(){
+    lb.classList.remove('open');
+    lb.setAttribute('aria-hidden','true');
+    lbInner.innerHTML = '';
+  }
+
+  /* ── Hamburger ── */
+  var navToggle = document.getElementById('nav-toggle');
+  var primaryNav = document.getElementById('primary-nav');
+  if (navToggle && primaryNav) {
+    navToggle.addEventListener('click', function() {
+      var open = primaryNav.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    primaryNav.addEventListener('click', function(e) {
+      if (e.target.tagName === 'A') {
+        primaryNav.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  /* ── More dropdown ── */
+  var moreBtn = document.getElementById('more-btn');
+  var moreDropdown = document.getElementById('more-dropdown');
+  if (moreBtn && moreDropdown) {
+    moreBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var open = moreDropdown.classList.toggle('open');
+      moreBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    document.addEventListener('click', function() {
+      moreDropdown.classList.remove('open');
+      moreBtn.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  /* ── Archive source definitions ── */
+  var ARCHIVES = [
+    { id: 'wargov',    label: 'War.gov',   url: 'index.html',           scriptId: 'archive-manifest', type: 'wargov',   dir: '' },
+    { id: 'aaro',      label: 'AARO',      url: 'aaro/index.html',      scriptId: 'arch-data',        type: 'standard', dir: 'aaro/' },
+    { id: 'nasa',      label: 'NASA',      url: 'nasa/index.html',      scriptId: 'arch-data',        type: 'standard', dir: 'nasa/' },
+    { id: 'nara',      label: 'NARA',      url: 'nara/index.html',      scriptId: 'arch-data',        type: 'standard', dir: 'nara/' },
+    { id: 'geipan',    label: 'GEIPAN',    url: 'geipan/index.html',    scriptId: 'arch-data',        type: 'geipan',   dir: 'geipan/' },
+    { id: 'uk',        label: 'UK',        url: 'uk/index.html',        scriptId: 'arch-data',        type: 'standard', dir: 'uk/' },
+    { id: 'brazil',    label: 'Brazil',    url: 'brazil/index.html',    scriptId: 'arch-data',        type: 'standard', dir: 'brazil/' },
+    { id: 'chile',     label: 'Chile',     url: 'chile/index.html',     scriptId: 'arch-data',        type: 'standard', dir: 'chile/' },
+    { id: 'nz',        label: 'NZ',        url: 'nz/index.html',        scriptId: 'arch-data',        type: 'standard', dir: 'nz/' },
+    { id: 'canada',    label: 'Canada',    url: 'canada/index.html',    scriptId: 'arch-data',        type: 'standard', dir: 'canada/' },
+    { id: 'argentina', label: 'Argentina', url: 'argentina/index.html', scriptId: 'arch-data',        type: 'standard', dir: 'argentina/' },
+    { id: 'uruguay',   label: 'Uruguay',   url: 'uruguay/index.html',   scriptId: 'arch-data',        type: 'standard', dir: 'uruguay/' },
+    { id: 'peru',      label: 'Peru',      url: 'peru/index.html',      scriptId: 'arch-data',        type: 'standard', dir: 'peru/' },
+    { id: 'spain',     label: 'Spain',     url: 'spain/index.html',     scriptId: 'arch-data',        type: 'standard', dir: 'spain/' },
+    { id: 'italy',     label: 'Italy',     url: 'italy/index.html',     scriptId: 'arch-data',        type: 'standard', dir: 'italy/' }
+  ];
+
+  /* ── State ── */
+  var allRecords = [], filteredRecords = [];
+  var currentPage = 1, PAGE_SIZE = 100;
+  var debounceTimer = null;
+  var archivesLoaded = 0;
+  var archivesTotal = ARCHIVES.length;
+
+  /* ── DOM refs ── */
+  var qEl = document.getElementById('q');
+  var clearBtn = document.getElementById('search-clear');
+  var statsTotal = document.getElementById('stats-total');
+  var archivePills = document.getElementById('archive-pills');
+  var resultInfo = document.getElementById('result-info');
+  var resultsEl = document.getElementById('results');
+  var paginationEl = document.getElementById('pagination');
+
+  /* ── Build pill elements as anchor links ── */
+  var pillMap = {};
+  ARCHIVES.forEach(function(arc) {
+    var pill = document.createElement('a');
+    pill.className = 'archive-pill';
+    pill.id = 'pill-' + arc.id;
+    pill.href = arc.dir;
+    pill.title = 'Open ' + arc.label + ' mirror';
+    pill.innerHTML = '<span class="pill-spinner" aria-hidden="true"></span>' +
+      '<span class="pill-label">' + arc.label + '</span>' +
+      '<span class="pill-count" style="display:none"></span>';
+    archivePills.appendChild(pill);
+    pillMap[arc.id] = pill;
+  });
+
+  /* ── Extract embedded JSON from a mirror's HTML ── */
+  function extractScript(html, scriptId) {
+    var re = new RegExp('<script[^>]+id=["\']' + scriptId + '["\'][^>]*>([\\s\\S]*?)<\/script>', 'i');
+    var m = html.match(re);
+    if (!m) return null;
+    try { return JSON.parse(m[1].trim()); } catch(_) { return null; }
+  }
+
+  function normaliseStandard(raw, arc) {
+    return {
+      title:  raw.ti || raw.title || '',
+      desc:   raw.de || raw.desc || raw.description || '',
+      agency: raw.ag || raw.agency || arc.label,
+      type:   raw.cat || raw.type || raw.category || '',
+      date:   raw.date || raw.t || '',
+      status: raw.st || raw.status || '',
+      region: raw.re || raw.region || '',
+      url:    raw.u || raw.url || '',
+      src:    raw.s || raw.src || '',
+      local:  raw.l || raw.local || '',
+      site:   arc.label, siteId: arc.id, siteDir: arc.dir
+    };
+  }
+
+  function normaliseWargov(row, arc) {
+    var title, agency, desc, date, status, region, url, src, local, type;
+    if (Array.isArray(row)) {
+      title=row[0]||''; agency=row[1]||'War.gov'; desc=row[2]||''; date=row[3]||'';
+      status=row[4]||''; region=row[5]||''; url=row[6]||''; src=row[7]||''; local=row[8]||''; type=row[9]||'';
+    } else {
+      title  = row.Title || row.title || row.ti || '';
+      agency = row.Agency || row.agency || row.ag || 'War.gov';
+      desc   = row['Description Blurb'] || row.Description || row.desc || row.de || '';
+      date   = row.Date || row['Incident Date'] || row.date || row.t || '';
+      status = row.Status || row.status || row.st || '';
+      region = row.Region || row['Incident Location'] || row.region || row.re || '';
+      url    = row.URL || row['PDF | Image Link'] || row.url || row.u || '';
+      src    = row.Src || row.src || row.s || url;
+      local  = row.Local || row.local || row.l || '';
+      type   = row.Type || row.type || row.cat || '';
+    }
+    return {
+      title:title, desc:desc, agency:agency, type:type, date:date, status:status, region:region,
+      url:url, src:src, local:local, site:'War.gov', siteId:'wargov', siteDir:arc.dir
+    };
+  }
+
+  function normaliseGeipan(raw, arc) {
+    return {
+      title:  raw.ti || raw.title || raw.name || '',
+      desc:   raw.de || raw.desc || raw.description || raw.summary || '',
+      agency: raw.ag || raw.agency || 'GEIPAN',
+      type:   raw.cat || raw.type || raw.category || 'Case',
+      date:   raw.date || raw.t || raw.year || '',
+      status: raw.st || raw.status || raw.classification || '',
+      region: raw.re || raw.region || raw.department || '',
+      url:    raw.u || raw.url || '',
+      src:    raw.s || raw.src || '',
+      local:  raw.l || raw.local || '',
+      site:'GEIPAN', siteId:'geipan', siteDir:arc.dir
+    };
+  }
+
+  function fetchArchive(arc) {
+    return fetch(arc.url, { cache: 'no-cache' })
+      .then(function(r){ if (!r.ok) throw new Error('HTTP ' + r.status); return r.text(); })
+      .then(function(html) {
+        var data = extractScript(html, arc.scriptId);
+        if (!data) throw new Error('no script#' + arc.scriptId);
+        var records = [];
+        if (arc.type === 'wargov') {
+          var rows = data.rows || data.assets || data.records || (Array.isArray(data) ? data : []);
+          rows.forEach(function(row){ records.push(normaliseWargov(row, arc)); });
+        } else if (arc.type === 'geipan') {
+          (data.assets || []).forEach(function(raw){ records.push(normaliseGeipan(raw, arc)); });
+          (data.cases  || []).forEach(function(raw){ records.push(normaliseGeipan(raw, arc)); });
+          if (!data.assets && !data.cases && Array.isArray(data)) {
+            data.forEach(function(raw){ records.push(normaliseGeipan(raw, arc)); });
+          }
+        } else {
+          var arr = data.assets || (Array.isArray(data) ? data : []);
+          arr.forEach(function(raw){ records.push(normaliseStandard(raw, arc)); });
+        }
+        return records;
+      });
+  }
+
+  function setPillLoaded(id, count) {
+    var pill = pillMap[id]; if (!pill) return;
+    pill.classList.add('loaded');
+    var c = pill.querySelector('.pill-count');
+    if (c) { c.textContent = count; c.style.display = ''; }
+  }
+  function setPillError(id) {
+    var pill = pillMap[id]; if (!pill) return;
+    pill.classList.add('error');
+    var c = pill.querySelector('.pill-count');
+    if (c) { c.textContent = '—'; c.style.display = ''; }
+  }
+
+  function updateStats() {
+    statsTotal.innerHTML = '<strong>' + allRecords.length.toLocaleString() + '</strong> records across ' + archivesTotal + ' archives' +
+      (archivesLoaded < archivesTotal ? ' (' + archivesLoaded + '/' + archivesTotal + ' loaded)' : '');
+  }
+
+  function truncate(str, n) {
+    str = str || '';
+    if (str.length <= n) return str;
+    return str.slice(0, n).replace(/\s+\S*$/, '') + '…';
+  }
+
+  function resolveUrl(rec, field) {
+    var val = rec[field] || '';
+    if (!val) return '';
+    if (/^https?:\/\//i.test(val)) return val;
+    if (rec.siteDir && !/^\//.test(val)) return rec.siteDir + val;
+    return val;
+  }
+
+  function renderCard(rec) {
+    var div = document.createElement('div');
+    div.className = 'res-card';
+    div.setAttribute('role', 'listitem');
+
+    var badges = '<div class="card-badges"><span class="badge badge-site">' + esc(rec.site) + '</span>';
+    if (rec.type) badges += '<span class="badge badge-type">' + esc(rec.type) + '</span>';
+    badges += '</div>';
+
+    var title = '<div class="card-title">' + esc(rec.title || '(Untitled)') + '</div>';
+    var desc  = rec.desc ? '<div class="card-desc">' + esc(truncate(rec.desc, 160)) + '</div>' : '';
+
+    var metas = [];
+    if (rec.agency && rec.agency !== rec.site) metas.push(esc(rec.agency));
+    if (rec.date)   metas.push(esc(rec.date));
+    if (rec.status) metas.push(esc(rec.status));
+    if (rec.region) metas.push(esc(rec.region));
+    var meta = metas.length ? '<div class="card-meta">' + metas.join(' &nbsp;&middot;&nbsp; ') + '</div>' : '';
+
+    var actions = '<div class="card-actions">';
+    var openUrl = resolveUrl(rec, 'local') || resolveUrl(rec, 'url');
+    if (openUrl) actions += '<a class="btn btn-open" href="' + esc(openUrl) + '" target="_blank" rel="noopener">Open</a>';
+    var srcUrl = resolveUrl(rec, 'src');
+    if (srcUrl && srcUrl !== openUrl) actions += '<a class="btn btn-source" href="' + esc(srcUrl) + '" target="_blank" rel="noopener">Source &#8599;</a>';
+    actions += '</div>';
+
+    div.innerHTML = badges + title + desc + meta + actions;
+    return div;
+  }
+
+  function renderResults() {
+    resultsEl.innerHTML = '';
+    paginationEl.innerHTML = '';
+    var q = (qEl.value || '').trim();
+    var isFiltering = q.length > 0;
+    /* Empty query → show every record (filter mode). Non-empty → show filtered subset. */
+    var view = isFiltering ? filteredRecords : allRecords;
+
+    if (view.length === 0) {
+      resultInfo.innerHTML = '';
+      var msg = document.createElement('div');
+      msg.className = 'state-message';
+      if (isFiltering) {
+        msg.innerHTML = '<strong>No matches for &ldquo;' + esc(q) + '&rdquo;</strong>Try broader terms or check spelling.';
+      } else if (archivesLoaded < archivesTotal) {
+        msg.innerHTML = '<strong>Loading archives&hellip;</strong>' + archivesLoaded + ' of ' + archivesTotal + ' loaded.';
+      } else {
+        msg.innerHTML = '<strong>No records available</strong>Archives may be temporarily unreachable.';
+      }
+      resultsEl.appendChild(msg);
+      return;
+    }
+
+    var totalPages = Math.ceil(view.length / PAGE_SIZE);
+    if (currentPage > totalPages) currentPage = 1;
+    var start = (currentPage - 1) * PAGE_SIZE;
+    var pageRecords = view.slice(start, start + PAGE_SIZE);
+
+    var arcSet = {};
+    view.forEach(function(r){ arcSet[r.siteId] = true; });
+    var arcCount = Object.keys(arcSet).length;
+    var label = isFiltering ? 'matches' : 'records';
+    resultInfo.innerHTML = '<strong>' + view.length.toLocaleString() + ' ' + label + '</strong>' +
+      ' across ' + arcCount + ' archive' + (arcCount !== 1 ? 's' : '') +
+      (totalPages > 1 ? ' &mdash; page ' + currentPage + ' of ' + totalPages : '');
+
+    pageRecords.forEach(function(rec){ resultsEl.appendChild(renderCard(rec)); });
+
+    if (totalPages > 1) {
+      var prevBtn = document.createElement('button');
+      prevBtn.className = 'page-btn'; prevBtn.textContent = '← Prev';
+      prevBtn.disabled = currentPage === 1;
+      prevBtn.addEventListener('click', function(){ currentPage--; renderResults(); window.scrollTo({top:0,behavior:'smooth'}); });
+      paginationEl.appendChild(prevBtn);
+
+      var pageNums = [], delta = 3;
+      for (var p = 1; p <= totalPages; p++) {
+        if (p === 1 || p === totalPages || (p >= currentPage - delta && p <= currentPage + delta)) pageNums.push(p);
+      }
+      var prev2 = null;
+      pageNums.forEach(function(p) {
+        if (prev2 !== null && p - prev2 > 1) {
+          var d = document.createElement('span'); d.className = 'page-info'; d.textContent = '…';
+          paginationEl.appendChild(d);
+        }
+        var b = document.createElement('button');
+        b.className = 'page-btn' + (p === currentPage ? ' active' : '');
+        b.textContent = p;
+        if (p !== currentPage) {
+          b.addEventListener('click', (function(pg){ return function(){ currentPage = pg; renderResults(); window.scrollTo({top:0,behavior:'smooth'}); };})(p));
+        }
+        paginationEl.appendChild(b);
+        prev2 = p;
+      });
+
+      var nextBtn = document.createElement('button');
+      nextBtn.className = 'page-btn'; nextBtn.textContent = 'Next →';
+      nextBtn.disabled = currentPage === totalPages;
+      nextBtn.addEventListener('click', function(){ currentPage++; renderResults(); window.scrollTo({top:0,behavior:'smooth'}); });
+      paginationEl.appendChild(nextBtn);
+    }
+  }
+
+  function applyFilter() {
+    var q = (qEl.value || '').trim().toLowerCase();
+    clearBtn.classList.toggle('visible', q.length > 0);
+    if (!q) { filteredRecords = []; currentPage = 1; renderResults(); return; }
+    var terms = q.split(/\s+/).filter(Boolean);
+    filteredRecords = allRecords.filter(function(rec) {
+      var haystack = [rec.title, rec.desc, rec.agency, rec.type, rec.status, rec.region, rec.site].join(' ').toLowerCase();
+      return terms.every(function(t){ return haystack.indexOf(t) !== -1; });
+    });
+    currentPage = 1;
+    renderResults();
+  }
+
+  qEl.addEventListener('input', function(){ clearTimeout(debounceTimer); debounceTimer = setTimeout(applyFilter, 200); });
+  qEl.addEventListener('search', function(){ clearTimeout(debounceTimer); applyFilter(); });
+  clearBtn.addEventListener('click', function(){ qEl.value = ''; qEl.focus(); applyFilter(); });
+
+  renderResults();
+
+  /* Re-render is debounced so cascading archive loads don't thrash the DOM. */
+  var renderTimer = null;
+  function scheduleRender() {
+    clearTimeout(renderTimer);
+    renderTimer = setTimeout(function() {
+      if (qEl.value.trim()) applyFilter(); else renderResults();
+    }, 120);
+  }
+
+  ARCHIVES.forEach(function(arc) {
+    fetchArchive(arc)
+      .then(function(records) {
+        records.forEach(function(r){ allRecords.push(r); });
+        archivesLoaded++;
+        setPillLoaded(arc.id, records.length);
+        updateStats();
+        scheduleRender();
+      })
+      .catch(function() {
+        archivesLoaded++;
+        setPillError(arc.id);
+        updateStats();
+        scheduleRender();
+      });
+  });
+})();
+</script>
+</body>
+</html>

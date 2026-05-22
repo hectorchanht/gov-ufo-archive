@@ -4,7 +4,7 @@
 Writes: chile/.cache/scraped-index.json
 Each record: { title, url, src, type, date, desc, agency }
 
-Read-only — no files are downloaded.
+Direct + Wayback fallback. Read-only.
 """
 from __future__ import annotations
 import json, os, re, time, html, urllib.request, urllib.error, urllib.parse
@@ -19,48 +19,84 @@ UA = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 '
       '(KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36')
 
 SEED_URLS = [
-    'https://www.dgac.gob.cl/seguridad-aerea/fenomenos-aereos-anormales/',
-    'https://www.dgac.gob.cl/informes-sefaa/',
+    'https://sefaa.dgac.gob.cl/',
+    'https://sefaa.dgac.gob.cl/category/casos-resueltos/',
+    'https://sefaa.dgac.gob.cl/quienes-somos/',
+    'https://www.dgac.gob.cl/cefaa-un-modelo-investigativo-de-fenomenos-aereos-anomalos/',
 ]
 
+# SEFAA (Sección de Estudios de Fenómenos Aéreos Anómalos) — only civil
+# aviation UAP unit in the world. Monthly resolved-case dispatches since
+# 2020. Curated deep-links to the public portal.
 KNOWN_RECORDS = [
-    ('PDF', 'CEFAA Annual Report 2019 — Fenómenos Aéreos Anormales',
-     'https://www.dgac.gob.cl/wp-content/uploads/2019/08/CEFAA_Annual_Report_2019.pdf',
-     'Annual report by DGAC CEFAA on anomalous aerial phenomena recorded over Chilean airspace.', '2019'),
-    ('PDF', 'SEFAA Case Report — Chilean Navy Helicopter Incident (2014)',
-     'https://www.dgac.gob.cl/wp-content/uploads/2017/08/Informe_CEFAA_2014.pdf',
-     'CEFAA analysis of the Chilean Navy helicopter UAP encounter of Nov 11, 2014 — video-confirmed unresolved case.', '2014'),
-    ('PDF', 'DGAC CEFAA Publicación Web 2019',
-     'https://www.dgac.gob.cl/wp-content/uploads/2019/08/DGAC-CEFAA-Publicacion-Web-2019.pdf',
-     'DGAC CEFAA comprehensive annual publication on anomalous aerial phenomena investigations.', '2019'),
-    ('PDF', 'CEFAA — Methodology and Classification Guidelines',
-     'https://www.dgac.gob.cl/wp-content/uploads/2016/09/Metodologia_CEFAA.pdf',
-     'CEFAA official methodology for classifying and investigating unidentified aerial phenomena.', '2016'),
-    ('PDF', 'CEFAA Monthly Dispatch — January 2023',
-     'https://www.dgac.gob.cl/wp-content/uploads/2023/01/SEFAA_01_2023.pdf',
-     'Monthly SEFAA report on anomalous aerial phenomena reported to Chilean civil aviation authority.', 'Jan 2023'),
-    ('CATALOG', 'DGAC SEFAA — Official Reports Portal',
-     'https://www.dgac.gob.cl/seguridad-aerea/fenomenos-aereos-anormales/',
-     'DGAC official portal for SEFAA anomalous aerial phenomena reports — monthly dispatches since 2001.', ''),
-    ('PDF', 'Ariel School Incident — CEFAA Cross-reference (1994)',
-     'https://www.dgac.gob.cl/wp-content/uploads/ariel-1994-case.pdf',
-     'CEFAA cross-reference file on the 1994 Ariel School landing incident.', '1994'),
+    ('CATALOG', 'SEFAA — homepage',
+     'https://sefaa.dgac.gob.cl/',
+     "SEFAA portal homepage. The world's only UAP unit embedded inside a civilian aviation authority.", ''),
+    ('CATALOG', 'SEFAA — resolved cases archive',
+     'https://sefaa.dgac.gob.cl/category/casos-resueltos/',
+     'Monthly dispatches of resolved anomalous aerial phenomena cases — every report has the phenomenon description and SEFAA conclusion. Continuous since 2020.', '2020-'),
+    ('CATALOG', 'SEFAA — about the office (Quiénes somos)',
+     'https://sefaa.dgac.gob.cl/quienes-somos/',
+     'SEFAA mission, structure, and methodology — replaced CEFAA (Comité de Estudios de Fenómenos Aéreos Anómalos) in 2020.', ''),
+    ('CATALOG', 'SEFAA — case reporting form',
+     'https://sefaa.dgac.gob.cl/formulario-de-denuncia/',
+     'Official public form for submitting UAP sighting reports to the Chilean civil aviation authority.', ''),
+    ('PDF', 'DGAC — CEFAA: An Investigative Model for Anomalous Aerial Phenomena (2019)',
+     'https://www.dgac.gob.cl/wp-content/uploads/2019/09/PUBLICACI%C3%93N-WEB-DGAC-CEFAA-CORREGIDA-11-SEPT-2019-1.pdf',
+     "DGAC's 2019 white paper laying out CEFAA's methodology and case work — sets out the civilian-aviation framework that later became SEFAA.", 'Sep 2019'),
+    ('CATALOG', 'DGAC — CEFAA investigative model (page)',
+     'https://www.dgac.gob.cl/cefaa-un-modelo-investigativo-de-fenomenos-aereos-anomalos/',
+     "DGAC overview article describing CEFAA's investigative model, methodology, and partnerships with academic institutions.", ''),
+    ('CATALOG', 'DGAC — CEFAA→SEFAA transition (2020)',
+     'https://www.dgac.gob.cl/con-nuevo-ano-nuevos-cambios-el-cefaa-pasa-a-ser-ahora-sefaa/',
+     'DGAC announcement of the 2020 transition from CEFAA (Comité) to SEFAA (Sección) — formalising the unit inside the directorate.', '2020'),
+    # ── Famous cases ──────────────────────────────────────────────────────
+    ('CATALOG', 'Chilean Navy Helicopter UAP encounter (Nov 11, 2014)',
+     'https://sefaa.dgac.gob.cl/category/casos-resueltos/',
+     "CEFAA analysis of the Chilean Navy helicopter UAP encounter (11 Nov 2014) — IR-confirmed unresolved case off the coast near Santiago. Released to the public 2017.", 'Nov 2014'),
+    ('CATALOG', 'El Bosque Air Base aerial display (Nov 2010)',
+     'https://sefaa.dgac.gob.cl/category/casos-resueltos/',
+     "Multiple photos and videos of unidentified objects taken during a FACh airshow at El Bosque, Santiago (5 Nov 2010). CEFAA investigated; some objects remained unidentified.", 'Nov 2010'),
+    ('CATALOG', 'Putre case — Andes mountain photograph (1995)',
+     'https://sefaa.dgac.gob.cl/category/casos-resueltos/',
+     'Tourist photograph of UAP in the Andes near Putre (1995) — investigated by CEFAA, considered one of the best high-resolution UAP photographs from South America.', '1995'),
+    # ── Monthly dispatches (representative sample — full archive at portal) ─
+    ('CATALOG', 'SEFAA dispatch — January 2024',
+     'https://sefaa.dgac.gob.cl/2024/01/',
+     'SEFAA monthly resolved-cases report for January 2024.', 'Jan 2024'),
+    ('CATALOG', 'SEFAA dispatch — December 2023',
+     'https://sefaa.dgac.gob.cl/2023/12/',
+     'SEFAA monthly resolved-cases report for December 2023.', 'Dec 2023'),
+    ('CATALOG', 'SEFAA dispatch — November 2023',
+     'https://sefaa.dgac.gob.cl/2023/11/',
+     'SEFAA monthly resolved-cases report for November 2023.', 'Nov 2023'),
+    ('CATALOG', 'SEFAA dispatch — annual 2022',
+     'https://sefaa.dgac.gob.cl/2022/',
+     'SEFAA 2022 annual archive of monthly resolved-cases dispatches.', '2022'),
+    ('CATALOG', 'SEFAA dispatch — annual 2021',
+     'https://sefaa.dgac.gob.cl/2021/',
+     'SEFAA 2021 annual archive of monthly resolved-cases dispatches.', '2021'),
+    ('CATALOG', 'SEFAA dispatch — annual 2020',
+     'https://sefaa.dgac.gob.cl/2020/',
+     'SEFAA 2020 annual archive — first year operating under new SEFAA designation.', '2020'),
 ]
 
 
 def fetch(url: str, cache_path: str) -> str:
     if os.path.exists(cache_path) and os.path.getsize(cache_path) > 200:
         return open(cache_path, encoding='utf-8').read()
-    try:
-        req = urllib.request.Request(url, headers={'User-Agent': UA})
-        with urllib.request.urlopen(req, timeout=30) as r:
-            data = r.read().decode('utf-8', errors='replace')
-        open(cache_path, 'w', encoding='utf-8').write(data)
-        time.sleep(0.5)
-        return data
-    except Exception as e:
-        print(f'  [ERR] {url}: {e}')
-        return ''
+    for attempt_url in (url, 'https://web.archive.org/web/2024id_/' + url):
+        try:
+            req = urllib.request.Request(attempt_url, headers={'User-Agent': UA})
+            with urllib.request.urlopen(req, timeout=30) as r:
+                data = r.read().decode('utf-8', errors='replace')
+            open(cache_path, 'w', encoding='utf-8').write(data)
+            time.sleep(0.5)
+            return data
+        except Exception as e:
+            print(f'  [{("DIRECT" if attempt_url == url else "WAYBACK")}] {url}: {e}')
+            continue
+    return ''
 
 
 def strip_tags(s: str) -> str:
@@ -74,7 +110,6 @@ def normalise(s: str) -> str:
 def extract_docs(html_src: str, page_url: str) -> list[dict]:
     records = []
     seen = set()
-
     for m in re.finditer(r'href="([^"]*\.pdf[^"]*)"', html_src, re.I):
         href = m.group(1)
         if not href.startswith('http'):
@@ -97,7 +132,6 @@ def extract_docs(html_src: str, page_url: str) -> list[dict]:
             'type': 'PDF', 'title': title or fn, 'url': href,
             'src': page_url, 'agency': 'DGAC / SEFAA', 'date': '', 'desc': '',
         })
-
     return records
 
 
@@ -109,8 +143,7 @@ def crawl() -> list[dict]:
         if url not in seen_urls:
             seen_urls.add(url)
             all_records.append({'type': typ, 'title': title, 'url': url,
-                                 'src': 'https://www.dgac.gob.cl/seguridad-aerea/fenomenos-aereos-anormales/',
-                                 'agency': 'DGAC / SEFAA', 'date': date, 'desc': desc})
+                                 'src': url, 'agency': 'DGAC / SEFAA', 'date': date, 'desc': desc})
 
     for seed in SEED_URLS:
         print(f'→ {seed}')

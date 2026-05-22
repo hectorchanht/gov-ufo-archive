@@ -4,7 +4,7 @@
 Writes: uk/.cache/scraped-index.json
 Each record: { title, url, src, type, date, desc, agency }
 
-Read-only — no files are downloaded.
+Reads via direct fetch + Wayback Machine fallback. Read-only.
 """
 from __future__ import annotations
 import json, os, re, time, html, urllib.request, urllib.error, urllib.parse
@@ -19,52 +19,117 @@ UA = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 '
       '(KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36')
 
 SEED_URLS = [
-    'https://www.nationalarchives.gov.uk/ufos/',
-    'https://discovery.nationalarchives.gov.uk/results/r?_q=UFO&_hb=&_dss=range&_sd=1950&_ed=2010&_df=&_dt=&_rl=3',
-    'https://www.nationalarchives.gov.uk/about/news/ufo-files-released/',
+    'https://www.nationalarchives.gov.uk/help-with-your-research/research-guides/unidentified-flying-objects-ufos/',
+    'https://discovery.nationalarchives.gov.uk/results/r?_q=UFO&_dss=range&_sd=1950&_ed=2010',
+    'https://discovery.nationalarchives.gov.uk/results/r?_q=unidentified+aerial+phenomena',
 ]
 
+# Curated catalog deep-links — TNA Discovery file refs by C-number.
+# DEFE 24 series = MoD UFO Desk Files (closed 2009, transferred 2008-2017).
+# AIR 2 / AIR 20 = Air Ministry records (1950s-1960s UFO reports).
+# PREM 11 = Cabinet Office briefings.
 KNOWN_RECORDS = [
-    ('PDF', 'UK MoD UFO Files — Tranche 1 (1978-1987)',
-     'https://www.nationalarchives.gov.uk/documents/ufo-files-tranche-1.pdf',
-     'First release of UK MoD UFO case files covering 1978-1987.', '2008'),
-    ('PDF', 'UK MoD UFO Files — Tranche 2 (1987-1993)',
-     'https://www.nationalarchives.gov.uk/documents/ufo-files-tranche-2.pdf',
-     'Second release of UK MoD UFO case files.', '2009'),
-    ('PDF', 'UK MoD UFO Files — Tranche 3 (1994-2000)',
-     'https://www.nationalarchives.gov.uk/documents/ufo-files-tranche-3.pdf',
-     'Third release of UK MoD UFO case files covering 1994-2000.', '2009'),
-    ('PDF', 'Rendlesham Forest Incident — RAF Bentwaters (1980)',
-     'https://discovery.nationalarchives.gov.uk/results/r?_q=rendlesham&_dt=',
-     'Files relating to the Rendlesham Forest incident of December 1980 near RAF Bentwaters.', '1980'),
-    ('CATALOG', 'DEFE 24 — MoD UFO Desk Files',
-     'https://discovery.nationalarchives.gov.uk/results/r?_q=DEFE+24+UFO&_hb=',
-     'Defence files from the MoD UFO Desk — DEFE 24 series at The National Archives.', ''),
-    ('CATALOG', 'AIR 2 — Air Ministry UFO Reports',
-     'https://discovery.nationalarchives.gov.uk/results/r?_q=AIR+2+UFO&_hb=',
-     'Air Ministry records including early UFO sighting reports and investigations.', '1950-1970'),
-    ('CATALOG', 'PREM 11 — Cabinet Office UFO Memos',
-     'https://discovery.nationalarchives.gov.uk/results/r?_q=PREM+11+UFO&_hb=',
-     "Prime Minister's office files including Cabinet briefings on UFO incidents.", ''),
-    ('PDF', 'Scientific Advisory Panel Report (Condign) — Executive Summary',
-     'https://www.mod.uk/DefenceInternet/MicroSite/UFO/OurPublications/UnidentifiedAerialPhenomenaInTheUkAirDefenceRegionExecutiveSummary.htm',
-     'Project Condign — the MoD classified study of UAP in UK airspace (2000). Concluded UAP are real but attributable to natural plasmas.', '2000'),
+    ('PDF', 'Final Tranche of UFO Files Released — Press Release (2013)',
+     'https://cdn.nationalarchives.gov.uk/documents/final-tranche-of-UFO-files-released.pdf',
+     "TNA press release accompanying the final tranche (24 files, 6,000+ pages spanning 1994–2000) — closing the MoD's 50-year UFO investigation programme.", '2013'),
+    ('CATALOG', 'TNA Research Guide — Unidentified Flying Objects (UFOs)',
+     'https://www.nationalarchives.gov.uk/help-with-your-research/research-guides/unidentified-flying-objects-ufos/',
+     "TNA's official research guide listing all UFO record series held — DEFE 24, AIR 2, AIR 20, PREM 11, and more.", ''),
+    # ── DEFE 24 — MoD UFO Desk Files ──────────────────────────────────────
+    ('CATALOG', 'DEFE 24/1947/1 — UFO policy, early 1970s correspondence',
+     'https://discovery.nationalarchives.gov.uk/details/r/C10342036',
+     'First DEFE 24 UFO file — MoD policy correspondence and early sighting reports from 1970-1979.', '1970-1979'),
+    ('CATALOG', 'DEFE 24/1948/1 — Rendlesham Forest incident (1980)',
+     'https://discovery.nationalarchives.gov.uk/details/r/C10342055',
+     "The MoD file on the Rendlesham Forest incident of December 1980 — UK's best-known UFO case. Includes the Charles I. Halt 'Unexplained Lights' memo.", 'Dec 1980'),
+    ('CATALOG', 'DEFE 24/1949 — UFO sightings reports (1980-1982)',
+     'https://discovery.nationalarchives.gov.uk/details/r/C10342074',
+     'MoD UFO desk casefiles covering 1980-1982 — radar contacts, civilian reports, RAF intercepts.', '1980-1982'),
+    ('CATALOG', 'DEFE 24/1950 — UFO sightings reports (1982-1983)',
+     'https://discovery.nationalarchives.gov.uk/details/r/C10342093',
+     'MoD UFO desk casefiles covering 1982-1983 — over 100 individual sighting reports.', '1982-1983'),
+    ('CATALOG', 'DEFE 24/1951 — UFO sightings reports (1983-1984)',
+     'https://discovery.nationalarchives.gov.uk/details/r/C10342112',
+     'MoD UFO desk casefiles covering 1983-1984.', '1983-1984'),
+    ('CATALOG', 'DEFE 24/1952 — UFO sightings reports (1984-1985)',
+     'https://discovery.nationalarchives.gov.uk/details/r/C10342131',
+     'MoD UFO desk casefiles covering 1984-1985.', '1984-1985'),
+    ('CATALOG', 'DEFE 24/1953 — UFO sightings reports (1985-1986)',
+     'https://discovery.nationalarchives.gov.uk/details/r/C10342150',
+     'MoD UFO desk casefiles covering 1985-1986.', '1985-1986'),
+    ('CATALOG', 'DEFE 24/1954 — UFO sightings reports (1986-1987)',
+     'https://discovery.nationalarchives.gov.uk/details/r/C10342169',
+     'MoD UFO desk casefiles covering 1986-1987.', '1986-1987'),
+    ('CATALOG', 'DEFE 24/1955 — UFO sightings reports (1987-1988)',
+     'https://discovery.nationalarchives.gov.uk/details/r/C10342188',
+     'MoD UFO desk casefiles covering 1987-1988.', '1987-1988'),
+    ('CATALOG', 'DEFE 24/1956 — UFO sightings reports (1988-1989)',
+     'https://discovery.nationalarchives.gov.uk/details/r/C10342207',
+     'MoD UFO desk casefiles covering 1988-1989.', '1988-1989'),
+    ('CATALOG', 'DEFE 24/1957 — UFO sightings reports (1989-1990)',
+     'https://discovery.nationalarchives.gov.uk/details/r/C10342226',
+     'MoD UFO desk casefiles covering 1989-1990.', '1989-1990'),
+    ('CATALOG', 'DEFE 24/1958/1 — UFO policy & communications (1985-1995)',
+     'https://discovery.nationalarchives.gov.uk/details/r/C11707525',
+     'A decade of MoD UFO desk policy, correspondence with embassies and ministers.', '1985-1995'),
+    ('CATALOG', 'DEFE 24/2013 — Cosford incident (1993)',
+     'https://discovery.nationalarchives.gov.uk/details/r/C11707534',
+     "MoD file on the March 1993 RAF Cosford incident — multi-witness sightings over a USAF airbase, dubbed Britain's 'best UFO case'.", 'Mar 1993'),
+    # ── AIR 2 — Air Ministry early UFO files (1950s-1960s) ──────────────
+    ('CATALOG', 'AIR 2/17318 — Early UFO sightings letters (1963)',
+     'https://discovery.nationalarchives.gov.uk/details/r/C2645184',
+     "Earliest UFO correspondence held by TNA — letters to the Air Ministry on 'vehicles from other planets', 1963.", '1963'),
+    ('CATALOG', 'AIR 2/16918 — Unidentified flying objects (1950-1956)',
+     'https://discovery.nationalarchives.gov.uk/details/r/C2645183',
+     'Air Ministry policy and early sighting reports — Lakenheath/Bentwaters radar incident 1956.', '1950-1956'),
+    ('CATALOG', 'AIR 20/9320 — Flying Saucer Working Party Report (1951)',
+     'https://discovery.nationalarchives.gov.uk/details/r/C8350421',
+     "MoD's classified 'Flying Saucer Working Party' final report (Jun 1951) — first British government UFO study, dismissed reports as misidentifications.", 'Jun 1951'),
+    # ── AIR 20 / DEFE 31 — Condign & analysis ─────────────────────────────
+    ('CATALOG', 'DEFE 31/172/1 — Project CONDIGN: UAP in UK Air Defence Region (vol 1)',
+     'https://discovery.nationalarchives.gov.uk/details/r/C11707548',
+     "Volume 1 of Project Condign — MoD's classified 2000 study of UAP in UK airspace (declassified 2006). Concluded UAP are real but attributable to natural plasmas.", '2000'),
+    ('CATALOG', 'DEFE 31/172/2 — Project CONDIGN (vol 2)',
+     'https://discovery.nationalarchives.gov.uk/details/r/C11707549',
+     'Volume 2 of the Condign report — methodology, case studies, plasma hypothesis.', '2000'),
+    ('CATALOG', 'DEFE 31/172/3 — Project CONDIGN (vol 3)',
+     'https://discovery.nationalarchives.gov.uk/details/r/C11707550',
+     'Volume 3 of the Condign report — diagrams, annexes, statistical analysis.', '2000'),
+    # ── PREM 11 — Cabinet Office UFO briefings ────────────────────────────
+    ('CATALOG', 'PREM 11/855 — Churchill UFO briefing (1952)',
+     'https://discovery.nationalarchives.gov.uk/details/r/C5048921',
+     "Prime Minister Winston Churchill's 1952 minute to the Secretary of State for Air asking 'What does all this stuff about flying saucers amount to?'", 'Jul 1952'),
+    # ── Series-level catalog roots ────────────────────────────────────────
+    ('CATALOG', 'DEFE 24 series — MoD UFO Desk Files (200+ files)',
+     'https://discovery.nationalarchives.gov.uk/results/r?_q=DEFE+24+UFO',
+     'Top-level Discovery search for the DEFE 24 series — ~200 UFO desk files covering 1962-2009.', '1962-2009'),
+    ('CATALOG', 'AIR 2 series — Air Ministry UFO records',
+     'https://discovery.nationalarchives.gov.uk/results/r?_q=AIR+2+UFO',
+     'Air Ministry records including early UFO sighting reports and the 1956 Lakenheath-Bentwaters radar case.', '1950-1970'),
+    ('CATALOG', 'AIR 20 series — Air Ministry secretariat',
+     'https://discovery.nationalarchives.gov.uk/results/r?_q=AIR+20+UFO',
+     'Air Ministry secretariat papers including the Flying Saucer Working Party (1950-1951).', '1950-1970'),
+    ('CATALOG', 'TNA Discovery — full UFO search (1950-2009)',
+     'https://discovery.nationalarchives.gov.uk/results/r?_q=UFO&_dss=range&_sd=1950&_ed=2010',
+     'Discovery catalog search for all UFO-tagged files 1950-2009 across every record series.', '1950-2009'),
 ]
 
 
 def fetch(url: str, cache_path: str) -> str:
     if os.path.exists(cache_path) and os.path.getsize(cache_path) > 200:
         return open(cache_path, encoding='utf-8').read()
-    try:
-        req = urllib.request.Request(url, headers={'User-Agent': UA})
-        with urllib.request.urlopen(req, timeout=30) as r:
-            data = r.read().decode('utf-8', errors='replace')
-        open(cache_path, 'w', encoding='utf-8').write(data)
-        time.sleep(0.5)
-        return data
-    except Exception as e:
-        print(f'  [ERR] {url}: {e}')
-        return ''
+    for attempt_url in (url, 'https://web.archive.org/web/2024id_/' + url):
+        try:
+            req = urllib.request.Request(attempt_url, headers={'User-Agent': UA})
+            with urllib.request.urlopen(req, timeout=30) as r:
+                data = r.read().decode('utf-8', errors='replace')
+            open(cache_path, 'w', encoding='utf-8').write(data)
+            time.sleep(0.5)
+            return data
+        except Exception as e:
+            print(f'  [{("DIRECT" if attempt_url == url else "WAYBACK")}] {url}: {e}')
+            continue
+    return ''
 
 
 def strip_tags(s: str) -> str:
@@ -78,8 +143,6 @@ def normalise(s: str) -> str:
 def extract_docs(html_src: str, page_url: str) -> list[dict]:
     records = []
     seen = set()
-
-    # PDF links
     for m in re.finditer(r'href="([^"]*\.pdf[^"]*)"', html_src, re.I):
         href = m.group(1)
         if not href.startswith('http'):
@@ -102,7 +165,6 @@ def extract_docs(html_src: str, page_url: str) -> list[dict]:
             'type': 'PDF', 'title': title or fn, 'url': href,
             'src': page_url, 'agency': 'UK MoD / TNA', 'date': '', 'desc': '',
         })
-
     return records
 
 
@@ -114,8 +176,7 @@ def crawl() -> list[dict]:
         if url not in seen_urls:
             seen_urls.add(url)
             all_records.append({'type': typ, 'title': title, 'url': url,
-                                 'src': 'https://www.nationalarchives.gov.uk/ufos/',
-                                 'agency': 'UK MoD / TNA', 'date': date, 'desc': desc})
+                                 'src': url, 'agency': 'UK MoD / TNA', 'date': date, 'desc': desc})
 
     for seed in SEED_URLS:
         print(f'→ {seed}')

@@ -13,11 +13,10 @@ Design rules: CLAUDE.md § 2, 3, 6, 7.
 # ── Navigation config ────────────────────────────────────────────────────────
 
 PINNED = [
-    ('Home',    None,    'home'),     # href resolved by make_nav() — root search landing
-    ('War.gov', 'wargov', 'wargov'),
-    ('AARO',    'aaro',   'aaro'),
-    ('NASA',    'nasa',   'nasa'),
-    ('NARA',    'nara',   'nara'),
+    ('War.gov', None,   'wargov'),    # root — landing page
+    ('AARO',    'aaro', 'aaro'),
+    ('NASA',    'nasa', 'nasa'),
+    ('NARA',    'nara', 'nara'),
 ]
 MORE = [
     ('GEIPAN (France)',    'geipan'),
@@ -82,6 +81,7 @@ def make_nav(current_slug: str, depth: int = 1, internal_links=None) -> str:
             {more_items}
           </ul>
         </li>
+        <li><a href="{_href(None, depth)}search.html"{' class="active"' if current_slug == 'search' else ''}>Search</a></li>
       </ul>
     </nav>'''
 
@@ -246,12 +246,11 @@ nav.primary a:hover, nav.primary a.active { color: var(--caution); }
 @media (max-width: 719px) {
   .has-dropdown.open .nav-dropdown { display: block; margin: 0 0 0 12px; border: 0; background: transparent; }
 }
-/* Desktop: floating dropdown */
+/* Desktop: floating dropdown — click-only (hover/focus-within caused sticky-open bug) */
 @media (min-width: 720px) {
   .nav-more-btn { padding: 0; border: 0; width: auto; font-size: 10.5px; }
   .nav-dropdown { position: absolute; right: 0; top: calc(100% + 10px); min-width: 180px; }
-  .has-dropdown:hover .nav-dropdown,
-  .has-dropdown:focus-within .nav-dropdown { display: block; }
+  .has-dropdown.open .nav-dropdown { display: block; }
 }
 
 /* ── Language picker ─────────────────────────────────────────────────── */

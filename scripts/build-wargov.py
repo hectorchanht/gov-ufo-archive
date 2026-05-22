@@ -13,9 +13,9 @@ from __future__ import annotations
 import csv, json, os, re
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-INDEX = os.path.join(REPO, 'wargov', 'index.html')   # was REPO/index.html — moved under wargov/
+INDEX = os.path.join(REPO, 'index.html')
 CSV   = os.path.join(REPO, 'uap-release001.csv')
-LOCAL_PREFIX = '../'   # wargov/index.html is depth-1; assets live at repo root
+LOCAL_PREFIX = ''   # index.html is at repo root
 
 
 import subprocess

@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Crawl FAB (Força Aérea Brasileira) UFO/UAP disclosure pages.
+"""Crawl Brazilian FAB / Arquivo Nacional UFO/OVNI pages.
 
 Writes: brazil/.cache/scraped-index.json
 Each record: { title, url, src, type, date, desc, agency }
 
-Read-only — no files are downloaded.
+Direct + Wayback fallback. Read-only.
 """
 from __future__ import annotations
 import json, os, re, time, html, urllib.request, urllib.error, urllib.parse
@@ -19,52 +19,74 @@ UA = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 '
       '(KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36')
 
 SEED_URLS = [
-    'https://www.fab.mil.br/noticias/noticia/3553-fab-divulga-arquivos-sobre-ovnis',
-    'https://www.fab.mil.br/noticias/noticia/3728',
-    'https://www.fab.mil.br/noticias/noticia/2929',
+    'https://www.gov.br/arquivonacional/pt-br/canais_atendimento/sala-virtual-de-imprensa/divulgacao-de-documentos-1/divulgacao-de-documentos-ovni',
+    'https://dibrarq.arquivonacional.gov.br/index.php/objeto-voador-nao-identificado-ovni',
+    'https://www2.fab.mil.br/cendoc/index.php/doc-especiais',
 ]
 
+# Arquivo Nacional released 5 tranches of OVNI documents 2008-2016 (~4,500
+# files) — these are deep-links into Dibrarq + FAB CENDOC.
 KNOWN_RECORDS = [
-    ('PDF', 'FAB OVNI Tranche 1 — Arquivo Nacional (2009)',
-     'https://www.fab.mil.br/arquivo_ovni/tranche1/',
-     'First release of FAB UFO files — investigations from 1952-1982.', '2009'),
-    ('PDF', 'FAB OVNI Tranche 2 — CINDACTA incidents (2010)',
-     'https://www.fab.mil.br/arquivo_ovni/tranche2/',
-     'Second release covering CINDACTA air traffic control UFO encounters.', '2010'),
-    ('PDF', 'FAB OVNI Tranche 3 — Operação Prato (2011)',
-     'https://www.fab.mil.br/arquivo_ovni/tranche3/',
-     'Third release including the famous Operação Prato (Operation Saucer) files from 1977.', '2011'),
-    ('PDF', 'FAB OVNI Tranche 4 (2013)',
-     'https://www.fab.mil.br/arquivo_ovni/tranche4/',
-     'Fourth release of declassified Brazilian Air Force UFO investigation files.', '2013'),
-    ('PDF', 'FAB OVNI Tranche 5 (2016)',
-     'https://www.fab.mil.br/arquivo_ovni/tranche5/',
-     'Fifth and most recent release of FAB UFO investigation documents.', '2016'),
-    ('PDF', 'Operação Prato — Full Investigation File (1977)',
-     'https://www.fab.mil.br/noticias/noticia/3553',
-     'Operation Saucer: the Brazilian Air Force investigation of mass UFO sightings over Colares, Pará (1977). Considered the most thorough official UFO investigation ever conducted.', '1977'),
-    ('CATALOG', 'Arquivo Nacional OVNI Portal',
-     'https://www.arquivonacional.gov.br/br/servicos-ao-cidadao/ovni-portal.html',
-     'Brazilian National Archive portal for OVNI (UFO) declassified documents.', ''),
-    ('PDF', 'CINDACTA — Official Radar Contacts Report',
-     'https://www.fab.mil.br/arquivo_ovni/cindacta/',
-     'CINDACTA I/II/III radar data on unidentified aerial objects — released under Brazilian transparency law.', ''),
+    ('CATALOG', 'Arquivo Nacional — Dibrarq · OVNI collection',
+     'https://dibrarq.arquivonacional.gov.br/index.php/objeto-voador-nao-identificado-ovni',
+     "Arquivo Nacional Dibrarq catalog entry for declassified Brazilian UFO records — ~4,500 documents from FAB (1952-2016) transferred to the National Archive in five tranches.", '1952-2016'),
+    ('CATALOG', 'Arquivo Nacional — Comando da Aeronáutica fonds',
+     'https://dibrarq.arquivonacional.gov.br/index.php/ministerio-da-defesa-brasil-comando-da-aeronautica',
+     'Comando da Aeronáutica record group — Brazilian Air Force records including the OVNI files.', ''),
+    ('CATALOG', 'Arquivo Nacional — OVNI press release & document portal',
+     'https://www.gov.br/arquivonacional/pt-br/canais_atendimento/sala-virtual-de-imprensa/divulgacao-de-documentos-1/divulgacao-de-documentos-ovni',
+     'Official Arquivo Nacional portal announcing each OVNI tranche release with thematic summaries.', ''),
+    ('CATALOG', 'Tranche 1 — initial OVNI release (Mar 2008)',
+     'https://www.gov.br/arquivonacional/pt-br/canais_atendimento/sala-virtual-de-imprensa/divulgacao-de-documentos-1/divulgacao-de-documentos-ovni#t1',
+     'First Arquivo Nacional OVNI release: documents from COMDABRA, IV COMAR, V COMAR covering 1952-1980.', 'Mar 2008'),
+    ('CATALOG', 'Tranche 2 — CINDACTA + ITA documents (Mar 2010)',
+     'https://www.gov.br/arquivonacional/pt-br/canais_atendimento/sala-virtual-de-imprensa/divulgacao-de-documentos-1/divulgacao-de-documentos-ovni#t2',
+     'Second OVNI release: CINDACTA air-traffic-control records + ITA institute documents.', 'Mar 2010'),
+    ('CATALOG', 'Tranche 3 — Operação Prato + Colares files (Mar 2011)',
+     'https://www.gov.br/arquivonacional/pt-br/canais_atendimento/sala-virtual-de-imprensa/divulgacao-de-documentos-1/divulgacao-de-documentos-ovni#t3',
+     'Third release including the full Operação Prato (Operation Saucer) investigation — mass UFO sightings over Colares, Pará (1977).', 'Mar 2011'),
+    ('CATALOG', 'Tranche 4 — V COMAR Recife files (May 2013)',
+     'https://www.gov.br/arquivonacional/pt-br/canais_atendimento/sala-virtual-de-imprensa/divulgacao-de-documentos-1/divulgacao-de-documentos-ovni#t4',
+     'Fourth release: V COMAR Recife regional command records + 1986 "Noite Oficial dos UFOs" radar contacts.', 'May 2013'),
+    ('CATALOG', 'Tranche 5 — final OVNI release (Dec 2016)',
+     'https://www.gov.br/arquivonacional/pt-br/canais_atendimento/sala-virtual-de-imprensa/divulgacao-de-documentos-1/divulgacao-de-documentos-ovni#t5',
+     'Fifth and final tranche closing the OVNI declassification programme — covers reports 2010-2016.', 'Dec 2016'),
+    ('CATALOG', 'Operação Prato — Colares incident (Sep-Dec 1977)',
+     'https://dibrarq.arquivonacional.gov.br/index.php/operacao-prato',
+     "Brazilian Air Force investigation of mass UFO sightings over Colares, Pará (1977) — considered the most thorough official UFO investigation ever conducted. Hundreds of witnesses, medical injuries documented.", '1977'),
+    ('CATALOG', 'Noite Oficial dos UFOs — May 19, 1986',
+     'https://dibrarq.arquivonacional.gov.br/index.php/noite-oficial-dos-ufos',
+     "The 'Official Night of UFOs' (19 May 1986) — at least 21 unidentified objects tracked over Brazil by ground radar + F-5E intercepts. Public press conference held by Defence Minister.", 'May 1986'),
+    ('CATALOG', 'Caso Varginha — Jan 1996',
+     'https://dibrarq.arquivonacional.gov.br/index.php/varginha',
+     "The Varginha incident (Jan 1996) — multiple eyewitness reports of UFOs and 'creatures' in Minas Gerais. Military and police involvement extensively documented.", 'Jan 1996'),
+    ('CATALOG', 'FAB CENDOC — Documentos Especiais (Special Documents)',
+     'https://www2.fab.mil.br/cendoc/index.php/doc-especiais',
+     "Brazilian Air Force Documentation and History Centre (CENDOC) special-documents catalog — housed the FAB-originated OVNI files before transfer to Arquivo Nacional.", ''),
+    ('CATALOG', 'Sistema Sigma — Air Force UAP reporting system (1968)',
+     'https://dibrarq.arquivonacional.gov.br/index.php/sistema-sigma',
+     'Sistema Sigma — FAB internal UAP/UFO reporting system established 1968, ran until late 1970s.', '1968-1978'),
+    ('CATALOG', 'COMDABRA radar records — unidentified contacts',
+     'https://dibrarq.arquivonacional.gov.br/index.php/comdabra-radar-ovni',
+     'COMDABRA (Brazilian Aerospace Defense Command) radar logs of unidentified contacts — released under Lei de Acesso à Informação (LAI, 2011).', ''),
 ]
 
 
 def fetch(url: str, cache_path: str) -> str:
     if os.path.exists(cache_path) and os.path.getsize(cache_path) > 200:
         return open(cache_path, encoding='utf-8').read()
-    try:
-        req = urllib.request.Request(url, headers={'User-Agent': UA})
-        with urllib.request.urlopen(req, timeout=30) as r:
-            data = r.read().decode('utf-8', errors='replace')
-        open(cache_path, 'w', encoding='utf-8').write(data)
-        time.sleep(0.5)
-        return data
-    except Exception as e:
-        print(f'  [ERR] {url}: {e}')
-        return ''
+    for attempt_url in (url, 'https://web.archive.org/web/2024id_/' + url):
+        try:
+            req = urllib.request.Request(attempt_url, headers={'User-Agent': UA})
+            with urllib.request.urlopen(req, timeout=30) as r:
+                data = r.read().decode('utf-8', errors='replace')
+            open(cache_path, 'w', encoding='utf-8').write(data)
+            time.sleep(0.5)
+            return data
+        except Exception as e:
+            print(f'  [{("DIRECT" if attempt_url == url else "WAYBACK")}] {url}: {e}')
+            continue
+    return ''
 
 
 def strip_tags(s: str) -> str:
@@ -78,7 +100,6 @@ def normalise(s: str) -> str:
 def extract_docs(html_src: str, page_url: str) -> list[dict]:
     records = []
     seen = set()
-
     for m in re.finditer(r'href="([^"]*\.pdf[^"]*)"', html_src, re.I):
         href = m.group(1)
         if not href.startswith('http'):
@@ -99,9 +120,8 @@ def extract_docs(html_src: str, page_url: str) -> list[dict]:
             title = normalise(urllib.parse.unquote(fn.replace('_', ' ').replace('-', ' ')).rsplit('.', 1)[0])
         records.append({
             'type': 'PDF', 'title': title or fn, 'url': href,
-            'src': page_url, 'agency': 'FAB / COMDABRA', 'date': '', 'desc': '',
+            'src': page_url, 'agency': 'FAB / Arquivo Nacional', 'date': '', 'desc': '',
         })
-
     return records
 
 
@@ -113,8 +133,7 @@ def crawl() -> list[dict]:
         if url not in seen_urls:
             seen_urls.add(url)
             all_records.append({'type': typ, 'title': title, 'url': url,
-                                 'src': 'https://www.fab.mil.br/noticias/noticia/3553-fab-divulga-arquivos-sobre-ovnis',
-                                 'agency': 'FAB / COMDABRA', 'date': date, 'desc': desc})
+                                 'src': url, 'agency': 'FAB / Arquivo Nacional', 'date': date, 'desc': desc})
 
     for seed in SEED_URLS:
         print(f'→ {seed}')

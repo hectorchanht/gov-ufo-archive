@@ -447,7 +447,7 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
 .arch-controls-bar { transition: top 0.28s ease; }
 .arch-controls-bar.bar-hidden { top: -160px; }
 @media (max-width: 719px) { .nav-more-btn { padding: 11px 0; } .has-dropdown.open .nav-dropdown { margin-left: 12px; border: 0; background: transparent; } .lang-btn { border: 0; margin: 0; padding: 11px 0; font-size: 11px; border-bottom: 1px solid var(--rule); } .lang-picker.open .lang-menu { margin-left: 12px; border: 0; background: transparent; } }
-@media (min-width: 720px) { .nav-more-btn { padding: 0; border: 0; font-size: 10.5px; } .nav-dropdown { position: absolute; right: 0; top: calc(100% + 10px); min-width: 180px; } .has-dropdown:hover .nav-dropdown, .has-dropdown:focus-within .nav-dropdown { display: block; } .lang-btn { width: auto; margin: 0; padding: 3px 8px; } .lang-menu { position: absolute; right: 0; top: calc(100% + 10px); min-width: 130px; } }
+@media (min-width: 720px) { .nav-more-btn { padding: 0; border: 0; font-size: 10.5px; } .nav-dropdown { position: absolute; right: 0; top: calc(100% + 10px); min-width: 180px; } .has-dropdown.open .nav-dropdown { display: block; } .lang-btn { width: auto; margin: 0; padding: 3px 8px; } .lang-menu { position: absolute; right: 0; top: calc(100% + 10px); min-width: 130px; } }
 </style>
 </head>
 <body>
