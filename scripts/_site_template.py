@@ -133,27 +133,36 @@ def make_nav(current_slug: str, depth: int = 1, internal_links=None) -> str:
         for name, slug in MORE
     )
 
+    # NOTE: dropdowns use native <details>/<summary>. The browser handles
+    # open/close natively (toggle event, ESC key, focus management). A tiny
+    # JS snippet closes peers when one opens. No more stuck-open bugs.
     return f'''\
     <nav class="primary" id="primary-nav">
       <ul>
         {pinned_html}
         <li class="has-dropdown" id="nav-site-wrap">
-          <button class="nav-more-btn{' active' if site_active else ''}" id="nav-site-btn" aria-expanded="false">Site ▾</button>
-          <ul class="nav-dropdown" id="nav-site-dropdown" role="menu">
-            {site_items}
-          </ul>
+          <details>
+            <summary class="nav-more-btn{' active' if site_active else ''}" id="nav-site-btn">Site ▾</summary>
+            <ul class="nav-dropdown" id="nav-site-dropdown" role="menu">
+              {site_items}
+            </ul>
+          </details>
         </li>
         <li class="has-dropdown" id="nav-story-wrap">
-          <button class="nav-more-btn{' active' if story_active else ''}" id="nav-story-btn" aria-expanded="false">Story ▾</button>
-          <ul class="nav-dropdown" id="nav-story-dropdown" role="menu">
-            {story_items}
-          </ul>
+          <details>
+            <summary class="nav-more-btn{' active' if story_active else ''}" id="nav-story-btn">Story ▾</summary>
+            <ul class="nav-dropdown" id="nav-story-dropdown" role="menu">
+              {story_items}
+            </ul>
+          </details>
         </li>
         <li class="has-dropdown" id="nav-more-wrap">
-          <button class="nav-more-btn{' active' if nations_active else ''}" id="nav-more-btn" aria-expanded="false">Nations ▾</button>
-          <ul class="nav-dropdown" id="nav-dropdown" role="menu">
-            {more_items}
-          </ul>
+          <details>
+            <summary class="nav-more-btn{' active' if nations_active else ''}" id="nav-more-btn">Nations ▾</summary>
+            <ul class="nav-dropdown" id="nav-dropdown" role="menu">
+              {more_items}
+            </ul>
+          </details>
         </li>
       </ul>
     </nav>'''
@@ -366,30 +375,36 @@ nav.primary a:hover, nav.primary a.active { color: var(--caution); }
 }
 
 /* ── "More" dropdown ─────────────────────────────────────────────────── */
+/* ── Dropdowns: native <details>/<summary> ─────────────────────────────── */
+/* The browser owns open/close state via the [open] attribute. CSS just
+   styles the summary like a button and hides the native marker. JS only
+   coordinates "close peers when one opens" — no stuck-open state possible. */
 .has-dropdown { position: relative; }
+.has-dropdown > details { display: block; }
+.has-dropdown > details > summary { list-style: none; cursor: pointer; }
+.has-dropdown > details > summary::-webkit-details-marker { display: none; }
+.has-dropdown > details > summary::marker { content: ''; }
 .nav-more-btn {
   background: none; border: none; color: var(--ink-dim); cursor: pointer;
   font-family: var(--mono); font-size: 11px; letter-spacing: 0.07em;
   text-transform: uppercase; padding: 11px 0; display: block; width: 100%;
   text-align: left; border-bottom: 1px solid var(--rule);
 }
-.nav-more-btn:hover { color: var(--caution); }
+.nav-more-btn:hover, .nav-more-btn.active { color: var(--caution); }
 .nav-dropdown {
-  display: none; list-style: none;
+  list-style: none;
   background: var(--panel); border: 1px solid var(--rule-strong);
-  padding: 6px 0; z-index: 200;
+  padding: 6px 0; z-index: 200; margin: 0;
 }
 .nav-dropdown li a { border: 0 !important; padding: 9px 16px !important; font-size: 10.5px; white-space: nowrap; }
-/* Mobile: inline expansion — force static + full-width to override any leaking desktop rules */
+/* Mobile: inline expansion under summary */
 @media (max-width: 719px) {
-  .nav-dropdown { position: static; right: auto; top: auto; min-width: 0; width: 100%; }
-  .has-dropdown.open .nav-dropdown { display: block; margin: 0 0 0 12px; border: 0; background: transparent; box-shadow: none; padding: 0; }
+  .nav-dropdown { position: static; min-width: 0; width: 100%; border: 0; background: transparent; box-shadow: none; padding: 0; margin: 0 0 0 12px; }
 }
-/* Desktop: floating dropdown — click-only (hover/focus-within caused sticky-open bug) */
+/* Desktop: floating panel anchored right of summary */
 @media (min-width: 720px) {
   .nav-more-btn { padding: 0; border: 0; width: auto; font-size: 10.5px; }
-  T0px; max-height: 70vh; overflow-y: auto; }
-  .has-dropdown.open .nav-dropdown { display: block; }
+  .nav-dropdown { position: absolute; right: 0; top: calc(100% + 10px); min-width: 240px; max-height: 70vh; overflow-y: auto; box-shadow: 0 8px 24px rgba(0,0,0,0.6); }
 }
 
 /* ── Language picker ─────────────────────────────────────────────────── */
@@ -618,32 +633,25 @@ SHARED_JS = r'''
     }
   }
 
-  /* ── "Site ▾" + "Story ▾" + "Nations ▾" dropdowns ─────────────────── */
-  const moreWrap  = document.getElementById('nav-more-wrap');
-  const moreBtn   = document.getElementById('nav-more-btn');
-  const siteWrap  = document.getElementById('nav-site-wrap');
-  const siteBtn   = document.getElementById('nav-site-btn');
-  const storyWrap = document.getElementById('nav-story-wrap');
-  const storyBtn  = document.getElementById('nav-story-btn');
-  function wireDropdown(wrap, btn, others) {
-    if (!wrap || !btn) return;
-    btn.addEventListener('click', e => {
-      e.stopPropagation();
-      others.forEach(o => { if (o) { o.classList.remove('open'); } });
-      const open = wrap.classList.toggle('open');
-      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  /* ── Native <details> dropdown coordination ────────────────────────────
+     Each .has-dropdown contains its own <details>. Browser owns open state.
+     We only enforce: opening one closes the others, outside click closes all.
+     Avoids stuck-open bugs from class-based toggling. */
+  const navDetails = Array.from(document.querySelectorAll('.has-dropdown > details'));
+  navDetails.forEach(d => {
+    d.addEventListener('toggle', () => {
+      if (!d.open) return;
+      navDetails.forEach(other => { if (other !== d) other.open = false; });
     });
-  }
-  wireDropdown(moreWrap,  moreBtn,  [siteWrap, storyWrap]);
-  wireDropdown(siteWrap,  siteBtn,  [moreWrap, storyWrap]);
-  wireDropdown(storyWrap, storyBtn, [moreWrap, siteWrap]);
-
-  /* Close dropdowns on outside click */
-  document.addEventListener('click', () => {
+  });
+  document.addEventListener('click', e => {
     if (langPicker) { langPicker.classList.remove('open'); if (langBtn) langBtn.setAttribute('aria-expanded','false'); }
-    if (moreWrap)  { moreWrap.classList.remove('open');  if (moreBtn) moreBtn.setAttribute('aria-expanded','false'); }
-    if (siteWrap)  { siteWrap.classList.remove('open');  if (siteBtn) siteBtn.setAttribute('aria-expanded','false'); }
-    if (storyWrap) { storyWrap.classList.remove('open'); if (storyBtn) storyBtn.setAttribute('aria-expanded','false'); }
+    if (!e.target.closest('.has-dropdown')) {
+      navDetails.forEach(d => { d.open = false; });
+    }
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') navDetails.forEach(d => { d.open = false; });
   });
 
   /* ── Hamburger toggle ─────────────────────────────────────────────── */

@@ -83,30 +83,36 @@ nav.primary a:hover, nav.primary a.active { color: var(--caution); }
 }
 
 /* ── "More" dropdown ─────────────────────────────────────────────────── */
+/* ── Dropdowns: native <details>/<summary> ─────────────────────────────── */
+/* The browser owns open/close state via the [open] attribute. CSS just
+   styles the summary like a button and hides the native marker. JS only
+   coordinates "close peers when one opens" — no stuck-open state possible. */
 .has-dropdown { position: relative; }
+.has-dropdown > details { display: block; }
+.has-dropdown > details > summary { list-style: none; cursor: pointer; }
+.has-dropdown > details > summary::-webkit-details-marker { display: none; }
+.has-dropdown > details > summary::marker { content: ''; }
 .nav-more-btn {
   background: none; border: none; color: var(--ink-dim); cursor: pointer;
   font-family: var(--mono); font-size: 11px; letter-spacing: 0.07em;
   text-transform: uppercase; padding: 11px 0; display: block; width: 100%;
   text-align: left; border-bottom: 1px solid var(--rule);
 }
-.nav-more-btn:hover { color: var(--caution); }
+.nav-more-btn:hover, .nav-more-btn.active { color: var(--caution); }
 .nav-dropdown {
-  display: none; list-style: none;
+  list-style: none;
   background: var(--panel); border: 1px solid var(--rule-strong);
-  padding: 6px 0; z-index: 200;
+  padding: 6px 0; z-index: 200; margin: 0;
 }
 .nav-dropdown li a { border: 0 !important; padding: 9px 16px !important; font-size: 10.5px; white-space: nowrap; }
-/* Mobile: inline expansion — force static + full-width to override any leaking desktop rules */
+/* Mobile: inline expansion under summary */
 @media (max-width: 719px) {
-  .nav-dropdown { position: static; right: auto; top: auto; min-width: 0; width: 100%; }
-  .has-dropdown.open .nav-dropdown { display: block; margin: 0 0 0 12px; border: 0; background: transparent; box-shadow: none; padding: 0; }
+  .nav-dropdown { position: static; min-width: 0; width: 100%; border: 0; background: transparent; box-shadow: none; padding: 0; margin: 0 0 0 12px; }
 }
-/* Desktop: floating dropdown — click-only (hover/focus-within caused sticky-open bug) */
+/* Desktop: floating panel anchored right of summary */
 @media (min-width: 720px) {
   .nav-more-btn { padding: 0; border: 0; width: auto; font-size: 10.5px; }
-  T0px; max-height: 70vh; overflow-y: auto; }
-  .has-dropdown.open .nav-dropdown { display: block; }
+  .nav-dropdown { position: absolute; right: 0; top: calc(100% + 10px); min-width: 240px; max-height: 70vh; overflow-y: auto; box-shadow: 0 8px 24px rgba(0,0,0,0.6); }
 }
 
 /* ── Language picker ─────────────────────────────────────────────────── */
@@ -282,22 +288,28 @@ body { background-image:
       <ul>
         <li><a href="../">War.gov</a></li><li><a href="../aaro/">AARO</a></li><li><a href="../nasa/">NASA</a></li><li><a href="../nara/">NARA</a></li>
         <li class="has-dropdown" id="nav-site-wrap">
-          <button class="nav-more-btn" id="nav-site-btn" aria-expanded="false">Site ▾</button>
-          <ul class="nav-dropdown" id="nav-site-dropdown" role="menu">
-            <li><a href="../search.html">Search</a></li><li><a href="../timeline.html">Timeline</a></li><li><a href="../map.html">Map</a></li><li><a href="../about.html">About</a></li><li><a href="../donate.html">Support</a></li>
-          </ul>
+          <details>
+            <summary class="nav-more-btn" id="nav-site-btn">Site ▾</summary>
+            <ul class="nav-dropdown" id="nav-site-dropdown" role="menu">
+              <li><a href="../search.html">Search</a></li><li><a href="../timeline.html">Timeline</a></li><li><a href="../map.html">Map</a></li><li><a href="../about.html">About</a></li><li><a href="../donate.html">Support</a></li>
+            </ul>
+          </details>
         </li>
         <li class="has-dropdown" id="nav-story-wrap">
-          <button class="nav-more-btn" id="nav-story-btn" aria-expanded="false">Story ▾</button>
-          <ul class="nav-dropdown" id="nav-story-dropdown" role="menu">
-            <li><a href="../aaro/tic-tac.html">Tic-Tac (Nimitz · 2004)</a></li><li><a href="../aaro/gimbal.html">GIMBAL (Roosevelt · 2015)</a></li><li><a href="../aaro/phoenix-lights.html">Phoenix Lights (1997)</a></li><li><a href="../aaro/belgian-wave.html">Belgian Wave (1989-90)</a></li><li><a href="../aaro/cash-landrum.html">Cash–Landrum (1980)</a></li><li><a href="../aaro/coyne.html">Coyne helicopter (1973)</a></li><li><a href="../aaro/jal-1628.html">JAL Flight 1628 (1986)</a></li><li><a href="../aaro/tehran.html">Tehran F-4 (1976)</a></li><li><a href="../aaro/travis-walton.html">Travis Walton (1975)</a></li><li><a href="../aaro/story.html">AARO story</a></li><li><a href="../uk/rendlesham.html">Rendlesham Forest (1980)</a></li><li><a href="../uk/story.html">UK MoD story</a></li><li><a href="../brazil/operacao-prato.html">Operação Prato (1977)</a></li><li><a href="../brazil/varginha.html">Varginha (1996)</a></li><li><a href="../brazil/trindade.html">Trindade Island (1958)</a></li><li><a href="../brazil/story.html">Brazil OVNI story</a></li><li><a href="../nasa/story.html">NASA UAP story</a></li><li><a href="../nara/roswell.html">NARA — Roswell (1947)</a></li><li><a href="../nara/socorro.html">NARA — Socorro (1964)</a></li><li><a href="../nara/robertson-panel.html">NARA — Robertson Panel (1953)</a></li><li><a href="../nara/condon-committee.html">NARA — Condon Committee (1966-69)</a></li><li><a href="../nara/story.html">NARA story</a></li><li><a href="../geipan/trans-en-provence.html">GEIPAN — Trans-en-Provence (81)</a></li><li><a href="../geipan/valensole.html">GEIPAN — Valensole (1965)</a></li><li><a href="../geipan/story.html">GEIPAN story</a></li><li><a href="../chile/el-bosque.html">Chile — El Bosque (2010)</a></li><li><a href="../chile/story.html">Chile SEFAA story</a></li><li><a href="../nz/kaikoura.html">NZ — Kaikoura (1978)</a></li><li><a href="../nz/story.html">NZ NZDF story</a></li><li><a href="../spain/manises.html">Spain — Manises (1979)</a></li><li><a href="../spain/story.html">Spain Ejército story</a></li><li><a href="../argentina/story.html">Argentina CEFAe story</a></li><li><a href="../canada/story.html">Canada LAC story</a></li><li><a href="../italy/story.html">Italy AM story</a></li><li><a href="../peru/story.html">Peru OIFAA story</a></li><li><a href="../uruguay/story.html">Uruguay CRIDOVNI story</a></li>
-          </ul>
+          <details>
+            <summary class="nav-more-btn" id="nav-story-btn">Story ▾</summary>
+            <ul class="nav-dropdown" id="nav-story-dropdown" role="menu">
+              <li><a href="../aaro/tic-tac.html">Tic-Tac (Nimitz · 2004)</a></li><li><a href="../aaro/gimbal.html">GIMBAL (Roosevelt · 2015)</a></li><li><a href="../aaro/phoenix-lights.html">Phoenix Lights (1997)</a></li><li><a href="../aaro/belgian-wave.html">Belgian Wave (1989-90)</a></li><li><a href="../aaro/cash-landrum.html">Cash–Landrum (1980)</a></li><li><a href="../aaro/coyne.html">Coyne helicopter (1973)</a></li><li><a href="../aaro/jal-1628.html">JAL Flight 1628 (1986)</a></li><li><a href="../aaro/tehran.html">Tehran F-4 (1976)</a></li><li><a href="../aaro/travis-walton.html">Travis Walton (1975)</a></li><li><a href="../aaro/story.html">AARO story</a></li><li><a href="../uk/rendlesham.html">Rendlesham Forest (1980)</a></li><li><a href="../uk/story.html">UK MoD story</a></li><li><a href="../brazil/operacao-prato.html">Operação Prato (1977)</a></li><li><a href="../brazil/varginha.html">Varginha (1996)</a></li><li><a href="../brazil/trindade.html">Trindade Island (1958)</a></li><li><a href="../brazil/story.html">Brazil OVNI story</a></li><li><a href="../nasa/story.html">NASA UAP story</a></li><li><a href="../nara/roswell.html">NARA — Roswell (1947)</a></li><li><a href="../nara/socorro.html">NARA — Socorro (1964)</a></li><li><a href="../nara/robertson-panel.html">NARA — Robertson Panel (1953)</a></li><li><a href="../nara/condon-committee.html">NARA — Condon Committee (1966-69)</a></li><li><a href="../nara/story.html">NARA story</a></li><li><a href="../geipan/trans-en-provence.html">GEIPAN — Trans-en-Provence (81)</a></li><li><a href="../geipan/valensole.html">GEIPAN — Valensole (1965)</a></li><li><a href="../geipan/story.html">GEIPAN story</a></li><li><a href="../chile/el-bosque.html">Chile — El Bosque (2010)</a></li><li><a href="../chile/story.html">Chile SEFAA story</a></li><li><a href="../nz/kaikoura.html">NZ — Kaikoura (1978)</a></li><li><a href="../nz/story.html">NZ NZDF story</a></li><li><a href="../spain/manises.html">Spain — Manises (1979)</a></li><li><a href="../spain/story.html">Spain Ejército story</a></li><li><a href="../argentina/story.html">Argentina CEFAe story</a></li><li><a href="../canada/story.html">Canada LAC story</a></li><li><a href="../italy/story.html">Italy AM story</a></li><li><a href="../peru/story.html">Peru OIFAA story</a></li><li><a href="../uruguay/story.html">Uruguay CRIDOVNI story</a></li>
+            </ul>
+          </details>
         </li>
         <li class="has-dropdown" id="nav-more-wrap">
-          <button class="nav-more-btn active" id="nav-more-btn" aria-expanded="false">Nations ▾</button>
-          <ul class="nav-dropdown" id="nav-dropdown" role="menu">
-            <li><a href="../geipan/">GEIPAN (France)</a></li><li><a href="../uk/">UK Archives</a></li><li><a href="../brazil/">Brazil FAB</a></li><li><a href="../chile/">Chile CEFAA</a></li><li><a href="../nz/">NZ NZDF</a></li><li><a href="../canada/">Canada LAC</a></li><li><a href="../argentina/">Argentina CEFAe</a></li><li><a href="../uruguay/">Uruguay CRIDOVNI</a></li><li><a href="../peru/">Peru OIFAA</a></li><li><a href="../spain/">Spain Ejército</a></li><li><a href="../italy/" class="active">Italy Aeronautica</a></li>
-          </ul>
+          <details>
+            <summary class="nav-more-btn active" id="nav-more-btn">Nations ▾</summary>
+            <ul class="nav-dropdown" id="nav-dropdown" role="menu">
+              <li><a href="../geipan/">GEIPAN (France)</a></li><li><a href="../uk/">UK Archives</a></li><li><a href="../brazil/">Brazil FAB</a></li><li><a href="../chile/">Chile CEFAA</a></li><li><a href="../nz/">NZ NZDF</a></li><li><a href="../canada/">Canada LAC</a></li><li><a href="../argentina/">Argentina CEFAe</a></li><li><a href="../uruguay/">Uruguay CRIDOVNI</a></li><li><a href="../peru/">Peru OIFAA</a></li><li><a href="../spain/">Spain Ejército</a></li><li><a href="../italy/" class="active">Italy Aeronautica</a></li>
+            </ul>
+          </details>
         </li>
       </ul>
     </nav>
@@ -463,32 +475,25 @@ body { background-image:
     }
   }
 
-  /* ── "Site ▾" + "Story ▾" + "Nations ▾" dropdowns ─────────────────── */
-  const moreWrap  = document.getElementById('nav-more-wrap');
-  const moreBtn   = document.getElementById('nav-more-btn');
-  const siteWrap  = document.getElementById('nav-site-wrap');
-  const siteBtn   = document.getElementById('nav-site-btn');
-  const storyWrap = document.getElementById('nav-story-wrap');
-  const storyBtn  = document.getElementById('nav-story-btn');
-  function wireDropdown(wrap, btn, others) {
-    if (!wrap || !btn) return;
-    btn.addEventListener('click', e => {
-      e.stopPropagation();
-      others.forEach(o => { if (o) { o.classList.remove('open'); } });
-      const open = wrap.classList.toggle('open');
-      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  /* ── Native <details> dropdown coordination ────────────────────────────
+     Each .has-dropdown contains its own <details>. Browser owns open state.
+     We only enforce: opening one closes the others, outside click closes all.
+     Avoids stuck-open bugs from class-based toggling. */
+  const navDetails = Array.from(document.querySelectorAll('.has-dropdown > details'));
+  navDetails.forEach(d => {
+    d.addEventListener('toggle', () => {
+      if (!d.open) return;
+      navDetails.forEach(other => { if (other !== d) other.open = false; });
     });
-  }
-  wireDropdown(moreWrap,  moreBtn,  [siteWrap, storyWrap]);
-  wireDropdown(siteWrap,  siteBtn,  [moreWrap, storyWrap]);
-  wireDropdown(storyWrap, storyBtn, [moreWrap, siteWrap]);
-
-  /* Close dropdowns on outside click */
-  document.addEventListener('click', () => {
+  });
+  document.addEventListener('click', e => {
     if (langPicker) { langPicker.classList.remove('open'); if (langBtn) langBtn.setAttribute('aria-expanded','false'); }
-    if (moreWrap)  { moreWrap.classList.remove('open');  if (moreBtn) moreBtn.setAttribute('aria-expanded','false'); }
-    if (siteWrap)  { siteWrap.classList.remove('open');  if (siteBtn) siteBtn.setAttribute('aria-expanded','false'); }
-    if (storyWrap) { storyWrap.classList.remove('open'); if (storyBtn) storyBtn.setAttribute('aria-expanded','false'); }
+    if (!e.target.closest('.has-dropdown')) {
+      navDetails.forEach(d => { d.open = false; });
+    }
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') navDetails.forEach(d => { d.open = false; });
   });
 
   /* ── Hamburger toggle ─────────────────────────────────────────────── */
