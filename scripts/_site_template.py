@@ -279,48 +279,10 @@ def make_head(title, description, canonical, og_image,
 
 
 # ── i18n dictionary ──────────────────────────────────────────────────────────
-
-I18N = {
-    'en': {'lang': 'English', 'code': 'EN', 'intro': 'Intro', 'headlines': 'Headlines',
-           'archive': 'Archive', 'faq': 'About / FAQ', 'more': 'More ▾',
-           'all': 'All', 'docs': 'Documents', 'videos': 'Videos', 'catalog': 'Catalog',
-           'imagery': 'Imagery', 'search': 'Search…', 'total': 'Total', 'local': 'Local',
-           'open_pdf': 'Open PDF', 'download': 'Download', 'source': 'Source ↗',
-           'play': 'Play', 'view': 'View', 'no_results': 'No results.'},
-    'fr': {'lang': 'Français', 'code': 'FR', 'intro': 'Intro', 'headlines': 'Titres',
-           'archive': 'Archives', 'faq': 'À propos', 'more': 'Plus ▾',
-           'all': 'Tout', 'docs': 'Documents', 'videos': 'Vidéos', 'catalog': 'Catalogue',
-           'imagery': 'Images', 'search': 'Rechercher…', 'total': 'Total', 'local': 'Local',
-           'open_pdf': 'Ouvrir PDF', 'download': 'Télécharger', 'source': 'Source ↗',
-           'play': 'Lire', 'view': 'Voir', 'no_results': 'Aucun résultat.'},
-    'es': {'lang': 'Español', 'code': 'ES', 'intro': 'Intro', 'headlines': 'Titulares',
-           'archive': 'Archivo', 'faq': 'Acerca de', 'more': 'Más ▾',
-           'all': 'Todo', 'docs': 'Documentos', 'videos': 'Videos', 'catalog': 'Catálogo',
-           'imagery': 'Imágenes', 'search': 'Buscar…', 'total': 'Total', 'local': 'Local',
-           'open_pdf': 'Abrir PDF', 'download': 'Descargar', 'source': 'Fuente ↗',
-           'play': 'Reproducir', 'view': 'Ver', 'no_results': 'Sin resultados.'},
-    'pt': {'lang': 'Português', 'code': 'PT', 'intro': 'Intro', 'headlines': 'Destaques',
-           'archive': 'Arquivo', 'faq': 'Sobre', 'more': 'Mais ▾',
-           'all': 'Tudo', 'docs': 'Documentos', 'videos': 'Vídeos', 'catalog': 'Catálogo',
-           'imagery': 'Imagens', 'search': 'Pesquisar…', 'total': 'Total', 'local': 'Local',
-           'open_pdf': 'Abrir PDF', 'download': 'Baixar', 'source': 'Fonte ↗',
-           'play': 'Reproduzir', 'view': 'Ver', 'no_results': 'Sem resultados.'},
-    'zh': {'lang': '中文', 'code': '中文', 'intro': '介绍', 'headlines': '要闻',
-           'archive': '档案', 'faq': '关于', 'more': '更多 ▾',
-           'all': '全部', 'docs': '文件', 'videos': '视频', 'catalog': '目录',
-           'imagery': '图像', 'search': '搜索…', 'total': '总计', 'local': '本地',
-           'open_pdf': '打开 PDF', 'download': '下载', 'source': '来源 ↗',
-           'play': '播放', 'view': '查看', 'no_results': '无结果。'},
-    'ja': {'lang': '日本語', 'code': 'JP', 'intro': 'はじめに', 'headlines': 'ヘッドライン',
-           'archive': 'アーカイブ', 'faq': 'について', 'more': 'もっと ▾',
-           'all': 'すべて', 'docs': '書類', 'videos': 'ビデオ', 'catalog': 'カタログ',
-           'imagery': '画像', 'search': '検索…', 'total': '合計', 'local': 'ローカル',
-           'open_pdf': 'PDF を開く', 'download': 'ダウンロード', 'source': 'ソース ↗',
-           'play': '再生', 'view': '表示', 'no_results': '結果なし。'},
-}
-
-import json as _json
-_I18N_JSON = _json.dumps(I18N, ensure_ascii=False)
+# Lives in scripts/templates/i18n.py. Re-exported here for backwards compat.
+import os as _os, sys as _sys
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+from templates.i18n import I18N, _I18N_JSON  # noqa: E402,F401
 
 # ── CSS ──────────────────────────────────────────────────────────────────────
 
@@ -749,107 +711,10 @@ SHARED_JS = r'''
 '''.replace('__I18N_JSON__', _I18N_JSON)
 
 
-# ── Lightbox: HTML + CSS + JS as named constants ────────────────────────────
-# Single source of truth for the media viewer. Mirror build scripts that used
-# to inline duplicates of these now consume the named constants instead.
-
-LIGHTBOX_HTML = '''\
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Media viewer">
-  <div class="lb-inner" id="lb-inner"></div>
-  <button class="lb-rotate" id="lb-rotate" aria-label="Rotate view" title="Rotate">⟳</button>
-  <button class="lb-close" id="lb-close" aria-label="Close (Escape)">✕</button>
-  <button class="lb-nav prev" id="lb-prev" aria-label="Previous (←)">‹</button>
-  <button class="lb-nav next" id="lb-next" aria-label="Next (→)">›</button>
-  <div class="lb-counter" id="lb-counter"></div>
-</div>'''
-
-
-LIGHTBOX_CSS = r'''
-.lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.96); display: none; align-items: center; justify-content: center; z-index: 200; padding: 16px; }
-@media (min-width: 720px) { .lightbox { padding: 32px; } }
-.lightbox.open { display: flex; }
-.lb-inner { max-width: 92vw; max-height: 92vh; display: flex; flex-direction: column; gap: 10px; align-items: center; }
-.lb-inner img, .lb-inner video { max-width: 90vw; max-height: 78vh; border: 1px solid var(--rule-strong); background: #000; }
-/* Rotate-to-landscape button (mobile only) */
-.lb-rotate { position: absolute; top: 12px; left: 12px; width: 40px; height: 40px; background: var(--bg-2); border: 1px solid var(--rule-strong); color: var(--ink); display: none; place-items: center; cursor: pointer; font-family: var(--mono); font-size: 18px; z-index: 3; transition: color .15s, border-color .15s; }
-.lb-rotate:hover { color: var(--caution); border-color: var(--caution); }
-@media (max-width: 719px) {
-  .lightbox.open .lb-rotate { display: grid; }
-  .lightbox.lb-rotated .lb-inner video,
-  .lightbox.lb-rotated .lb-inner img { transform: rotate(90deg); max-width: 88vh; max-height: 88vw; width: auto; height: auto; }
-  .lightbox.lb-rotated .lb-inner { max-height: none; max-width: none; }
-}
-.lb-inner iframe { width: 92vw; height: 84vh; border: 1px solid var(--rule-strong); background: #fff; }
-.lb-meta { font-family: var(--mono); font-size: 11px; color: var(--ink); background: var(--bg-2); border: 1px solid var(--rule-strong); padding: 8px 14px; max-width: 90vw; text-align: center; }
-.lb-meta a { color: var(--caution); }
-.lb-close { position: absolute; top: 12px; right: 12px; width: 40px; height: 40px; background: var(--bg-2); border: 1px solid var(--rule-strong); color: var(--ink); display: grid; place-items: center; cursor: pointer; font-family: var(--mono); font-size: 22px; z-index: 2; }
-.lb-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; background: rgba(20,20,24,0.6); border: 1px solid var(--rule-strong); color: var(--ink); display: grid; place-items: center; cursor: pointer; font-family: var(--serif); font-size: 24px; z-index: 2; transition: background .15s, color .15s, border-color .15s; }
-@media (min-width: 720px) { .lb-nav { width: 52px; height: 52px; font-size: 32px; } }
-.lb-nav:hover { background: rgba(0,0,0,0.85); color: var(--caution); border-color: var(--caution); }
-.lb-nav.prev { left: 8px; } .lb-nav.next { right: 8px; }
-@media (min-width: 720px) { .lb-nav.prev { left: 16px; } .lb-nav.next { right: 16px; } }
-.lb-counter { position: absolute; top: 16px; left: 50%; transform: translateX(-50%); font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; color: var(--ink-dim); background: var(--bg-2); border: 1px solid var(--rule); padding: 4px 12px; z-index: 2; }
-'''
-
-
-LIGHTBOX_JS = r'''
-/* Lightbox open/close/nav/rotate. Consumed inline by every page that
-   embeds LIGHTBOX_HTML. The host page also exposes `window._lb` so build
-   scripts can drive `openAt(idx)` from their per-page card grids. */
-(function() {
-  var lb     = document.getElementById('lightbox');
-  if (!lb) return;
-  var lbI    = document.getElementById('lb-inner');
-  var lbC    = document.getElementById('lb-close');
-  var lbP    = document.getElementById('lb-prev');
-  var lbN    = document.getElementById('lb-next');
-  var lbR    = document.getElementById('lb-rotate');
-  var lbCnt  = document.getElementById('lb-counter');
-  var list = [], idx = 0;
-  function esc(s){return String(s||'').replace(/[&<>"']/g,function(c){return({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]})}
-  function render() {
-    var a = list[idx]; if (!a) return;
-    var t = (a.url || a.u || a.local || a.l || '').toLowerCase().split('?')[0].split('#')[0];
-    var href = a.local || a.l || a.url || a.u || '';
-    var title = a.title || a.ti || '';
-    var meta = '<div class="lb-meta">' + esc(title) + '</div>';
-    var html = '';
-    if (/\.(jpe?g|png|gif|webp|avif)$/.test(t)) html = '<img src="'+esc(href)+'" alt="'+esc(title)+'">' + meta;
-    else if (/\.(mp4|webm|mov)$/.test(t))       html = '<video controls autoplay playsinline><source src="'+esc(href)+'" type="video/mp4"></video>' + meta;
-    else if (/\.(mp3|wav|ogg|m4a)$/.test(t))    html = '<audio controls autoplay src="'+esc(href)+'"></audio>' + meta;
-    else if (/\.pdf$/.test(t))                  html = '<iframe src="'+esc(href)+'" title="'+esc(title)+'"></iframe>' + meta;
-    else                                        html = meta + '<a class="lb-meta" href="'+esc(href)+'" target="_blank" rel="noopener">Open ↗</a>';
-    lbI.innerHTML = html;
-    if (lbCnt) lbCnt.textContent = (idx+1) + ' / ' + list.length;
-  }
-  function open(i){ if (!list.length) return; idx = (i + list.length) % list.length; render(); lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); }
-  function nav(d){ if (!list.length) return; idx = (idx + d + list.length) % list.length; render(); }
-  function close(){ lb.classList.remove('open'); lb.classList.remove('lb-rotated'); lb.setAttribute('aria-hidden','true'); lbI.innerHTML = ''; }
-  if (lbC) lbC.addEventListener('click', close);
-  if (lbP) lbP.addEventListener('click', function(e){ e.stopPropagation(); nav(-1); });
-  if (lbN) lbN.addEventListener('click', function(e){ e.stopPropagation(); nav(1); });
-  if (lbR) lbR.addEventListener('click', function(e){ e.stopPropagation(); lb.classList.toggle('lb-rotated'); });
-  lb.addEventListener('click', function(e){ if (e.target === lb) close(); });
-  document.addEventListener('keydown', function(e){
-    if (!lb.classList.contains('open')) return;
-    if (e.key === 'Escape') close();
-    else if (e.key === 'ArrowRight') nav(1);
-    else if (e.key === 'ArrowLeft')  nav(-1);
-  });
-  /* swipe — horizontal > 50 px in < 800 ms */
-  var sx=0,sy=0,st=0;
-  lb.addEventListener('touchstart', function(e){ var t=e.changedTouches[0]; sx=t.clientX; sy=t.clientY; st=Date.now(); }, {passive:true});
-  lb.addEventListener('touchend',   function(e){ var t=e.changedTouches[0]; var dx=t.clientX-sx, dy=t.clientY-sy, dt=Date.now()-st;
-    if (dt < 800 && Math.abs(dx) > 50 && Math.abs(dy) < 60) nav(dx < 0 ? 1 : -1);
-  }, {passive:true});
-  window._lb = {
-    open: open, close: close, nav: nav,
-    setList: function(items){ list = items || []; },
-    getList: function(){ return list; }
-  };
-})();
-'''
-
+# ── Lightbox: HTML + CSS + JS ────────────────────────────────────────────────
+# Definitions live in scripts/templates/lightbox.py. Re-exported here for
+# backwards compat with every existing `from _site_template import LIGHTBOX_*`.
+from templates.lightbox import LIGHTBOX_HTML, LIGHTBOX_CSS, LIGHTBOX_JS  # noqa: E402,F401
 
 # Inject LIGHTBOX_CSS body into SHARED_CSS at the placeholder.
 SHARED_CSS = SHARED_CSS.replace('__LIGHTBOX_CSS__', LIGHTBOX_CSS.strip())
