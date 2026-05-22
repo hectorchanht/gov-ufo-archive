@@ -12,6 +12,7 @@ import json, os, sys, subprocess
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _mirror_shared import SHARED_CSS, SHARED_JS
+from _release_manifest import apply_manifest
 from _site_template import make_nav, LIGHTBOX_HTML
 ROOT = os.path.join(REPO, 'uk')
 
@@ -160,6 +161,7 @@ if os.path.exists(_tna_cache):
                 'l': '', 'u': _url, 's': _url,
             })
 
+apply_manifest(ASSETS)
 stats = {
     'total': len(ASSETS),
     'local_total': sum(1 for a in ASSETS if a.get('l')),

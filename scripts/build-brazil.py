@@ -12,6 +12,7 @@ REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT = os.path.join(REPO, 'brazil')
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _mirror_shared import SHARED_CSS, SHARED_JS
+from _release_manifest import apply_manifest
 from _site_template import make_nav, LIGHTBOX_HTML
 
 def git_tracked(rel_dir):
@@ -104,6 +105,7 @@ if os.path.exists(_scraped_cache):
                            'ag': _r.get('agency', 'FAB / COMDABRA'), 'cat': _r.get('type', 'PDF').capitalize(),
                            'date': _r.get('date', ''), 'l': '', 'u': _url, 's': _r.get('src', ''),})
 
+apply_manifest(ASSETS)
 stats = {
     'total': len(ASSETS),
     'local_total': sum(1 for a in ASSETS if a.get('l')),

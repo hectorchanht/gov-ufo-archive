@@ -5,7 +5,9 @@ Renders the full 3,351-case GEIPAN database scraped via
 scripts/scrape-geipan.py (cached at .cache/cases.json) alongside the
 official PDFs / case videos / imagery. Tone: French blue (#0055a4).
 """
-import json, os, subprocess
+import json, os, subprocess, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from _release_manifest import apply_manifest
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT = os.path.join(REPO, 'geipan')
@@ -141,6 +143,7 @@ cls_count = {}
 for c in cases:
     cls_count[c['cls']] = cls_count.get(c['cls'], 0) + 1
 
+apply_manifest(ASSETS)
 stats = {
     'total': len(ASSETS),
     'local_total': sum(1 for a in ASSETS if a.get('l')),

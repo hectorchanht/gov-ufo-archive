@@ -446,6 +446,10 @@ body { background-image: radial-gradient(ellipse at 20% 0%, rgba(0,85,164,0.08) 
 (() => {
   const archData = document.getElementById('arch-data');
   if (!archData) return;
+  /* Skip the simple catalog renderer if the page provides its own paginated
+     archive block (presence of #pagination signals a per-page paginator).
+     Prevents a 3000+ node initial paint on large catalogs (GEIPAN). */
+  if (document.getElementById('pagination')) return;
   const D = JSON.parse(archData.textContent);
   const items = D.assets;
   const STATS = D.stats;

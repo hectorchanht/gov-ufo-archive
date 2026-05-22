@@ -194,6 +194,9 @@ if os.path.exists(_scraped_cache):
             'local': '',
         })
 
+from _release_manifest import apply_manifest
+apply_manifest(assets, url_key='url', src_key='src', local_key='local')
+
 # Stats
 stats = {
     'videos_local': sum(1 for a in assets if a['type']=='VID' and a['local']),

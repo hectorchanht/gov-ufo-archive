@@ -8,6 +8,7 @@ charcoal (#9ca3af).
 """
 import json, os, subprocess, sys
 sys.path.insert(0, __import__("os").path.dirname(__import__("os").path.abspath(__file__)))
+from _release_manifest import apply_manifest
 from _site_template import make_nav, LIGHTBOX_HTML, _I18N_JSON
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -188,6 +189,7 @@ if os.path.exists(_scraped_cache):
                 's': _r.get('src', ''),
             })
 
+apply_manifest(ASSETS)
 stats = {
     'total': len(ASSETS),
     'local_total': sum(1 for a in ASSETS if a.get('l')),

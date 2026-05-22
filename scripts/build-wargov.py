@@ -75,15 +75,30 @@ with open(CSV, encoding='utf-8-sig') as f:
             continue
         rows.append(clean)
 
+import sys as _sys
+_sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from _release_manifest import load_manifest as _load_release_manifest
+_rel_man = _load_release_manifest()
+_rel_pdfs = _rel_man.get('pdfs', {})
+_rel_vids = _rel_man.get('videos', {})
+
 for r in rows:
     url = r.get('PDF | Image Link', '')
-    bn = basename(url).lower()
-    if bn in pdf_l:
-        r['local'] = LOCAL_PREFIX + 'bundles/Release_1/' + pdf_l[bn]
-    elif bn in slide_l:
-        r['local'] = LOCAL_PREFIX + 'slideshow/' + slide_l[bn]
+    bn_l = basename(url).lower()
+    bn   = basename(url)
+    # Local file mapping (bundles/slideshow) takes precedence for offline.
+    if bn_l in pdf_l:
+        r['local'] = LOCAL_PREFIX + 'bundles/Release_1/' + pdf_l[bn_l]
+    elif bn_l in slide_l:
+        r['local'] = LOCAL_PREFIX + 'slideshow/' + slide_l[bn_l]
     else:
         r['local'] = ''
+    # If the file is in pdfs-v1 / videos-v1 release, rewrite primary URL
+    # to the release download so deployed pages always have a working link.
+    if bn in _rel_pdfs:
+        r['PDF | Image Link'] = _rel_pdfs[bn]
+    elif bn in _rel_vids:
+        r['PDF | Image Link'] = _rel_vids[bn]
 
 manifest = {
     'rows': rows,
