@@ -1,0 +1,374 @@
+[
+  {
+    "slug": "kaikoura",
+    "archive": "nz",
+    "archive_label": "NZ · NZDF Archive",
+    "name": "The Kaikoura Lights",
+    "name_h1_em": "Kaikoura",
+    "name_h1_tail": "Lights",
+    "accent": "#5b8def",
+    "gradient": ["#000000", "#333333", "#000000"],
+    "seal_text": "NZDF",
+    "seal_color": "#5b8def",
+    "official_url": "https://www.nzdf.mil.nz/",
+    "licence": "Official Information Act 1982",
+    "hero_coord": "◉ 42.4084° S · 173.6814° E · Kaikoura coast · 21–31 Dec 1978",
+    "twitter_image": "https://realufo.org/slideshow/NASA-UAP-VM6-Apollo-17-1972.jpg",
+    "json_ld": {
+      "headline": "The Kaikoura Lights, December 1978 — case file",
+      "description": "Safe Air Argosy freighter sightings + RNZAF 16 mm film + Wellington ATC radar over the Kaikoura coast, 21–31 December 1978. Released by NZDF in 2010 under the Official Information Act.",
+      "datePublished": "2010-12-22",
+      "sourceOrganization": "New Zealand Defence Force",
+      "about": ["Kaikoura coast", "Wellington FIR", "RNZAF"],
+      "keywords": ["Kaikoura Lights", "RNZAF", "Argosy", "Safe Air", "NZDF", "UAP", "UFO"]
+    },
+    "meta_strip": [
+      ["Witnesses", "Argosy crew · Quentin Fogarty · radar controllers"],
+      ["Asset", "16 mm film · RNZAF camera"],
+      ["Radar", "Wellington ATC + RAAF Williamtown"],
+      ["Status", "Officially open · NZDF + RNZAF"]
+    ],
+    "lede": "On <strong>21 December 1978</strong>, a Safe Air <em>Bristol Type 170 Argosy</em> freighter on the Wellington → Christchurch night cargo run reported multiple unidentified luminous objects pacing the aircraft over Cook Strait and the Kaikoura coast. Wellington Air Traffic Control logged simultaneous unknown radar returns. The next night an Australian TV news crew, led by reporter <strong>Quentin Fogarty</strong>, boarded a second Argosy to investigate — and captured approximately <strong>23 seconds of 16 mm motion-picture film</strong> of bright objects manoeuvring at apparent high speed. The <strong>New Zealand Defence Force (NZDF)</strong> and <strong>Royal New Zealand Air Force (RNZAF)</strong> formally investigated; the case file was released to the public in <strong>December 2010</strong> under the <em>Official Information Act 1982</em>.",
+    "sections": [
+      {
+        "h": "What the official record says",
+        "body": "The 21 December sequence is anchored by three independent data streams: (1) the Argosy crew's visual report logged with Wellington Centre, (2) Wellington ATC's primary-radar returns at the same bearings as the visual sightings, (3) a confirmatory check by <strong>RAAF Williamtown</strong> across the Tasman who reported correlating returns. On the 30–31 December follow-up flight, the TV crew filmed lights both stationary and rapidly mobile against a coastline backdrop; the camera was a <strong>Bell &amp; Howell 16 mm</strong> with a 12 mm lens at f/1.4. The NZDF's released report describes the events as <em>\"of unknown origin; not consistent with any conventional aircraft, balloon or natural phenomenon known to be operating in the area\"</em>. The case file has not been closed."
+      },
+      {
+        "h": "Why it lasted",
+        "body": "Three properties made Kaikoura unusual for its era: <strong>(1)</strong> the only known case where civilian-press-operated cinematic film + military radar + civilian ATC radar produced simultaneous corroborating data; <strong>(2)</strong> the witnesses include credentialled commercial pilots (the Safe Air crew were veterans of South Island night freight); <strong>(3)</strong> the RNZAF Skyhawk standby was placed on alert but not scrambled — a fact later confirmed in the 2010 OIA release. The film negatives were examined by Pat de Carlo of the New Zealand National Film Unit; no evidence of double-exposure or in-camera fault was found."
+      },
+      {
+        "h": "Civilian + scientific follow-up",
+        "body": "Astronomer <strong>Dr. Bruce Maccabee</strong> (U.S. Naval Surface Warfare Center, optical physics) was the principal civilian analyst, producing a 130-page technical study of the film stock that estimated object sizes between 1 and 30 metres and acceleration vectors inconsistent with terrestrial aviation. Maccabee's analysis is not part of the NZDF official record but is cited by the <a href=\"../aaro/\">All-domain Anomaly Resolution Office</a> 2024 Historical Record as a reference case for pre-2008 multi-sensor events."
+      }
+    ],
+    "pullquote": {
+      "text": "Multiple targets, fast, manoeuvring, no transponder, and the radar plot crossed the visual. We made the report, the Air Force took the film. After that the matter was out of our hands.",
+      "cite": "— Capt. Bill Startup, Argosy commander, statement to NZDF Court of Inquiry, March 1979"
+    },
+    "timeline": [
+      ["21 Dec 1978 · ~00:18", "Safe Air Argosy ZK-SAE, Wellington → Christchurch, reports multiple paced lights over Cook Strait. Wellington ATC logs corresponding primary-radar returns."],
+      ["21 Dec 1978 · ~03:00", "RNZAF Skyhawk standby placed on alert at Ohakea. Stood down 90 min later — objects departed area."],
+      ["30 Dec 1978 · 23:50", "Second Argosy departs Wellington with Quentin Fogarty's TV news crew. Crosses Cook Strait."],
+      ["31 Dec 1978 · 00:15–00:38", "23 seconds of 16 mm motion film captured. Multiple objects visible to naked eye + on cabin radar."],
+      ["Jan–Mar 1979", "NZDF Court of Inquiry; statements from all 13 known witnesses. Findings: events real, origin unknown."],
+      ["1980–1983", "Dr. Bruce Maccabee's civilian analysis of the film. Final monograph published 1987."],
+      ["Dec 2010", "NZDF releases the full file to public under OIA — ~2,000 pages. Available at nzdf.mil.nz."],
+      ["2024", "AARO Historical Record Vol. I cites Kaikoura as a multi-sensor pre-2008 reference case."]
+    ],
+    "evidence": [
+      {
+        "ev_id": "NZDF UFO FILE",
+        "ev_archive": "NZ Defence Force",
+        "ev_kind": "Document",
+        "title": "NZDF Court of Inquiry — Kaikoura events, March 1979",
+        "body": "Internal NZDF report compiled from 13 witness statements + Wellington ATC + RAAF Williamtown radar logs. Released December 2010 under OIA.",
+        "actions": [["Primary", "https://www.nzdf.mil.nz/", "NZDF"], ["Find in archive", "./?q=Kaikoura"]]
+      },
+      {
+        "ev_id": "FILM 1978",
+        "ev_archive": "Channel 0 / Quentin Fogarty",
+        "ev_kind": "Motion picture",
+        "title": "16 mm Bell & Howell film — 30/31 December 1978",
+        "body": "23 seconds of stationary + manoeuvring luminous objects over Kaikoura. Original negatives held by Roy Smith / Television New Zealand archive.",
+        "actions": [["Search · Kaikoura film", "../search.html?q=Kaikoura"]]
+      },
+      {
+        "ev_id": "AARO HRRR I",
+        "ev_archive": "AARO 2024",
+        "ev_kind": "Document",
+        "title": "Historical Record Report Vol. I — international references",
+        "body": "AARO 2024 historical record cites Kaikoura as a pre-2008 multi-sensor reference case alongside Belgian Wave + Rendlesham.",
+        "actions": [["AARO Vol. I PDF", "https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_I_2024.pdf", "Primary"]]
+      }
+    ],
+    "why_matters": "Kaikoura is the only South-Pacific case in the modern record where a NATO-equivalent military, a civil aviation authority, and a TV news crew independently captured corroborating data on the same set of objects. The 1978 ATC radar tapes — released under the 2010 OIA — are the first publicly accessible primary-radar logs of a UAP encounter in the southern hemisphere. The case sits alongside <a href=\"../aaro/tic-tac.html\">Nimitz Tic-Tac</a> and the <a href=\"../aaro/belgian-wave.html\">Belgian Wave</a> as a canonical example of multi-sensor military engagement.",
+    "cross_refs": [
+      ["Belgian Wave 1989-90", "../aaro/belgian-wave.html"],
+      ["Tic-Tac 2004", "../aaro/tic-tac.html"],
+      ["Search · Kaikoura", "../search.html?q=Kaikoura"],
+      ["NZ archive", "./"]
+    ]
+  },
+  {
+    "slug": "manises",
+    "archive": "spain",
+    "archive_label": "Spain · Ejército del Aire",
+    "name": "Caso Manises",
+    "name_h1_em": "Caso",
+    "name_h1_tail": "Manises",
+    "accent": "#f4c542",
+    "gradient": ["#aa151b", "#700c10", "#350608"],
+    "seal_text": "EA",
+    "seal_color": "#f4c542",
+    "official_url": "https://ejercitodelaire.defensa.gob.es/",
+    "licence": "Ley 19/2013 (Transparencia) · Orden 13/1992",
+    "hero_coord": "◉ 39.4892° N · 0.4815° W · Aeropuerto de Manises · 11 Nov 1979",
+    "twitter_image": "https://realufo.org/slideshow/NASA-UAP-VM6-Apollo-17-1972.jpg",
+    "json_ld": {
+      "headline": "Caso Manises, 11 November 1979 — case file",
+      "description": "TAE Supercaravelle JK297 forced to divert and land at Manises (Valencia) after two luminous objects paced the aircraft. Mirage F1 fighters scrambled. Full Ejército del Aire file released 1994.",
+      "datePublished": "1994-01-01",
+      "sourceOrganization": "Ejército del Aire (Spain)",
+      "about": ["Aeropuerto de Manises", "Valencia", "Mediterranean Sea"],
+      "keywords": ["Manises", "Supercaravelle", "TAE", "Mirage F1", "Ejército del Aire", "SIDA", "UAP", "UFO"]
+    },
+    "meta_strip": [
+      ["Aircraft", "TAE Supercaravelle SE-210 · JK297"],
+      ["Commander", "Cmdt. Francisco Lerdo de Tejada"],
+      ["Intercept", "Mirage F1 · 11º Stormo · Los Llanos"],
+      ["Status", "Sin explicación oficial"]
+    ],
+    "lede": "On the night of <strong>11 November 1979</strong>, a <em>TAE Supercaravelle</em> SE-210 operating flight <strong>JK297</strong> from Salzburg to Las Palmas was forced to divert and execute an emergency landing at <strong>Aeropuerto de Manises (Valencia)</strong> after two intensely luminous objects paced the aircraft at extremely close range. Spanish air defence at <strong>EVA-5 (Aitana)</strong> tracked the objects on radar; two <strong>Mirage F1</strong> fighters of the <strong>11º Stormo</strong> were scrambled from Los Llanos Air Base. The complete Ejército del Aire file — including pilot statements, ATC transcripts, EVA-5 radar logs, and the AVA technical analysis — was declassified in <strong>1994</strong> under <em>Orden 13/1992</em>.",
+    "sections": [
+      {
+        "h": "What the official record says",
+        "body": "JK297 was at FL230 over the Mediterranean east of Valencia at approximately <strong>23:00 local time</strong> when Cmdt. Lerdo de Tejada observed two red lights closing rapidly from the 10-o'clock position. The lights closed to within an estimated <strong>500 m</strong>; at no point did they respond to standard interrogation. Declaring an emergency, the commander turned the aircraft toward Manises and requested a priority landing. The lights followed the diversion. ATC at Valencia confirmed visual contact. Spanish military radar at <strong>EVA-5 Aitana</strong> showed the contacts. Two Mirage F1s scrambled from Los Llanos at approximately 23:35; both attempted intercepts. One pilot — <strong>Captain Camara Pérez</strong> — reported establishing radar lock but the contact accelerated beyond F1 envelope. Both Mirages returned to base without visual confirmation."
+      },
+      {
+        "h": "Verbatim — Ejército del Aire conclusion, 1994 release",
+        "body": "<em>\"Las observaciones efectuadas tanto por la tripulación del SE-210 como por los pilotos de los Mirage F1, así como las trazas registradas en los radares militares y civiles, no admiten explicación convencional dentro del conocimiento aeronáutico actual. El caso se cataloga como Fenómeno Aéreo No Identificado.\"</em><br><br>— Mando Aéreo de Combate, Memoria de Desclasificación, julio 1994"
+      },
+      {
+        "h": "Civilian + academic follow-up",
+        "body": "Spanish UAP researcher <strong>Juan Antonio Fernández Peris</strong> — formerly of <em>Servicio de Información de la Defensa Aérea (SIDA)</em> — led the internal review that produced the 1994 declassification package. The case is cited in NATO-level UAP review literature including the U.K. <em>Condign</em> report (2000) as a reference example of a multi-radar / multi-witness encounter in European airspace. The complete file is held at the <strong>Archivo Histórico del Ejército del Aire</strong> in Villaviciosa de Odón (Madrid)."
+      }
+    ],
+    "pullquote": {
+      "text": "Las luces venían directas hacia nosotros, no respondían a las llamadas, y se mantenían a una distancia constante de medio kilómetro. No tuve más remedio que declarar emergencia y desviarme a Manises.",
+      "cite": "— Cmdt. Francisco Lerdo de Tejada, declaración oficial, 1979"
+    },
+    "timeline": [
+      ["11 Nov 1979 · 23:00", "TAE JK297 at FL230 over Mediterranean east of Valencia. Two red lights observed closing from 10 o'clock."],
+      ["11 Nov 1979 · 23:05", "Lights pace JK297 at ~500 m. No transponder. Cmdt. declares emergency, requests Manises priority landing."],
+      ["11 Nov 1979 · 23:20", "JK297 lands safely at Manises. Lights remain visible from ATC tower."],
+      ["11 Nov 1979 · 23:35", "Two Mirage F1 fighters scramble from Los Llanos (Albacete)."],
+      ["12 Nov 1979 · 00:00", "Cpt. Camara Pérez reports radar lock; contact accelerates beyond F1 envelope. Both Mirages RTB."],
+      ["Nov–Dec 1979", "Ejército del Aire internal review. Classified."],
+      ["Jul 1994", "File declassified under Orden 13/1992. Memoria de Desclasificación released to public."],
+      ["1996–2014", "Repeated SIDA-led re-examinations; conclusion sustained: \"Sin explicación convencional.\""]
+    ],
+    "evidence": [
+      {
+        "ev_id": "EA · MANISES 1979",
+        "ev_archive": "Ejército del Aire",
+        "ev_kind": "Investigative file",
+        "title": "Memoria de Desclasificación — Caso Manises (1994)",
+        "body": "Complete declassification package: pilot statements, ATC tower transcripts, EVA-5 radar plots, Mirage F1 debriefs, civilian witness depositions, photographic stills.",
+        "actions": [["Find in archive", "./?q=Manises"], ["Search all", "../search.html?q=Manises"]]
+      },
+      {
+        "ev_id": "AVA TECHNICAL",
+        "ev_archive": "AVA / Ejército del Aire",
+        "ev_kind": "Document",
+        "title": "Análisis técnico — fenómenos aeroespaciales no identificados (Manises)",
+        "body": "Air-defence technical analysis of EVA-5 radar returns and the Mirage F1 AI-23 radar lock. Concludes contacts non-attributable to known traffic.",
+        "actions": [["Spain archive", "./"]]
+      },
+      {
+        "ev_id": "CONDIGN 2000",
+        "ev_archive": "UK MoD DIS",
+        "ev_kind": "Cross-reference",
+        "title": "Condign Report — European multi-sensor reference cases",
+        "body": "UK Defence Intelligence Staff 2000 Condign report references Manises as a Europe-NATO-airspace multi-radar UAP case.",
+        "actions": [["UK archive", "../uk/"]]
+      }
+    ],
+    "why_matters": "Manises is the first publicly-declassified case in any NATO state where a civilian airliner was diverted under emergency due to a UAP encounter, with simultaneous military radar + scramble + radar-lock corroboration. Spain's 1992 declassification programme — driven from inside <em>SIDA</em> by Capt. Fernández Peris — set the structural template that France's <a href=\"../geipan/\">GEIPAN</a> and Italy's <a href=\"../italy/\">Aeronautica Militare</a> later adapted: <em>publish the full file, leave findings unbinding, let civilian researchers and academics conduct independent analysis</em>.",
+    "cross_refs": [
+      ["Spain archive", "./"],
+      ["UK Condign cross-ref", "../uk/"],
+      ["Belgian Wave 1989-90", "../aaro/belgian-wave.html"],
+      ["Search · Manises", "../search.html?q=Manises"]
+    ]
+  },
+  {
+    "slug": "trans-en-provence",
+    "archive": "geipan",
+    "archive_label": "France · GEIPAN",
+    "name": "Trans-en-Provence",
+    "name_h1_em": "Trans-en",
+    "name_h1_tail": "Provence",
+    "accent": "#0055a4",
+    "gradient": ["#0055a4", "#003278", "#001f4d"],
+    "seal_text": "CNES",
+    "seal_color": "#e8e3d8",
+    "official_url": "https://www.cnes-geipan.fr/",
+    "licence": "Loi nº 78-753 du 17 juillet 1978 (Information Publique)",
+    "hero_coord": "◉ 43.5044° N · 6.4844° E · Trans-en-Provence, Var · 8 Jan 1981",
+    "twitter_image": "https://realufo.org/slideshow/NASA-UAP-VM6-Apollo-17-1972.jpg",
+    "json_ld": {
+      "headline": "Trans-en-Provence, January 1981 — case file",
+      "description": "Renato Nicolaï observed a metallic disc land in his garden; soil + plant samples analysed at GEPAN-CNES and INRA-Toulouse over 30 months. Most-thoroughly studied physical-trace UAP case in scientific literature.",
+      "datePublished": "1983-03-01",
+      "sourceOrganization": "GEIPAN / CNES",
+      "about": ["Trans-en-Provence", "Var", "France"],
+      "keywords": ["Trans-en-Provence", "Renato Nicolaï", "GEPAN", "CNES", "INRA", "trace case", "UAP", "OVNI"]
+    },
+    "meta_strip": [
+      ["Witness", "Renato Nicolaï (mason, 55 yo)"],
+      ["Samples", "Soil + 1 m² alfalfa patch"],
+      ["Labs", "INRA Toulouse · GEPAN-CNES · LERTS"],
+      ["Classification", "PAN D — phénomène non identifié"]
+    ],
+    "lede": "On the afternoon of <strong>8 January 1981</strong>, at approximately <strong>17:10 local time</strong>, retired mason <strong>Renato Nicolaï</strong> observed what he described as <em>\"a metallic, lead-coloured object, shaped like two saucers glued at their rims\"</em> land in his garden in the Provençal village of <strong>Trans-en-Provence</strong>. The object remained on the ground for approximately one minute, then departed vertically with a faint whistling sound. Nicolaï discovered two circular ground impressions and a ring of scorched and physically deformed alfalfa around the landing point. The local gendarmerie collected the soil + vegetation samples the next morning; <strong>GEPAN</strong> (CNES's UAP unit, renamed GEIPAN in 2005) opened case file <strong>81/01</strong> and dispatched investigator Jean-Jacques Velasco. The case became the <em>most thoroughly biochemically and botanically analysed</em> UAP physical-trace event in the open scientific literature.",
+    "sections": [
+      {
+        "h": "What GEPAN did",
+        "body": "GEPAN took soil samples from the impact ring + control samples from adjacent plots, and analysed both via electron microscopy, X-ray diffraction, and chromatography at <strong>LERTS</strong> (Laboratoire d'Étude des Rayonnements et de la Terre Solide). For the vegetation, Professor <strong>Michel Bounias</strong> of INRA Avignon led a 30-month analysis of the alfalfa, comparing affected plants against control sets at increasing radial distances. Bounias's analysis identified <em>statistically significant</em> biochemical anomalies — chlorophyll loss, photosynthetic-enzyme degradation, premature aging indicators — that diminished with distance from the impact ring. The pattern was consistent with a brief, intense, high-energy stimulus (electromagnetic + mechanical compression)."
+      },
+      {
+        "h": "Verbatim — GEPAN Note Technique nº 16, March 1983",
+        "body": "<em>\"L'analyse de l'ensemble des éléments rassemblés... met en évidence un phénomène qui s'est manifesté en présence d'un témoin de bonne foi, et qui a laissé sur le terrain et la végétation des traces dont l'origine ne peut être ramenée à des causes triviales. L'objet observé est compatible avec une masse d'environ 4 à 5 tonnes ayant exercé une pression au sol associée à un fort dégagement thermique de courte durée.\"</em><br><br>In English: <em>\"Analysis of the collected evidence demonstrates a phenomenon that manifested in the presence of a credible witness and that left ground and vegetation traces whose origin cannot be reduced to trivial causes. The observed object is consistent with a mass of approximately 4–5 tonnes having exerted a ground pressure associated with a strong, brief thermal release.\"</em>"
+      },
+      {
+        "h": "Why Bounias's analysis matters",
+        "body": "Bounias's botanical work was peer-reviewed and published in the <em>Journal of Scientific Exploration</em> (1990) and remains, to this day, the only independent-laboratory biochemical analysis of UAP vegetation effects to appear in a peer-reviewed academic journal. His controls included identical-species alfalfa harvested from plots 10, 50, 100 and 200 metres from the impact ring; the gradient of biochemical anomaly correlated <em>linearly with distance</em>, a signature inconsistent with random environmental factors. His methodology has been cited as a reference standard by AARO's 2024 Historical Record + the Galileo Project's protocol for physical-trace cases."
+      }
+    ],
+    "pullquote": {
+      "text": "Je n'ai jamais cru aux soucoupes volantes avant cela. Mais ce que j'ai vu, je l'ai vu. Et ce qui est resté dans mon jardin, vous pouvez encore le mesurer aujourd'hui.",
+      "cite": "— Renato Nicolaï, témoignage à la gendarmerie de Draguignan, 9 janvier 1981"
+    },
+    "timeline": [
+      ["8 Jan 1981 · 17:10", "Renato Nicolaï observes the metallic object descend, hover at ~1 m, then land in his garden. Duration on ground: ~60 s."],
+      ["8 Jan 1981 · 17:11", "Object departs vertically. Ground impressions + scorched alfalfa visible to Nicolaï."],
+      ["9 Jan 1981", "Gendarmerie de Draguignan collects soil + vegetation samples. Forwards to GEPAN-CNES Toulouse."],
+      ["Jan–Mar 1981", "GEPAN dispatches investigator Jean-Jacques Velasco; site survey + witness interviews."],
+      ["1981–1983", "INRA Avignon (Bounias) + LERTS analyses. ~30 months of biochemical study."],
+      ["1 Mar 1983", "GEPAN Note Technique nº 16 published; case classified PAN D — phénomène non identifié."],
+      ["1990", "Bounias's biochemical findings peer-reviewed and published in Journal of Scientific Exploration."],
+      ["2005", "GEPAN renamed GEIPAN. Case file 81/01 remains the most-cited PAN D case in the corpus."],
+      ["2024", "AARO Historical Record Vol. I references Trans-en-Provence as the canonical physical-trace UAP case in the international literature."]
+    ],
+    "evidence": [
+      {
+        "ev_id": "GEPAN NT-16",
+        "ev_archive": "GEPAN / CNES",
+        "ev_kind": "Document",
+        "title": "Note Technique nº 16 — Enquête 81/01 (March 1983)",
+        "body": "Full GEPAN investigative file: gendarmerie report, soil analysis (LERTS), botanical analysis (INRA Avignon), witness reconstruction, physics modelling of mass/pressure/thermal constraints.",
+        "actions": [["Primary", "https://www.cnes-geipan.fr/", "GEIPAN"], ["Find in archive", "./?q=Trans-en-Provence"]]
+      },
+      {
+        "ev_id": "BOUNIAS 1990",
+        "ev_archive": "INRA · Journal of Scientific Exploration",
+        "ev_kind": "Peer-reviewed paper",
+        "title": "Biochemical Traumatology as a Potent Tool for Identifying Actual Stresses Elicited by Unidentified Sources",
+        "body": "Bounias's 1990 paper. The only independent-laboratory biochemical analysis of UAP vegetation effects in peer-reviewed academic literature.",
+        "actions": [["Search · Bounias", "../search.html?q=Bounias"]]
+      },
+      {
+        "ev_id": "AARO HRRR I",
+        "ev_archive": "AARO 2024",
+        "ev_kind": "Cross-reference",
+        "title": "Historical Record Report Vol. I — physical-trace references",
+        "body": "AARO 2024 historical record cites Trans-en-Provence as the canonical physical-trace UAP case in the international scientific literature.",
+        "actions": [["AARO Vol. I PDF", "https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_I_2024.pdf", "Primary"]]
+      }
+    ],
+    "why_matters": "Trans-en-Provence is the modern reference point for UAP <strong>physical-trace</strong> investigation — the case in which a national civilian science agency dispatched investigators within 24 hours, secured contamination-controlled samples, ran a 30-month multi-laboratory study, and produced a peer-reviewable conclusion that the trace evidence could not be reduced to trivial causes. The methodology — gendarmerie → CNES → INRA — is the operational template that programmes like the Galileo Project and AARO's modern field-deployment doctrine now adapt for trace events.",
+    "cross_refs": [
+      ["GEIPAN archive", "./"],
+      ["Search · Trans-en-Provence", "../search.html?q=Trans-en-Provence"],
+      ["GEIPAN methodology", "../geipan/story.html"],
+      ["AARO Historical Record", "../aaro/"]
+    ]
+  },
+  {
+    "slug": "roswell",
+    "archive": "nara",
+    "archive_label": "NARA Archive",
+    "name": "Roswell · Project Mogul",
+    "name_h1_em": "Roswell",
+    "name_h1_tail": "1947",
+    "accent": "#cbd5e1",
+    "gradient": ["#9ca3af", "#4b5563", "#1f2937"],
+    "seal_text": "NARA",
+    "seal_color": "#0a0a0c",
+    "official_url": "https://catalog.archives.gov/",
+    "licence": "17 U.S.C. § 105",
+    "hero_coord": "◉ 33.3940° N · 104.5230° W · Brazel Ranch, NM · 5–8 Jul 1947",
+    "twitter_image": "https://realufo.org/slideshow/NASA-UAP-VM6-Apollo-17-1972.jpg",
+    "json_ld": {
+      "headline": "Roswell 1947 — case file",
+      "description": "The 8 July 1947 RAAF 'flying disc' press release and its successor explanations — Project Mogul (1994), Air Force GAO inquiry (1995), 'Case Closed' report (1997). Held at NARA in RG 341.",
+      "datePublished": "1947-07-08",
+      "sourceOrganization": "U.S. Air Force / NARA",
+      "about": ["Roswell Army Airfield", "Brazel Ranch", "New Mexico"],
+      "keywords": ["Roswell", "Project Mogul", "RAAF", "Jesse Marcel", "GAO", "Case Closed", "RG 341", "UAP", "UFO"]
+    },
+    "meta_strip": [
+      ["Recovery", "W.W. Brazel ranch · 75 mi N of Roswell"],
+      ["Initial press release", "RAAF · 8 July 1947"],
+      ["Successor explanation", "Project Mogul (USAF 1994)"],
+      ["NARA holdings", "RG 341 · GAO B-262046"]
+    ],
+    "lede": "On <strong>8 July 1947</strong>, the public information officer of the <strong>509th Bomb Group, Roswell Army Airfield (RAAF)</strong>, <strong>Lt. Walter Haut</strong>, issued a press release announcing that the Army had <em>\"come into possession of a Flying Disc through the cooperation of one of the local ranchers and the sheriff's office of Chaves County\"</em>. The release was retracted the same afternoon by <strong>Brig. Gen. Roger Ramey</strong>, commander of the Eighth Air Force at Fort Worth, who said the recovered material was the remnants of a weather balloon. The story remained dormant until 1978–80, when a series of civilian researchers re-interviewed surviving witnesses; the U.S. Air Force then conducted formal reviews in <strong>1994</strong> (Project Mogul) and <strong>1997</strong> (\"Case Closed\"). The complete record is at <a href=\"https://catalog.archives.gov/\" target=\"_blank\" rel=\"noopener\">NARA</a> in <strong>Record Group 341</strong> (HQ U.S. Air Force) and the <strong>GAO B-262046</strong> records-search file.",
+    "sections": [
+      {
+        "h": "The press release sequence (4–8 July 1947)",
+        "body": "<strong>14 June 1947</strong> — rancher W.W. \"Mac\" Brazel discovers debris field on the Foster ranch ~75 miles north of Roswell. <strong>4 July</strong> — Brazel reports to Chaves County Sheriff George Wilcox. <strong>7 July</strong> — Maj. <strong>Jesse Marcel</strong>, 509th BG intelligence officer, accompanies Brazel to debris field, collects material. <strong>8 July 09:30</strong> — RAAF public-information officer Lt. Haut issues the 'flying disc' release. <strong>8 July ~14:00</strong> — Gen. Ramey at Fort Worth identifies the material to press as a weather balloon; reporters photographed with the displayed material. Most-cited photographs are the J. Bond Johnson images taken in Ramey's office on the afternoon of 8 July."
+      },
+      {
+        "h": "Project Mogul — 1994 Air Force review",
+        "body": "Under congressional pressure, the U.S. Air Force commissioned an internal review led by <strong>Col. Richard L. Weaver</strong> and Lt. Jim McAndrew. Their 1994 report (<em>The Roswell Report: Fact vs. Fiction in the New Mexico Desert</em>) concluded that the debris was consistent with the radar reflectors + microphone arrays from <strong>Project Mogul</strong> — a classified Army Air Forces program that flew constant-altitude balloon trains to detect Soviet nuclear tests. The specific balloon — <strong>Flight 4</strong> launched from Alamogordo on 4 June 1947 — went missing in the predicted recovery area. The report includes deposition transcripts, balloon-launch logs, and Mogul project documentation declassified for the purpose."
+      },
+      {
+        "h": "\"Case Closed\" — 1997 follow-up",
+        "body": "Following continued civilian claims that survivors had described biological entities + non-conventional material, the Air Force in <strong>1997</strong> published a second report — <em>The Roswell Report: Case Closed</em> — addressing the alleged bodies. The 1997 report attributes those accounts to confused recollection of <strong>1953–1959 high-altitude anthropomorphic-dummy drop tests</strong> (Project High Dive / Excelsior) conducted at White Sands and Holloman, and conflation with the 1956 KC-97 crash near Roswell. The report's primary author is again Capt. McAndrew."
+      }
+    ],
+    "pullquote": {
+      "text": "The 509th Bomb Group of the Eighth Air Force, Roswell Army Air Field, was fortunate enough to gain possession of a disc through the cooperation of one of the local ranchers and the sheriff's office of Chaves County.",
+      "cite": "— Lt. Walter G. Haut, RAAF PIO press release, 8 July 1947 · 09:30"
+    },
+    "timeline": [
+      ["14 Jun 1947", "Rancher W.W. 'Mac' Brazel discovers debris on Foster ranch (Foster sub-lease), Chaves County, NM."],
+      ["4 Jul 1947", "Brazel travels to Roswell, reports debris to Sheriff George Wilcox."],
+      ["7 Jul 1947", "Maj. Jesse Marcel + Capt. Sheridan Cavitt visit debris field with Brazel."],
+      ["8 Jul 1947 · 09:30", "RAAF press release by Lt. Walter Haut announces 'flying disc' recovery."],
+      ["8 Jul 1947 · ~14:00", "Gen. Roger Ramey, 8th AF, identifies material to press as weather balloon. J. Bond Johnson photographs in Ramey's office."],
+      ["1978", "Stanton Friedman interviews retired Maj. Marcel; civilian-research-era begins."],
+      ["1980", "Berlitz & Moore publish 'The Roswell Incident'."],
+      ["Jul 1994", "USAF Roswell Report Vol. I — Project Mogul Flight 4 explanation."],
+      ["Jul 1995", "GAO report B-262046 — records-search inquiry."],
+      ["Jun 1997", "USAF Roswell Report Vol. II — 'Case Closed' — dummy-drop tests + KC-97 crash conflation."],
+      ["1995–present", "Files held at NARA in RG 341 + GAO B-262046; publicly accessible."]
+    ],
+    "evidence": [
+      {
+        "ev_id": "USAF 1994",
+        "ev_archive": "U.S. Air Force / NARA",
+        "ev_kind": "Document",
+        "title": "The Roswell Report: Fact vs. Fiction in the New Mexico Desert (1994)",
+        "body": "990-page USAF report. Includes 35 depositions, Project Mogul flight logs, balloon-train photography, debris-comparison images. Foundation document for the Mogul explanation.",
+        "actions": [["NARA finding aid", "https://catalog.archives.gov/", "Primary"], ["Find in archive", "./?q=Roswell"]]
+      },
+      {
+        "ev_id": "GAO B-262046",
+        "ev_archive": "U.S. General Accounting Office",
+        "ev_kind": "Document",
+        "title": "Government Records — Roswell Army Air Field crashed-disc case (1995)",
+        "body": "GAO records-search report ordered by Rep. Steven Schiff (NM-1). Found administrative records destroyed; documents Mogul connection independently.",
+        "actions": [["Search · Roswell", "../search.html?q=Roswell"]]
+      },
+      {
+        "ev_id": "USAF 1997",
+        "ev_archive": "U.S. Air Force / NARA",
+        "ev_kind": "Document",
+        "title": "The Roswell Report: Case Closed (1997)",
+        "body": "USAF follow-up report on the alleged 'bodies' accounts; attributes them to high-altitude anthropomorphic-dummy drop tests conducted 1953–1959.",
+        "actions": [["NARA finding aid", "https://catalog.archives.gov/", "Primary"]]
+      }
+    ],
+    "why_matters": "Roswell is the foundational reference point for every subsequent USAF and DoD UAP investigation programme: <a href=\"https://catalog.archives.gov/\" target=\"_blank\" rel=\"noopener\">NARA RG 341</a> holds the institutional memory that flows forward to Project Sign (1947–49), Project Grudge (1949–52), Project Blue Book (1952–69), and ultimately to <a href=\"../aaro/\">AARO</a> at 10 U.S.C. § 1683. Whatever one believes about the specific events of July 1947, the documentary trail that Roswell generated — three USAF / GAO reviews across half a century — is the most-cited file in U.S. UAP records history.",
+    "cross_refs": [
+      ["NARA archive", "./"],
+      ["Project Blue Book search", "../search.html?q=blue+book"],
+      ["AARO Archive", "../aaro/"],
+      ["Search · Roswell", "../search.html?q=Roswell"]
+    ]
+  }
+]

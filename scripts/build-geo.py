@@ -32,6 +32,10 @@ CASE_PAGES = [
     'brazil/operacao-prato.html',
     'brazil/varginha.html',
     'brazil/trindade.html',
+    'nz/kaikoura.html',
+    'spain/manises.html',
+    'geipan/trans-en-provence.html',
+    'nara/roswell.html',
 ]
 
 ARCHIVE_HQ = [

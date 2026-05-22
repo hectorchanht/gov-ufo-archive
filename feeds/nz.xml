@@ -5,12 +5,12 @@
   <id>https://realufo.org/feeds/nz.xml</id>
   <link rel="self" type="application/atom+xml" href="https://realufo.org/feeds/nz.xml"/>
   <link rel="alternate" type="text/html" href="https://realufo.org/nz/"/>
-  <updated>2026-05-22T10:15:01Z</updated>
+  <updated>2026-05-22T10:38:13Z</updated>
   <author><name>realufo.org</name><uri>https://realufo.org/</uri></author>
   <rights>Per-source jurisdiction (US 17 U.S.C. §105, UK OGL v3, France Loi 78-753, Brazil LAI 12.527, Chile 20.285, etc.)</rights>
   <generator uri="https://realufo.org/">realufo.org build-feeds.py</generator>
   <entry>
-    <id>tag:realufo.org,2026:nz/941434197477</id>
+    <id>tag:realufo.org,2026:nz/645975393626</id>
     <title>NZDF — UFO/UAP reporting OIA response (2024-5199)</title>
     <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/OIA-2024-5199-UFO-and-UAP-Reporting.pdf"/>
     <link rel="via" href="https://www.nzdf.mil.nz/assets/Uploads/DocumentLibrary/OIA-2024-5199-UFO-and-UAP-Reporting.pdf"/>
@@ -21,7 +21,7 @@
     <summary type="text">More recent OIA response on NZDF&#x27;s UFO/UAP reporting practices — clarifies the post-2010 division of responsibility between NZDF and the Civil Aviation Authority.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nz/900763457677</id>
+    <id>tag:realufo.org,2026:nz/930611408158</id>
     <title>NZDF — UAP/UFO/USO OIA response (2023-4763)</title>
     <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/OIA-2023-4763_UAP-UFO-USO.pdf"/>
     <link rel="via" href="https://www.nzdf.mil.nz/assets/Uploads/DocumentLibrary/OIA-2023-4763_UAP-UFO-USO.pdf"/>
@@ -32,7 +32,7 @@
     <summary type="text">NZDF&#x27;s response to a 2023 OIA request on contemporary UAP/UFO/USO reporting procedure. Confirms NZDF no longer maintains a UFO file but redirects to Civil Aviation Authority.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nz/044354124342</id>
+    <id>tag:realufo.org,2026:nz/802238309359</id>
     <title>AIR 1080/6/897 — Kaikoura 1978 file (PDF)</title>
     <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/AIR-1080-6-897-Volume-1-1978-1981.pdf"/>
     <link rel="via" href="https://www.sunrisepage.com/ufo/files/government/NewZealand/AIR-1080-6-897-Volume-1-1978-1981.pdf"/>
@@ -43,21 +43,21 @@
     <summary type="text">The complete RNZAF file on the 1978 Kaikoura sightings — the most famous unexplained case in NZ aviation history.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nz/838616267029</id>
+    <id>tag:realufo.org,2026:nz/582738323193</id>
     <title>National Library of NZ — UFO files record</title>
     <link rel="alternate" type="text/html" href="https://natlib.govt.nz/records/22979464"/>
-    <updated>2026-05-22T10:15:01Z</updated>
-    <published>2026-05-22T10:15:01Z</published>
+    <updated>2026-05-22T10:38:13Z</updated>
+    <published>2026-05-22T10:38:13Z</published>
     <category term="Catalog"/>
     <category term="NZ · NZDF"/>
     <summary type="text">National Library catalog entry for the NZDF UFO file collection — the public-access master record.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nz/507195361484</id>
+    <id>tag:realufo.org,2026:nz/460299589310</id>
     <title>Archives New Zealand — homepage</title>
     <link rel="alternate" type="text/html" href="https://www.archives.govt.nz/"/>
-    <updated>2026-05-22T10:15:01Z</updated>
-    <published>2026-05-22T10:15:01Z</published>
+    <updated>2026-05-22T10:38:13Z</updated>
+    <published>2026-05-22T10:38:13Z</published>
     <category term="Catalog"/>
     <category term="NZ · NZDF"/>
     <summary type="text">Search the full Archway catalog at Archives NZ for AIR 39, AIR 1080, ABFK and related series.</summary>

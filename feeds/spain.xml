@@ -5,36 +5,36 @@
   <id>https://realufo.org/feeds/spain.xml</id>
   <link rel="self" type="application/atom+xml" href="https://realufo.org/feeds/spain.xml"/>
   <link rel="alternate" type="text/html" href="https://realufo.org/spain/"/>
-  <updated>2026-05-22T10:15:01Z</updated>
+  <updated>2026-05-22T10:38:13Z</updated>
   <author><name>realufo.org</name><uri>https://realufo.org/</uri></author>
   <rights>Per-source jurisdiction (US 17 U.S.C. §105, UK OGL v3, France Loi 78-753, Brazil LAI 12.527, Chile 20.285, etc.)</rights>
   <generator uri="https://realufo.org/">realufo.org build-feeds.py</generator>
   <entry>
-    <id>tag:realufo.org,2026:spain/423545183756</id>
+    <id>tag:realufo.org,2026:spain/183077055816</id>
     <title>Ejército del Aire y del Espacio — homepage</title>
     <link rel="alternate" type="text/html" href="https://ejercitodelaire.defensa.gob.es/"/>
-    <updated>2026-05-22T10:15:01Z</updated>
-    <published>2026-05-22T10:15:01Z</published>
+    <updated>2026-05-22T10:38:13Z</updated>
+    <published>2026-05-22T10:38:13Z</published>
     <category term="Catalog"/>
     <category term="Spain · Ejército del Aire"/>
     <summary type="text">Official site of Spain&#x27;s air force. Archive-access requests + declassified-file viewing logistics are described here.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:spain/745852034267</id>
+    <id>tag:realufo.org,2026:spain/944694386093</id>
     <title>Archivo Histórico del Ejército del Aire</title>
     <link rel="alternate" type="text/html" href="https://ejercitodelaire.defensa.gob.es/EA/ejercitodelaire/es/organizacion/archivo-historico/"/>
-    <updated>2026-05-22T10:15:01Z</updated>
-    <published>2026-05-22T10:15:01Z</published>
+    <updated>2026-05-22T10:38:13Z</updated>
+    <published>2026-05-22T10:38:13Z</published>
     <category term="Archive"/>
     <category term="Spain · Ejército del Aire"/>
     <summary type="text">Historical archive holding the declassified UFO files (Madrid). On-site access by appointment.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:spain/783193627506</id>
+    <id>tag:realufo.org,2026:spain/309224804551</id>
     <title>Ministerio de Defensa — Portal de la Cultura de Defensa</title>
     <link rel="alternate" type="text/html" href="https://www.defensa.gob.es/portalcultura/"/>
-    <updated>2026-05-22T10:15:01Z</updated>
-    <published>2026-05-22T10:15:01Z</published>
+    <updated>2026-05-22T10:38:13Z</updated>
+    <published>2026-05-22T10:38:13Z</published>
     <category term="Catalog"/>
     <category term="Spain · Ejército del Aire"/>
     <summary type="text">Spain&#x27;s defence culture portal — historical research guides including the Air Force collection.</summary>
