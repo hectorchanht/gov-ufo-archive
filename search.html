@@ -1097,21 +1097,65 @@ footer a:hover{color:var(--ink)}
     }, 120);
   }
 
-  ARCHIVES.forEach(function(arc) {
-    fetchArchive(arc)
-      .then(function(records) {
-        records.forEach(function(r){ allRecords.push(r); });
-        archivesLoaded++;
-        setPillLoaded(arc.id, records.length);
+  /* Fast-path: pre-built /api/all.json has every record from every mirror
+     in canonical shape (archive, archiveLabel, title, description, type,
+     date, url, src, local, thumb). One fetch instead of 15 HTML scrapes.
+     Falls back to per-mirror HTML fetch if all.json is unreachable
+     (e.g. pre-first-sync local checkout). */
+  function loadFromApi() {
+    return fetch('/api/all.json', { cache: 'no-cache' })
+      .then(function(r){ if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function(data) {
+        var byArchive = {};
+        (data.records || []).forEach(function(r) {
+          /* Map api/all.json shape → search.html record shape. */
+          var rec = {
+            title:  r.title || '',
+            desc:   r.description || r.desc || '',
+            agency: r.agency || '',
+            type:   r.category || r.type || '',
+            date:   r.date || '',
+            status: r.classification || r.status || '',
+            region: r.region || '',
+            url:    r.url || '',
+            src:    r.src || '',
+            local:  r.local || '',
+            site:   r.archiveLabel || r.archive || '',
+            siteId: r.archive || '',
+            siteDir: (r.archive && r.archive !== 'wargov') ? (r.archive + '/') : '',
+          };
+          allRecords.push(rec);
+          byArchive[rec.siteId] = (byArchive[rec.siteId] || 0) + 1;
+        });
+        Object.keys(byArchive).forEach(function(id) { setPillLoaded(id, byArchive[id]); });
+        archivesLoaded = archivesTotal;  /* all loaded in one shot */
         updateStats();
         scheduleRender();
-      })
-      .catch(function() {
-        archivesLoaded++;
-        setPillError(arc.id);
-        updateStats();
-        scheduleRender();
+        buildLunrIndex();
       });
+  }
+  function loadFromMirrors() {
+    /* Legacy fallback — scrape per-mirror arch-data scripts. */
+    ARCHIVES.forEach(function(arc) {
+      fetchArchive(arc)
+        .then(function(records) {
+          records.forEach(function(r){ allRecords.push(r); });
+          archivesLoaded++;
+          setPillLoaded(arc.id, records.length);
+          updateStats();
+          scheduleRender();
+        })
+        .catch(function() {
+          archivesLoaded++;
+          setPillError(arc.id);
+          updateStats();
+          scheduleRender();
+        });
+    });
+  }
+  loadFromApi().catch(function(err) {
+    console.warn('search: /api/all.json unreachable, falling back to per-mirror scrape', err);
+    loadFromMirrors();
   });
 
   /* Also index narrative pages — case + story prose lives outside the
