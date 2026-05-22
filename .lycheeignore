@@ -1,0 +1,16 @@
+# lychee ignores — one regex per line.
+# Hosts that block crawlers or rate-limit aggressively. These are official
+# government catalog systems we link to but cannot reach from CI runners.
+^https?://(www\.)?dgac\.gob\.cl/.*
+^https?://sefaa\.dgac\.gob\.cl/.*
+^https?://(www\.)?fab\.mil\.br/.*
+^https?://www2\.fab\.mil\.br/.*
+^https?://dibrarq\.arquivonacional\.gov\.br/.*
+^https?://(www\.)?fau\.mil\.uy/.*
+^https?://(www\.)?gob\.pe/fap.*
+^https?://www\.argentina\.gob\.ar/.*
+# YouTube embeds — sometimes 403 from CI IPs
+^https?://(www\.)?youtube\.com/embed/.*
+# DVIDS direct links — Akamai blocks data-center IPs
+^https?://(www\.)?dvidshub\.net/.*
+^https?://d34w7g4gy10iej\.cloudfront\.net/.*

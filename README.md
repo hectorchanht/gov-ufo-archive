@@ -131,6 +131,60 @@ That's it. Every archive works offline from this point on.
 
 ---
 
+## Dev loop (optional but recommended)
+
+Zero build tooling required. The two helpers below make iteration faster
+without locking the repo into a JS framework.
+
+### live-server — auto-reload browser on file save
+
+```bash
+# One-time install:
+npm install -g live-server
+
+# Run from repo root — opens http://localhost:8765 and reloads on every save
+live-server --port=8765 --no-browser .
+```
+
+Plain alternative if you don't want npm:
+
+```bash
+python3 -m http.server 8765
+```
+
+Static-only, no reload, but zero dependencies.
+
+### watchexec — rebuild HTML on `.py` / `.csv` change
+
+```bash
+# One-time install (Homebrew):
+brew install watchexec
+
+# Watch the build sources; rebuild every mirror on change:
+watchexec -w scripts -w uap-release001.csv -e py,csv -- \
+  bash -c 'python3 scripts/build-wargov.py \
+        && python3 scripts/build-aaro.py \
+        && python3 scripts/build-nasa.py \
+        && python3 scripts/build-nara.py'
+```
+
+Pair the two: `live-server` reloads the browser the moment `watchexec`
+finishes regenerating HTML — full dev loop without a bundler.
+
+### Continuous integration (already wired)
+
+| Workflow | Trigger | Job |
+| --- | --- | --- |
+| `scrape.yml`        | Monday 06:00 UTC + manual | Re-scrape every source, rebuild HTML, auto-commit. |
+| `links.yml`         | every push to `*.html`, weekly Monday 07:00 UTC, manual | [lychee] broken-link check across all 44 pages. Ignored hosts in `.lycheeignore`. |
+| `html-validate.yml` | every push to `*.html`, manual | [html-validate] HTML5 validation. Config: `.htmlvalidate.json`. |
+| `lighthouse.yml`    | every push to `*.html` / `*.css` / `*.js`, manual | [Lighthouse CI] Core Web Vitals + a11y + SEO on 8 representative URLs. Config: `.lighthouserc.json`. |
+
+No tokens needed for the first three. For Lighthouse CI report comments
+on PRs, add `LHCI_GITHUB_APP_TOKEN` repo secret (optional — runs anyway).
+
+---
+
 ## Hosting on GitHub Pages
 
 The repo is **GitHub-Pages-ready** out of the box.

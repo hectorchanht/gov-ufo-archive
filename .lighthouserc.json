@@ -1,0 +1,37 @@
+{
+  "ci": {
+    "collect": {
+      "url": [
+        "http://localhost:8000/",
+        "http://localhost:8000/search.html",
+        "http://localhost:8000/timeline.html",
+        "http://localhost:8000/map.html",
+        "http://localhost:8000/about.html",
+        "http://localhost:8000/aaro/",
+        "http://localhost:8000/aaro/tic-tac.html",
+        "http://localhost:8000/uk/rendlesham.html"
+      ],
+      "numberOfRuns": 1,
+      "settings": {
+        "preset": "desktop",
+        "throttlingMethod": "simulate",
+        "onlyCategories": ["performance", "accessibility", "best-practices", "seo"]
+      }
+    },
+    "assert": {
+      "preset": "lighthouse:no-pwa",
+      "assertions": {
+        "categories:performance":    ["warn", { "minScore": 0.8 }],
+        "categories:accessibility":  ["error", { "minScore": 0.9 }],
+        "categories:best-practices": ["warn", { "minScore": 0.85 }],
+        "categories:seo":            ["error", { "minScore": 0.9 }],
+        "uses-text-compression":     "off",
+        "uses-long-cache-ttl":       "off",
+        "csp-xss":                   "off"
+      }
+    },
+    "upload": {
+      "target": "temporary-public-storage"
+    }
+  }
+}

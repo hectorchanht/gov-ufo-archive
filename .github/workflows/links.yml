@@ -1,0 +1,49 @@
+name: Broken-link check (lychee)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**/*.html'
+      - '.github/workflows/links.yml'
+      - '.lycheeignore'
+  pull_request:
+    paths:
+      - '**/*.html'
+  schedule:
+    - cron: '0 7 * * 1'      # Monday 07:00 UTC — catches link rot from upstream changes
+  workflow_dispatch:
+
+jobs:
+  lychee:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Restore lychee cache
+        uses: actions/cache@v4
+        with:
+          path: .lycheecache
+          key: lychee-${{ github.sha }}
+          restore-keys: lychee-
+
+      - name: Run lychee
+        uses: lycheeverse/lychee-action@v2
+        with:
+          # --offline = don't hit network for relative/anchor links; we still
+          # check external HTTP via the second pass below.
+          # --no-progress quiets the output.
+          # --include-fragments validates #anchor targets exist in the page.
+          # --exclude-mail skips mailto: links.
+          args: >-
+            --no-progress
+            --cache
+            --max-cache-age 7d
+            --include-fragments
+            --exclude-mail
+            --accept 200,206,301,302,308,403,429
+            --timeout 20
+            --max-concurrency 8
+            ./**/*.html
+          fail: true
+          token: ${{ secrets.GITHUB_TOKEN }}

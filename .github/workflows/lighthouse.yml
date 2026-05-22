@@ -1,0 +1,42 @@
+name: Lighthouse CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**/*.html'
+      - '**/*.css'
+      - '**/*.js'
+      - '.github/workflows/lighthouse.yml'
+      - '.lighthouserc.json'
+  pull_request:
+    paths:
+      - '**/*.html'
+  workflow_dispatch:
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Lighthouse CI
+        run: npm install --no-save @lhci/cli@0.14.x
+
+      - name: Serve static site
+        run: |
+          python3 -m http.server 8000 &
+          # wait until port ready
+          for i in $(seq 1 30); do
+            curl -fs http://localhost:8000/ > /dev/null && break
+            sleep 1
+          done
+
+      - name: Run Lighthouse CI
+        run: npx lhci autorun --config=.lighthouserc.json
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}

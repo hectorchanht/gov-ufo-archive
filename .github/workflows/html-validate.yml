@@ -1,0 +1,35 @@
+name: HTML validation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**/*.html'
+      - '.github/workflows/html-validate.yml'
+      - '.htmlvalidate.json'
+  pull_request:
+    paths:
+      - '**/*.html'
+  workflow_dispatch:
+
+jobs:
+  html-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install html-validate
+        run: npm install --no-save html-validate
+
+      - name: Validate every HTML file
+        run: |
+          npx html-validate \
+            --config .htmlvalidate.json \
+            --formatter stylish \
+            "**/*.html" \
+            "!node_modules/**" \
+            "!**/.cache/**"
