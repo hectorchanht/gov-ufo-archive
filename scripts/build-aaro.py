@@ -371,8 +371,8 @@ nav.primary { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em;
 .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 @media (max-width: 720px) {
   .nav-toggle { display: flex; }
-  nav.primary { display: none; flex-basis: 100%; }
-  nav.primary.open { display: block; max-height: calc(100vh - 64px); overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
+  nav.primary { display: none; }
+  nav.primary.open { display: block; position: fixed; top: 64px; left: 0; right: 0; background: var(--panel); border-bottom: 1px solid var(--rule-strong); padding: 8px 16px 16px; max-height: calc(100vh - 64px); overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; z-index: 800; }
   nav.primary ul { flex-direction: column; gap: 0; padding-top: 12px; margin-top: 12px; border-top: 1px solid var(--rule); justify-content: flex-start; }
   nav.primary ul li { width: 100%; }
   nav.primary ul a { display: block; padding: 12px 0; border-bottom: 1px solid var(--rule); }
@@ -814,7 +814,8 @@ footer .colophon {
 .arch-controls-bar.bar-hidden { top: -160px; }
 @media (max-width: 719px) {
   .nav-more-btn { padding: 11px 0; font-size: 11px; }
-  .has-dropdown.open .nav-dropdown { margin-left: 12px; border: 0; background: transparent; }
+  .nav-dropdown { position: static; right: auto; top: auto; min-width: 0; width: 100%; }
+  .has-dropdown.open .nav-dropdown { margin-left: 12px; border: 0; background: transparent; box-shadow: none; padding: 0; }
   .lang-btn { border: 0; margin: 0; padding: 11px 0; font-size: 11px; border-bottom: 1px solid var(--rule); }
   .lang-picker.open .lang-menu { margin-left: 12px; border: 0; background: transparent; }
 }

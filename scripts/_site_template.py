@@ -206,9 +206,10 @@ header .container { display: flex; align-items: center; gap: 12px; }
 .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
 /* ── Primary nav ─────────────────────────────────────────────────────── */
-nav.primary { display: none; flex-basis: 100%; font-family: var(--mono); font-size: 11px; letter-spacing: 0.07em; }
-nav.primary.open { display: block; max-height: calc(100vh - 64px); overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
-nav.primary > ul { display: flex; flex-direction: column; gap: 0; list-style: none; padding-top: 10px; margin-top: 10px; border-top: 1px solid var(--rule); }
+/* Mobile: fixed overlay below sticky header so brand+toggle stay top-pinned. */
+nav.primary { display: none; font-family: var(--mono); font-size: 11px; letter-spacing: 0.07em; }
+nav.primary.open { display: block; position: fixed; top: 64px; left: 0; right: 0; background: var(--panel); border-bottom: 1px solid var(--rule-strong); padding: 8px 16px 16px; max-height: calc(100vh - 64px); overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; z-index: 800; }
+nav.primary > ul { display: flex; flex-direction: column; gap: 0; list-style: none; padding-top: 0; margin-top: 0; border-top: 0; }
 nav.primary > ul > li { width: 100%; }
 nav.primary > ul > li.nav-sep { display: none; }
 nav.primary a { color: var(--ink-dim); text-decoration: none; text-transform: uppercase; display: block; padding: 11px 0; border-bottom: 1px solid var(--rule); }
@@ -216,7 +217,7 @@ nav.primary a:hover, nav.primary a.active { color: var(--caution); }
 
 @media (min-width: 720px) {
   .nav-toggle { display: none !important; }
-  nav.primary { display: flex !important; flex-basis: auto; flex: 1; align-items: center; justify-content: flex-end; }
+  nav.primary { display: flex !important; position: static; padding: 0; max-height: none; overflow: visible; background: transparent; border: 0; flex-basis: auto; flex: 1; align-items: center; justify-content: flex-end; }
   nav.primary > ul { flex-direction: row; align-items: center; gap: 2px 18px; flex-wrap: nowrap; padding-top: 0; margin-top: 0; border: 0; }
   nav.primary > ul > li { width: auto; }
   nav.primary a { padding: 0; border: 0; font-size: 10.5px; }
@@ -243,9 +244,10 @@ nav.primary a:hover, nav.primary a.active { color: var(--caution); }
   padding: 6px 0; z-index: 200;
 }
 .nav-dropdown li a { border: 0 !important; padding: 9px 16px !important; font-size: 10.5px; white-space: nowrap; }
-/* Mobile: inline expansion */
+/* Mobile: inline expansion — force static + full-width to override any leaking desktop rules */
 @media (max-width: 719px) {
-  .has-dropdown.open .nav-dropdown { display: block; margin: 0 0 0 12px; border: 0; background: transparent; }
+  .nav-dropdown { position: static; right: auto; top: auto; min-width: 0; width: 100%; }
+  .has-dropdown.open .nav-dropdown { display: block; margin: 0 0 0 12px; border: 0; background: transparent; box-shadow: none; padding: 0; }
 }
 /* Desktop: floating dropdown — click-only (hover/focus-within caused sticky-open bug) */
 @media (min-width: 720px) {
