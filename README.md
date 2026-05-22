@@ -185,6 +185,167 @@ on PRs, add `LHCI_GITHUB_APP_TOKEN` repo secret (optional — runs anyway).
 
 ---
 
+## How this project works
+
+Static HTML. Zero runtime dependencies. Zero JS bundlers. Every page is
+generated from one of three sources:
+
+1. **Per-mirror build scripts** (`scripts/build-<slug>.py`) — emit
+   `<slug>/index.html` by merging a curated `ASSETS` list with discovered
+   records from the cache and the GitHub release manifest.
+2. **Hand-written HTML** for utility + story pages — kept as plain HTML
+   in the repo. Shared components (`<nav>`, `<footer>`) get rewritten by
+   `sync-*.py` scripts so every page stays in lock-step with the canonical
+   builder functions in `scripts/_site_template.py`.
+3. **One-off generators** — `build-api.py`, `build-feeds.py`,
+   `build-geo.py`, etc. emit ancillary JSON / Atom / SVG artifacts.
+
+### Pipeline (bottom-up)
+
+```
+┌─ external sources ──────────────────────────────────────────────────┐
+│  uap-release001.csv       (Department of War CSV, hand-curated)     │
+│  KNOWN_RECORDS in scrape-*.py  (per-archive seed lists)             │
+│  aaro.mil  · science.nasa.gov  · catalog.archives.gov               │
+│  discovery.nationalarchives.gov.uk  · cnes-geipan.fr  · etc.        │
+└────────────────────────┬────────────────────────────────────────────┘
+                         │
+            ┌────────────┼────────────────┐
+            │            │                │
+   ┌────────▼─┐   ┌──────▼───────┐  ┌────▼────────────┐
+   │ scrape-* │   │ harvest-tna  │  │  spider.py      │
+   │  .py     │   │  .py (UK)    │  │  (catalog BFS)  │
+   └────┬─────┘   └──────┬───────┘  └────┬────────────┘
+        │                │               │
+        └─→  <mirror>/.cache/{scraped-index, tna-index, spider-index}.json
+                         │
+                         ▼
+┌─ release backfill ──────────────────────────────────────────────────┐
+│  scripts/backfill-release.py  --upload                              │
+│    Diffs every PDF/MP4 URL across mirrors against pdfs-v1 + videos-v1│
+│    Downloads missing → uploads to GitHub Releases                   │
+│    Writes release-manifest.json  (basename → release-download URL)  │
+└────────────────────────┬────────────────────────────────────────────┘
+                         │
+                         ▼
+┌─ build (per-mirror HTML) ───────────────────────────────────────────┐
+│  scripts/build-aaro.py        scripts/build-geipan.py               │
+│  scripts/build-nasa.py        scripts/build-uk.py                   │
+│  scripts/build-nara.py        scripts/build-brazil.py               │
+│  scripts/build-chile.py       scripts/build_batch3.py  (7 smaller)  │
+│  scripts/build-details.py     scripts/build-wargov.py               │
+│                                                                     │
+│  Each merges:                                                       │
+│    - hand-curated ASSETS list                                       │
+│    - <mirror>/.cache/*-index.json   (scrape/spider/harvest results) │
+│    - release-manifest.json          (URL rewrites for downloadable) │
+│  Then imports scripts/_site_template.py for nav, head, lightbox,    │
+│  shared CSS, shared JS, and emits the final HTML.                   │
+└────────────────────────┬────────────────────────────────────────────┘
+                         │
+                         ▼
+┌─ canonicalise shared components in hand-written HTML ───────────────┐
+│  scripts/sync-nav.py     — rewrites <nav class="primary">           │
+│  scripts/sync-footer.py  — rewrites <footer>                        │
+│  (more to come: lightbox, archive grid)                             │
+│                                                                     │
+│  Both expose a `--check` mode used as a CI gate so drift can't      │
+│  decay silently.                                                    │
+└────────────────────────┬────────────────────────────────────────────┘
+                         │
+                         ▼
+┌─ ancillary artifacts ───────────────────────────────────────────────┐
+│  build-api.py   → api/all.json, api/by-archive.json, api/stats.json │
+│  build-feeds.py → feeds/<mirror>.xml  (Atom)                        │
+│  build-geo.py   → api/geo.json  (case-pin coordinates for /map.html)│
+│  build-og.py    → */assets/og.svg  (per-archive Open Graph)         │
+│  validate-manifests.py — sanity-check every embedded JSON           │
+│  check-sources.py      — HEAD every external URL, write dead-links.*│
+└────────────────────────┬────────────────────────────────────────────┘
+                         │
+                         ▼
+            git push  →  GitHub Pages
+            (static HTML served direct, no build at edge)
+```
+
+### Single source of truth
+
+`scripts/_site_template.py` holds the canonical builders for every
+shared UI piece:
+
+| Builder | What it returns | Used by |
+| --- | --- | --- |
+| `make_nav(slug, depth)` | `<nav class="primary">…</nav>` with USA pins + Site ▾ + Story ▾ + Nations ▾ | every build script + `sync-nav.py` |
+| `make_footer(variant, depth, meta)` | minimal / mirror / root footer | `sync-footer.py`, build scripts |
+| `make_head(title, …)` | full `<head>` with meta + fonts + CSS injection | build scripts |
+| `SHARED_CSS` / `SHARED_JS` | drop-in CSS + JS string | every build script |
+| `LIGHTBOX_HTML` | media viewer markup | every build script |
+| `PINNED` / `SITE_PAGES` / `STORIES` / `MORE` | lookup tables for the nav | `make_nav()` |
+| `I18N` | translation dictionary (6 languages) | `make_nav`, `SHARED_JS` |
+
+Change `PINNED` (or `STORIES`) once → run `sync-nav.py` → every page
+across the repo updates. CI fails the build if anyone hand-edits a
+`<nav>` block out of sync.
+
+### Order of operations on a full sync
+
+```bash
+./scripts/sync.sh --all          # = the wrapper for everything below
+
+# 1. Bulk file fetch (local mirror — gitignored, not deployed)
+scripts/dl-aaro.sh   scripts/dl-nasa.sh   scripts/dl-nara.sh   …
+
+# 2. External source discovery → write per-mirror .cache JSON
+scripts/scrape-nasa.py    scripts/scrape-nara.py
+scripts/scrape-aaro.py    scripts/scrape-geipan.py
+scripts/scrape-uk.py      scripts/scrape-brazil.py
+scripts/scrape-chile.py   scripts/harvest-tna.py
+scripts/spider.py         # generic BFS crawler, ~10 site configs
+
+# 3. Release backfill — download missing PDFs, upload to GH release,
+#    refresh release-manifest.json
+scripts/backfill-release.py --upload
+
+# 4. Emit per-mirror HTML (consumes step 2 + 3 results)
+scripts/build-nasa.py    scripts/build-nara.py
+scripts/build-aaro.py    scripts/build-geipan.py
+scripts/build-uk.py      scripts/build-brazil.py
+scripts/build-chile.py   scripts/build_batch3.py
+scripts/build-details.py scripts/build-wargov.py
+
+# 5. Canonicalise nav + footer across the 44 hand-written HTML files
+scripts/sync-nav.py
+scripts/sync-footer.py
+
+# 6. Ancillary outputs
+scripts/build-api.py     scripts/build-feeds.py
+scripts/build-geo.py     scripts/build-og.py
+scripts/validate-manifests.py
+scripts/check-sources.py
+
+# 7. Ship
+git push origin main
+```
+
+`scripts/update_all.sh` wraps the typical subset; `sync.sh` is the
+interactive entry point.
+
+### CI pipeline (`.github/workflows/`)
+
+| Workflow | Trigger | Stages run |
+| --- | --- | --- |
+| `scrape.yml`        | Monday 06:00 UTC + manual | scrapers → spider → builds → api/feed/geo → sitemap → commit & push |
+| `sync-nav.yml`      | push / PR touching *.html or template | `sync-nav.py --check` (drift gate) |
+| `sync-footer.yml`   | push / PR touching *.html or template | `sync-footer.py --check` (drift gate) |
+| `html-validate.yml` | push / PR on *.html | `npx html-validate` over every file |
+| `links.yml`         | push, PR, weekly Mon 07:00 UTC | lychee link check + `.lycheeignore` |
+| `lighthouse.yml`    | push / PR on *.html / *.css / *.js | Lighthouse CI on 8 representative URLs |
+
+All workflows fail the build on regression — no nav drift, no broken
+links, no malformed HTML, no Core Web Vitals collapse can land silently.
+
+---
+
 ## Hosting on GitHub Pages
 
 The repo is **GitHub-Pages-ready** out of the box.
