@@ -98,7 +98,7 @@ a:hover{{text-decoration:underline}}
 
 footer{{border-top:1px solid var(--rule);margin-top:40px;padding:28px 16px;text-align:center}}
 footer p{{font-family:var(--mono);font-size:10px;color:var(--ink-faint);letter-spacing:0.08em;line-height:1.8}}
-footer a{{color:var(--ink-dim);text-decoration:none}}
+footer a{{color:var(--ink-dim);text-decoration:underline;text-decoration-color:var(--rule-strong);text-underline-offset:2px}}
 @media print{{.scanlines,.header-wrap,footer,.back-link{{display:none}}body{{background:#fff;color:#000;font-size:11pt}}a{{color:#000;text-decoration:underline}}section.s{{break-inside:avoid;border:0}}h1,h2,h3{{color:#000}}}}
 </style>
 </head>

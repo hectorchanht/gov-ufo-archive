@@ -34,6 +34,7 @@ jobs:
             -not -path "*/.cache/*" \
             -not -path "./aaro/pages/*" \
             -not -path "./nara/pages/*" \
+            -not -path "./.lighthouseci/*" \
             -print0 \
             | xargs -0 npx html-validate \
                 --config .htmlvalidate.json \

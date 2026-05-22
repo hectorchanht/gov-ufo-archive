@@ -733,7 +733,7 @@ footer h4 {
   text-transform: uppercase; color: var(--ink); margin-bottom: 14px;
 }
 footer ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-footer a { color: var(--ink-dim); text-decoration: none; }
+footer a { color: var(--ink-dim); text-decoration: underline; text-decoration-color: var(--rule-strong); text-underline-offset: 2px; }
 footer a:hover { color: var(--caution); }
 footer .colophon {
   grid-column: 1 / -1;
