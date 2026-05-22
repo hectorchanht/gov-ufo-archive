@@ -127,6 +127,27 @@ footer a{color:var(--ink-dim)}
 @media print{.scanlines,.header-wrap,footer,.back-link{display:none}body{background:#fff;color:#000;font-size:11pt}a{color:#000;text-decoration:underline}a[href^="http"]::after{content:" <" attr(href) ">";font-size:9pt;color:#444}.pullquote{border-color:#000;background:#f0f0f0;color:#000}section{break-inside:avoid;border:0}h1,h2,h3{color:#000}}
 /* citation panel */.cite-box{margin:24px 0;padding:18px 20px;background:var(--bg-2);border:1px solid var(--rule);border-radius:8px}.cite-box h3{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.14em;color:var(--accent,var(--caution));margin:0 0 12px;font-weight:700}.cite-buttons{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}.cite-buttons button{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:6px 12px;border-radius:3px;background:var(--bg);border:1px solid var(--rule-strong);color:var(--ink-dim);cursor:pointer;transition:color 0.15s,border-color 0.15s,background 0.15s}.cite-buttons button:hover{color:var(--ink);border-color:var(--accent,var(--caution))}.cite-buttons button.copied{background:rgba(74,222,128,0.16);border-color:#4ade80;color:#4ade80}.cite-out{font-family:var(--mono);font-size:11px;line-height:1.5;color:var(--ink);background:var(--bg);border:1px solid var(--rule);border-radius:4px;padding:12px 14px;white-space:pre-wrap;overflow-x:auto;margin:0 0 10px;max-height:240px}.cite-hint{font-family:var(--mono);font-size:10px;letter-spacing:0.06em;color:var(--ink-faint);line-height:1.5}
 /* share button */#share-mount{margin:22px 0 6px}.share-btn{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:9px 16px;border-radius:4px;background:var(--bg-2);border:1px solid var(--rule-strong);color:var(--ink-dim);cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:color 0.15s,border-color 0.15s,background 0.15s}.share-btn:hover{color:var(--accent,var(--caution));border-color:var(--accent,var(--caution));background:rgba(212,160,23,0.08)}.share-btn.copied{color:#4ade80;border-color:#4ade80;background:rgba(74,222,128,0.12)}
+
+/* === Unified nav structure (story pages + utility pages) === */
+nav.primary > ul{display:flex;align-items:center;gap:4px;list-style:none;padding:0;margin:0;flex-wrap:nowrap}
+nav.primary > ul > li{list-style:none;position:relative}
+nav.primary .has-dropdown{position:relative}
+nav.primary .nav-more-btn{background:none;border:none;color:var(--ink-dim);cursor:pointer;font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;padding:10px;border-radius:4px;white-space:nowrap}
+nav.primary .nav-more-btn:hover,nav.primary .nav-more-btn.active{color:var(--caution)}
+nav.primary .nav-dropdown{display:none;position:absolute;top:calc(100% + 6px);right:0;background:var(--panel);border:1px solid var(--rule-strong);border-radius:6px;min-width:240px;max-height:70vh;overflow-y:auto;padding:6px 0;list-style:none;margin:0;z-index:1000;box-shadow:0 8px 24px rgba(0,0,0,0.6)}
+nav.primary .nav-dropdown li{list-style:none;width:100%}
+nav.primary .nav-dropdown a{display:block;padding:9px 16px;color:var(--ink-dim);text-decoration:none;font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;white-space:nowrap;border-radius:0;border:0}
+nav.primary .nav-dropdown a:hover{color:var(--ink);background:rgba(232,227,216,0.06)}
+nav.primary .nav-dropdown a.active{color:var(--caution)}
+nav.primary .has-dropdown.open .nav-dropdown{display:block}
+@media(max-width:719px){
+  nav.primary > ul{flex-direction:column;align-items:stretch;gap:0;width:100%}
+  nav.primary > ul > li{width:100%}
+  nav.primary > ul > li > a, nav.primary .nav-more-btn{padding:12px 20px;width:100%;display:block;text-align:left;border-bottom:1px solid var(--rule)}
+  nav.primary .nav-dropdown{position:static;border:0;background:rgba(255,255,255,0.03);box-shadow:none;border-radius:0;min-width:0;width:100%;padding:0;max-height:none}
+  nav.primary .nav-dropdown a{padding:10px 32px}
+}
+
 </style>
 </head>
 <body>
