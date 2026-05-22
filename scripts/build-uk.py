@@ -141,6 +141,25 @@ if os.path.exists(_scraped_cache):
                            'ag': _r.get('agency', 'UK MoD / TNA'), 'cat': _r.get('type', 'PDF').capitalize(),
                            'date': _r.get('date', ''), 'l': '', 'u': _url, 's': _r.get('src', ''),})
 
+# TNA Discovery API harvest — 900+ catalog records from DEFE 24, AIR, PREM series
+_tna_cache = os.path.join(ROOT, '.cache', 'tna-index.json')
+if os.path.exists(_tna_cache):
+    _seen_u = {a.get('u', '') for a in ASSETS}
+    for _r in json.load(open(_tna_cache)):
+        _url = _r.get('url', '')
+        if _url and _url not in _seen_u:
+            _seen_u.add(_url)
+            _dept = _r.get('department', '')
+            ASSETS.append({
+                't': 'CATALOG',
+                'ti': _r.get('title', ''),
+                'de': _r.get('desc', ''),
+                'ag': f'UK MoD / TNA ({_dept})' if _dept else 'UK MoD / TNA',
+                'cat': 'Catalog',
+                'date': _r.get('date', ''),
+                'l': '', 'u': _url, 's': _url,
+            })
+
 stats = {
     'total': len(ASSETS),
     'local_total': sum(1 for a in ASSETS if a.get('l')),

@@ -32,6 +32,8 @@ jobs:
           python3 scripts/scrape-uk.py     || true
           python3 scripts/scrape-brazil.py || true
           python3 scripts/scrape-chile.py  || true
+          python3 scripts/harvest-tna.py   || true
+          python3 scripts/spider.py chile-sefaa || true
 
       - name: Rebuild all mirror HTML
         run: |
