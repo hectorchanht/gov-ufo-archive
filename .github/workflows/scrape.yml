@@ -75,6 +75,19 @@ jobs:
       - name: Regenerate per-archive Open Graph SVGs
         run: python3 scripts/build-og.py || true
 
+      - name: Rasterise og.svg → og.png (Facebook scraper needs PNG)
+        run: |
+          # librsvg's rsvg-convert is the lightest reliable SVG→PNG tool on
+          # ubuntu-latest; ImageMagick chokes on SVG2 features used in our
+          # composite cards. Failures tolerated — SVG fallback already works
+          # on Slack/Telegram/Discord/X. The PNG is purely a Facebook win.
+          sudo apt-get update -qq && sudo apt-get install -y -qq librsvg2-bin || true
+          for svg in assets/og.svg */assets/og.svg; do
+            [ -f "$svg" ] || continue
+            out="${svg%.svg}.png"
+            rsvg-convert --width=1200 --height=630 "$svg" -o "$out" 2>/dev/null && echo "rasterised: $out" || echo "skip: $svg"
+          done
+
       - name: Run dead-source health check (informational, never fails the build)
         run: python3 scripts/check-sources.py || true
 
@@ -105,7 +118,9 @@ PY
                   "api/" "feeds/" "sitemap.xml" \
                   "dead-links.json" "dead-links.md" \
                   "geipan/cases.json" "CHANGELOG.md" \
-                  "*/assets/og.svg" "assets/og.svg" || true
+                  "*/assets/og.svg" "assets/og.svg" \
+                  "*/assets/og.png" "assets/og.png" \
+                  "api/pages-index.json" || true
           git diff --cached --quiet || git commit -m "chore: weekly auto-rebuild [skip ci]"
 
       - name: Push to main
