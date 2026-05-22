@@ -106,18 +106,7 @@ jobs:
         run: python3 scripts/build-sw.py
 
       - name: Append CHANGELOG entry for this sync
-        run: |
-          DATE=$(date -u +%Y-%m-%d)
-          # Insert a dated line right under [Unreleased] header if not already present today.
-          if ! grep -q "## \[sync-${DATE}\]" CHANGELOG.md; then
-            python3 - <<PY
-import re
-src = open('CHANGELOG.md').read()
-stamp = "## [sync-${DATE}]\n\n- Weekly automated sync: scrapers + spider + API + feeds rebuilt.\n\n"
-src = src.replace('## [Unreleased]', '## [Unreleased]\n\n' + stamp, 1)
-open('CHANGELOG.md','w').write(src)
-PY
-          fi
+        run: python3 scripts/append-changelog.py
 
       - name: Commit rebuilt artifacts
         run: |
