@@ -496,8 +496,21 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
     else if (a.t === 'CATALOG' || a.type === 'CATALOG') {
       window.open(a.u || a.url || a.s || a.src, '_blank'); close(); return;
     }
-    else if (/\.(jpe?g|png|gif|webp|avif)$/.test(t)) html = '<img src="'+esc(href)+'" alt="'+esc(title)+'">' + meta;
-    else if (/\.(mp4|webm|mov)$/.test(t))            html = '<video controls autoplay playsinline><source src="'+esc(href)+'" type="video/mp4"></video>' + meta;
+    else if (/\.(jpe?g|png|gif|webp|avif|svg)$/.test(t)) {
+      /* IMG with remote fallback: when local copy fails, swap to a.url
+         (AARO carousel imagery uses this — release URL is the safe net). */
+      var fb = (a.l && (a.u || a.url)) ? ' onerror="this.onerror=null;this.src=\''+esc(a.u || a.url)+'\';"' : '';
+      html = '<img src="'+esc(href)+'" alt="'+esc(title)+'"' + fb + '>' + meta;
+    }
+    else if (/\.(mp4|webm|mov)$/.test(t)) {
+      /* Multi-source: prefer local, fall back to remote inside the <video>. */
+      var srcs = '';
+      var loc = a.l ? './' + a.l : '';
+      var rem = a.u || a.url || '';
+      if (loc) srcs += '<source src="'+esc(loc)+'" type="video/mp4">';
+      if (rem && rem !== loc) srcs += '<source src="'+esc(rem)+'" type="video/mp4">';
+      html = '<video controls autoplay playsinline>'+srcs+'</video>' + meta;
+    }
     else if (/\.(mp3|wav|ogg|m4a)$/.test(t))         html = '<audio controls autoplay src="'+esc(href)+'"></audio>' + meta;
     else if (/\.pdf$/.test(t)) {
       /* GitHub Release URLs serve with Content-Disposition: attachment so

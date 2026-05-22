@@ -1275,12 +1275,13 @@ __AARO_NAV_JS__
     else state.page = parseInt(g,10);
     render(true);
   });
-  // Latest filtered+sorted asset list (used by lightbox navigation).
-  let lbList = [];
-  let lbIdx = 0;
+  /* Lightbox lifecycle delegated to LIGHTBOX_JS (window._lb). It already
+     handles IMG/VID/PDF/CATALOG, IMG remote-fallback, multi-source video,
+     arrow keys, swipe, ESC, rotate. We just push the filtered list on
+     each paint and trigger open from card clicks. */
   function render(scroll=false){
     const list = filtered();
-    lbList = list;
+    if (window._lb) window._lb.setList(list);
     const { slice, pages, total, start } = paginate(list);
     countEl.innerHTML = `Showing <b>${slice.length}</b> of ${total} assets${state.q?` matching "${esc(state.q)}"`:''}`;
     grid.innerHTML = slice.map((a, i) => cardHtml(a).replace('<article class="card"', `<article class="card" data-idx="${start+i}"`)).join('');
@@ -1290,104 +1291,17 @@ __AARO_NAV_JS__
   }
   render();
 
-  // === Lightbox with navigation (arrow keys, swipe, prev/next buttons) ===
-  const lb = document.getElementById('lightbox');
-  const lbI = document.getElementById('lb-inner');
-  const lbC = document.getElementById('lb-close');
-  const lbPrev = document.getElementById('lb-prev');
-  const lbNext = document.getElementById('lb-next');
-  const lbCounter = document.getElementById('lb-counter');
-
-  function renderLightbox() {
-    const a = lbList[lbIdx];
-    if (!a) return;
-    const local = a.l || '';
-    const remote = a.u || '';
-    const title = a.ti || '';
-    const target = local || remote;
-    if (!target) { lbI.innerHTML = `<div class="lb-meta">${esc(title)} — file not available; run <code>./scripts/sync.sh</code> or visit the source.</div>`; return; }
-    const ext = target.split('?')[0].split('#')[0].split('.').pop().toLowerCase();
-    const localHref = local ? './' + local : '';
-    const meta = `<div class="lb-meta">${esc(title)}</div>`;
-    let html;
-    if (['jpg','jpeg','png','gif','webp','svg'].includes(ext)) {
-      const fb = remote ? `onerror="this.onerror=null;this.src='${esc(remote)}';"` : '';
-      html = `<img src="${esc(localHref || remote)}" alt="${esc(title)}" ${fb}>${meta}`;
-    } else if (['mp4','webm','mov'].includes(ext)) {
-      const srcs = [];
-      if (localHref) srcs.push(`<source src="${esc(localHref)}" type="video/mp4">`);
-      if (remote)    srcs.push(`<source src="${esc(remote)}" type="video/mp4">`);
-      html = `<video controls autoplay playsinline>${srcs.join('')}</video>${meta}`;
-    } else if (['mp3','wav','ogg','m4a'].includes(ext)) {
-      html = `<audio controls autoplay src="${esc(localHref || remote)}"></audio>${meta}`;
-    } else if (ext === 'pdf') {
-      const src = localHref || remote;
-      html = `<iframe src="${esc(src)}#view=FitH"></iframe><div class="lb-meta">${esc(title)} — <a href="${esc(src)}" target="_blank">open in new tab ↗</a></div>`;
-    } else {
-      window.open(localHref || remote, '_blank'); closeLb(); return;
-    }
-    lbI.innerHTML = html;
-    if (lbCounter) lbCounter.textContent = (lbIdx + 1) + ' / ' + lbList.length;
-    if (lbPrev) lbPrev.style.visibility = lbList.length > 1 ? 'visible' : 'hidden';
-    if (lbNext) lbNext.style.visibility = lbList.length > 1 ? 'visible' : 'hidden';
-  }
-  function openAt(idx) {
-    if (!lbList.length) return;
-    lbIdx = (idx + lbList.length) % lbList.length;
-    renderLightbox();
-    lb.classList.add('open');
-    lb.setAttribute('aria-hidden', 'false');
-  }
-  function navLb(delta) {
-    if (!lbList.length) return;
-    lbIdx = (lbIdx + delta + lbList.length) % lbList.length;
-    renderLightbox();
-  }
-  function closeLb() {
-    lb.classList.remove('open');
-    lb.classList.remove('lb-rotated');
-    lb.setAttribute('aria-hidden', 'true');
-    lbI.innerHTML = '';
-  }
-  lbC.addEventListener('click', closeLb);
-  const lbR = document.getElementById('lb-rotate');
-  if (lbR) lbR.addEventListener('click', e => { e.stopPropagation(); lb.classList.toggle('lb-rotated'); });
-  if (lbPrev) lbPrev.addEventListener('click', e => { e.stopPropagation(); navLb(-1); });
-  if (lbNext) lbNext.addEventListener('click', e => { e.stopPropagation(); navLb( 1); });
-  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
-  document.addEventListener('keydown', e => {
-    if (!lb.classList.contains('open')) return;
-    if (e.key === 'Escape') closeLb();
-    else if (e.key === 'ArrowRight') navLb(1);
-    else if (e.key === 'ArrowLeft')  navLb(-1);
-  });
-  // Touch swipe
-  let touchX = 0, touchY = 0, touchT = 0;
-  lb.addEventListener('touchstart', e => {
-    if (!e.touches.length) return;
-    touchX = e.touches[0].clientX; touchY = e.touches[0].clientY; touchT = Date.now();
-  }, { passive: true });
-  lb.addEventListener('touchend', e => {
-    if (!e.changedTouches.length) return;
-    const dx = e.changedTouches[0].clientX - touchX;
-    const dy = e.changedTouches[0].clientY - touchY;
-    const dt = Date.now() - touchT;
-    if (dt < 800 && Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
-      navLb(dx < 0 ? 1 : -1);
-    }
-  }, { passive: true });
-
   grid.addEventListener('click', e => {
     const a = e.target.closest('a[data-action]');
     const card = e.target.closest('.card');
     if (a) {
       e.preventDefault();
-      if (card && card.dataset.idx !== undefined) openAt(parseInt(card.dataset.idx, 10));
+      if (card && card.dataset.idx !== undefined && window._lb) window._lb.open(parseInt(card.dataset.idx, 10));
       return;
     }
     const m = e.target.closest('.card-media');
-    if (m && card && card.dataset.idx !== undefined) {
-      openAt(parseInt(card.dataset.idx, 10));
+    if (m && card && card.dataset.idx !== undefined && window._lb) {
+      window._lb.open(parseInt(card.dataset.idx, 10));
     }
   });
 })();
@@ -1430,6 +1344,8 @@ _aaro_nav_js = f'''<script>
 }})();
 </script>'''
 PAGE = PAGE.replace('__AARO_NAV_JS__', _aaro_nav_js)
+# Inject LIGHTBOX_JS just before </body> so window._lb exists by click time.
+PAGE = PAGE.replace('</body>', f'<script>{LIGHTBOX_JS.strip()}</script>\n</body>', 1)
 
 open(os.path.join(ROOT, 'index.html'), 'w', encoding='utf-8').write(PAGE)
 print(f'wrote index.html ({len(PAGE):,} bytes)')
