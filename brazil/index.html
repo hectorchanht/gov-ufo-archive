@@ -697,8 +697,8 @@ body { background-image:
     if (a.th) {
       const lbl = esc(a.cat || a.ag || a.t || '');
       const fb  = (a.t === 'CATALOG')
-        ? `<div class=\\"pdf-glyph glyph-cat\\"><span class=\\"ico\\">⌕</span><span>${esc(a.cat||'Catalog')}</span></div>`
-        : `<div class=\\"pdf-glyph\\"><span class=\\"ico\\">PDF</span><span>${esc(a.ag||'Document')}</span></div>`;
+        ? `<div class=\"pdf-glyph glyph-cat\"><span class=\"ico\">⌕</span><span>${esc(a.cat||'Catalog')}</span></div>`
+        : `<div class=\"pdf-glyph\"><span class=\"ico\">PDF</span><span>${esc(a.ag||'Document')}</span></div>`;
       return `<img loading="lazy" decoding="async" src="${esc(a.th)}" alt="${lbl}" onerror="this.outerHTML='${fb}';">`;
     }
     if (a.t === 'CATALOG') return `<div class="pdf-glyph glyph-cat"><span class="ico">⌕</span><span>${esc(a.cat||'Catalog')}</span></div>`;
