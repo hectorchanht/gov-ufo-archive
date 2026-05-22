@@ -129,7 +129,7 @@
   @media (max-width: 720px) {
     .nav-toggle { display: flex; }
     nav { display: none; flex-basis: 100%; }
-    nav.open { display: block; }
+    nav.open { display: block; max-height: calc(100vh - 64px); overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
     nav ul {
       flex-direction: column; gap: 0;
       padding-top: 12px; margin-top: 12px;

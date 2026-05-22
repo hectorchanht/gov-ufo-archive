@@ -587,34 +587,35 @@ footer a:hover{color:var(--ink)}
     resultsEl.innerHTML = '';
     paginationEl.innerHTML = '';
     var q = (qEl.value || '').trim();
+    var isFiltering = q.length > 0;
+    /* Empty query → show every record (filter mode). Non-empty → show filtered subset. */
+    var view = isFiltering ? filteredRecords : allRecords;
 
-    if (q === '') {
+    if (view.length === 0) {
       resultInfo.innerHTML = '';
       var msg = document.createElement('div');
       msg.className = 'state-message';
-      msg.innerHTML = '<strong>Search 15 official UAP archives</strong>Type a keyword to find documents, cases, imagery and more &mdash; or click an archive pill above to jump straight in.';
+      if (isFiltering) {
+        msg.innerHTML = '<strong>No matches for &ldquo;' + esc(q) + '&rdquo;</strong>Try broader terms or check spelling.';
+      } else if (archivesLoaded < archivesTotal) {
+        msg.innerHTML = '<strong>Loading archives&hellip;</strong>' + archivesLoaded + ' of ' + archivesTotal + ' loaded.';
+      } else {
+        msg.innerHTML = '<strong>No records available</strong>Archives may be temporarily unreachable.';
+      }
       resultsEl.appendChild(msg);
       return;
     }
 
-    if (filteredRecords.length === 0) {
-      resultInfo.innerHTML = '';
-      var noMsg = document.createElement('div');
-      noMsg.className = 'state-message';
-      noMsg.innerHTML = '<strong>No results for &ldquo;' + esc(q) + '&rdquo;</strong>Try broader terms or check spelling.';
-      resultsEl.appendChild(noMsg);
-      return;
-    }
-
-    var totalPages = Math.ceil(filteredRecords.length / PAGE_SIZE);
+    var totalPages = Math.ceil(view.length / PAGE_SIZE);
     if (currentPage > totalPages) currentPage = 1;
     var start = (currentPage - 1) * PAGE_SIZE;
-    var pageRecords = filteredRecords.slice(start, start + PAGE_SIZE);
+    var pageRecords = view.slice(start, start + PAGE_SIZE);
 
     var arcSet = {};
-    filteredRecords.forEach(function(r){ arcSet[r.siteId] = true; });
+    view.forEach(function(r){ arcSet[r.siteId] = true; });
     var arcCount = Object.keys(arcSet).length;
-    resultInfo.innerHTML = '<strong>' + filteredRecords.length.toLocaleString() + ' results</strong>' +
+    var label = isFiltering ? 'matches' : 'records';
+    resultInfo.innerHTML = '<strong>' + view.length.toLocaleString() + ' ' + label + '</strong>' +
       ' across ' + arcCount + ' archive' + (arcCount !== 1 ? 's' : '') +
       (totalPages > 1 ? ' &mdash; page ' + currentPage + ' of ' + totalPages : '');
 
@@ -674,6 +675,15 @@ footer a:hover{color:var(--ink)}
 
   renderResults();
 
+  /* Re-render is debounced so cascading archive loads don't thrash the DOM. */
+  var renderTimer = null;
+  function scheduleRender() {
+    clearTimeout(renderTimer);
+    renderTimer = setTimeout(function() {
+      if (qEl.value.trim()) applyFilter(); else renderResults();
+    }, 120);
+  }
+
   ARCHIVES.forEach(function(arc) {
     fetchArchive(arc)
       .then(function(records) {
@@ -681,15 +691,13 @@ footer a:hover{color:var(--ink)}
         archivesLoaded++;
         setPillLoaded(arc.id, records.length);
         updateStats();
-        if (qEl.value.trim()) {
-          clearTimeout(debounceTimer);
-          debounceTimer = setTimeout(applyFilter, 80);
-        }
+        scheduleRender();
       })
       .catch(function() {
         archivesLoaded++;
         setPillError(arc.id);
         updateStats();
+        scheduleRender();
       });
   });
 })();

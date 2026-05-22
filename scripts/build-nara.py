@@ -258,7 +258,7 @@ nav.primary { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em;
 @media (max-width: 720px) {
   .nav-toggle { display: flex; }
   nav.primary { display: none; flex-basis: 100%; }
-  nav.primary.open { display: block; }
+  nav.primary.open { display: block; max-height: calc(100vh - 64px); overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
   nav.primary ul { flex-direction: column; gap: 0; padding-top: 12px; margin-top: 12px; border-top: 1px solid var(--rule); justify-content: flex-start; }
   nav.primary ul li { width: 100%; }
   nav.primary ul a { display: block; padding: 12px 0; border-bottom: 1px solid var(--rule); }

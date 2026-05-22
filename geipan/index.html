@@ -35,7 +35,7 @@ header .container { display: flex; align-items: center; gap: 12px; }
 
 /* ── Primary nav ─────────────────────────────────────────────────────── */
 nav.primary { display: none; flex-basis: 100%; font-family: var(--mono); font-size: 11px; letter-spacing: 0.07em; }
-nav.primary.open { display: block; }
+nav.primary.open { display: block; max-height: calc(100vh - 64px); overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
 nav.primary > ul { display: flex; flex-direction: column; gap: 0; list-style: none; padding-top: 10px; margin-top: 10px; border-top: 1px solid var(--rule); }
 nav.primary > ul > li { width: 100%; }
 nav.primary > ul > li.nav-sep { display: none; }
