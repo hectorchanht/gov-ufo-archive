@@ -120,14 +120,17 @@ def main() -> int:
     all_records: List[dict] = []
     by_archive: Dict[str, List[dict]] = {}
     counts: Dict[str, int] = {}
+    locals_by_arc: Dict[str, int] = {}
 
     for arc_id, arc_label, rel_html, arc_dir in ARCHIVES:
         raw = load_archive(rel_html)
         recs = [normalise(r, arc_id, arc_label, arc_dir) for r in raw]
         by_archive[arc_id] = recs
         counts[arc_id] = len(recs)
+        locals_by_arc[arc_id] = sum(1 for r in recs if r.get('local'))
         all_records.extend(recs)
-        print(f'  {arc_id:12s} {len(recs):5d} records')
+        local_pct = 0 if not recs else round(locals_by_arc[arc_id] * 100 / len(recs), 1)
+        print(f'  {arc_id:12s} {len(recs):5d} records ({locals_by_arc[arc_id]:4d} local · {local_pct:5.1f}%)')
 
     grand_total = len(all_records)
     meta = {
@@ -140,9 +143,22 @@ def main() -> int:
     stats = {
         '_meta': meta,
         'perArchive': [
-            {'id': a, 'label': lab, 'count': counts[a]}
+            {
+                'id': a,
+                'label': lab,
+                'count': counts[a],
+                'local': locals_by_arc[a],
+                'localPct': round(locals_by_arc[a] * 100 / counts[a], 1) if counts[a] else 0.0,
+                'sourceOnly': counts[a] - locals_by_arc[a],
+                'release': f'{a}-v1' if a not in ('wargov',) else 'pdfs-v1',
+            }
             for a, lab, _, _ in ARCHIVES
         ],
+        'totals': {
+            'records': sum(counts.values()),
+            'local':   sum(locals_by_arc.values()),
+            'archives': len(ARCHIVES),
+        },
     }
 
     # Persist

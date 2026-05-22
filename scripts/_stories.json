@@ -1,0 +1,261 @@
+[
+  {
+    "slug": "nasa",
+    "name": "NASA UAP Independent Study Team",
+    "accent": "#fc3d21",
+    "gradient": ["#fc3d21", "#a01818", "#400606"],
+    "sealText": "NASA",
+    "sealColor": "#e8e3d8",
+    "official_url": "https://science.nasa.gov/uap/",
+    "licence": "17 U.S.C. § 105 (federal works are public domain)",
+    "hero_coord": "◉ Washington, D.C. · UAP Independent Study · 2022–2023",
+    "lede": "On <strong>9 June 2022</strong> NASA's Science Mission Directorate commissioned an <strong>Independent Study Team</strong> of 16 outside scientists chaired by astrophysicist <strong>David Spergel</strong> \"to examine UAP from a scientific perspective\". The team's brief: <em>\"identify how data gathered by civilian government entities, commercial data, and data from other sources can potentially be analyzed to shed light on UAP\"</em>. Final report published <strong>14 September 2023</strong>; concurrently the agency named <strong>Dr. Mark McInerney</strong> as NASA's first <em>Director of UAP Research</em>.",
+    "sections": [
+      ["Mission", "NASA's UAP study is anchored in the agency's foundational charter to advance \"the search for life elsewhere\", but the Independent Study Team's mandate was narrower: <em>\"to take a holistic look at how data on UAP can be systematically gathered, analyzed and characterized using NASA's expertise in tools and techniques\"</em>. The team did not pursue classified data, did not investigate individual sightings, and did not assess any single explanation. It instead recommended a future analytical framework."],
+      ["Findings (verbatim, NASA UAP Independent Study Report, 2023)", "<em>\"There is no reason to conclude that existing UAP reports have an extraterrestrial source. However, if we acknowledge that, as with all phenomena, extraordinary claims require extraordinary evidence, the focus of the search for UAP must be on collecting more high-quality, scientifically calibrated data.\"</em><br><br><em>\"The negative perception surrounding the reporting of UAP poses an obstacle to collecting data on these phenomena. NASA's long-standing public trust… [makes it] crucial to play a prominent role in shifting the conversation about UAP from sensationalism to science.\"</em>"],
+      ["Roster", "16-member panel chaired by David Spergel (Simons Foundation), including: Anamaria Berea (George Mason), Federica Bianco (UDel), Paula Bontempi (URI), Reggie Brothers (Pelosi Group), Jen Buss (Potomac Institute), Nadia Drake (science journalist), Mike Gold (Redwire), David Grinspoon (Planetary Science Institute), Scott Kelly (NASA astronaut, ret.), Matt Mountain (AURA), Warren Randolph (FAA), Walter Scott (Maxar), Joshua Semeter (Boston University), Karlin Toner (FAA), Shelley Wright (UCSD)."],
+      ["What NASA does NOT do", "NASA does not classify, investigate, or attribute individual sightings; that role is owned by <a href=\"../aaro/\">AARO</a> in the Department of Defense. NASA's contribution is data-pipeline science: instrumentation calibration, AI/ML detection methods, and integrating Earth-observation + space-asset data into a unified UAP analytical framework."]
+    ],
+    "cross_refs": [["AARO Archive", "../aaro/"], ["NARA Project Blue Book", "../nara/"], ["Search · NASA", "../search.html?q=NASA"]]
+  },
+  {
+    "slug": "nara",
+    "name": "NARA — National Archives & Records Administration",
+    "accent": "#cbd5e1",
+    "gradient": ["#9ca3af", "#4b5563", "#1f2937"],
+    "sealText": "NARA",
+    "sealColor": "#0a0a0c",
+    "official_url": "https://catalog.archives.gov/",
+    "licence": "17 U.S.C. § 105",
+    "hero_coord": "◉ 8601 Adelphi Rd · College Park, MD · 1947–present",
+    "lede": "NARA holds the U.S. federal government's permanent record. Of its <strong>~13 billion textual pages, 43 million photographs, and 12 million maps</strong>, the UAP-relevant subset is dominated by <strong>Project Blue Book</strong> (1952–1969) at <strong>Record Group 341</strong> — 12,618 reported sightings, 700 unexplained — released to the public on microfilm beginning <strong>July 1976</strong> and digitised through the early 2000s.",
+    "sections": [
+      ["Mission", "NARA's statutory mission under <strong>44 U.S.C. § 2102</strong> is to <em>\"preserve and make available to the people of the United States the permanent records of their government\"</em>. UAP records are not a special category — they are accessioned, declassified, and described under the same standards as any other federal records series."],
+      ["Key UAP record groups", "<strong>RG 341</strong> — Records of HQ U.S. Air Force, including Project Blue Book master files (microfilm T1206, T1207).<br><strong>RG 263</strong> — CIA records, including the 1953 Robertson Panel report.<br><strong>RG 305</strong> — Office of Special Investigations, AFOSI UFO sighting reports.<br><strong>RG 374</strong> — Defense Special Projects, partial UAP correspondence.<br><strong>JFK Records Collection</strong> — per the <em>President John F. Kennedy Assassination Records Collection Act of 1992</em>, tangential UAP correspondence accessioned by NARA in subsequent declassification tranches."],
+      ["Verbatim — Project Blue Book closure statement", "<em>\"As a result of these investigations and studies, and experience gained from investigating UFO reports since 1948, the conclusions of Project BLUE BOOK are: (1) no UFO reported, investigated and evaluated by the Air Force has ever given any indication of threat to our national security; (2) there has been no evidence submitted to or discovered by the Air Force that sightings categorized as 'unidentified' represent technological developments or principles beyond the range of present-day scientific knowledge; and (3) there has been no evidence indicating that sightings categorized as 'unidentified' are extraterrestrial vehicles.\"</em><br><br>— Memorandum, Secretary of the Air Force, 17 December 1969"],
+      ["How to request more", "Anyone may submit a FOIA request to NARA under 5 U.S.C. § 552. Reference Service contact: <a href=\"mailto:archives1reference@nara.gov\">archives1reference@nara.gov</a>. The full Blue Book corpus is digitised and free-of-charge at <a href=\"https://catalog.archives.gov/\" target=\"_blank\" rel=\"noopener\">catalog.archives.gov</a> under series identifier <strong>NAID 595456</strong>."]
+    ],
+    "cross_refs": [["AARO Archive", "../aaro/"], ["Project Blue Book search", "../search.html?q=blue+book"], ["NASA UAP", "../nasa/"]]
+  },
+  {
+    "slug": "geipan",
+    "name": "GEIPAN — Phénomènes Aérospatiaux Non identifiés",
+    "accent": "#0055a4",
+    "gradient": ["#0055a4", "#003278", "#001f4d"],
+    "sealText": "CNES",
+    "sealColor": "#e8e3d8",
+    "official_url": "https://www.cnes-geipan.fr/",
+    "licence": "Loi nº 78-753 du 17 juillet 1978 (Information Publique)",
+    "hero_coord": "◉ Toulouse · CNES · founded 1977 · still operational",
+    "lede": "France's <strong>Centre National d'Études Spatiales (CNES)</strong> has continuously operated a public UAP study programme since <strong>1 May 1977</strong>, when the <em>Groupe d'Étude des Phénomènes Aérospatiaux Non identifiés</em> (GEPAN) was created inside CNES by then-director <strong>Yves Sillard</strong>. Renamed <strong>SEPRA</strong> in 1988 and <strong>GEIPAN</strong> in 2005, the unit is the world's longest continuously operating government UAP investigation programme. Its 3,343 published cases are catalogued by witness location, observation type, and the four-tier <em>PAN</em> classification.",
+    "sections": [
+      ["Mission (verbatim, CNES governing decree)", "<em>\"GEIPAN est chargé de collecter les témoignages d'observation de phénomènes aérospatiaux non identifiés, d'enquêter et d'analyser ces témoignages, et de mettre à la disposition du public les résultats de ses travaux.\"</em><br><br>In English: <em>\"GEIPAN is responsible for collecting UAP observation reports, investigating and analysing them, and making the results of its work available to the public.\"</em>"],
+      ["PAN classification", "<strong>PAN A</strong> — phénomène identifié (identified — astronomical, aeronautical, atmospheric).<br><strong>PAN B</strong> — phénomène probablement identifié (probably identified).<br><strong>PAN C</strong> — données insuffisantes (insufficient data).<br><strong>PAN D</strong> — phénomène non identifié (unidentified after exhaustive investigation). Sub-divided into D1 (without physical effects) and D2 (with physical effects).<br><br>As of the most recent publicly-released breakdown, PAN D cases represent approximately <strong>3.4%</strong> of the corpus."],
+      ["Method", "GEIPAN takes reports from civilian witnesses via online form, mail, or phone. Investigators include retired CNES engineers and trained civilian volunteers. Each report passes through: (1) witness interview, (2) site survey if applicable, (3) corroboration against aviation records, satellite passes, meteorological data, (4) classification, (5) publication on the public case database."],
+      ["Why this matters globally", "GEIPAN is uniquely <strong>civilian and transparent</strong>: every case file (anonymised) is published, classification methodology is documented, and methodology updates are released as PDF whitepapers. AARO's modern multi-sensor framework cites GEIPAN as a structural precedent."]
+    ],
+    "cross_refs": [["AARO Archive", "../aaro/"], ["PAN D search", "../search.html?q=PAN+D&sites=geipan"], ["GEIPAN home", "../geipan/"]]
+  },
+  {
+    "slug": "uk",
+    "name": "UK · The National Archives — MoD UFO Files",
+    "accent": "#012169",
+    "gradient": ["#012169", "#001440", "#000820"],
+    "sealText": "TNA",
+    "sealColor": "#e8e3d8",
+    "official_url": "https://www.nationalarchives.gov.uk/ufos/",
+    "licence": "Open Government Licence v3.0",
+    "hero_coord": "◉ Kew, Richmond · MoD UFO desk 1950–2009",
+    "lede": "The British <strong>Ministry of Defence (MoD)</strong> ran an official UFO desk from 1950 until <strong>December 2009</strong>, when the unit was closed and its files committed to <strong>The National Archives (TNA)</strong> at Kew. The release programme that followed — coordinated by TNA's UFO project — declassified roughly <strong>60,000 pages</strong> across <strong>208 file series</strong>, covering 1947–2009 reports from civilians, RAF stations, NATO allies, and air-traffic-control units.",
+    "sections": [
+      ["What MoD did and did not do (verbatim, MoD statement, Dec 2009)", "<em>\"In over 50 years, no reported UFO sighting has revealed any evidence of a potential threat to the United Kingdom. The MoD has no opinion on the existence or otherwise of extraterrestrial life. However, in the absence of any evidence of a threat, the Department does not investigate sightings of UFOs in order to identify them.\"</em>"],
+      ["Key file series", "<strong>DEFE 24/1948</strong> — <a href=\"./rendlesham.html\">Rendlesham Forest, December 1980</a>. The most-cited file in the corpus.<br><strong>AIR 2/19061, AIR 16/1199, AIR 20/9994</strong> — RAF reports and intercept logs.<br><strong>DEFE 31</strong> — Defence Intelligence Staff files; includes the 2000 <em>Condign</em> report (commissioned by DIS \"to provide an intelligence assessment of UAP\").<br><strong>HO 305</strong> — Home Office records, including witness correspondence forwarded by police."],
+      ["The Condign Report (2000)", "A 460-page classified DIS report, declassified May 2006 under FOIA request. Its conclusion: <em>\"That UAP exist is indisputable. Credited with the ability to display a number of reported phenomena, no evidence exists to suggest that the phenomena seen are hostile or under any type of control, other than that of natural physical forces.\"</em> Condign attributes the bulk of UAP observation to <em>\"buoyant atmospheric plasmas\"</em> — a hypothesis that remains contested."],
+      ["The TNA UFO project", "Between 2008 and 2013, TNA released the MoD files in tranches, each accompanied by an explanatory podcast (Dr David Clarke, TNA's UFO consultant) and a public-friendly micro-site. The micro-site at <em>nationalarchives.gov.uk/ufos/</em> remains the most-cited national-archives UAP portal globally."]
+    ],
+    "cross_refs": [["Rendlesham case", "./rendlesham.html"], ["Condign search", "../search.html?q=condign"], ["AARO Archive", "../aaro/"]]
+  },
+  {
+    "slug": "brazil",
+    "name": "Brazil — Força Aérea Brasileira / Arquivo Nacional",
+    "accent": "#009c3b",
+    "gradient": ["#ffdc00", "#009c3b", "#002776"],
+    "sealText": "FAB",
+    "sealColor": "#002776",
+    "official_url": "https://www.fab.mil.br/",
+    "licence": "Lei nº 12.527/2011 (LAI — Lei de Acesso à Informação)",
+    "hero_coord": "◉ Brasília · FAB / Arquivo Nacional · 1952–2016",
+    "lede": "Brazil's <strong>Força Aérea Brasileira (FAB)</strong> ran a continuous UAP intake from <strong>1952</strong> through the OVNI declassification programme of <strong>2005–2016</strong>. Roughly <strong>4,500 documents</strong> from FAB and the I, IV, V, VI <em>Comandos Aéreos Regionais</em> have been transferred to the <strong>Arquivo Nacional</strong> across five tranches (March 2008 – December 2016) and are publicly accessible under the <strong>Lei de Acesso à Informação</strong>.",
+    "sections": [
+      ["FAB SIOANI (1969–1980)", "The <em>Sistema de Investigação de Objetos Aéreos Não Identificados</em> was the FAB's internal UAP reporting and investigation system, modelled in part on the U.S. Project Blue Book. Active 1969 until late 1980 when administrative funding was withdrawn. SIOANI records are core to the OVNI tranches."],
+      ["Operação Prato — the high-water mark", "<a href=\"./operacao-prato.html\">Operação Prato</a> (Sep 1977 – Jan 1978) was the largest, longest, and most-thoroughly documented military UAP investigation in South American history. 500+ pages of field reports, 16 mm film, photographic stills, and 80+ witness depositions led by Capt. Hollanda Lima."],
+      ["FAB Notimp 250 (2013) — institutional formalisation", "On 8 September 2013 the FAB issued <em>Notimp 250</em>, a formal directive establishing the procedure for any citizen to submit a UAP report to <em>Comando da Aeronáutica (COMAER)</em>. The directive cites Operação Prato as institutional precedent and routes new reports to the Arquivo Nacional."],
+      ["Verbatim — FAB statement on the declassification programme", "<em>\"Em cumprimento à Lei de Acesso à Informação e visando maior transparência, o Comando da Aeronáutica transfere ao Arquivo Nacional os documentos relativos a observações de objetos aéreos não identificados, possibilitando o livre acesso pelo público em geral.\"</em><br><br>— Comando da Aeronáutica, March 2008"]
+    ],
+    "cross_refs": [["Operação Prato", "./operacao-prato.html"], ["Varginha 1996", "./varginha.html"], ["Trindade 1958", "./trindade.html"], ["Search · all Brazil", "../search.html?sites=brazil"]]
+  },
+  {
+    "slug": "chile",
+    "name": "Chile · CEFAA / SEFAA",
+    "accent": "#d52b1e",
+    "gradient": ["#d52b1e", "#8b1413", "#3d0908"],
+    "sealText": "DGAC",
+    "sealColor": "#e8e3d8",
+    "official_url": "https://www.sefaa.cl/",
+    "licence": "Ley nº 20.285 sobre Acceso a la Información Pública",
+    "hero_coord": "◉ Santiago · DGAC · founded 1997 · still operational",
+    "lede": "Chile's <strong>Dirección General de Aeronáutica Civil (DGAC)</strong> established the <strong>Comité de Estudios de Fenómenos Aéreos Anómalos (CEFAA)</strong> in <strong>1997</strong> under the authority of its airspace-safety mandate. Renamed <strong>SEFAA</strong> (<em>Sección</em>) in 2014, the unit is one of Latin America's three continuously-operating national UAP programmes. Its <strong>monthly dispatches</strong> are public, investigators are uniformed DGAC staff plus civilian academics, and the catalogue is now <strong>~280 cases</strong> deep.",
+    "sections": [
+      ["Mission (verbatim, DGAC charter)", "<em>\"El Comité de Estudios de Fenómenos Aéreos Anómalos tiene por objetivo el estudio sistemático de los reportes de observaciones de fenómenos aéreos anómalos en el espacio aéreo jurisdiccional chileno, con el fin de contribuir a la seguridad operacional aérea y al avance del conocimiento científico.\"</em>"],
+      ["Why DGAC and not the Air Force?", "The Chilean approach is intentionally <strong>civilian</strong>: CEFAA sits inside the civil aviation authority, not the FACH air force. This avoids the witness-suppression dynamic familiar in U.S./UK programmes and gives commercial pilots and ATC controllers a non-military reporting channel."],
+      ["Roster", "Investigative roster includes: a DGAC airspace officer (chair), a FACH liaison, an astronomer from the Cerro Tololo / Cerro Pachón observatory community, a meteorologist from the Dirección Meteorológica de Chile, and ad-hoc civilian academics."],
+      ["Notable cases in the SEFAA catalogue", "<strong>El Bosque 2010</strong> — air-show video over Santiago, multiple amateur recordings, no aircraft tracked, no birds consistent with size. Investigated for 24 months; case <em>\"sin explicación\"</em>.<br><strong>Collahuasi 2013</strong> — mining camp daylight observation, three witnesses, photo sequence. SEFAA finding: <em>\"objeto no convencional, sin explicación natural conocida\"</em>.<br><strong>Bahía de Quintero 2014</strong> — coastal radar return corroborated by civilian video."]
+    ],
+    "cross_refs": [["Chile archive", "../chile/"], ["Search · SEFAA", "../search.html?q=SEFAA"], ["GEIPAN — French equivalent", "../geipan/"]]
+  },
+  {
+    "slug": "argentina",
+    "name": "Argentina · CEFAe",
+    "accent": "#74acdf",
+    "gradient": ["#74acdf", "#3d6a9c", "#1e3a5e"],
+    "sealText": "CEFAe",
+    "sealColor": "#e8e3d8",
+    "official_url": "https://www.argentina.gob.ar/fuerzaaerea/cefae",
+    "licence": "Ley nº 27.275 (Acceso a la Información Pública)",
+    "hero_coord": "◉ Buenos Aires · Fuerza Aérea Argentina · founded 2011",
+    "lede": "Argentina's <strong>Comisión de Estudio de Fenómenos Aeroespaciales (CEFAe)</strong> was created by the <strong>Fuerza Aérea Argentina</strong> in <strong>August 2011</strong> under <em>Resolución 414/2011</em>. CEFAe sits inside the air force rather than civil aviation, making it the South American counterpart to the U.S. AARO model rather than to Chile's civilian SEFAA. Reports are accepted from civilians, pilots, and ATC. Investigative findings are released as periodic public statements.",
+    "sections": [
+      ["Mission (verbatim, Resolución 414/2011)", "<em>\"Crear en el ámbito de la Fuerza Aérea Argentina la Comisión de Estudio de Fenómenos Aeroespaciales, la cual tendrá por objeto el estudio, investigación y análisis de los fenómenos aeroespaciales que sean denunciados o reportados, a los fines de determinar su origen y características.\"</em>"],
+      ["Operating model", "CEFAe is a <strong>part-time multidisciplinary panel</strong> of FAA officers, civilian scientists from CONICET, and volunteer investigators. Reports are accepted by email; field investigations are dispatched for cases with corroborating sensor data or multiple witnesses. The commission has no standing budget allocation and runs on volunteer time."],
+      ["Notable releases", "2015 — preliminary report on a 2014 multi-witness event in Mar del Plata.<br>2017 — joint statement with CEFAA (Chile) and the FAB on cross-border air-traffic-control coordination for unidentified transponder returns.<br>2019 — public acknowledgement that <em>\"un porcentaje significativo de los reportes carecen de explicación convencional tras la investigación\"</em>."]
+    ],
+    "cross_refs": [["Argentina archive", "../argentina/"], ["Chile SEFAA", "../chile/"], ["Uruguay CRIDOVNI", "../uruguay/"]]
+  },
+  {
+    "slug": "canada",
+    "name": "Canada · LAC + Project Magnet",
+    "accent": "#ff6b6b",
+    "gradient": ["#ff0000", "#990000", "#330000"],
+    "sealText": "LAC",
+    "sealColor": "#e8e3d8",
+    "official_url": "https://www.bac-lac.gc.ca/",
+    "licence": "Access to Information Act, R.S.C. 1985, c. A-1",
+    "hero_coord": "◉ Ottawa · LAC · Project Magnet 1950–1954 · Project Second Storey 1952–1954",
+    "lede": "Canada's UAP record is preserved by <strong>Library and Archives Canada (LAC)</strong>. Two original-research programmes anchor the corpus: <strong>Project Magnet</strong> (1950–1954) under radio engineer <strong>Wilbert B. Smith</strong> at the Department of Transport, and <strong>Project Second Storey</strong> (1952–1954) a classified Defence Research Board panel. Their files plus subsequent civilian and military reports are publicly accessible at <em>library-archives.canada.ca</em>.",
+    "sections": [
+      ["Project Magnet", "Authorised <strong>2 December 1950</strong> by Department of Transport Deputy Minister C.M. Edwards as a small civilian-side UAP study under Wilbert Smith. Operated until <strong>August 1954</strong>. Smith's interim report concluded: <em>\"It appears, then, that we are faced with a substantial probability of the real existence of extraterrestrial vehicles, regardless of whether or not they fit into our scheme of things.\"</em> The project was closed; the report remained classified until 1979."],
+      ["Project Second Storey", "A Defence Research Board sub-committee chaired by <strong>Dr. Peter Millman</strong> of the Dominion Observatory. Eight meetings between 1952–1954. Its final consensus was inconclusive but recommended formal collection of UAP reports — a recommendation that was not formally implemented in Canada."],
+      ["LAC's role", "LAC accessions and digitises both programmes' files under the Access to Information Act. The <strong>Project Magnet</strong> series (RG 12, RG 24) and <strong>Second Storey</strong> (RG 25, DRB papers) are publicly indexed and retrievable. Subsequent civilian and RCMP reports are added to the LAC catalogue on an ongoing basis under FOIA-equivalent ATIA requests."]
+    ],
+    "cross_refs": [["Canada archive", "../canada/"], ["Search · Magnet", "../search.html?q=magnet"], ["NARA Project Blue Book", "../nara/"]]
+  },
+  {
+    "slug": "italy",
+    "name": "Italy · Aeronautica Militare",
+    "accent": "#5cb85c",
+    "gradient": ["#009246", "#005a2b", "#002612"],
+    "sealText": "AM",
+    "sealColor": "#e8e3d8",
+    "official_url": "https://www.aeronautica.difesa.it/",
+    "licence": "D.lgs. 33/2013 (FOIA)",
+    "hero_coord": "◉ Roma · Aeronautica Militare · UFO reporting since 1978",
+    "lede": "Italy's <strong>Aeronautica Militare (AM)</strong> has operated a public UFO reporting channel since <strong>1978</strong>, when Stato Maggiore della Difesa codified the procedure for civilian and military sightings to be filed at the <strong>Reparto Generale Sicurezza (RGS)</strong>. Italy is unusual in Europe for keeping a continuously-staffed military UFO desk rather than transferring the function to a civilian aviation body.",
+    "sections": [
+      ["Reporting framework", "Reports flow from civilian witnesses or air-traffic-control units to the local <em>Reparto Generale Sicurezza</em>, which forwards them to <em>Stato Maggiore Aeronautica</em>. The AM periodically declassifies aggregate data under the 2013 FOIA statute (<em>D.lgs. 33/2013</em>)."],
+      ["Notable cases in the AM corpus", "<strong>1973 Caselle</strong> — Turin Caselle airport ATC + multiple commercial pilot reports; sustained radar return.<br><strong>1978–1979 wave</strong> — large multi-witness wave across northern Italy; AM publishes annual aggregate counts.<br><strong>2012–2014 Sicilia / Sardegna cluster</strong> — formally investigated; majority resolved as conventional traffic; ~12% unresolved."],
+      ["Verbatim — Italian Air Force statement, 2014", "<em>\"Lo Stato Maggiore Aeronautica conferma di ricevere e analizzare le segnalazioni di avvistamenti di OVNI da parte di cittadini, piloti e personale di torre di controllo. Le indagini sono condotte in coordinamento con ENAV, l'Aeronautica Civile e, ove appropriato, con i Reparti Generali dell'Aeronautica.\"</em>"]
+    ],
+    "cross_refs": [["Italy archive", "../italy/"], ["Belgian Wave 1989-90", "../aaro/belgian-wave.html"], ["Spain Ejército", "../spain/"]]
+  },
+  {
+    "slug": "nz",
+    "name": "New Zealand · NZDF",
+    "accent": "#5b8def",
+    "gradient": ["#000000", "#333333", "#000000"],
+    "sealText": "NZDF",
+    "sealColor": "#5b8def",
+    "official_url": "https://www.nzdf.mil.nz/",
+    "licence": "Official Information Act 1982",
+    "hero_coord": "◉ Wellington · NZDF · UFO files released 2010",
+    "lede": "The <strong>New Zealand Defence Force (NZDF)</strong> released its UFO files in <strong>December 2010</strong> following a sustained <strong>Official Information Act (OIA)</strong> request by researcher Bryan Dickeson. The release covers correspondence, sighting reports, and the famous <strong>Kaikoura Lights</strong> event of 1978–79 — the only case in NZ history where the Royal New Zealand Air Force scrambled aircraft and recorded UAP on military film.",
+    "sections": [
+      ["Kaikoura Lights — December 1978", "On <strong>21 December 1978</strong>, a Safe Air Argosy freighter flying Wellington → Christchurch reported multiple unidentified lights. The next night a TV news crew on a second Argosy recorded approximately 23 seconds of <strong>16 mm motion film</strong> showing bright objects manoeuvring at apparent high speed. Wellington ATC simultaneously logged unknown radar returns. The NZDF + RNZAF formally investigated; the case remains officially open."],
+      ["NZDF file release (2010)", "Following the 2010 OIA release, the NZDF UFO files comprise roughly <strong>2,000 pages</strong> from 1952 onward, including police-forwarded civilian reports, RNZAF intercept logs, and government correspondence with foreign air forces (USAF, RAAF). The complete release is published at <em>nzdf.mil.nz</em> and mirrored in part by the National Library of New Zealand."],
+      ["Verbatim — NZDF statement on the release, 2010", "<em>\"The New Zealand Defence Force has released its files on reported sightings of unidentified flying objects… in keeping with the spirit of the Official Information Act, where there is no compelling reason to withhold the material.\"</em>"]
+    ],
+    "cross_refs": [["NZ archive", "../nz/"], ["Search · Kaikoura", "../search.html?q=Kaikoura"]]
+  },
+  {
+    "slug": "peru",
+    "name": "Peru · OIFAA",
+    "accent": "#ff6b6b",
+    "gradient": ["#d91023", "#7d0b14", "#3a0508"],
+    "sealText": "FAP",
+    "sealColor": "#e8e3d8",
+    "official_url": "https://www.gob.pe/fap",
+    "licence": "Ley nº 27.806 (Transparencia y Acceso a la Información)",
+    "hero_coord": "◉ Lima · Fuerza Aérea del Perú · OIFAA founded 2001",
+    "lede": "Peru's <strong>Oficina de Investigación de Fenómenos Aéreos Anómalos (OIFAA)</strong> was established in <strong>October 2001</strong> inside the <strong>Fuerza Aérea del Perú (FAP)</strong> after the high-profile 1980 Mariano Melgar Air Base incident at La Joya — in which an FAP Sukhoi-22 pilot, <strong>Lt. Oscar Santamaría Huertas</strong>, was vectored to intercept an unidentified object and reported firing 64 cannon rounds with no observed effect.",
+    "sections": [
+      ["Founding case — La Joya, April 1980", "On <strong>11 April 1980</strong>, an FAP base reported a stationary metallic spheroid at altitude. Lt. Oscar Santamaría Huertas was scrambled in a Sukhoi-22. His post-action report, partially declassified by FAP in 2007, describes the object <em>\"acelerando vertiginosamente fuera de mi alcance\"</em> after he opened fire from approximately 500 m."],
+      ["OIFAA mission (verbatim, founding directive)", "<em>\"La Oficina de Investigación de Fenómenos Aéreos Anómalos tendrá la responsabilidad de recibir, registrar, investigar y analizar las denuncias de fenómenos aéreos anómalos en el espacio aéreo nacional, así como de cooperar con organismos similares de otros países en el intercambio de información.\"</em>"],
+      ["Status", "OIFAA was placed on administrative pause from 2008 to 2012, reactivated under Comando Conjunto in 2013, and continues to accept civilian reports via FAP's public channels. Case files are released on request under Ley 27.806."]
+    ],
+    "cross_refs": [["Peru archive", "../peru/"], ["Search · La Joya", "../search.html?q=La+Joya"], ["Chile SEFAA", "../chile/"]]
+  },
+  {
+    "slug": "spain",
+    "name": "Spain · Ejército del Aire",
+    "accent": "#f4c542",
+    "gradient": ["#aa151b", "#700c10", "#350608"],
+    "sealText": "EA",
+    "sealColor": "#f4c542",
+    "official_url": "https://ejercitodelaire.defensa.gob.es/",
+    "licence": "Ley 19/2013 (Transparencia)",
+    "hero_coord": "◉ Madrid · Ejército del Aire · 1962–1992 active programme",
+    "lede": "Spain's <strong>Ejército del Aire (EA)</strong> ran a continuous classified UAP intake from <strong>1962</strong> through <strong>1992</strong>, when most of the corpus was declassified under <strong>Orden 13/1992</strong> of the Ministerio de Defensa. Some 1,900 pages, covering ~80 case files, were transferred to public access through the Air Force Historical Archive in Villaviciosa de Odón. Spain was the first European NATO state to declassify the bulk of its UAP corpus to civilian researchers.",
+    "sections": [
+      ["Verbatim — Orden 13/1992, Ministerio de Defensa", "<em>\"Se desclasifica con carácter general la totalidad de la documentación relativa a observaciones de objetos volantes no identificados que obran en poder de los Servicios de Información del Ejército del Aire, declarándola accesible al público en general.\"</em>"],
+      ["Notable files", "<strong>Caso Manises, 11 Nov 1979</strong> — TAE Supercaravelle JK297 forced to divert and land at Manises (Valencia) after two luminous objects paced the aircraft. Mirage F1 fighters scrambled. Full file released 1994.<br><strong>Caso Talavera la Real, 12 Nov 1976</strong> — Badajoz air base, multiple ground witnesses, photographic stills.<br><strong>Caso Canarias, 22 Jun 1976</strong> — Y-shaped object reported by multiple ships and aircraft over the Atlantic west of Gran Canaria."],
+      ["Why this matters historically", "The 1992 declassification programme was led, internally, by Capt. <strong>Juan Antonio Fernández Peris</strong> at SIDA (Servicio de Información de la Defensa Aérea). Its comprehensiveness — declassifying essentially the entire corpus — set the model that France's GEIPAN and Italy's AM later adapted."]
+    ],
+    "cross_refs": [["Spain archive", "../spain/"], ["Search · Manises", "../search.html?q=Manises"], ["Italy AM", "../italy/"]]
+  },
+  {
+    "slug": "uruguay",
+    "name": "Uruguay · CRIDOVNI",
+    "accent": "#3ba0d8",
+    "gradient": ["#3ba0d8", "#1e5d80", "#0d2c3e"],
+    "sealText": "CRIDOVNI",
+    "sealColor": "#3ba0d8",
+    "official_url": "https://www.fau.mil.uy/cridovni/",
+    "licence": "Ley nº 18.381",
+    "hero_coord": "◉ Montevideo · Fuerza Aérea Uruguaya · founded 1979",
+    "lede": "Uruguay's <strong>Comisión Receptora e Investigadora de Denuncias de Objetos Voladores No Identificados (CRIDOVNI)</strong> is the world's <strong>longest continuously-operating</strong> air-force-hosted UAP investigation programme in continuous service since <strong>1979</strong>. Active under <strong>Comando General de la Fuerza Aérea Uruguaya (FAU)</strong>, CRIDOVNI investigates civilian and military reports across Uruguay's airspace, publishes annual statistics, and maintains a public reporting hotline at the FAU's Carrasco International Airport office.",
+    "sections": [
+      ["Mission (verbatim, FAU charter)", "<em>\"La CRIDOVNI tiene por misión recibir e investigar las denuncias relativas a objetos voladores no identificados que pudieran constituir un peligro para la aeronavegación, así como difundir los resultados de sus investigaciones de acuerdo con la legislación vigente.\"</em>"],
+      ["Operating model", "11-member panel under FAU command, including aeronautical engineers, an astronomer from the Departamento de Astronomía of the Universidad de la República, a meteorologist from INUMET, and a senior FAU intelligence officer. Reports are accepted by phone, in person at Carrasco, or via web form."],
+      ["Notable case classifications", "CRIDOVNI uses a four-tier system similar to GEIPAN: <strong>natural</strong> (atmospheric/astronomical), <strong>artificial</strong> (aircraft/satellite/balloon), <strong>inconcluso</strong> (insufficient data), and <strong>sin identificación</strong> (unidentified after exhaustive investigation). The 2019 public summary listed ~30% of cumulative cases as <em>sin identificación</em>."]
+    ],
+    "cross_refs": [["Uruguay archive", "../uruguay/"], ["Argentina CEFAe", "../argentina/"], ["GEIPAN methodology", "../geipan/"]]
+  },
+  {
+    "slug": "aaro",
+    "name": "AARO — All-domain Anomaly Resolution Office",
+    "accent": "#4a9eff",
+    "gradient": ["#1e3a8a", "#102560", "#061238"],
+    "sealText": "AARO",
+    "sealColor": "#4a9eff",
+    "official_url": "https://www.aaro.mil/",
+    "licence": "17 U.S.C. § 105",
+    "hero_coord": "◉ Arlington, VA · OUSD(I&S) · codified 10 U.S.C. § 1683 · 2022",
+    "lede": "AARO is the U.S. Department of Defense's official UAP investigation office, established under <strong>Section 1683 of the National Defense Authorization Act for Fiscal Year 2022</strong> and codified at <strong>10 U.S.C. § 1683</strong>. It succeeds and absorbs the UAP Task Force (UAPTF, 2020–2022), Airborne Object Identification and Management Synchronization Group (AOIMSG, 2021–2022), and Advanced Aerospace Threat Identification Program (AATIP, 2007–2012). AARO reports jointly to the <strong>Office of the Under Secretary of Defense for Intelligence and Security</strong> and the <strong>Director of National Intelligence</strong>.",
+    "sections": [
+      ["Mission (verbatim, 10 U.S.C. § 1683(c))", "<em>\"The Office shall, in coordination with the heads of the relevant Federal departments and agencies, carry out the following: (1) Develop a Government-wide framework for synchronizing and standardizing the detection, identification, attribution, and mitigation of unidentified anomalous phenomena. (2) Conduct or oversee scientific, technical, and operational analysis of data on unidentified anomalous phenomena. (3) Submit reports to Congress…\"</em>"],
+      ["Director", "Inaugural Director: <strong>Dr. Sean M. Kirkpatrick</strong> (2022–2023). Successor: <strong>Tim Phillips</strong>, Acting Director (2023–2024). Current: see <a href=\"./details.html\">/aaro/details.html</a> for the latest public org chart."],
+      ["Five public outputs to date", "<strong>(1)</strong> ODNI Preliminary Assessment on UAP (June 2021) — covering 144 incidents 2004–2021.<br><strong>(2)</strong> ODNI Annual Report on UAP (Oct 2022).<br><strong>(3)</strong> AARO Historical Record Vol. I (March 2024) — 260 pages on the U.S. government's UAP record 1945–1995.<br><strong>(4)</strong> AARO Historical Record Vol. II (forthcoming) — 1996–present.<br><strong>(5)</strong> Public case-resolution releases — declassified pilot footage, sensor data, ground-witness corroboration."],
+      ["Case studies in this archive", "<a href=\"./tic-tac.html\">Nimitz Tic-Tac (Nov 2004)</a> · <a href=\"./gimbal.html\">Gimbal (Jan 2015)</a> · <a href=\"./phoenix-lights.html\">Phoenix Lights (Mar 1997)</a> · <a href=\"./belgian-wave.html\">Belgian Wave (1989–90)</a>."]
+    ],
+    "cross_refs": [["AARO archive", "../aaro/"], ["Mission · FAQ", "./details.html"], ["Search · all AARO", "../search.html?sites=aaro"], ["NARA Project Blue Book", "../nara/"]]
+  }
+]

@@ -26,7 +26,7 @@ jobs:
       - name: Install dependencies (curl_cffi for Akamai-fronted hosts)
         run: pip install --upgrade pip && pip install curl_cffi || true
 
-      - name: Run scrapers (failures tolerated)
+      - name: Run agency-specific scrapers (failures tolerated)
         run: |
           python3 scripts/scrape-nasa.py   || true
           python3 scripts/scrape-nara.py   || true
@@ -36,7 +36,16 @@ jobs:
           python3 scripts/scrape-brazil.py || true
           python3 scripts/scrape-chile.py  || true
           python3 scripts/harvest-tna.py   || true
-          python3 scripts/spider.py chile-sefaa || true
+
+      - name: Run wide spider across every catalog-style source
+        run: |
+          # Each config in spider.py is independently rate-limited (1s/page) and
+          # capped by max_pages, so the total runtime stays under 30 min even
+          # when every site is reachable. Failures tolerated.
+          python3 scripts/spider.py \
+            chile-sefaa uk-tna brazil-arqnac \
+            argentina-cefae italy-am spain-ea uruguay-cridovni \
+            peru-oifaa nz-nzdf canada-lac || true
 
       - name: Rebuild all archive HTML
         run: |
@@ -51,8 +60,20 @@ jobs:
           python3 scripts/build-details.py && \
           python3 scripts/build-wargov.py
 
+      - name: Validate every embedded manifest (warnings allowed)
+        run: python3 scripts/validate-manifests.py || true
+
       - name: Regenerate static API dump
         run: python3 scripts/build-api.py
+
+      - name: Regenerate per-archive Atom feeds
+        run: python3 scripts/build-feeds.py || true
+
+      - name: Regenerate per-event geocodes
+        run: python3 scripts/build-geo.py || true
+
+      - name: Regenerate per-archive Open Graph SVGs
+        run: python3 scripts/build-og.py || true
 
       - name: Run dead-source health check (informational, never fails the build)
         run: python3 scripts/check-sources.py || true
@@ -62,13 +83,29 @@ jobs:
           DATE=$(date -u +%Y-%m-%d)
           sed -i "s#<lastmod>[0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\}</lastmod>#<lastmod>${DATE}</lastmod>#g" sitemap.xml
 
+      - name: Append CHANGELOG entry for this sync
+        run: |
+          DATE=$(date -u +%Y-%m-%d)
+          # Insert a dated line right under [Unreleased] header if not already present today.
+          if ! grep -q "## \[sync-${DATE}\]" CHANGELOG.md; then
+            python3 - <<PY
+import re
+src = open('CHANGELOG.md').read()
+stamp = "## [sync-${DATE}]\n\n- Weekly automated sync: scrapers + spider + API + feeds rebuilt.\n\n"
+src = src.replace('## [Unreleased]', '## [Unreleased]\n\n' + stamp, 1)
+open('CHANGELOG.md','w').write(src)
+PY
+          fi
+
       - name: Commit rebuilt artifacts
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add "*/index.html" "aaro/details.html" "index.html" \
-                  "api/" "sitemap.xml" "dead-links.json" "dead-links.md" \
-                  "geipan/cases.json" || true
+                  "api/" "feeds/" "sitemap.xml" \
+                  "dead-links.json" "dead-links.md" \
+                  "geipan/cases.json" "CHANGELOG.md" \
+                  "*/assets/og.svg" "assets/og.svg" || true
           git diff --cached --quiet || git commit -m "chore: weekly auto-rebuild [skip ci]"
 
       - name: Push to main

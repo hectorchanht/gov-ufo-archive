@@ -290,6 +290,91 @@ CONFIGS = [
         'max_pages': 40,
         'delay': 1.0,
     },
+    {
+        'name': 'argentina-cefae',
+        'mirror': 'argentina',
+        'seeds': [
+            'https://www.argentina.gob.ar/fuerzaaerea/cefae',
+            'https://web.archive.org/web/2024/https://www.argentina.gob.ar/fuerzaaerea/cefae',
+        ],
+        'allowed_hosts': ['www.argentina.gob.ar', 'argentina.gob.ar', 'web.archive.org'],
+        'link_patterns': [r'cefae|fuerzaaerea|ovni|fenomen'],
+        'file_extensions': ['.pdf'],
+        'max_depth': 2, 'max_pages': 30, 'delay': 1.0,
+    },
+    {
+        'name': 'italy-am',
+        'mirror': 'italy',
+        'seeds': [
+            'https://www.aeronautica.difesa.it/comunicazione/oggetti-volanti-non-identificati-ufo/',
+            'https://web.archive.org/web/2024/https://www.aeronautica.difesa.it/comunicazione/oggetti-volanti-non-identificati-ufo/',
+        ],
+        'allowed_hosts': ['www.aeronautica.difesa.it', 'aeronautica.difesa.it', 'web.archive.org'],
+        'link_patterns': [r'aeronautica|ufo|ovni|oggetti.volanti'],
+        'file_extensions': ['.pdf'],
+        'max_depth': 2, 'max_pages': 30, 'delay': 1.0,
+    },
+    {
+        'name': 'spain-ea',
+        'mirror': 'spain',
+        'seeds': [
+            'https://ejercitodelaire.defensa.gob.es/EA/ejercitodelaire/es/expedientes-OVNI/',
+            'https://web.archive.org/web/2024/https://ejercitodelaire.defensa.gob.es/EA/ejercitodelaire/es/expedientes-OVNI/',
+        ],
+        'allowed_hosts': ['ejercitodelaire.defensa.gob.es', 'www.ejercitodelaire.defensa.gob.es', 'web.archive.org'],
+        'link_patterns': [r'expedientes|ovni|ufo'],
+        'file_extensions': ['.pdf'],
+        'max_depth': 2, 'max_pages': 60, 'delay': 1.0,
+    },
+    {
+        'name': 'uruguay-cridovni',
+        'mirror': 'uruguay',
+        'seeds': [
+            'https://www.fau.mil.uy/cridovni/',
+            'https://web.archive.org/web/2024/https://www.fau.mil.uy/cridovni/',
+        ],
+        'allowed_hosts': ['www.fau.mil.uy', 'fau.mil.uy', 'web.archive.org'],
+        'link_patterns': [r'cridovni|ovni|denuncia|caso'],
+        'file_extensions': ['.pdf'],
+        'max_depth': 2, 'max_pages': 25, 'delay': 1.0,
+    },
+    {
+        'name': 'peru-oifaa',
+        'mirror': 'peru',
+        'seeds': [
+            'https://www.gob.pe/fap',
+            'https://web.archive.org/web/2024/https://www.fap.mil.pe/oifaa/',
+        ],
+        'allowed_hosts': ['www.gob.pe', 'gob.pe', 'www.fap.mil.pe', 'fap.mil.pe', 'web.archive.org'],
+        'link_patterns': [r'oifaa|ovni|ufo|fenomen'],
+        'file_extensions': ['.pdf'],
+        'max_depth': 2, 'max_pages': 25, 'delay': 1.0,
+    },
+    {
+        'name': 'nz-nzdf',
+        'mirror': 'nz',
+        'seeds': [
+            'https://www.nzdf.mil.nz/nzdf/news-and-media/ufo-files/',
+            'https://web.archive.org/web/2024/https://www.nzdf.mil.nz/',
+            'https://natlib.govt.nz/records?text=UFO',
+        ],
+        'allowed_hosts': ['www.nzdf.mil.nz', 'nzdf.mil.nz', 'natlib.govt.nz', 'web.archive.org'],
+        'link_patterns': [r'ufo|uap|nzdf|defence|records'],
+        'file_extensions': ['.pdf'],
+        'max_depth': 2, 'max_pages': 30, 'delay': 1.0,
+    },
+    {
+        'name': 'canada-lac',
+        'mirror': 'canada',
+        'seeds': [
+            'https://library-archives.canada.ca/eng/collection/research-help/genealogy-family-history/military/government-records-related-to-ufo-incidents/Pages/government-records-related-ufo-incidents.aspx',
+            'https://web.archive.org/web/2024/https://www.bac-lac.gc.ca/eng/discover/military-heritage/Pages/ufos.aspx',
+        ],
+        'allowed_hosts': ['library-archives.canada.ca', 'bac-lac.gc.ca', 'www.bac-lac.gc.ca', 'web.archive.org'],
+        'link_patterns': [r'ufo|uap|magnet|second.storey'],
+        'file_extensions': ['.pdf'],
+        'max_depth': 2, 'max_pages': 30, 'delay': 1.0,
+    },
 ]
 
 
