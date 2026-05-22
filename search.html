@@ -415,6 +415,59 @@ footer a:hover{color:var(--ink)}
     lbInner.innerHTML = '';
   }
 
+  /* ── Record lightbox (any archive record, not just carousel) ── */
+  function detectMedia(url) {
+    var u = (url || '').toLowerCase().split('?')[0].split('#')[0];
+    if (/\.(mp4|m4v|mov|webm)$/.test(u)) return 'video';
+    if (/\.(jpe?g|png|gif|webp|avif)$/.test(u)) return 'image';
+    if (/\.pdf$/.test(u)) return 'pdf';
+    if (/(youtube\.com|youtu\.be|vimeo\.com)/.test(u)) return 'embed';
+    return 'link';
+  }
+  function openRecordLb(rec) {
+    var local = resolveUrl(rec, 'local');
+    var remote = resolveUrl(rec, 'url');
+    var src = resolveUrl(rec, 'src');
+    var primary = local || remote || src;
+    if (!primary) return false;
+    var kind = detectMedia(local) === 'link' ? detectMedia(remote) : detectMedia(local);
+    if (kind === 'link') kind = detectMedia(remote || src);
+
+    var meta = (
+      '<div class="lb-meta"><span class="id">' + esc(rec.site) + '</span>' +
+      esc(rec.title || '') +
+      (rec.date ? ' &middot; ' + esc(rec.date) : '') +
+      (rec.desc ? '<br><span style="opacity:0.7">' + esc(truncate(rec.desc, 280)) + '</span>' : '') +
+      (src && src !== primary ? '<br><a href="' + esc(src) + '" target="_blank" rel="noopener" style="color:var(--caution)">Source &#8599;</a>' : '') +
+      '</div>'
+    );
+
+    if (kind === 'video') {
+      var srcs = '<source src="' + esc(primary) + '" type="video/mp4">';
+      if (local && remote && local !== remote) srcs += '<source src="' + esc(remote) + '" type="video/mp4">';
+      lbInner.innerHTML = '<video controls autoplay playsinline style="max-width:96vw;max-height:78vh">' + srcs + '</video>' + meta;
+    } else if (kind === 'image') {
+      var fb = (local && remote) ? ' onerror="this.onerror=null;this.src=\'' + esc(remote) + '\'"' : '';
+      lbInner.innerHTML = '<img src="' + esc(primary) + '" alt="' + esc(rec.title || '') + '"' + fb + '>' + meta;
+    } else if (kind === 'pdf' && /^\//.test(primary)) {
+      /* Same-origin PDF — iframe inline. Remote PDF → new tab to avoid CORS / X-Frame-Options blocking. */
+      lbInner.innerHTML = '<iframe src="' + esc(primary) + '#view=FitH" style="width:96vw;height:80vh;background:#fff;border:1px solid var(--rule)" allow="fullscreen"></iframe>' + meta;
+    } else if (kind === 'embed') {
+      var embedUrl = primary
+        .replace(/youtu\.be\/([\w-]+)/, 'www.youtube-nocookie.com/embed/$1')
+        .replace(/youtube\.com\/watch\?v=([\w-]+)/, 'www.youtube-nocookie.com/embed/$1')
+        .replace(/vimeo\.com\/(\d+)/, 'player.vimeo.com/video/$1');
+      lbInner.innerHTML = '<iframe src="https://' + esc(embedUrl.replace(/^https?:\/\//,'')) + '?autoplay=1" allow="autoplay;encrypted-media;fullscreen" allowfullscreen style="width:96vw;max-width:1280px;aspect-ratio:16/9;border:0"></iframe>' + meta;
+    } else {
+      /* unknown / cross-origin PDF / catalog URL — open in new tab */
+      window.open(primary, '_blank', 'noopener');
+      return true;
+    }
+    lb.classList.add('open');
+    lb.setAttribute('aria-hidden','false');
+    return true;
+  }
+
   /* ── Hamburger ── */
   var navToggle = document.getElementById('nav-toggle');
   var primaryNav = document.getElementById('primary-nav');
@@ -712,10 +765,11 @@ footer a:hover{color:var(--ink)}
     return val;
   }
 
-  function renderCard(rec) {
+  function renderCard(rec, idx) {
     var div = document.createElement('div');
     div.className = 'res-card';
     div.setAttribute('role', 'listitem');
+    div.dataset.recIdx = String(idx);
 
     var badges = '<div class="card-badges"><span class="badge badge-site">' + esc(rec.site) + '</span>';
     if (rec.type) badges += '<span class="badge badge-type">' + esc(rec.type) + '</span>';
@@ -731,14 +785,18 @@ footer a:hover{color:var(--ink)}
     if (rec.region) metas.push(esc(rec.region));
     var meta = metas.length ? '<div class="card-meta">' + metas.join(' &nbsp;&middot;&nbsp; ') + '</div>' : '';
 
+    /* Open button now triggers the in-page lightbox (img/video/pdf) instead
+       of opening in a new tab. Cross-origin PDFs still get a new tab (X-Frame-Options).
+       Source link stays target="_blank" — it's the official agency URL. */
     var actions = '<div class="card-actions">';
     var openUrl = resolveUrl(rec, 'local') || resolveUrl(rec, 'url');
-    if (openUrl) actions += '<a class="btn btn-open" href="' + esc(openUrl) + '" target="_blank" rel="noopener">Open</a>';
+    if (openUrl) actions += '<a class="btn btn-open" href="' + esc(openUrl) + '" data-action="open" target="_blank" rel="noopener">Open</a>';
     var srcUrl = resolveUrl(rec, 'src');
     if (srcUrl && srcUrl !== openUrl) actions += '<a class="btn btn-source" href="' + esc(srcUrl) + '" target="_blank" rel="noopener">Source &#8599;</a>';
     actions += '</div>';
 
     div.innerHTML = badges + title + desc + meta + actions;
+    if (openUrl) div.style.cursor = 'pointer';
     return div;
   }
 
@@ -746,16 +804,20 @@ footer a:hover{color:var(--ink)}
     resultsEl.innerHTML = '';
     paginationEl.innerHTML = '';
     var q = (qEl.value || '').trim();
-    var isFiltering = q.length > 0;
-    /* Empty query → show every record (filter mode). Non-empty → show filtered subset. */
-    var view = isFiltering ? filteredRecords : allRecords;
+    /* "Filtering" now means any active criterion — query text OR pill OR
+       type chip OR year range. With no filter at all we show every record. */
+    var anyFilter = q.length > 0 || activeSites.size > 0 || activeTypes.size > 0 || yearFrom || yearTo;
+    var isFiltering = anyFilter;
+    var view = anyFilter ? filteredRecords : allRecords;
 
     if (view.length === 0) {
       resultInfo.innerHTML = '';
       var msg = document.createElement('div');
       msg.className = 'state-message';
       if (isFiltering) {
-        msg.innerHTML = '<strong>No matches for &ldquo;' + esc(q) + '&rdquo;</strong>Try broader terms or check spelling.';
+        msg.innerHTML = q
+          ? '<strong>No matches for &ldquo;' + esc(q) + '&rdquo;</strong>Try broader terms or check spelling.'
+          : '<strong>No records match the current filters</strong>Loosen the archive, type, or year filters.';
       } else if (archivesLoaded < archivesTotal) {
         msg.innerHTML = '<strong>Loading archives&hellip;</strong>' + archivesLoaded + ' of ' + archivesTotal + ' loaded.';
       } else {
@@ -778,7 +840,9 @@ footer a:hover{color:var(--ink)}
       ' across ' + arcCount + ' archive' + (arcCount !== 1 ? 's' : '') +
       (totalPages > 1 ? ' &mdash; page ' + currentPage + ' of ' + totalPages : '');
 
-    pageRecords.forEach(function(rec){ resultsEl.appendChild(renderCard(rec)); });
+    /* Stash the page view so the click delegate can look up records by idx. */
+    window._searchPageRecords = pageRecords;
+    pageRecords.forEach(function(rec, i){ resultsEl.appendChild(renderCard(rec, i)); });
 
     if (totalPages > 1) {
       var prevBtn = document.createElement('button');
@@ -927,6 +991,22 @@ footer a:hover{color:var(--ink)}
 
   qEl.addEventListener('input', function(){ clearTimeout(debounceTimer); debounceTimer = setTimeout(function(){ currentPage = 1; applyFilter(); }, 200); });
   qEl.addEventListener('search', function(){ clearTimeout(debounceTimer); currentPage = 1; applyFilter(); });
+
+  /* Click delegation on results grid → open record in lightbox.
+     "Source ↗" still target="_blank"; we only intercept Open + bare card body. */
+  resultsEl.addEventListener('click', function(e) {
+    if (e.target.closest('.btn-source')) return;   // let Source link through
+    var openBtn = e.target.closest('.btn-open[data-action="open"]');
+    var card = e.target.closest('.res-card[data-rec-idx]');
+    if (!openBtn && !card) return;
+    var idx = parseInt((openBtn ? openBtn.closest('.res-card') : card).dataset.recIdx, 10);
+    var pageRecs = window._searchPageRecords || [];
+    var rec = pageRecs[idx];
+    if (!rec) return;
+    /* Modifier keys → let browser handle normally (new tab / window) */
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button === 1) return;
+    if (openRecordLb(rec)) e.preventDefault();
+  });
   clearBtn.addEventListener('click', function(){ qEl.value = ''; qEl.focus(); currentPage = 1; applyFilter(); });
 
   /* ── URL state: ?q=&sites=a,b&types=pdf,video&from=1980&to=2025 ── */

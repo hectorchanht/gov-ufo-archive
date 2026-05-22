@@ -255,6 +255,15 @@ body { background-image: radial-gradient(ellipse at 20% 0%, rgba(0,85,164,0.08) 
 @media (min-width: 720px) { .pagination .info { flex-basis: auto; margin: 0 0 0 12px; text-align: left; } }
 .result-count { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); letter-spacing: 0.12em; text-transform: uppercase; padding: 18px 0 8px; }
 .result-count b { color: var(--caution); }
+/* fix: flat mobile nav + desktop dropdown safety (CSS-only override) */
+@media (max-width:719px){
+  .nav-more-btn{display:none!important}
+  .has-dropdown .nav-dropdown{display:block!important;position:static!important;margin:0!important;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important;min-width:0!important}
+  .has-dropdown .nav-dropdown li a{padding:11px 0!important;border-bottom:1px solid var(--rule)!important;font-size:11px!important}
+}
+@media (min-width:720px){
+  .has-dropdown:not(.open) > .nav-dropdown{display:none!important}
+}
 </style></head>
 <body><div class="scanlines"></div>
 <div class="header-wrap"><header><div class="container"><a href="#top" class="brand"><div class="seal">GEIPAN</div><div class="brand-text"><span class="super">Groupe d'Études · Phénomènes Aérospatiaux</span><span class="name">GEIPAN · CNES</span></div></a><button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>    <nav class="primary" id="primary-nav">

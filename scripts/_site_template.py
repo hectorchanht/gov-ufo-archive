@@ -18,6 +18,16 @@ PINNED = [
     ('NASA',    'nasa', 'nasa'),
     ('NARA',    'nara', 'nara'),
 ]
+# Top-bar utility pages (always visible after the 4 pinned US archives).
+# (label, file_relative_to_root, current_slug_key)
+UTILITY = [
+    ('Search',   'search.html',   'search'),
+    ('Timeline', 'timeline.html', 'timeline'),
+    ('Map',      'map.html',      'map'),
+    ('About',    'about.html',    'about'),
+    ('Support',  'donate.html',   'support'),
+]
+# Secondary nav — the 11 non-US national mirrors, surfaced via "More ▾".
 MORE = [
     ('GEIPAN (France)',    'geipan'),
     ('UK Archives',        'uk'),
@@ -56,14 +66,21 @@ def make_nav(current_slug: str, depth: int = 1, internal_links=None) -> str:
                 f'<li><a href="{href}" data-i18n="{i18n_key}">{label}</a></li>'
             )
 
-    # Pinned cross-site links
+    # Pinned cross-site links (4 US archives)
     pinned_html = ''
     for name, slug, key in PINNED:
         href = _href(slug, depth)
         active = ' class="active"' if key == current_slug else ''
         pinned_html += f'<li><a href="{href}"{active}>{name}</a></li>'
 
-    # More dropdown items
+    # Utility pages (search, timeline, map, about, support) — root-relative
+    root = _href(None, depth)
+    utility_html = ''
+    for name, file, key in UTILITY:
+        active = ' class="active"' if key == current_slug else ''
+        utility_html += f'<li><a href="{root}{file}"{active}>{name}</a></li>'
+
+    # Secondary "More" dropdown — 11 national mirrors
     more_items = ''.join(
         f'<li><a href="{_href(slug, depth)}">{name}</a></li>'
         for name, slug in MORE
@@ -75,13 +92,13 @@ def make_nav(current_slug: str, depth: int = 1, internal_links=None) -> str:
         {int_html}
         <li class="nav-sep"></li>
         {pinned_html}
+        {utility_html}
         <li class="has-dropdown" id="nav-more-wrap">
           <button class="nav-more-btn" id="nav-more-btn" aria-expanded="false" data-i18n="more">More ▾</button>
           <ul class="nav-dropdown" id="nav-dropdown" role="menu">
             {more_items}
           </ul>
         </li>
-        <li><a href="{_href(None, depth)}search.html"{' class="active"' if current_slug == 'search' else ''}>Search</a></li>
       </ul>
     </nav>'''
 
@@ -406,7 +423,17 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
 '''
 
 # Extra CSS that extends SHARED_CSS (included automatically by make_head)
-EXTRA_CSS = ''  # already included in SHARED_CSS above
+EXTRA_CSS = r'''
+/* fix: flat mobile nav + desktop dropdown safety */
+@media (max-width: 719px) {
+  .nav-more-btn { display: none !important; }
+  .has-dropdown .nav-dropdown { display: block !important; position: static !important; margin: 0 !important; padding: 0 !important; border: 0 !important; background: transparent !important; box-shadow: none !important; min-width: 0 !important; }
+  .has-dropdown .nav-dropdown li a { padding: 11px 0 !important; border-bottom: 1px solid var(--rule) !important; font-size: 11px !important; }
+}
+@media (min-width: 720px) {
+  .has-dropdown:not(.open) > .nav-dropdown { display: none !important; }
+}
+'''
 
 # ── JS ───────────────────────────────────────────────────────────────────────
 

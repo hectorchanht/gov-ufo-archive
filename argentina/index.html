@@ -262,6 +262,15 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
 body { background-image:
   radial-gradient(ellipse at 20% 0%, rgba(116,172,223,0.08) 0%, transparent 50%),
   radial-gradient(ellipse at 80% 100%, rgba(255,255,255,0.03) 0%, transparent 50%); background-attachment: fixed; }
+/* fix: flat mobile nav + desktop dropdown safety (CSS-only override) */
+@media (max-width:719px){
+  .nav-more-btn{display:none!important}
+  .has-dropdown .nav-dropdown{display:block!important;position:static!important;margin:0!important;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important;min-width:0!important}
+  .has-dropdown .nav-dropdown li a{padding:11px 0!important;border-bottom:1px solid var(--rule)!important;font-size:11px!important}
+}
+@media (min-width:720px){
+  .has-dropdown:not(.open) > .nav-dropdown{display:none!important}
+}
 </style>
 </head>
 <body>

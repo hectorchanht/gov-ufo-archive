@@ -559,6 +559,15 @@ footer .colophon {
   .lang-btn { width: auto; margin: 0; padding: 3px 8px; }
   .lang-menu { position: absolute; right: 0; top: calc(100% + 10px); min-width: 130px; }
 }
+/* fix: flat mobile nav + desktop dropdown safety (CSS-only override) */
+@media (max-width:719px){
+  .nav-more-btn{display:none!important}
+  .has-dropdown .nav-dropdown{display:block!important;position:static!important;margin:0!important;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important;min-width:0!important}
+  .has-dropdown .nav-dropdown li a{padding:11px 0!important;border-bottom:1px solid var(--rule)!important;font-size:11px!important}
+}
+@media (min-width:720px){
+  .has-dropdown:not(.open) > .nav-dropdown{display:none!important}
+}
 </style>
 </head>
 <body>
