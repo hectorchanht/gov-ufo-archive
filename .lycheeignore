@@ -14,3 +14,9 @@
 # DVIDS direct links — Akamai blocks data-center IPs
 ^https?://(www\.)?dvidshub\.net/.*
 ^https?://d34w7g4gy10iej\.cloudfront\.net/.*
+# Gitignored PDF / video binaries — served from GitHub Releases at runtime
+# but referenced as local hrefs in HTML. The files are absent on CI runners
+# because they live in pdfs-v1 / videos-v1 release tags, not git.
+^file:.*/pdfs/.*\.pdf$
+^file:.*/videos/.*\.(mp4|mov|webm)$
+^file:.*/bundles/.*$
