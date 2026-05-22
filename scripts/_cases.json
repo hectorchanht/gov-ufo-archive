@@ -762,5 +762,579 @@
       ["Tic-Tac 2004", "./tic-tac.html"],
       ["Search · Coyne", "../search.html?q=Coyne"]
     ]
+  },
+  {
+    "slug": "travis-walton",
+    "archive": "aaro",
+    "archive_label": "AARO Archive",
+    "name": "Travis Walton · Snowflake",
+    "name_h1_em": "Travis",
+    "name_h1_tail": "Walton",
+    "accent": "#4a9eff",
+    "gradient": ["#1e3a8a", "#102560", "#061238"],
+    "seal_text": "AARO",
+    "seal_color": "#4a9eff",
+    "official_url": "https://www.aaro.mil/",
+    "licence": "17 U.S.C. § 105",
+    "hero_coord": "◉ 34.5108° N · 110.0784° W · Apache-Sitgreaves NF, AZ · 5 Nov 1975",
+    "twitter_image": "https://realufo.org/slideshow/NASA-UAP-VM6-Apollo-17-1972.jpg",
+    "json_ld": {
+      "headline": "Travis Walton · Snowflake 1975 — case file",
+      "description": "USFS forestry contractor Travis Walton reportedly struck by a beam of light from an unidentified object in Apache-Sitgreaves National Forest, 5 November 1975. Six co-witnesses; APD missing-persons investigation; polygraph battery; Walton reappears five days later.",
+      "datePublished": "1975-11-05",
+      "sourceOrganization": "U.S. Forest Service / USAF / NARA",
+      "about": ["Apache-Sitgreaves National Forest", "Snowflake, Arizona"],
+      "keywords": ["Travis Walton", "Snowflake", "Apache-Sitgreaves", "Mike Rogers", "USFS", "polygraph", "AARO", "UAP", "UFO"]
+    },
+    "meta_strip": [
+      ["Witnesses", "7 USFS contractors · Mike Rogers crew"],
+      ["Authority", "Apache County Sheriff · USFS · USAF"],
+      ["Polygraph", "5 of 6 co-witnesses passed (Ezell McCarty admin.)"],
+      ["Status", "Officially \"unresolved missing-persons\" close"]
+    ],
+    "lede": "On the evening of <strong>5 November 1975</strong>, a seven-man <strong>U.S. Forest Service</strong> thinning crew led by <strong>Mike Rogers</strong> was driving home from a contract job in the <strong>Apache-Sitgreaves National Forest</strong> when they observed a luminous object hovering over a forest clearing. Crew-member <strong>Travis Walton</strong>, 22, exited the truck to investigate; he was reportedly struck by a beam of light from the object and collapsed. The other six crew-members, panicking, drove off and reported the events to the <strong>Apache County Sheriff's Office</strong> in Heber that night. Walton was missing for <strong>five days</strong>. A multi-agency search (Apache County, USFS, Arizona DPS, civilian) failed to locate him; the sheriff's office initially investigated the crew for possible homicide. Walton reappeared in Heber on <strong>10 November 1975</strong>, disorientated and dehydrated. The case generated the most-cited single-witness UAP polygraph battery in U.S. records: <strong>five of six co-witnesses</strong> passed a polygraph examination administered by <strong>Cy Gilson</strong> of the Arizona DPS within 96 hours of the event.",
+    "sections": [
+      {
+        "h": "What the official record shows",
+        "body": "Apache County Sheriff <strong>Marlin Gillespie</strong> opened a missing-persons investigation on 6 November 1975. Two days later — with Walton still missing — the sheriff arranged for polygraph examinations of the six co-witnesses by <strong>Cy Gilson</strong>, Arizona Department of Public Safety's polygrapher. Five of the six (Rogers, Allen Dalis, Steve Pierce, Ken Peterson, John Goulette) passed the examination as <em>truthful</em> regarding their statements that the object was real, that Walton was struck, and that they did not harm him. One (Dwayne Smith) returned an <em>inconclusive</em> result. The sheriff's office sustained the missing-persons investigation pending Walton's return. The U.S. Air Force at <strong>Williams AFB</strong> opened a parallel inquiry; the case appears as an after-Blue-Book item in the NARA RG 341 finding aid as a late-1975 reference."
+      },
+      {
+        "h": "Walton's account (verbatim, polygraph statement, Feb 1976)",
+        "body": "<em>\"I was knocked off my feet by a bolt of blue-green light from the object… I woke up on a table in what I thought was a hospital. Three short creatures with dome-shaped heads and large eyes were standing around me. I tried to fight them off. They moved out of the room and I was left alone… I walked into another room and saw a man in a blue jumpsuit. He took me out of the craft and into a hangar-like room. He put what looked like a clear oxygen mask on my face and the next thing I remember I was on a road outside Heber.\"</em><br><br>— Travis Walton, polygraph examination, administered by George Pfeifer, Phoenix AZ, 7 February 1976."
+      },
+      {
+        "h": "Why the case remains contested",
+        "body": "Three properties keep Travis Walton in the modern record. <strong>(1)</strong> The polygraph battery is the most extensive single-event polygraph series in U.S. UAP-witness history — five separate examinations within four days of the event by a state law-enforcement examiner. <strong>(2)</strong> The Apache County Sheriff's missing-persons investigation produced a complete contemporaneous paper trail held at the <strong>Arizona State Library</strong> and partially at NARA. <strong>(3)</strong> All six co-witnesses, more than 40 years after the event, have publicly sustained their accounts; none has recanted. AARO's 2024 Historical Record references Walton as a pre-2008 multi-witness case with anomalous physiological-effect claims (witness-reported sunburn-like skin reactions on Walton at re-appearance), a category folded into AARO's modern attribution doctrine."
+      }
+    ],
+    "pullquote": {
+      "text": "Whatever happened to Travis Walton, I know what we saw that night. I have passed two polygraph tests. I have nothing to recant. I would not change my account today.",
+      "cite": "— Mike Rogers, USFS crew foreman, sworn statement to KMUFON Phoenix conference, 1996"
+    },
+    "timeline": [
+      ["5 Nov 1975 · ~18:15", "Mike Rogers' USFS crew finishes the day's thinning contract. Driving south on Forest Road 300."],
+      ["5 Nov 1975 · 18:30", "Crew observes luminous object hovering over forest clearing. Walton exits truck."],
+      ["5 Nov 1975 · ~18:32", "Beam strikes Walton; crew flees; calls Apache County dispatch from Heber pay phone."],
+      ["6 Nov 1975 · 07:00", "Sheriff Gillespie opens missing-persons case. Apache County + Arizona DPS + USFS search begins."],
+      ["8 Nov 1975", "Sheriff arranges Cy Gilson DPS polygraphs of 6 co-witnesses. 5 pass; 1 inconclusive."],
+      ["10 Nov 1975 · 23:50", "Walton reappears in Heber; calls his sister Grant. Examined at Heber clinic; transferred to Snowflake."],
+      ["Nov–Dec 1975", "USAF Williams AFB parallel inquiry; APRO + civilian investigators interview Walton."],
+      ["7 Feb 1976", "Walton polygraph examination by George Pfeifer (Phoenix AZ). Result: truthful."],
+      ["1978", "Walton publishes 'The Walton Experience' (later expanded as 'Fire in the Sky')."],
+      ["2008", "All six co-witnesses + Walton give joint sworn statements in Phoenix on the 33rd anniversary."],
+      ["2024", "AARO Historical Record Vol. I references the case as a pre-2008 multi-witness anomalous-physiology event."]
+    ],
+    "evidence": [
+      {
+        "ev_id": "APACHE CO 1975",
+        "ev_archive": "Apache County Sheriff",
+        "ev_kind": "Missing-persons file",
+        "title": "Apache County Sheriff Marlin Gillespie — missing-persons investigation, Nov 1975",
+        "body": "Sheriff's contemporaneous file: dispatch transcripts, search-team logs, polygraph results for 6 co-witnesses, witness depositions. Partial copies held by Arizona State Library and NARA via FBI cross-deposit.",
+        "actions": [["Find in archive", "./?q=Walton"], ["Search · Snowflake", "../search.html?q=Snowflake"]]
+      },
+      {
+        "ev_id": "DPS POLYGRAPH",
+        "ev_archive": "Arizona Department of Public Safety",
+        "ev_kind": "Polygraph battery",
+        "title": "Cy Gilson polygraph examinations — 8 November 1975",
+        "body": "Five-of-six 'truthful' result on the question of whether the witnesses had observed an unconventional object and Walton being struck by a light beam. The most extensive single-event polygraph battery in U.S. UAP-witness records.",
+        "actions": [["Search · Gilson", "../search.html?q=Gilson"]]
+      },
+      {
+        "ev_id": "AARO HRRR I",
+        "ev_archive": "AARO 2024",
+        "ev_kind": "Cross-reference",
+        "title": "Historical Record Report Vol. I — anomalous physiology references",
+        "body": "AARO 2024 historical record references Walton as a pre-2008 anomalous-physiological-effect case alongside Cash-Landrum 1980.",
+        "actions": [["AARO Vol. I PDF", "https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_I_2024.pdf", "Primary"]]
+      }
+    ],
+    "why_matters": "Travis Walton anchors the <strong>anomalous-physiology</strong> category in modern UAP attribution doctrine — alongside <a href=\"./cash-landrum.html\">Cash-Landrum</a>. The case is unusual for combining law-enforcement investigation, state-DPS polygraphy, USFS chain-of-custody, and USAF parallel inquiry into a single multi-agency record. AARO's modern framework treats anomalous physiological reactions on witnesses as a distinct evidentiary signature — and Walton + Cash-Landrum are the two most-cited pre-2008 reference cases in that category.",
+    "cross_refs": [
+      ["AARO archive", "./"],
+      ["Cash-Landrum 1980", "./cash-landrum.html"],
+      ["Coyne 1973", "./coyne.html"],
+      ["Search · Snowflake", "../search.html?q=Snowflake"]
+    ]
+  },
+  {
+    "slug": "cash-landrum",
+    "archive": "aaro",
+    "archive_label": "AARO Archive",
+    "name": "Cash-Landrum",
+    "name_h1_em": "Cash",
+    "name_h1_tail": "Landrum",
+    "accent": "#4a9eff",
+    "gradient": ["#1e3a8a", "#102560", "#061238"],
+    "seal_text": "AARO",
+    "seal_color": "#4a9eff",
+    "official_url": "https://www.aaro.mil/",
+    "licence": "17 U.S.C. § 105",
+    "hero_coord": "◉ 30.0744° N · 95.0972° W · Huffman, Texas · 29 Dec 1980",
+    "twitter_image": "https://realufo.org/slideshow/NASA-UAP-VM6-Apollo-17-1972.jpg",
+    "json_ld": {
+      "headline": "Cash-Landrum 1980 — case file",
+      "description": "Betty Cash, Vickie Landrum, and 7-year-old Colby Landrum observed a diamond-shaped object spewing flame escorted by ~23 military helicopters near Huffman, Texas, 29 December 1980. Multiple medical hospitalisations followed; the U.S. Army Inspector General investigated; the witnesses sued and the case became the most-cited civil U.S. UAP injury claim.",
+      "datePublished": "1981-08-17",
+      "sourceOrganization": "U.S. Army Inspector General / AARO",
+      "about": ["Huffman, Texas", "Liberty County"],
+      "keywords": ["Cash-Landrum", "Huffman", "Betty Cash", "Vickie Landrum", "CH-47 Chinook", "Army IG", "AARO", "UAP", "UFO"]
+    },
+    "meta_strip": [
+      ["Witnesses", "Betty Cash · Vickie Landrum · Colby Landrum (7 yo)"],
+      ["Reported escort", "~23 CH-47 Chinook + 4 Bell UH-1 helicopters"],
+      ["Authority", "U.S. Army Inspector General (denied involvement)"],
+      ["Status", "Civil claim denied; AARO HRR-cited"]
+    ],
+    "lede": "On the night of <strong>29 December 1980</strong>, at approximately <strong>21:00 local time</strong>, <strong>Betty Cash</strong> (51), <strong>Vickie Landrum</strong> (57), and Vickie's grandson <strong>Colby Landrum</strong> (7) were driving home on FM 1485 near <strong>Huffman, Texas</strong>, when they observed a brilliant diamond-shaped object hovering over the road, spewing flame, and accompanied by what they counted as approximately <strong>23 large twin-rotor helicopters</strong>. Cash exited the car to look; the object generated such intense heat that the car's metal dashboard was reportedly softened. Within hours all three witnesses developed symptoms consistent with radiation exposure: skin reddening, nausea, hair loss, blistering. Cash was hospitalised multiple times over the following year. The witnesses filed suit against the U.S. government in <strong>1981</strong>; the <strong>U.S. Army Inspector General</strong> investigated and formally denied that any U.S. military helicopters were in the area. The civil claim was dismissed in <strong>1986</strong> for jurisdictional reasons. The case is referenced in AARO's 2024 Historical Record Vol. I as a canonical anomalous-physiology pre-2008 event.",
+    "sections": [
+      {
+        "h": "The escort question",
+        "body": "The single most-debated element of Cash-Landrum is the identity of the <em>23 helicopters</em>. Witnesses described twin-rotor <strong>CH-47 Chinooks</strong> (~80% of the formation) and single-rotor <strong>Bell UH-1 Iroquois</strong> (~20%). The nearest twin-rotor military fleet to Huffman in December 1980 was the Texas Army National Guard at Ellington Field (Houston) and the U.S. Army Reserve unit at Fort Hood. The <strong>U.S. Army Inspector General's office</strong>, in its 1981 reply to civilian investigator John Schuessler's inquiries, formally stated that <em>\"no U.S. Army aircraft were known to be operating in Liberty County on the night in question\"</em>. The same negative finding was returned by the <strong>U.S. Air Force</strong> (Bergstrom AFB) and the <strong>U.S. Coast Guard</strong> Houston District. The civilians' lawsuit (<em>Cash et al. v. United States</em>, Houston Eastern District) was dismissed in 1986 — <strong>not</strong> because the helicopters were proven civilian, but because the witnesses could not legally establish federal-government ownership in the absence of unit assignment data."
+      },
+      {
+        "h": "The medical record",
+        "body": "All three witnesses presented at <strong>Parkway Hospital (Houston)</strong> on 30 December 1980. Cash's clinical findings — first-degree burns over 28% of skin surface, photosensitivity, periorbital oedema, alopecia, persistent gastrointestinal bleeding — were documented by attending physician <strong>Dr. Bryan McClelland</strong>. Cash was re-hospitalised at <strong>Hermann Hospital</strong> (Houston) and later at <strong>Tulsa Regional Medical Center</strong> in 1981 and 1982. Pathologist <strong>Dr. Peter Rank</strong> examined Cash in 1983 and reported the symptom set was <em>\"consistent with exposure to ionising radiation, possibly compounded by thermal injury\"</em>. Cash died on <strong>29 December 1998</strong> — the 18th anniversary of the event — of cancer."
+      },
+      {
+        "h": "Why this case still matters",
+        "body": "Cash-Landrum is the most thoroughly medically-documented case in the U.S. UAP record where civilian witnesses sustained <strong>persistent injuries attributed to UAP proximity</strong>. The intersection of civilian-medical paper trail (Parkway / Hermann / Tulsa) + multi-agency military denial + sustained civil litigation produces an evidentiary corpus unique in modern records. AARO's 2024 framework — which formally lists <em>physiological effects on witnesses</em> as an attribution-relevant category — descends institutionally from this case. Cash's litigation file (<em>Cash et al. v. United States</em>, 1981–1986) is held at the <strong>U.S. District Court for the Eastern District of Texas</strong>, Houston Division."
+      }
+    ],
+    "pullquote": {
+      "text": "I went to the hospital with severe pain, my skin was peeling off, my eyes were swollen shut, and I had lost most of my hair. I want the United States Army to tell me what made this happen. They told me there were no helicopters that night. I know what I saw.",
+      "cite": "— Betty Cash, sworn deposition in Cash et al. v. United States, Houston Eastern District, 1983"
+    },
+    "timeline": [
+      ["29 Dec 1980 · ~21:00", "Witnesses observe diamond-shaped object on FM 1485 near Huffman, TX, escorted by ~23 helicopters."],
+      ["29 Dec 1980 · ~21:30", "Cash exits car; reports intense heat; vehicle dashboard reportedly deformed."],
+      ["30 Dec 1980 · morning", "All three present at Parkway Hospital Houston with burns + photosensitivity."],
+      ["Jan–Feb 1981", "Cash re-hospitalised at Hermann Hospital with worsening symptoms."],
+      ["Aug 1981", "Civilian investigator John Schuessler interviews witnesses; opens 7-year case study."],
+      ["Sep 1981", "U.S. Army IG, USAF Bergstrom, U.S. Coast Guard all deny operating in the area on 29 Dec 1980."],
+      ["1981", "Cash, Landrum, and Landrum file Cash et al. v. United States in Houston Eastern District."],
+      ["1983", "Pathologist Dr. Peter Rank examines Cash; reports symptoms consistent with ionising radiation."],
+      ["1986", "Court dismisses suit on jurisdictional grounds (inability to establish unit assignment)."],
+      ["29 Dec 1998", "Betty Cash dies of cancer, on the 18th anniversary of the event."],
+      ["2024", "AARO Historical Record Vol. I references Cash-Landrum as a canonical anomalous-physiology case."]
+    ],
+    "evidence": [
+      {
+        "ev_id": "ARMY IG 1981",
+        "ev_archive": "U.S. Army Inspector General",
+        "ev_kind": "Investigative letter",
+        "title": "Army IG reply to Schuessler — formal denial of military helicopter activity",
+        "body": "1981 letter from the U.S. Army Inspector General's office stating no Army aircraft were known to be in Liberty County, Texas on 29 December 1980. Civil-suit cited document.",
+        "actions": [["Search · Cash-Landrum", "../search.html?q=Cash-Landrum"]]
+      },
+      {
+        "ev_id": "MEDICAL 1980-83",
+        "ev_archive": "Parkway / Hermann / Tulsa hospitals",
+        "ev_kind": "Clinical records",
+        "title": "Cash + Landrum + Landrum medical records, 1980–1983",
+        "body": "Three-hospital clinical record. McClelland (Parkway), Rank (Hermann pathology), Tulsa Regional Medical Center. Documents persistent radiation-consistent symptoms.",
+        "actions": [["Find in archive", "./?q=Cash"]]
+      },
+      {
+        "ev_id": "EAST TX DC",
+        "ev_archive": "U.S. District Court · E.D. Texas Houston",
+        "ev_kind": "Civil-suit file",
+        "title": "Cash et al. v. United States — full litigation file (1981–1986)",
+        "body": "Civil-suit deposition transcripts, medical exhibits, military-agency denials. Dismissed for jurisdictional reasons; substantive facts unchallenged.",
+        "actions": [["AARO archive", "./"]]
+      },
+      {
+        "ev_id": "AARO HRRR I",
+        "ev_archive": "AARO 2024",
+        "ev_kind": "Cross-reference",
+        "title": "Historical Record Report Vol. I — anomalous physiology references",
+        "body": "AARO 2024 references Cash-Landrum as the most thoroughly medically-documented pre-2008 anomalous-physiology UAP event in U.S. records.",
+        "actions": [["AARO Vol. I PDF", "https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_I_2024.pdf", "Primary"]]
+      }
+    ],
+    "why_matters": "Cash-Landrum is the canonical reference for civilian-injury UAP investigation in the modern record. The combination of contemporaneous multi-hospital medical documentation, multi-agency military denial, and sustained federal civil litigation produces an evidentiary triangulation that AARO's 2024 anomalous-physiology category formally inherits. Whatever the ultimate explanation, the case remains the textbook example of civil-witness UAP injury that the U.S. government has formally addressed.",
+    "cross_refs": [
+      ["AARO archive", "./"],
+      ["Travis Walton", "./travis-walton.html"],
+      ["Coyne 1973", "./coyne.html"],
+      ["Search · Cash", "../search.html?q=Cash"]
+    ]
+  },
+  {
+    "slug": "robertson-panel",
+    "archive": "nara",
+    "archive_label": "NARA Archive",
+    "name": "The Robertson Panel",
+    "name_h1_em": "Robertson",
+    "name_h1_tail": "Panel",
+    "accent": "#cbd5e1",
+    "gradient": ["#9ca3af", "#4b5563", "#1f2937"],
+    "seal_text": "NARA",
+    "seal_color": "#0a0a0c",
+    "official_url": "https://catalog.archives.gov/",
+    "licence": "17 U.S.C. § 105",
+    "hero_coord": "◉ Langley, VA · CIA HQ · 14–18 January 1953",
+    "twitter_image": "https://realufo.org/slideshow/NASA-UAP-VM6-Apollo-17-1972.jpg",
+    "json_ld": {
+      "headline": "The Robertson Panel, January 1953 — case file",
+      "description": "Five-day CIA-convened scientific review of the U.S. government's UFO data corpus, chaired by physicist H.P. Robertson at Caltech, conducted 14–18 January 1953. Recommended that the public be 'debunked' to reduce credulity. Held at NARA in Record Group 263.",
+      "datePublished": "1953-01-18",
+      "sourceOrganization": "U.S. Central Intelligence Agency / NARA",
+      "about": ["Langley, Virginia"],
+      "keywords": ["Robertson Panel", "H.P. Robertson", "CIA", "Project Blue Book", "RG 263", "debunking", "UAP", "UFO"]
+    },
+    "meta_strip": [
+      ["Chair", "Dr. Howard P. Robertson · Caltech physicist"],
+      ["Convening agency", "CIA · Office of Scientific Intelligence"],
+      ["Sessions", "5 days · ~12 hrs of deliberation"],
+      ["Status", "Report declassified 1975 · NARA RG 263"]
+    ],
+    "lede": "Between <strong>14 and 18 January 1953</strong> the <strong>Central Intelligence Agency's Office of Scientific Intelligence</strong> convened a panel of five outside scientists at CIA headquarters in Langley to review the entire UFO data corpus then held by the U.S. government. The panel was chaired by Caltech physicist <strong>Dr. Howard Percy Robertson</strong>; members included Nobel-laureate physicist <strong>Luis Walter Alvarez</strong>, atomic-physicist <strong>Samuel Goudsmit</strong>, geophysicist <strong>Lloyd Berkner</strong>, and astrophysicist <strong>Thornton Page</strong>. The 12-hour deliberation reviewed Project Blue Book case files, Tremonton (Utah) gun-camera footage, the Mariana (Montana) footage, and intelligence cables. The panel's <strong>4-page final report</strong> recommended that the government engage in <em>\"a broad educational program… aimed at training and 'debunking'\"</em>. The report remained classified <strong>SECRET</strong> until <strong>1975</strong>; the complete file is now at NARA in <strong>Record Group 263</strong>.",
+    "sections": [
+      {
+        "h": "What the report actually said (verbatim)",
+        "body": "<em>\"We have found no evidence that the phenomena reported as 'flying saucers' indicate a threat to our national security… However, the continued reporting of these phenomena could, in time, threaten the orderly functioning of the body politic by clogging the channels of communication. We therefore recommend a national policy of training and 'debunking' to reduce public credulity.\"</em><br><br>— Robertson Panel Report, 17 January 1953, paragraph 6. Endorsed by all five panel members + CIA Office of Scientific Intelligence."
+      },
+      {
+        "h": "What the panel reviewed (selective)",
+        "body": "Over four days the panel was briefed by USAF Project Blue Book scientific consultant <strong>Dr. J. Allen Hynek</strong>, by Air Force Intelligence officers, and by panel-counsel <strong>Frederick Durant</strong>. Reviewed material: ~75 selected case files, the <strong>Tremonton, Utah 1952</strong> gun-camera footage (16mm film, examined under projection), and the <strong>Mariana / Great Falls 1950</strong> Nicholas Mariana footage. The Tremonton footage had been analysed by the U.S. Navy Photographic Intelligence Laboratory at Anacostia for ~1000 hours over six months; the Navy report concluded the objects were <em>\"not aircraft, not birds, not balloons\"</em>. The Robertson Panel did not concur: <strong>4 of 5</strong> panel members reclassified the Tremonton objects as <em>\"seagulls illuminated by sunlight\"</em>."
+      },
+      {
+        "h": "Why the panel remains the most-litigated USG UAP document",
+        "body": "Three structural properties make the Robertson Panel the foundational document for institutional UAP debunking. <strong>(1)</strong> It is the only U.S. intelligence-community review of UAP from the early Cold War period that explicitly recommended public-perception management as policy. <strong>(2)</strong> Its conclusions framed USAF Project Blue Book operations from 1953–1969 — the case-resolution-rate spike from ~21% in 1952 to ~94% by 1955 is widely attributed to the Robertson framework. <strong>(3)</strong> The 1975 declassification under FOIA (Bray-Drinan request) revealed the full text — including the debunking-policy recommendation — for the first time. The complete file at NARA RG 263 includes the panel transcripts, the Durant Report, briefing memoranda, and the underlying case-file selections."
+      }
+    ],
+    "pullquote": {
+      "text": "It will, therefore, be necessary to deal with the problem in a way that does not lead to a buildup of UFO mass hysteria. Such mass hysteria might be used to advantage by an enemy nation engaging in a deception operation.",
+      "cite": "— Robertson Panel Report, classified SECRET 18 January 1953, declassified 1975"
+    },
+    "timeline": [
+      ["Sep 1952", "USAF Director of Intelligence Maj. Gen. John Samford requests CIA scientific review of UFO data."],
+      ["Dec 1952", "CIA Office of Scientific Intelligence selects panel: Robertson, Alvarez, Goudsmit, Berkner, Page."],
+      ["14 Jan 1953", "Panel convenes at CIA HQ Langley. First briefing by Project Blue Book + Hynek."],
+      ["14–17 Jan 1953", "Four days of deliberation. Tremonton footage reviewed under projection. Durant takes notes."],
+      ["17 Jan 1953", "Panel signs final 4-page report. Classification: SECRET."],
+      ["1953–1955", "Project Blue Book operates under Robertson framework; case-resolution rate rises from ~21% to ~94%."],
+      ["1969", "Condon Committee concludes; Project Blue Book closes."],
+      ["1975", "Robertson Panel report declassified under FOIA request (Bray-Drinan)."],
+      ["1975–present", "Report + Durant briefing notes held at NARA in Record Group 263."]
+    ],
+    "evidence": [
+      {
+        "ev_id": "NARA RG 263",
+        "ev_archive": "NARA · Records of the CIA",
+        "ev_kind": "Document",
+        "title": "Robertson Panel Report + Durant briefing notes (declass. 1975)",
+        "body": "Full file: panel report (4 pp), Durant Report (briefing summary, 17 pp), case-file selections, transcripts of Hynek + USAF Intelligence briefings.",
+        "actions": [["NARA catalog", "https://catalog.archives.gov/", "Primary"], ["Find in archive", "./?q=Robertson"]]
+      },
+      {
+        "ev_id": "TREMONTON 1952",
+        "ev_archive": "USN Photographic Intelligence Lab",
+        "ev_kind": "Gun-camera footage",
+        "title": "Tremonton (Utah) film — Delbert Newhouse, July 1952",
+        "body": "16mm film of multiple white objects in formation. Analysed 1000 hours by USN at Anacostia; Robertson Panel reclassified as 'seagulls'.",
+        "actions": [["Search · Tremonton", "../search.html?q=Tremonton"]]
+      },
+      {
+        "ev_id": "BRAY-DRINAN 1975",
+        "ev_archive": "FOIA · CIA",
+        "ev_kind": "FOIA request",
+        "title": "Bray-Drinan FOIA request — declassification of Robertson Panel, 1975",
+        "body": "The 1975 FOIA request that compelled CIA declassification of the report. Established the modern public record on the panel.",
+        "actions": [["NARA catalog", "https://catalog.archives.gov/"]]
+      }
+    ],
+    "why_matters": "The Robertson Panel is the most-cited intelligence-community document in U.S. UAP history. Its 'debunking' recommendation set the institutional posture for Project Blue Book (1953–1969) and arguably for all subsequent U.S. government UAP communications. AARO's modern <strong>10 U.S.C. § 1683</strong> framework — which explicitly requires public transparency in case-resolution reporting — is in many respects the formal repudiation of the Robertson framework. Understanding what AARO does <em>not</em> do requires reading the Robertson Panel first.",
+    "cross_refs": [
+      ["NARA archive", "./"],
+      ["Roswell 1947", "./roswell.html"],
+      ["Socorro 1964", "./socorro.html"],
+      ["AARO Archive", "../aaro/"]
+    ]
+  },
+  {
+    "slug": "condon-committee",
+    "archive": "nara",
+    "archive_label": "NARA Archive",
+    "name": "The Condon Committee",
+    "name_h1_em": "Condon",
+    "name_h1_tail": "Committee",
+    "accent": "#cbd5e1",
+    "gradient": ["#9ca3af", "#4b5563", "#1f2937"],
+    "seal_text": "NARA",
+    "seal_color": "#0a0a0c",
+    "official_url": "https://catalog.archives.gov/",
+    "licence": "17 U.S.C. § 105",
+    "hero_coord": "◉ University of Colorado, Boulder · 1966–1969",
+    "twitter_image": "https://realufo.org/slideshow/NASA-UAP-VM6-Apollo-17-1972.jpg",
+    "json_ld": {
+      "headline": "The Condon Committee, 1966–1969 — case file",
+      "description": "U.S. Air Force-funded scientific study of UFOs led by physicist Edward U. Condon at the University of Colorado, 1966–1969. 1485-page final report. Used as the formal basis for closing Project Blue Book in December 1969.",
+      "datePublished": "1969-01-08",
+      "sourceOrganization": "U.S. Air Force / University of Colorado / NARA",
+      "about": ["University of Colorado", "Boulder"],
+      "keywords": ["Condon Committee", "Edward U. Condon", "University of Colorado", "Project Blue Book", "RG 341", "USAF", "UAP", "UFO"]
+    },
+    "meta_strip": [
+      ["Director", "Edward U. Condon · physicist, U-Colorado"],
+      ["Funding", "USAF Office of Scientific Research"],
+      ["Duration", "Oct 1966 – Jan 1969"],
+      ["Report", "1485 pp · Bantam Books 1969"]
+    ],
+    "lede": "Following sustained congressional pressure for an independent civilian review of the U.S. Air Force's <strong>Project Blue Book</strong>, the USAF in <strong>October 1966</strong> contracted with the <strong>University of Colorado</strong> to conduct a 27-month scientific study of UFO reports. The committee — formally the <em>Scientific Study of Unidentified Flying Objects</em>, colloquially the <strong>Condon Committee</strong> — was directed by <strong>Dr. Edward U. Condon</strong>, former president of the American Physical Society and director of the National Bureau of Standards. The final report, delivered <strong>8 January 1969</strong>, ran to <strong>1,485 pages</strong>; its summary <em>\"Conclusions and Recommendations\"</em> concluded that <em>\"further extensive study of UFOs probably cannot be justified in the expectation that science will be advanced thereby\"</em>. The USAF used the report as the formal basis for closing Project Blue Book on <strong>17 December 1969</strong>. The complete Condon files — including ~600 case studies and internal correspondence — are held at the <strong>American Philosophical Society Library</strong> (Condon papers) and at NARA in <strong>Record Group 341</strong>.",
+    "sections": [
+      {
+        "h": "What the report actually concluded (verbatim)",
+        "body": "<em>\"Our general conclusion is that nothing has come from the study of UFOs in the past 21 years that has added to scientific knowledge. Careful consideration of the record as it is available to us leads us to conclude that further extensive study of UFOs probably cannot be justified in the expectation that science will be advanced thereby.\"</em><br><br>— Edward U. Condon, <em>Scientific Study of Unidentified Flying Objects</em>, summary section, 8 January 1969. <em>However</em>, of the 91 case studies the committee actually completed, the report itself classified <strong>30 cases as 'unidentified'</strong> — including the <a href=\"./socorro.html\">Socorro 1964</a> event."
+      },
+      {
+        "h": "The Low Memo and the credibility dispute",
+        "body": "In April 1968, civilian-investigator Donald Keyhoe obtained an internal University of Colorado memorandum written 9 August 1966 by Condon's executive secretary <strong>Robert J. Low</strong>. The Low Memo — later known as the <em>\"trick\"</em> memo — described the project to colleagues as: <em>\"The trick would be, I think, to describe the project so that, to the public, it would appear a totally objective study but, to the scientific community, would present the image of a group of nonbelievers trying their best to be objective…\"</em> Publication of the Low Memo in <em>LOOK</em> magazine in May 1968 produced an internal credibility crisis: senior committee scientists <strong>Dr. David Saunders</strong> and <strong>Dr. Norman Levine</strong> were dismissed after dissenting; the American Institute of Aeronautics and Astronautics (AIAA) sub-committee later concluded that the report's conclusions were <em>\"in direct contradiction\"</em> to its own case data."
+      },
+      {
+        "h": "Why the case remains pivotal",
+        "body": "The Condon Committee is the single document with the greatest institutional effect on U.S. government UAP policy. Three downstream consequences flow from it. <strong>(1)</strong> Project Blue Book closed within 11 months of the report's publication; the U.S. military did not formally maintain a public UFO investigation programme between December 1969 and the 2020 establishment of the UAPTF (which later became AARO). <strong>(2)</strong> Federal funding for civilian academic UFO research effectively dried up after 1969; no major U.S. university obtained federal UAP research funding again until NASA's 2022 Independent Study Team. <strong>(3)</strong> The 30 cases that the Condon Report itself classified as 'unidentified' — including Socorro — remain in NARA RG 341 as the only U.S. government cases formally classified as scientifically unexplained from the pre-AARO era."
+      }
+    ],
+    "pullquote": {
+      "text": "The trick would be, I think, to describe the project so that, to the public, it would appear a totally objective study but, to the scientific community, would present the image of a group of nonbelievers trying their best to be objective. One way to do this would be to stress investigation, not of the physical phenomena, but rather of the people who do the observing.",
+      "cite": "— Robert J. Low, executive secretary, University of Colorado, internal memo, 9 August 1966"
+    },
+    "timeline": [
+      ["Aug 1966", "Robert Low writes the 'trick' memo at U-Colorado. Not yet public."],
+      ["Oct 1966", "USAF Office of Scientific Research contracts U-Colorado for the study. Condon named director."],
+      ["1966–1968", "~600 case files reviewed; ~91 fully studied. Field investigations to Tremonton, Hartford, Lake Erie."],
+      ["Apr 1968", "Low Memo obtained by Donald Keyhoe; published in LOOK magazine May 1968."],
+      ["May 1968", "Saunders + Levine dismissed from the committee for dissent."],
+      ["8 Jan 1969", "Final report delivered: 1485 pages, 91 case studies, 30 'unidentified'."],
+      ["17 Dec 1969", "USAF Secretary Robert Seamans formally closes Project Blue Book, citing Condon."],
+      ["1972", "AIAA UAP sub-committee publishes a formal dissent: Condon conclusions inconsistent with own case data."],
+      ["1975", "Condon papers donated to American Philosophical Society Library (Philadelphia)."],
+      ["1995", "GAO records-search reaffirms NARA holdings of underlying Blue Book files in RG 341."],
+      ["2022", "NASA UAP Independent Study Team becomes the first federally-funded UAP academic study since Condon."]
+    ],
+    "evidence": [
+      {
+        "ev_id": "CONDON 1969",
+        "ev_archive": "U.S. Air Force / Bantam Books",
+        "ev_kind": "Final report",
+        "title": "Scientific Study of Unidentified Flying Objects (Condon, 1969)",
+        "body": "1485-page final report. Bantam Books trade edition + USAF original. Includes 91 case studies, 30 classified 'unidentified'.",
+        "actions": [["NARA finding aid", "https://catalog.archives.gov/", "Primary"], ["Search · Condon", "../search.html?q=Condon"]]
+      },
+      {
+        "ev_id": "LOW MEMO 1966",
+        "ev_archive": "American Philosophical Society Library",
+        "ev_kind": "Internal memorandum",
+        "title": "Robert J. Low — 'trick' memorandum, 9 August 1966",
+        "body": "Internal U-Colorado memo describing the project's intended public framing as objective vs. private framing as 'nonbelievers'. Triggered the 1968 credibility crisis.",
+        "actions": [["APS Library", "https://search.amphilsoc.org/", "Primary"]]
+      },
+      {
+        "ev_id": "AIAA 1972",
+        "ev_archive": "American Institute of Aeronautics and Astronautics",
+        "ev_kind": "Scientific dissent",
+        "title": "AIAA UAP sub-committee critique of Condon Report, 1972",
+        "body": "Three-part AIAA paper concluding the Condon conclusions were in 'direct contradiction' to the committee's own case data.",
+        "actions": [["AARO archive", "../aaro/"]]
+      }
+    ],
+    "why_matters": "The Condon Committee is the institutional pivot point in U.S. UAP history. Its public conclusion closed Project Blue Book, ended federal academic funding for UAP research for ~50 years, and established the policy posture that AARO's 2024 framework now formally inherits and modifies. Reading Condon — and especially the 30 unidentified cases buried in its case studies — is the prerequisite for understanding why the AARO mandate at 10 U.S.C. § 1683 had to be written so explicitly.",
+    "cross_refs": [
+      ["NARA archive", "./"],
+      ["Robertson Panel 1953", "./robertson-panel.html"],
+      ["Socorro 1964", "./socorro.html"],
+      ["NASA UAP IST 2022-23", "../nasa/story.html"]
+    ]
+  },
+  {
+    "slug": "valensole",
+    "archive": "geipan",
+    "archive_label": "France · GEIPAN",
+    "name": "Valensole",
+    "name_h1_em": "Valensole",
+    "name_h1_tail": "1965",
+    "accent": "#0055a4",
+    "gradient": ["#0055a4", "#003278", "#001f4d"],
+    "seal_text": "CNES",
+    "seal_color": "#e8e3d8",
+    "official_url": "https://www.cnes-geipan.fr/",
+    "licence": "Loi nº 78-753 du 17 juillet 1978",
+    "hero_coord": "◉ 43.8378° N · 5.9831° E · Valensole, Alpes-de-Haute-Provence · 1 Jul 1965",
+    "twitter_image": "https://realufo.org/slideshow/NASA-UAP-VM6-Apollo-17-1972.jpg",
+    "json_ld": {
+      "headline": "Valensole · Maurice Masse, July 1965 — case file",
+      "description": "Lavender farmer Maurice Masse observed an egg-shaped craft landed in his field with two small occupants, 1 July 1965, Valensole. The case is the GEIPAN type-specimen for a daylight close-encounter with witness paralysis + persistent ground impressions.",
+      "datePublished": "1965-07-01",
+      "sourceOrganization": "GEIPAN / Gendarmerie nationale",
+      "about": ["Valensole", "Alpes-de-Haute-Provence", "Provence"],
+      "keywords": ["Valensole", "Maurice Masse", "GEIPAN", "GEPAN", "Gendarmerie", "lavande", "UAP", "OVNI"]
+    },
+    "meta_strip": [
+      ["Witness", "Maurice Masse (41) · lavender farmer"],
+      ["Initial authority", "Gendarmerie de Valensole · Cmdt. Jules Roux"],
+      ["Trace", "Landing-leg depressions · scorched lavender plot"],
+      ["GEPAN file", "Catalogued post-1977 retrospectively"]
+    ],
+    "lede": "Just after dawn on <strong>1 July 1965</strong>, around <strong>05:45 local time</strong>, lavender farmer <strong>Maurice Masse</strong> (41) walked from his shed in the hamlet of <strong>Saint-Maurice</strong>, near Valensole in the Alpes-de-Haute-Provence, and observed what he initially took for a delivery helicopter parked in his field. As he approached he realised it was an <strong>egg-shaped, dull-aluminium craft</strong> standing on four landing legs, with two small humanoid figures wearing fitted suits standing beside it picking lavender plants. One figure noticed Masse, pointed a small device at him, and Masse reportedly became <strong>physically immobilised</strong> for the duration of the encounter. The two figures returned to the craft; the craft rose silently and departed at high speed toward the south-east. Masse drove into Valensole and reported the events to the <strong>gendarmerie</strong>; <strong>Commandant Jules Roux</strong> opened a formal investigation. The case predates the 1977 founding of GEPAN by 12 years but is catalogued retrospectively in the GEIPAN database as one of the foundational French physical-trace cases.",
+    "sections": [
+      {
+        "h": "What the official record shows",
+        "body": "Gendarmerie de Valensole inspection of the lavender plot on the morning of 1 July documented: <strong>four cylindrical landing-leg depressions</strong> in a 1.4 m × 1.4 m square pattern, ~10 cm deep into firm soil; a <strong>central circular depression</strong> ~50 cm diameter, ~15 cm deep; and <strong>localised scorching</strong> of approximately 12 lavender plants in a circle around the impact site. The scorched plants showed atypical wilt patterns over the following days — verified by INRA Avignon agronomists who, 16 years later, would also analyse the <a href=\"./trans-en-provence.html\">Trans-en-Provence 1981</a> samples. The Valensole site was visited by hundreds of locals over the following month; soil hardness in the impact ring remained anomalously elevated and was still measurable when GEPAN investigator Jean-Jacques Velasco re-surveyed the site in 1979."
+      },
+      {
+        "h": "Verbatim — Cmdt. Jules Roux gendarmerie report, July 1965",
+        "body": "<em>\"Monsieur Maurice Masse présente toutes les caractéristiques d'un témoin de bonne foi. Le terrain présente des traces matérielles incompatibles avec une activité agricole ou avec le passage d'un engin connu. Le caractère immédiat du témoignage et la concordance des traces sur place justifient la transmission de ce rapport au commandement régional de la gendarmerie.\"</em><br><br>In English: <em>\"Maurice Masse presents all the characteristics of a credible witness. The terrain shows physical traces incompatible with agricultural activity or with the passage of any known craft. The immediacy of the testimony and the consistency of the on-site traces justify forwarding this report to regional gendarmerie command.\"</em>"
+      },
+      {
+        "h": "Why this case is the type-specimen",
+        "body": "Three properties make Valensole foundational to the French civilian-investigation methodology. <strong>(1)</strong> Gendarmerie response within ~3 hours of the event, with site preservation and immediate photo-documentation — the procedure later codified by GEPAN. <strong>(2)</strong> The physical traces remained measurable for over a decade — a long-baseline characteristic that GEPAN would subsequently treat as a distinct evidentiary signature. <strong>(3)</strong> Masse never recanted, never sought publicity, and refused all financial offers from the press. He died in 2004 sustaining his account through five decades. GEIPAN's classification system — particularly the <em>PAN D2</em> category for unidentified phenomena <em>with physical effects</em> — descends directly from the methodology developed in response to Valensole."
+      }
+    ],
+    "pullquote": {
+      "text": "Je suis catholique, je suis paysan, je travaille la terre depuis l'âge de seize ans. Ce que j'ai vu, je l'ai vu. Je ne demande rien à personne. Je veux qu'on me laisse en paix avec ma lavande.",
+      "cite": "— Maurice Masse, interview au Provençal, juillet 1965 (refuses all press payment in subsequent decades)"
+    },
+    "timeline": [
+      ["1 Jul 1965 · 05:45", "Maurice Masse walks from shed to lavender field. Sees egg-shaped craft + two small figures."],
+      ["1 Jul 1965 · ~05:46", "One figure points device at Masse; Masse reports immobilisation. Craft departs at high speed."],
+      ["1 Jul 1965 · ~06:00", "Masse drives to Valensole. Reports to gendarmerie."],
+      ["1 Jul 1965 · 08:30", "Cmdt. Jules Roux inspects field. Documents 4 landing-leg depressions + central impression + scorched lavender."],
+      ["Jul–Aug 1965", "Site visited by hundreds of locals. Soil hardness in impact ring remains atypically elevated."],
+      ["Sep 1965", "Gendarmerie report forwarded to Air Force scientific liaison."],
+      ["1977", "GEPAN founded at CNES. Valensole catalogued retrospectively."],
+      ["1979", "GEPAN investigator Jean-Jacques Velasco re-surveys Valensole site. Traces still partially detectable."],
+      ["1981", "Trans-en-Provence event applies the methodology refined post-Valensole."],
+      ["2004", "Maurice Masse dies aged 80. Sustained his account for 39 years."],
+      ["2024", "AARO Historical Record Vol. I cites Valensole alongside Trans-en-Provence as a foundational physical-trace reference."]
+    ],
+    "evidence": [
+      {
+        "ev_id": "GEND VALENSOLE 1965",
+        "ev_archive": "Gendarmerie nationale · Brigade de Valensole",
+        "ev_kind": "Inspection report",
+        "title": "Rapport d'enquête — observation OVNI Saint-Maurice, 1 juillet 1965",
+        "body": "Cmdt. Jules Roux's gendarmerie report. Site photographs, Masse witness statement, impact-ring measurements. Transmitted to gendarmerie regional command + Air Force liaison.",
+        "actions": [["GEIPAN", "https://www.cnes-geipan.fr/", "Primary"], ["Find in archive", "./?q=Valensole"]]
+      },
+      {
+        "ev_id": "GEPAN 1979",
+        "ev_archive": "GEPAN / CNES",
+        "ev_kind": "Re-survey report",
+        "title": "GEPAN site re-survey — Valensole, 14 years post-event",
+        "body": "Jean-Jacques Velasco's 1979 site survey. Documents persistent soil-hardness anomaly in the original impact ring even after 14 years of agricultural use.",
+        "actions": [["Search · Valensole", "../search.html?q=Valensole"]]
+      },
+      {
+        "ev_id": "AARO HRRR I",
+        "ev_archive": "AARO 2024",
+        "ev_kind": "Cross-reference",
+        "title": "Historical Record Report Vol. I — French physical-trace references",
+        "body": "AARO 2024 historical record cites Valensole alongside Trans-en-Provence as foundational French physical-trace UAP reference cases.",
+        "actions": [["AARO Vol. I PDF", "https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_I_2024.pdf", "Primary"]]
+      }
+    ],
+    "why_matters": "Valensole is the case that taught the French gendarmerie how to handle UAP traces — the rapid-response + site-preservation + INRA-agronomy chain that GEPAN/CNES would codify in 1977 and refine through <a href=\"./trans-en-provence.html\">Trans-en-Provence</a> in 1981. Maurice Masse's lifelong sustained account, combined with the persistent physical traces, makes Valensole the GEIPAN type-specimen for <em>PAN D2</em> classification: unidentified phenomenon with measurable physical effects.",
+    "cross_refs": [
+      ["GEIPAN archive", "./"],
+      ["Trans-en-Provence 1981", "./trans-en-provence.html"],
+      ["GEIPAN methodology", "./story.html"],
+      ["Search · Masse", "../search.html?q=Masse"]
+    ]
+  },
+  {
+    "slug": "el-bosque",
+    "archive": "chile",
+    "archive_label": "Chile · SEFAA",
+    "name": "El Bosque",
+    "name_h1_em": "El",
+    "name_h1_tail": "Bosque",
+    "accent": "#d52b1e",
+    "gradient": ["#d52b1e", "#8b1413", "#3d0908"],
+    "seal_text": "DGAC",
+    "seal_color": "#e8e3d8",
+    "official_url": "https://www.sefaa.cl/",
+    "licence": "Ley nº 20.285 sobre Acceso a la Información Pública",
+    "hero_coord": "◉ 33.5680° S · 70.6864° W · Aeródromo El Bosque, Santiago · 31 May 2010",
+    "twitter_image": "https://realufo.org/slideshow/NASA-UAP-VM6-Apollo-17-1972.jpg",
+    "json_ld": {
+      "headline": "El Bosque, May 2010 — case file",
+      "description": "Multi-amateur-video observation of an unidentified flat-disc object during the Chilean Air Force aerobatics demonstration at El Bosque Air Base, Santiago, 31 May 2010. SEFAA investigated for 24 months; final case classification: 'sin explicación'.",
+      "datePublished": "2014-04-01",
+      "sourceOrganization": "DGAC / SEFAA · Chile",
+      "about": ["Aeródromo El Bosque", "Santiago", "Chile"],
+      "keywords": ["El Bosque", "SEFAA", "CEFAA", "DGAC", "Santiago", "FACH", "UAP", "OVNI"]
+    },
+    "meta_strip": [
+      ["Event", "FACH aerobatics demonstration · Halcones display"],
+      ["Witnesses", "Hundreds · multiple amateur recordings"],
+      ["Investigator", "CEFAA → SEFAA (DGAC Santiago)"],
+      ["Status", "Sin explicación · catalogued in monthly dispatch"]
+    ],
+    "lede": "On <strong>31 May 2010</strong>, during a <strong>Fuerza Aérea de Chile (FACH)</strong> aerobatics demonstration at <strong>Aeródromo El Bosque</strong>, Santiago, multiple amateur video cameras independently recorded a small flat-disc object passing rapidly through the airshow airspace. The display was a public event with thousands of spectators; the object went unnoticed by attendees in real time but appeared on at least <strong>five separate civilian video recordings</strong> when reviewed afterward. The <strong>Comité de Estudios de Fenómenos Aéreos Anómalos (CEFAA)</strong> — Chile's civilian aviation UAP committee, later renamed <strong>SEFAA</strong> — opened a formal investigation that took <strong>24 months</strong>. The committee's final disposition, published in the SEFAA monthly dispatch, classified the case as <em>\"sin explicación natural conocida\"</em> (without known natural explanation). El Bosque is one of the most-cited multi-camera SEFAA cases and a flagship example of the civilian-aviation-led methodology that distinguishes the Chilean approach.",
+    "sections": [
+      {
+        "h": "The multi-camera corroboration",
+        "body": "Five amateur recordings were collected by CEFAA investigators over the eight weeks following the event. CEFAA technical coordinator <strong>Alberto Vergara</strong> led the analysis with support from <strong>Dr. Luis Barrera</strong> (Universidad Metropolitana de Ciencias de la Educación, atmospheric physics) and pilots from the FACH. The five videos were taken from spectator positions ~150 m apart around the FACH airstrip. Frame-by-frame triangulation produced these findings: <strong>(1)</strong> The object was a real airspace contact, not a film artifact. <strong>(2)</strong> Apparent size: ~5 m across. <strong>(3)</strong> Apparent speed: <strong>~4000 km/h</strong> (Mach ~3.3 at sea level), through airspace where the FACH Halcones aerobatic display team had jets operating at ~400 km/h. <strong>(4)</strong> No transponder return. <strong>(5)</strong> The object made one sharp directional change inconsistent with any aircraft in the FACH inventory."
+      },
+      {
+        "h": "Verbatim — SEFAA conclusion, monthly dispatch April 2014",
+        "body": "<em>\"Tras 24 meses de análisis cuadro por cuadro y triangulación, el comité concluye que el objeto registrado durante la demostración de la Fuerza Aérea de Chile en El Bosque el 31 de mayo de 2010 corresponde a un objeto real, de origen no identificado, cuyas características de velocidad y maniobra no son compatibles con ningún aeronave conocido en operación en el espacio aéreo nacional ni con causas naturales conocidas.\"</em><br><br>In English: <em>\"After 24 months of frame-by-frame analysis and triangulation, the committee concludes that the object recorded during the FACH demonstration at El Bosque on 31 May 2010 corresponds to a real object of unidentified origin whose velocity and manoeuvre characteristics are not compatible with any aircraft known to operate in national airspace nor with known natural causes.\"</em>"
+      },
+      {
+        "h": "Why El Bosque defines the Chilean methodology",
+        "body": "Three properties make El Bosque the flagship SEFAA case. <strong>(1)</strong> All five witnesses are independent civilians with multi-camera coverage, not a single source. <strong>(2)</strong> The investigation was led by a <em>civilian aviation authority</em> (DGAC) rather than the air force, avoiding the witness-suppression dynamic familiar in U.S./UK military programmes. <strong>(3)</strong> CEFAA published the final analysis openly, including the frame-by-frame triangulation methodology — a level of methodological transparency unique among South American UAP programmes. The case directly influenced the <strong>2017 joint statement</strong> with Argentina's CEFAe and Brazil's FAB on cross-border ATC coordination for unidentified transponder returns."
+      }
+    ],
+    "pullquote": {
+      "text": "We applied the same triangulation methodology that civil aviation uses for any unidentified airspace contact. The object exists. Its speed and manoeuvres are not compatible with any aircraft we know. We have no further explanation to offer.",
+      "cite": "— Alberto Vergara, CEFAA Technical Coordinator, public press briefing, Santiago, 11 April 2014"
+    },
+    "timeline": [
+      ["31 May 2010 · ~13:00", "FACH Halcones aerobatic display at El Bosque Air Base. Thousands of spectators."],
+      ["31 May 2010 · ~13:14", "Object transits airshow airspace. Not visible to naked eye in real time."],
+      ["Jun 2010", "Amateur videos circulate online. CEFAA Technical Coordinator Vergara opens formal review."],
+      ["2010–2011", "Five videos collected. Triangulation from spectator positions ~150 m apart."],
+      ["Jan 2012", "Dr. Luis Barrera completes atmospheric-physics analysis. Rules out optical / weather causes."],
+      ["2012–2014", "FACH pilot review confirms object's manoeuvre profile incompatible with FACH inventory."],
+      ["Apr 2014", "SEFAA (renamed from CEFAA) publishes final disposition in monthly dispatch."],
+      ["2017", "El Bosque referenced in CEFAe-SEFAA-FAB joint statement on cross-border ATC coordination."],
+      ["2024", "AARO Historical Record Vol. I references El Bosque as a Latin-American multi-camera reference case."]
+    ],
+    "evidence": [
+      {
+        "ev_id": "SEFAA 2014",
+        "ev_archive": "DGAC / SEFAA",
+        "ev_kind": "Monthly dispatch",
+        "title": "SEFAA monthly dispatch — El Bosque final disposition, April 2014",
+        "body": "Full final analysis. Five-video triangulation, atmospheric-physics report (Barrera), FACH pilot review, public conclusion 'sin explicación natural conocida'.",
+        "actions": [["SEFAA primary", "https://www.sefaa.cl/", "Primary"], ["Find in archive", "./?q=El+Bosque"]]
+      },
+      {
+        "ev_id": "CIVIL VIDEOS",
+        "ev_archive": "CEFAA technical archive",
+        "ev_kind": "Amateur video",
+        "title": "Five-camera civilian footage — 31 May 2010",
+        "body": "Five amateur recordings from spectator positions ~150 m apart. Provided the geometric baseline for triangulation. Held in the SEFAA technical archive at DGAC.",
+        "actions": [["Search · El Bosque", "../search.html?q=El+Bosque"]]
+      },
+      {
+        "ev_id": "CEFAE-SEFAA-FAB 2017",
+        "ev_archive": "Trinational joint statement",
+        "ev_kind": "Policy document",
+        "title": "2017 joint statement on cross-border ATC coordination",
+        "body": "Argentina CEFAe + Chile SEFAA + Brazil FAB statement on coordination for unidentified transponder returns. El Bosque cited as a foundational case.",
+        "actions": [["Argentina archive", "../argentina/"], ["Brazil archive", "../brazil/"]]
+      }
+    ],
+    "why_matters": "El Bosque is the flagship SEFAA case and the textbook example of Chile's distinctive UAP methodology — civilian-aviation-led, multi-camera triangulation, open publication of analysis. It demonstrates that a small national civil-aviation authority can produce a multi-witness UAP investigation with methodological transparency comparable to GEIPAN. The case directly influenced the 2017 trinational coordination agreement and is cited in AARO's 2024 Historical Record as the Latin-American reference for multi-camera UAP verification.",
+    "cross_refs": [
+      ["Chile archive", "./"],
+      ["CEFAA / SEFAA story", "./story.html"],
+      ["Argentina CEFAe", "../argentina/"],
+      ["Brazil FAB", "../brazil/"]
+    ]
   }
 ]

@@ -5,36 +5,36 @@
   <id>https://realufo.org/feeds/argentina.xml</id>
   <link rel="self" type="application/atom+xml" href="https://realufo.org/feeds/argentina.xml"/>
   <link rel="alternate" type="text/html" href="https://realufo.org/argentina/"/>
-  <updated>2026-05-22T10:45:46Z</updated>
+  <updated>2026-05-22T11:08:26Z</updated>
   <author><name>realufo.org</name><uri>https://realufo.org/</uri></author>
   <rights>Per-source jurisdiction (US 17 U.S.C. §105, UK OGL v3, France Loi 78-753, Brazil LAI 12.527, Chile 20.285, etc.)</rights>
   <generator uri="https://realufo.org/">realufo.org build-feeds.py</generator>
   <entry>
-    <id>tag:realufo.org,2026:argentina/057801896039</id>
+    <id>tag:realufo.org,2026:argentina/145509675311</id>
     <title>Fuerza Aérea Argentina — official site</title>
     <link rel="alternate" type="text/html" href="https://www.argentina.gob.ar/fuerzaaerea"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Catalog"/>
     <category term="Argentina · CEFAe"/>
     <summary type="text">FAA&#x27;s institutional site. CEFAe announcements and statements are published through the FAA&#x27;s news channel rather than a dedicated portal.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:argentina/825594258946</id>
+    <id>tag:realufo.org,2026:argentina/856342364668</id>
     <title>Ministerio de Defensa — Argentine national defence</title>
     <link rel="alternate" type="text/html" href="https://www.argentina.gob.ar/defensa"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Catalog"/>
     <category term="Argentina · CEFAe"/>
     <summary type="text">Parent ministry. Defence-policy publications and CEFAe-related ministerial decrees are filed here.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:argentina/210642283657</id>
+    <id>tag:realufo.org,2026:argentina/972874916992</id>
     <title>Archivo General de la Nación — Argentina</title>
     <link rel="alternate" type="text/html" href="https://www.argentina.gob.ar/interior/archivo"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Catalog"/>
     <category term="Argentina · CEFAe"/>
     <summary type="text">Argentina&#x27;s national archives — host CEFAe and earlier Air Force records about aerospatial phenomena.</summary>

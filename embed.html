@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors *">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>realufo.org — embed widget</title>
+<meta name="robots" content="noindex,follow">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0a0a0c;--bg-2:#111114;--panel:#15151a;--ink:#e8e3d8;--ink-dim:#a8a298;--ink-faint:#6b665d;--rule:rgba(232,227,216,0.14);--rule-strong:rgba(232,227,216,0.32);--caution:#d4a017;--serif:"Source Serif 4",Georgia,serif;--mono:"JetBrains Mono",monospace}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--serif);font-size:15px;line-height:1.55;padding:14px;overflow:auto}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:0.001ms!important;transition-duration:0.001ms!important}}
+
+.card{background:linear-gradient(180deg,rgba(212,160,23,0.06),rgba(212,160,23,0));border:1px solid var(--rule-strong);border-radius:8px;padding:16px 18px;display:flex;flex-direction:column;gap:10px;height:100%;min-height:200px;position:relative}
+.brand{font-family:var(--mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--caution);font-weight:700;display:inline-flex;align-items:center;gap:8px}
+.brand::before{content:"◉"}
+.hdr{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint)}
+.hdr strong{color:var(--ink);font-weight:500}
+h2{font-family:var(--serif);font-size:clamp(17px,2.5vw,22px);font-weight:700;color:var(--ink);line-height:1.2;letter-spacing:-0.01em;margin-top:2px}
+h2 em{font-style:italic;color:var(--caution)}
+.lede{font-family:var(--serif);font-size:13.5px;color:var(--ink-dim);line-height:1.55;overflow:hidden;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical}
+.meta{font-family:var(--mono);font-size:10px;color:var(--ink-faint);letter-spacing:0.08em;display:flex;flex-wrap:wrap;gap:6px 14px;text-transform:uppercase;border-top:1px dashed var(--rule);padding-top:8px;margin-top:auto}
+.cta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;border-top:1px solid var(--rule);padding-top:10px}
+.cta a{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:7px 12px;border-radius:3px;text-decoration:none;border:1px solid var(--caution);color:var(--caution);background:rgba(212,160,23,0.12);display:inline-flex;align-items:center;gap:6px}
+.cta a:hover{background:rgba(212,160,23,0.22)}
+.cta .powered{margin-left:auto;font-family:var(--mono);font-size:9px;color:var(--ink-faint);letter-spacing:0.1em}
+.cta .powered a{border:0;padding:0;background:none;color:var(--ink-faint);text-decoration:underline;font-size:9px;text-transform:none;letter-spacing:0.06em}
+.err{color:var(--ink-dim);font-family:var(--mono);font-size:11px;text-align:center;padding:30px 10px}
+.err strong{display:block;color:var(--caution);margin-bottom:6px;font-size:13px;font-family:var(--serif)}
+</style>
+</head>
+<body>
+<div id="root">
+  <div class="err">
+    <strong>Loading case&hellip;</strong>
+    realufo.org embed
+  </div>
+</div>
+<script>
+(function() {
+  'use strict';
+  function esc(s){return String(s||'').replace(/[&<>"']/g,function(c){return({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]})}
+  function getParam(k){var p=new URLSearchParams(window.location.search);return p.get(k);}
+
+  /* Static catalog of supported cases. Path → metadata. Kept inline so the
+     widget renders without a network round-trip in 99% of embeds. */
+  var CASES = {
+    'rendlesham':       { name:'Rendlesham Forest 1980',   archive:'UK',     href:'/uk/rendlesham.html',         when:'26–28 Dec 1980',   place:'Suffolk, UK',           accent:'#012169' },
+    'tic-tac':          { name:'Nimitz Tic-Tac 2004',      archive:'AARO',   href:'/aaro/tic-tac.html',          when:'10–16 Nov 2004',   place:'SOCAL Op. Area',        accent:'#4a9eff' },
+    'gimbal':           { name:'Gimbal 2015',              archive:'AARO',   href:'/aaro/gimbal.html',           when:'20 Jan 2015',      place:'US East Coast Range',   accent:'#4a9eff' },
+    'phoenix-lights':   { name:'Phoenix Lights 1997',      archive:'AARO',   href:'/aaro/phoenix-lights.html',   when:'13 Mar 1997',      place:'Arizona, USA',          accent:'#4a9eff' },
+    'belgian-wave':     { name:'Belgian Wave 1989–90',     archive:'AARO',   href:'/aaro/belgian-wave.html',     when:'Nov 1989–Apr 1991',place:'Belgium',               accent:'#4a9eff' },
+    'tehran':           { name:'Tehran 1976',              archive:'AARO',   href:'/aaro/tehran.html',           when:'19 Sep 1976',      place:'Tehran, Iran',          accent:'#4a9eff' },
+    'jal-1628':         { name:'JAL 1628 over Alaska',     archive:'AARO',   href:'/aaro/jal-1628.html',         when:'17 Nov 1986',      place:'Yukon-Kuskokwim, AK',   accent:'#4a9eff' },
+    'coyne':            { name:'Coyne helicopter 1973',    archive:'AARO',   href:'/aaro/coyne.html',            when:'18 Oct 1973',      place:'Mansfield, Ohio',       accent:'#4a9eff' },
+    'travis-walton':    { name:'Travis Walton 1975',       archive:'AARO',   href:'/aaro/travis-walton.html',    when:'5 Nov 1975',       place:'Apache-Sitgreaves NF',  accent:'#4a9eff' },
+    'cash-landrum':     { name:'Cash-Landrum 1980',        archive:'AARO',   href:'/aaro/cash-landrum.html',     when:'29 Dec 1980',      place:'Huffman, Texas',        accent:'#4a9eff' },
+    'operacao-prato':   { name:'Operação Prato 1977–78',   archive:'Brazil', href:'/brazil/operacao-prato.html', when:'Sep 1977–Jan 1978',place:'Pará, Brazil',          accent:'#009c3b' },
+    'varginha':         { name:'Varginha 1996',            archive:'Brazil', href:'/brazil/varginha.html',       when:'20 Jan 1996',      place:'Minas Gerais, Brazil',  accent:'#009c3b' },
+    'trindade':         { name:'Trindade Island 1958',     archive:'Brazil', href:'/brazil/trindade.html',       when:'16 Jan 1958',      place:'South Atlantic',        accent:'#009c3b' },
+    'kaikoura':         { name:'Kaikoura Lights 1978',     archive:'NZ',     href:'/nz/kaikoura.html',           when:'21–31 Dec 1978',   place:'Kaikoura coast, NZ',    accent:'#5b8def' },
+    'manises':          { name:'Caso Manises 1979',        archive:'Spain',  href:'/spain/manises.html',         when:'11 Nov 1979',      place:'Valencia, Spain',       accent:'#f4c542' },
+    'trans-en-provence':{ name:'Trans-en-Provence 1981',   archive:'GEIPAN', href:'/geipan/trans-en-provence.html',when:'8 Jan 1981',     place:'Var, France',           accent:'#0055a4' },
+    'valensole':        { name:'Valensole 1965',           archive:'GEIPAN', href:'/geipan/valensole.html',      when:'1 Jul 1965',       place:'Alpes-de-Haute-Provence',accent:'#0055a4' },
+    'roswell':          { name:'Roswell 1947',             archive:'NARA',   href:'/nara/roswell.html',          when:'5–8 Jul 1947',     place:'Brazel Ranch, NM',      accent:'#cbd5e1' },
+    'socorro':          { name:'Socorro · Zamora 1964',    archive:'NARA',   href:'/nara/socorro.html',          when:'24 Apr 1964',      place:'Socorro, NM',           accent:'#cbd5e1' },
+    'robertson-panel':  { name:'Robertson Panel 1953',     archive:'NARA',   href:'/nara/robertson-panel.html',  when:'14–18 Jan 1953',   place:'CIA HQ, Langley VA',    accent:'#cbd5e1' },
+    'condon-committee': { name:'Condon Committee 1966–69', archive:'NARA',   href:'/nara/condon-committee.html', when:'Oct 1966–Jan 1969',place:'U-Colorado, Boulder',   accent:'#cbd5e1' },
+    'el-bosque':        { name:'El Bosque 2010',           archive:'Chile',  href:'/chile/el-bosque.html',       when:'31 May 2010',      place:'Santiago, Chile',       accent:'#d52b1e' },
+  };
+
+  /* Per-case one-line lede (kept short — under 200 chars). */
+  var LEDE = {
+    'rendlesham':       'Three nights of luminous-object events at the twin RAF bases of Bentwaters and Woodbridge — including Lt. Col. Halt\'s contemporaneous tape and a 1981 MoD memo.',
+    'tic-tac':          'USS Nimitz Carrier Strike Group encounters an unknown 40-ft "Tic-Tac" off Baja California. FLIR1 footage declassified by DoD in April 2020.',
+    'gimbal':           'F/A-18F ATFLIR pod records a rotating oblong object off the US east coast. Declassified by DoD on 27 April 2020 alongside FLIR1 and GoFast.',
+    'phoenix-lights':   'V-shaped formation observed by thousands across Arizona. Governor Symington publicly confirms his own sighting a decade later.',
+    'belgian-wave':     'Sustained wave of triangular craft over Belgium; F-16 radar lock; Col. De Brouwer briefs publicly in July 1990.',
+    'tehran':           'Imperial Iranian Air Force F-4 Phantom intercept. Both interceptor crews report weapons + UHF disabled approaching the object. DIA report 22 Sep 1976.',
+    'jal-1628':         'JAL cargo Boeing 747 paced by unidentified objects over interior Alaska for ~50 minutes. FAA Anchorage ARTCC radar correlation. Disposition: unable to identify.',
+    'coyne':            'US Army Reserve UH-1H near-miss + uncommanded 1000 ft climb. Four cockpit witnesses + Mansfield ground witnesses.',
+    'travis-walton':    'USFS forestry contractor reportedly struck by a light beam in Apache-Sitgreaves NF. 5/6 co-witnesses pass DPS polygraph; Walton missing 5 days.',
+    'cash-landrum':     'Three civilians observe a diamond-shaped object escorted by ~23 helicopters near Huffman, TX. Persistent radiation-consistent injuries; Army IG denies involvement.',
+    'operacao-prato':   'Brazilian Air Force four-month investigation of the Chupa-Chupa flap on the Pará coast — 500+ pages, 16 mm film, 80+ witness depositions.',
+    'varginha':         'Three young women report encountering an entity in Minas Gerais. 4th Infantry Battalion deployed; Sgt. Cherese dies three months later.',
+    'trindade':         'Brazilian Navy school-ship Almirante Saldanha photographs a Saturn-shaped UAP off Trindade Island. President Kubitschek personally authenticates.',
+    'kaikoura':         'Safe Air Argosy + TV news crew observation over the Kaikoura coast. RNZAF 16 mm film + Wellington ATC radar.',
+    'manises':          'TAE Supercaravelle forced to divert and emergency-land at Manises after two objects pace the aircraft. Mirage F1 scramble.',
+    'trans-en-provence':'Renato Nicolaï observes an egg-shaped object land in his garden. GEPAN-CNES + INRA Avignon run a 30-month biochemical study of the trace evidence.',
+    'valensole':        'Lavender farmer Maurice Masse reports paralysing encounter with two small humanoids and an egg-shaped craft in his field.',
+    'roswell':          'The original 1947 USAF "flying disc" press release; the 1994 Project Mogul explanation; the 1997 "Case Closed" follow-up.',
+    'socorro':          'Patrolman Lonnie Zamora observes an egg-shaped object on landing legs with two small figures. Project Blue Book case 8766.',
+    'robertson-panel':  'Five-day CIA-convened scientific review of the U.S. UFO data corpus. Recommends a national policy of "training and debunking".',
+    'condon-committee': 'USAF-funded University of Colorado study under Dr. Edward U. Condon. 1485 pages; 30 cases classified "unidentified"; used to close Project Blue Book.',
+    'el-bosque':        'Multi-amateur-video observation of a flat disc during the FACH aerobatics display at El Bosque, Santiago. SEFAA 24-month analysis: no explanation.',
+  };
+
+  var slug = (getParam('case') || '').toLowerCase().trim();
+  var c = CASES[slug];
+  if (!c) {
+    /* Show docs when invoked directly or with bad slug. */
+    var listing = Object.keys(CASES).sort().map(function(s){
+      var d = CASES[s];
+      return '<li style="margin-bottom:8px"><a href="?case=' + s + '" style="font-family:var(--mono);font-size:11px;color:var(--caution);text-decoration:none;padding:2px 6px;background:rgba(212,160,23,0.1);border-radius:3px"><code>' + s + '</code></a> &mdash; <span style="color:var(--ink-dim);font-size:13px">' + esc(d.name) + ' (' + esc(d.archive) + ')</span></li>';
+    }).join('');
+    document.getElementById('root').innerHTML = (
+      '<div style="max-width:740px;margin:0 auto;padding:20px 0">' +
+      '<div class="brand" style="color:var(--caution);margin-bottom:14px">realufo.org · embed widget</div>' +
+      '<h2 style="margin-bottom:12px;font-size:22px"><em>Embed</em> a case anywhere</h2>' +
+      '<p style="color:var(--ink-dim);font-family:var(--serif);font-size:14px;margin-bottom:14px">Drop this snippet into any blog, Substack, or static page:</p>' +
+      '<pre style="background:var(--bg-2);border:1px solid var(--rule);border-radius:6px;padding:14px;font-family:var(--mono);font-size:11px;color:var(--ink);overflow-x:auto;line-height:1.5;margin-bottom:18px;white-space:pre-wrap"><code>&lt;iframe src="https://realufo.org/embed.html?case=rendlesham"\n  width="100%" height="320" loading="lazy"\n  style="border:0;border-radius:8px"\n  sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox"\n  title="realufo.org · Rendlesham Forest 1980"&gt;\n&lt;/iframe&gt;</code></pre>' +
+      '<p style="color:var(--ink-dim);font-family:var(--serif);font-size:14px;margin-bottom:14px"><strong style="color:var(--ink)">Available case slugs (' + Object.keys(CASES).length + '):</strong></p>' +
+      '<ul style="list-style:none;padding:0;column-count:2;column-gap:24px">' + listing + '</ul>' +
+      '<p style="color:var(--ink-faint);font-family:var(--mono);font-size:10px;margin-top:24px;letter-spacing:0.08em">' +
+      'CSP: <code>frame-ancestors *</code> — any origin may embed. Free, no tracking, no JS deps on host page. ' +
+      'Widget posts a <code>realufo-embed-resize</code> message via <code>postMessage</code> so the host can auto-size the iframe.</p>' +
+      '</div>'
+    );
+    return;
+  }
+  var lede = LEDE[slug] || '';
+  /* Render */
+  document.getElementById('root').innerHTML = (
+    '<div class="card" style="--accent:' + esc(c.accent) + ';border-color:' + esc(c.accent) + '55">' +
+    '<div class="brand" style="color:' + esc(c.accent) + '">realufo.org · case file</div>' +
+    '<div class="hdr"><strong>' + esc(c.archive) + '</strong> &middot; ' + esc(c.when) + ' &middot; ' + esc(c.place) + '</div>' +
+    '<h2><em>' + esc(c.name.split(' ')[0]) + '</em> ' + esc(c.name.split(' ').slice(1).join(' ')) + '</h2>' +
+    (lede ? '<div class="lede">' + esc(lede) + '</div>' : '') +
+    '<div class="cta">' +
+      '<a href="https://realufo.org' + esc(c.href) + '" target="_blank" rel="noopener" style="border-color:' + esc(c.accent) + ';color:' + esc(c.accent) + ';background:' + esc(c.accent) + '20">Open case &rarr;</a>' +
+      '<span class="powered">Powered by <a href="https://realufo.org/" target="_blank" rel="noopener">realufo.org</a></span>' +
+    '</div>' +
+    '</div>'
+  );
+  /* Tell host page how tall we are so iframe can resize. */
+  if (window.parent !== window) {
+    try {
+      window.parent.postMessage({
+        type: 'realufo-embed-resize',
+        slug: slug,
+        height: document.body.scrollHeight,
+      }, '*');
+    } catch(_) {}
+  }
+})();
+</script>
+</body>
+</html>

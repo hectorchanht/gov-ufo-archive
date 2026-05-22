@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "Per-page index for case + story pages, so the cross-archive search can index narrative prose alongside per-archive manifests.",
-    "count": 30,
+    "count": 36,
     "kinds": [
       "case",
       "story"
@@ -16,6 +16,21 @@
       "date": "1990-07-11",
       "region": "Eupen / Wallonia",
       "url": "/aaro/belgian-wave.html",
+      "src": "",
+      "local": "",
+      "site": "AARO",
+      "siteId": "aaro",
+      "siteDir": "aaro/",
+      "kind": "case"
+    },
+    {
+      "title": "Cash-Landrum",
+      "desc": "Betty Cash, Vickie Landrum, and 7-year-old Colby Landrum observed a diamond-shaped object spewing flame escorted by ~23 military helicopters near Huffman, Texas, 29 December 1980. Multiple medical hospitalisations followed; the U.S. Army Inspector General investigated; the witnesses sued and the cas",
+      "agency": "U.S. Army Inspector General / AARO",
+      "type": "Case",
+      "date": "1981-08-17",
+      "region": "Huffman, Texas",
+      "url": "/aaro/cash-landrum.html",
       "src": "",
       "local": "",
       "site": "AARO",
@@ -129,6 +144,21 @@
       "kind": "case"
     },
     {
+      "title": "Travis Walton · Snowflake",
+      "desc": "USFS forestry contractor Travis Walton reportedly struck by a beam of light from an unidentified object in Apache-Sitgreaves National Forest, 5 November 1975. Six co-witnesses; APD missing-persons investigation; polygraph battery; Walton reappears five days later.",
+      "agency": "U.S. Forest Service / USAF / NARA",
+      "type": "Case",
+      "date": "1975-11-05",
+      "region": "Apache-Sitgreaves NF, AZ",
+      "url": "/aaro/travis-walton.html",
+      "src": "",
+      "local": "",
+      "site": "AARO",
+      "siteId": "aaro",
+      "siteDir": "aaro/",
+      "kind": "case"
+    },
+    {
       "title": "Argentina · CEFAe — story",
       "desc": "The mission, history, and public record of Argentina · CEFAe, as published by the source agency. Verbatim official-source text mirrored from www.argentina.gob.ar.",
       "agency": "Argentina · CEFAe",
@@ -219,6 +249,21 @@
       "kind": "story"
     },
     {
+      "title": "El Bosque",
+      "desc": "Multi-amateur-video observation of an unidentified flat-disc object during the Chilean Air Force aerobatics demonstration at El Bosque Air Base, Santiago, 31 May 2010. SEFAA investigated for 24 months; final case classification: &#x27;sin explicación&#x27;.",
+      "agency": "DGAC / SEFAA · Chile",
+      "type": "Case",
+      "date": "2014-04-01",
+      "region": "Aeródromo El Bosque, Santiago",
+      "url": "/chile/el-bosque.html",
+      "src": "",
+      "local": "",
+      "site": "Chile",
+      "siteId": "chile",
+      "siteDir": "chile/",
+      "kind": "case"
+    },
+    {
       "title": "Chile · CEFAA / SEFAA — story",
       "desc": "The mission, history, and public record of Chile · CEFAA / SEFAA, as published by the source agency. Verbatim official-source text mirrored from www.sefaa.cl.",
       "agency": "Chile · CEFAA / SEFAA",
@@ -264,6 +309,21 @@
       "kind": "case"
     },
     {
+      "title": "Valensole",
+      "desc": "Lavender farmer Maurice Masse observed an egg-shaped craft landed in his field with two small occupants, 1 July 1965, Valensole. The case is the GEIPAN type-specimen for a daylight close-encounter with witness paralysis + persistent ground impressions.",
+      "agency": "GEIPAN / Gendarmerie nationale",
+      "type": "Case",
+      "date": "1965-07-01",
+      "region": "Valensole, Alpes-de-Haute-Provence",
+      "url": "/geipan/valensole.html",
+      "src": "",
+      "local": "",
+      "site": "GEIPAN",
+      "siteId": "geipan",
+      "siteDir": "geipan/",
+      "kind": "case"
+    },
+    {
       "title": "Italy · Aeronautica Militare — story",
       "desc": "The mission, history, and public record of Italy · Aeronautica Militare, as published by the source agency. Verbatim official-source text mirrored from www.aeronautica.difesa.it.",
       "agency": "Italy · Aeronautica Militare",
@@ -277,6 +337,36 @@
       "siteId": "italy",
       "siteDir": "italy/",
       "kind": "story"
+    },
+    {
+      "title": "The Condon Committee",
+      "desc": "U.S. Air Force-funded scientific study of UFOs led by physicist Edward U. Condon at the University of Colorado, 1966–1969. 1485-page final report. Used as the formal basis for closing Project Blue Book in December 1969.",
+      "agency": "U.S. Air Force / University of Colorado / NARA",
+      "type": "Case",
+      "date": "1969-01-08",
+      "region": "University of Colorado, Boulder",
+      "url": "/nara/condon-committee.html",
+      "src": "",
+      "local": "",
+      "site": "NARA",
+      "siteId": "nara",
+      "siteDir": "nara/",
+      "kind": "case"
+    },
+    {
+      "title": "The Robertson Panel",
+      "desc": "Five-day CIA-convened scientific review of the U.S. government&#x27;s UFO data corpus, chaired by physicist H.P. Robertson at Caltech, conducted 14–18 January 1953. Recommended that the public be &#x27;debunked&#x27; to reduce credulity. Held at NARA in Record Group 263.",
+      "agency": "U.S. Central Intelligence Agency / NARA",
+      "type": "Case",
+      "date": "1953-01-18",
+      "region": "Langley, VA",
+      "url": "/nara/robertson-panel.html",
+      "src": "",
+      "local": "",
+      "site": "NARA",
+      "siteId": "nara",
+      "siteDir": "nara/",
+      "kind": "case"
     },
     {
       "title": "Roswell · Project Mogul",

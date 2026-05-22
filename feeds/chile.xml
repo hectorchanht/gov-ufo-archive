@@ -5,12 +5,12 @@
   <id>https://realufo.org/feeds/chile.xml</id>
   <link rel="self" type="application/atom+xml" href="https://realufo.org/feeds/chile.xml"/>
   <link rel="alternate" type="text/html" href="https://realufo.org/chile/"/>
-  <updated>2026-05-22T10:45:46Z</updated>
+  <updated>2026-05-22T11:08:26Z</updated>
   <author><name>realufo.org</name><uri>https://realufo.org/</uri></author>
   <rights>Per-source jurisdiction (US 17 U.S.C. §105, UK OGL v3, France Loi 78-753, Brazil LAI 12.527, Chile 20.285, etc.)</rights>
   <generator uri="https://realufo.org/">realufo.org build-feeds.py</generator>
   <entry>
-    <id>tag:realufo.org,2026:chile/601565250193</id>
+    <id>tag:realufo.org,2026:chile/433133079417</id>
     <title>SEFAA dispatch — January 2024</title>
     <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/2024/01/"/>
     <updated>2024-01-01T00:00:00Z</updated>
@@ -20,7 +20,7 @@
     <summary type="text">SEFAA monthly resolved-cases report for January 2024.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/102509015369</id>
+    <id>tag:realufo.org,2026:chile/688901330575</id>
     <title>SEFAA dispatch — December 2023</title>
     <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/2023/12/"/>
     <updated>2023-01-01T00:00:00Z</updated>
@@ -30,7 +30,7 @@
     <summary type="text">SEFAA monthly resolved-cases report for December 2023.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/630956851136</id>
+    <id>tag:realufo.org,2026:chile/884039650225</id>
     <title>SEFAA dispatch — November 2023</title>
     <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/2023/11/"/>
     <updated>2023-01-01T00:00:00Z</updated>
@@ -40,7 +40,7 @@
     <summary type="text">SEFAA monthly resolved-cases report for November 2023.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/113316294444</id>
+    <id>tag:realufo.org,2026:chile/355747378069</id>
     <title>SEFAA dispatch — annual 2022</title>
     <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/2022/"/>
     <updated>2022-01-01T00:00:00Z</updated>
@@ -50,7 +50,7 @@
     <summary type="text">SEFAA 2022 annual archive of monthly resolved-cases dispatches.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/565673567676</id>
+    <id>tag:realufo.org,2026:chile/118532286365</id>
     <title>SEFAA dispatch — annual 2021</title>
     <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/2021/"/>
     <updated>2021-01-01T00:00:00Z</updated>
@@ -60,7 +60,7 @@
     <summary type="text">SEFAA 2021 annual archive of monthly resolved-cases dispatches.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/810516153738</id>
+    <id>tag:realufo.org,2026:chile/138424944641</id>
     <title>DGAC — CEFAA→SEFAA transition announcement</title>
     <link rel="alternate" type="text/html" href="https://www.dgac.gob.cl/con-nuevo-ano-nuevos-cambios-el-cefaa-pasa-a-ser-ahora-sefaa/"/>
     <updated>2020-01-01T00:00:00Z</updated>
@@ -70,7 +70,7 @@
     <summary type="text">DGAC&#x27;s announcement of the 2020 transition from CEFAA (Comité) to SEFAA (Sección) — formalising the unit&#x27;s place inside the directorate.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/298481497104</id>
+    <id>tag:realufo.org,2026:chile/775917264418</id>
     <title>SEFAA dispatch — annual 2020</title>
     <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/2020/"/>
     <updated>2020-01-01T00:00:00Z</updated>
@@ -80,7 +80,7 @@
     <summary type="text">SEFAA 2020 annual archive — first year operating under new SEFAA designation.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/715812017806</id>
+    <id>tag:realufo.org,2026:chile/100859786232</id>
     <title>DGAC — CEFAA: An Investigative Model for Anomalous Aerial Phenomena</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/chile/pdfs/DGAC-CEFAA-Publicacion-Web-2019.pdf"/>
     <link rel="via" href="https://www.dgac.gob.cl/wp-content/uploads/2019/09/PUBLICACI%C3%93N-WEB-DGAC-CEFAA-CORREGIDA-11-SEPT-2019-1.pdf"/>
@@ -91,7 +91,7 @@
     <summary type="text">DGAC&#x27;s 2019 white paper laying out CEFAA&#x27;s methodology and case work. Sets out the civilian-aviation framework that later became SEFAA.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/637964008843</id>
+    <id>tag:realufo.org,2026:chile/286958048751</id>
     <title>DGAC — CEFAA: An Investigative Model for Anomalous Aerial Phenomena (2019)</title>
     <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/PUBLICACI%C3%93N-WEB-DGAC-CEFAA-CORREGIDA-11-SEPT-2019-1.pdf"/>
     <link rel="via" href="https://www.dgac.gob.cl/wp-content/uploads/2019/09/PUBLICACI%C3%93N-WEB-DGAC-CEFAA-CORREGIDA-11-SEPT-2019-1.pdf"/>
@@ -102,411 +102,411 @@
     <summary type="text">DGAC&#x27;s 2019 white paper laying out CEFAA&#x27;s methodology and case work — sets out the civilian-aviation framework that later became SEFAA.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/377481042896</id>
+    <id>tag:realufo.org,2026:chile/376591089847</id>
     <title>SEFAA — resolved cases archive</title>
     <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/category/casos-resueltos/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Catalog"/>
     <category term="Chile · SEFAA"/>
     <summary type="text">Monthly dispatches of resolved anomalous aerial phenomena cases. Every report has the phenomenon description and SEFAA&#x27;s conclusion. Continuous since 2020.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/201567097409</id>
+    <id>tag:realufo.org,2026:chile/178381395022</id>
     <title>SEFAA — Quiénes somos (about the office)</title>
     <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/quienes-somos/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Mission"/>
     <category term="Chile · SEFAA"/>
     <summary type="text">SEFAA&#x27;s mission and structure. The world&#x27;s only UAP unit embedded inside a civilian aviation authority.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/412952981488</id>
+    <id>tag:realufo.org,2026:chile/890790121052</id>
     <title>DGAC — CEFAA: An Investigative Model (page)</title>
     <link rel="alternate" type="text/html" href="https://www.dgac.gob.cl/cefaa-un-modelo-investigativo-de-fenomenos-aereos-anomalos/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Reference"/>
     <category term="Chile · SEFAA"/>
     <summary type="text">DGAC&#x27;s overview article describing CEFAA&#x27;s investigative model, methodology, and partnerships with academic institutions in Chile.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/623099349416</id>
+    <id>tag:realufo.org,2026:chile/895799010839</id>
     <title>SEFAA — landing page</title>
     <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Catalog"/>
     <category term="Chile · SEFAA"/>
     <summary type="text">Live SEFAA homepage with the latest dispatches and news updates.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/585322218085</id>
+    <id>tag:realufo.org,2026:chile/613358423162</id>
     <title>SEFAA — case reporting form</title>
     <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/formulario-de-denuncia/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Catalog"/>
     <category term="Chile · SEFAA"/>
     <summary type="text">Official public form for submitting UAP sighting reports to the Chilean civil aviation authority.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/194808416971</id>
+    <id>tag:realufo.org,2026:chile/728514886942</id>
     <title>POLÍTICA DE PRIVACIDAD</title>
     <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/PoliticaPrivacidad.pdf"/>
     <link rel="via" href="https://sefaa.dgac.gob.cl/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Pdf"/>
     <category term="Chile · SEFAA"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/756720553430</id>
+    <id>tag:realufo.org,2026:chile/988073722239</id>
     <title>Artículos prohibidos</title>
     <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/Nuevo-Listado-de-Articulos-Prohibidos-nov-204.pdf"/>
     <link rel="via" href="https://www.dgac.gob.cl/cefaa-un-modelo-investigativo-de-fenomenos-aereos-anomalos/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Pdf"/>
     <category term="Chile · SEFAA"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/039539701196</id>
+    <id>tag:realufo.org,2026:chile/343842963303</id>
     <title>Charter of Commitmeant</title>
     <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/CartaCompromisoING.pdf"/>
     <link rel="via" href="https://www.dgac.gob.cl/cefaa-un-modelo-investigativo-de-fenomenos-aereos-anomalos/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Pdf"/>
     <category term="Chile · SEFAA"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/132103921191</id>
+    <id>tag:realufo.org,2026:chile/862723616786</id>
     <title>Presupuesto 2018</title>
     <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/Presupuesto_2018.pdf"/>
     <link rel="via" href="https://www.dgac.gob.cl/cefaa-un-modelo-investigativo-de-fenomenos-aereos-anomalos/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Pdf"/>
     <category term="Chile · SEFAA"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/576511136082</id>
+    <id>tag:realufo.org,2026:chile/649196757871</id>
     <title>Presupuesto 2018</title>
     <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/POLITICA_SIG_2022_FINAL-2.pdf"/>
     <link rel="via" href="https://www.dgac.gob.cl/cefaa-un-modelo-investigativo-de-fenomenos-aereos-anomalos/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Pdf"/>
     <category term="Chile · SEFAA"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/973789451565</id>
+    <id>tag:realufo.org,2026:chile/309596093085</id>
     <title>Presupuesto 2018</title>
     <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/Inclusion_Laboral_2022.pdf"/>
     <link rel="via" href="https://www.dgac.gob.cl/cefaa-un-modelo-investigativo-de-fenomenos-aereos-anomalos/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Pdf"/>
     <category term="Chile · SEFAA"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/122518852538</id>
+    <id>tag:realufo.org,2026:chile/993700739718</id>
     <title>Carta de compromiso</title>
     <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/carta-de-compromiso-2.pdf"/>
     <link rel="via" href="https://www.dgac.gob.cl/cefaa-un-modelo-investigativo-de-fenomenos-aereos-anomalos/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Pdf"/>
     <category term="Chile · SEFAA"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/679732993400</id>
+    <id>tag:realufo.org,2026:chile/730064621166</id>
     <title>Casos resueltos – Página 2</title>
     <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/category/casos-resueltos/page/2/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Monthly Dispatch"/>
     <category term="Chile · SEFAA"/>
     <summary type="text">Casos resueltos Casos Abril 2025 6 de mayo de 2025</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/593555354626</id>
+    <id>tag:realufo.org,2026:chile/414142221266</id>
     <title>Casos resueltos – Página 3</title>
     <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/category/casos-resueltos/page/3/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Monthly Dispatch"/>
     <category term="Chile · SEFAA"/>
     <summary type="text">Casos resueltos Casos Abril 2024 13 de agosto de 2024</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/240447498012</id>
+    <id>tag:realufo.org,2026:chile/150539044437</id>
     <title>Casos resueltos – Página 4</title>
     <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/category/casos-resueltos/page/4/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Monthly Dispatch"/>
     <category term="Chile · SEFAA"/>
     <summary type="text">Casos resueltos Casos Junio 2023 6 de julio de 2023</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/826657066108</id>
+    <id>tag:realufo.org,2026:chile/992177080035</id>
     <title>Noticias</title>
     <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/category/noticias"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Monthly Dispatch"/>
     <category term="Chile · SEFAA"/>
     <summary type="text">Destacados Noticias SEFAA realizó exposición institucional en el Aeródromo de La Independencia de Rancagua 7 de mayo de 2026 El pasado jueves 30 de abril, personal de la Sección de Estudios de Fenómenos Aéreos... Leer más Leer más sobre SEFAA realizó exposición institucional en el Aeródromo de La In…</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/000773968272</id>
+    <id>tag:realufo.org,2026:chile/808914511404</id>
     <title>Educación</title>
     <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/category/educacion/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Monthly Dispatch"/>
     <category term="Chile · SEFAA"/>
     <summary type="text">Destacados Educación ¿Cómo investigamos en la SEFAA? 26 de febrero de 2025 El estudio de fenómenos aéreos anómalos, comúnmente reportados como «OVNIs» (objetos voladores no identificados) o... Leer más Leer más sobre ¿Cómo investigamos en la SEFAA?</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/750412155006</id>
+    <id>tag:realufo.org,2026:chile/623033723760</id>
     <title>SEFAA realizó exposición institucional en el Aeródromo de La Independencia de Rancagua</title>
     <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/2026/05/07/sefaa-realizo-exposicion-institucional-en-el-aerodromo-de-la-independencia-de-rancagua/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Monthly Dispatch"/>
     <category term="Chile · SEFAA"/>
     <summary type="text">El pasado jueves 30 de abril, personal de la Sección de Estudios de Fenómenos Aéreos Anómalos (SEFAA), dependiente de la Dirección General de Aeronáutica Civil (DGAC), acudió al Aeródromo de La Independencia, en la ciudad de Rancagua, con el objetivo de realizar una exposición dirigida a funcionario…</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/916055857671</id>
+    <id>tag:realufo.org,2026:chile/514143813736</id>
     <title>Destacados</title>
     <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/category/destacados/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Monthly Dispatch"/>
     <category term="Chile · SEFAA"/>
     <summary type="text">Destacados Noticias SEFAA realizó exposición institucional en el Aeródromo de La Independencia de Rancagua 7 de mayo de 2026 El pasado jueves 30 de abril, personal de la Sección de Estudios de Fenómenos Aéreos... Leer más Leer más sobre SEFAA realizó exposición institucional en el Aeródromo de La In…</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/646348773208</id>
+    <id>tag:realufo.org,2026:chile/020538540418</id>
     <title>Noticias</title>
     <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/category/noticias/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Monthly Dispatch"/>
     <category term="Chile · SEFAA"/>
     <summary type="text">Destacados Noticias SEFAA realizó exposición institucional en el Aeródromo de La Independencia de Rancagua 7 de mayo de 2026 El pasado jueves 30 de abril, personal de la Sección de Estudios de Fenómenos Aéreos... Leer más Leer más sobre SEFAA realizó exposición institucional en el Aeródromo de La In…</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/881570119293</id>
+    <id>tag:realufo.org,2026:chile/165629256968</id>
     <title>mayo 2026</title>
     <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/2026/05/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Monthly Dispatch"/>
     <category term="Chile · SEFAA"/>
     <summary type="text">Destacados SEFAA realizó exposición institucional en el Aeródromo de La Independencia de Rancagua 7 de mayo de 2026 El pasado jueves 30 de abril, personal de la Sección de Estudios de Fenómenos Aéreos... Leer más Leer más sobre SEFAA realizó exposición institucional en el Aeródromo de La Independenc…</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/189942894394</id>
+    <id>tag:realufo.org,2026:chile/554132182179</id>
     <title>Casos Abril 2026</title>
     <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/2026/05/07/casos-abril-2026/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Monthly Dispatch"/>
     <category term="Chile · SEFAA"/>
     <summary type="text">10 case files referenced. CASO N° 1402 08012021 Descarga CASO N° 1466 26022021 Descarga CASO N° 2201 08012026 Descarga CASO N° 2217 13032026 Descarga CASO N° 2221 16032026 Descarga CASO N° 2225 25032026 Descarga CASO N° 2226 28032026 Descarga CASO N° 2227 04042026 Descarga CASO N° 2228 09042026 Descarga CASO N° 2229 11042026…</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/230929717403</id>
+    <id>tag:realufo.org,2026:chile/497128768260</id>
     <title>Casos Marzo 2026</title>
     <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/2026/04/02/casos-marzo-2026/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Monthly Dispatch"/>
     <category term="Chile · SEFAA"/>
     <summary type="text">9 case files referenced. CASO N° 2207 06022026 Descarga CASO N° 2215 06032026 Descarga CASO N° 2216 12032026 Descarga CASO N° 2218 15032026 Descarga CASO N° 2219 16032026 Descarga CASO N° 2220 16032026 Descarga CASO N° 2222 21032026 Descarga CASO N° 2223 22032026 Descarga CASO N° 2224 24032026 Descarga</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/059809788688</id>
+    <id>tag:realufo.org,2026:chile/780701126563</id>
     <title>abril 2026</title>
     <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/2026/04/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Monthly Dispatch"/>
     <category term="Chile · SEFAA"/>
     <summary type="text">Casos resueltos Destacados Casos Marzo 2026 2 de abril de 2026</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/666506456702</id>
+    <id>tag:realufo.org,2026:chile/887390542359</id>
     <title>Casos Febrero 2026</title>
     <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/2026/03/06/casos-febrero-2026/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Monthly Dispatch"/>
     <category term="Chile · SEFAA"/>
     <summary type="text">13 case files referenced. CASO N° 2205 25012026 Descarga CASO N° 2206 05022026 Descarga CASO N° 2208 09022026 Descarga CASO N° 2209 10022026 Descarga CASO N° 2210 10022026 Descarga CASO N° 2211 11022026 Descarga CASO N° 2212 14022026 Descarga CASO N° 2213 12022026 Descarga CASO N° 2214 15022026 Descarga CASO N° 923 29012019 …</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/564342567523</id>
+    <id>tag:realufo.org,2026:chile/460378288452</id>
     <title>marzo 2026</title>
     <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/2026/03/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Monthly Dispatch"/>
     <category term="Chile · SEFAA"/>
     <summary type="text">Casos resueltos Destacados Casos Febrero 2026 6 de marzo de 2026</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/652887997244</id>
+    <id>tag:realufo.org,2026:chile/871226711312</id>
     <title>Casos Enero 2026</title>
     <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/2026/02/05/casos-enero-2026/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Monthly Dispatch"/>
     <category term="Chile · SEFAA"/>
     <summary type="text">18 case files referenced. CASO N° 2014 11102024 Descarga CASO N° 2024 11112024 Descarga CASO N° 2025 12112024 Descarga CASO N° 2027 13112024 Descarga CASO N° 2028 22112024 Descarga CASO N° 2188 03122025 Descarga CASO N° 2192 14122025 Descarga CASO N° 2193 21122025 Descarga CASO N° 2194 23122025 Descarga CASO N° 2195 27122025…</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/987339582267</id>
+    <id>tag:realufo.org,2026:chile/456428283003</id>
     <title>febrero 2026</title>
     <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/2026/02/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Monthly Dispatch"/>
     <category term="Chile · SEFAA"/>
     <summary type="text">Casos resueltos Destacados Casos Enero 2026 5 de febrero de 2026</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/720356442472</id>
+    <id>tag:realufo.org,2026:chile/209482779225</id>
     <title>Equipo SEFAA dio charla sobre fenómenos aéreos anómalos en el Aeródromo Santo Domingo</title>
     <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/2025/06/16/equipo-sefaa-dio-charla-sobre-fenomenos-aereos-anomalos-en-el-aerodromo-santo-domingo/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Monthly Dispatch"/>
     <category term="Chile · SEFAA"/>
     <summary type="text">La Sección de Estudios de Fenómenos Aéreos Anómalos (SEFAA) ofreció una charla para funcionarios/as del Aeródromo Santo Domingo, con el fin de dar a conocer las principales funciones de la Sección, y de paso invitar a la comunidad de la DGAC a colaborar en materia de investigación y envío de reporte…</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/711311074460</id>
+    <id>tag:realufo.org,2026:chile/685548520477</id>
     <title>junio 2025</title>
     <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/2025/06/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Monthly Dispatch"/>
     <category term="Chile · SEFAA"/>
     <summary type="text">Destacados Noticias Equipo SEFAA dio charla sobre fenómenos aéreos anómalos en el Aeródromo Santo Domingo 16 de junio de 2025 La Sección de Estudios de Fenómenos Aéreos Anómalos (SEFAA) ofreció una charla para funcionarios/as del... Leer más Leer más sobre Equipo SEFAA dio charla sobre fenómenos aér…</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/759275121077</id>
+    <id>tag:realufo.org,2026:chile/445170710198</id>
     <title>SEFAA dictó charla a funcionarios de los Aeródromos Rodelillo y Viña del Mar</title>
     <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/2025/05/06/equipo-de-la-sefaa-dicto-charla-a-funcionarios-del-ad-rodelillo/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Monthly Dispatch"/>
     <category term="Chile · SEFAA"/>
     <summary type="text">Una interesante charla para dar a conocer el quehacer de la Sección de Estudios de Fenómenos Aéreos Anómalos, SEFAA , e invitar a la comunidad de la DGAC a colaborar en temas de investigación y envío de reportes, realizó el pasado 28 de abril, el equipo liderado por la astrónoma, Catalina Flores, ju…</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/200419332848</id>
+    <id>tag:realufo.org,2026:chile/351598904669</id>
     <title>mayo 2025</title>
     <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/2025/05/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Monthly Dispatch"/>
     <category term="Chile · SEFAA"/>
     <summary type="text">Destacados Noticias SEFAA dictó charla a funcionarios de los Aeródromos Rodelillo y Viña del Mar 6 de mayo de 2025 Una interesante charla para dar a conocer el quehacer de la Sección de Estudios de Fenómenos... Leer más Leer más sobre SEFAA dictó charla a funcionarios de los Aeródromos Rodelillo y V…</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/334944141737</id>
+    <id>tag:realufo.org,2026:chile/681593432667</id>
     <title>SEFAA lanza sus redes sociales</title>
     <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/2025/02/14/sefaa-lanza-sus-redes-sociales/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Monthly Dispatch"/>
     <category term="Chile · SEFAA"/>
     <summary type="text">En un esfuerzo por visibilizar la labor de la Sección de Estudios de Fenómenos Aéreos Anómalos, hoy inauguramos oficialmente nuestras redes sociales en Instagram ( @sefaa.chile ) y en X ( @sefaachile ). Tanto en nuestras redes sociales como en nuestro sitio web, nos dedicaremos a responder preguntas…</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/480369525767</id>
+    <id>tag:realufo.org,2026:chile/828975422920</id>
     <title>febrero 2025</title>
     <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/2025/02/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Monthly Dispatch"/>
     <category term="Chile · SEFAA"/>
     <summary type="text">Destacados Educación ¿Cómo investigamos en la SEFAA? 26 de febrero de 2025 El estudio de fenómenos aéreos anómalos, comúnmente reportados como «OVNIs» (objetos voladores no identificados) o... Leer más Leer más sobre ¿Cómo investigamos en la SEFAA?</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/980095887254</id>
+    <id>tag:realufo.org,2026:chile/049454994348</id>
     <title>Casos resueltos</title>
     <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/category/casos-resueltos/feed/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Monthly Dispatch"/>
     <category term="Chile · SEFAA"/>
     <summary type="text">Casos resueltos – SEFAA https://sefaa.dgac.gob.cl Sección de Estudios de Fenómenos Aéreos Anómalos Thu, 07 May 2026 15:44:30 +0000 es hourly 1 https://sefaa.dgac.gob.cl/wp-content/uploads/2021/12/cropped-SEFAA-Marco-blanco-32x32.jpg Casos resueltos – SEFAA https://sefaa.dgac.gob.cl 32 32 Casos Abril…</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/580401992866</id>
+    <id>tag:realufo.org,2026:chile/782083794716</id>
     <title>Casos Diciembre 2025</title>
     <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/2026/01/08/casos-diciembre-2025/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Monthly Dispatch"/>
     <category term="Chile · SEFAA"/>
     <summary type="text">11 case files referenced. CASO N° 2133 30062025 Descarga CASO N° 2180 15112025 Descarga CASO N° 2182 18112025 Descarga CASO N° 2183 24112025 Descarga CASO N° 2184 24112025 Descarga CASO N° 2185 25112025 Descarga CASO N° 2186 25112025 Descarga CASO N° 2187 29112025 Descarga CASO N° 2189 03122025 Descarga CASO N° 2190 10122025…</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/773358003018</id>
+    <id>tag:realufo.org,2026:chile/673289216401</id>
     <title>enero 2026</title>
     <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/2026/01/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Monthly Dispatch"/>
     <category term="Chile · SEFAA"/>
     <summary type="text">Casos resueltos Destacados Casos Diciembre 2025 8 de enero de 2026</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/367808126320</id>
+    <id>tag:realufo.org,2026:chile/800840209043</id>
     <title>Casos Noviembre 2025</title>
     <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/2025/12/03/casos-noviembre-2025/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Monthly Dispatch"/>
     <category term="Chile · SEFAA"/>
     <summary type="text">13 case files referenced. CASO N° 2168 29102025 Descarga CASO N° 2169 30102025 Descarga CASO N° 2170 31102025 Descarga CASO N° 2171 02112025 Descarga CASO N° 2172 02112025 Descarga CASO N° 2173 04112025 Descarga CASO N° 2174 05112025 Descarga CASO N° 2175 06112025 Descarga CASO N° 2176 09112025 Descarga CASO N° 2177 03112025…</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/508342674365</id>
+    <id>tag:realufo.org,2026:chile/635961660869</id>
     <title>diciembre 2025</title>
     <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/2025/12/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Monthly Dispatch"/>
     <category term="Chile · SEFAA"/>
     <summary type="text">Casos resueltos Destacados Casos Noviembre 2025 3 de diciembre de 2025</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/794553583354</id>
+    <id>tag:realufo.org,2026:chile/272326584221</id>
     <title>Casos Octubre 2025</title>
     <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/2025/11/03/casos-octubre-2025/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Monthly Dispatch"/>
     <category term="Chile · SEFAA"/>
     <summary type="text">20 case files referenced. CASO N° 794 20022018 Descarga CASO N° 2149 13082025 Descarga CASO N° 2151 04092025 Descarga CASO N° 2152 04092025 Descarga CASO N° 2153 05092025 Descarga CASO N° 2155 10092025 Descarga CASO N° 2156 13092025 Descarga CASO N° 2157 20092025 Descarga CASO N° 2159 23092025 Descarga CASO N° 2160 26092025-…</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:chile/678275831966</id>
+    <id>tag:realufo.org,2026:chile/428806113509</id>
     <title>noviembre 2025</title>
     <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/2025/11/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Monthly Dispatch"/>
     <category term="Chile · SEFAA"/>
     <summary type="text">Casos resueltos Destacados Casos Octubre 2025 3 de noviembre de 2025</summary>

@@ -5,12 +5,12 @@
   <id>https://realufo.org/feeds/nara.xml</id>
   <link rel="self" type="application/atom+xml" href="https://realufo.org/feeds/nara.xml"/>
   <link rel="alternate" type="text/html" href="https://realufo.org/nara/"/>
-  <updated>2026-05-22T10:45:46Z</updated>
+  <updated>2026-05-22T11:08:26Z</updated>
   <author><name>realufo.org</name><uri>https://realufo.org/</uri></author>
   <rights>Per-source jurisdiction (US 17 U.S.C. §105, UK OGL v3, France Loi 78-753, Brazil LAI 12.527, Chile 20.285, etc.)</rights>
   <generator uri="https://realufo.org/">realufo.org build-feeds.py</generator>
   <entry>
-    <id>tag:realufo.org,2026:nara/454934538741</id>
+    <id>tag:realufo.org,2026:nara/757374702599</id>
     <title>UAP Disclosure Act — NARA Implementation Guidance</title>
     <link rel="alternate" type="text/html" href="https://www.archives.gov/about/laws/uap-disclosure-act.html"/>
     <link rel="via" href="https://www.archives.gov/"/>
@@ -21,7 +21,7 @@
     <summary type="text">NARA guidance on implementation of the UAP Disclosure Act of 2023.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/164099595939</id>
+    <id>tag:realufo.org,2026:nara/849183491798</id>
     <title>2024 National Defense Authorization Act — Public Law 118-31</title>
     <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/2024-NDAA-Public-Law-118-31.pdf"/>
     <link rel="via" href="https://www.congress.gov/118/bills/hr2670/BILLS-118hr2670enr.pdf"/>
@@ -32,7 +32,7 @@
     <summary type="text">The 2024 NDAA established Record Group 615 (&#x27;Unidentified Anomalous Phenomena Records Collection&#x27;) at NARA, mandating that federal agencies transfer UAP records and authorising a 25-year sealing review.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/888215911680</id>
+    <id>tag:realufo.org,2026:nara/199142101323</id>
     <title>CIA Robertson Panel Report (1953)</title>
     <link rel="alternate" type="text/html" href="https://www.cia.gov/readingroom/docs/DOC_0000015458.pdf"/>
     <link rel="via" href="https://www.archives.gov/"/>
@@ -43,7 +43,7 @@
     <summary type="text">Declassified CIA Scientific Advisory Panel on Unidentified Flying Objects report.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/382108861659</id>
+    <id>tag:realufo.org,2026:nara/704264413520</id>
     <title>Project Blue Book (NARA RG 341)</title>
     <link rel="alternate" type="text/html" href="https://catalog.archives.gov/id/182466"/>
     <link rel="via" href="https://www.archives.gov/"/>
@@ -54,7 +54,7 @@
     <summary type="text">US Air Force Project Blue Book records — the primary historical UAP file (1947–1969).</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/492594558434</id>
+    <id>tag:realufo.org,2026:nara/920819115866</id>
     <title>Twining Memo — 1947 (AFB Roswell)</title>
     <link rel="alternate" type="text/html" href="https://www.archives.gov/files/research/military/air-force/twining-memo-1947.pdf"/>
     <link rel="via" href="https://www.archives.gov/"/>
@@ -65,458 +65,458 @@
     <summary type="text">Lt. Gen. Nathan Twining memo on &quot;Flying Discs&quot; — first official USAF documentation.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/711285126571</id>
+    <id>tag:realufo.org,2026:nara/798143833768</id>
     <title>UAP Records — Topic Gateway</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/nara/pages/topic.html"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Gateway"/>
     <category term="NARA"/>
     <summary type="text">NARA&#x27;s top-level gateway to UAP-related records across every collection it holds.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/779782485396</id>
+    <id>tag:realufo.org,2026:nara/846828113831</id>
     <title>Record Group 615 — Unidentified Anomalous Phenomena Records Collection</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/nara/pages/rg-615.html"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Record Group"/>
     <category term="NARA"/>
     <summary type="text">The dedicated RG established by the 2024 NDAA. Holdings transferred from DoD, ODNI, AARO, FBI, CIA, NASA, DOE, NSA, and others.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/459715376322</id>
+    <id>tag:realufo.org,2026:nara/181179616363</id>
     <title>Photographs</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/nara/pages/photographs.html"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Imagery"/>
     <category term="NARA"/>
     <summary type="text">NARA&#x27;s photographic UAP holdings — Air Force Project Blue Book stills, NICAP files, presidential library photos.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/025670777754</id>
+    <id>tag:realufo.org,2026:nara/832882625342</id>
     <title>Moving Images and Sound Recordings</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/nara/pages/moving-images-and-sound.html"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="A/V"/>
     <category term="NARA"/>
     <summary type="text">Films and audio relating to UAP investigations across federal agencies.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/549965549469</id>
+    <id>tag:realufo.org,2026:nara/058412409659</id>
     <title>Textual and Microfilm</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/nara/pages/textual-and-microfilm.html"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Textual"/>
     <category term="NARA"/>
     <summary type="text">Paper records and microfilm — including Project Blue Book&#x27;s 12,618-case textual file, J. Allen Hynek collection, and FBI HQ files.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/250316615616</id>
+    <id>tag:realufo.org,2026:nara/888947580911</id>
     <title>Presidential Libraries</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/nara/pages/presidential-libraries.html"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Presidential"/>
     <category term="NARA"/>
     <summary type="text">UAP-related material held in the presidential libraries (Truman, Eisenhower, Kennedy, Johnson, Nixon, Carter, Reagan, Clinton).</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/156785752315</id>
+    <id>tag:realufo.org,2026:nara/702421224647</id>
     <title>Research by Record Group or Collection</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/nara/pages/federal-agency.html"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Index"/>
     <category term="NARA"/>
     <summary type="text">Cross-index of every NARA record group containing UAP material — RG 18 (Army Air Forces), RG 65 (FBI), RG 341 (Air Staff), and many more.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/266298062719</id>
+    <id>tag:realufo.org,2026:nara/262342241683</id>
     <title>NARA Publications, Blogs &amp; Articles</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/nara/pages/blogs-and-articles.html"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Reference"/>
     <category term="NARA"/>
     <summary type="text">NARA-authored publications, archivist blog posts, and Prologue magazine articles about UAP collections.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/305560524603</id>
+    <id>tag:realufo.org,2026:nara/037893177637</id>
     <title>Frequently Asked Questions</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/nara/pages/faqs.html"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="FAQ"/>
     <category term="NARA"/>
     <summary type="text">Common research questions about the UAP collection and how to request materials.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/070367791756</id>
+    <id>tag:realufo.org,2026:nara/122535550636</id>
     <title>NARA Catalog — Bulk UAP Download Manifest</title>
     <link rel="alternate" type="text/html" href="https://www.archives.gov/research/catalog/catalog-bulk-downloads/uap-bulk-download"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Catalog"/>
     <category term="NARA"/>
     <summary type="text">Curated bulk-download index of digitised UAP records in the NARA online catalog — Project Blue Book, FBI HQ files, etc.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/420141737423</id>
+    <id>tag:realufo.org,2026:nara/106695622266</id>
     <title>NARA Catalog — Full Search</title>
     <link rel="alternate" type="text/html" href="https://catalog.archives.gov/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Catalog"/>
     <category term="NARA"/>
     <summary type="text">Search the entire NARA Catalog for keywords across all 600 million digitised pages.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/548460690415</id>
+    <id>tag:realufo.org,2026:nara/934064621525</id>
     <title>Project Blue Book — Online File</title>
     <link rel="alternate" type="text/html" href="https://catalog.archives.gov/search?q=project+blue+book"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Catalog"/>
     <category term="NARA"/>
     <summary type="text">Air Force&#x27;s 1947-1969 UFO investigation files: 12,618 cases, 130,000+ pages, fully digitised.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/719955469212</id>
+    <id>tag:realufo.org,2026:nara/157226416452</id>
     <title>FBI Vault — UFO files</title>
     <link rel="alternate" type="text/html" href="https://vault.fbi.gov/UFO"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Catalog"/>
     <category term="NARA"/>
     <summary type="text">FBI&#x27;s declassified UFO holdings hosted on the FBI Vault — Hottel memo, Roswell-era memos, internal investigations.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/107808292080</id>
+    <id>tag:realufo.org,2026:nara/160798684202</id>
     <title>NSA FOIA Reading Room — UFO/UAP Documents</title>
     <link rel="alternate" type="text/html" href="https://www.nsa.gov/Portals/75/documents/news-features/declassified-documents/ufo/"/>
     <link rel="via" href="https://www.archives.gov/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Catalog"/>
     <category term="NARA"/>
     <summary type="text">NSA declassified UFO/UAP documents collection — over 1,500 pages.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/895839395822</id>
+    <id>tag:realufo.org,2026:nara/902498094426</id>
     <title>NARA ARC — Aerial Phenomena Records</title>
     <link rel="alternate" type="text/html" href="https://catalog.archives.gov/search?q=%22unidentified+aerial%22&amp;resultTypes=item"/>
     <link rel="via" href="https://www.archives.gov/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Catalog"/>
     <category term="NARA"/>
     <summary type="text">NARA Archival Research Catalog search for aerial phenomena records.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/507200758502</id>
+    <id>tag:realufo.org,2026:nara/292406858486</id>
     <title>RG 255 — NASA Historical Records</title>
     <link rel="alternate" type="text/html" href="https://catalog.archives.gov/id/566916"/>
     <link rel="via" href="https://www.archives.gov/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Catalog"/>
     <category term="NARA"/>
     <summary type="text">NASA historical records at NARA including early aerospace observations.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/168607627026</id>
+    <id>tag:realufo.org,2026:nara/526496835031</id>
     <title>RG 330 — Office of Secretary of Defense UAP files</title>
     <link rel="alternate" type="text/html" href="https://catalog.archives.gov/search?q=%22UAP%22&amp;recordGroupNumber=330"/>
     <link rel="via" href="https://www.archives.gov/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Catalog"/>
     <category term="NARA"/>
     <summary type="text">OSD records including UAP-related correspondence and analysis.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/158354470928</id>
+    <id>tag:realufo.org,2026:nara/476755002744</id>
     <title>ISCAP Appeal Decision — UAP Classification Challenges</title>
     <link rel="alternate" type="text/html" href="https://www.archives.gov/declassification/iscap/decisions.html"/>
     <link rel="via" href="https://www.archives.gov/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Pdf"/>
     <category term="NARA"/>
     <summary type="text">ISCAP decisions on UAP-related declassification challenges.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/064503556861</id>
+    <id>tag:realufo.org,2026:nara/868929195394</id>
     <title>NARA FOIA Reading Room — UAP</title>
     <link rel="alternate" type="text/html" href="https://www.archives.gov/research/request-records/foia/reading-room"/>
     <link rel="via" href="https://www.archives.gov/"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Catalog"/>
     <category term="NARA"/>
     <summary type="text">NARA FOIA Electronic Reading Room with UAP-relevant records.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/259652562747</id>
+    <id>tag:realufo.org,2026:nara/299804255553</id>
     <title>Index</title>
     <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/Pentagon-Papers-Index.pdf"/>
     <link rel="via" href="https://www.archives.gov/research/pentagon-papers"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Pdf"/>
     <category term="NARA"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/340301566152</id>
+    <id>tag:realufo.org,2026:nara/092420772822</id>
     <title>Index</title>
     <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/Pentagon-Papers-Part-I.pdf"/>
     <link rel="via" href="https://www.archives.gov/research/pentagon-papers"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Pdf"/>
     <category term="NARA"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/536628553442</id>
+    <id>tag:realufo.org,2026:nara/338590423139</id>
     <title>[Part I] Vietnam and the U.S., 1940-1950</title>
     <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/Pentagon-Papers-Part-II.pdf"/>
     <link rel="via" href="https://www.archives.gov/research/pentagon-papers"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Pdf"/>
     <category term="NARA"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/594610947224</id>
+    <id>tag:realufo.org,2026:nara/874069493708</id>
     <title>[Part II] U.S. Involvement in the Franco-Viet Minh War, 1950-1954</title>
     <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/Pentagon-Papers-Part-III.pdf"/>
     <link rel="via" href="https://www.archives.gov/research/pentagon-papers"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Pdf"/>
     <category term="NARA"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/741672660451</id>
+    <id>tag:realufo.org,2026:nara/882222399221</id>
     <title>[Part III] The Geneva Accords</title>
     <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/Pentagon-Papers-Part-IV-A-1.pdf"/>
     <link rel="via" href="https://www.archives.gov/research/pentagon-papers"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Pdf"/>
     <category term="NARA"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/992744170868</id>
+    <id>tag:realufo.org,2026:nara/915639614769</id>
     <title>[Part IV. A. 1.] Evolution of the War. NATO and SEATO: A Comparison</title>
     <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/Pentagon-Papers-Part-IV-A-2.pdf"/>
     <link rel="via" href="https://www.archives.gov/research/pentagon-papers"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Pdf"/>
     <category term="NARA"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/990085219987</id>
+    <id>tag:realufo.org,2026:nara/303818945661</id>
     <title>[Part IV. A. 2.] Evolution of the War. Aid for France in Indochina, 1950-54</title>
     <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/Pentagon-Papers-Part-IV-A-3.pdf"/>
     <link rel="via" href="https://www.archives.gov/research/pentagon-papers"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Pdf"/>
     <category term="NARA"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/541885080225</id>
+    <id>tag:realufo.org,2026:nara/729636285605</id>
     <title>[Part IV. A. 3.] Evolution of the War. U.S. and France&#x27;s Withdrawal from Vietnam, 1954-56</title>
     <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/Pentagon-Papers-Part-IV-A-4.pdf"/>
     <link rel="via" href="https://www.archives.gov/research/pentagon-papers"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Pdf"/>
     <category term="NARA"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/664434324995</id>
+    <id>tag:realufo.org,2026:nara/380338615050</id>
     <title>[Part IV. A. 4.] Evolution of the War. U.S. Training of Vietnamese National Army, 1954-59</title>
     <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/Pentagon-Papers-Part-IV-A-5.pdf"/>
     <link rel="via" href="https://www.archives.gov/research/pentagon-papers"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Pdf"/>
     <category term="NARA"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/762437857105</id>
+    <id>tag:realufo.org,2026:nara/664798590911</id>
     <title>[Part IV. A. 5.] Evolution of the War. Origins of the Insurgency</title>
     <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/Pentagon-Papers-Part-IV-B-1.pdf"/>
     <link rel="via" href="https://www.archives.gov/research/pentagon-papers"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Pdf"/>
     <category term="NARA"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/487863321485</id>
+    <id>tag:realufo.org,2026:nara/290659343959</id>
     <title>[Part IV. B. 1.] Evolution of the War. Counterinsurgency: The Kennedy Commitments and Programs, 1961</title>
     <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/Pentagon-Papers-Part-IV-B-2.pdf"/>
     <link rel="via" href="https://www.archives.gov/research/pentagon-papers"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Pdf"/>
     <category term="NARA"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/551512119030</id>
+    <id>tag:realufo.org,2026:nara/307511797048</id>
     <title>[Part IV. B. 2.] Evolution of the War. Counterinsurgency: Strategic Hamlet Program, 1961-63</title>
     <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/Pentagon-Papers-Part-IV-B-3.pdf"/>
     <link rel="via" href="https://www.archives.gov/research/pentagon-papers"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Pdf"/>
     <category term="NARA"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/549532129980</id>
+    <id>tag:realufo.org,2026:nara/364353262694</id>
     <title>[Part IV. B. 3.] Evolution of the War. Counterinsurgency: The Advisory Build-up, 1961-67</title>
     <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/Pentagon-Papers-Part-IV-B-4.pdf"/>
     <link rel="via" href="https://www.archives.gov/research/pentagon-papers"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Pdf"/>
     <category term="NARA"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/318463118522</id>
+    <id>tag:realufo.org,2026:nara/147319256445</id>
     <title>[Part IV. B. 4.] Evolution of the War. Counterinsurgency: Phased Withdrawal of U.S. Forces in Vietnam, 1962-64</title>
     <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/Pentagon-Papers-Part-IV-B-5.pdf"/>
     <link rel="via" href="https://www.archives.gov/research/pentagon-papers"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Pdf"/>
     <category term="NARA"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/816976577414</id>
+    <id>tag:realufo.org,2026:nara/264473102729</id>
     <title>[Part IV. B. 5.] Evolution of the War. Counterinsurgency: The Overthrow of Ngo Dinh Diem, May-Nov. 1963</title>
     <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/Pentagon-Papers-Part-IV-C-1.pdf"/>
     <link rel="via" href="https://www.archives.gov/research/pentagon-papers"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Pdf"/>
     <category term="NARA"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/137177728365</id>
+    <id>tag:realufo.org,2026:nara/894420400766</id>
     <title>[Part IV. C. 2. a.] Evolution of the War. Military Pressures Against NVN. February - June 1964</title>
     <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/Pentagon-Papers-Part-IV-C-2a.pdf"/>
     <link rel="via" href="https://www.archives.gov/research/pentagon-papers"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Pdf"/>
     <category term="NARA"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/291183475558</id>
+    <id>tag:realufo.org,2026:nara/536316999844</id>
     <title>[Part IV. C. 2. a.] Evolution of the War. Military Pressures Against NVN. February - June 1964</title>
     <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/Pentagon-Papers-Part-IV-C-2b.pdf"/>
     <link rel="via" href="https://www.archives.gov/research/pentagon-papers"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Pdf"/>
     <category term="NARA"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/847773108428</id>
+    <id>tag:realufo.org,2026:nara/453969110169</id>
     <title>[Part IV. C. 2. b.] Evolution of the War. Military Pressures Against NVN. July - October 1964</title>
     <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/Pentagon-Papers-Part-IV-C-2c.pdf"/>
     <link rel="via" href="https://www.archives.gov/research/pentagon-papers"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Pdf"/>
     <category term="NARA"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/313366313478</id>
+    <id>tag:realufo.org,2026:nara/862653601798</id>
     <title>[Part IV. C. 2. c.] Evolution of the War. Military Pressures Against NVN. November - December 1964</title>
     <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/Pentagon-Papers-Part-IV-C-3.pdf"/>
     <link rel="via" href="https://www.archives.gov/research/pentagon-papers"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Pdf"/>
     <category term="NARA"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/398641561134</id>
+    <id>tag:realufo.org,2026:nara/591540337523</id>
     <title>[Part IV. C. 3.] Evolution of the War. ROLLING THUNDER Program Begins: January - June 1965</title>
     <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/Pentagon-Papers-Part-IV-C-4.pdf"/>
     <link rel="via" href="https://www.archives.gov/research/pentagon-papers"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Pdf"/>
     <category term="NARA"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/081373924076</id>
+    <id>tag:realufo.org,2026:nara/331658049879</id>
     <title>[Part IV. C. 4.] Evolution of the War. Marine Combat Units Go to DaNang, March 1965</title>
     <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/Pentagon-Papers-Part-IV-C-5.pdf"/>
     <link rel="via" href="https://www.archives.gov/research/pentagon-papers"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Pdf"/>
     <category term="NARA"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/598844946130</id>
+    <id>tag:realufo.org,2026:nara/667674111813</id>
     <title>[Part IV. C. 5.] Evolution of the War. Phase I in the Build-up of U.S. Forces: March - July 1965</title>
     <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/Pentagon-Papers-Part-IV-C-6-a.pdf"/>
     <link rel="via" href="https://www.archives.gov/research/pentagon-papers"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Pdf"/>
     <category term="NARA"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/462019485015</id>
+    <id>tag:realufo.org,2026:nara/139895349334</id>
     <title>[Part IV. C. 6. b.] Evolution of the War. U.S. Ground Strategy and Force Deployments: 1965 - 1967. Volume II: Program 5</title>
     <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/Pentagon-Papers-Part-IV-C-6-b.pdf"/>
     <link rel="via" href="https://www.archives.gov/research/pentagon-papers"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Pdf"/>
     <category term="NARA"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/334564070012</id>
+    <id>tag:realufo.org,2026:nara/871798657142</id>
     <title>[Part IV. C. 6. b.] Evolution of the War. U.S. Ground Strategy and Force Deployments: 1965 - 1967. Volume II: Program 5</title>
     <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/Pentagon-Papers-Part-IV-C-6-c.pdf"/>
     <link rel="via" href="https://www.archives.gov/research/pentagon-papers"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Pdf"/>
     <category term="NARA"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/818705610634</id>
+    <id>tag:realufo.org,2026:nara/139950641727</id>
     <title>[Part IV. C. 7. a.] Evolution of the War. Air War in the North: 1965 - 1968. Volume I</title>
     <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/Pentagon-Papers-Part-IV-C-7-a.pdf"/>
     <link rel="via" href="https://www.archives.gov/research/pentagon-papers"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Pdf"/>
     <category term="NARA"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:nara/142774570645</id>
+    <id>tag:realufo.org,2026:nara/550749706659</id>
     <title>[Part IV. C. 7. a.] Evolution of the War. Air War in the North: 1965 - 1968. Volume I</title>
     <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/Pentagon-Papers-Part-IV-C-7-b.pdf"/>
     <link rel="via" href="https://www.archives.gov/research/pentagon-papers"/>
-    <updated>2026-05-22T10:45:46Z</updated>
-    <published>2026-05-22T10:45:46Z</published>
+    <updated>2026-05-22T11:08:26Z</updated>
+    <published>2026-05-22T11:08:26Z</published>
     <category term="Pdf"/>
     <category term="NARA"/>
   </entry>

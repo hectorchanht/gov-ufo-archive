@@ -40,6 +40,12 @@ CASE_PAGES = [
     'nara/socorro.html',
     'aaro/jal-1628.html',
     'aaro/coyne.html',
+    'aaro/travis-walton.html',
+    'aaro/cash-landrum.html',
+    'nara/robertson-panel.html',
+    'nara/condon-committee.html',
+    'geipan/valensole.html',
+    'chile/el-bosque.html',
 ]
 
 
@@ -74,6 +80,8 @@ MANUAL_COORDS = {
     'brazil/operacao-prato.html': (-0.92, -48.30,   'Colares, Pará, Brazil'),
     'aaro/jal-1628.html':         (64.00, -152.00,  'Yukon-Kuskokwim, interior Alaska'),
     'aaro/coyne.html':            (40.70, -81.40,   'Mansfield, Ohio'),
+    'nara/robertson-panel.html':  (38.95, -77.15,   'CIA HQ Langley, Virginia'),
+    'nara/condon-committee.html': (40.01, -105.27,  'University of Colorado, Boulder'),
 }
 TITLE_RE = re.compile(r'<title>([^<]+)</title>', re.I)
 DESC_RE  = re.compile(r'<meta\s+name="description"\s+content="([^"]+)"', re.I)
