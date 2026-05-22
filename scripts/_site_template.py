@@ -13,10 +13,11 @@ Design rules: CLAUDE.md § 2, 3, 6, 7.
 # ── Navigation config ────────────────────────────────────────────────────────
 
 PINNED = [
-    ('War.gov', None, 'wargov'),   # href resolved by make_nav()
-    ('AARO',    'aaro', 'aaro'),
-    ('NASA',    'nasa', 'nasa'),
-    ('NARA',    'nara', 'nara'),
+    ('Home',    None,    'home'),     # href resolved by make_nav() — root search landing
+    ('War.gov', 'wargov', 'wargov'),
+    ('AARO',    'aaro',   'aaro'),
+    ('NASA',    'nasa',   'nasa'),
+    ('NARA',    'nara',   'nara'),
 ]
 MORE = [
     ('GEIPAN (France)',    'geipan'),

@@ -13,8 +13,9 @@ from __future__ import annotations
 import csv, json, os, re
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-INDEX = os.path.join(REPO, 'index.html')
+INDEX = os.path.join(REPO, 'wargov', 'index.html')   # was REPO/index.html — moved under wargov/
 CSV   = os.path.join(REPO, 'uap-release001.csv')
+LOCAL_PREFIX = '../'   # wargov/index.html is depth-1; assets live at repo root
 
 
 import subprocess
@@ -78,9 +79,9 @@ for r in rows:
     url = r.get('PDF | Image Link', '')
     bn = basename(url).lower()
     if bn in pdf_l:
-        r['local'] = 'bundles/Release_1/' + pdf_l[bn]
+        r['local'] = LOCAL_PREFIX + 'bundles/Release_1/' + pdf_l[bn]
     elif bn in slide_l:
-        r['local'] = 'slideshow/' + slide_l[bn]
+        r['local'] = LOCAL_PREFIX + 'slideshow/' + slide_l[bn]
     else:
         r['local'] = ''
 
