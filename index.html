@@ -86,7 +86,7 @@
     padding: 16px 0;
     position: relative;
   }
-  header .container {
+  header .container span{
     display: flex; align-items: center; justify-content: space-between; width: 100%;
   }
   .brand {
@@ -1046,17 +1046,19 @@ li.nav-sep { display: none; }
 <div class="header-wrap">
 <header>
   <div class="container">
-    <a href="#" class="brand">
-      <div class="seal">DOW</div>
-      <div class="brand-text">
-        <span class="super">U.S. Department of</span>
-        <span class="name">War</span>
-      </div>
-    </a>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <nav class="primary" id="primary-nav">
+    <span>
+      <a href="#" class="brand">
+        <div class="seal">DOW</div>
+        <div class="brand-text">
+          <span class="super">U.S. Department of</span>
+          <span class="name">War</span>
+        </div>
+      </a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </span>
+    <nav class="primary-nav" id="primary-nav">
       <ul>
         <li><a href="#intro" data-i18n="intro">Intro</a></li>
         <li><a href="#directive">Directive</a></li>
