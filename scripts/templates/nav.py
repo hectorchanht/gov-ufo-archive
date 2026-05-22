@@ -130,25 +130,25 @@ def make_nav(current_slug: str, depth: int = 1, internal_links=None) -> str:
 
     # "Site ▾" — pages about the site itself.
     site_active = any(k == current_slug for _, _, k in SITE_PAGES)
-    site_items = ''.join(
-        f'<li><a href="{root}{file}"{" class=\"active\"" if k == current_slug else ""}>{name}</a></li>'
-        for name, file, k in SITE_PAGES
-    )
+    def _site_li(name, file, k):
+        cls = ' class="active"' if k == current_slug else ''
+        return f'<li><a href="{root}{file}"{cls}>{name}</a></li>'
+    site_items = ''.join(_site_li(n, f, k) for n, f, k in SITE_PAGES)
 
     # "Story ▾" — every story page across every mirror.
     cur_story_path = current_slug if current_slug and ('/' in current_slug) else ''
     story_active = any(path == cur_story_path for _, path in STORIES)
-    story_items = ''.join(
-        f'<li><a href="{root}{path}"{" class=\"active\"" if path == cur_story_path else ""}>{label}</a></li>'
-        for label, path in STORIES
-    )
+    def _story_li(label, path):
+        cls = ' class="active"' if path == cur_story_path else ''
+        return f'<li><a href="{root}{path}"{cls}>{label}</a></li>'
+    story_items = ''.join(_story_li(l, p) for l, p in STORIES)
 
     # "Nations ▾" — 11 national mirrors.
     nations_active = any(slug == current_slug for _, slug in MORE)
-    more_items = ''.join(
-        f'<li><a href="{_href(slug, depth)}"{" class=\"active\"" if slug == current_slug else ""}>{name}</a></li>'
-        for name, slug in MORE
-    )
+    def _nation_li(name, slug):
+        cls = ' class="active"' if slug == current_slug else ''
+        return f'<li><a href="{_href(slug, depth)}"{cls}>{name}</a></li>'
+    more_items = ''.join(_nation_li(n, s) for n, s in MORE)
 
     # NOTE: dropdowns use native <details>/<summary>. The browser handles
     # open/close natively (toggle event, ESC key, focus management). A tiny
