@@ -611,6 +611,9 @@ def build_mirror(cfg):
         for label, href in cfg['source_links']
     )
 
+    from _release_manifest import apply_manifest
+    apply_manifest(cfg['assets'])
+
     stats = {
         'total': len(cfg['assets']),
         'local_total': sum(1 for a in cfg['assets'] if a.get('l')),

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cloud.umami.is; script-src-attr 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://cloud.umami.is; object-src 'none'; base-uri 'self'; form-action 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stats — how the archive is doing · realufo.org</title>
+<meta name="description" content="Live status of the realufo.org archive. Total records, per-archive counts, dead-source rate, last sync time. Updated on every weekly sync.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://realufo.org/stats.html">
+<meta property="og:title" content="realufo.org — How the archive is doing">
+<meta property="og:description" content="Live record counts, source health, sync status.">
+<meta property="og:url" content="https://realufo.org/stats.html">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://realufo.org/assets/og.svg">
+<meta property="og:site_name" content="realufo.org">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="apple-touch-icon" href="/assets/favicon.svg">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#0a0a0c">
+<script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){});});}</script>
+<script defer src="/assets/vendor/hotkeys.js"></script>
+<script defer src="https://cloud.umami.is/script.js" data-website-id="9c4f36ef-30ad-4d76-947a-1724fe6acdba"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0a0a0c;--bg-2:#111114;--panel:#15151a;--ink:#e8e3d8;--ink-dim:#a8a298;--ink-faint:#6b665d;--rule:rgba(232,227,216,0.12);--rule-strong:rgba(232,227,216,0.28);--caution:#d4a017;--stamp:#b91c1c;--green:#4ade80;--red:#ef4444;--amber:#f59e0b;--serif:"Source Serif 4",Georgia,serif;--mono:"JetBrains Mono",monospace}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{background:var(--bg);color:var(--ink);font-family:var(--serif);font-size:16px;line-height:1.6;overflow-x:hidden}
+.scanlines{position:fixed;inset:0;pointer-events:none;z-index:9999;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.03) 2px,rgba(0,0,0,0.03) 4px)}
+@media (prefers-reduced-motion: reduce){.scanlines{display:none}*,*::before,*::after{animation-duration:0.001ms!important;transition-duration:0.001ms!important;scroll-behavior:auto!important}}
+.container{max-width:1100px;margin:0 auto;padding:0 16px}
+
+.header-wrap{position:sticky;top:0;z-index:900;background:rgba(21,21,26,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--rule);height:64px}
+.header{max-width:1400px;margin:0 auto;padding:0 16px;height:100%;display:flex;align-items:center;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;color:var(--ink)}
+.brand-seal{width:36px;height:36px;border-radius:50%;background:radial-gradient(circle,#b91c1c,#6b1010,#2a0606);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;color:var(--caution);letter-spacing:0.1em;border:1px solid rgba(212,160,23,0.35);flex-shrink:0}
+.brand-name{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--ink);letter-spacing:0.12em;text-transform:uppercase}
+nav.primary{display:flex;align-items:center;gap:4px;margin-left:auto;list-style:none}
+nav.primary a{font-family:var(--mono);font-size:11px;color:var(--ink-dim);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;padding:10px;border-radius:4px}
+nav.primary a:hover{color:var(--ink);background:rgba(232,227,216,0.06)}
+nav.primary a.active{color:var(--caution)}
+.nav-toggle{display:none;background:none;border:none;color:var(--ink);font-size:22px;cursor:pointer;padding:10px 8px;line-height:1;margin-left:auto}
+@media(max-width:719px){.nav-toggle{display:flex;align-items:center;justify-content:center}nav.primary{display:none;position:fixed;top:64px;left:0;right:0;background:var(--panel);border-bottom:1px solid var(--rule-strong);flex-direction:column;align-items:stretch;padding:8px 0 16px;margin-left:0;gap:0;max-height:calc(100vh - 64px);overflow-y:auto}nav.primary.open{display:flex}nav.primary a{padding:12px 20px}}
+
+main{padding:36px 0 80px}
+.hero{text-align:center;padding:24px 0 28px}
+.hero h1{font-family:var(--serif);font-size:clamp(28px,5vw,46px);font-weight:600;letter-spacing:-0.015em;margin-bottom:8px}
+.hero h1 em{color:var(--caution);font-style:italic}
+.hero p{font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:0.12em;text-transform:uppercase}
+
+.bignums{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin:28px 0}
+.bignums .card{background:var(--bg-2);border:1px solid var(--rule);border-radius:8px;padding:20px 18px;position:relative;overflow:hidden}
+.bignums .card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--caution);opacity:0.7}
+.bignums .card.green::before{background:var(--green)}
+.bignums .card.amber::before{background:var(--amber)}
+.bignums .card.red::before{background:var(--red)}
+.bignums .card .v{font-family:var(--serif);font-size:42px;font-weight:700;color:var(--ink);letter-spacing:-0.02em;line-height:1}
+.bignums .card .l{font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);margin-top:8px}
+.bignums .card .s{font-family:var(--mono);font-size:11px;color:var(--ink-dim);margin-top:6px}
+
+section{margin-top:34px}
+h2{font-family:var(--serif);font-size:clamp(20px,3vw,26px);font-weight:600;margin-bottom:14px;letter-spacing:-0.01em}
+h2 small{font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:0.08em;margin-left:10px;font-weight:400;text-transform:uppercase}
+
+.bar-list{display:grid;gap:8px}
+.bar{display:grid;grid-template-columns:120px 1fr 80px;gap:10px;align-items:center;font-family:var(--mono);font-size:12px}
+.bar .label{color:var(--ink-dim);letter-spacing:0.08em;text-transform:uppercase;font-size:11px}
+.bar .track{height:18px;background:var(--bg-2);border:1px solid var(--rule);border-radius:3px;position:relative;overflow:hidden}
+.bar .fill{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(to right,rgba(212,160,23,0.4),var(--caution));border-right:1px solid var(--caution)}
+.bar .count{text-align:right;color:var(--caution);font-weight:700;font-size:11px;letter-spacing:0.04em}
+
+.status-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:10px}
+.status-grid .si{background:var(--bg-2);border:1px solid var(--rule);border-radius:6px;padding:12px 14px;display:flex;align-items:center;gap:10px}
+.status-grid .si .dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.status-grid .si .dot.ok{background:var(--green);box-shadow:0 0 8px rgba(74,222,128,0.45)}
+.status-grid .si .dot.warn{background:var(--amber)}
+.status-grid .si .dot.err{background:var(--red)}
+.status-grid .si .text{flex:1;font-family:var(--mono);font-size:11px;letter-spacing:0.06em;color:var(--ink-dim)}
+.status-grid .si .text strong{display:block;color:var(--ink);font-family:var(--serif);font-size:14px;font-weight:600;text-transform:none;letter-spacing:0;margin-bottom:2px}
+
+.dead-list{margin-top:18px;border:1px solid var(--rule);border-radius:6px;background:var(--bg-2);max-height:240px;overflow-y:auto}
+.dead-list .h{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-faint);padding:10px 14px;border-bottom:1px solid var(--rule);position:sticky;top:0;background:var(--bg-2);z-index:1}
+.dead-list ul{list-style:none;padding:0;margin:0}
+.dead-list li{padding:8px 14px;border-bottom:1px solid var(--rule);font-family:var(--mono);font-size:11px;color:var(--ink-dim);display:flex;gap:10px;align-items:baseline}
+.dead-list li:last-child{border-bottom:0}
+.dead-list .code{color:var(--red);font-weight:700;min-width:36px}
+.dead-list .host{color:var(--ink);min-width:200px}
+.dead-list .url{color:var(--ink-faint);overflow-wrap:anywhere}
+
+.no-data{padding:32px;text-align:center;color:var(--ink-faint);font-family:var(--mono);font-size:11px;letter-spacing:0.08em}
+
+footer{border-top:1px solid var(--rule);margin-top:40px;padding:28px 16px;text-align:center}
+footer p{font-family:var(--mono);font-size:10px;color:var(--ink-faint);letter-spacing:0.08em;line-height:1.8}
+footer a{color:var(--ink-dim);text-decoration:none}
+</style>
+</head>
+<body>
+<div class="scanlines" aria-hidden="true"></div>
+
+<div class="header-wrap">
+  <div class="header">
+    <a href="/" class="brand"><div class="brand-seal">UAP</div><span class="brand-name">realufo.org</span></a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle nav" aria-expanded="false">&#9776;</button>
+    <nav class="primary" id="primary-nav">
+      <a href="/">War.gov</a>
+      <a href="/search.html">Search</a>
+      <a href="/timeline.html">Timeline</a>
+      <a href="/map.html">Map</a>
+      <a href="/stats.html" class="active">Stats</a>
+      <a href="/about.html">About</a>
+    </nav>
+  </div>
+</div>
+
+<main class="container">
+
+  <section class="hero">
+    <h1>How the archive is <em>doing</em></h1>
+    <p>Live status · regenerated every weekly sync · no auth required</p>
+  </section>
+
+  <div class="bignums" id="bignums">
+    <div class="card"><div class="v" id="bn-total">—</div><div class="l">Total records</div><div class="s" id="bn-total-sub">&nbsp;</div></div>
+    <div class="card"><div class="v" id="bn-arch">—</div><div class="l">Archives</div><div class="s" id="bn-arch-sub">&nbsp;</div></div>
+    <div class="card green" id="bn-health-card"><div class="v" id="bn-alive">—</div><div class="l">Live sources</div><div class="s" id="bn-alive-sub">&nbsp;</div></div>
+    <div class="card amber" id="bn-dead-card"><div class="v" id="bn-dead">—</div><div class="l">Dead sources</div><div class="s" id="bn-dead-sub">&nbsp;</div></div>
+  </div>
+
+  <section>
+    <h2>Per-archive record count <small id="upd-stats">loading…</small></h2>
+    <div class="bar-list" id="bars"></div>
+  </section>
+
+  <section>
+    <h2>System health <small id="upd-health">loading…</small></h2>
+    <div class="status-grid" id="status-grid"></div>
+  </section>
+
+  <section>
+    <h2>Recent dead sources <small id="dead-time">—</small></h2>
+    <div class="dead-list" id="dead-list">
+      <div class="h">URL · status · host</div>
+      <div class="no-data" id="dead-loading">Loading dead-links.json…</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>How to consume this data</h2>
+    <p style="color:var(--ink-dim);font-family:var(--serif);font-size:14px">
+      The full machine-readable dump lives in <a href="/api/">/api/</a>:
+      <a href="/api/all.json"><code>all.json</code></a> (every record),
+      <a href="/api/by-archive.json"><code>by-archive.json</code></a> (grouped),
+      <a href="/api/stats.json"><code>stats.json</code></a> (counts only).
+      Source-health raw data: <a href="/dead-links.json"><code>dead-links.json</code></a>.
+      CORS is enabled.
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  <p>
+    <a href="/">realufo.org</a> · Stats regenerated on every weekly sync ·
+    <a href="/api/">API</a> · <a href="/about.html">About</a>
+  </p>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+
+  function esc(s){return String(s||'').replace(/[&<>"']/g,function(c){return({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]})}
+  function fmt(n){return n == null ? '—' : Number(n).toLocaleString();}
+  function relTime(iso) {
+    if (!iso) return '';
+    var t = Date.parse(iso); if (!t) return iso;
+    var d = (Date.now() - t) / 1000;
+    if (d < 60) return Math.floor(d) + 's ago';
+    if (d < 3600) return Math.floor(d/60) + 'm ago';
+    if (d < 86400) return Math.floor(d/3600) + 'h ago';
+    if (d < 86400*30) return Math.floor(d/86400) + 'd ago';
+    return new Date(t).toISOString().slice(0,10);
+  }
+
+  /* --- /api/stats.json ----------------------------------------------------- */
+  fetch('/api/stats.json', { cache:'no-cache' }).then(function(r){return r.json();}).then(function(data) {
+    var meta = data._meta || {};
+    var per = data.perArchive || [];
+    document.getElementById('bn-total').textContent = fmt(meta.totalRecords);
+    document.getElementById('bn-total-sub').textContent = 'last sync ' + relTime(meta.generatedAt);
+    document.getElementById('bn-arch').textContent = fmt(meta.totalArchives);
+    document.getElementById('bn-arch-sub').textContent = per.filter(function(x){return x.count>0;}).length + ' with records';
+    document.getElementById('upd-stats').textContent = relTime(meta.generatedAt);
+
+    /* bars */
+    var max = per.reduce(function(m,x){return Math.max(m, x.count||0);}, 1);
+    var bars = document.getElementById('bars');
+    per.sort(function(a,b){return (b.count||0) - (a.count||0);});
+    bars.innerHTML = per.map(function(p) {
+      var pct = Math.max(2, Math.round(((p.count||0)/max)*100));
+      return '<div class="bar">' +
+        '<div class="label"><a href="/' + (p.id === 'wargov' ? '' : esc(p.id) + '/') + '" style="color:inherit;text-decoration:none">' + esc(p.label) + '</a></div>' +
+        '<div class="track"><div class="fill" style="width:' + pct + '%"></div></div>' +
+        '<div class="count">' + fmt(p.count) + '</div>' +
+        '</div>';
+    }).join('');
+  }).catch(function() {
+    document.getElementById('upd-stats').textContent = 'unavailable';
+    document.getElementById('bars').innerHTML = '<div class="no-data">/api/stats.json not reachable. Run <code>python3 scripts/build-api.py</code>.</div>';
+  });
+
+  /* --- /dead-links.json ---------------------------------------------------- */
+  fetch('/dead-links.json', { cache:'no-cache' }).then(function(r){return r.json();}).then(function(data) {
+    var total = data.total || 0, dead = data.dead || 0;
+    var alive = total - dead;
+    var rate = total ? (dead/total*100).toFixed(1) : '0.0';
+    document.getElementById('bn-alive').textContent = fmt(alive);
+    document.getElementById('bn-alive-sub').textContent = (100 - parseFloat(rate)).toFixed(1) + '% reachable';
+    document.getElementById('bn-dead').textContent = fmt(dead);
+    document.getElementById('bn-dead-sub').textContent = rate + '% dead-link rate';
+    if (dead === 0) {
+      document.getElementById('bn-dead-card').classList.remove('amber');
+      document.getElementById('bn-dead-card').classList.add('green');
+    } else if (parseFloat(rate) > 5) {
+      document.getElementById('bn-dead-card').classList.remove('amber');
+      document.getElementById('bn-dead-card').classList.add('red');
+    }
+    document.getElementById('dead-time').textContent = relTime(data.checkedAt);
+    document.getElementById('upd-health').textContent = relTime(data.checkedAt);
+
+    /* List up to 100 most-recent dead URLs */
+    var results = data.results || {};
+    var bad = Object.values(results).filter(function(r){return !r.ok;}).slice(0, 100);
+    var dl = document.getElementById('dead-list');
+    dl.querySelector('#dead-loading') && dl.querySelector('#dead-loading').remove();
+    if (!bad.length) {
+      var ok = document.createElement('div'); ok.className = 'no-data';
+      ok.textContent = 'No dead sources on last check. Healthy.';
+      dl.appendChild(ok);
+    } else {
+      var ul = document.createElement('ul');
+      bad.forEach(function(r) {
+        ul.innerHTML += '<li><span class="code">' + esc(r.status) + '</span>' +
+          '<span class="host">' + esc(r.host) + '</span>' +
+          '<span class="url">' + esc(r.url) + '</span></li>';
+      });
+      dl.appendChild(ul);
+    }
+
+    /* Status grid */
+    var sg = document.getElementById('status-grid');
+    var items = [
+      { ok: data.checkedAt, label: 'Last source health check', value: relTime(data.checkedAt) || 'never' },
+      { ok: dead === 0, label: 'Source link integrity', value: rate + '% dead (' + fmt(dead) + ' of ' + fmt(total) + ')' },
+      { ok: total > 0, label: 'Manifest reachability', value: fmt(total) + ' URLs indexed' },
+    ];
+    sg.innerHTML = items.map(function(it) {
+      var cls = it.ok ? 'ok' : 'warn';
+      return '<div class="si"><div class="dot ' + cls + '"></div><div class="text"><strong>' + esc(it.label) + '</strong>' + esc(it.value) + '</div></div>';
+    }).join('');
+  }).catch(function() {
+    document.getElementById('upd-health').textContent = 'unavailable';
+    document.getElementById('dead-time').textContent = 'never';
+    document.getElementById('bn-alive').textContent = '—';
+    document.getElementById('bn-dead').textContent = '—';
+    document.getElementById('dead-loading').textContent = '/dead-links.json not present yet. Run scripts/check-sources.py.';
+    document.getElementById('status-grid').innerHTML = '<div class="si"><div class="dot warn"></div><div class="text"><strong>Source health</strong>never run</div></div>';
+  });
+
+  /* Hamburger */
+  var t = document.getElementById('nav-toggle'), n = document.getElementById('primary-nav');
+  if (t && n) t.addEventListener('click', function(){
+    var open = n.classList.toggle('open');
+    t.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+})();
+</script>
+</body>
+</html>

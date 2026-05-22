@@ -1,0 +1,226 @@
+{
+  "_meta": {
+    "description": "realufo.org per-event geocode dump. Used by /map.html for case pins. Archive HQ centroids included as fallback.",
+    "docs": "https://realufo.org/api/",
+    "units": "WGS84 decimal degrees"
+  },
+  "cases": [
+    {
+      "kind": "case",
+      "archive": "uk",
+      "href": "/uk/rendlesham.html",
+      "lat": 52.0848,
+      "lon": 1.4423,
+      "title": "Rendlesham Forest, Dec 1980",
+      "date": "1981-01-13",
+      "description": "The Rendlesham Forest incident, 26–28 December 1980 — RAF Woodbridge / RAF Bentwaters. Halt memo, witness depositions, DEFE 24/1948 file. Offline-archived from the UK National Archives."
+    },
+    {
+      "kind": "case",
+      "archive": "aaro",
+      "href": "/aaro/tic-tac.html",
+      "lat": 32.0,
+      "lon": -117.0,
+      "title": "Nimitz \"Tic-Tac\", November 2004",
+      "date": "2020-04-27",
+      "description": "The USS Nimitz / USS Princeton encounters, 10–16 November 2004, off Baja California. Cmdr David Fravor, FLIR1 footage, AAW exercise off Catalina. Offline-archived from DoD / AARO releases."
+    },
+    {
+      "kind": "case",
+      "archive": "aaro",
+      "href": "/aaro/gimbal.html",
+      "lat": 36.85,
+      "lon": -75.3,
+      "title": "Gimbal, January 2015",
+      "date": "2020-04-27",
+      "description": "The Gimbal encounter, 20 January 2015, east coast of the United States. F/A-18F Super Hornet ATFLIR pod footage, declassified by the Department of Defense in April 2020. Offline-archived from AARO releases."
+    },
+    {
+      "kind": "case",
+      "archive": "aaro",
+      "href": "/aaro/phoenix-lights.html",
+      "lat": 33.4484,
+      "lon": -112.074,
+      "title": "Phoenix Lights, March 1997",
+      "date": "1997-03-13",
+      "description": "The Phoenix Lights, 13 March 1997 — V-shaped craft observed by thousands across Arizona and the southwestern United States. Governor Symington's public confirmation a decade later. Offline-archived from DoD / Air Force…"
+    },
+    {
+      "kind": "case",
+      "archive": "aaro",
+      "href": "/aaro/belgian-wave.html",
+      "lat": 50.6,
+      "lon": 5.6,
+      "title": "Belgian UFO Wave, 1989–90",
+      "date": "1990-07-11",
+      "description": "The Belgian UFO wave, November 1989 – April 1991 — triangular craft, F-16 scrambles, Belgian Air Force radar lock, public press conference by Colonel Wilfried De Brouwer. The most thoroughly documented military UAP…"
+    },
+    {
+      "kind": "case",
+      "archive": "brazil",
+      "href": "/brazil/operacao-prato.html",
+      "lat": -0.92,
+      "lon": -48.3,
+      "title": "Operação Prato, 1977–78",
+      "date": "2005-01-01",
+      "description": "Operation Saucer (Operação Prato) — the Brazilian Air Force investigation into the Chupa-Chupa flap on the Pará coast, September 1977 to January 1978. Captain Hollanda's 500-page report, declassified 2005."
+    },
+    {
+      "kind": "case",
+      "archive": "brazil",
+      "href": "/brazil/varginha.html",
+      "lat": -21.5519,
+      "lon": -45.4297,
+      "title": "Varginha, January 1996",
+      "date": "1996-01-20",
+      "description": "The Varginha incident, 20 January 1996 — three witnesses, a stranded entity, an Army deployment, and a soldier's contested death. Offline-archived from Brazilian Air Force and Ministério da Defesa records."
+    },
+    {
+      "kind": "case",
+      "archive": "brazil",
+      "href": "/brazil/trindade.html",
+      "lat": -20.5167,
+      "lon": -29.3167,
+      "title": "Trindade Island, January 1958",
+      "date": "1958-01-16",
+      "description": "The Trindade Island incident, 16 January 1958 — Almirante Saldanha (NEE-15) deck witnesses photograph a Saturn-shaped UAP over the South Atlantic island. Photos certified by President Juscelino Kubitschek; the most…"
+    }
+  ],
+  "archives": [
+    {
+      "kind": "archive",
+      "archive": "wargov",
+      "href": "/",
+      "lat": 38.8951,
+      "lon": -77.0364,
+      "title": "War.gov / PURSUE",
+      "description": ""
+    },
+    {
+      "kind": "archive",
+      "archive": "aaro",
+      "href": "/aaro/",
+      "lat": 38.8703,
+      "lon": -77.0566,
+      "title": "AARO",
+      "description": ""
+    },
+    {
+      "kind": "archive",
+      "archive": "nasa",
+      "href": "/nasa/",
+      "lat": 38.883,
+      "lon": -77.0163,
+      "title": "NASA UAP",
+      "description": ""
+    },
+    {
+      "kind": "archive",
+      "archive": "nara",
+      "href": "/nara/",
+      "lat": 38.8929,
+      "lon": -77.0227,
+      "title": "NARA",
+      "description": ""
+    },
+    {
+      "kind": "archive",
+      "archive": "geipan",
+      "href": "/geipan/",
+      "lat": 43.6047,
+      "lon": 1.4442,
+      "title": "France · GEIPAN",
+      "description": ""
+    },
+    {
+      "kind": "archive",
+      "archive": "uk",
+      "href": "/uk/",
+      "lat": 51.481,
+      "lon": -0.279,
+      "title": "UK · National Archives",
+      "description": ""
+    },
+    {
+      "kind": "archive",
+      "archive": "brazil",
+      "href": "/brazil/",
+      "lat": -15.7942,
+      "lon": -47.8825,
+      "title": "Brazil · FAB",
+      "description": ""
+    },
+    {
+      "kind": "archive",
+      "archive": "chile",
+      "href": "/chile/",
+      "lat": -33.4489,
+      "lon": -70.6693,
+      "title": "Chile · SEFAA",
+      "description": ""
+    },
+    {
+      "kind": "archive",
+      "archive": "argentina",
+      "href": "/argentina/",
+      "lat": -34.6037,
+      "lon": -58.3816,
+      "title": "Argentina · CEFAe",
+      "description": ""
+    },
+    {
+      "kind": "archive",
+      "archive": "canada",
+      "href": "/canada/",
+      "lat": 45.4215,
+      "lon": -75.6972,
+      "title": "Canada · LAC / Magnet",
+      "description": ""
+    },
+    {
+      "kind": "archive",
+      "archive": "italy",
+      "href": "/italy/",
+      "lat": 41.9028,
+      "lon": 12.4964,
+      "title": "Italy · Aeronautica",
+      "description": ""
+    },
+    {
+      "kind": "archive",
+      "archive": "nz",
+      "href": "/nz/",
+      "lat": -41.2865,
+      "lon": 174.7762,
+      "title": "NZ · NZDF",
+      "description": ""
+    },
+    {
+      "kind": "archive",
+      "archive": "peru",
+      "href": "/peru/",
+      "lat": -12.0464,
+      "lon": -77.0428,
+      "title": "Peru · OIFAA",
+      "description": ""
+    },
+    {
+      "kind": "archive",
+      "archive": "spain",
+      "href": "/spain/",
+      "lat": 40.4168,
+      "lon": -3.7038,
+      "title": "Spain · Ejército del Aire",
+      "description": ""
+    },
+    {
+      "kind": "archive",
+      "archive": "uruguay",
+      "href": "/uruguay/",
+      "lat": -34.9011,
+      "lon": -56.1645,
+      "title": "Uruguay · CRIDOVNI",
+      "description": ""
+    }
+  ]
+}

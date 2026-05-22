@@ -1,0 +1,54 @@
+/* ◉◉◉  realufo.org — humans.txt ◉◉◉
+   The unauthorised, faithful archive of every official government UAP source.
+
+   The greatest engineering of this project was done by the governments,
+   archivists, FOIA filers, civilian researchers, and military officers who
+   declassified the records in the first place. We are stewards, not authors. */
+
+/* TEAM */
+  Project lead: Frank Chan
+  Code: MIT licensed in scripts/ and download.py
+  Site: realufo.org · https://realufo.org/
+
+/* SOURCES (alphabetical) */
+  AARO — All-domain Anomaly Resolution Office          — aaro.mil
+  Arquivo Nacional — Brazil                             — an.gov.br
+  Argentina · Comisión de Estudio de Fenómenos Aeroespaciales (CEFAe)
+  Canada · Library & Archives — Project Magnet          — bac-lac.gc.ca
+  Chile · CEFAA / SEFAA at DGAC                         — sefaa.cl
+  Department of War / PURSUE — Release 01               — war.gov/UFO/
+  Force Aérea Brasileira (FAB) — Operação Prato et al.  — fab.mil.br
+  France · GEIPAN at CNES                                — cnes-geipan.fr
+  Italy · Aeronautica Militare                          — aeronautica.difesa.it
+  NARA — Project Blue Book + JFK files                  — archives.gov
+  NASA UAP Independent Study Team                       — science.nasa.gov/uap/
+  NZ Defence Force                                      — nzdf.mil.nz
+  Peru · OIFAA — Fuerza Aérea del Perú                  — gob.pe/fap
+  Spain · Ejército del Aire                             — ejercitodelaire.defensa.gob.es
+  UK · National Archives — MoD UAP files                — discovery.nationalarchives.gov.uk
+  Uruguay · CRIDOVNI                                    — fau.mil.uy
+
+/* TOOLING */
+  Static HTML — no build step, no framework
+  Python 3 — Standard library + curl_cffi (Akamai TLS impersonation)
+  Wayback Machine — for AARO pages lost to Akamai blocks
+  Leaflet — open-source map tiles, no API key
+  OpenStreetMap — tile data, © contributors
+  Umami Cloud — cookieless, privacy-friendly analytics (free tier)
+  GitHub Pages — hosting
+  GitHub Releases — payload distribution for files > 100 MB
+
+/* THANK YOU */
+  Everyone who has filed a FOIA, written a Halt memo, returned from a flight
+  with a tape they were told not to keep, sat in a press conference and said
+  the word "unexplained", chosen transparency over institutional inertia,
+  donated computational time to the Wayback Machine, or simply looked up.
+
+/* COLOPHON */
+  Body type: Source Serif 4
+  Mono type: JetBrains Mono
+  Palette:   #0a0a0c bg · #e8e3d8 ink · #d4a017 caution
+
+/* CONTACT */
+  Site issues: https://github.com/hectorchanht/war-gov-ufo-release/issues
+  Security:    https://realufo.org/.well-known/security.txt

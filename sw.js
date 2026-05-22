@@ -1,0 +1,110 @@
+/*  realufo.org service worker — offline-first cache shell.
+ *
+ *  Strategy
+ *    • Precache: app shell (root index, search, timeline, map, 404, favicon,
+ *      shared assets). Tiny, ~80 KB total.
+ *    • Runtime cache:
+ *        - HTML navigation requests → network-first, fall back to cache, then 404.
+ *        - JSON manifests (cases.json, api/*.json) → stale-while-revalidate.
+ *        - Static images / fonts → cache-first with 30-day expiry.
+ *    • Cross-origin (fonts.googleapis, plausible) → network, no caching.
+ *
+ *  Cache name is versioned; bump VERSION to force a full sweep.
+ */
+
+const VERSION    = 'v1';
+const SHELL_CACHE = 'realufo-shell-' + VERSION;
+const DATA_CACHE  = 'realufo-data-'  + VERSION;
+const IMG_CACHE   = 'realufo-img-'   + VERSION;
+
+const SHELL = [
+  '/',
+  '/search.html',
+  '/timeline.html',
+  '/map.html',
+  '/404.html',
+  '/assets/favicon.svg',
+  '/manifest.webmanifest',
+];
+
+self.addEventListener('install', (event) => {
+  event.waitUntil(
+    caches.open(SHELL_CACHE).then((cache) => cache.addAll(SHELL))
+      .then(() => self.skipWaiting())
+  );
+});
+
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    caches.keys()
+      .then((keys) => Promise.all(keys
+        .filter((k) => ![SHELL_CACHE, DATA_CACHE, IMG_CACHE].includes(k))
+        .map((k) => caches.delete(k))
+      ))
+      .then(() => self.clients.claim())
+  );
+});
+
+self.addEventListener('fetch', (event) => {
+  const req = event.request;
+  if (req.method !== 'GET') return;
+
+  const url = new URL(req.url);
+
+  // Skip cross-origin requests except for unpkg Leaflet (allow same-origin only).
+  if (url.origin !== self.location.origin) return;
+
+  // Navigation requests — network first, fall back to cache, then offline page.
+  if (req.mode === 'navigate' || (req.headers.get('accept') || '').includes('text/html')) {
+    event.respondWith(
+      fetch(req)
+        .then((res) => {
+          const copy = res.clone();
+          caches.open(SHELL_CACHE).then((c) => c.put(req, copy));
+          return res;
+        })
+        .catch(() => caches.match(req).then((hit) => hit || caches.match('/404.html')))
+    );
+    return;
+  }
+
+  // JSON manifests (per-archive data, API) — stale-while-revalidate.
+  if (url.pathname.endsWith('.json') || url.pathname.endsWith('.webmanifest')) {
+    event.respondWith(
+      caches.open(DATA_CACHE).then((cache) =>
+        cache.match(req).then((cached) => {
+          const network = fetch(req).then((res) => {
+            cache.put(req, res.clone()).catch(() => {});
+            return res;
+          }).catch(() => cached);
+          return cached || network;
+        })
+      )
+    );
+    return;
+  }
+
+  // Images / fonts / static assets — cache first.
+  if (/\.(svg|png|jpe?g|webp|gif|woff2?)$/i.test(url.pathname)) {
+    event.respondWith(
+      caches.open(IMG_CACHE).then((cache) =>
+        cache.match(req).then((cached) => {
+          if (cached) return cached;
+          return fetch(req).then((res) => {
+            if (res.ok) cache.put(req, res.clone()).catch(() => {});
+            return res;
+          });
+        })
+      )
+    );
+    return;
+  }
+
+  // Everything else — try network, fall back to cache.
+  event.respondWith(fetch(req).catch(() => caches.match(req)));
+});
+
+// Allow the page to skip waiting on the new SW via `postMessage`.
+self.addEventListener('message', (event) => {
+  if (event.data === 'skipWaiting') self.skipWaiting();
+});

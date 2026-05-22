@@ -1,0 +1,21 @@
+# realufo.org security contact
+# RFC 9116 — https://securitytxt.org/
+
+Contact: mailto:security@realufo.org
+Contact: https://github.com/hectorchanht/war-gov-ufo-release/security/advisories/new
+Preferred-Languages: en, fr, pt, es
+Canonical: https://realufo.org/.well-known/security.txt
+Policy: https://github.com/hectorchanht/war-gov-ufo-release/blob/main/SECURITY.md
+Acknowledgments: https://github.com/hectorchanht/war-gov-ufo-release/security/advisories
+Expires: 2027-01-01T00:00:00.000Z
+
+# realufo.org is a static archive of public-domain government UAP records.
+# We are particularly interested in:
+#   - URL-rewrite or XSS issues in the search/timeline/map pages
+#   - Source-URL integrity (e.g. a manifest entry pointing at a malicious file)
+#   - Service-worker cache-poisoning vectors
+# We are not running:
+#   - User authentication, accounts, or session state
+#   - A backend, database, or any server-side code
+#   - Vercel, AWS, GCP, or paid third-party services
+# Please give us a reasonable disclosure window before public release.

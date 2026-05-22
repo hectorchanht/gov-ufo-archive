@@ -123,7 +123,8 @@ if os.path.exists(_spider_cache):
             _desc = f'{_file_count} case files referenced. ' + _desc
         ASSETS.append({'t': 'CATALOG', 'ti': _title, 'de': _desc,
                        'ag': 'DGAC / SEFAA', 'cat': 'Monthly Dispatch',
-                       'date': '', 'l': '', 'u': _url, 's': _url})
+                       'date': '', 'l': '', 'u': _url, 's': _url,
+                       'th': _r.get('thumb', '')})
 
 apply_manifest(ASSETS)
 stats = {

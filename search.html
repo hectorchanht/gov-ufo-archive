@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cloud.umami.is; script-src-attr 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self' https:; connect-src 'self' https://web.archive.org https://*.archive.org https://cloud.umami.is; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://player.vimeo.com; object-src 'none'; base-uri 'self'; form-action 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>realufo.org — Search every government UAP archive</title>
 <meta name="description" content="One search across 14 official government UAP / UFO disclosure archives: AARO, NASA, NARA, GEIPAN, UK MoD, FAB, SEFAA, NZDF, LAC, CEFAe, CRIDOVNI, OIFAA, Ejército, AM — and War.gov.">
@@ -19,6 +20,29 @@
 <meta name="twitter:image" content="https://realufo.org/slideshow/NASA-UAP-VM6-Apollo-17-1972.jpg">
 <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
 <link rel="apple-touch-icon" href="./assets/favicon.svg">
+<link rel="alternate" type="application/atom+xml" title="realufo.org — every archive, latest records" href="/feeds/all.xml">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#0a0a0c">
+<script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){});});}</script>
+<script defer src="/assets/vendor/lunr/lunr.min.js"></script>
+<script defer src="/assets/vendor/hotkeys.js"></script>
+<script defer src="https://cloud.umami.is/script.js" data-website-id="9c4f36ef-30ad-4d76-947a-1724fe6acdba"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "realufo.org",
+  "alternateName": "Real UFO — government UAP archives",
+  "url": "https://realufo.org/",
+  "description": "Cross-archive search of 15 official government UAP / UFO disclosure programmes — War.gov, AARO, NASA, NARA, GEIPAN, UK MoD, FAB, SEFAA, CEFAe, LAC, NZDF, AM, Ejército, CRIDOVNI, OIFAA.",
+  "publisher": { "@type": "Organization", "name": "realufo.org" },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": { "@type": "EntryPoint", "urlTemplate": "https://realufo.org/search.html?q={search_term_string}" },
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
@@ -110,10 +134,30 @@ main{max-width:1100px;margin:0 auto;padding:24px 16px 80px}
 .stats-total{font-family:var(--mono);font-size:12px;color:var(--ink-dim);letter-spacing:0.08em}
 .stats-total strong{color:var(--caution)}
 .archive-pills{display:flex;flex-wrap:wrap;gap:6px}
-.archive-pill{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;padding:5px 10px;border-radius:3px;border:1px solid var(--rule);background:var(--bg-2);color:var(--ink-faint);display:inline-flex;align-items:center;gap:6px;transition:border-color 0.2s,color 0.2s,background 0.2s;text-decoration:none;min-height:28px}
+.archive-pill{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;padding:5px 10px;border-radius:3px;border:1px solid var(--rule);background:var(--bg-2);color:var(--ink-faint);display:inline-flex;align-items:center;gap:6px;transition:border-color 0.2s,color 0.2s,background 0.2s;text-decoration:none;min-height:28px;cursor:pointer;user-select:none}
 .archive-pill:hover{color:var(--ink);border-color:var(--caution);background:rgba(212,160,23,0.08)}
 .archive-pill.loaded{color:var(--ink-dim);border-color:var(--rule-strong)}
 .archive-pill.error{color:var(--classified);border-color:rgba(201,54,44,0.3)}
+.archive-pill.active{color:var(--caution);border-color:var(--caution);background:rgba(212,160,23,0.18)}
+.archive-pill.active .pill-count{color:var(--caution)}
+
+/* filter row */
+.filter-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:14px;padding-top:14px;border-top:1px dashed var(--rule)}
+.filter-group{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.filter-label{font-family:var(--mono);font-size:10px;color:var(--ink-faint);letter-spacing:0.1em;text-transform:uppercase;margin-right:2px}
+.type-chip{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;padding:5px 10px;border-radius:3px;border:1px solid var(--rule-strong);background:var(--bg-2);color:var(--ink-dim);cursor:pointer;transition:border-color 0.2s,color 0.2s,background 0.2s;min-height:28px;line-height:1.2;user-select:none}
+.type-chip:hover{color:var(--ink);border-color:var(--caution)}
+.type-chip.active{color:var(--caution);border-color:var(--caution);background:rgba(212,160,23,0.18)}
+.year-input{font-family:var(--mono);font-size:11px;color:var(--ink);background:var(--bg-2);border:1px solid var(--rule-strong);border-radius:3px;padding:5px 8px;width:74px;min-height:28px;outline:none;-moz-appearance:textfield}
+.year-input::-webkit-outer-spin-button,.year-input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.year-input:focus{border-color:rgba(212,160,23,0.5);box-shadow:0 0 0 2px rgba(212,160,23,0.1)}
+.year-sep{font-family:var(--mono);font-size:11px;color:var(--ink-faint)}
+.filter-reset{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;padding:5px 10px;border-radius:3px;border:1px solid var(--rule);background:transparent;color:var(--ink-faint);cursor:pointer;transition:color 0.2s,border-color 0.2s;min-height:28px;display:none}
+.filter-reset.visible{display:inline-flex;align-items:center}
+.filter-reset:hover{color:var(--ink);border-color:var(--rule-strong)}
+.hotkey-hint{font-family:var(--mono);font-size:10px;color:var(--ink-faint);letter-spacing:0.08em;margin-top:6px;text-align:center}
+.hotkey-hint kbd{display:inline-block;background:var(--bg-2);border:1px solid var(--rule-strong);border-radius:3px;padding:1px 6px;font-family:inherit;font-size:10px;color:var(--ink-dim)}
+@media(max-width:600px){.hotkey-hint{display:none}.year-input{width:64px}}
 .pill-spinner{width:8px;height:8px;border:1.5px solid var(--ink-faint);border-top-color:var(--caution);border-radius:50%;animation:spin 0.7s linear infinite;flex-shrink:0}
 .archive-pill.loaded .pill-spinner,.archive-pill.error .pill-spinner{display:none}
 .pill-count{font-weight:700}
@@ -168,6 +212,8 @@ footer{border-top:1px solid var(--rule);margin-top:60px;padding:32px 16px;text-a
 footer p{font-family:var(--mono);font-size:10px;color:var(--ink-faint);letter-spacing:0.08em;line-height:1.8}
 footer a{color:var(--ink-dim);text-decoration:none}
 footer a:hover{color:var(--ink)}
+
+@media (prefers-reduced-motion: reduce){.scanlines{display:none}*{animation-duration:0.001ms!important;animation-iteration-count:1!important;transition-duration:0.001ms!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
@@ -227,11 +273,28 @@ footer a:hover{color:var(--ink)}
       <input type="search" id="q" placeholder="Search across every archive&hellip;" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-label="Search all archives">
       <button class="search-clear" id="search-clear" aria-label="Clear search" title="Clear">&times;</button>
     </div>
+    <div class="hotkey-hint">Press <kbd>/</kbd> anywhere to focus search</div>
   </div>
 
   <div class="stats-bar" id="stats-bar">
     <span class="stats-total" id="stats-total">Loading archives&hellip;</span>
-    <div class="archive-pills" id="archive-pills" aria-label="Per-archive jump links and counts"></div>
+    <div class="archive-pills" id="archive-pills" aria-label="Filter by archive"></div>
+    <div class="filter-row">
+      <div class="filter-group" id="type-chips" aria-label="Filter by type">
+        <span class="filter-label">Type</span>
+        <button type="button" class="type-chip" data-type="pdf">PDF</button>
+        <button type="button" class="type-chip" data-type="video">Video</button>
+        <button type="button" class="type-chip" data-type="image">Imagery</button>
+        <button type="button" class="type-chip" data-type="catalog">Catalog</button>
+      </div>
+      <div class="filter-group" aria-label="Filter by year range">
+        <span class="filter-label">Years</span>
+        <input type="number" class="year-input" id="year-from" placeholder="1947" min="1900" max="2100" inputmode="numeric" aria-label="From year">
+        <span class="year-sep">&ndash;</span>
+        <input type="number" class="year-input" id="year-to" placeholder="2026" min="1900" max="2100" inputmode="numeric" aria-label="To year">
+      </div>
+      <button type="button" class="filter-reset" id="filter-reset" aria-label="Reset all filters">Reset filters</button>
+    </div>
   </div>
 
   <div class="result-info" id="result-info" aria-live="polite" aria-atomic="true"></div>
@@ -285,7 +348,7 @@ footer a:hover{color:var(--ink)}
     if (s.type === 'video') {
       slide.innerHTML = '<video muted loop playsinline ' + (i === 0 ? 'autoplay' : '') + ' preload="' + (i === 0 ? 'auto' : 'none') + '"><source src="' + esc(s.file) + '" type="video/mp4"></video>';
     } else {
-      slide.innerHTML = '<img src="./' + esc(s.file) + '" alt="' + esc(s.caption) + '" loading="' + (i === 0 ? 'eager' : 'lazy') + '">';
+      slide.innerHTML = '<img src="./' + esc(s.file) + '" alt="' + esc(s.caption) + '" loading="' + (i === 0 ? 'eager' : 'lazy') + '"' + (i === 0 ? ' fetchpriority="high" decoding="sync"' : ' decoding="async"') + '>';
     }
     cTrack.appendChild(slide);
     var dot = document.createElement('button');
@@ -315,8 +378,9 @@ footer a:hover{color:var(--ink)}
   }
   document.getElementById('carousel-prev').addEventListener('click', function(){ goTo(cIdx - 1); restart(); });
   document.getElementById('carousel-next').addEventListener('click', function(){ goTo(cIdx + 1); restart(); });
-  var carouselTimer = setInterval(function(){ goTo(cIdx + 1); }, 6500);
-  function restart(){ clearInterval(carouselTimer); carouselTimer = setInterval(function(){ goTo(cIdx + 1); }, 8500); }
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var carouselTimer = reduceMotion ? null : setInterval(function(){ goTo(cIdx + 1); }, 6500);
+  function restart(){ if (reduceMotion) return; clearInterval(carouselTimer); carouselTimer = setInterval(function(){ goTo(cIdx + 1); }, 8500); }
   var heroEl = document.getElementById('hero-carousel');
   heroEl.addEventListener('mouseenter', function(){ clearInterval(carouselTimer); });
   heroEl.addEventListener('mouseleave', restart);
@@ -407,6 +471,10 @@ footer a:hover{color:var(--ink)}
   var debounceTimer = null;
   var archivesLoaded = 0;
   var archivesTotal = ARCHIVES.length;
+  var activeSites = new Set();
+  var activeTypes = new Set();
+  var yearFrom = null, yearTo = null;
+  var suppressUrlSync = false;
 
   /* ── DOM refs ── */
   var qEl = document.getElementById('q');
@@ -416,21 +484,114 @@ footer a:hover{color:var(--ink)}
   var resultInfo = document.getElementById('result-info');
   var resultsEl = document.getElementById('results');
   var paginationEl = document.getElementById('pagination');
+  var typeChipsEl = document.getElementById('type-chips');
+  var yearFromEl = document.getElementById('year-from');
+  var yearToEl = document.getElementById('year-to');
+  var filterResetBtn = document.getElementById('filter-reset');
 
-  /* ── Build pill elements as anchor links ── */
+  /* ── Build pill elements as toggle buttons (click = filter, not jump) ── */
   var pillMap = {};
   ARCHIVES.forEach(function(arc) {
-    var pill = document.createElement('a');
+    var pill = document.createElement('button');
+    pill.type = 'button';
     pill.className = 'archive-pill';
     pill.id = 'pill-' + arc.id;
-    pill.href = arc.dir;
-    pill.title = 'Open ' + arc.label + ' mirror';
+    pill.setAttribute('aria-pressed', 'false');
+    pill.title = 'Filter to ' + arc.label + ' results (long-press / shift-click to open archive)';
     pill.innerHTML = '<span class="pill-spinner" aria-hidden="true"></span>' +
       '<span class="pill-label">' + arc.label + '</span>' +
       '<span class="pill-count" style="display:none"></span>';
+    pill.addEventListener('click', function(e) {
+      /* Shift-click or middle-click → open the archive (escape hatch) */
+      if (e.shiftKey || e.metaKey || e.ctrlKey) { window.location.href = arc.dir; return; }
+      togglePill(arc.id);
+    });
+    pill.addEventListener('auxclick', function(e) {
+      if (e.button === 1) { window.open(arc.dir, '_blank'); }
+    });
     archivePills.appendChild(pill);
     pillMap[arc.id] = pill;
   });
+
+  function togglePill(siteId) {
+    if (activeSites.has(siteId)) activeSites.delete(siteId); else activeSites.add(siteId);
+    syncPillUI();
+    currentPage = 1;
+    applyFilter();
+  }
+  function syncPillUI() {
+    Object.keys(pillMap).forEach(function(id) {
+      var on = activeSites.has(id);
+      pillMap[id].classList.toggle('active', on);
+      pillMap[id].setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    updateResetVisibility();
+  }
+
+  /* ── Type chips ── */
+  typeChipsEl.addEventListener('click', function(e) {
+    var btn = e.target.closest('.type-chip');
+    if (!btn) return;
+    var t = btn.getAttribute('data-type');
+    if (activeTypes.has(t)) activeTypes.delete(t); else activeTypes.add(t);
+    btn.classList.toggle('active', activeTypes.has(t));
+    btn.setAttribute('aria-pressed', activeTypes.has(t) ? 'true' : 'false');
+    currentPage = 1;
+    updateResetVisibility();
+    applyFilter();
+  });
+
+  /* ── Year range ── */
+  function readYears() {
+    var f = parseInt(yearFromEl.value, 10);
+    var t = parseInt(yearToEl.value, 10);
+    yearFrom = isFinite(f) ? f : null;
+    yearTo   = isFinite(t) ? t : null;
+  }
+  function onYearChange() {
+    readYears();
+    currentPage = 1;
+    updateResetVisibility();
+    applyFilter();
+  }
+  yearFromEl.addEventListener('input', function(){ clearTimeout(debounceTimer); debounceTimer = setTimeout(onYearChange, 250); });
+  yearToEl.addEventListener('input',   function(){ clearTimeout(debounceTimer); debounceTimer = setTimeout(onYearChange, 250); });
+
+  filterResetBtn.addEventListener('click', function() {
+    activeSites.clear();
+    activeTypes.clear();
+    yearFromEl.value = '';
+    yearToEl.value = '';
+    yearFrom = yearTo = null;
+    qEl.value = '';
+    Array.prototype.forEach.call(typeChipsEl.querySelectorAll('.type-chip'), function(c){ c.classList.remove('active'); c.setAttribute('aria-pressed','false'); });
+    syncPillUI();
+    currentPage = 1;
+    applyFilter();
+  });
+
+  function updateResetVisibility() {
+    var any = activeSites.size || activeTypes.size || yearFrom || yearTo || qEl.value.trim();
+    filterResetBtn.classList.toggle('visible', !!any);
+  }
+
+  /* ── Type bucket inference from heterogeneous .type strings ── */
+  function typeBucket(rec) {
+    var s = (rec.type || '').toLowerCase();
+    var u = (rec.local || rec.url || '').toLowerCase();
+    if (/\bvideo|vid|mp4|footage|flir\b/.test(s) || /\.mp4($|\?)/.test(u)) return 'video';
+    if (/catalog|catalogue|record group|series|finding aid/.test(s)) return 'catalog';
+    if (/imag|photo|picture|jpeg|jpg|png/.test(s) || /\.(jpe?g|png|webp|gif)($|\?)/.test(u)) return 'image';
+    if (/pdf|doc|report|brief|memo|letter|file|paper|case/.test(s) || /\.pdf($|\?)/.test(u)) return 'pdf';
+    return 'other';
+  }
+
+  /* Extract 4-digit year from any of date / title / desc fields. */
+  function recordYear(rec) {
+    var src = (rec.date || '') + ' ' + (rec.title || '') + ' ' + (rec.desc || '');
+    var m = src.match(/\b(1[89]\d{2}|20\d{2}|21\d{2})\b/);
+    return m ? parseInt(m[1], 10) : null;
+  }
 
   /* ── Extract embedded JSON from a mirror's HTML ── */
   function extractScript(html, scriptId) {
@@ -654,24 +815,168 @@ footer a:hover{color:var(--ink)}
     }
   }
 
-  function applyFilter() {
-    var q = (qEl.value || '').trim().toLowerCase();
-    clearBtn.classList.toggle('visible', q.length > 0);
-    if (!q) { filteredRecords = []; currentPage = 1; renderResults(); return; }
-    var terms = q.split(/\s+/).filter(Boolean);
-    filteredRecords = allRecords.filter(function(rec) {
-      var haystack = [rec.title, rec.desc, rec.agency, rec.type, rec.status, rec.region, rec.site].join(' ').toLowerCase();
-      return terms.every(function(t){ return haystack.indexOf(t) !== -1; });
-    });
-    currentPage = 1;
-    renderResults();
+  /* ── Lunr full-text index (built lazily once allRecords settles) ─────── */
+  var lunrIdx = null, lunrPending = false, lunrAttempted = false, lunrRank = null;
+
+  function buildLunrIndex() {
+    if (lunrIdx || lunrPending || lunrAttempted) return;
+    if (typeof window.lunr !== 'function' || allRecords.length === 0) return;
+    lunrPending = true;
+    /* Build asynchronously to keep UI responsive on ~4,800 records. */
+    setTimeout(function() {
+      try {
+        var ranks = Object.create(null);
+        lunrIdx = window.lunr(function() {
+          this.ref('idx');
+          this.field('title',  { boost: 8 });
+          this.field('desc',   { boost: 2 });
+          this.field('agency', { boost: 3 });
+          this.field('type');
+          this.field('status');
+          this.field('region', { boost: 2 });
+          this.field('site',   { boost: 4 });
+          var self = this;
+          allRecords.forEach(function(r, i) {
+            ranks[i] = r;
+            self.add({
+              idx: String(i),
+              title:  r.title || '',
+              desc:   r.desc  || '',
+              agency: r.agency|| '',
+              type:   r.type  || '',
+              status: r.status|| '',
+              region: r.region|| '',
+              site:   r.site  || '',
+            });
+          });
+        });
+        lunrRank = ranks;
+        /* Re-render if user already typed something while we were indexing. */
+        if (qEl.value.trim()) applyFilter();
+      } catch (e) {
+        lunrIdx = null; lunrRank = null;
+        /* graceful fallback to substring scan */
+      } finally {
+        lunrPending = false;
+        lunrAttempted = true;
+      }
+    }, 50);
   }
 
-  qEl.addEventListener('input', function(){ clearTimeout(debounceTimer); debounceTimer = setTimeout(applyFilter, 200); });
-  qEl.addEventListener('search', function(){ clearTimeout(debounceTimer); applyFilter(); });
-  clearBtn.addEventListener('click', function(){ qEl.value = ''; qEl.focus(); applyFilter(); });
+  /* Lunr query rewrite: turn "rendlesham 1980" into a tolerant query that
+     mixes wildcard, fuzzy, and exact-phrase matches. */
+  function lunrQueryString(q) {
+    var terms = q.trim().toLowerCase().split(/\s+/).filter(Boolean);
+    var parts = terms.map(function(t) {
+      var safe = t.replace(/[~^*?:+\-]/g, ' ').trim();
+      if (!safe) return '';
+      /* Exact + prefix + fuzzy (edit distance 1 for terms ≥ 4 chars) */
+      var fuzz = safe.length >= 4 ? safe + '~1' : safe;
+      return safe + ' ' + safe + '* ' + fuzz;
+    }).filter(Boolean);
+    return parts.join(' ');
+  }
 
-  renderResults();
+  function applyFilter() {
+    var q = (qEl.value || '').trim();
+    var qLower = q.toLowerCase();
+    clearBtn.classList.toggle('visible', q.length > 0);
+    updateResetVisibility();
+    var terms = qLower ? qLower.split(/\s+/).filter(Boolean) : [];
+    var hasAnyFilter = terms.length || activeSites.size || activeTypes.size || yearFrom || yearTo;
+    if (!hasAnyFilter) { filteredRecords = []; renderResults(); writeUrl(); return; }
+
+    /* Build the Lunr index opportunistically. */
+    buildLunrIndex();
+
+    var ranked = null;
+    if (terms.length && lunrIdx && lunrRank) {
+      try {
+        var hits = lunrIdx.search(lunrQueryString(q));
+        ranked = hits.map(function(h){ return { rec: lunrRank[parseInt(h.ref,10)], score: h.score }; })
+                     .filter(function(x){ return x.rec; });
+      } catch (e) { ranked = null; }
+    }
+
+    var pool;
+    if (ranked) {
+      pool = ranked.map(function(x){ return x.rec; });
+    } else {
+      pool = allRecords;
+    }
+
+    filteredRecords = pool.filter(function(rec) {
+      if (activeSites.size && !activeSites.has(rec.siteId)) return false;
+      if (activeTypes.size && !activeTypes.has(typeBucket(rec))) return false;
+      if (yearFrom || yearTo) {
+        var y = recordYear(rec);
+        if (y === null) return false;
+        if (yearFrom && y < yearFrom) return false;
+        if (yearTo && y > yearTo) return false;
+      }
+      if (terms.length && !ranked) {
+        /* Substring fallback when Lunr unavailable */
+        var hay = [rec.title, rec.desc, rec.agency, rec.type, rec.status, rec.region, rec.site].join(' ').toLowerCase();
+        for (var i = 0; i < terms.length; i++) if (hay.indexOf(terms[i]) === -1) return false;
+      }
+      return true;
+    });
+    renderResults();
+    writeUrl();
+  }
+
+  qEl.addEventListener('input', function(){ clearTimeout(debounceTimer); debounceTimer = setTimeout(function(){ currentPage = 1; applyFilter(); }, 200); });
+  qEl.addEventListener('search', function(){ clearTimeout(debounceTimer); currentPage = 1; applyFilter(); });
+  clearBtn.addEventListener('click', function(){ qEl.value = ''; qEl.focus(); currentPage = 1; applyFilter(); });
+
+  /* ── URL state: ?q=&sites=a,b&types=pdf,video&from=1980&to=2025 ── */
+  function writeUrl() {
+    if (suppressUrlSync) return;
+    var p = new URLSearchParams();
+    var q = qEl.value.trim();
+    if (q) p.set('q', q);
+    if (activeSites.size) p.set('sites', Array.from(activeSites).join(','));
+    if (activeTypes.size) p.set('types', Array.from(activeTypes).join(','));
+    if (yearFrom) p.set('from', String(yearFrom));
+    if (yearTo)   p.set('to',   String(yearTo));
+    var qs = p.toString();
+    var url = window.location.pathname + (qs ? ('?' + qs) : '') + window.location.hash;
+    try { history.replaceState(null, '', url); } catch(_) {}
+  }
+
+  function readUrl() {
+    var p = new URLSearchParams(window.location.search);
+    suppressUrlSync = true;
+    if (p.has('q')) qEl.value = p.get('q');
+    if (p.has('sites')) p.get('sites').split(',').forEach(function(s){ if (s) activeSites.add(s); });
+    if (p.has('types')) p.get('types').split(',').forEach(function(t){
+      if (!t) return;
+      activeTypes.add(t);
+      var chip = typeChipsEl.querySelector('.type-chip[data-type="' + t + '"]');
+      if (chip) { chip.classList.add('active'); chip.setAttribute('aria-pressed','true'); }
+    });
+    if (p.has('from')) { yearFromEl.value = p.get('from'); }
+    if (p.has('to'))   { yearToEl.value   = p.get('to');   }
+    readYears();
+    syncPillUI();
+    suppressUrlSync = false;
+  }
+  readUrl();
+
+  /* ── `/` hotkey to focus search input ── */
+  document.addEventListener('keydown', function(e) {
+    if (e.key !== '/' || e.ctrlKey || e.metaKey || e.altKey) return;
+    var t = e.target;
+    if (!t) return;
+    var tag = t.tagName;
+    if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || t.isContentEditable) return;
+    e.preventDefault();
+    qEl.focus();
+    qEl.select();
+  });
+
+  /* Initial render (filters from URL may already be set) */
+  applyFilter();
 
   /* Re-render is debounced so cascading archive loads don't thrash the DOM. */
   var renderTimer = null;
@@ -679,6 +984,7 @@ footer a:hover{color:var(--ink)}
     clearTimeout(renderTimer);
     renderTimer = setTimeout(function() {
       if (qEl.value.trim()) applyFilter(); else renderResults();
+      if (archivesLoaded === archivesTotal) buildLunrIndex();
     }, 120);
   }
 

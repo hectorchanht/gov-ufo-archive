@@ -1,0 +1,63 @@
+name: New national archive
+description: Propose adding a new government UAP source
+title: "[source] "
+labels: ["new-source", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for proposing a new archive. Please scope the work below.
+        See [CONTRIBUTING.md § 1](../../blob/main/CONTRIBUTING.md) for the
+        full workflow.
+  - type: input
+    id: country
+    attributes:
+      label: Country / jurisdiction
+      placeholder: Germany, Mexico, India, Sweden…
+    validations:
+      required: true
+  - type: input
+    id: agency
+    attributes:
+      label: Source agency (full name + acronym)
+      placeholder: "Bundeswehr · Luftwaffe (German Air Force)"
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Canonical source URL
+      placeholder: https://www.example.gov/uap/
+    validations:
+      required: true
+  - type: input
+    id: licence
+    attributes:
+      label: Reusability licence
+      description: Which national public-domain / FOIA statute governs the records?
+      placeholder: "Germany — IFG (Informationsfreiheitsgesetz)"
+    validations:
+      required: true
+  - type: input
+    id: scope
+    attributes:
+      label: Approximate scope
+      description: How many records? How many MB?
+      placeholder: "~120 case files, ~80 MB"
+  - type: textarea
+    id: existing
+    attributes:
+      label: Existing third-party mirrors (if any)
+      description: Links to civilian groups, Wikipedia articles, prior academic work, etc.
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else?
+      description: Akamai/Cloudflare in front? Login wall? Government-only access? Language?
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      options:
+        - label: I agree to follow the project's Code of Conduct
+          required: true

@@ -19,6 +19,10 @@ _CATALOG_JS = r'''
 (() => {
   const archData = document.getElementById('arch-data');
   if (!archData) return;
+  /* Skip the simple catalog renderer if the page provides its own paginated
+     archive block (presence of #pagination signals a per-page paginator).
+     Prevents a 3000+ node initial paint on large catalogs (GEIPAN). */
+  if (document.getElementById('pagination')) return;
   const D = JSON.parse(archData.textContent);
   const items = D.assets;
   const STATS = D.stats;
@@ -53,6 +57,13 @@ _CATALOG_JS = r'''
   if (searchEl) searchEl.addEventListener('input', e => { state.q = e.target.value.trim().toLowerCase(); render(); });
 
   function glyphFor(a) {
+    if (a.th) {
+      const lbl = esc(a.cat || a.ag || a.t || '');
+      const fb  = (a.t === 'CATALOG')
+        ? `<div class=\\"pdf-glyph glyph-cat\\"><span class=\\"ico\\">⌕</span><span>${esc(a.cat||'Catalog')}</span></div>`
+        : `<div class=\\"pdf-glyph\\"><span class=\\"ico\\">PDF</span><span>${esc(a.ag||'Document')}</span></div>`;
+      return `<img loading="lazy" decoding="async" src="${esc(a.th)}" alt="${lbl}" onerror="this.outerHTML='${fb}';">`;
+    }
     if (a.t === 'CATALOG') return `<div class="pdf-glyph glyph-cat"><span class="ico">⌕</span><span>${esc(a.cat||'Catalog')}</span></div>`;
     return `<div class="pdf-glyph"><span class="ico">PDF</span><span>${esc(a.ag||'Document')}</span></div>`;
   }

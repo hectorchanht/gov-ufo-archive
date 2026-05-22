@@ -1,0 +1,56 @@
+name: Bug report
+description: Something is broken on realufo.org
+title: "[bug] "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for filing a bug. Please give us enough detail to reproduce.
+  - type: input
+    id: page
+    attributes:
+      label: Page URL
+      description: Where does the bug happen?
+      placeholder: https://realufo.org/aaro/tic-tac.html
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser + version
+      placeholder: Chrome 124, Safari iOS 17, Firefox 125…
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Go to …
+        2. Click …
+        3. See error …
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected vs actual behaviour
+    validations:
+      required: true
+  - type: textarea
+    id: console
+    attributes:
+      label: Browser console output (optional)
+      render: shell
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots / screen recording (optional)
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      options:
+        - label: I agree to follow the project's Code of Conduct
+          required: true

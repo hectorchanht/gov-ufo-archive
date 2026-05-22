@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/hectorchanht/war-gov-ufo-release/security/advisories/new
+    about: Report a security issue privately via GitHub Security Advisories.
+  - name: General discussion
+    url: https://github.com/hectorchanht/war-gov-ufo-release/discussions
+    about: Open-ended questions, ideas, or research notes.

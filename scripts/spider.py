@@ -111,6 +111,39 @@ def extract_links(src: str, base_url: str) -> list[str]:
     return out
 
 
+def extract_thumb(src: str, base_url: str) -> str:
+    """Pick a representative thumbnail URL for a crawled page.
+
+    Priority: og:image → twitter:image → first <img> with width/height ≥ 200
+    (skipping tiny icons, sprites, logos, tracking pixels). Returns absolute
+    URL or '' if nothing usable.
+    """
+    # 1. og:image
+    m = re.search(r'<meta[^>]+property=["\']og:image["\'][^>]+content=["\']([^"\']+)["\']', src, re.I)
+    if not m:
+        m = re.search(r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+property=["\']og:image["\']', src, re.I)
+    if m:
+        return urllib.parse.urljoin(base_url, m.group(1).strip())
+    # 2. twitter:image
+    m = re.search(r'<meta[^>]+name=["\']twitter:image["\'][^>]+content=["\']([^"\']+)["\']', src, re.I)
+    if m:
+        return urllib.parse.urljoin(base_url, m.group(1).strip())
+    # 3. first plausible <img>
+    skip = re.compile(r'(sprite|logo|icon|favicon|tracker|pixel|spacer|blank)', re.I)
+    for m in re.finditer(r'<img\b[^>]+>', src, re.I):
+        tag = m.group(0)
+        sm = re.search(r'\bsrc=["\']([^"\']+)["\']', tag, re.I)
+        if not sm:
+            continue
+        s = sm.group(1).strip()
+        if not s or s.startswith('data:') or skip.search(s):
+            continue
+        if not re.search(r'\.(jpe?g|png|webp)(?:$|[?#])', s, re.I):
+            continue
+        return urllib.parse.urljoin(base_url, s)
+    return ''
+
+
 def host_of(url: str) -> str:
     try:
         return urllib.parse.urlparse(url).netloc.lower()
@@ -155,6 +188,7 @@ def spider(cfg: dict) -> list[dict]:
 
         title = get_title(src)
         context = get_context(src)
+        thumb = extract_thumb(src, url)
         files_found: list[dict] = []
 
         # File link discovery
@@ -172,7 +206,7 @@ def spider(cfg: dict) -> list[dict]:
                 print(f'      + {("local " if bn else "remote")} {link.rsplit("/",1)[-1]}')
 
         records.append({
-            'url': url, 'title': title, 'context': context,
+            'url': url, 'title': title, 'context': context, 'thumb': thumb,
             'files': files_found, 'depth': depth,
         })
 

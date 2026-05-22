@@ -183,6 +183,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 70px; }
 body { background: var(--bg); color: var(--ink); font-family: var(--serif); font-size: 15px; line-height: 1.65; overflow-x: hidden; }
 @media (min-width: 720px) { body { font-size: 16px; } }
 .scanlines { position: fixed; inset: 0; background: repeating-linear-gradient(to bottom, transparent 0, transparent 2px, rgba(255,255,255,0.012) 3px, transparent 4px); pointer-events: none; z-index: 50; }
+@media (prefers-reduced-motion: reduce) { .scanlines { display: none; } *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; } }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 16px; position: relative; z-index: 2; }
 @media (min-width: 720px) { .container { padding: 0 32px; } }
 

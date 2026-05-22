@@ -1,0 +1,56 @@
+name: Dead source URL
+description: A manifest entry points at a URL that 404s, 403s, or times out
+title: "[dead-link] "
+labels: ["dead-link", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a dead source. We aim to mirror everything
+        verifiably, so this matters.
+  - type: input
+    id: page
+    attributes:
+      label: Archive page
+      placeholder: https://realufo.org/aaro/
+    validations:
+      required: true
+  - type: input
+    id: bad-url
+    attributes:
+      label: The broken URL
+      placeholder: https://www.aaro.mil/Portals/136/PDFs/example.pdf
+    validations:
+      required: true
+  - type: dropdown
+    id: behaviour
+    attributes:
+      label: What does it do?
+      options:
+        - 404 Not Found
+        - 403 Forbidden / Akamai block
+        - 5xx server error
+        - Connection timeout
+        - Redirects to a generic landing page
+        - Returns HTML where it should return a file
+    validations:
+      required: true
+  - type: input
+    id: replacement
+    attributes:
+      label: Replacement URL (optional)
+      description: If you've found a working URL, the Wayback snapshot, or a new permalink, paste it here.
+      placeholder: https://web.archive.org/web/2024/id_/https://www.aaro.mil/…
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Output of `curl -I <url>`, screenshot, or the line from `dead-links.md`.
+      render: shell
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      options:
+        - label: I agree to follow the project's Code of Conduct
+          required: true

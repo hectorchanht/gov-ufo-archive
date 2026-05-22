@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cloud.umami.is; script-src-attr 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://cloud.umami.is; object-src 'none'; base-uri 'self'; form-action 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About — realufo.org · the project, the rules, the stewards</title>
+<meta name="description" content="About realufo.org — an unaffiliated, offline-first archive of every official government UAP / UFO disclosure programme. Project history, licensing, editorial rules.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://realufo.org/about.html">
+<meta property="og:title" content="realufo.org — About">
+<meta property="og:description" content="An unaffiliated, offline-first archive of every official government UAP source.">
+<meta property="og:url" content="https://realufo.org/about.html">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://realufo.org/assets/og.svg">
+<meta property="og:site_name" content="realufo.org">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="apple-touch-icon" href="/assets/favicon.svg">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#0a0a0c">
+<script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){});});}</script>
+<script defer src="/assets/vendor/hotkeys.js"></script>
+<script defer src="https://cloud.umami.is/script.js" data-website-id="9c4f36ef-30ad-4d76-947a-1724fe6acdba"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "About realufo.org",
+  "url": "https://realufo.org/about.html",
+  "publisher": { "@type": "Organization", "name": "realufo.org", "url": "https://realufo.org/" },
+  "inLanguage": "en",
+  "isAccessibleForFree": true
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0a0a0c;--bg-2:#111114;--panel:#15151a;--ink:#e8e3d8;--ink-dim:#a8a298;--ink-faint:#6b665d;--rule:rgba(232,227,216,0.12);--rule-strong:rgba(232,227,216,0.28);--caution:#d4a017;--stamp:#b91c1c;--serif:"Source Serif 4",Georgia,serif;--mono:"JetBrains Mono",monospace}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{background:var(--bg);color:var(--ink);font-family:var(--serif);font-size:16px;line-height:1.7;overflow-x:hidden}
+.scanlines{position:fixed;inset:0;pointer-events:none;z-index:9999;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.03) 2px,rgba(0,0,0,0.03) 4px)}
+@media (prefers-reduced-motion: reduce){.scanlines{display:none}*,*::before,*::after{animation-duration:0.001ms!important;transition-duration:0.001ms!important;scroll-behavior:auto!important}}
+.container{max-width:760px;margin:0 auto;padding:0 16px}
+.header-wrap{position:sticky;top:0;z-index:900;background:rgba(21,21,26,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--rule);height:64px}
+.header{max-width:1400px;margin:0 auto;padding:0 16px;height:100%;display:flex;align-items:center;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;color:var(--ink)}
+.brand-seal{width:36px;height:36px;border-radius:50%;background:radial-gradient(circle,#b91c1c,#6b1010,#2a0606);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;color:var(--caution);letter-spacing:0.1em;border:1px solid rgba(212,160,23,0.35);flex-shrink:0}
+.brand-name{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--ink);letter-spacing:0.12em;text-transform:uppercase}
+nav.primary{display:flex;align-items:center;gap:4px;margin-left:auto;list-style:none}
+nav.primary a{font-family:var(--mono);font-size:11px;color:var(--ink-dim);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;padding:10px;border-radius:4px}
+nav.primary a:hover{color:var(--ink);background:rgba(232,227,216,0.06)}
+nav.primary a.active{color:var(--caution)}
+.nav-toggle{display:none;background:none;border:none;color:var(--ink);font-size:22px;cursor:pointer;padding:10px 8px;line-height:1;margin-left:auto}
+@media(max-width:719px){.nav-toggle{display:flex;align-items:center;justify-content:center}nav.primary{display:none;position:fixed;top:64px;left:0;right:0;background:var(--panel);border-bottom:1px solid var(--rule-strong);flex-direction:column;align-items:stretch;padding:8px 0 16px;margin-left:0;gap:0;max-height:calc(100vh - 64px);overflow-y:auto}nav.primary.open{display:flex}nav.primary a{padding:12px 20px}}
+.hero{padding:48px 0 24px;border-bottom:1px solid var(--rule)}
+.hero .coords{font-family:var(--mono);font-size:12px;color:var(--caution);letter-spacing:0.14em;margin-bottom:14px;text-transform:uppercase}
+h1{font-family:var(--serif);font-size:clamp(28px,5vw,44px);font-weight:700;line-height:1.1;letter-spacing:-0.02em}
+h1 em{font-style:italic;color:var(--caution)}
+section{padding:36px 0;border-bottom:1px solid var(--rule)}
+h2{font-family:var(--serif);font-size:clamp(20px,3vw,28px);font-weight:600;margin-bottom:18px;letter-spacing:-0.01em}
+h3{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:0.14em;color:var(--caution);margin:24px 0 10px;font-weight:700}
+p{margin-bottom:14px;color:var(--ink-dim)}
+p strong{color:var(--ink);font-weight:600}
+p em{font-style:italic;color:var(--ink)}
+a{color:var(--caution);text-decoration:none}
+a:hover{text-decoration:underline}
+ul{padding-left:1.4em;margin-bottom:14px}
+ul li{color:var(--ink-dim);margin-bottom:6px}
+.pull{margin:24px 0;padding:18px 22px;border-left:3px solid var(--caution);background:rgba(212,160,23,0.05);font-family:var(--serif);font-style:italic;color:var(--ink);font-size:17px;max-width:62ch}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin:18px 0}
+.facts .f{background:var(--bg-2);border:1px solid var(--rule);border-radius:6px;padding:14px}
+.facts .f b{display:block;font-family:var(--mono);font-size:24px;color:var(--caution);font-weight:700;letter-spacing:-0.01em}
+.facts .f small{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint)}
+footer{border-top:1px solid var(--rule);margin-top:40px;padding:28px 16px;text-align:center}
+footer p{font-family:var(--mono);font-size:10px;color:var(--ink-faint);letter-spacing:0.08em;line-height:1.8}
+footer a{color:var(--ink-dim);text-decoration:none}
+</style>
+</head>
+<body>
+<div class="scanlines" aria-hidden="true"></div>
+
+<div class="header-wrap">
+  <div class="header">
+    <a href="/" class="brand"><div class="brand-seal">UAP</div><span class="brand-name">realufo.org</span></a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle nav" aria-expanded="false">&#9776;</button>
+    <nav class="primary" id="primary-nav">
+      <a href="/">War.gov</a>
+      <a href="/search.html">Search</a>
+      <a href="/timeline.html">Timeline</a>
+      <a href="/map.html">Map</a>
+      <a href="/glossary.html">Glossary</a>
+      <a href="/about.html" class="active">About</a>
+    </nav>
+  </div>
+</div>
+
+<main class="container">
+
+  <section class="hero">
+    <div class="coords">◉ About this project</div>
+    <h1>An unaffiliated, faithful archive of <em>every</em> official government UAP source.</h1>
+  </section>
+
+  <section>
+    <h2>What this is</h2>
+    <p>
+      <strong>realufo.org</strong> is a static, offline-first archive of every
+      government UAP / UFO disclosure programme we could find — fifteen so far,
+      from the U.S. Department of War's PURSUE release through France's GEIPAN
+      to Uruguay's CRIDOVNI. Every record on this site is mirrored verbatim
+      from an official source. Where the source is unreachable (Akamai blocks,
+      404, paywall), we link back through the Wayback Machine.
+    </p>
+    <div class="facts">
+      <div class="f"><b>15</b><small>Government archives</small></div>
+      <div class="f"><b>4,778</b><small>Total records</small></div>
+      <div class="f"><b>8</b><small>Case detail pages</small></div>
+      <div class="f"><b>0</b><small>Cookies set</small></div>
+    </div>
+    <p>
+      Counts above auto-update on every weekly sync. Live numbers always at
+      <a href="/stats.html">/stats.html</a>.
+    </p>
+  </section>
+
+  <section>
+    <h2>What this is <em>not</em></h2>
+    <ul>
+      <li><strong>Not a government website.</strong> No part of realufo.org is
+        operated by, affiliated with, endorsed by, or funded by any
+        government. The project is run by independent volunteers.</li>
+      <li><strong>Not an interpretation layer.</strong> We do not characterise
+        records as "true", "extraterrestrial", "explained" or "hoax" — that's
+        the source agency's job. The site is presentation only.</li>
+      <li><strong>Not for sale.</strong> No ad networks, no tracking, no
+        cookies, no email capture, no LLM-bait clickfunnels. Funding is by
+        donation only (<a href="/donate.html">/donate.html</a>).</li>
+      <li><strong>Not the only archive.</strong> See SCU, MUFON, NICAP, the
+        Galileo Project, the Black Vault, and Vallée's catalogues for
+        complementary primary-source work.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Editorial rules</h2>
+    <p>
+      We keep five rules, in this order:
+    </p>
+    <ol style="padding-left:1.4em;margin-bottom:14px;color:var(--ink-dim)">
+      <li><strong>Faithful archive</strong> — content matches the official site verbatim.</li>
+      <li><strong>Eye-catching presentation</strong> — declassified-archive aesthetic, real evidence, no clickbait.</li>
+      <li><strong>Offline by default</strong> — every committed asset works without network.</li>
+      <li><strong>Mobile-first</strong> — 360 px viewport is canonical.</li>
+      <li><strong>Replicable</strong> — <code>./scripts/sync.sh</code> reproduces the full archive locally.</li>
+    </ol>
+    <p>
+      When two rules conflict: mobile-first beats desktop polish, and
+      offline-first beats inline streaming. The full spec is in
+      <a href="https://github.com/hectorchanht/war-gov-ufo-release/blob/main/CLAUDE.md" target="_blank" rel="noopener">CLAUDE.md</a>.
+    </p>
+  </section>
+
+  <section>
+    <h2>How it's built</h2>
+    <p>
+      Every page is a single self-contained HTML file. No JS framework, no
+      build tool, no runtime. CSS and JS inlined per page. The full source
+      including build scripts is
+      <a href="https://github.com/hectorchanht/war-gov-ufo-release" target="_blank" rel="noopener">on GitHub</a>.
+    </p>
+    <p>
+      Hosting is GitHub Pages. Large payloads (videos, big PDFs) ship via
+      GitHub Releases so the repo stays under 1 GB. A weekly GitHub Actions
+      cron re-runs the scrapers and rebuilds every page.
+    </p>
+    <p>
+      We use exactly two third-party things at runtime: <a href="https://umami.is/" target="_blank" rel="noopener">Umami</a> for cookieless, log-only analytics, and Google Fonts (subsetted: <em>Source Serif 4</em> + <em>JetBrains Mono</em>). No other CDNs, no trackers, no behavioural targeting.
+    </p>
+  </section>
+
+  <section>
+    <h2>Licensing</h2>
+    <p>Each archived record inherits the licence of its source jurisdiction:</p>
+    <ul>
+      <li><strong>USA</strong> — 17 U.S.C. § 105 (federal works are public domain)</li>
+      <li><strong>UK</strong> — Open Government Licence v3.0</li>
+      <li><strong>France</strong> — Loi nº 78-753 (Information Publique)</li>
+      <li><strong>Brazil</strong> — Lei nº 12.527/2011 (LAI)</li>
+      <li><strong>Chile</strong> — Ley nº 20.285 sobre Acceso a la Información Pública</li>
+      <li><strong>Argentina</strong> — Ley nº 27.275 (Acceso a la Información Pública)</li>
+      <li><strong>Italy</strong> — D.lgs. 33/2013 (FOIA)</li>
+      <li><strong>Spain</strong> — Ley 19/2013 (Transparencia)</li>
+      <li><strong>Uruguay</strong> — Ley nº 18.381</li>
+    </ul>
+    <p>
+      The code in <code>scripts/</code> and <code>download.py</code> is MIT-licensed.
+      The site design — typography, palette, page chrome — is © realufo.org but
+      mirrored components (seals, logos, photographs) belong to their source
+      jurisdictions.
+    </p>
+  </section>
+
+  <section>
+    <h2>Get involved</h2>
+    <ul>
+      <li>Spot a dead source URL? <a href="https://github.com/hectorchanht/war-gov-ufo-release/issues/new" target="_blank" rel="noopener">Open an issue</a>.</li>
+      <li>Want to add a new national archive? See <a href="https://github.com/hectorchanht/war-gov-ufo-release/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">CONTRIBUTING.md</a>.</li>
+      <li>Security finding? <a href="/.well-known/security.txt">/.well-known/security.txt</a></li>
+      <li>Subscribe to changes via the per-archive <a href="/feeds/all.xml">Atom feed</a>.</li>
+      <li>Researchers + LLM scrapers: see the static <a href="/api/">/api/</a> dump (CORS-enabled).</li>
+      <li>Want to support the project? <a href="/donate.html">/donate.html</a>.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Acknowledgements</h2>
+    <div class="pull">
+      The greatest engineering of this project was done by the governments,
+      archivists, FOIA filers, civilian researchers, and military officers who
+      declassified the records in the first place. We are stewards, not authors.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>
+    <a href="/">realufo.org</a> · An independent archive · No government affiliation ·
+    Code MIT · Content per source-jurisdiction public-domain licences
+  </p>
+</footer>
+
+<script>
+(function(){
+  var t=document.getElementById('nav-toggle'),n=document.getElementById('primary-nav');
+  if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o?'true':'false');});}
+})();
+</script>
+</body>
+</html>

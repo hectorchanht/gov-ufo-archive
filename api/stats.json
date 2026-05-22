@@ -1,0 +1,86 @@
+{
+  "_meta": {
+    "generatedAt": "2026-05-22T08:32:38Z",
+    "totalRecords": 4778,
+    "totalArchives": 15,
+    "license": "See per-archive source jurisdictions on https://realufo.org/",
+    "docs": "https://realufo.org/api/"
+  },
+  "perArchive": [
+    {
+      "id": "wargov",
+      "label": "War.gov / PURSUE",
+      "count": 158
+    },
+    {
+      "id": "aaro",
+      "label": "AARO",
+      "count": 112
+    },
+    {
+      "id": "nasa",
+      "label": "NASA UAP",
+      "count": 18
+    },
+    {
+      "id": "nara",
+      "label": "NARA",
+      "count": 73
+    },
+    {
+      "id": "geipan",
+      "label": "France · GEIPAN",
+      "count": 3343
+    },
+    {
+      "id": "uk",
+      "label": "UK · National Archives",
+      "count": 953
+    },
+    {
+      "id": "brazil",
+      "label": "Brazil · FAB",
+      "count": 17
+    },
+    {
+      "id": "chile",
+      "label": "Chile · SEFAA",
+      "count": 78
+    },
+    {
+      "id": "argentina",
+      "label": "Argentina · CEFAe",
+      "count": 3
+    },
+    {
+      "id": "canada",
+      "label": "Canada · LAC / Magnet",
+      "count": 5
+    },
+    {
+      "id": "italy",
+      "label": "Italy · Aeronautica",
+      "count": 4
+    },
+    {
+      "id": "nz",
+      "label": "NZ · NZDF",
+      "count": 5
+    },
+    {
+      "id": "peru",
+      "label": "Peru · OIFAA",
+      "count": 3
+    },
+    {
+      "id": "spain",
+      "label": "Spain · Ejército del Aire",
+      "count": 3
+    },
+    {
+      "id": "uruguay",
+      "label": "Uruguay · CRIDOVNI",
+      "count": 3
+    }
+  ]
+}

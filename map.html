@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cloud.umami.is; script-src-attr 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self' https:; connect-src 'self' https://web.archive.org https://*.archive.org https://cloud.umami.is; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://player.vimeo.com; object-src 'none'; base-uri 'self'; form-action 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Map — every government UAP archive, geographically · realufo.org</title>
+<meta name="description" content="World map of government UAP / UFO disclosure archives. Click any pin to jump to that country's official record set.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://realufo.org/map.html">
+<meta property="og:title" content="realufo.org — Government UAP archives, mapped">
+<meta property="og:description" content="World map across 15 official government UAP archives.">
+<meta property="og:url" content="https://realufo.org/map.html">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://realufo.org/slideshow/NASA-UAP-VM6-Apollo-17-1972.jpg">
+<meta property="og:site_name" content="realufo.org">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
+<link rel="apple-touch-icon" href="./assets/favicon.svg">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#0a0a0c">
+<script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){});});}</script>
+<script defer src="/assets/vendor/hotkeys.js"></script>
+<script defer src="https://cloud.umami.is/script.js" data-website-id="9c4f36ef-30ad-4d76-947a-1724fe6acdba"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "realufo.org map",
+  "description": "Geographic map of every government UAP archive in the realufo.org collection.",
+  "url": "https://realufo.org/map.html",
+  "publisher": { "@type": "Organization", "name": "realufo.org" },
+  "isAccessibleForFree": true,
+  "inLanguage": "en"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<!-- Leaflet 1.9.4 vendored locally — open-source, no API key, no third-party origin. -->
+<link rel="stylesheet" href="/assets/vendor/leaflet/leaflet.css">
+<script defer src="/assets/vendor/leaflet/leaflet.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a0c;--bg-2:#111114;--panel:#15151a;
+  --ink:#e8e3d8;--ink-dim:#a8a298;--ink-faint:#6b665d;
+  --rule:rgba(232,227,216,0.12);--rule-strong:rgba(232,227,216,0.28);
+  --caution:#d4a017;--stamp:#b91c1c;
+  --serif:"Source Serif 4",Georgia,serif;
+  --mono:"JetBrains Mono",monospace;
+}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--serif);font-size:16px;overflow-x:hidden;display:flex;flex-direction:column}
+.scanlines{position:fixed;inset:0;pointer-events:none;z-index:9999;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.03) 2px,rgba(0,0,0,0.03) 4px)}
+@media (prefers-reduced-motion: reduce){.scanlines{display:none}*,*::before,*::after{animation-duration:0.001ms!important;transition-duration:0.001ms!important;scroll-behavior:auto!important}}
+
+.header-wrap{position:sticky;top:0;z-index:900;background:rgba(21,21,26,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--rule);height:64px;flex-shrink:0}
+.header{max-width:1400px;margin:0 auto;padding:0 16px;height:100%;display:flex;align-items:center;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;color:var(--ink)}
+.brand-seal{width:36px;height:36px;border-radius:50%;background:radial-gradient(circle,#b91c1c,#6b1010,#2a0606);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;color:var(--caution);letter-spacing:0.1em;border:1px solid rgba(212,160,23,0.35);flex-shrink:0}
+.brand-name{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--ink);letter-spacing:0.12em;text-transform:uppercase}
+nav.primary{display:flex;align-items:center;gap:4px;margin-left:auto;list-style:none}
+nav.primary a{font-family:var(--mono);font-size:11px;color:var(--ink-dim);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;padding:10px;border-radius:4px}
+nav.primary a:hover{color:var(--ink);background:rgba(232,227,216,0.06)}
+nav.primary a.active{color:var(--caution)}
+.nav-toggle{display:none;background:none;border:none;color:var(--ink);font-size:22px;cursor:pointer;padding:10px 8px;line-height:1;margin-left:auto}
+@media(max-width:719px){.nav-toggle{display:flex;align-items:center;justify-content:center}nav.primary{display:none;position:fixed;top:64px;left:0;right:0;background:var(--panel);border-bottom:1px solid var(--rule-strong);flex-direction:column;align-items:stretch;padding:8px 0 16px;margin-left:0;gap:0;max-height:calc(100vh - 64px);overflow-y:auto}nav.primary.open{display:flex}nav.primary a{padding:12px 20px}}
+
+#map{flex:1;width:100%;background:#0a0a0c}
+.legend{position:absolute;bottom:24px;left:14px;background:rgba(15,15,18,0.94);border:1px solid var(--rule-strong);border-radius:6px;padding:10px 12px;z-index:500;font-family:var(--mono);font-size:11px;color:var(--ink-dim);letter-spacing:0.06em;max-width:260px;box-shadow:0 8px 24px rgba(0,0,0,0.5)}
+.legend strong{color:var(--caution);font-size:12px;display:block;margin-bottom:6px;letter-spacing:0.08em;text-transform:uppercase}
+.legend p{font-family:var(--serif);font-size:12px;color:var(--ink-faint);margin:0}
+
+/* Popup tweaks — Leaflet defaults are light; restyle to match site */
+.leaflet-popup-content-wrapper{background:#15151a;color:var(--ink);border-radius:6px;border:1px solid var(--rule-strong);box-shadow:0 12px 28px rgba(0,0,0,0.7)}
+.leaflet-popup-tip{background:#15151a;border:1px solid var(--rule-strong)}
+.leaflet-popup-content{font-family:var(--serif);font-size:13px;line-height:1.5;color:var(--ink-dim);margin:14px 18px}
+.leaflet-popup-content .pop-title{font-family:var(--mono);font-size:11px;color:var(--caution);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;font-weight:700}
+.leaflet-popup-content .pop-name{font-family:var(--serif);font-size:15px;color:var(--ink);font-weight:600;margin-bottom:6px}
+.leaflet-popup-content .pop-count{font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:0.08em;margin-bottom:10px}
+.leaflet-popup-content a{display:inline-block;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:6px 12px;border-radius:3px;border:1px solid var(--caution);color:var(--caution);text-decoration:none;background:rgba(212,160,23,0.12);margin-top:4px}
+.leaflet-popup-content a:hover{background:rgba(212,160,23,0.22)}
+.leaflet-popup-close-button{color:var(--ink-dim) !important;font-size:18px !important;padding:6px !important}
+.leaflet-container{background:#0a0a0c}
+.leaflet-tile-pane{filter:invert(0.96) hue-rotate(180deg) brightness(0.94) contrast(0.85)}
+.realufo-marker{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:rgba(212,160,23,0.16);border:2px solid var(--caution);color:var(--caution);font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.05em;box-shadow:0 4px 12px rgba(0,0,0,0.5)}
+.realufo-marker.large{width:44px;height:44px;font-size:11px}
+</style>
+</head>
+<body>
+<div class="scanlines" aria-hidden="true"></div>
+
+<div class="header-wrap">
+  <div class="header">
+    <a href="/" class="brand" aria-label="realufo.org home">
+      <div class="brand-seal" aria-hidden="true">UAP</div>
+      <span class="brand-name">realufo.org</span>
+    </a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav">&#9776;</button>
+    <nav class="primary" id="primary-nav" aria-label="Main navigation">
+      <a href="/">War.gov</a>
+      <a href="search.html">Search</a>
+      <a href="timeline.html">Timeline</a>
+      <a href="map.html" class="active">Map</a>
+      <a href="aaro/">AARO</a>
+      <a href="nasa/">NASA</a>
+    </nav>
+  </div>
+</div>
+
+<div id="map" aria-label="World map of government UAP archives"></div>
+
+<div class="legend">
+  <strong>15 archives + 8 cases</strong>
+  <p>Large circles = archive HQ + record count. Small gold ◉ = individual cases with known coordinates (Rendlesham, Tic-Tac, Gimbal, Phoenix, Belgian, Prato, Varginha, Trindade). Click any pin.</p>
+</div>
+
+<script>
+window.addEventListener('DOMContentLoaded', function() {
+(function() {
+  'use strict';
+
+  /* Country centroid + archive metadata. Pins land at the archive headquarters
+     city where possible (e.g. AARO in Arlington, GEIPAN in Toulouse). */
+  var ARCHIVES = [
+    { id:'wargov',    label:'War.gov / PURSUE',         dir:'/',           lat: 38.8951, lon: -77.0364 },
+    { id:'aaro',      label:'AARO',                     dir:'aaro/',       lat: 38.8703, lon: -77.0566 },
+    { id:'nasa',      label:'NASA UAP Study',           dir:'nasa/',       lat: 38.8830, lon: -77.0163 },
+    { id:'nara',      label:'NARA',                     dir:'nara/',       lat: 38.8929, lon: -77.0227 },
+    { id:'geipan',    label:'France · GEIPAN (CNES)',   dir:'geipan/',     lat: 43.6047, lon:   1.4442 },
+    { id:'uk',        label:'UK · National Archives',   dir:'uk/',         lat: 51.4810, lon:  -0.2790 },
+    { id:'brazil',    label:'Brazil · FAB',             dir:'brazil/',     lat:-15.7942, lon: -47.8825 },
+    { id:'chile',     label:'Chile · SEFAA',            dir:'chile/',      lat:-33.4489, lon: -70.6693 },
+    { id:'argentina', label:'Argentina · CEFAe',        dir:'argentina/',  lat:-34.6037, lon: -58.3816 },
+    { id:'canada',    label:'Canada · LAC / Magnet',    dir:'canada/',     lat: 45.4215, lon: -75.6972 },
+    { id:'italy',     label:'Italy · Aeronautica',      dir:'italy/',      lat: 41.9028, lon:  12.4964 },
+    { id:'nz',        label:'NZ · NZDF',                dir:'nz/',         lat:-41.2865, lon: 174.7762 },
+    { id:'peru',      label:'Peru · OIFAA',             dir:'peru/',       lat:-12.0464, lon: -77.0428 },
+    { id:'spain',     label:'Spain · Ejército del Aire',dir:'spain/',      lat: 40.4168, lon:  -3.7038 },
+    { id:'uruguay',   label:'Uruguay · CRIDOVNI',       dir:'uruguay/',    lat:-34.9011, lon: -56.1645 }
+  ];
+
+  function esc(s){return String(s||'').replace(/[&<>"']/g,function(c){return({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]})}
+
+  /* Extract record count for each archive by reading its embedded manifest. */
+  function recordCount(url, arc) {
+    return fetch(url, { cache:'no-cache' })
+      .then(function(r){ if (!r.ok) throw new Error(r.status); return r.text(); })
+      .then(function(html) {
+        var m = html.match(/<script[^>]+id=["']arch-data["'][^>]*>([\s\S]*?)<\/script>/i);
+        if (!m) return 0;
+        var d;
+        try { d = JSON.parse(m[1].trim()); } catch(_) { return 0; }
+        if (d && d._external) {
+          var ext = arc.dir + d._external.replace(/^\.\//,'');
+          return fetch(ext).then(function(rr){return rr.json();}).then(function(j){
+            return (j.assets || j.records || j.rows || []).length;
+          });
+        }
+        if (Array.isArray(d)) return d.length;
+        return (d.assets || d.records || d.rows || []).length;
+      })
+      .catch(function(){ return 0; });
+  }
+
+  var map = L.map('map', { worldCopyJump: true, zoomControl: true, attributionControl: true })
+    .setView([20, 0], 2);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>',
+    maxZoom: 12, minZoom: 2,
+  }).addTo(map);
+
+  function marker(arc, count) {
+    var iconLabel = count > 0 ? String(count) : '·';
+    var cls = 'realufo-marker' + (count > 500 ? ' large' : '');
+    var icon = L.divIcon({
+      className: '', html: '<div class="' + cls + '">' + esc(iconLabel) + '</div>',
+      iconSize: [34, 34], iconAnchor: [17, 17],
+    });
+    var entry = arc.dir.indexOf('/') === 0 ? arc.dir : '/' + arc.dir;
+    var srcUrl = arc.dir === '/' ? '/' : entry;
+    var popup = (
+      '<div class="pop-title">' + esc(arc.id) + '</div>' +
+      '<div class="pop-name">' + esc(arc.label) + '</div>' +
+      '<div class="pop-count">' + (count ? count.toLocaleString() : '—') + ' record' + (count === 1 ? '' : 's') + '</div>' +
+      '<a href="' + esc(srcUrl) + '">Open archive &rarr;</a>'
+    );
+    return L.marker([arc.lat, arc.lon], { icon: icon }).bindPopup(popup);
+  }
+
+  ARCHIVES.forEach(function(arc) {
+    var url = arc.id === 'wargov' ? '/' : arc.dir;
+    recordCount(url, arc).then(function(n) {
+      marker(arc, n).addTo(map);
+    });
+  });
+
+  /* Case-level pins — sourced from /api/geo.json. Distinct visual style. */
+  fetch('/api/geo.json', { cache:'no-cache' })
+    .then(function(r){ if (!r.ok) throw 0; return r.json(); })
+    .then(function(data) {
+      (data.cases || []).forEach(function(c) {
+        var icon = L.divIcon({
+          className: '',
+          html: '<div style="display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:rgba(212,160,23,0.9);border:2px solid #0a0a0c;box-shadow:0 0 0 2px rgba(212,160,23,0.6),0 4px 10px rgba(0,0,0,0.5);color:#0a0a0c;font-family:JetBrains Mono,monospace;font-size:13px;font-weight:700;">◉</div>',
+          iconSize: [26, 26], iconAnchor: [13, 13],
+        });
+        var popup = (
+          '<div class="pop-title">' + esc(c.archive) + ' &middot; ' + esc(c.date || '') + '</div>' +
+          '<div class="pop-name">' + esc(c.title) + '</div>' +
+          (c.description ? '<div class="pop-count" style="color:#a8a298;font-family:Source Serif 4,Georgia,serif;text-transform:none;letter-spacing:0;font-size:12px;line-height:1.4">' + esc(c.description) + '</div>' : '') +
+          '<a href="' + esc(c.href) + '">Open case &rarr;</a>'
+        );
+        L.marker([c.lat, c.lon], { icon: icon, zIndexOffset: 1000 })
+         .bindPopup(popup)
+         .addTo(map);
+      });
+    })
+    .catch(function(){ /* no geo.json — silent */ });
+
+  /* Hamburger */
+  var t = document.getElementById('nav-toggle'), n = document.getElementById('primary-nav');
+  if (t && n) t.addEventListener('click', function(){
+    var open = n.classList.toggle('open');
+    t.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+})();
+});
+</script>
+</body>
+</html>

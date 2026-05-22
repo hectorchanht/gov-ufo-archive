@@ -1,23 +1,35 @@
-# realufo.org — offline mirror of every official UAP archive
+# realufo.org — every official UAP archive, in one place
 
-**Live at [realufo.org](https://realufo.org/)** · 8 government UAP archives mirrored side-by-side:
-war.gov (PURSUE), AARO, NASA, NARA, France GEIPAN, UK MoD,
-Brazil FAB, Chile SEFAA.
+**Live at [realufo.org](https://realufo.org/)** · 15 government UAP archives
+side-by-side, offline-first, mobile-first, zero build tooling.
 
-A self-contained, **offline-first** archival mirror of the two primary U.S.
-government UAP transparency portals:
+| # | Archive | Source | Entry point |
+| --: | --- | --- | --- |
+| 1 | **PURSUE — Department of War / Release 01** | <https://www.war.gov/UFO/> | [`/`](index.html) |
+| 2 | **AARO — All-domain Anomaly Resolution Office** | <https://www.aaro.mil/> | [`/aaro/`](aaro/index.html) |
+| 3 | **NASA UAP Independent Study Team** | <https://science.nasa.gov/uap/> | [`/nasa/`](nasa/index.html) |
+| 4 | **NARA — Project Blue Book + JFK + UAP** | <https://catalog.archives.gov/> | [`/nara/`](nara/index.html) |
+| 5 | **France — GEIPAN (CNES)** | <https://www.cnes-geipan.fr/> | [`/geipan/`](geipan/index.html) |
+| 6 | **UK — National Archives MoD files** | <https://discovery.nationalarchives.gov.uk/> | [`/uk/`](uk/index.html) |
+| 7 | **Brazil — Força Aérea Brasileira** | <https://www.fab.mil.br/> | [`/brazil/`](brazil/index.html) |
+| 8 | **Chile — CEFAA / SEFAA (DGAC)** | <https://www.sefaa.cl/> | [`/chile/`](chile/index.html) |
+| 9 | **Argentina — CEFAe** | <https://www.argentina.gob.ar/fuerzaaerea/cefae> | [`/argentina/`](argentina/index.html) |
+| 10 | **Canada — LAC / Project Magnet** | <https://www.bac-lac.gc.ca/> | [`/canada/`](canada/index.html) |
+| 11 | **Italy — Aeronautica Militare** | <https://www.aeronautica.difesa.it/> | [`/italy/`](italy/index.html) |
+| 12 | **NZ — NZ Defence Force** | <https://www.nzdf.mil.nz/> | [`/nz/`](nz/index.html) |
+| 13 | **Peru — OIFAA (Fuerza Aérea)** | <https://www.gob.pe/fap> | [`/peru/`](peru/index.html) |
+| 14 | **Spain — Ejército del Aire** | <https://ejercitodelaire.defensa.gob.es/> | [`/spain/`](spain/index.html) |
+| 15 | **Uruguay — CRIDOVNI** | <https://www.fau.mil.uy/> | [`/uruguay/`](uruguay/index.html) |
 
-| Mirror | Source | Local entry point |
-| --- | --- | --- |
-| **PURSUE — Department of War / Release 01** | <https://www.war.gov/UFO/> | [`index.html`](index.html) |
-| **AARO — All-domain Anomaly Resolution Office** | <https://www.aaro.mil/> | [`aaro-mirror/index.html`](aaro-mirror/index.html) |
+Cross-archive search lives at [`/search.html`](search.html).
 
-Both pages share the same visual language and the same control logic — a
-cinematic hero carousel of real declassified imagery, a headlines strip, and
-a filterable, sortable, paginated **evidence browser** that surfaces every
-artifact with its full context (agency, location, incident date, VIRIN /
-DVIDS ID, redaction status, case status). Every file you can see is served
-from the local archive on disk.
+Every archive shares the same visual language and control logic — a
+cinematic hero carousel of real declassified imagery, a headlines strip,
+and a filterable, sortable, paginated **evidence browser** that surfaces
+every artifact with full context (agency, location, incident date,
+VIRIN / DVIDS ID, redaction status, case status). Every file you can see
+is served from the local archive when present — and falls back to the
+official source URL otherwise.
 
 ---
 
@@ -25,39 +37,46 @@ from the local archive on disk.
 
 ```
 .
-├── index.html                  # PURSUE — war.gov/UFO mirror (single page)
-├── uap-release001.csv          # official Release 01 manifest (158 records)
-├── slideshow/                  # 17 highlight images shown on the original page
+├── index.html               # PURSUE — war.gov/UFO landing
+├── search.html              # cross-archive search
+├── uap-release001.csv       # official Release 01 manifest (158 records)
+├── slideshow/               # 17 highlight images
 ├── bundles/
-│   ├── Release_1/              # 130 documents + images (war.gov Release 01)
-│   ├── Release_1.zip           # the official zip (gitignored — re-download)
-│   ├── uapvideos/              # 28 DVIDS UAP videos (war.gov)
-│   └── uapvideos.zip           # the official zip (gitignored)
-├── assets/                     # site chrome (DOD/DOW header logos)
+│   ├── Release_1/           # 130 docs + images (gitignored — restored via sync)
+│   ├── Release_1.zip        # official zip (gitignored)
+│   ├── uapvideos/           # 28 DVIDS UAP videos (gitignored)
+│   └── uapvideos.zip        # official zip (gitignored)
+├── assets/                  # site chrome + shared favicon.svg (classic disk UFO)
 │
-├── aaro-mirror/
-│   ├── index.html              # AARO — evidence-first archive page
-│   ├── details.html            # AARO — long-form text (mission, FAQ, …)
-│   ├── pages/                  # 12 raw aaro.mil page snapshots (HTML)
-│   ├── pdfs/                   # case-resolution reports, FOIA releases, briefs
-│   ├── videos/                 # all 32 official AARO UAP videos (gitignored)
-│   ├── assets/images/          # case-resolution thumbnails
-│   └── .cache/                 # generated manifest JSON (gitignored)
+├── aaro/                    # AARO archive (cases, FOIA, videos, details.html)
+├── nasa/                    # NASA UAP study + briefings
+├── nara/                    # NARA Blue Book / JFK / UAP catalog
+├── geipan/                  # France — 3343 GEIPAN cases
+├── uk/                      # UK National Archives — TNA Discovery API
+├── brazil/                  # Brazil FAB / Operação Prato
+├── chile/                   # Chile SEFAA
+├── argentina/               # CEFAe
+├── canada/                  # LAC / Project Magnet
+├── italy/                   # Aeronautica Militare
+├── nz/                      # NZDF
+├── peru/                    # OIFAA
+├── spain/                   # Ejército del Aire
+├── uruguay/                 # CRIDOVNI
 │
-├── download.py                 # war.gov downloader (TLS-impersonating curl_cffi)
+├── download.py              # war.gov downloader (TLS-impersonating curl_cffi)
 └── scripts/
-    ├── sync.sh                 # ⭐ master entry — run this
-    ├── dl-aaro.sh              # AARO page + asset downloader (Wayback + cloudfront)
-    ├── parse-aaro.py           # parse page HTML → structured JSON
-    ├── extract-evidence.py     # build the AARO evidence map
-    ├── build-aaro.py           # write aaro-mirror/index.html
-    └── build-details.py        # write aaro-mirror/details.html
+    ├── sync.sh              # ⭐ master entry — run this
+    ├── dl-<slug>.sh         # per-archive downloader
+    ├── build-<slug>.py      # per-archive site generator
+    ├── build-details.py     # long-form text pages
+    ├── parse-aaro.py        # parse AARO page HTML → structured JSON
+    ├── extract-evidence.py  # build the AARO evidence map
+    └── spider.py            # generic source-page crawler
 ```
 
-> Both `index.html` and `aaro-mirror/index.html` are **self-contained** —
-> no build step or web server required. Open them in any browser. The only
-> reason to run the downloader is to populate the bulky payloads (PDFs,
-> videos) that are excluded from Git.
+> Every `index.html` is **self-contained** — no build step, no web server.
+> Open in any browser. The only reason to run the downloader is to populate
+> the bulky payloads (PDFs, videos) excluded from Git.
 
 ---
 
@@ -76,8 +95,8 @@ cd war-gov-ufo-release
 pip install curl_cffi
 ```
 
-`curl_cffi` is required for the war.gov side because `www.war.gov` is fronted
-by Akamai with TLS-fingerprint bot protection. `curl_cffi` wraps
+`curl_cffi` is required for the war.gov + AARO sides because both Akamai
+hosts use TLS-fingerprint bot protection. `curl_cffi` wraps
 `curl-impersonate`, which replicates a real Chrome handshake byte-for-byte.
 
 Everything else uses only the Python and POSIX shell standard libraries.
@@ -90,12 +109,11 @@ Everything else uses only the Python and POSIX shell standard libraries.
 
 That single command:
 
-1. Runs `download.py` to pull the war.gov payloads (slideshow, manifest CSV,
-   `Release_1.zip`, `uapvideos.zip`, agency logos)
-2. Snapshots all 12 aaro.mil pages via the Wayback Machine
-3. Downloads every official AARO UAP video directly from the DVIDS CDN
-4. Downloads every PDF / image AARO links to (Wayback fallback when needed)
-5. Re-parses everything and rebuilds both `index.html` pages so the
+1. Runs `download.py` to pull the war.gov payloads
+2. Snapshots all aaro.mil pages via the Wayback Machine
+3. Downloads every official AARO UAP video from the DVIDS CDN
+4. Crawls every other national archive (GEIPAN, TNA, FAB, SEFAA, …)
+5. Re-parses everything and rebuilds every `index.html` so the
    `LOCAL / SOURCE` badges match what's actually on disk
 
 It's **idempotent** — files already on disk are skipped. Re-running it picks
@@ -109,7 +127,7 @@ xdg-open index.html               # Linux
 start index.html                  # Windows
 ```
 
-That's it. Both mirrors work offline from this point on.
+That's it. Every archive works offline from this point on.
 
 ---
 
@@ -121,15 +139,14 @@ The `.gitignore` keeps the repo under 1 GB by excluding the bulky payloads:
 
 - `bundles/Release_1.zip`, `bundles/uapvideos.zip` (~2.5 GB combined)
 - `bundles/uapvideos/` (DVIDS bulk videos, 1.2 GB)
-- `aaro-mirror/videos/` (32 AARO videos, 2.7 GB)
-- The five Release_1 PDFs that exceed GitHub's 100 MB single-file limit
+- `aaro/videos/` (32 AARO videos, 2.7 GB)
+- Any single PDF over GitHub's 100 MB single-file limit
 
 Result: a `git push`-friendly repo of about 150 MB.
 
 On the live site, any asset that wasn't committed shows a `SOURCE` badge and
-links straight back to the official URL (war.gov, aaro.mil, the DVIDS CDN).
-Visitors who want a fully local copy just clone the repo and run
-`./scripts/sync.sh`.
+links straight back to the official URL. Visitors who want a fully local
+copy just clone the repo and run `./scripts/sync.sh`.
 
 ### How the local-vs-source switch actually works
 
@@ -142,10 +159,10 @@ source URL. The page chooses dynamically:
 - **Buttons** always show a `Source ↗` chip alongside the `Download` chip
   when both a local file and a source URL exist. Two routes, always one
   that works.
-- **The HTML never has to change**. The build scripts (`build-wargov.py`,
-  `build-aaro.py`) regenerate the embedded manifest from current disk
-  state on every run — newly-downloaded files automatically pick up
-  local routing, missing files automatically fall back to source.
+- **The HTML never has to change**. The build scripts regenerate the
+  embedded manifest from current disk state on every run — newly-downloaded
+  files automatically pick up local routing, missing files automatically
+  fall back to source.
 
 So the workflow is:
 
@@ -160,7 +177,7 @@ git push                 # ship — visitors get the right route per asset
 ```bash
 git init
 git add .
-git commit -m "Initial mirror"
+git commit -m "Initial archive"
 gh repo create war-gov-ufo-release --public --source=. --push
 # then in repo Settings → Pages, set Source = main branch, root.
 ```
@@ -169,9 +186,8 @@ gh repo create war-gov-ufo-release --public --source=. --push
 
 ## Keeping the archive current (cron / scheduled)
 
-The U.S. government has stated that both PURSUE (war.gov) and AARO release
-new materials on a rolling basis. Re-run `sync.sh` periodically to capture
-new tranches:
+Multiple governments release new materials on a rolling basis. Re-run
+`sync.sh` periodically to capture new tranches:
 
 ### Weekly cron (Linux / macOS)
 
@@ -196,10 +212,10 @@ git push
 ### macOS launchd
 
 ```xml
-<!-- ~/Library/LaunchAgents/com.user.uap-mirror-sync.plist -->
+<!-- ~/Library/LaunchAgents/com.user.uap-archive-sync.plist -->
 <?xml version="1.0" encoding="UTF-8"?>
 <plist version="1.0"><dict>
-  <key>Label</key><string>com.user.uap-mirror-sync</string>
+  <key>Label</key><string>com.user.uap-archive-sync</string>
   <key>WorkingDirectory</key><string>/Users/you/code/war-gov-ufo-release</string>
   <key>ProgramArguments</key><array>
     <string>/bin/bash</string>
@@ -214,9 +230,9 @@ git push
 </dict></plist>
 ```
 
-`launchctl load ~/Library/LaunchAgents/com.user.uap-mirror-sync.plist`
+`launchctl load ~/Library/LaunchAgents/com.user.uap-archive-sync.plist`
 
-### GitHub Actions (mirror + auto-publish)
+### GitHub Actions (archive + auto-publish)
 
 For a hands-off, public archive: schedule sync in GitHub Actions and let it
 push directly to Pages.
@@ -238,8 +254,8 @@ jobs:
       - run: ./scripts/sync.sh --no-videos    # videos are too large for Pages
       - name: Commit any new files
         run: |
-          git config user.name "uap-mirror"
-          git config user.email "uap-mirror@users.noreply.github.com"
+          git config user.name "uap-archive"
+          git config user.email "uap-archive@users.noreply.github.com"
           git add -A
           git diff --quiet --staged || git commit -m "sync: $(date -u +%Y-%m-%d)"
           git push
@@ -250,9 +266,9 @@ jobs:
 ## Selective sync flags
 
 ```bash
-./scripts/sync.sh                # full run (default)
-./scripts/sync.sh --aaro-only    # skip the war.gov side
-./scripts/sync.sh --wargov-only  # skip the AARO side
+./scripts/sync.sh                # interactive picker (multi-select)
+./scripts/sync.sh --all          # full run
+./scripts/sync.sh --aaro-only    # one archive only (replace slug)
 ./scripts/sync.sh --no-videos    # skip the big AARO videos (≈2.7 GB)
 ./scripts/sync.sh --no-build     # download only, no HTML rebuild
 ```
@@ -260,14 +276,14 @@ jobs:
 Useful combos:
 
 ```bash
-# Day 1: quick browsable mirror without the multi-gig video downloads
+# Day 1: quick browsable archive without the multi-gig video downloads
 ./scripts/sync.sh --no-videos
 
 # Day 2: pull the videos in a background terminal
 bash scripts/dl-aaro.sh assets
 
-# Anytime: refresh just the AARO side (e.g. after a new case release)
-./scripts/sync.sh --aaro-only
+# Anytime: refresh just one archive after a new case release
+./scripts/sync.sh --chile-only
 ```
 
 ---
@@ -276,10 +292,10 @@ bash scripts/dl-aaro.sh assets
 
 | Source | Why it's hard | What we use |
 | --- | --- | --- |
-| `www.war.gov` | Akamai TLS fingerprinting blocks `curl`, `wget`, `requests`. | `curl_cffi` (Chrome TLS impersonation). |
-| `cdn.dvidshub.net` | None — public CDN. | Direct `curl`. |
-| `www.aaro.mil` | Akamai-blocked exactly the same way; impersonation often still 403s from VPN / cloud IPs. | Wayback Machine (`web.archive.org`) for HTML, PDFs, and images. |
-| `d34w7g4gy10iej.cloudfront.net` (AARO videos) | None — public CloudFront origin. | Direct `curl`. |
+| `www.war.gov`, `www.aaro.mil` | Akamai TLS fingerprinting blocks `curl`, `wget`, `requests`. | `curl_cffi` (Chrome TLS impersonation), Wayback fallback. |
+| `cdn.dvidshub.net`, AARO cloudfront | None — public CDN. | Direct `curl`. |
+| `discovery.nationalarchives.gov.uk` | Official Discovery JSON API — well-mannered. | Direct paged JSON. |
+| `cnes-geipan.fr`, `sefaa.cl`, `fab.mil.br`, … | Plain HTML; sometimes Cloudflare-fronted. | `spider.py` (BFS crawl + rate limit). |
 
 If `curl_cffi` still gets 403 from war.gov, you're probably on a known
 data-center / VPN IP that Akamai blocks. Run from a residential or
@@ -287,7 +303,7 @@ corporate-office connection.
 
 ---
 
-## Page features (both mirrors)
+## Page features (every archive)
 
 - **Cinematic hero carousel** rotating through declassified imagery and
   official UAP videos
@@ -303,23 +319,26 @@ corporate-office connection.
   date, VIRIN, DVIDS ID, PDF / video pairings, alt text, case status badge
   (Unresolved / Undergoing Analysis / Resolved / Closed)
 - **Click-to-preview lightbox** — images, videos, audio, and PDFs all open
-  in-place; `Esc` to close
+  in-place; `Esc` to close, ←/→ to navigate, swipe on mobile
 - **`LOCAL` / `SOURCE` badges** so it's always clear whether a file is on
   disk or links back to the official URL
+- **Cross-archive search** at `/search.html` with `?q=` deep links and
+  `/` hotkey to focus the input
 
 ---
 
 ## Notes & limits
 
-- Federal U.S. government works are in the public domain (17 U.S.C. § 105).
-  Page content and asset descriptions are reproduced verbatim from the
-  original DoD / AARO publications.
+- Public-domain attribution per source jurisdiction (US 17 U.S.C. § 105,
+  UK OGL v3, France Loi 78-753, Brazil LAI 12.527/2011, Chile 20.285,
+  Argentina 27.275, Italy D.lgs. 33/2013, Spain 19/2013, Uruguay 18.381,
+  …). Page content reproduced verbatim from the original publications.
 - About 22 / 58 AARO PDFs and 13 / 21 AARO images **were never archived by
   the Wayback Machine** and no longer resolve from aaro.mil directly because
-  of Akamai. They appear in the page with the `SOURCE` badge and link to
-  the original URL; click-through may 403.
-- The Vercel/Next/React skill hints you may see in commit history come from
-  unrelated tooling — this project is a pure static HTML mirror. No build
+  of Akamai. They appear with the `SOURCE` badge and link to the original
+  URL; click-through may 403.
+- The Vercel/Next/React skill hints in the commit history come from
+  unrelated tooling — this project is a pure static HTML archive. No build
   step. No runtime. No framework.
 
 ---
@@ -327,4 +346,4 @@ corporate-office connection.
 ## License
 
 Code in `scripts/` and `download.py`: MIT.
-Mirrored content: U.S. government public-domain works (17 U.S.C. § 105).
+Archived content: each source's national public-domain regime (see above).

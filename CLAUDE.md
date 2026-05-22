@@ -1,8 +1,8 @@
 # CLAUDE.md — project rules, design system, build process
 
-This file is the master spec for the **PURSUE × AARO × NASA × NARA × …**
-offline-UAP-mirror project. Read it before changing anything. New mirrors
-follow these rules to the letter.
+This file is the master spec for **realufo.org** — an offline-first archive
+of every official government UAP source. Read it before changing anything.
+New archives follow these rules to the letter.
 
 ---
 
@@ -15,7 +15,7 @@ follow these rules to the letter.
 3. **Offline by default** — every committed asset works without network.
 4. **Mobile-first** — every interaction tested at 360 px first, then scaled
    up. No horizontal scroll. No overflow. Touch targets ≥ 44 px.
-5. **Replicable** — `./scripts/sync.sh` reproduces the full mirror locally,
+5. **Replicable** — `./scripts/sync.sh` reproduces the full archive locally,
    idempotent, schedulable.
 
 When two goals conflict: pick **mobile-first** over desktop polish, and
@@ -23,14 +23,41 @@ When two goals conflict: pick **mobile-first** over desktop polish, and
 
 ---
 
-## 2. Design system
+## 2. Sources covered
 
-### 2.1 Tone colours (per mirror)
+15 official government archives, each at its own path under the root domain.
 
-Each mirror picks ONE primary accent (`--caution`). Everything else is
+| Slug | Path | Source | Official site |
+| --- | --- | --- | --- |
+| `wargov` | `/` | War.gov / PURSUE — Release 01 | <https://www.war.gov/UFO/> |
+| `aaro` | `/aaro/` | All-domain Anomaly Resolution Office | <https://www.aaro.mil/> |
+| `nasa` | `/nasa/` | NASA UAP Independent Study Team | <https://science.nasa.gov/uap/> |
+| `nara` | `/nara/` | National Archives & Records Administration (Project Blue Book + JFK + …) | <https://catalog.archives.gov/> |
+| `geipan` | `/geipan/` | France — GEIPAN (CNES) | <https://www.cnes-geipan.fr/> |
+| `uk` | `/uk/` | UK National Archives (MoD UAP files) | <https://discovery.nationalarchives.gov.uk/> |
+| `brazil` | `/brazil/` | Brazil FAB / Operação Prato | <https://www.fab.mil.br/> |
+| `chile` | `/chile/` | Chile CEFAA / SEFAA (DGAC) | <https://www.sefaa.cl/> |
+| `argentina` | `/argentina/` | Argentina CEFAe (Fuerza Aérea) | <https://www.argentina.gob.ar/fuerzaaerea/cefae> |
+| `canada` | `/canada/` | Library & Archives Canada — Project Magnet | <https://www.bac-lac.gc.ca/> |
+| `italy` | `/italy/` | Italy Aeronautica Militare | <https://www.aeronautica.difesa.it/> |
+| `nz` | `/nz/` | NZ Defence Force | <https://www.nzdf.mil.nz/> |
+| `peru` | `/peru/` | Peru OIFAA (Fuerza Aérea) | <https://www.gob.pe/fap> |
+| `spain` | `/spain/` | Spain Ejército del Aire | <https://ejercitodelaire.defensa.gob.es/> |
+| `uruguay` | `/uruguay/` | Uruguay CRIDOVNI | <https://www.fau.mil.uy/> |
+
+Cross-archive search lives at `/search.html`. Top-level `index.html` is the
+War.gov / PURSUE landing page (historical reasons — it predates the others).
+
+---
+
+## 3. Design system
+
+### 3.1 Tone colours (per archive)
+
+Each archive picks ONE primary accent (`--caution`). Everything else is
 shared.
 
-| Mirror | Primary | Seal gradient |
+| Archive | Primary | Seal gradient |
 | --- | --- | --- |
 | **war.gov / UFO** | `#d4a017` (gold) | radial `#b91c1c → #6b1010 → #2a0606` |
 | **AARO** | `#4a9eff` (blue) | radial `#1e3a8a → #102560 → #061238` |
@@ -48,7 +75,7 @@ shared.
 | **Spain Ejército del Aire** | `#f4c542` | radial `#aa151b → #700c10 → #350608` |
 | **Italy Aeronautica Militare** | `#5cb85c` | radial `#009246 → #005a2b → #002612` |
 
-### 2.2 Shared palette (do not deviate)
+### 3.2 Shared palette (do not deviate)
 
 ```
 --bg:        #0a0a0c   page background
@@ -66,7 +93,7 @@ shared.
 --mono:      "JetBrains Mono"
 ```
 
-### 2.3 Typography
+### 3.3 Typography
 
 - **Serif** for prose, hero titles, card titles
 - **Mono** for nav, metadata labels, badges, code
@@ -74,25 +101,32 @@ shared.
 - **Letter-spacing on mono**: 0.08–0.24 em
 - **No third font.** No Google Fonts beyond what's already preconnected.
 
+### 3.4 Favicon
+
+A single shared classic-disk-UFO favicon lives at `<archive>/assets/favicon.svg`
+(and `/assets/favicon.svg` at the root). Identical SVG across every page —
+brand recognition trumps per-archive variation. Per-archive seals stay in
+the page header.
+
 ---
 
-## 3. Page architecture
+## 4. Page architecture
 
-Every mirror has the same skeleton:
+Every archive page has the same skeleton:
 
 ```
 <scanlines>           — fixed 2 px noise overlay
 <header-wrap>          — sticky 64 px tall, blurred bg
    ↳ <.brand>           seal + name
    ↳ <.nav-toggle>      hamburger (☰), hidden ≥ 720 px
-   ↳ <nav.primary>      sections + mirror-to-mirror cross-links
+   ↳ <nav.primary>      sections + archive-to-archive cross-links
 <hero>
    ↳ .coords           ◉ short locator
    ↳ h1.hero-title     italic accent on one word
    ↳ p.hero-sub        65 ch lede paragraph with source link
    ↳ .classified-stamp (optional)
    ↳ .hero-carousel    16:9 aspect, ≥ 4 slides, dots + arrows + caption + autoplay
-<section.headlines>    — 4–6 "head-card" tiles distilling the mirror
+<section.headlines>    — 4–6 "head-card" tiles distilling the archive
 <section.archive>      — evidence/records browser
    ↳ stats-grid        Total / Local / per-type counts
    ↳ arch-controls-bar (sticky 64 px under header)
@@ -107,13 +141,13 @@ Every mirror has the same skeleton:
 <lightbox>             — close, prev/next, counter, arrow-keys, swipe
 ```
 
-### 3.1 Mirror navigation rule
+### 4.1 Navigation rule
 
-- **Top sticky header**: project-internal links (mirror → mirror, intra-page anchors)
+- **Top sticky header**: project-internal links (archive → archive, intra-page anchors)
 - **Footer "Source" list**: official site URLs (war.gov, aaro.mil, science.nasa.gov, archives.gov, …)
-- **No top "OFFLINE MIRROR" gov-banner row.** Removed by design.
+- **No top "OFFLINE MIRROR" banner.** Removed by design.
 
-### 3.2 Card schema
+### 4.2 Card schema
 
 Every asset card has at least:
 
@@ -126,13 +160,14 @@ category      Document / Imagery / Video / Catalog / etc.
 date          incident date or release date
 status        Unresolved / Resolved / Undergoing Analysis / Closed (videos)
 region        geographic context (optional)
+thumb         repo-relative path to a small preview image (optional)
 local         repo-relative path if file is tracked in git
               (NEVER os.path.exists alone — use `git ls-files`)
 url           download URL: local path OR GitHub Release URL OR live source
 src           official source page URL (Source ↗ button)
 ```
 
-### 3.3 Action buttons (consistent everywhere)
+### 4.3 Action buttons (consistent everywhere)
 
 | Button | Routes to | When shown |
 | --- | --- | --- |
@@ -148,41 +183,52 @@ never at the bare local path.
 
 ---
 
-## 4. Storage layout
+## 5. Storage layout
 
 ```
 .
-├── index.html             war.gov / PURSUE
-├── slideshow/             all 30+ image assets (small, tracked)
+├── index.html              war.gov / PURSUE landing
+├── search.html             cross-archive search
+├── slideshow/              war.gov highlight images
 ├── bundles/
-│   └── Release_1/         gitignored (PDFs); restored via sync.sh
-├── aaro-mirror/
-├── nasa-mirror/
-├── nara-mirror/
-├── geipan-mirror/         (batch 2)
-├── uk-mirror/             (batch 2)
-├── brazil-mirror/         (batch 2)
-├── chile-mirror/          (batch 2)
+│   └── Release_1/          gitignored (PDFs); restored via sync.sh
+├── assets/favicon.svg      shared classic-disk-UFO favicon
+├── aaro/                   AARO archive
+├── nasa/                   NASA UAP
+├── nara/                   NARA Blue Book + JFK + UAP
+├── geipan/                 France GEIPAN
+├── uk/                     UK National Archives MoD
+├── brazil/                 Brazil FAB
+├── chile/                  Chile SEFAA
+├── argentina/              CEFAe
+├── canada/                 LAC / Project Magnet
+├── italy/                  Aeronautica Militare
+├── nz/                     NZDF
+├── peru/                   OIFAA
+├── spain/                  Ejército del Aire
+├── uruguay/                CRIDOVNI
 └── scripts/
     ├── sync.sh                  master entry, interactive picker
-    ├── dl-<mirror>.sh           per-mirror downloader
-    ├── build-<mirror>.py        per-mirror site generator
+    ├── dl-<slug>.sh             per-archive downloader
+    ├── build-<slug>.py          per-archive site generator
     ├── build-wargov.py          main page rebuild
+    ├── build-details.py         long-form text pages (AARO + case detail)
     ├── parse-aaro.py            AARO-only page parser
-    └── extract-evidence.py      AARO-only evidence-map builder
+    ├── extract-evidence.py      AARO-only evidence-map builder
+    └── spider.py                generic source-page crawler (Chile, UK, …)
 ```
 
-### 4.1 GitHub Releases
+### 5.1 GitHub Releases
 
 | Tag | Contents |
 | --- | --- |
 | `videos-v1` | 60 mp4 (war.gov + AARO) |
-| `pdfs-v1` | 165 PDFs (all mirrors) |
-| Future: per-mirror release tags as needed (`geipan-v1`, etc.) |
+| `pdfs-v1` | 165 PDFs across all archives |
+| Per-archive tags as the catalogue grows (`geipan-v1`, `uk-v1`, …) |
 
 URL pattern: `https://github.com/hectorchanht/war-gov-ufo-release/releases/download/<tag>/<filename>` — referenced from manifest as `a.url`.
 
-### 4.2 `.gitignore` policy
+### 5.2 `.gitignore` policy
 
 - Any single file > 100 MB: ignore. Period (GitHub hard limit).
 - PDF directories: ignore all PDFs (migrate to `pdfs-v1` release).
@@ -192,38 +238,38 @@ URL pattern: `https://github.com/hectorchanht/war-gov-ufo-release/releases/downl
 
 ---
 
-## 5. Build & sync rules
+## 6. Build & sync rules
 
-### 5.1 Per-mirror download script
+### 6.1 Per-archive download script
 
-Each `scripts/dl-<mirror>.sh` is **idempotent**:
+Each `scripts/dl-<slug>.sh` is **idempotent**:
 
 - Cache hit (file on disk + non-zero size): skip.
 - Cache miss: try direct URL with realistic Chrome UA + timeout.
 - If direct blocked (Akamai): fall back to Wayback `https://web.archive.org/web/<ts>id_/<url>`.
 - Failures `rm -f` the partial file.
 
-### 5.2 Per-mirror build script
+### 6.2 Per-archive build script
 
-Each `scripts/build-<mirror>.py`:
+Each `scripts/build-<slug>.py`:
 
-- Uses `git ls-files <mirror>/<subdir>/` (not `os.listdir`) for `a.local`.
+- Uses `git ls-files <slug>/<subdir>/` (not `os.listdir`) for `a.local`.
 - Falls back to `os.listdir` if git is unavailable.
 - Embeds the manifest as a single inline `<script id="arch-data" type="application/json">` block.
 - Generates a self-contained `.html` (CSS inline, JS inline). Zero build tooling.
 
-### 5.3 sync.sh
+### 6.3 sync.sh
 
 - Interactive picker (multi-select via comma) when run on a TTY.
-- Flags: `--all`, `--<mirror>-only`, `--no-videos`, `--no-build`.
+- Flags: `--all`, `--<slug>-only`, `--no-videos`, `--no-build`.
 - Always rebuilds all HTML at the end.
 - Friendly stats summary at the bottom.
 
 ---
 
-## 6. JavaScript invariants
+## 7. JavaScript invariants
 
-Every mirror's inline script includes these patterns. Don't diverge.
+Every archive's inline script includes these patterns. Don't diverge.
 
 ```js
 // (1) Hamburger toggle
@@ -255,11 +301,14 @@ function closeLb() { /* lb.classList.remove('open') */ }
 // (5) PDF lightbox: iframe ONLY for local files. Release URLs open in new tab
 //     (Content-Disposition: attachment).
 // (6) Card render uses BOTH data-idx (for openAt) and data-action="open"
+// (7) `/` keydown anywhere on page focuses the search input (when one exists),
+//     unless the user is already typing in an input/textarea/contenteditable.
+// (8) Search query persists in `?q=`; restored on load, debounced-pushed on input.
 ```
 
 ---
 
-## 7. Mobile-first specifics
+## 8. Mobile-first specifics
 
 - **Base styles assume 360 px viewport.**
 - Single-column card grid below 720 px.
@@ -274,7 +323,7 @@ function closeLb() { /* lb.classList.remove('open') */ }
 
 ---
 
-## 8. Content rules
+## 9. Content rules
 
 - **No filler.** "Click to play", "View file", "Released document — see source for context" — all banned. Either substantive context or leave `desc` blank.
 - **Verbatim official text** for hero lede, headlines, FAQ accordion answers.
@@ -284,23 +333,28 @@ function closeLb() { /* lb.classList.remove('open') */ }
   - **UK** — Open Government Licence v3
   - **Brazil** — Lei nº 12.527/2011 (LAI)
   - **Chile** — Ley nº 20.285 sobre Acceso a la Información Pública
+  - **Argentina** — Ley nº 27.275 (Acceso a la Información Pública)
+  - **Italy** — D.lgs. 33/2013 (FOIA)
+  - **Spain** — Ley 19/2013 (Transparencia)
+  - **Uruguay** — Ley nº 18.381
 
 ---
 
-## 9. Adding a new national mirror — checklist
+## 10. Adding a new national archive — checklist
 
-1. Pick the tone colour (see § 2.1 — keep both palette and seal gradient).
-2. Make `scripts/dl-<mirror>.sh` for source pages + representative PDFs / imagery.
-3. Make `scripts/build-<mirror>.py` modelled on `build-nasa.py` (small) or `build-aaro.py` (large).
-4. Make `<mirror>-mirror/assets/favicon.svg` using the seal gradient.
-5. Add the mirror's nav link to every other mirror's header + footer.
-6. Update `scripts/sync.sh` to include the new mirror in the picker.
+1. Pick the tone colour (see § 3.1 — keep both palette and seal gradient).
+2. Make `scripts/dl-<slug>.sh` for source pages + representative PDFs / imagery.
+3. Make `scripts/build-<slug>.py` modelled on `build-nasa.py` (small) or `build-aaro.py` (large).
+4. Use the shared classic-disk-UFO favicon at `<slug>/assets/favicon.svg`.
+   Put the per-archive seal in the page header, not in the favicon.
+5. Add the new archive's nav link to every other archive's header + footer.
+6. Update `scripts/sync.sh` to include the new archive in the picker.
 7. Document source URL + licensing in `README.md`.
 8. Commit & push (no force-push, no history rewrite without explicit asking).
 
 ---
 
-## 10. House-style "don'ts"
+## 11. House-style "don'ts"
 
 - ❌ Inline arrow ↗ inside header nav links. Save for explicit external links.
 - ❌ "OFFLINE MIRROR" banner — removed everywhere.
@@ -311,10 +365,13 @@ function closeLb() { /* lb.classList.remove('open') */ }
 - ❌ Skipping mobile testing — 360 px is the canonical first viewport.
 - ❌ Force-pushes to main. Ever.
 - ❌ Touching the user's CSV (`uap-release001.csv`) — that's the source of truth.
+- ❌ Calling archive pages "mirrors" in user-facing copy. The project IS the
+  archive. "Source" and "Archive" — never "mirror" outside this doc and
+  legacy commit history.
 
 ---
 
-## 11. Useful commands
+## 12. Useful commands
 
 ```bash
 # Full sync + rebuild
@@ -323,7 +380,7 @@ function closeLb() { /* lb.classList.remove('open') */ }
 # Add a new release asset
 gh release upload <tag> <files…>
 
-# Rebuild every mirror without downloading
+# Rebuild every archive without downloading
 python3 scripts/build-wargov.py && python3 scripts/build-aaro.py && \
   python3 scripts/build-nasa.py && python3 scripts/build-nara.py && \
   python3 scripts/build-details.py
