@@ -82,17 +82,6 @@ def make_nav(current_slug: str, depth: int = 1, internal_links=None) -> str:
             {more_items}
           </ul>
         </li>
-        <li class="lang-picker" id="lang-picker">
-          <button class="lang-btn" id="lang-btn" aria-expanded="false">EN</button>
-          <ul class="lang-menu" id="lang-menu" role="menu">
-            <li><button data-lang="en">English</button></li>
-            <li><button data-lang="fr">Français</button></li>
-            <li><button data-lang="es">Español</button></li>
-            <li><button data-lang="pt">Português</button></li>
-            <li><button data-lang="zh">中文</button></li>
-            <li><button data-lang="ja">日本語</button></li>
-          </ul>
-        </li>
       </ul>
     </nav>'''
 
