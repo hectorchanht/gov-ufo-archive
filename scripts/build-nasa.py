@@ -572,6 +572,7 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
 </footer>
 
 <div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lb-rotate" id="lb-rotate" aria-label="Rotate view" title="Rotate">⟳</button>
   <div class="lb-close" id="lb-close">×</div>
   <button class="lb-nav prev" id="lb-prev" aria-label="Previous (←)">‹</button>
   <button class="lb-nav next" id="lb-next" aria-label="Next (→)">›</button>
@@ -773,8 +774,10 @@ __SITE_NAV_JS__
   }
   function openAt(idx) { if (!lbList.length) return; lbIdx = (idx + lbList.length) % lbList.length; renderLb(); lb.classList.add('open'); }
   function navLb(d) { if (!lbList.length) return; lbIdx = (lbIdx + d + lbList.length) % lbList.length; renderLb(); }
-  function closeLb() { lb.classList.remove('open'); lbI.innerHTML = ''; }
+  function closeLb() { lb.classList.remove('open'); lb.classList.remove('lb-rotated'); lbI.innerHTML = ''; }
   lbC.addEventListener('click', closeLb);
+  const lbR = document.getElementById('lb-rotate');
+  if (lbR) lbR.addEventListener('click', e => { e.stopPropagation(); lb.classList.toggle('lb-rotated'); });
   if (lbPrev) lbPrev.addEventListener('click', e => { e.stopPropagation(); navLb(-1); });
   if (lbNext) lbNext.addEventListener('click', e => { e.stopPropagation(); navLb(1); });
   lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
