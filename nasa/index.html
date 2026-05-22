@@ -562,7 +562,9 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
     </article>`;
   }
 
-  let lbList = [], lbIdx = 0;
+  /* Lightbox lifecycle delegated to LIGHTBOX_JS (window._lb). It already
+     handles IMG/VID/PDF/iframe + arrow keys + swipe + ESC + rotate. We
+     just feed it the filtered list on every render and trigger open. */
   function filtered() {
     return items.filter(a => {
       if (state.tab !== 'ALL' && a.t !== state.tab) return false;
@@ -577,80 +579,92 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
   const emptyEl = document.getElementById('arch-empty');
   function render() {
     const list = filtered();
-    lbList = list;
+    if (window._lb) window._lb.setList(list);
     grid.innerHTML = list.map((a, i) => cardHtml(a, i)).join('');
     emptyEl.hidden = list.length > 0;
   }
   render();
-
-  // Lightbox
-  const lb = document.getElementById('lightbox');
-  const lbI = document.getElementById('lb-inner');
-  const lbC = document.getElementById('lb-close');
-  const lbPrev = document.getElementById('lb-prev');
-  const lbNext = document.getElementById('lb-next');
-  const lbCounter = document.getElementById('lb-counter');
-
-  function renderLb() {
-    const a = lbList[lbIdx]; if (!a) return;
-    const title = a.ti;
-    const meta = `<div class="lb-meta">${esc(title)}</div>`;
-    let html;
-    if (a.t === 'IMG') {
-      const src = a.l ? './' + a.l : a.u;
-      const fb = a.u && a.l ? `onerror="this.onerror=null;this.src='${esc(a.u)}';"` : '';
-      html = `<img src="${esc(src)}" alt="${esc(title)}" ${fb}>${meta}`;
-    } else if (a.t === 'VID' && a.embed) {
-      html = `<iframe src="${esc(a.embed)}?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>${meta}`;
-    } else if (a.t === 'PDF') {
-      // Inline iframe only works for local PDFs; GitHub Release URLs serve
-      // with attachment disposition so they download instead of rendering.
-      if (a.l) {
-        const src = './' + a.l;
-        html = `<iframe src="${esc(src)}#view=FitH"></iframe><div class="lb-meta">${esc(title)} — <a href="${esc(src)}" target="_blank">open in new tab ↗</a></div>`;
-      } else if (a.u) {
-        window.open(a.u, '_blank'); closeLb(); return;
-      }
-    } else {
-      window.open(a.l ? './' + a.l : a.u, '_blank'); closeLb(); return;
-    }
-    lbI.innerHTML = html;
-    if (lbCounter) lbCounter.textContent = (lbIdx + 1) + ' / ' + lbList.length;
-    if (lbPrev) lbPrev.style.visibility = lbList.length > 1 ? 'visible' : 'hidden';
-    if (lbNext) lbNext.style.visibility = lbList.length > 1 ? 'visible' : 'hidden';
-  }
-  function openAt(idx) { if (!lbList.length) return; lbIdx = (idx + lbList.length) % lbList.length; renderLb(); lb.classList.add('open'); }
-  function navLb(d) { if (!lbList.length) return; lbIdx = (lbIdx + d + lbList.length) % lbList.length; renderLb(); }
-  function closeLb() { lb.classList.remove('open'); lb.classList.remove('lb-rotated'); lbI.innerHTML = ''; }
-  lbC.addEventListener('click', closeLb);
-  const lbR = document.getElementById('lb-rotate');
-  if (lbR) lbR.addEventListener('click', e => { e.stopPropagation(); lb.classList.toggle('lb-rotated'); });
-  if (lbPrev) lbPrev.addEventListener('click', e => { e.stopPropagation(); navLb(-1); });
-  if (lbNext) lbNext.addEventListener('click', e => { e.stopPropagation(); navLb(1); });
-  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
-  document.addEventListener('keydown', e => {
-    if (!lb.classList.contains('open')) return;
-    if (e.key === 'Escape') closeLb();
-    else if (e.key === 'ArrowRight') navLb(1);
-    else if (e.key === 'ArrowLeft')  navLb(-1);
-  });
-  let touchX=0, touchY=0, touchT=0;
-  lb.addEventListener('touchstart', e => { if (!e.touches.length) return; touchX = e.touches[0].clientX; touchY = e.touches[0].clientY; touchT = Date.now(); }, { passive:true });
-  lb.addEventListener('touchend', e => {
-    if (!e.changedTouches.length) return;
-    const dx = e.changedTouches[0].clientX - touchX, dy = e.changedTouches[0].clientY - touchY;
-    if (Date.now() - touchT < 800 && Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) navLb(dx < 0 ? 1 : -1);
-  }, { passive:true });
 
   grid.addEventListener('click', e => {
     const action = e.target.closest('a[data-action]');
     const card = e.target.closest('.card');
     if (action) e.preventDefault();
     if (card && card.dataset.idx !== undefined && (action || e.target.closest('.card-media'))) {
-      openAt(parseInt(card.dataset.idx, 10));
+      if (window._lb) window._lb.open(parseInt(card.dataset.idx, 10));
     }
   });
 })();
 </script>
+<script>/* Lightbox open/close/nav/rotate. Consumed inline by every page that
+   embeds LIGHTBOX_HTML. The host page also exposes `window._lb` so build
+   scripts can drive `openAt(idx)` from their per-page card grids. */
+(function() {
+  var lb     = document.getElementById('lightbox');
+  if (!lb) return;
+  var lbI    = document.getElementById('lb-inner');
+  var lbC    = document.getElementById('lb-close');
+  var lbP    = document.getElementById('lb-prev');
+  var lbN    = document.getElementById('lb-next');
+  var lbR    = document.getElementById('lb-rotate');
+  var lbCnt  = document.getElementById('lb-counter');
+  var list = [], idx = 0;
+  function esc(s){return String(s||'').replace(/[&<>"']/g,function(c){return({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]})}
+  function render() {
+    var a = list[idx]; if (!a) return;
+    var href = a.local || a.l || a.url || a.u || '';
+    if (a.l) href = a.l.startsWith('http') ? a.l : './' + a.l;
+    var t = href.toLowerCase().split('?')[0].split('#')[0];
+    var title = a.title || a.ti || '';
+    var meta = '<div class="lb-meta">' + esc(title) + '</div>';
+    var html = '';
+    /* Pre-baked YouTube/Vimeo embed (NASA UAP videos use this field). */
+    if (a.embed) {
+      html = '<iframe src="' + esc(a.embed) + (a.embed.indexOf('?')>=0?'&':'?') + 'autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>' + meta;
+    }
+    /* CATALOG records (live web pages — CSP often blocks iframe). */
+    else if (a.t === 'CATALOG' || a.type === 'CATALOG') {
+      window.open(a.u || a.url || a.s || a.src, '_blank'); close(); return;
+    }
+    else if (/\.(jpe?g|png|gif|webp|avif)$/.test(t)) html = '<img src="'+esc(href)+'" alt="'+esc(title)+'">' + meta;
+    else if (/\.(mp4|webm|mov)$/.test(t))            html = '<video controls autoplay playsinline><source src="'+esc(href)+'" type="video/mp4"></video>' + meta;
+    else if (/\.(mp3|wav|ogg|m4a)$/.test(t))         html = '<audio controls autoplay src="'+esc(href)+'"></audio>' + meta;
+    else if (/\.pdf$/.test(t)) {
+      /* GitHub Release URLs serve with Content-Disposition: attachment so
+         iframe-embed fails. Local PDFs render fine. Route release URLs to
+         a new tab instead of attempting an embed that just downloads. */
+      if (a.l) html = '<iframe src="'+esc(href)+'#view=FitH"></iframe>' + meta;
+      else { window.open(href, '_blank'); close(); return; }
+    }
+    else if (/\.html?$/.test(t))                     html = '<iframe src="'+esc(href)+'" sandbox="allow-same-origin allow-popups"></iframe>' + meta;
+    else                                             html = meta + '<a class="lb-meta" href="'+esc(href)+'" target="_blank" rel="noopener">Open ↗</a>';
+    lbI.innerHTML = html;
+    if (lbCnt) lbCnt.textContent = (idx+1) + ' / ' + list.length;
+  }
+  function open(i){ if (!list.length) return; idx = (i + list.length) % list.length; render(); lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); }
+  function nav(d){ if (!list.length) return; idx = (idx + d + list.length) % list.length; render(); }
+  function close(){ lb.classList.remove('open'); lb.classList.remove('lb-rotated'); lb.setAttribute('aria-hidden','true'); lbI.innerHTML = ''; }
+  if (lbC) lbC.addEventListener('click', close);
+  if (lbP) lbP.addEventListener('click', function(e){ e.stopPropagation(); nav(-1); });
+  if (lbN) lbN.addEventListener('click', function(e){ e.stopPropagation(); nav(1); });
+  if (lbR) lbR.addEventListener('click', function(e){ e.stopPropagation(); lb.classList.toggle('lb-rotated'); });
+  lb.addEventListener('click', function(e){ if (e.target === lb) close(); });
+  document.addEventListener('keydown', function(e){
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    else if (e.key === 'ArrowRight') nav(1);
+    else if (e.key === 'ArrowLeft')  nav(-1);
+  });
+  /* swipe — horizontal > 50 px in < 800 ms */
+  var sx=0,sy=0,st=0;
+  lb.addEventListener('touchstart', function(e){ var t=e.changedTouches[0]; sx=t.clientX; sy=t.clientY; st=Date.now(); }, {passive:true});
+  lb.addEventListener('touchend',   function(e){ var t=e.changedTouches[0]; var dx=t.clientX-sx, dy=t.clientY-sy, dt=Date.now()-st;
+    if (dt < 800 && Math.abs(dx) > 50 && Math.abs(dy) < 60) nav(dx < 0 ? 1 : -1);
+  }, {passive:true});
+  window._lb = {
+    open: open, close: close, nav: nav,
+    setList: function(items){ list = items || []; },
+    getList: function(){ return list; }
+  };
+})();</script>
 </body>
 </html>

@@ -7,7 +7,7 @@ Smaller than war.gov/AARO: a single curated asset list (4 PDFs +
 import json, os, subprocess, sys
 sys.path.insert(0, __import__("os").path.dirname(__import__("os").path.abspath(__file__)))
 from _release_manifest import apply_manifest
-from _site_template import make_nav, LIGHTBOX_HTML, LIGHTBOX_CSS, _I18N_JSON
+from _site_template import make_nav, LIGHTBOX_HTML, LIGHTBOX_CSS, LIGHTBOX_JS, _I18N_JSON
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT = os.path.join(REPO, 'nasa')
@@ -695,7 +695,9 @@ __SITE_NAV_JS__
     </article>`;
   }
 
-  let lbList = [], lbIdx = 0;
+  /* Lightbox lifecycle delegated to LIGHTBOX_JS (window._lb). It already
+     handles IMG/VID/PDF/iframe + arrow keys + swipe + ESC + rotate. We
+     just feed it the filtered list on every render and trigger open. */
   function filtered() {
     return items.filter(a => {
       if (state.tab !== 'ALL' && a.t !== state.tab) return false;
@@ -710,77 +712,18 @@ __SITE_NAV_JS__
   const emptyEl = document.getElementById('arch-empty');
   function render() {
     const list = filtered();
-    lbList = list;
+    if (window._lb) window._lb.setList(list);
     grid.innerHTML = list.map((a, i) => cardHtml(a, i)).join('');
     emptyEl.hidden = list.length > 0;
   }
   render();
-
-  // Lightbox
-  const lb = document.getElementById('lightbox');
-  const lbI = document.getElementById('lb-inner');
-  const lbC = document.getElementById('lb-close');
-  const lbPrev = document.getElementById('lb-prev');
-  const lbNext = document.getElementById('lb-next');
-  const lbCounter = document.getElementById('lb-counter');
-
-  function renderLb() {
-    const a = lbList[lbIdx]; if (!a) return;
-    const title = a.ti;
-    const meta = `<div class="lb-meta">${esc(title)}</div>`;
-    let html;
-    if (a.t === 'IMG') {
-      const src = a.l ? './' + a.l : a.u;
-      const fb = a.u && a.l ? `onerror="this.onerror=null;this.src='${esc(a.u)}';"` : '';
-      html = `<img src="${esc(src)}" alt="${esc(title)}" ${fb}>${meta}`;
-    } else if (a.t === 'VID' && a.embed) {
-      html = `<iframe src="${esc(a.embed)}?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>${meta}`;
-    } else if (a.t === 'PDF') {
-      // Inline iframe only works for local PDFs; GitHub Release URLs serve
-      // with attachment disposition so they download instead of rendering.
-      if (a.l) {
-        const src = './' + a.l;
-        html = `<iframe src="${esc(src)}#view=FitH"></iframe><div class="lb-meta">${esc(title)} — <a href="${esc(src)}" target="_blank">open in new tab ↗</a></div>`;
-      } else if (a.u) {
-        window.open(a.u, '_blank'); closeLb(); return;
-      }
-    } else {
-      window.open(a.l ? './' + a.l : a.u, '_blank'); closeLb(); return;
-    }
-    lbI.innerHTML = html;
-    if (lbCounter) lbCounter.textContent = (lbIdx + 1) + ' / ' + lbList.length;
-    if (lbPrev) lbPrev.style.visibility = lbList.length > 1 ? 'visible' : 'hidden';
-    if (lbNext) lbNext.style.visibility = lbList.length > 1 ? 'visible' : 'hidden';
-  }
-  function openAt(idx) { if (!lbList.length) return; lbIdx = (idx + lbList.length) % lbList.length; renderLb(); lb.classList.add('open'); }
-  function navLb(d) { if (!lbList.length) return; lbIdx = (lbIdx + d + lbList.length) % lbList.length; renderLb(); }
-  function closeLb() { lb.classList.remove('open'); lb.classList.remove('lb-rotated'); lbI.innerHTML = ''; }
-  lbC.addEventListener('click', closeLb);
-  const lbR = document.getElementById('lb-rotate');
-  if (lbR) lbR.addEventListener('click', e => { e.stopPropagation(); lb.classList.toggle('lb-rotated'); });
-  if (lbPrev) lbPrev.addEventListener('click', e => { e.stopPropagation(); navLb(-1); });
-  if (lbNext) lbNext.addEventListener('click', e => { e.stopPropagation(); navLb(1); });
-  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
-  document.addEventListener('keydown', e => {
-    if (!lb.classList.contains('open')) return;
-    if (e.key === 'Escape') closeLb();
-    else if (e.key === 'ArrowRight') navLb(1);
-    else if (e.key === 'ArrowLeft')  navLb(-1);
-  });
-  let touchX=0, touchY=0, touchT=0;
-  lb.addEventListener('touchstart', e => { if (!e.touches.length) return; touchX = e.touches[0].clientX; touchY = e.touches[0].clientY; touchT = Date.now(); }, { passive:true });
-  lb.addEventListener('touchend', e => {
-    if (!e.changedTouches.length) return;
-    const dx = e.changedTouches[0].clientX - touchX, dy = e.changedTouches[0].clientY - touchY;
-    if (Date.now() - touchT < 800 && Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) navLb(dx < 0 ? 1 : -1);
-  }, { passive:true });
 
   grid.addEventListener('click', e => {
     const action = e.target.closest('a[data-action]');
     const card = e.target.closest('.card');
     if (action) e.preventDefault();
     if (card && card.dataset.idx !== undefined && (action || e.target.closest('.card-media'))) {
-      openAt(parseInt(card.dataset.idx, 10));
+      if (window._lb) window._lb.open(parseInt(card.dataset.idx, 10));
     }
   });
 })();
@@ -796,6 +739,8 @@ PAGE = PAGE.replace('__LIGHTBOX_CSS__', LIGHTBOX_CSS.strip())
 PAGE = PAGE.replace('__DATA__', data_json)
 PAGE = PAGE.replace('__SITE_NAV__', _site_nav)
 PAGE = PAGE.replace('__SITE_NAV_JS__', _nav_js)
+# Inject LIGHTBOX_JS just before </body> so window._lb exists by click time.
+PAGE = PAGE.replace('</body>', f'<script>{LIGHTBOX_JS.strip()}</script>\n</body>', 1)
 open(os.path.join(ROOT, 'index.html'), 'w', encoding='utf-8').write(PAGE)
 print(f'wrote {ROOT}/index.html ({len(PAGE):,} bytes)')
 print(f'  total assets: {stats["total"]}, local: {stats["local_total"]}')

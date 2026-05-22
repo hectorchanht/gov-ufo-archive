@@ -9,7 +9,7 @@ charcoal (#9ca3af).
 import json, os, subprocess, sys
 sys.path.insert(0, __import__("os").path.dirname(__import__("os").path.abspath(__file__)))
 from _release_manifest import apply_manifest
-from _site_template import make_nav, LIGHTBOX_HTML, LIGHTBOX_CSS, _I18N_JSON
+from _site_template import make_nav, LIGHTBOX_HTML, LIGHTBOX_CSS, LIGHTBOX_JS, _I18N_JSON
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT = os.path.join(REPO, 'nara')
@@ -582,7 +582,8 @@ __SITE_NAV_JS__
     </article>`;
   }
 
-  let lbList = [], lbIdx = 0;
+  /* Lightbox lifecycle delegated to LIGHTBOX_JS (window._lb). It already
+     handles PDF iframe + CATALOG → new tab + keyboard + swipe + ESC. */
   function filtered() {
     return items.filter(a => {
       if (state.tab !== 'ALL' && a.t !== state.tab) return false;
@@ -596,55 +597,12 @@ __SITE_NAV_JS__
   const grid = document.getElementById('arch-grid');
   const emptyEl = document.getElementById('arch-empty');
   function render() {
-    const list = filtered(); lbList = list;
+    const list = filtered();
+    if (window._lb) window._lb.setList(list);
     grid.innerHTML = list.map((a, i) => cardHtml(a, i)).join('');
     emptyEl.hidden = list.length > 0;
   }
   render();
-
-  const lb = document.getElementById('lightbox');
-  const lbI = document.getElementById('lb-inner');
-  const lbC = document.getElementById('lb-close');
-  const lbPrev = document.getElementById('lb-prev');
-  const lbNext = document.getElementById('lb-next');
-  const lbCounter = document.getElementById('lb-counter');
-
-  function renderLb() {
-    const a = lbList[lbIdx]; if (!a) return;
-    let html;
-    if (a.l) {
-      html = `<iframe src="./${esc(a.l)}#view=FitH" sandbox="allow-same-origin allow-popups"></iframe><div class="lb-meta">${esc(a.ti)} — <a href="./${esc(a.l)}" target="_blank">open in new tab ↗</a>${a.u?` · <a href="${esc(a.u)}" target="_blank">live ↗</a>`:''}</div>`;
-    } else if (a.u) {
-      // CATALOG cards: can't iframe NARA (CSP) — open new tab directly.
-      window.open(a.u, '_blank'); closeLb(); return;
-    } else {
-      html = `<div class="lb-meta">${esc(a.ti)} — no local or live link.</div>`;
-    }
-    lbI.innerHTML = html;
-    if (lbCounter) lbCounter.textContent = (lbIdx + 1) + ' / ' + lbList.length;
-    if (lbPrev) lbPrev.style.visibility = lbList.length > 1 ? 'visible' : 'hidden';
-    if (lbNext) lbNext.style.visibility = lbList.length > 1 ? 'visible' : 'hidden';
-  }
-  function openAt(idx) { if (!lbList.length) return; lbIdx = (idx + lbList.length) % lbList.length; renderLb(); if (lb.classList.contains('open') || lbI.innerHTML) lb.classList.add('open'); }
-  function navLb(d) { if (!lbList.length) return; lbIdx = (lbIdx + d + lbList.length) % lbList.length; renderLb(); }
-  function closeLb() { lb.classList.remove('open'); lbI.innerHTML = ''; }
-  lbC.addEventListener('click', closeLb);
-  if (lbPrev) lbPrev.addEventListener('click', e => { e.stopPropagation(); navLb(-1); });
-  if (lbNext) lbNext.addEventListener('click', e => { e.stopPropagation(); navLb(1); });
-  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
-  document.addEventListener('keydown', e => {
-    if (!lb.classList.contains('open')) return;
-    if (e.key === 'Escape') closeLb();
-    else if (e.key === 'ArrowRight') navLb(1);
-    else if (e.key === 'ArrowLeft')  navLb(-1);
-  });
-  let touchX=0, touchY=0, touchT=0;
-  lb.addEventListener('touchstart', e => { if (!e.touches.length) return; touchX = e.touches[0].clientX; touchY = e.touches[0].clientY; touchT = Date.now(); }, { passive:true });
-  lb.addEventListener('touchend', e => {
-    if (!e.changedTouches.length) return;
-    const dx = e.changedTouches[0].clientX - touchX, dy = e.changedTouches[0].clientY - touchY;
-    if (Date.now() - touchT < 800 && Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) navLb(dx < 0 ? 1 : -1);
-  }, { passive:true });
 
   grid.addEventListener('click', e => {
     const action = e.target.closest('a[data-action]');
@@ -652,10 +610,7 @@ __SITE_NAV_JS__
     const media = e.target.closest('.card-media');
     if (action) e.preventDefault();
     if (card && card.dataset.idx !== undefined && (action || media)) {
-      const a = lbList[parseInt(card.dataset.idx, 10)];
-      if (a && a.t === 'CATALOG' && a.u) { window.open(a.u, '_blank'); return; }
-      openAt(parseInt(card.dataset.idx, 10));
-      lb.classList.add('open');
+      if (window._lb) window._lb.open(parseInt(card.dataset.idx, 10));
     }
   });
 })();
@@ -671,6 +626,8 @@ PAGE = PAGE.replace('__LIGHTBOX_CSS__', LIGHTBOX_CSS.strip())
 PAGE = PAGE.replace('__DATA__', data_json)
 PAGE = PAGE.replace('__SITE_NAV__', _site_nav)
 PAGE = PAGE.replace('__SITE_NAV_JS__', _nav_js)
+# Inject LIGHTBOX_JS just before </body> so window._lb exists by click time.
+PAGE = PAGE.replace('</body>', f'<script>{LIGHTBOX_JS.strip()}</script>\n</body>', 1)
 open(os.path.join(ROOT, 'index.html'), 'w', encoding='utf-8').write(PAGE)
 print(f'wrote {ROOT}/index.html ({len(PAGE):,} bytes)')
 print(f'  total: {stats["total"]}, local: {stats["local_total"]}')

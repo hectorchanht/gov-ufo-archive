@@ -62,16 +62,32 @@ LIGHTBOX_JS = r'''
   function esc(s){return String(s||'').replace(/[&<>"']/g,function(c){return({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]})}
   function render() {
     var a = list[idx]; if (!a) return;
-    var t = (a.url || a.u || a.local || a.l || '').toLowerCase().split('?')[0].split('#')[0];
     var href = a.local || a.l || a.url || a.u || '';
+    if (a.l) href = a.l.startsWith('http') ? a.l : './' + a.l;
+    var t = href.toLowerCase().split('?')[0].split('#')[0];
     var title = a.title || a.ti || '';
     var meta = '<div class="lb-meta">' + esc(title) + '</div>';
     var html = '';
-    if (/\.(jpe?g|png|gif|webp|avif)$/.test(t)) html = '<img src="'+esc(href)+'" alt="'+esc(title)+'">' + meta;
-    else if (/\.(mp4|webm|mov)$/.test(t))       html = '<video controls autoplay playsinline><source src="'+esc(href)+'" type="video/mp4"></video>' + meta;
-    else if (/\.(mp3|wav|ogg|m4a)$/.test(t))    html = '<audio controls autoplay src="'+esc(href)+'"></audio>' + meta;
-    else if (/\.pdf$/.test(t))                  html = '<iframe src="'+esc(href)+'" title="'+esc(title)+'"></iframe>' + meta;
-    else                                        html = meta + '<a class="lb-meta" href="'+esc(href)+'" target="_blank" rel="noopener">Open ↗</a>';
+    /* Pre-baked YouTube/Vimeo embed (NASA UAP videos use this field). */
+    if (a.embed) {
+      html = '<iframe src="' + esc(a.embed) + (a.embed.indexOf('?')>=0?'&':'?') + 'autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>' + meta;
+    }
+    /* CATALOG records (live web pages — CSP often blocks iframe). */
+    else if (a.t === 'CATALOG' || a.type === 'CATALOG') {
+      window.open(a.u || a.url || a.s || a.src, '_blank'); close(); return;
+    }
+    else if (/\.(jpe?g|png|gif|webp|avif)$/.test(t)) html = '<img src="'+esc(href)+'" alt="'+esc(title)+'">' + meta;
+    else if (/\.(mp4|webm|mov)$/.test(t))            html = '<video controls autoplay playsinline><source src="'+esc(href)+'" type="video/mp4"></video>' + meta;
+    else if (/\.(mp3|wav|ogg|m4a)$/.test(t))         html = '<audio controls autoplay src="'+esc(href)+'"></audio>' + meta;
+    else if (/\.pdf$/.test(t)) {
+      /* GitHub Release URLs serve with Content-Disposition: attachment so
+         iframe-embed fails. Local PDFs render fine. Route release URLs to
+         a new tab instead of attempting an embed that just downloads. */
+      if (a.l) html = '<iframe src="'+esc(href)+'#view=FitH"></iframe>' + meta;
+      else { window.open(href, '_blank'); close(); return; }
+    }
+    else if (/\.html?$/.test(t))                     html = '<iframe src="'+esc(href)+'" sandbox="allow-same-origin allow-popups"></iframe>' + meta;
+    else                                             html = meta + '<a class="lb-meta" href="'+esc(href)+'" target="_blank" rel="noopener">Open ↗</a>';
     lbI.innerHTML = html;
     if (lbCnt) lbCnt.textContent = (idx+1) + ' / ' + list.length;
   }
