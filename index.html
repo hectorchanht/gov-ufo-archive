@@ -1093,7 +1093,7 @@ li.nav-sep { display: none; }
 <div class="header-wrap">
 <header>
   <div class="container">
-    <span>
+    <div class="brand-row">
       <a href="#" class="brand">
         <div class="seal">DOW</div>
         <div class="brand-text">
@@ -1104,8 +1104,8 @@ li.nav-sep { display: none; }
       <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
-    </span>
-                    <nav class="primary" id="primary-nav">
+    </div>
+                        <nav class="primary" id="primary-nav" aria-label="Main navigation">
       <ul>
         <li><a href="./" class="active">War.gov</a></li><li><a href="aaro/">AARO</a></li><li><a href="nasa/">NASA</a></li><li><a href="nara/">NARA</a></li>
         <li class="has-dropdown" id="nav-site-wrap">
@@ -1158,7 +1158,7 @@ li.nav-sep { display: none; }
     </div>
 
     <!-- Carousel -->
-    <div class="hero-carousel" id="hero-carousel" aria-label="Featured imagery from Release 01">
+    <div class="hero-carousel" id="hero-carousel" aria-label="Featured imagery from Release 01" role="region">
       <div class="carousel-track" id="carousel-track"></div>
       <button class="carousel-btn prev" id="carousel-prev" aria-label="Previous">‹</button>
       <button class="carousel-btn next" id="carousel-next" aria-label="Next">›</button>
@@ -1442,7 +1442,7 @@ li.nav-sep { display: none; }
 </footer>
 
 <!-- ============ LIGHTBOX (unified) ============ -->
-<div class="lightbox" id="lightbox" aria-hidden="true">
+<div class="lightbox" id="lightbox">
   <button class="lb-rotate" id="lb-rotate" aria-label="Rotate view" title="Rotate">⟳</button>
   <div class="lb-close" id="lb-close">×</div>
   <button class="lb-nav prev" id="lb-prev" aria-label="Previous (←)">‹</button>

@@ -154,7 +154,7 @@ def make_nav(current_slug: str, depth: int = 1, internal_links=None) -> str:
     # open/close natively (toggle event, ESC key, focus management). A tiny
     # JS snippet closes peers when one opens. No more stuck-open bugs.
     return f'''\
-    <nav class="primary" id="primary-nav">
+    <nav class="primary" id="primary-nav" aria-label="Main navigation">
       <ul>
         {pinned_html}
         <li class="has-dropdown" id="nav-site-wrap">

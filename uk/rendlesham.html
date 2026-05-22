@@ -154,6 +154,16 @@ nav.primary .has-dropdown.open .nav-dropdown{display:block}
   nav.primary .nav-dropdown a{padding:10px 32px}
 }
 
+
+.related { border-top: 1px solid var(--rule, rgba(232,227,216,0.12)); background: var(--bg-2, #111114); padding: 40px 0; }
+.related .container { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+.related-title { font-family: var(--mono, monospace); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--caution, #d4a017); margin-bottom: 20px; }
+.rel-grid { display: grid; grid-template-columns: 1fr; gap: 28px; }
+@media (min-width: 720px) { .rel-grid { grid-template-columns: repeat(3, 1fr); gap: 32px; } }
+.rel-block h4 { font-family: var(--mono, monospace); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-dim, #a8a298); margin-bottom: 12px; }
+.rel-block ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+.rel-block a { color: var(--ink, #e8e3d8); text-decoration: none; font-family: var(--serif, Georgia); font-size: 14px; line-height: 1.5; border-bottom: 1px solid transparent; padding: 2px 0; }
+.rel-block a:hover { color: var(--caution, #d4a017); border-bottom-color: var(--caution, #d4a017); }
 </style>
 </head>
 <body>
@@ -166,7 +176,7 @@ nav.primary .has-dropdown.open .nav-dropdown{display:block}
       <span class="brand-name">UK · MoD Archive</span>
     </a>
     <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav">&#9776;</button>
-                    <nav class="primary" id="primary-nav">
+                        <nav class="primary" id="primary-nav" aria-label="Main navigation">
       <ul>
         <li><a href="../">War.gov</a></li><li><a href="../aaro/">AARO</a></li><li><a href="../nasa/">NASA</a></li><li><a href="../nara/">NARA</a></li>
         <li class="has-dropdown" id="nav-site-wrap">
@@ -360,18 +370,6 @@ nav.primary .has-dropdown.open .nav-dropdown{display:block}
 
 </main>
 
-
-<style>
-.related { border-top: 1px solid var(--rule, rgba(232,227,216,0.12)); background: var(--bg-2, #111114); padding: 40px 0; }
-.related .container { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
-.related-title { font-family: var(--mono, monospace); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--caution, #d4a017); margin-bottom: 20px; }
-.rel-grid { display: grid; grid-template-columns: 1fr; gap: 28px; }
-@media (min-width: 720px) { .rel-grid { grid-template-columns: repeat(3, 1fr); gap: 32px; } }
-.rel-block h4 { font-family: var(--mono, monospace); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-dim, #a8a298); margin-bottom: 12px; }
-.rel-block ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
-.rel-block a { color: var(--ink, #e8e3d8); text-decoration: none; font-family: var(--serif, Georgia); font-size: 14px; line-height: 1.5; border-bottom: 1px solid transparent; padding: 2px 0; }
-.rel-block a:hover { color: var(--caution, #d4a017); border-bottom-color: var(--caution, #d4a017); }
-</style>
 
 <section class="related" aria-label="Related pages">
   <div class="container">

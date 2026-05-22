@@ -27,9 +27,14 @@ jobs:
 
       - name: Validate every HTML file
         run: |
-          npx html-validate \
-            --config .htmlvalidate.json \
-            --formatter stylish \
-            "**/*.html" \
-            "!node_modules/**" \
-            "!**/.cache/**"
+          # Scraped upstream mirrors (aaro.mil, archives.gov) ship malformed
+          # asp.net markup we cannot rewrite. Validate our own pages only.
+          find . -name "*.html" \
+            -not -path "./node_modules/*" \
+            -not -path "*/.cache/*" \
+            -not -path "./aaro/pages/*" \
+            -not -path "./nara/pages/*" \
+            -print0 \
+            | xargs -0 npx html-validate \
+                --config .htmlvalidate.json \
+                --formatter stylish

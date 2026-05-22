@@ -254,7 +254,7 @@ footer a:hover{color:var(--ink)}
 
     <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav">&#9776;</button>
 
-                    <nav class="primary" id="primary-nav">
+                        <nav class="primary" id="primary-nav" aria-label="Main navigation">
       <ul>
         <li><a href="./">War.gov</a></li><li><a href="aaro/">AARO</a></li><li><a href="nasa/">NASA</a></li><li><a href="nara/">NARA</a></li>
         <li class="has-dropdown" id="nav-site-wrap">
@@ -287,7 +287,7 @@ footer a:hover{color:var(--ink)}
 </div>
 
 <section class="hero">
-  <div class="hero-carousel" id="hero-carousel" aria-label="Featured UAP imagery and video">
+  <div class="hero-carousel" id="hero-carousel" aria-label="Featured UAP imagery and video" role="region">
     <div class="carousel-track" id="carousel-track"></div>
     <button class="carousel-btn prev" id="carousel-prev" aria-label="Previous">&lsaquo;</button>
     <button class="carousel-btn next" id="carousel-next" aria-label="Next">&rsaquo;</button>
@@ -309,16 +309,16 @@ footer a:hover{color:var(--ink)}
 
   <div class="stats-bar" id="stats-bar">
     <span class="stats-total" id="stats-total">Loading archives&hellip;</span>
-    <div class="archive-pills" id="archive-pills" aria-label="Filter by archive"></div>
+    <div class="archive-pills" id="archive-pills" aria-label="Filter by archive" role="group"></div>
     <div class="filter-row">
-      <div class="filter-group" id="type-chips" aria-label="Filter by type">
+      <div class="filter-group" id="type-chips" aria-label="Filter by type" role="group">
         <span class="filter-label">Type</span>
         <button type="button" class="type-chip" data-type="pdf">PDF</button>
         <button type="button" class="type-chip" data-type="video">Video</button>
         <button type="button" class="type-chip" data-type="image">Imagery</button>
         <button type="button" class="type-chip" data-type="catalog">Catalog</button>
       </div>
-      <div class="filter-group" aria-label="Filter by year range">
+      <div class="filter-group" aria-label="Filter by year range" role="group">
         <span class="filter-label">Years</span>
         <input type="number" class="year-input" id="year-from" placeholder="1947" min="1900" max="2100" inputmode="numeric" aria-label="From year">
         <span class="year-sep">&ndash;</span>
@@ -333,7 +333,7 @@ footer a:hover{color:var(--ink)}
   <div class="pagination" id="pagination"></div>
 </main>
 
-<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog">
+<div class="lightbox" id="lightbox" role="dialog">
   <button class="lb-close" id="lb-close" aria-label="Close">&times;</button>
   <div class="lb-inner" id="lb-inner"></div>
 </div>
