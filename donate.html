@@ -104,13 +104,34 @@ footer a{color:var(--ink-dim);text-decoration:none}
   <div class="header">
     <a href="/" class="brand"><div class="brand-seal">UAP</div><span class="brand-name">realufo.org</span></a>
     <button class="nav-toggle" id="nav-toggle" aria-label="Toggle nav" aria-expanded="false">&#9776;</button>
-    <nav class="primary" id="primary-nav">
+    <nav class="primary" id="primary-nav" aria-label="Main navigation">
       <a href="/">War.gov</a>
-      <a href="/search.html">Search</a>
-      <a href="/timeline.html">Timeline</a>
-      <a href="/map.html">Map</a>
-      <a href="/about.html">About</a>
-      <a href="/donate.html" class="active">Support</a>
+      <a href="aaro/">AARO</a>
+      <a href="nasa/">NASA</a>
+      <a href="nara/">NARA</a>
+      <a href="search.html">Search</a>
+      <a href="timeline.html">Timeline</a>
+      <a href="map.html">Map</a>
+      <a href="about.html">About</a>
+      <a href="donate.html" class="active" aria-current="page">Support</a>
+      <div class="nav-dropdown" id="more-dropdown">
+        <button class="nav-dropdown-btn" id="more-btn" aria-haspopup="true" aria-expanded="false" aria-controls="more-menu">
+          More &#9660;
+        </button>
+        <div class="nav-dropdown-menu" id="more-menu" role="menu">
+          <a href="geipan/" role="menuitem">France GEIPAN</a>
+          <a href="uk/" role="menuitem">UK Archives</a>
+          <a href="brazil/" role="menuitem">Brazil FAB</a>
+          <a href="chile/" role="menuitem">Chile CEFAA</a>
+          <a href="nz/" role="menuitem">New Zealand</a>
+          <a href="canada/" role="menuitem">Canada LAC</a>
+          <a href="argentina/" role="menuitem">Argentina CEFAe</a>
+          <a href="uruguay/" role="menuitem">Uruguay CRIDOVNI</a>
+          <a href="peru/" role="menuitem">Peru OIFAA</a>
+          <a href="spain/" role="menuitem">Spain Ejército</a>
+          <a href="italy/" role="menuitem">Italy AM</a>
+        </div>
+      </div>
     </nav>
   </div>
 </div>

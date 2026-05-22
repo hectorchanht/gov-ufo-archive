@@ -262,15 +262,6 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
 body { background-image:
   radial-gradient(ellipse at 20% 0%, rgba(207,20,43,0.05) 0%, transparent 50%),
   radial-gradient(ellipse at 80% 100%, rgba(0,0,0,0.04) 0%, transparent 50%); background-attachment: fixed; }
-/* fix: flat mobile nav + desktop dropdown safety (CSS-only override) */
-@media (max-width:719px){
-  .nav-more-btn{display:none!important}
-  .has-dropdown .nav-dropdown{display:block!important;position:static!important;margin:0!important;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important;min-width:0!important}
-  .has-dropdown .nav-dropdown li a{padding:11px 0!important;border-bottom:1px solid var(--rule)!important;font-size:11px!important}
-}
-@media (min-width:720px){
-  .has-dropdown:not(.open) > .nav-dropdown{display:none!important}
-}
 </style>
 </head>
 <body>
@@ -292,13 +283,13 @@ body { background-image:
         <li><a href="#top" data-i18n="intro">Intro</a></li><li><a href="#headlines" data-i18n="headlines">Headlines</a></li><li><a href="#archive" data-i18n="archive">Records</a></li>
         <li class="nav-sep"></li>
         <li><a href="../">War.gov</a></li><li><a href="../aaro/">AARO</a></li><li><a href="../nasa/">NASA</a></li><li><a href="../nara/">NARA</a></li>
+        <li><a href="../search.html">Search</a></li><li><a href="../timeline.html">Timeline</a></li><li><a href="../map.html">Map</a></li><li><a href="../about.html">About</a></li><li><a href="../donate.html">Support</a></li>
         <li class="has-dropdown" id="nav-more-wrap">
           <button class="nav-more-btn" id="nav-more-btn" aria-expanded="false" data-i18n="more">More ▾</button>
           <ul class="nav-dropdown" id="nav-dropdown" role="menu">
             <li><a href="../geipan/">GEIPAN (France)</a></li><li><a href="../uk/">UK Archives</a></li><li><a href="../brazil/">Brazil FAB</a></li><li><a href="../chile/">Chile CEFAA</a></li><li><a href="../nz/">NZ NZDF</a></li><li><a href="../canada/">Canada LAC</a></li><li><a href="../argentina/">Argentina CEFAe</a></li><li><a href="../uruguay/">Uruguay CRIDOVNI</a></li><li><a href="../peru/">Peru OIFAA</a></li><li><a href="../spain/">Spain Ejército</a></li><li><a href="../italy/">Italy Aeronautica</a></li>
           </ul>
         </li>
-        <li><a href="../search.html">Search</a></li>
       </ul>
     </nav>
   </div>

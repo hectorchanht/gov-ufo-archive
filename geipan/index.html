@@ -255,15 +255,6 @@ body { background-image: radial-gradient(ellipse at 20% 0%, rgba(0,85,164,0.08) 
 @media (min-width: 720px) { .pagination .info { flex-basis: auto; margin: 0 0 0 12px; text-align: left; } }
 .result-count { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); letter-spacing: 0.12em; text-transform: uppercase; padding: 18px 0 8px; }
 .result-count b { color: var(--caution); }
-/* fix: flat mobile nav + desktop dropdown safety (CSS-only override) */
-@media (max-width:719px){
-  .nav-more-btn{display:none!important}
-  .has-dropdown .nav-dropdown{display:block!important;position:static!important;margin:0!important;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important;min-width:0!important}
-  .has-dropdown .nav-dropdown li a{padding:11px 0!important;border-bottom:1px solid var(--rule)!important;font-size:11px!important}
-}
-@media (min-width:720px){
-  .has-dropdown:not(.open) > .nav-dropdown{display:none!important}
-}
 </style></head>
 <body><div class="scanlines"></div>
 <div class="header-wrap"><header><div class="container"><a href="#top" class="brand"><div class="seal">GEIPAN</div><div class="brand-text"><span class="super">Groupe d'Études · Phénomènes Aérospatiaux</span><span class="name">GEIPAN · CNES</span></div></a><button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>    <nav class="primary" id="primary-nav">
@@ -271,13 +262,13 @@ body { background-image: radial-gradient(ellipse at 20% 0%, rgba(0,85,164,0.08) 
         <li><a href="#top" data-i18n="intro">Intro</a></li><li><a href="#headlines" data-i18n="headlines">Headlines</a></li><li><a href="#archive" data-i18n="archive">Cases</a></li>
         <li class="nav-sep"></li>
         <li><a href="../">War.gov</a></li><li><a href="../aaro/">AARO</a></li><li><a href="../nasa/">NASA</a></li><li><a href="../nara/">NARA</a></li>
+        <li><a href="../search.html">Search</a></li><li><a href="../timeline.html">Timeline</a></li><li><a href="../map.html">Map</a></li><li><a href="../about.html">About</a></li><li><a href="../donate.html">Support</a></li>
         <li class="has-dropdown" id="nav-more-wrap">
           <button class="nav-more-btn" id="nav-more-btn" aria-expanded="false" data-i18n="more">More ▾</button>
           <ul class="nav-dropdown" id="nav-dropdown" role="menu">
             <li><a href="../geipan/">GEIPAN (France)</a></li><li><a href="../uk/">UK Archives</a></li><li><a href="../brazil/">Brazil FAB</a></li><li><a href="../chile/">Chile CEFAA</a></li><li><a href="../nz/">NZ NZDF</a></li><li><a href="../canada/">Canada LAC</a></li><li><a href="../argentina/">Argentina CEFAe</a></li><li><a href="../uruguay/">Uruguay CRIDOVNI</a></li><li><a href="../peru/">Peru OIFAA</a></li><li><a href="../spain/">Spain Ejército</a></li><li><a href="../italy/">Italy Aeronautica</a></li>
           </ul>
         </li>
-        <li><a href="../search.html">Search</a></li>
       </ul>
     </nav></div></header></div>
 <div class="hero" id="top"><div class="container"><div class="coords">43°33′N, 1°28′E · CENTRE NATIONAL D'ÉTUDES SPATIALES · TOULOUSE</div><h1 class="hero-title">France's <em>civilian</em> UAP office — every case since 1977.</h1><p class="hero-sub"><strong>GEIPAN</strong> at <a href="https://cnes.fr/" target="_blank" rel="noopener">CNES</a> is the world's longest-running official civilian UAP programme. <strong>3,334 cases</strong> classified and published in the <a href="https://www.cnes-geipan.fr/fr/recherche/cas" target="_blank" rel="noopener">public database</a> — every one of them browsable below. Tone: French blue.</p></div></div>
