@@ -9,7 +9,7 @@ charcoal (#9ca3af).
 import json, os, subprocess, sys
 sys.path.insert(0, __import__("os").path.dirname(__import__("os").path.abspath(__file__)))
 from _release_manifest import apply_manifest
-from _site_template import make_nav, LIGHTBOX_HTML, _I18N_JSON
+from _site_template import make_nav, LIGHTBOX_HTML, LIGHTBOX_CSS, _I18N_JSON
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT = os.path.join(REPO, 'nara')
@@ -339,17 +339,8 @@ h2 { font-family: var(--serif); font-size: clamp(24px,3vw,36px); font-weight: 70
 .card-actions a.warn:hover { background: var(--ink-faint); color: var(--bg); }
 .empty { padding: 60px 0; text-align: center; color: var(--ink-faint); font-family: var(--mono); font-size: 13px; }
 
-.lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.94); display: none; place-items: center; z-index: 200; padding: 32px; }
-.lightbox.open { display: grid; }
-.lb-inner { max-width: 92vw; max-height: 92vh; display: flex; flex-direction: column; gap: 10px; align-items: center; }
-.lb-inner iframe { width: 92vw; height: 86vh; border: 1px solid var(--rule-strong); background: #fff; }
-.lb-meta { font-family: var(--mono); font-size: 11px; color: var(--ink); background: var(--bg-2); border: 1px solid var(--rule-strong); padding: 8px 14px; max-width: 80vw; text-align: center; }
-.lb-meta a { color: var(--caution); }
-.lb-close { position: absolute; top: 16px; right: 24px; width: 40px; height: 40px; background: var(--bg-2); border: 1px solid var(--rule-strong); color: var(--ink); display: grid; place-items: center; cursor: pointer; font-family: var(--mono); font-size: 22px; z-index: 2; }
-.lb-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 52px; height: 52px; background: rgba(20,20,24,0.6); border: 1px solid var(--rule-strong); color: var(--ink); display: grid; place-items: center; cursor: pointer; font-family: var(--serif); font-size: 32px; z-index: 2; }
-.lb-nav:hover { background: rgba(0,0,0,0.85); color: var(--caution); border-color: var(--caution); }
-.lb-nav.prev { left: 16px; } .lb-nav.next { right: 16px; }
-.lb-counter { position: absolute; top: 24px; left: 50%; transform: translateX(-50%); font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; color: var(--ink-dim); background: var(--bg-2); border: 1px solid var(--rule); padding: 4px 12px; z-index: 2; }
+/* LIGHTBOX — injected from _site_template.LIGHTBOX_CSS at build time */
+__LIGHTBOX_CSS__
 
 footer { background: #060608; padding: 40px 0 24px; color: var(--ink-dim); font-family: var(--mono); font-size: 12px; }
 footer .container { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; }
@@ -676,6 +667,7 @@ _site_nav = make_nav('nara', depth=1, internal_links=[('Intro', '#top', 'intro')
 _nav_js = '''<script>
 (function(){var I18N=__I18N__;var lang=localStorage.getItem('realufo_lang')||'en';if(!I18N[lang])lang='en';function applyLang(c){lang=c;localStorage.setItem('realufo_lang',c);var t=I18N[c];document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');if(t[k]!==undefined)el.textContent=t[k];});var lb=document.getElementById('lang-btn');if(lb)lb.textContent=t.code||c.toUpperCase();};var lp=document.getElementById('lang-picker'),lbtn=document.getElementById('lang-btn'),lm=document.getElementById('lang-menu');if(lbtn&&lp){lbtn.addEventListener('click',function(e){e.stopPropagation();lp.classList.toggle('open');});if(lm)lm.addEventListener('click',function(e){var b=e.target.closest('button[data-lang]');if(!b)return;applyLang(b.dataset.lang);lp.classList.remove('open');});}var nd=Array.from(document.querySelectorAll('.has-dropdown > details'));nd.forEach(function(d){d.addEventListener('toggle',function(){if(!d.open)return;nd.forEach(function(o){if(o!==d)o.open=false;});});});document.addEventListener('click',function(e){if(lp)lp.classList.remove('open');if(!e.target.closest('.has-dropdown')){nd.forEach(function(d){d.open=false;});}});document.addEventListener('keydown',function(e){if(e.key==='Escape')nd.forEach(function(d){d.open=false;});});var bar=document.querySelector('.arch-controls-bar');if(bar){var lY=window.scrollY;window.addEventListener('scroll',function(){if(window.innerWidth>=720){bar.classList.remove('bar-hidden');return;}var y=window.scrollY;if(y<80)bar.classList.remove('bar-hidden');else if(y>lY+4)bar.classList.add('bar-hidden');else if(y<lY-4)bar.classList.remove('bar-hidden');lY=y;},{passive:true});}applyLang(lang);})();
 </script>'''.replace('__I18N__', _I18N_JSON)
+PAGE = PAGE.replace('__LIGHTBOX_CSS__', LIGHTBOX_CSS.strip())
 PAGE = PAGE.replace('__DATA__', data_json)
 PAGE = PAGE.replace('__SITE_NAV__', _site_nav)
 PAGE = PAGE.replace('__SITE_NAV_JS__', _nav_js)

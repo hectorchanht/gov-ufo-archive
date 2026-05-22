@@ -137,17 +137,31 @@ h2 { font-family: var(--serif); font-size: clamp(24px,3vw,36px); font-weight: 70
 .card-actions a.warn:hover { background: var(--ink-faint); color: var(--bg); }
 .empty { padding: 60px 0; text-align: center; color: var(--ink-faint); font-family: var(--mono); font-size: 13px; }
 
-.lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.94); display: none; place-items: center; z-index: 200; padding: 32px; }
-.lightbox.open { display: grid; }
+/* LIGHTBOX — injected from _site_template.LIGHTBOX_CSS at build time */
+.lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.96); display: none; align-items: center; justify-content: center; z-index: 200; padding: 16px; }
+@media (min-width: 720px) { .lightbox { padding: 32px; } }
+.lightbox.open { display: flex; }
 .lb-inner { max-width: 92vw; max-height: 92vh; display: flex; flex-direction: column; gap: 10px; align-items: center; }
-.lb-inner iframe { width: 92vw; height: 86vh; border: 1px solid var(--rule-strong); background: #fff; }
-.lb-meta { font-family: var(--mono); font-size: 11px; color: var(--ink); background: var(--bg-2); border: 1px solid var(--rule-strong); padding: 8px 14px; max-width: 80vw; text-align: center; }
+.lb-inner img, .lb-inner video { max-width: 90vw; max-height: 78vh; border: 1px solid var(--rule-strong); background: #000; }
+/* Rotate-to-landscape button (mobile only) */
+.lb-rotate { position: absolute; top: 12px; left: 12px; width: 40px; height: 40px; background: var(--bg-2); border: 1px solid var(--rule-strong); color: var(--ink); display: none; place-items: center; cursor: pointer; font-family: var(--mono); font-size: 18px; z-index: 3; transition: color .15s, border-color .15s; }
+.lb-rotate:hover { color: var(--caution); border-color: var(--caution); }
+@media (max-width: 719px) {
+  .lightbox.open .lb-rotate { display: grid; }
+  .lightbox.lb-rotated .lb-inner video,
+  .lightbox.lb-rotated .lb-inner img { transform: rotate(90deg); max-width: 88vh; max-height: 88vw; width: auto; height: auto; }
+  .lightbox.lb-rotated .lb-inner { max-height: none; max-width: none; }
+}
+.lb-inner iframe { width: 92vw; height: 84vh; border: 1px solid var(--rule-strong); background: #fff; }
+.lb-meta { font-family: var(--mono); font-size: 11px; color: var(--ink); background: var(--bg-2); border: 1px solid var(--rule-strong); padding: 8px 14px; max-width: 90vw; text-align: center; }
 .lb-meta a { color: var(--caution); }
-.lb-close { position: absolute; top: 16px; right: 24px; width: 40px; height: 40px; background: var(--bg-2); border: 1px solid var(--rule-strong); color: var(--ink); display: grid; place-items: center; cursor: pointer; font-family: var(--mono); font-size: 22px; z-index: 2; }
-.lb-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 52px; height: 52px; background: rgba(20,20,24,0.6); border: 1px solid var(--rule-strong); color: var(--ink); display: grid; place-items: center; cursor: pointer; font-family: var(--serif); font-size: 32px; z-index: 2; }
+.lb-close { position: absolute; top: 12px; right: 12px; width: 40px; height: 40px; background: var(--bg-2); border: 1px solid var(--rule-strong); color: var(--ink); display: grid; place-items: center; cursor: pointer; font-family: var(--mono); font-size: 22px; z-index: 2; }
+.lb-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; background: rgba(20,20,24,0.6); border: 1px solid var(--rule-strong); color: var(--ink); display: grid; place-items: center; cursor: pointer; font-family: var(--serif); font-size: 24px; z-index: 2; transition: background .15s, color .15s, border-color .15s; }
+@media (min-width: 720px) { .lb-nav { width: 52px; height: 52px; font-size: 32px; } }
 .lb-nav:hover { background: rgba(0,0,0,0.85); color: var(--caution); border-color: var(--caution); }
-.lb-nav.prev { left: 16px; } .lb-nav.next { right: 16px; }
-.lb-counter { position: absolute; top: 24px; left: 50%; transform: translateX(-50%); font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; color: var(--ink-dim); background: var(--bg-2); border: 1px solid var(--rule); padding: 4px 12px; z-index: 2; }
+.lb-nav.prev { left: 8px; } .lb-nav.next { right: 8px; }
+@media (min-width: 720px) { .lb-nav.prev { left: 16px; } .lb-nav.next { right: 16px; } }
+.lb-counter { position: absolute; top: 16px; left: 50%; transform: translateX(-50%); font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; color: var(--ink-dim); background: var(--bg-2); border: 1px solid var(--rule); padding: 4px 12px; z-index: 2; }
 
 footer { background: #060608; padding: 40px 0 24px; color: var(--ink-dim); font-family: var(--mono); font-size: 12px; }
 footer .container { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; }
@@ -185,16 +199,6 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
 .arch-controls-bar.bar-hidden { top: -160px; }
 @media (max-width: 719px) { .nav-more-btn { padding: 11px 0; } .nav-dropdown { position: static; right: auto; top: auto; min-width: 0; width: 100%; } .has-dropdown.open .nav-dropdown { margin-left: 12px; border: 0; background: transparent; box-shadow: none; padding: 0; } .lang-btn { border: 0; margin: 0; padding: 11px 0; font-size: 11px; border-bottom: 1px solid var(--rule); } .lang-picker.open .lang-menu { margin-left: 12px; border: 0; background: transparent; } }
 @media (min-width: 720px) { .nav-more-btn { padding: 0; border: 0; font-size: 10.5px; } .nav-dropdown { position: absolute; right: 0; top: calc(100% + 10px); min-width: 240px; max-height: 70vh; overflow-y: auto;; } .has-dropdown.open .nav-dropdown { display: block; } .lang-btn { width: auto; margin: 0; padding: 3px 8px; } .lang-menu { position: absolute; right: 0; top: calc(100% + 10px); min-width: 130px; } }
-.featured-cases{padding:48px 0;background:linear-gradient(to bottom,var(--bg),var(--bg-2) 50%,var(--bg))}
-.featured-cases h2{font-family:var(--mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--caution);margin-bottom:20px;display:flex;align-items:baseline;gap:12px}
-.featured-cases h2 .sub{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--ink-dim);text-transform:none;letter-spacing:0}
-.case-grid{display:grid;gap:14px;grid-template-columns:1fr}
-@media (min-width:540px){.case-grid{grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}}
-.case-card{display:block;padding:18px 20px;background:var(--panel);border:1px solid var(--rule);border-left:3px solid var(--caution);text-decoration:none;transition:border-color .15s,transform .15s}
-.case-card:hover{border-color:var(--rule-strong);transform:translateY(-2px)}
-.case-card .c-when{font-family:var(--mono);font-size:10px;color:var(--caution);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:8px}
-.case-card .c-name{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--ink);margin-bottom:6px}
-.case-card .c-desc{font-family:var(--serif);font-size:13px;color:var(--ink-dim);line-height:1.5}
 </style>
 </head>
 <body>
@@ -211,7 +215,7 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
       </div>
     </a>
     <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
-            <nav class="primary" id="primary-nav">
+        <nav class="primary" id="primary-nav">
       <ul>
         <li><a href="../">War.gov</a></li><li><a href="../aaro/">AARO</a></li><li><a href="../nasa/">NASA</a></li><li><a href="../nara/" class="active">NARA</a></li>
         <li class="has-dropdown" id="nav-site-wrap">
@@ -270,24 +274,6 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
       <div class="head-card"><div class="h-label">Catalog</div><span class="h-num">600M+</span><div class="h-text">Digitised pages searchable via catalog.archives.gov.</div></div>
       <div class="head-card"><div class="h-label">Format</div><div class="h-text">Textual · Microfilm · Photographs · Moving Images · Sound.</div></div>
       <div class="head-card"><div class="h-label">Review</div><div class="h-text">25-year automatic declassification review mandated by statute.</div></div>
-    </div>
-  </div>
-</section>
-
-<section class="featured-cases" id="cases">
-  <div class="container">
-    <h2>Featured cases <span class="sub">— deep-dive stories</span></h2>
-    <div class="case-grid">
-      <a class="case-card" href="./roswell.html"><div class="c-when">Roswell · Jul 1947</div><div class="c-name">Roswell incident</div><div class="c-desc">RG 341 GAO/NSAM-95-187 chain-of-custody report</div></a>
-      <a class="case-card" href="./mantell.html"><div class="c-when">Fort Knox · Jan 1948</div><div class="c-name">Mantell pursuit</div><div class="c-desc">First USAF UFO fatality; Skyhook balloon resolution</div></a>
-      <a class="case-card" href="./chiles-whitted.html"><div class="c-when">Alabama-Georgia · Jul 1948</div><div class="c-name">Chiles-Whitted</div><div class="c-desc">Eastern Air Lines DC-3 near-miss; triggered Estimate of Situation</div></a>
-      <a class="case-card" href="./mcminnville.html"><div class="c-when">Oregon · May 1950</div><div class="c-name">McMinnville photos</div><div class="c-desc">Paul Trent farm imagery; Condon &amp; Sturrock positive classifications</div></a>
-      <a class="case-card" href="./lubbock-lights.html"><div class="c-when">Texas · Aug 1951</div><div class="c-name">Lubbock Lights</div><div class="c-desc">Carl Hart Jr. photos of V-formation lights</div></a>
-      <a class="case-card" href="./robertson-panel.html"><div class="c-when">CIA · Jan 1953</div><div class="c-name">Robertson Panel</div><div class="c-desc">Five-day classified review at Langley</div></a>
-      <a class="case-card" href="./levelland.html"><div class="c-when">Texas · Nov 1957</div><div class="c-name">Levelland EM cluster</div><div class="c-desc">~15 stalled-vehicle reports in one night</div></a>
-      <a class="case-card" href="./socorro.html"><div class="c-when">New Mexico · Apr 1964</div><div class="c-name">Socorro landing</div><div class="c-desc">Officer Lonnie Zamora · physical trace case</div></a>
-      <a class="case-card" href="./condon-committee.html"><div class="c-when">Boulder · 1966-69</div><div class="c-name">Condon Committee</div><div class="c-desc">University of Colorado USAF-funded review</div></a>
-      <a class="case-card" href="./story.html"><div class="c-when">RG 615 · 75 years</div><div class="c-name">NARA — full story</div><div class="c-desc">Blue Book → JFK → 2024 NDAA UAP collection</div></a>
     </div>
   </div>
 </section>

@@ -9,7 +9,7 @@ exist locally are marked LOCAL; the rest fall back to the original source URL.
 """
 import json, os, re, html, urllib.parse, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from _site_template import make_nav, LIGHTBOX_HTML, _I18N_JSON
+from _site_template import make_nav, LIGHTBOX_HTML, LIGHTBOX_CSS, LIGHTBOX_JS, _I18N_JSON
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT = os.path.join(REPO, 'aaro')
@@ -705,58 +705,8 @@ h2 {
   letter-spacing: 0.08em; text-transform: uppercase;
 }
 
-/* LIGHTBOX */
-.lightbox {
-  position: fixed; inset: 0; background: rgba(0,0,0,0.96);
-  display: none; align-items: center; justify-content: center; z-index: 200; padding: 32px;
-}
-.lightbox.open { display: flex; }
-.lb-inner { max-width: 92vw; max-height: 92vh; display: flex; flex-direction: column; gap: 10px; align-items: center; }
-.lb-inner img, .lb-inner video { max-width: 90vw; max-height: 82vh; border: 1px solid var(--rule-strong); background: #000; }
-.lb-rotate { position: absolute; top: 16px; left: 16px; width: 40px; height: 40px; background: var(--bg-2); border: 1px solid var(--rule-strong); color: var(--ink); display: none; place-items: center; cursor: pointer; font-family: var(--mono); font-size: 18px; z-index: 3; transition: color .15s, border-color .15s; }
-.lb-rotate:hover { color: var(--caution); border-color: var(--caution); }
-@media (max-width: 719px) {
-  .lightbox.open .lb-rotate { display: grid; }
-  .lightbox.lb-rotated .lb-inner video,
-  .lightbox.lb-rotated .lb-inner img { transform: rotate(90deg); max-width: 88vh; max-height: 88vw; width: auto; height: auto; }
-  .lightbox.lb-rotated .lb-inner { max-height: none; max-width: none; }
-}
-.lb-inner iframe { width: 90vw; height: 86vh; border: 1px solid var(--rule-strong); background: #fff; }
-.lb-meta { font-family: var(--mono); font-size: 11px; color: var(--ink); background: var(--bg-2);
-           border: 1px solid var(--rule-strong); padding: 8px 14px; max-width: 80vw; text-align: center; }
-.lb-meta a { color: var(--caution); }
-.lb-close {
-  position: absolute; top: 16px; right: 24px;
-  width: 40px; height: 40px;
-  background: var(--bg-2); border: 1px solid var(--rule-strong); color: var(--ink);
-  display: grid; place-items: center; cursor: pointer;
-  font-family: var(--mono); font-size: 22px; z-index: 2;
-}
-.lb-nav {
-  position: absolute; top: 50%; transform: translateY(-50%);
-  width: 52px; height: 52px;
-  background: rgba(20,20,24,0.6);
-  border: 1px solid var(--rule-strong);
-  color: var(--ink);
-  display: grid; place-items: center; cursor: pointer;
-  font-family: var(--serif); font-size: 32px; line-height: 1;
-  z-index: 2;
-  transition: background .15s, color .15s, border-color .15s;
-}
-.lb-nav:hover { background: rgba(0,0,0,0.85); color: var(--caution); border-color: var(--caution); }
-.lb-nav.prev { left: 16px; }
-.lb-nav.next { right: 16px; }
-.lb-counter {
-  position: absolute; top: 24px; left: 50%; transform: translateX(-50%);
-  font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em;
-  color: var(--ink-dim); background: var(--bg-2);
-  border: 1px solid var(--rule); padding: 4px 12px; z-index: 2;
-}
-@media (max-width: 720px) {
-  .lb-nav { width: 40px; height: 40px; font-size: 24px; }
-  .lb-nav.prev { left: 8px; }
-  .lb-nav.next { right: 8px; }
-}
+/* LIGHTBOX — injected from _site_template.LIGHTBOX_CSS at build time */
+__LIGHTBOX_CSS__
 
 /* CALL TO READ */
 .learn { text-align: center; padding: 64px 0; }
@@ -1451,6 +1401,7 @@ _aaro_nav = make_nav('aaro', depth=1, internal_links=[
     ('Evidence', '#archive',   'archive'),
     ('About / FAQ', './details.html', 'faq'),
 ])
+PAGE = PAGE.replace('__LIGHTBOX_CSS__', LIGHTBOX_CSS.strip())
 PAGE = PAGE.replace('__DATA__', asset_json)
 PAGE = PAGE.replace('__VID_L__', str(stats['videos_local'])).replace('__VID_T__', str(stats['videos_total']))
 PAGE = PAGE.replace('__PDF_L__', str(stats['pdfs_local'])).replace('__PDF_T__', str(stats['pdfs_total']))
