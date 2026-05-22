@@ -130,9 +130,12 @@ h1.hero-title em { color: var(--caution); font-style: italic; }
 }
 .carousel-btn:hover { background: rgba(0,0,0,0.9); border-color: var(--caution); color: var(--caution); }
 .carousel-btn.prev { left: 14px; } .carousel-btn.next { right: 14px; }
-.carousel-dots { position: absolute; bottom: 56px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; z-index: 3; }
-.carousel-dots button { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.4); border: 0; cursor: pointer; padding: 0; transition: transform .15s, background .15s; }
-.carousel-dots button.active { background: var(--caution); transform: scale(1.4); }
+.carousel-dots { position: absolute; bottom: 48px; left: 50%; transform: translateX(-50%); display: flex; gap: 0; z-index: 3; }
+/* Button click region is 24×24 (WCAG 2.5.8 minimum target size); visible
+   dot drawn via ::before so the design stays compact. */
+.carousel-dots button { width: 24px; height: 24px; border: 0; background: transparent; cursor: pointer; padding: 0; position: relative; }
+.carousel-dots button::before { content: ""; position: absolute; top: 50%; left: 50%; width: 8px; height: 8px; margin: -4px 0 0 -4px; border-radius: 50%; background: rgba(255,255,255,0.4); transition: transform .15s, background .15s; }
+.carousel-dots button.active::before { background: var(--caution); transform: scale(1.4); }
 .carousel-caption {
   position: absolute; bottom: 16px; left: 0; right: 0; text-align: center;
   font-family: var(--mono); font-size: 11px; color: var(--ink); letter-spacing: 0.06em;
