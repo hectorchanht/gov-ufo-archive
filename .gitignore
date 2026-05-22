@@ -6,15 +6,18 @@
 # Bundle archives (big zips)
 bundles/Release_1.zip
 bundles/uapvideos.zip
+bundles/release_02_document_bundle.zip
+bundles/uap052226.zip
 
 # DVIDS / DOD bulk videos — ALL excluded from git.
-# Site streams them from the videos-v1 GitHub Release instead:
-#   https://github.com/hectorchanht/war-gov-ufo-release/releases/tag/videos-v1
+# Site streams them from the videos-v1 / wargov-r02-v1 GitHub Releases instead.
 bundles/uapvideos/
+bundles/uap052226/
 
-# PDFs all moved to GitHub Releases (pdfs-v1) — the repo keeps only
-# images for fast page loads. Source: ./scripts/sync.sh re-populates.
+# PDFs all moved to GitHub Releases (pdfs-v1 / wargov-r02-v1) — the repo keeps
+# only images for fast page loads. Source: ./scripts/sync.sh re-populates.
 bundles/Release_1/*.pdf
+bundles/release_02_document_bundle/*.pdf
 aaro/pdfs/
 nasa/pdfs/
 nara/pdfs/

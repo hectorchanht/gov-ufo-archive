@@ -5,12 +5,12 @@
   <id>https://realufo.org/feeds/canada.xml</id>
   <link rel="self" type="application/atom+xml" href="https://realufo.org/feeds/canada.xml"/>
   <link rel="alternate" type="text/html" href="https://realufo.org/canada/"/>
-  <updated>2026-05-22T15:27:26Z</updated>
+  <updated>2026-05-22T18:59:36Z</updated>
   <author><name>realufo.org</name><uri>https://realufo.org/</uri></author>
   <rights>Per-source jurisdiction (US 17 U.S.C. §105, UK OGL v3, France Loi 78-753, Brazil LAI 12.527, Chile 20.285, etc.)</rights>
   <generator uri="https://realufo.org/">realufo.org build-feeds.py</generator>
   <entry>
-    <id>tag:realufo.org,2026:canada/271141548706</id>
+    <id>tag:realufo.org,2026:canada/068093870298</id>
     <title>LAC — Project Magnet (DOT records, RG 12)</title>
     <link rel="alternate" type="text/html" href="https://library-archives.canada.ca/eng/collection/research-help/government-canada/Pages/government-canada.aspx"/>
     <updated>1950-01-01T00:00:00Z</updated>
@@ -20,41 +20,41 @@
     <summary type="text">The departmental record group for Project Magnet — Wilbert B. Smith&#x27;s research files at the Department of Transport.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:canada/834839348270</id>
+    <id>tag:realufo.org,2026:canada/444050782897</id>
     <title>Library and Archives Canada — UFO research guide</title>
     <link rel="alternate" type="text/html" href="https://library-archives.canada.ca/eng/collection/research-help/genealogy/Pages/ufos.aspx"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="Guide"/>
     <category term="Canada · LAC / Magnet"/>
     <summary type="text">LAC&#x27;s curated guide to UFO-related records: Project Magnet, Second Story, RCMP files, DND, and individual case folders.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:canada/010608448038</id>
+    <id>tag:realufo.org,2026:canada/448114967558</id>
     <title>LAC — Defence Research Board (RG 24)</title>
     <link rel="alternate" type="text/html" href="https://library-archives.canada.ca/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="Record Group"/>
     <category term="Canada · LAC / Magnet"/>
     <summary type="text">Defence Research Board records including Project Second Story — Canada&#x27;s military-side UAP investigation programme of the 1950s.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:canada/978361597809</id>
+    <id>tag:realufo.org,2026:canada/885061574024</id>
     <title>LAC — RCMP UFO files (RG 18)</title>
     <link rel="alternate" type="text/html" href="https://library-archives.canada.ca/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="Record Group"/>
     <category term="Canada · LAC / Magnet"/>
     <summary type="text">Royal Canadian Mounted Police record group includes UFO sighting and investigation files filed alongside other operational records.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:canada/249554809188</id>
+    <id>tag:realufo.org,2026:canada/398738098818</id>
     <title>LAC catalog search — UFO</title>
     <link rel="alternate" type="text/html" href="https://recherche-collection-search.bac-lac.gc.ca/eng/Home/Search?DataSource=Collection&amp;q=ufo"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="Catalog"/>
     <category term="Canada · LAC / Magnet"/>
     <summary type="text">Open search across LAC&#x27;s full holdings for &#x27;UFO&#x27;, &#x27;unidentified flying object&#x27;, &#x27;Project Magnet&#x27;, etc.</summary>

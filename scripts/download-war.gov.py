@@ -30,11 +30,12 @@ except ImportError:
         "or, if you use pipx / a venv, install it there.\n"
     )
 
-ROOT = Path(__file__).resolve().parent
-SLIDES_DIR  = ROOT / "slideshow"
-BUNDLES_DIR = ROOT / "bundles"
-ASSETS_DIR  = ROOT / "assets"
-for d in (SLIDES_DIR, BUNDLES_DIR, ASSETS_DIR):
+ROOT = Path(__file__).resolve().parent.parent   # repo root
+SLIDES_DIR    = ROOT / "slideshow"
+SLIDES_2_DIR  = ROOT / "slideshow-2"             # Release 02 carousel images
+BUNDLES_DIR   = ROOT / "bundles"
+ASSETS_DIR    = ROOT / "assets"
+for d in (SLIDES_DIR, SLIDES_2_DIR, BUNDLES_DIR, ASSETS_DIR):
     d.mkdir(parents=True, exist_ok=True)
 
 HEADERS = {
@@ -111,29 +112,66 @@ LOGOS = [
     ("https://www.war.gov/Portals/1/Images/DOW-Icon-Header.png", "DOW-Icon-Header.png"),
 ]
 
-MANIFEST = ("https://www.war.gov/Portals/1/Interactive/2026/UFO/uap-release001.csv",
-            "uap-release001.csv")
+# Release 02 (2026-05-22) — second tranche of records under PURSUE.
+# Lives under a different Portals path (Slideshow-2/) and has its own
+# document bundle + 5.6 GB video archive on Cloudfront.
+SLIDESHOW_2_BASE = "https://www.war.gov/portals/1/Interactive/2026/UFO/Slideshow-2/"
+SLIDES_2 = [
+    "CIA-UAP-D001_Intelligence_Information_Report_USSR_1973.jpg",
+    "DOE-UAP-D001_PANTEX_Image.jpg",
+    "DOW-UAP-D017_General_Correspondence_Of_Sandia.jpg",
+    "DOW-UAP-PR050_4UAP_Formation_Iran_26_Aug_2022.jpg",
+    "DOW-UAP-PR051.jpg",
+    "DOW-UAP-PR052.jpg",
+    "DOW-UAP-PR071_USAF-ANG F-16C_callsign_CALLSIGN_Shoots_Down_UAP.jpg",
+    "DOW-UAP-PR086-UAP_from_Dec_2019_East_Coast.jpg",
+    "NASA-UAP-D008_Apollo12_Medical_Debriefing.jpg",
+    "ODNI-UAP-D001_USPER_Narrative_Senior_USIC.jpg",
+]
+
+# Master manifest. As of Release 02 (5/22/26), war.gov serves a single
+# combined CSV (uap-data.csv) that includes both Release 01 and 02 rows.
+# The legacy /uap-release001.csv is still served verbatim — we keep both.
+MANIFESTS = [
+    ("https://www.war.gov/Portals/1/Interactive/2026/UFO/uap-data.csv",
+     "uap-data.csv"),
+    ("https://www.war.gov/Portals/1/Interactive/2026/UFO/uap-release001.csv",
+     "uap-release001.csv"),
+]
 
 BUNDLES = [
+    # Release 01
     ("https://www.war.gov/medialink/ufo/bundle/Release_1.zip", "Release_1.zip"),
     ("https://cdn.dvidshub.net/press/uapvideos.zip",           "uapvideos.zip"),
+    # Release 02 (5/22/26) — 6 PDFs + 57 mp4 (51 video + 7 audio-as-mp4)
+    ("https://www.war.gov/medialink/ufo/052226/release_02/release_02_document_bundle.zip",
+     "release_02_document_bundle.zip"),
+    ("https://d34w7g4gy10iej.cloudfront.net/uap052226.zip",
+     "uap052226.zip"),
 ]
 
 
 def main():
-    print("\n=== Slideshow images (17) ===")
+    print("\n=== Slideshow images — Release 01 (17) ===")
     ok = sum(fetch(SLIDESHOW_BASE + f, SLIDES_DIR / f) for f in SLIDES)
     print(f"  ({ok}/{len(SLIDES)} ok)")
+
+    print("\n=== Slideshow images — Release 02 (10) ===")
+    ok = sum(fetch(SLIDESHOW_2_BASE + f.replace(" ", "%20"), SLIDES_2_DIR / f)
+             for f in SLIDES_2)
+    print(f"  ({ok}/{len(SLIDES_2)} ok)")
 
     print("\n=== Site chrome (logos) ===")
     for url, name in LOGOS:
         fetch(url, ASSETS_DIR / name)
 
-    print("\n=== File manifest CSV ===")
-    fetch(MANIFEST[0], ROOT / MANIFEST[1])
+    print("\n=== File manifests ===")
+    for url, name in MANIFESTS:
+        fetch(url, ROOT / name)
 
     print("\n=== Bundles ===")
-    print("  (Release_1.zip ≈ docs+imgs; uapvideos.zip ≈ 1.3 GB — be patient)")
+    print("  Release 01: Release_1.zip (~1.2 GB docs+imgs), uapvideos.zip (~1.3 GB)")
+    print("  Release 02: release_02_document_bundle.zip (~70 MB), uap052226.zip (~5.6 GB)")
     for url, name in BUNDLES:
         fetch(url, BUNDLES_DIR / name)
 

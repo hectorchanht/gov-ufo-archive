@@ -5,46 +5,46 @@
   <id>https://realufo.org/feeds/italy.xml</id>
   <link rel="self" type="application/atom+xml" href="https://realufo.org/feeds/italy.xml"/>
   <link rel="alternate" type="text/html" href="https://realufo.org/italy/"/>
-  <updated>2026-05-22T15:27:26Z</updated>
+  <updated>2026-05-22T18:59:36Z</updated>
   <author><name>realufo.org</name><uri>https://realufo.org/</uri></author>
   <rights>Per-source jurisdiction (US 17 U.S.C. §105, UK OGL v3, France Loi 78-753, Brazil LAI 12.527, Chile 20.285, etc.)</rights>
   <generator uri="https://realufo.org/">realufo.org build-feeds.py</generator>
   <entry>
-    <id>tag:realufo.org,2026:italy/976844902404</id>
+    <id>tag:realufo.org,2026:italy/134839867065</id>
     <title>Aeronautica Militare — official site</title>
     <link rel="alternate" type="text/html" href="https://www.aeronautica.difesa.it/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="Catalog"/>
     <category term="Italy · Aeronautica"/>
     <summary type="text">Italy&#x27;s Air Force institutional site. UFO file releases are published through the Sicurezza Aerea sub-portal.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:italy/490377597553</id>
+    <id>tag:realufo.org,2026:italy/330956774860</id>
     <title>Stato Maggiore Aeronautica — UFO portal</title>
     <link rel="alternate" type="text/html" href="https://www.aeronautica.difesa.it/comunicazione/UFO/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="Catalog"/>
     <category term="Italy · Aeronautica"/>
     <summary type="text">Stato Maggiore&#x27;s dedicated UFO/UAP section listing declassified case files by year.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:italy/039718774034</id>
+    <id>tag:realufo.org,2026:italy/257047593390</id>
     <title>Ministero della Difesa — Italy</title>
     <link rel="alternate" type="text/html" href="https://www.difesa.it/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="Catalog"/>
     <category term="Italy · Aeronautica"/>
     <summary type="text">Parent ministry. Defence-policy publications and UFO-related ministerial communiqués are archived here.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:italy/778898866709</id>
+    <id>tag:realufo.org,2026:italy/195350436041</id>
     <title>Archivio Centrale dello Stato — Italy</title>
     <link rel="alternate" type="text/html" href="https://acs.cultura.gov.it/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="Catalog"/>
     <category term="Italy · Aeronautica"/>
     <summary type="text">Italy&#x27;s central state archive — long-term custodian of declassified Air Force files including UFO records.</summary>

@@ -9,6 +9,30 @@ and the project loosely adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added — War.gov / PURSUE Release 02 (May 22, 2026)
+- **Release 02 catalogue (64 records)** — second tranche of declassified UAP
+  files from the U.S. Department of War, merged into the main archive
+  manifest (`uap-data.csv`, now 222 rows: 158 Release 01 + 64 Release 02).
+  Breakdown: 51 DVIDS aircrew encounter videos (DOW-UAP-PR050 → PR099),
+  7 NASA Apollo / Mercury audio excerpts (NASA-UAP-D008 → D014), 6 documents
+  (CIA-UAP-D001 Soviet 1973 intelligence report; ODNI-UAP-D001 USPER narrative;
+  DOE-UAP-D001/D002/D003 PANTEX imagery, James Tuck correspondence, Pajarito
+  astronomers invitation; DOW-UAP-D017 Sandia Base 1948–1950 correspondence).
+- **`bundles/uap052226/`** (5.6 GB, gitignored) — 57 mp4 files, renamed from
+  the war.gov bundle's `video_2605_DOD_<id>_DOD_<id>.mp4` form to canonical
+  `DOD_<id>.mp4` to match the existing Release 01 naming.
+- **`bundles/release_02_document_bundle/`** (70 MB, gitignored) — 6 PDFs.
+- **`slideshow-2/`** (10 hero images, ~10 MB, tracked) — Release 02 carousel
+  highlights added to the homepage hero strip with `r2: true` flag.
+- **Release filter** on `/#archive` — choose All / Release 01 / Release 02.
+- **`wargov-r02-v1` GitHub Release tag** — backs all 6 PDFs + 57 mp4 files;
+  primary URLs in `release-manifest.json` route through this tag.
+- **`scripts/dvids2dod-r02.json`** — DVIDS Video ID → DOD record ID lookup
+  table for the 57 Release 02 videos (resolved once against dvidshub.net).
+- **`scripts/download-war.gov.py`** rewritten — fixes ROOT to repo root,
+  adds Slideshow-2 fetch loop, combined-CSV manifest, and the two new bundle
+  archives (`release_02_document_bundle.zip` + `uap052226.zip`).
+
 ### Added
 - **4 more case detail pages**: Tehran 1976 (AARO), Socorro 1964 (NARA),
   JAL Flight 1628 Alaska 1986 (AARO), Coyne helicopter 1973 (AARO).

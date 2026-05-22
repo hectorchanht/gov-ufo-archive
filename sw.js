@@ -15,7 +15,7 @@
  *  automatically invalidates stale caches on the next page load.
  */
 
-const VERSION    = '4fe2134-20260522';
+const VERSION    = '0969475-20260522';
 const SHELL_CACHE = 'realufo-shell-' + VERSION;
 const DATA_CACHE  = 'realufo-data-'  + VERSION;
 const IMG_CACHE   = 'realufo-img-'   + VERSION;

@@ -1,7 +1,7 @@
 {
   "_meta": {
-    "generatedAt": "2026-05-22T15:23:16Z",
-    "totalRecords": 4778,
+    "generatedAt": "2026-05-22T18:59:44Z",
+    "totalRecords": 4842,
     "totalArchives": 15,
     "license": "See per-archive source jurisdictions on https://realufo.org/",
     "docs": "https://realufo.org/api/"
@@ -10,10 +10,10 @@
     {
       "id": "wargov",
       "label": "War.gov / PURSUE",
-      "count": 158,
+      "count": 222,
       "local": 14,
-      "localPct": 8.9,
-      "sourceOnly": 144,
+      "localPct": 6.3,
+      "sourceOnly": 208,
       "release": "pdfs-v1"
     },
     {
@@ -144,7 +144,7 @@
     }
   ],
   "totals": {
-    "records": 4778,
+    "records": 4842,
     "local": 147,
     "archives": 15
   }

@@ -30,7 +30,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Tone colour table mirrors CLAUDE.md § 3.1.
 ARCHIVES = [
     # (slug, name, tagline, accent,    grad_stops)
-    ('wargov',    'War.gov / PURSUE',           'Department of War · Release 01',  '#d4a017', ('#b91c1c','#6b1010','#2a0606')),
+    ('wargov',    'War.gov / PURSUE',           'Department of War · Releases 01 + 02',  '#d4a017', ('#b91c1c','#6b1010','#2a0606')),
     ('aaro',      'AARO',                        'All-domain Anomaly Resolution',   '#4a9eff', ('#1e3a8a','#102560','#061238')),
     ('nasa',      'NASA UAP',                    'Independent Study Team',          '#fc3d21', ('#fc3d21','#a01818','#400606')),
     ('nara',      'NARA',                        'Project Blue Book · JFK · UAP',   '#cbd5e1', ('#9ca3af','#4b5563','#1f2937')),

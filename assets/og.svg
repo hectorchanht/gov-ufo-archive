@@ -36,7 +36,7 @@
 
   <!-- name + tagline -->
   <text x="80" y="350" fill="#e8e3d8" font-family="Source Serif 4, Georgia, serif" font-size="84" font-weight="700" letter-spacing="-1">War.gov / PURSUE</text>
-  <text x="80" y="410" fill="#e8e3d8" font-family="Source Serif 4, Georgia, serif" font-size="34" font-weight="400" opacity="0.78" font-style="italic">Department of War · Release 01</text>
+  <text x="80" y="410" fill="#e8e3d8" font-family="Source Serif 4, Georgia, serif" font-size="34" font-weight="400" opacity="0.78" font-style="italic">Department of War · Releases 01 + 02</text>
 
   <!-- bottom strip -->
   <line x1="80" y1="540" x2="1120" y2="540" stroke="#e8e3d8" stroke-opacity="0.18"/>

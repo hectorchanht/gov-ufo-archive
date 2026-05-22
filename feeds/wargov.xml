@@ -5,457 +5,457 @@
   <id>https://realufo.org/feeds/wargov.xml</id>
   <link rel="self" type="application/atom+xml" href="https://realufo.org/feeds/wargov.xml"/>
   <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-  <updated>2026-05-22T15:27:26Z</updated>
+  <updated>2026-05-22T18:59:36Z</updated>
   <author><name>realufo.org</name><uri>https://realufo.org/</uri></author>
   <rights>Per-source jurisdiction (US 17 U.S.C. §105, UK OGL v3, France Loi 78-753, Brazil LAI 12.527, Chile 20.285, etc.)</rights>
   <generator uri="https://realufo.org/">realufo.org build-feeds.py</generator>
   <entry>
-    <id>tag:realufo.org,2026:wargov/441790795968</id>
+    <id>tag:realufo.org,2026:wargov/836625753074</id>
+    <title>DOW-UAP-PR050, &quot;4 UAP Formation Iran 26 Aug 2022 over water [CALLSIGN]&quot;</title>
+    <link rel="alternate" type="text/html" href="https://realufo.org/"/>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
+    <category term="VID"/>
+    <category term="War.gov / PURSUE"/>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/299199955174</id>
+    <title>DOW-UAP-PR051, &quot;Syrian UAP instant acceleration&quot;</title>
+    <link rel="alternate" type="text/html" href="https://realufo.org/"/>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
+    <category term="VID"/>
+    <category term="War.gov / PURSUE"/>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/367589815548</id>
+    <title>DOW-UAP-D017, UAP Reported at Sandia Base, 1948-1950</title>
+    <link rel="alternate" type="text/html" href="https://realufo.org/"/>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
+    <category term="PDF"/>
+    <category term="War.gov / PURSUE"/>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/521775655629</id>
+    <title>CIA-UAP-D001, Intelligence Information Report, USSR, 1973</title>
+    <link rel="alternate" type="text/html" href="https://realufo.org/"/>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
+    <category term="PDF"/>
+    <category term="War.gov / PURSUE"/>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/552620812191</id>
+    <title>ODNI-UAP-D001, USPER Narrative, Senior USIC Official</title>
+    <link rel="alternate" type="text/html" href="https://realufo.org/"/>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
+    <category term="PDF"/>
+    <category term="War.gov / PURSUE"/>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/996908420158</id>
+    <title>NASA-UAP-D008, Apollo 12 Medical Debriefing - Tape 12, 1969</title>
+    <link rel="alternate" type="text/html" href="https://realufo.org/"/>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
+    <category term="AUD"/>
+    <category term="War.gov / PURSUE"/>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/540831625899</id>
+    <title>DOE-UAP-D001, Enhanced PANTEX Imagery</title>
+    <link rel="alternate" type="text/html" href="https://realufo.org/"/>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
+    <category term="PDF"/>
+    <category term="War.gov / PURSUE"/>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/683283987214</id>
     <title>18_100754_ General 1946-7_Vol_2</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/869296021354</id>
+    <id>tag:realufo.org,2026:wargov/327082586389</id>
     <title>18_6369445_General_1948_Vol_1</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/792144140258</id>
+    <id>tag:realufo.org,2026:wargov/228048145840</id>
     <title>255_413270_UFO&#x27;s_and_Defense_What_Should_we_Prepare_For</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/340107254936</id>
+    <id>tag:realufo.org,2026:wargov/704289929048</id>
     <title>331_120752_Numeric_Files_1944–1945_37153_German_Armament_Equipment_Documents</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/352890650666</id>
+    <id>tag:realufo.org,2026:wargov/132347209581</id>
     <title>341_110448_Records_Relating_to_the_Collection_and_Dissemination_of_Intelligence_1948-1955-TS_CONT_No.2_2-5300-2-5399</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/955865506273</id>
+    <id>tag:realufo.org,2026:wargov/078512924714</id>
     <title>341_110677_Numerical_File,_5-2500</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/869893665521</id>
+    <id>tag:realufo.org,2026:wargov/719652937521</id>
     <title>342_HS1-416511228_319.1 Flying Discs 1949</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/984849689249</id>
+    <id>tag:realufo.org,2026:wargov/857462706859</id>
     <title>38_143685_box_Incident_Summaries_101-172</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/993697633048</id>
+    <id>tag:realufo.org,2026:wargov/275345701348</id>
     <title>38_143685_box_Incident_Summaries_173-233</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/494474910564</id>
+    <id>tag:realufo.org,2026:wargov/858284238954</id>
     <title>38_143685_box7_Incident_Summaries_1-100</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/655674141452</id>
+    <id>tag:realufo.org,2026:wargov/536081389063</id>
     <title>59_214434_SP 16 [7.18.1963]</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/366774124062</id>
+    <id>tag:realufo.org,2026:wargov/768406338460</id>
     <title>59_64634_711.5612[7-2852</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/719922572177</id>
+    <id>tag:realufo.org,2026:wargov/453829206336</id>
     <title>65_HS1-101634279_100-DE-18221_Serial_844</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/081627367514</id>
+    <id>tag:realufo.org,2026:wargov/621001405270</id>
     <title>65_HS1-101634279_100-DE-26505</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/124219452753</id>
+    <id>tag:realufo.org,2026:wargov/024036622229</id>
     <title>65_HS1-834228961_62-HQ-83894_Section_001</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/260914836160</id>
+    <id>tag:realufo.org,2026:wargov/000769204059</id>
     <title>65_HS1-834228961_62-HQ-83894_Section_002</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/784917877314</id>
+    <id>tag:realufo.org,2026:wargov/133288930879</id>
     <title>65_HS1-834228961_62-HQ-83894_Section_003</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/036843071422</id>
+    <id>tag:realufo.org,2026:wargov/758940197477</id>
     <title>65_HS1-834228961_62-HQ-83894_Section_004</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/104346173969</id>
+    <id>tag:realufo.org,2026:wargov/367991200694</id>
     <title>65_HS1-834228961_62-HQ-83894_Section_005</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/582226662754</id>
+    <id>tag:realufo.org,2026:wargov/242018694383</id>
     <title>65_HS1-834228961_62-HQ-83894_Section_006</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/583889161769</id>
+    <id>tag:realufo.org,2026:wargov/438940221153</id>
     <title>65_HS1-834228961_62-HQ-83894_Section_007</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/100762243189</id>
+    <id>tag:realufo.org,2026:wargov/421690175024</id>
     <title>65_HS1-834228961_62-HQ-83894_Section_008</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/372152159535</id>
+    <id>tag:realufo.org,2026:wargov/491148624795</id>
     <title>65_HS1-834228961_62-HQ-83894_Section_009</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/360100430440</id>
+    <id>tag:realufo.org,2026:wargov/957427187252</id>
     <title>65_HS1-834228961_62-HQ-83894_Section_010</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/170322357909</id>
+    <id>tag:realufo.org,2026:wargov/077788927265</id>
     <title>65_HS1-834228961_62-HQ-83894_Serial_130</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/401406046872</id>
+    <id>tag:realufo.org,2026:wargov/491052447120</id>
     <title>65_HS1-834228961_62-HQ-83894_Serial_153</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/307709840510</id>
+    <id>tag:realufo.org,2026:wargov/911033806151</id>
     <title>65_HS1-834228961_62-HQ-83894_Serial_164</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/044063803397</id>
+    <id>tag:realufo.org,2026:wargov/549644220635</id>
     <title>65_HS1-834228961_62-HQ-83894_Serial_220</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/384831837244</id>
+    <id>tag:realufo.org,2026:wargov/732281491382</id>
     <title>65_HS1-834228961_62-HQ-83894_Serial_403</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/155331466083</id>
+    <id>tag:realufo.org,2026:wargov/516377254995</id>
     <title>65_HS1-834228961_62-HQ-83894_Serial_438</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/303949101177</id>
+    <id>tag:realufo.org,2026:wargov/120342829084</id>
     <title>65_HS1-834228961_62-HQ-83894_Serial_449</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/407934132340</id>
+    <id>tag:realufo.org,2026:wargov/490155054416</id>
     <title>65_HS1-834228961_62-HQ-83894_SUB_A</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/773811793217</id>
+    <id>tag:realufo.org,2026:wargov/505232343193</id>
+    <title>DOE-UAP-D002, James Tuck Correspondence, 1970s</title>
+    <link rel="alternate" type="text/html" href="https://realufo.org/"/>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
+    <category term="PDF"/>
+    <category term="War.gov / PURSUE"/>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/436730980014</id>
+    <title>DOE-UAP-D003, Pajarito Astronomers Invitation, 1986</title>
+    <link rel="alternate" type="text/html" href="https://realufo.org/"/>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
+    <category term="PDF"/>
+    <category term="War.gov / PURSUE"/>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/848366753842</id>
     <title>DOW-UAP-D003, Mission Report, Arabian Gulf, 2020</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/827514952537</id>
+    <id>tag:realufo.org,2026:wargov/786948568502</id>
     <title>DOW-UAP-D004, Mission Report, Arabian Gulf, 2020</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/977519615072</id>
+    <id>tag:realufo.org,2026:wargov/605674413182</id>
     <title>DOW-UAP-D005, Mission Report, Arabian Gulf, 2020</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/341367840327</id>
+    <id>tag:realufo.org,2026:wargov/776456827724</id>
     <title>DOW-UAP-D006, Mission Report, Arabian Gulf, 2020</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/678070833841</id>
+    <id>tag:realufo.org,2026:wargov/059210992281</id>
     <title>DOW-UAP-D007, Mission Report, Arabian Gulf, 2020</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/543541388080</id>
+    <id>tag:realufo.org,2026:wargov/079611426606</id>
     <title>DOW-UAP-D008, Mission Report, Djibouti, 2025</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/606021548842</id>
+    <id>tag:realufo.org,2026:wargov/727922691091</id>
     <title>DOW-UAP-D010, Mission Report, Middle East, May 2022</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/861598772007</id>
+    <id>tag:realufo.org,2026:wargov/588301611525</id>
     <title>DOW-UAP-D012, Mission Report, Iraq, May 2022</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/630550636171</id>
+    <id>tag:realufo.org,2026:wargov/167199907086</id>
     <title>DOW-UAP-D014, Mission Report, Iraq, May 2022</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
-    <category term="PDF"/>
-    <category term="War.gov / PURSUE"/>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:wargov/482927256388</id>
-    <title>DOW-UAP-D016, Mission Report, Syria, July 2022</title>
-    <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
-    <category term="PDF"/>
-    <category term="War.gov / PURSUE"/>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:wargov/575461355345</id>
-    <title>DOW-UAP-D018, Mission Report, Iraq, December 2022</title>
-    <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
-    <category term="PDF"/>
-    <category term="War.gov / PURSUE"/>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:wargov/612342046650</id>
-    <title>DOW-UAP-D019, Mission Report, Syria, February 21, 2023</title>
-    <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
-    <category term="PDF"/>
-    <category term="War.gov / PURSUE"/>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:wargov/193198836752</id>
-    <title>DOW-UAP-D020, Mission Report, Iraq, 2023</title>
-    <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
-    <category term="PDF"/>
-    <category term="War.gov / PURSUE"/>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:wargov/104930793234</id>
-    <title>DOW-UAP-D023, Mission Report, United Arab Emirates, October 2023</title>
-    <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
-    <category term="PDF"/>
-    <category term="War.gov / PURSUE"/>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:wargov/014663806590</id>
-    <title>DOW-UAP-D025, Mission Report, Greece, January 2024</title>
-    <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
-    <category term="PDF"/>
-    <category term="War.gov / PURSUE"/>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:wargov/082478224063</id>
-    <title>DOW-UAP-D027, Mission Report, United Arab Emirates, October 2023</title>
-    <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
-    <category term="PDF"/>
-    <category term="War.gov / PURSUE"/>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:wargov/519001531958</id>
-    <title>DOW-UAP-D028, Mission Report, Iraq, September 2024</title>
-    <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
-    <category term="PDF"/>
-    <category term="War.gov / PURSUE"/>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:wargov/369865767633</id>
-    <title>DOW-UAP-D032, Mission Report, Syria, October 2024</title>
-    <link rel="alternate" type="text/html" href="https://realufo.org/"/>
-    <updated>2026-05-22T15:27:26Z</updated>
-    <published>2026-05-22T15:27:26Z</published>
+    <updated>2026-05-22T18:59:36Z</updated>
+    <published>2026-05-22T18:59:36Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
   </entry>
