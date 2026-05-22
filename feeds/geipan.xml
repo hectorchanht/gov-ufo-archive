@@ -5,12 +5,12 @@
   <id>https://realufo.org/feeds/geipan.xml</id>
   <link rel="self" type="application/atom+xml" href="https://realufo.org/feeds/geipan.xml"/>
   <link rel="alternate" type="text/html" href="https://realufo.org/geipan/"/>
-  <updated>2026-05-22T08:35:11Z</updated>
+  <updated>2026-05-22T10:15:01Z</updated>
   <author><name>realufo.org</name><uri>https://realufo.org/</uri></author>
   <rights>Per-source jurisdiction (US 17 U.S.C. §105, UK OGL v3, France Loi 78-753, Brazil LAI 12.527, Chile 20.285, etc.)</rights>
   <generator uri="https://realufo.org/">realufo.org build-feeds.py</generator>
   <entry>
-    <id>tag:realufo.org,2026:geipan/281392055865</id>
+    <id>tag:realufo.org,2026:geipan/747545234994</id>
     <title>IPACO® team (2025)</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/geipan/assets/images/IPACO-team-2025.jpg"/>
     <link rel="via" href="https://www.cnes-geipan.fr/"/>
@@ -21,7 +21,7 @@
     <summary type="text">GEIPAN&#x27;s IPACO® image/video authentication software team.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/884507347974</id>
+    <id>tag:realufo.org,2026:geipan/130345013781</id>
     <title>Cases by Phenomenon Type (2024)</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/geipan/assets/images/GEIPAN-Cases-By-Phenomenon-2024.png"/>
     <link rel="via" href="https://www.cnes-geipan.fr/fr/stats"/>
@@ -32,7 +32,7 @@
     <summary type="text">GEIPAN&#x27;s 2024 breakdown of identified phenomena.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/006304003287</id>
+    <id>tag:realufo.org,2026:geipan/343925614957</id>
     <title>Starlink satellite flare note</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/geipan/assets/images/Starlink-flare-note-2024.jpg"/>
     <link rel="via" href="https://www.cnes-geipan.fr/"/>
@@ -43,7 +43,7 @@
     <summary type="text">GEIPAN&#x27;s 2024 information note on Starlink-related misidentifications.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/618588553277</id>
+    <id>tag:realufo.org,2026:geipan/125541171212</id>
     <title>GEIPAN — FAQ (English)</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/geipan/pdfs/GEIPAN-FAQ-English.pdf"/>
     <link rel="via" href="https://www.cnes-geipan.fr/sites/default/files/2021-08/FAQ%20-%20Press%20-%20English.pdf"/>
@@ -54,7 +54,7 @@
     <summary type="text">Official press FAQ — history, methodology, classification scheme.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/205739964017</id>
+    <id>tag:realufo.org,2026:geipan/946296170850</id>
     <title>GEIPAN — FAQ (Français)</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/geipan/pdfs/GEIPAN-FAQ-Francais.pdf"/>
     <link rel="via" href="https://www.cnes-geipan.fr/sites/default/files/2021-08/FAQ%20-%20Dossier%20presse.pdf"/>
@@ -65,7 +65,7 @@
     <summary type="text">Dossier de presse officiel — historique, méthodologie, classification PAN A/B/C/D.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/902005568526</id>
+    <id>tag:realufo.org,2026:geipan/200198601261</id>
     <title>GEIPAN — Mission, History, Methodology (English)</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/geipan/pdfs/GEIPAN-Mission-Method-English.pdf"/>
     <link rel="via" href="https://www.cnes-geipan.fr/sites/default/files/2021-08/GEIPAN-informationenglish.pdf"/>
@@ -76,7 +76,7 @@
     <summary type="text">Mission, 1977-present history, scientific methodology, PAN A/B/C/D taxonomy.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/414692788490</id>
+    <id>tag:realufo.org,2026:geipan/082416946287</id>
     <title>GEIPAN — Mission, Historique, Méthodologie (Français)</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/geipan/pdfs/GEIPAN-Mission-Methode-Francais.pdf"/>
     <link rel="via" href="https://www.cnes-geipan.fr/sites/default/files/2021-08/GEIPAN-informations.pdf"/>
@@ -87,7 +87,7 @@
     <summary type="text">Document officiel — mission, historique, méthodologie, classification PAN A/B/C/D.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/282789680853</id>
+    <id>tag:realufo.org,2026:geipan/466969032014</id>
     <title>Saint-Germain-en-Laye (78) — 30 May 2020</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/geipan/videos/Saint-Germain-en-Laye-2020-05-30.mp4"/>
     <link rel="via" href="https://www.cnes-geipan.fr/fr/recherche/cas"/>
@@ -98,7 +98,7 @@
     <summary type="text">Witness video of an unidentified luminous object.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/244180726217</id>
+    <id>tag:realufo.org,2026:geipan/868694501011</id>
     <title>Lyon (69) — 19 December 2019</title>
     <link rel="alternate" type="text/html" href="https://realufo.org/geipan/videos/Lyon-2019-12-19.mp4"/>
     <link rel="via" href="https://www.cnes-geipan.fr/fr/recherche/cas"/>
@@ -109,371 +109,371 @@
     <summary type="text">Witness video of an unidentified phenomenon.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/699258091485</id>
+    <id>tag:realufo.org,2026:geipan/604152532997</id>
     <title>link</title>
     <link rel="alternate" type="text/html" href="https://www.cnes-geipan.fr/fr/cas/2026-01-51731?page=%2C0"/>
-    <updated>2026-05-22T08:35:11Z</updated>
-    <published>2026-05-22T08:35:11Z</published>
+    <updated>2026-05-22T10:15:01Z</updated>
+    <published>2026-05-22T10:15:01Z</published>
     <category term="PAN A — Identified"/>
     <category term="France · GEIPAN"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/590122884845</id>
+    <id>tag:realufo.org,2026:geipan/128874728561</id>
     <title>link</title>
     <link rel="alternate" type="text/html" href="https://www.cnes-geipan.fr/fr/cas/2026-01-51730?page=%2C0"/>
-    <updated>2026-05-22T08:35:11Z</updated>
-    <published>2026-05-22T08:35:11Z</published>
+    <updated>2026-05-22T10:15:01Z</updated>
+    <published>2026-05-22T10:15:01Z</published>
     <category term="PAN A — Identified"/>
     <category term="France · GEIPAN"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/455372096723</id>
+    <id>tag:realufo.org,2026:geipan/838188928571</id>
     <title>link</title>
     <link rel="alternate" type="text/html" href="https://www.cnes-geipan.fr/fr/cas/2026-01-51724?page=%2C0"/>
-    <updated>2026-05-22T08:35:11Z</updated>
-    <published>2026-05-22T08:35:11Z</published>
+    <updated>2026-05-22T10:15:01Z</updated>
+    <published>2026-05-22T10:15:01Z</published>
     <category term="PAN A — Identified"/>
     <category term="France · GEIPAN"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/716419456017</id>
+    <id>tag:realufo.org,2026:geipan/171318386966</id>
     <title>link</title>
     <link rel="alternate" type="text/html" href="https://www.cnes-geipan.fr/fr/cas/2025-12-51729?field_date_value=2021-06-26&amp;amp;field_is_new_value=1&amp;amp;order=field_date_d_observation_textuel&amp;amp;page=8&amp;amp;sort=desc"/>
-    <updated>2026-05-22T08:35:11Z</updated>
-    <published>2026-05-22T08:35:11Z</published>
+    <updated>2026-05-22T10:15:01Z</updated>
+    <published>2026-05-22T10:15:01Z</published>
     <category term="PAN A — Identified"/>
     <category term="France · GEIPAN"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/195364278815</id>
+    <id>tag:realufo.org,2026:geipan/353984700208</id>
     <title>link</title>
     <link rel="alternate" type="text/html" href="https://www.cnes-geipan.fr/fr/cas/2025-11-51716?page=%2C0"/>
-    <updated>2026-05-22T08:35:11Z</updated>
-    <published>2026-05-22T08:35:11Z</published>
+    <updated>2026-05-22T10:15:01Z</updated>
+    <published>2026-05-22T10:15:01Z</published>
     <category term="PAN A — Identified"/>
     <category term="France · GEIPAN"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/697855980811</id>
+    <id>tag:realufo.org,2026:geipan/437234281238</id>
     <title>link</title>
     <link rel="alternate" type="text/html" href="https://www.cnes-geipan.fr/fr/cas/2025-12-51727?page=%2C0"/>
-    <updated>2026-05-22T08:35:11Z</updated>
-    <published>2026-05-22T08:35:11Z</published>
+    <updated>2026-05-22T10:15:01Z</updated>
+    <published>2026-05-22T10:15:01Z</published>
     <category term="PAN ?"/>
     <category term="France · GEIPAN"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/172972672253</id>
+    <id>tag:realufo.org,2026:geipan/071541998951</id>
     <title>link</title>
     <link rel="alternate" type="text/html" href="https://www.cnes-geipan.fr/fr/cas/2025-11-51711?page=%2C1"/>
-    <updated>2026-05-22T08:35:11Z</updated>
-    <published>2026-05-22T08:35:11Z</published>
+    <updated>2026-05-22T10:15:01Z</updated>
+    <published>2026-05-22T10:15:01Z</published>
     <category term="PAN A — Identified"/>
     <category term="France · GEIPAN"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/946461357127</id>
+    <id>tag:realufo.org,2026:geipan/473862987956</id>
     <title>link</title>
     <link rel="alternate" type="text/html" href="https://www.cnes-geipan.fr/fr/cas/2025-11-51710?page=%2C1"/>
-    <updated>2026-05-22T08:35:11Z</updated>
-    <published>2026-05-22T08:35:11Z</published>
+    <updated>2026-05-22T10:15:01Z</updated>
+    <published>2026-05-22T10:15:01Z</published>
     <category term="PAN C — Insufficient data"/>
     <category term="France · GEIPAN"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/595872181981</id>
+    <id>tag:realufo.org,2026:geipan/675885525970</id>
     <title>link</title>
     <link rel="alternate" type="text/html" href="https://www.cnes-geipan.fr/fr/cas/2025-11-51709?customGetLattitude=41.2370859051563&amp;amp;customGetLongitude=7.550679783806908&amp;amp;customGetZoom=5&amp;amp;field_agregation_index_value=&amp;amp;field_classification_des_cas_target_id%5B13%5D=13&amp;amp;field_date_d_observation_value%5Bmin%5D=&amp;amp;field_date_d_observation_value%5Bmax%5D=&amp;amp;field_date_value=&amp;amp;field_departement_target_id=&amp;amp;field_document_existe_ou_pas_value=All&amp;amp;field_is_new_value=All&amp;amp;field_is_revisited_value=All&amp;amp;field_latitude_value%5Bmin%5D=31.765537409484374&amp;amp;field_latitude_value%5Bmax%5D=50.708634400828224&amp;amp;field_longitude_value%5Bmin%5D=-5.127542872443095&amp;amp;field_longitude_value%5Bmax%5D=20.22890244005691&amp;amp;field_phenomene_target_id=&amp;amp;field_type_de_cas_target_id=All&amp;amp;order=field_date&amp;amp;page=29&amp;amp;sort=desc"/>
-    <updated>2026-05-22T08:35:11Z</updated>
-    <published>2026-05-22T08:35:11Z</published>
+    <updated>2026-05-22T10:15:01Z</updated>
+    <published>2026-05-22T10:15:01Z</published>
     <category term="PAN A — Identified"/>
     <category term="France · GEIPAN"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/941846485411</id>
+    <id>tag:realufo.org,2026:geipan/764290280947</id>
     <title>link</title>
     <link rel="alternate" type="text/html" href="https://www.cnes-geipan.fr/fr/cas/2025-11-51725?page=%2C1"/>
-    <updated>2026-05-22T08:35:11Z</updated>
-    <published>2026-05-22T08:35:11Z</published>
+    <updated>2026-05-22T10:15:01Z</updated>
+    <published>2026-05-22T10:15:01Z</published>
     <category term="PAN C — Insufficient data"/>
     <category term="France · GEIPAN"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/511664804431</id>
+    <id>tag:realufo.org,2026:geipan/527543544636</id>
     <title>link</title>
     <link rel="alternate" type="text/html" href="https://www.cnes-geipan.fr/fr/cas/2025-11-51712?page=%2C1"/>
-    <updated>2026-05-22T08:35:11Z</updated>
-    <published>2026-05-22T08:35:11Z</published>
+    <updated>2026-05-22T10:15:01Z</updated>
+    <published>2026-05-22T10:15:01Z</published>
     <category term="PAN A — Identified"/>
     <category term="France · GEIPAN"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/382656975110</id>
+    <id>tag:realufo.org,2026:geipan/431804849489</id>
     <title>link</title>
     <link rel="alternate" type="text/html" href="https://www.cnes-geipan.fr/fr/cas/2025-10-51705?page=%2C1"/>
-    <updated>2026-05-22T08:35:11Z</updated>
-    <published>2026-05-22T08:35:11Z</published>
+    <updated>2026-05-22T10:15:01Z</updated>
+    <published>2026-05-22T10:15:01Z</published>
     <category term="PAN ?"/>
     <category term="France · GEIPAN"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/567436005565</id>
+    <id>tag:realufo.org,2026:geipan/085957813514</id>
     <title>link</title>
     <link rel="alternate" type="text/html" href="https://www.cnes-geipan.fr/fr/cas/2025-10-51703?page=%2C2"/>
-    <updated>2026-05-22T08:35:11Z</updated>
-    <published>2026-05-22T08:35:11Z</published>
+    <updated>2026-05-22T10:15:01Z</updated>
+    <published>2026-05-22T10:15:01Z</published>
     <category term="PAN B — Probably identified"/>
     <category term="France · GEIPAN"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/904692122837</id>
+    <id>tag:realufo.org,2026:geipan/324949027355</id>
     <title>link</title>
     <link rel="alternate" type="text/html" href="https://www.cnes-geipan.fr/fr/cas/2025-10-51704?page=%2C2"/>
-    <updated>2026-05-22T08:35:11Z</updated>
-    <published>2026-05-22T08:35:11Z</published>
+    <updated>2026-05-22T10:15:01Z</updated>
+    <published>2026-05-22T10:15:01Z</published>
     <category term="PAN A — Identified"/>
     <category term="France · GEIPAN"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/947533932060</id>
+    <id>tag:realufo.org,2026:geipan/397516962176</id>
     <title>link</title>
     <link rel="alternate" type="text/html" href="https://www.cnes-geipan.fr/fr/cas/2025-10-51708?page=%2C2"/>
-    <updated>2026-05-22T08:35:11Z</updated>
-    <published>2026-05-22T08:35:11Z</published>
+    <updated>2026-05-22T10:15:01Z</updated>
+    <published>2026-05-22T10:15:01Z</published>
     <category term="PAN B — Probably identified"/>
     <category term="France · GEIPAN"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/080940402039</id>
+    <id>tag:realufo.org,2026:geipan/486856523862</id>
     <title>link</title>
     <link rel="alternate" type="text/html" href="https://www.cnes-geipan.fr/fr/cas/2025-10-51702?page=%2C2"/>
-    <updated>2026-05-22T08:35:11Z</updated>
-    <published>2026-05-22T08:35:11Z</published>
+    <updated>2026-05-22T10:15:01Z</updated>
+    <published>2026-05-22T10:15:01Z</published>
     <category term="PAN A — Identified"/>
     <category term="France · GEIPAN"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/517443835224</id>
+    <id>tag:realufo.org,2026:geipan/851521053165</id>
     <title>link</title>
     <link rel="alternate" type="text/html" href="https://www.cnes-geipan.fr/fr/cas/2025-10-51701?page=%2C2"/>
-    <updated>2026-05-22T08:35:11Z</updated>
-    <published>2026-05-22T08:35:11Z</published>
+    <updated>2026-05-22T10:15:01Z</updated>
+    <published>2026-05-22T10:15:01Z</published>
     <category term="PAN A — Identified"/>
     <category term="France · GEIPAN"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/878573492076</id>
+    <id>tag:realufo.org,2026:geipan/685218364207</id>
     <title>link</title>
     <link rel="alternate" type="text/html" href="https://www.cnes-geipan.fr/fr/cas/2025-09-51692?page=%2C2"/>
-    <updated>2026-05-22T08:35:11Z</updated>
-    <published>2026-05-22T08:35:11Z</published>
+    <updated>2026-05-22T10:15:01Z</updated>
+    <published>2026-05-22T10:15:01Z</published>
     <category term="PAN ?"/>
     <category term="France · GEIPAN"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/311106351346</id>
+    <id>tag:realufo.org,2026:geipan/320086240937</id>
     <title>link</title>
     <link rel="alternate" type="text/html" href="https://www.cnes-geipan.fr/fr/cas/2025-09-51697?page=%2C3"/>
-    <updated>2026-05-22T08:35:11Z</updated>
-    <published>2026-05-22T08:35:11Z</published>
+    <updated>2026-05-22T10:15:01Z</updated>
+    <published>2026-05-22T10:15:01Z</published>
     <category term="PAN A — Identified"/>
     <category term="France · GEIPAN"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/356374453047</id>
+    <id>tag:realufo.org,2026:geipan/031331110331</id>
     <title>link</title>
     <link rel="alternate" type="text/html" href="https://www.cnes-geipan.fr/fr/cas/2025-09-51688?page=%2C3"/>
-    <updated>2026-05-22T08:35:11Z</updated>
-    <published>2026-05-22T08:35:11Z</published>
+    <updated>2026-05-22T10:15:01Z</updated>
+    <published>2026-05-22T10:15:01Z</published>
     <category term="PAN C — Insufficient data"/>
     <category term="France · GEIPAN"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/326533873918</id>
+    <id>tag:realufo.org,2026:geipan/662845019031</id>
     <title>link</title>
     <link rel="alternate" type="text/html" href="https://www.cnes-geipan.fr/fr/cas/2025-09-51689?customGetLattitude=41.2370859051563&amp;amp;customGetLongitude=7.550679783806908&amp;amp;customGetZoom=5&amp;amp;field_agregation_index_value=&amp;amp;field_classification_des_cas_target_id%5B13%5D=13&amp;amp;field_date_d_observation_value%5Bmin%5D=&amp;amp;field_date_d_observation_value%5Bmax%5D=&amp;amp;field_date_value=&amp;amp;field_departement_target_id=&amp;amp;field_document_existe_ou_pas_value=All&amp;amp;field_is_new_value=All&amp;amp;field_is_revisited_value=All&amp;amp;field_latitude_value%5Bmin%5D=31.765537409484374&amp;amp;field_latitude_value%5Bmax%5D=50.708634400828224&amp;amp;field_longitude_value%5Bmin%5D=-5.127542872443095&amp;amp;field_longitude_value%5Bmax%5D=20.22890244005691&amp;amp;field_phenomene_target_id=&amp;amp;field_type_de_cas_target_id=All&amp;amp;order=field_date&amp;amp;page=29&amp;amp;sort=desc"/>
-    <updated>2026-05-22T08:35:11Z</updated>
-    <published>2026-05-22T08:35:11Z</published>
+    <updated>2026-05-22T10:15:01Z</updated>
+    <published>2026-05-22T10:15:01Z</published>
     <category term="PAN A — Identified"/>
     <category term="France · GEIPAN"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/139665129078</id>
+    <id>tag:realufo.org,2026:geipan/402426440388</id>
     <title>link</title>
     <link rel="alternate" type="text/html" href="https://www.cnes-geipan.fr/fr/cas/2025-09-51707?page=%2C3"/>
-    <updated>2026-05-22T08:35:11Z</updated>
-    <published>2026-05-22T08:35:11Z</published>
+    <updated>2026-05-22T10:15:01Z</updated>
+    <published>2026-05-22T10:15:01Z</published>
     <category term="PAN A — Identified"/>
     <category term="France · GEIPAN"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/795855226969</id>
+    <id>tag:realufo.org,2026:geipan/062009942459</id>
     <title>link</title>
     <link rel="alternate" type="text/html" href="https://www.cnes-geipan.fr/fr/cas/2025-09-51693?page=%2C3"/>
-    <updated>2026-05-22T08:35:11Z</updated>
-    <published>2026-05-22T08:35:11Z</published>
+    <updated>2026-05-22T10:15:01Z</updated>
+    <published>2026-05-22T10:15:01Z</published>
     <category term="PAN A — Identified"/>
     <category term="France · GEIPAN"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/230688883934</id>
+    <id>tag:realufo.org,2026:geipan/791687722715</id>
     <title>link</title>
     <link rel="alternate" type="text/html" href="https://www.cnes-geipan.fr/fr/cas/2025-09-51676?page=%2C3"/>
-    <updated>2026-05-22T08:35:11Z</updated>
-    <published>2026-05-22T08:35:11Z</published>
+    <updated>2026-05-22T10:15:01Z</updated>
+    <published>2026-05-22T10:15:01Z</published>
     <category term="PAN ?"/>
     <category term="France · GEIPAN"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/429710544296</id>
+    <id>tag:realufo.org,2026:geipan/552328920681</id>
     <title>link</title>
     <link rel="alternate" type="text/html" href="https://www.cnes-geipan.fr/fr/cas/2025-09-51684?page=%2C4"/>
-    <updated>2026-05-22T08:35:11Z</updated>
-    <published>2026-05-22T08:35:11Z</published>
+    <updated>2026-05-22T10:15:01Z</updated>
+    <published>2026-05-22T10:15:01Z</published>
     <category term="PAN B — Probably identified"/>
     <category term="France · GEIPAN"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/472962638378</id>
+    <id>tag:realufo.org,2026:geipan/742592779686</id>
     <title>link</title>
     <link rel="alternate" type="text/html" href="https://www.cnes-geipan.fr/fr/cas/2025-09-51674?field_agregation_index_value=&amp;amp;field_date_d_observation_value%5Bmax%5D=&amp;amp;field_date_d_observation_value%5Bmin%5D=&amp;amp;field_date_value=2021-06-26&amp;amp;field_departement_target_id=&amp;amp;field_document_existe_ou_pas_value=All&amp;amp;field_is_new_value=1&amp;amp;field_is_revisited_value=All&amp;amp;field_latitude_value%5Bmax%5D=&amp;amp;field_latitude_value%5Bmin%5D=&amp;amp;field_longitude_value%5Bmax%5D=&amp;amp;field_longitude_value%5Bmin%5D=&amp;amp;field_phenomene_target_id=&amp;amp;field_type_de_cas_target_id=All&amp;amp;order=field_date_d_observation&amp;amp;page=%2C4&amp;amp;sort=asc"/>
-    <updated>2026-05-22T08:35:11Z</updated>
-    <published>2026-05-22T08:35:11Z</published>
+    <updated>2026-05-22T10:15:01Z</updated>
+    <published>2026-05-22T10:15:01Z</published>
     <category term="PAN B — Probably identified"/>
     <category term="France · GEIPAN"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/632417526256</id>
+    <id>tag:realufo.org,2026:geipan/150064823690</id>
     <title>link</title>
     <link rel="alternate" type="text/html" href="https://www.cnes-geipan.fr/fr/cas/2025-09-51681?field_agregation_index_value=&amp;amp;field_classification_des_cas_target_id%5B0%5D=12&amp;amp;field_date_d_observation_value%5Bmin%5D=&amp;amp;field_date_d_observation_value%5Bmax%5D=&amp;amp;field_date_value=&amp;amp;field_departement_target_id=&amp;amp;field_document_existe_ou_pas_value=All&amp;amp;field_is_new_value=All&amp;amp;field_is_revisited_value=All&amp;amp;field_latitude_value%5Bmin%5D=&amp;amp;field_latitude_value%5Bmax%5D=&amp;amp;field_longitude_value%5Bmin%5D=&amp;amp;field_longitude_value%5Bmax%5D=&amp;amp;field_phenomene_target_id=&amp;amp;field_type_de_cas_target_id=All&amp;amp;order=field_date_d_observation&amp;amp;page=6&amp;amp;sort=desc"/>
-    <updated>2026-05-22T08:35:11Z</updated>
-    <published>2026-05-22T08:35:11Z</published>
+    <updated>2026-05-22T10:15:01Z</updated>
+    <published>2026-05-22T10:15:01Z</published>
     <category term="PAN B — Probably identified"/>
     <category term="France · GEIPAN"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/913302511074</id>
+    <id>tag:realufo.org,2026:geipan/626467744215</id>
     <title>link</title>
     <link rel="alternate" type="text/html" href="https://www.cnes-geipan.fr/fr/cas/2025-08-51686?field_agregation_index_value=&amp;amp;field_classification_des_cas_target_id%5B0%5D=12&amp;amp;field_date_d_observation_value%5Bmin%5D=&amp;amp;field_date_d_observation_value%5Bmax%5D=&amp;amp;field_date_value=&amp;amp;field_departement_target_id=&amp;amp;field_document_existe_ou_pas_value=All&amp;amp;field_is_new_value=All&amp;amp;field_is_revisited_value=All&amp;amp;field_latitude_value%5Bmin%5D=&amp;amp;field_latitude_value%5Bmax%5D=&amp;amp;field_longitude_value%5Bmin%5D=&amp;amp;field_longitude_value%5Bmax%5D=&amp;amp;field_phenomene_target_id=&amp;amp;field_type_de_cas_target_id=All&amp;amp;order=field_date_d_observation&amp;amp;page=6&amp;amp;sort=desc"/>
-    <updated>2026-05-22T08:35:11Z</updated>
-    <published>2026-05-22T08:35:11Z</published>
+    <updated>2026-05-22T10:15:01Z</updated>
+    <published>2026-05-22T10:15:01Z</published>
     <category term="PAN A — Identified"/>
     <category term="France · GEIPAN"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/776284649785</id>
+    <id>tag:realufo.org,2026:geipan/092896929620</id>
     <title>link</title>
     <link rel="alternate" type="text/html" href="https://www.cnes-geipan.fr/fr/cas/2025-08-51713?page=%2C4"/>
-    <updated>2026-05-22T08:35:11Z</updated>
-    <published>2026-05-22T08:35:11Z</published>
+    <updated>2026-05-22T10:15:01Z</updated>
+    <published>2026-05-22T10:15:01Z</published>
     <category term="PAN B — Probably identified"/>
     <category term="France · GEIPAN"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/849397717386</id>
+    <id>tag:realufo.org,2026:geipan/664024913568</id>
     <title>link</title>
     <link rel="alternate" type="text/html" href="https://www.cnes-geipan.fr/fr/cas/2025-08-51687?field_agregation_index_value=&amp;amp;field_classification_des_cas_target_id%5B0%5D=12&amp;amp;field_date_d_observation_value%5Bmin%5D=&amp;amp;field_date_d_observation_value%5Bmax%5D=&amp;amp;field_date_value=&amp;amp;field_departement_target_id=&amp;amp;field_document_existe_ou_pas_value=All&amp;amp;field_is_new_value=All&amp;amp;field_is_revisited_value=All&amp;amp;field_latitude_value%5Bmin%5D=&amp;amp;field_latitude_value%5Bmax%5D=&amp;amp;field_longitude_value%5Bmin%5D=&amp;amp;field_longitude_value%5Bmax%5D=&amp;amp;field_phenomene_target_id=&amp;amp;field_type_de_cas_target_id=All&amp;amp;order=field_date_d_observation&amp;amp;page=6&amp;amp;sort=desc"/>
-    <updated>2026-05-22T08:35:11Z</updated>
-    <published>2026-05-22T08:35:11Z</published>
+    <updated>2026-05-22T10:15:01Z</updated>
+    <published>2026-05-22T10:15:01Z</published>
     <category term="PAN ?"/>
     <category term="France · GEIPAN"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/530450438698</id>
+    <id>tag:realufo.org,2026:geipan/389099703817</id>
     <title>link</title>
     <link rel="alternate" type="text/html" href="https://www.cnes-geipan.fr/fr/cas/2025-08-51670?page=%2C5"/>
-    <updated>2026-05-22T08:35:11Z</updated>
-    <published>2026-05-22T08:35:11Z</published>
+    <updated>2026-05-22T10:15:01Z</updated>
+    <published>2026-05-22T10:15:01Z</published>
     <category term="PAN A — Identified"/>
     <category term="France · GEIPAN"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/253465569678</id>
+    <id>tag:realufo.org,2026:geipan/877944267744</id>
     <title>link</title>
     <link rel="alternate" type="text/html" href="https://www.cnes-geipan.fr/fr/cas/2025-08-51671?field_agregation_index_value=orange&amp;amp;field_date_d_observation_value%5Bmin%5D=&amp;amp;field_date_d_observation_value%5Bmax%5D=&amp;amp;field_date_value=&amp;amp;field_departement_target_id=&amp;amp;field_document_existe_ou_pas_value=All&amp;amp;field_is_new_value=All&amp;amp;field_is_revisited_value=All&amp;amp;field_latitude_value%5Bmin%5D=&amp;amp;field_latitude_value%5Bmax%5D=&amp;amp;field_longitude_value%5Bmin%5D=&amp;amp;field_longitude_value%5Bmax%5D=&amp;amp;field_phenomene_target_id=&amp;amp;field_type_de_cas_target_id=All&amp;amp;order=title&amp;amp;page=16&amp;amp;sort=asc"/>
-    <updated>2026-05-22T08:35:11Z</updated>
-    <published>2026-05-22T08:35:11Z</published>
+    <updated>2026-05-22T10:15:01Z</updated>
+    <published>2026-05-22T10:15:01Z</published>
     <category term="PAN A — Identified"/>
     <category term="France · GEIPAN"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/267944665453</id>
+    <id>tag:realufo.org,2026:geipan/212118940273</id>
     <title>link</title>
     <link rel="alternate" type="text/html" href="https://www.cnes-geipan.fr/fr/cas/2025-07-51669?page=%2C5"/>
-    <updated>2026-05-22T08:35:11Z</updated>
-    <published>2026-05-22T08:35:11Z</published>
+    <updated>2026-05-22T10:15:01Z</updated>
+    <published>2026-05-22T10:15:01Z</published>
     <category term="PAN B — Probably identified"/>
     <category term="France · GEIPAN"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/825021767936</id>
+    <id>tag:realufo.org,2026:geipan/494318276773</id>
     <title>link</title>
     <link rel="alternate" type="text/html" href="https://www.cnes-geipan.fr/fr/cas/2025-07-51680?page=%2C5"/>
-    <updated>2026-05-22T08:35:11Z</updated>
-    <published>2026-05-22T08:35:11Z</published>
+    <updated>2026-05-22T10:15:01Z</updated>
+    <published>2026-05-22T10:15:01Z</published>
     <category term="PAN B — Probably identified"/>
     <category term="France · GEIPAN"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/684257316885</id>
+    <id>tag:realufo.org,2026:geipan/835686225016</id>
     <title>link</title>
     <link rel="alternate" type="text/html" href="https://www.cnes-geipan.fr/fr/cas/2025-07-51666?page=%2C5"/>
-    <updated>2026-05-22T08:35:11Z</updated>
-    <published>2026-05-22T08:35:11Z</published>
+    <updated>2026-05-22T10:15:01Z</updated>
+    <published>2026-05-22T10:15:01Z</published>
     <category term="PAN A — Identified"/>
     <category term="France · GEIPAN"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/088413412644</id>
+    <id>tag:realufo.org,2026:geipan/356973205708</id>
     <title>link</title>
     <link rel="alternate" type="text/html" href="https://www.cnes-geipan.fr/fr/cas/2025-06-51662?page=%2C5"/>
-    <updated>2026-05-22T08:35:11Z</updated>
-    <published>2026-05-22T08:35:11Z</published>
+    <updated>2026-05-22T10:15:01Z</updated>
+    <published>2026-05-22T10:15:01Z</published>
     <category term="PAN ?"/>
     <category term="France · GEIPAN"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/489981527021</id>
+    <id>tag:realufo.org,2026:geipan/716517378073</id>
     <title>link</title>
     <link rel="alternate" type="text/html" href="https://www.cnes-geipan.fr/fr/cas/2025-06-51675?page=%2C6"/>
-    <updated>2026-05-22T08:35:11Z</updated>
-    <published>2026-05-22T08:35:11Z</published>
+    <updated>2026-05-22T10:15:01Z</updated>
+    <published>2026-05-22T10:15:01Z</published>
     <category term="PAN B — Probably identified"/>
     <category term="France · GEIPAN"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/777590703993</id>
+    <id>tag:realufo.org,2026:geipan/074657048433</id>
     <title>link</title>
     <link rel="alternate" type="text/html" href="https://www.cnes-geipan.fr/fr/cas/2025-05-51653?page=%2C6"/>
-    <updated>2026-05-22T08:35:11Z</updated>
-    <published>2026-05-22T08:35:11Z</published>
+    <updated>2026-05-22T10:15:01Z</updated>
+    <published>2026-05-22T10:15:01Z</published>
     <category term="PAN B — Probably identified"/>
     <category term="France · GEIPAN"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/852847757090</id>
+    <id>tag:realufo.org,2026:geipan/103564398092</id>
     <title>link</title>
     <link rel="alternate" type="text/html" href="https://www.cnes-geipan.fr/fr/cas/2025-05-51647?page=%2C6"/>
-    <updated>2026-05-22T08:35:11Z</updated>
-    <published>2026-05-22T08:35:11Z</published>
+    <updated>2026-05-22T10:15:01Z</updated>
+    <published>2026-05-22T10:15:01Z</published>
     <category term="PAN B — Probably identified"/>
     <category term="France · GEIPAN"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/752388732168</id>
+    <id>tag:realufo.org,2026:geipan/854762840365</id>
     <title>link</title>
     <link rel="alternate" type="text/html" href="https://www.cnes-geipan.fr/fr/cas/2025-05-51649?page=%2C6"/>
-    <updated>2026-05-22T08:35:11Z</updated>
-    <published>2026-05-22T08:35:11Z</published>
+    <updated>2026-05-22T10:15:01Z</updated>
+    <published>2026-05-22T10:15:01Z</published>
     <category term="PAN A — Identified"/>
     <category term="France · GEIPAN"/>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:geipan/115095171068</id>
+    <id>tag:realufo.org,2026:geipan/340688020786</id>
     <title>link</title>
     <link rel="alternate" type="text/html" href="https://www.cnes-geipan.fr/fr/cas/2025-05-51660?field_agregation_index_value=orange&amp;amp;field_date_d_observation_value%5Bmin%5D=&amp;amp;field_date_d_observation_value%5Bmax%5D=&amp;amp;field_date_value=&amp;amp;field_departement_target_id=&amp;amp;field_document_existe_ou_pas_value=All&amp;amp;field_is_new_value=All&amp;amp;field_is_revisited_value=All&amp;amp;field_latitude_value%5Bmin%5D=&amp;amp;field_latitude_value%5Bmax%5D=&amp;amp;field_longitude_value%5Bmin%5D=&amp;amp;field_longitude_value%5Bmax%5D=&amp;amp;field_phenomene_target_id=&amp;amp;field_type_de_cas_target_id=All&amp;amp;order=title&amp;amp;page=16&amp;amp;sort=asc"/>
-    <updated>2026-05-22T08:35:11Z</updated>
-    <published>2026-05-22T08:35:11Z</published>
+    <updated>2026-05-22T10:15:01Z</updated>
+    <published>2026-05-22T10:15:01Z</published>
     <category term="PAN B — Probably identified"/>
     <category term="France · GEIPAN"/>
   </entry>
