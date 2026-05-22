@@ -62,7 +62,7 @@ main{padding:24px 0 80px}
 .chip.active{color:var(--caution);border-color:var(--caution);background:rgba(212,160,23,0.16)}
 .chip-label{font-weight:500;margin-right:2px;color:var(--ink-faint);text-transform:uppercase;font-family:var(--mono);align-self:center}
 
-.feed{display:grid;gap:12px}
+.feed{display:grid;gap:12px;list-style:none;padding:0;margin:0}
 .row{background:var(--bg-2);border:1px solid var(--rule);border-radius:6px;padding:14px 16px;display:grid;grid-template-columns:96px 1fr auto;gap:16px;align-items:start;transition:border-color 0.2s}
 @media (max-width:600px){.row{grid-template-columns:1fr}}
 .row:hover{border-color:var(--rule-strong)}
@@ -142,9 +142,9 @@ footer a{color:var(--ink-dim);text-decoration:none}
     <button type="button" class="chip active" data-arc="all">All</button>
   </div>
 
-  <div id="feed" class="feed" role="list">
-    <div class="empty" id="loading"><strong>Loading recent records…</strong>Reading /api/all.json (~4,800 records).</div>
-  </div>
+  <ul id="feed" class="feed">
+    <li class="empty" id="loading"><strong>Loading recent records…</strong>Reading /api/all.json (~4,800 records).</li>
+  </ul>
 
 </main>
 
@@ -237,14 +237,14 @@ footer a{color:var(--ink-dim);text-decoration:none}
         var slice = pool.slice(0, 50);
         var feed = document.getElementById('feed');
         if (!slice.length) {
-          feed.innerHTML = '<div class="empty"><strong>No records.</strong>Archive may be temporarily empty.</div>';
+          feed.innerHTML = '<li class="empty"><strong>No records.</strong>Archive may be temporarily empty.</li>';
           return;
         }
         feed.innerHTML = slice.map(function(r) {
           var open = resolveOpenUrl(r);
           var src = r.src && r.src !== open ? r.src : '';
           return (
-            '<div class="row" role="listitem">' +
+            '<li class="row">' +
               '<div class="when">' + esc(formatDate(r)) + '</div>' +
               '<div class="body">' +
                 '<div class="title">' + esc(r.title || '(Untitled)') + '</div>' +
@@ -259,7 +259,7 @@ footer a{color:var(--ink-dim);text-decoration:none}
                 (open ? '<a href="' + esc(open) + '" target="_blank" rel="noopener">Open</a>' : '') +
                 (src ? '<a href="' + esc(src) + '" target="_blank" rel="noopener">Source ↗</a>' : '') +
               '</div>' +
-            '</div>'
+            '</li>'
           );
         }).join('');
       }
@@ -273,7 +273,7 @@ footer a{color:var(--ink-dim);text-decoration:none}
       render();
     })
     .catch(function() {
-      document.getElementById('feed').innerHTML = '<div class="empty"><strong>/api/all.json not reachable.</strong>Run <code>python3 scripts/build-api.py</code> to regenerate.</div>';
+      document.getElementById('feed').innerHTML = '<li class="empty"><strong>/api/all.json not reachable.</strong>Run <code>python3 scripts/build-api.py</code> to regenerate.</li>';
     });
 
   /* Hamburger */

@@ -191,7 +191,7 @@ main{max-width:1100px;margin:0 auto;padding:24px 16px 80px}
 .result-info strong{color:var(--ink-dim)}
 
 /* results grid */
-#results{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+#results{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;list-style:none;padding:0;margin:0}
 @media(max-width:600px){#results{grid-template-columns:1fr}}
 .res-card{background:var(--bg-2);border:1px solid var(--rule);border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:10px;transition:border-color 0.2s}
 .res-card:hover{border-color:var(--rule-strong)}
@@ -287,13 +287,13 @@ footer a:hover{color:var(--ink)}
 </div>
 
 <section class="hero">
-  <div class="hero-carousel" id="hero-carousel" aria-label="Featured UAP imagery and video" role="region">
+  <section class="hero-carousel" id="hero-carousel" aria-label="Featured UAP imagery and video">
     <div class="carousel-track" id="carousel-track"></div>
     <button class="carousel-btn prev" id="carousel-prev" aria-label="Previous">&lsaquo;</button>
     <button class="carousel-btn next" id="carousel-next" aria-label="Next">&rsaquo;</button>
     <div class="carousel-dots" id="carousel-dots"></div>
     <div class="carousel-caption" id="carousel-caption"></div>
-  </div>
+  </section>
 </section>
 
 <main>
@@ -329,7 +329,7 @@ footer a:hover{color:var(--ink)}
   </div>
 
   <div class="result-info" id="result-info" aria-live="polite" aria-atomic="true"></div>
-  <div id="results" role="list" aria-label="Search results"></div>
+  <ul id="results"></ul>
   <div class="pagination" id="pagination"></div>
 </main>
 
@@ -815,9 +815,8 @@ footer a:hover{color:var(--ink)}
   }
 
   function renderCard(rec, idx) {
-    var div = document.createElement('div');
+    var div = document.createElement('li');
     div.className = 'res-card';
-    div.setAttribute('role', 'listitem');
     div.dataset.recIdx = String(idx);
 
     /* Current search terms (split on whitespace). Used for <mark> highlights. */
@@ -881,7 +880,7 @@ footer a:hover{color:var(--ink)}
 
     if (view.length === 0) {
       resultInfo.innerHTML = '';
-      var msg = document.createElement('div');
+      var msg = document.createElement('li');
       msg.className = 'state-message';
       if (isFiltering) {
         msg.innerHTML = q
