@@ -102,6 +102,28 @@ if os.path.exists(_scraped_cache):
                            'ag': _r.get('agency', 'DGAC / SEFAA'), 'cat': _r.get('type', 'PDF').capitalize(),
                            'date': _r.get('date', ''), 'l': '', 'u': _url, 's': _r.get('src', ''),})
 
+# Spider crawl results — each page becomes a CATALOG entry with text context.
+_spider_cache = os.path.join(ROOT, '.cache', 'spider-index.json')
+if os.path.exists(_spider_cache):
+    _seen_u = {a.get('u', '') for a in ASSETS}
+    for _r in json.load(open(_spider_cache)).get('records', []):
+        _url = _r.get('url', '')
+        _title = _r.get('title', '').replace(' – SEFAA', '').strip()
+        _ctx = _r.get('context', '').strip()
+        if not _url or _url in _seen_u or not _title:
+            continue
+        # Skip top-level / category index pages — only keep monthly dispatches.
+        if _url.rstrip('/').endswith(('casos-resueltos', 'sefaa.dgac.gob.cl', 'quienes-somos')):
+            continue
+        _seen_u.add(_url)
+        _file_count = len(_r.get('files', []))
+        _desc = (_ctx[:300] + '…') if len(_ctx) > 300 else _ctx
+        if _file_count:
+            _desc = f'{_file_count} case files referenced. ' + _desc
+        ASSETS.append({'t': 'CATALOG', 'ti': _title, 'de': _desc,
+                       'ag': 'DGAC / SEFAA', 'cat': 'Monthly Dispatch',
+                       'date': '', 'l': '', 'u': _url, 's': _url})
+
 stats = {
     'total': len(ASSETS),
     'local_total': sum(1 for a in ASSETS if a.get('l')),
