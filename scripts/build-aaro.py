@@ -829,7 +829,7 @@ footer .colophon {
 }
 @media (min-width: 720px) {
   .nav-more-btn { padding: 0; border: 0; font-size: 10.5px; }
-  .nav-dropdown { position: absolute; right: 0; top: calc(100% + 10px); min-width: 180px; }
+  .nav-dropdown { position: absolute; right: 0; top: calc(100% + 10px); min-width: 240px; max-height: 70vh; overflow-y: auto;; }
   .has-dropdown.open .nav-dropdown { display: block; }
   .lang-btn { width: auto; margin: 0; padding: 3px 8px; }
   .lang-menu { position: absolute; right: 0; top: calc(100% + 10px); min-width: 130px; }
@@ -1466,9 +1466,19 @@ _aaro_nav_js = f'''<script>
   function applyLang(code){{lang=code;localStorage.setItem('realufo_lang',code);var t=I18N[code];document.querySelectorAll('[data-i18n]').forEach(function(el){{var k=el.getAttribute('data-i18n');if(t[k]!==undefined)el.textContent=t[k];}});var lb=document.getElementById('lang-btn');if(lb)lb.textContent=t.code||code.toUpperCase();}}
   var lp=document.getElementById('lang-picker'),lbtn=document.getElementById('lang-btn'),lm=document.getElementById('lang-menu');
   if(lbtn&&lp){{lbtn.addEventListener('click',function(e){{e.stopPropagation();lp.classList.toggle('open');lbtn.setAttribute('aria-expanded',lp.classList.contains('open')?'true':'false');}});if(lm)lm.addEventListener('click',function(e){{var b=e.target.closest('button[data-lang]');if(!b)return;applyLang(b.dataset.lang);lp.classList.remove('open');lbtn.setAttribute('aria-expanded','false');}});}}
-  var mw=document.getElementById('nav-more-wrap'),mb=document.getElementById('nav-more-btn');
-  if(mw&&mb){{mb.addEventListener('click',function(e){{e.stopPropagation();mw.classList.toggle('open');mb.setAttribute('aria-expanded',mw.classList.contains('open')?'true':'false');}});}}
-  document.addEventListener('click',function(){{if(lp){{lp.classList.remove('open');if(lbtn)lbtn.setAttribute('aria-expanded','false');}}if(mw){{mw.classList.remove('open');if(mb)mb.setAttribute('aria-expanded','false');}}}});
+  var dds=[['nav-site-wrap','nav-site-btn'],['nav-story-wrap','nav-story-btn'],['nav-more-wrap','nav-more-btn']]
+    .map(function(p){{return [document.getElementById(p[0]),document.getElementById(p[1])];}})
+    .filter(function(p){{return p[0]&&p[1];}});
+  dds.forEach(function(pair,i){{pair[1].addEventListener('click',function(e){{
+    e.stopPropagation();
+    dds.forEach(function(o,j){{if(j!==i)o[0].classList.remove('open');}});
+    var op=pair[0].classList.toggle('open');
+    pair[1].setAttribute('aria-expanded',op?'true':'false');
+  }});}});
+  document.addEventListener('click',function(){{
+    if(lp){{lp.classList.remove('open');if(lbtn)lbtn.setAttribute('aria-expanded','false');}}
+    dds.forEach(function(p){{p[0].classList.remove('open');p[1].setAttribute('aria-expanded','false');}});
+  }});
   var bar=document.querySelector('.arch-controls-bar');
   if(bar){{var lastY=window.scrollY;window.addEventListener('scroll',function(){{if(window.innerWidth>=720){{bar.classList.remove('bar-hidden');return;}}var y=window.scrollY;if(y<80)bar.classList.remove('bar-hidden');else if(y>lastY+4)bar.classList.add('bar-hidden');else if(y<lastY-4)bar.classList.remove('bar-hidden');lastY=y;}},{{passive:true}});}}
   applyLang(lang);

@@ -305,7 +305,7 @@ nav.primary a:hover, nav.primary a.active { color: var(--caution); }
 /* Desktop: floating dropdown — click-only (hover/focus-within caused sticky-open bug) */
 @media (min-width: 720px) {
   .nav-more-btn { padding: 0; border: 0; width: auto; font-size: 10.5px; }
-  .nav-dropdown { position: absolute; right: 0; top: calc(100% + 10px); min-width: 180px; max-height: 70vh; overflow-y: auto; }
+  T0px; max-height: 70vh; overflow-y: auto; }
   .has-dropdown.open .nav-dropdown { display: block; }
 }
 
