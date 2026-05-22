@@ -1,6 +1,6 @@
 # realufo.org static API
 
-Generated: 2026-05-22T11:08:26Z  
+Generated: 2026-05-22T15:08:15Z  
 Total records: **4,778**  
 Total archives: **15**
 

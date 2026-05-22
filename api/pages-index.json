@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "Per-page index for case + story pages, so the cross-archive search can index narrative prose alongside per-archive manifests.",
-    "count": 36,
+    "count": 40,
     "kinds": [
       "case",
       "story"
@@ -84,6 +84,21 @@
       "kind": "case"
     },
     {
+      "title": "O'Hare International 2006",
+      "desc": "A metallic disc reportedly hovered ~700 ft over United Airlines Gate C-17 at Chicago O&#x27;Hare for ~5 minutes on 7 November 2006. ~12 United employees witnessed; FAA confirmed the report, classified it as a &#x27;weather phenomenon&#x27;.",
+      "agency": "U.S. Federal Aviation Administration / United Airlines / AARO",
+      "type": "Case",
+      "date": "2007-01-01",
+      "region": "United Airlines Gate C-17",
+      "url": "/aaro/ohare-2006.html",
+      "src": "",
+      "local": "",
+      "site": "AARO",
+      "siteId": "aaro",
+      "siteDir": "aaro/",
+      "kind": "case"
+    },
+    {
       "title": "Phoenix Lights, March 1997",
       "desc": "The Phoenix Lights, 13 March 1997 — V-shaped craft observed by thousands across Arizona and the southwestern United States. Governor Symington's public confirmation a decade later. Offline-archived from DoD / Air Force releases.",
       "agency": "United States Air Force",
@@ -91,6 +106,21 @@
       "date": "1997-03-13",
       "region": "State of Arizona",
       "url": "/aaro/phoenix-lights.html",
+      "src": "",
+      "local": "",
+      "site": "AARO",
+      "siteId": "aaro",
+      "siteDir": "aaro/",
+      "kind": "case"
+    },
+    {
+      "title": "Stephenville · Texas",
+      "desc": "Dozens of independent civilian witnesses observed a mile-wide formation of luminous objects over Erath County, Texas, 8 January 2008. FAA radar tape released via FOIA showed unidentified contacts; the USAF first denied then later acknowledged F-16 training flights in the area.",
+      "agency": "U.S. Federal Aviation Administration / USAF / AARO",
+      "type": "Case",
+      "date": "2008-04-20",
+      "region": "Stephenville",
+      "url": "/aaro/stephenville.html",
       "src": "",
       "local": "",
       "site": "AARO",
@@ -346,6 +376,36 @@
       "date": "1969-01-08",
       "region": "University of Colorado, Boulder",
       "url": "/nara/condon-committee.html",
+      "src": "",
+      "local": "",
+      "site": "NARA",
+      "siteId": "nara",
+      "siteDir": "nara/",
+      "kind": "case"
+    },
+    {
+      "title": "Lubbock Lights",
+      "desc": "Multi-night V-formation observations + Carl Hart Jr. photographs over Lubbock, Texas, August-September 1951. Project Blue Book case study; Texas Tech faculty four-witness anchor.",
+      "agency": "USAF Project Blue Book / NARA",
+      "type": "Case",
+      "date": "1951-08-25",
+      "region": "Lubbock, Texas",
+      "url": "/nara/lubbock-lights.html",
+      "src": "",
+      "local": "",
+      "site": "NARA",
+      "siteId": "nara",
+      "siteDir": "nara/",
+      "kind": "case"
+    },
+    {
+      "title": "Mantell · Godman AFB",
+      "desc": "Kentucky Air National Guard P-51D Mustang piloted by Capt. Thomas Mantell crashed during pursuit of an unidentified object near Godman Field, Fort Knox, 7 January 1948 — the first known U.S. military fatality during a UAP pursuit.",
+      "agency": "U.S. Air Force / NARA",
+      "type": "Case",
+      "date": "1948-01-07",
+      "region": "Godman Field",
+      "url": "/nara/mantell.html",
       "src": "",
       "local": "",
       "site": "NARA",

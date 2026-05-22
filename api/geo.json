@@ -224,6 +224,46 @@
       "title": "El Bosque",
       "date": "2014-04-01",
       "description": "Multi-amateur-video observation of an unidentified flat-disc object during the Chilean Air Force aerobatics demonstration at El Bosque Air Base, Santiago, 31 May 2010. SEFAA investigated for 24 months; final case…"
+    },
+    {
+      "kind": "case",
+      "archive": "aaro",
+      "href": "/aaro/ohare-2006.html",
+      "lat": 41.9742,
+      "lon": -87.9073,
+      "title": "O&#x27;Hare International 2006",
+      "date": "2007-01-01",
+      "description": "A metallic disc reportedly hovered ~700 ft over United Airlines Gate C-17 at Chicago O&#x27;Hare for ~5 minutes on 7 November 2006. ~12 United employees witnessed; FAA confirmed the report, classified it as a…"
+    },
+    {
+      "kind": "case",
+      "archive": "aaro",
+      "href": "/aaro/stephenville.html",
+      "lat": 32.2207,
+      "lon": -98.2023,
+      "title": "Stephenville",
+      "date": "2008-04-20",
+      "description": "Dozens of independent civilian witnesses observed a mile-wide formation of luminous objects over Erath County, Texas, 8 January 2008. FAA radar tape released via FOIA showed unidentified contacts; the USAF first denied…"
+    },
+    {
+      "kind": "case",
+      "archive": "nara",
+      "href": "/nara/lubbock-lights.html",
+      "lat": 33.5779,
+      "lon": -101.8552,
+      "title": "Lubbock Lights",
+      "date": "1951-08-25",
+      "description": "Multi-night V-formation observations + Carl Hart Jr. photographs over Lubbock, Texas, August-September 1951. Project Blue Book case study; Texas Tech faculty four-witness anchor."
+    },
+    {
+      "kind": "case",
+      "archive": "nara",
+      "href": "/nara/mantell.html",
+      "lat": 37.907,
+      "lon": -85.9722,
+      "title": "Mantell",
+      "date": "1948-01-07",
+      "description": "Kentucky Air National Guard P-51D Mustang piloted by Capt. Thomas Mantell crashed during pursuit of an unidentified object near Godman Field, Fort Knox, 7 January 1948 — the first known U.S. military fatality during a…"
     }
   ],
   "archives": [

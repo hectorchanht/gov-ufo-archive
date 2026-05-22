@@ -46,6 +46,10 @@ CASE_PAGES = [
     'nara/condon-committee.html',
     'geipan/valensole.html',
     'chile/el-bosque.html',
+    'aaro/ohare-2006.html',
+    'aaro/stephenville.html',
+    'nara/lubbock-lights.html',
+    'nara/mantell.html',
 ]
 
 

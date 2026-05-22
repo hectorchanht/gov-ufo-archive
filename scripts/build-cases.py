@@ -273,6 +273,8 @@ footer a{{color:var(--ink-dim)}}
     </div>
   </section>
 
+  <div id="related-media" data-keywords="{related_keywords}" data-archive="{archive}" data-limit="8"></div>
+
 {sections_html}
   <section>
     <h2>The voice on the tape</h2>
@@ -301,6 +303,7 @@ footer a{{color:var(--ink-dim)}}
   if(t&&n){{t.addEventListener('click',function(){{var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o?'true':'false');}});}}
 }})();
 </script>
+<script defer src="/assets/vendor/related-media.js"></script>
 <script defer src="/assets/vendor/citation.js"></script>
 <script defer src="/assets/vendor/share.js"></script>
 </body>
@@ -317,6 +320,11 @@ def render(case: dict) -> str:
     desc_short = strip_html(case['json_ld']['description'])[:155]
     desc_full = strip_html(case['json_ld']['description'])[:300]
     title_h = html.escape(case['name'])
+    # Keywords for related-media component — pull from JSON-LD; skip the
+    # generic catchalls ("UAP", "UFO") so the search isn't dominated by
+    # everything in the corpus. Limit to 8 to keep the data-attr short.
+    raw_kws = case['json_ld'].get('keywords', [])
+    kws = [k for k in raw_kws if k.upper() not in ('UAP', 'UFO')][:8]
     return TEMPLATE.format(
         title_html=title_h,
         archive=case['archive'],
@@ -337,6 +345,7 @@ def render(case: dict) -> str:
         meta_strip=render_meta_strip(case['meta_strip']),
         minutes=minutes,
         words=word_count(case),
+        related_keywords=html.escape(','.join(kws), quote=True),
         sections_html=render_sections(case['sections']),
         pullquote_html=render_pullquote(case['pullquote']),
         timeline_html=render_timeline(case['timeline']),

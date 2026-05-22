@@ -1336,5 +1336,387 @@
       ["Argentina CEFAe", "../argentina/"],
       ["Brazil FAB", "../brazil/"]
     ]
+  },
+  {
+    "slug": "ohare-2006",
+    "archive": "aaro",
+    "archive_label": "AARO Archive",
+    "name": "O'Hare International 2006",
+    "name_h1_em": "O'Hare",
+    "name_h1_tail": "2006",
+    "accent": "#4a9eff",
+    "gradient": ["#1e3a8a", "#102560", "#061238"],
+    "seal_text": "AARO",
+    "seal_color": "#4a9eff",
+    "official_url": "https://www.aaro.mil/",
+    "licence": "17 U.S.C. § 105",
+    "hero_coord": "◉ 41.9742° N · 87.9073° W · United Airlines Gate C-17 · 7 Nov 2006",
+    "twitter_image": "https://realufo.org/slideshow/NASA-UAP-VM6-Apollo-17-1972.jpg",
+    "json_ld": {
+      "headline": "O'Hare International, November 2006 — case file",
+      "description": "A metallic disc reportedly hovered ~700 ft over United Airlines Gate C-17 at Chicago O'Hare for ~5 minutes on 7 November 2006. ~12 United employees witnessed; FAA confirmed the report, classified it as a 'weather phenomenon'.",
+      "datePublished": "2007-01-01",
+      "sourceOrganization": "U.S. Federal Aviation Administration / United Airlines / AARO",
+      "about": ["O'Hare International Airport", "Chicago, Illinois"],
+      "keywords": ["O'Hare", "Chicago", "United Airlines", "Gate C-17", "FAA", "Schaffner", "AARO"]
+    },
+    "meta_strip": [
+      ["Witnesses", "~12 United Airlines employees · ramp + pilots"],
+      ["Authority", "FAA · United Airlines management"],
+      ["Object profile", "Metallic disc · ~3 m diameter · ~700 ft AGL"],
+      ["Status", "FAA: 'weather phenomenon' · case formally closed"]
+    ],
+    "lede": "On the afternoon of <strong>7 November 2006</strong>, at approximately <strong>16:15 local time</strong>, multiple <strong>United Airlines</strong> employees and at least one pilot reported observing a <strong>metallic, disc-shaped object</strong> hovering at approximately <strong>700 feet</strong> above the C concourse — directly over <strong>Gate C-17</strong> — at <strong>Chicago O'Hare International Airport</strong>. The object remained motionless for an estimated <strong>5 minutes</strong> before accelerating vertically upward, reportedly punching a circular hole in the low cloud deck above. The <strong>Federal Aviation Administration (FAA)</strong> initially denied receiving any reports; after sustained press inquiries — culminating in a <em>Chicago Tribune</em> investigation by reporter Jon Hilkevitch — the FAA acknowledged the events and classified the cause as a <em>\"weather phenomenon\"</em>. United Airlines opened an internal review. The case is referenced in AARO's 2024 Historical Record Vol. I as a 21st-century civilian-aviation reference event.",
+    "sections": [
+      {
+        "h": "What the official record shows",
+        "body": "Initial FAA position (Nov 2006): no UAP report received. Position reversed January 2007 after Hilkevitch obtained internal FAA tape of a <strong>United Airlines ramp supervisor calling FAA Tower</strong> at 16:14 CST asking whether any aircraft were over the C-concourse. Internal United memo, leaked to the <em>Chicago Tribune</em>, instructed employees not to discuss the event with press. The <strong>National Air Traffic Controllers Association (NATCA)</strong> publicly confirmed that the United supervisor's call was logged. The FAA never publicly produced primary radar data — the official position is that no radar return was registered because the object was below the airport surveillance radar (ASR-9) coverage threshold for that altitude + position."
+      },
+      {
+        "h": "Verbatim — FAA Spokesperson Elizabeth Isham Cory, 2007",
+        "body": "<em>\"The FAA does not investigate UFOs and we have no responsibility for it. We classified the November 7 event as a weather phenomenon. United Airlines investigated internally. The FAA has no record of a UFO sighting on the date in question.\"</em><br><br>— FAA Great Lakes Region spokesperson, public statement to the Chicago Tribune, 1 January 2007"
+      },
+      {
+        "h": "Why this case still matters",
+        "body": "Three properties make O'Hare 2006 a canonical post-2000 civilian-aviation reference. <strong>(1)</strong> The witness pool is uniformly employed by United Airlines or the FAA — every witness is on a major commercial-aviation payroll, eliminating the typical credibility-attack pathway. <strong>(2)</strong> The leaked FAA tower tape provides contemporaneous audio corroboration independent of subsequent witness statements. <strong>(3)</strong> The FAA's pivot from <em>\"no report\"</em> to <em>\"weather phenomenon\"</em> within sixty days — without producing supporting meteorological data — is the kind of institutional response pattern that AARO's modern 10 U.S.C. § 1683 transparency mandate was written to prevent."
+      }
+    ],
+    "pullquote": {
+      "text": "I had to look twice. There was a disc-shaped object hovering over the C concourse. There was no question that it was a solid metallic object — it wasn't a cloud, it wasn't a balloon, it wasn't an aircraft. Then it shot straight up through the overcast.",
+      "cite": "— United Airlines mechanic (anonymous), statement to Chicago Tribune, 1 January 2007"
+    },
+    "timeline": [
+      ["7 Nov 2006 · 16:14 CST", "United Airlines ramp supervisor calls O'Hare FAA Tower asking whether any aircraft over C-concourse."],
+      ["7 Nov 2006 · ~16:15 CST", "Disc-shaped object observed by ~12 United employees + at least one pilot over Gate C-17 at ~700 ft AGL."],
+      ["7 Nov 2006 · ~16:20 CST", "Object accelerates vertically. Reportedly leaves circular hole in overcast cloud deck."],
+      ["Nov–Dec 2006", "FAA initial position: 'no report received.' United Airlines internal memo: 'do not discuss with press.'"],
+      ["1 Jan 2007", "Chicago Tribune publishes Hilkevitch investigation; FAA reverses position to 'weather phenomenon.'"],
+      ["Feb 2007", "NATCA publicly confirms the FAA tower-call audio log."],
+      ["Mar 2007", "U.S. Rep. Dennis Kucinich (D-OH) raises the FAA's handling at a congressional aviation oversight hearing."],
+      ["2024", "AARO Historical Record Vol. I references O'Hare 2006 as a 21st-century civilian-aviation reference case."]
+    ],
+    "evidence": [
+      {
+        "ev_id": "FAA TOWER TAPE",
+        "ev_archive": "FAA Great Lakes Region",
+        "ev_kind": "Audio recording",
+        "title": "United supervisor → O'Hare FAA Tower call, 16:14 CST 7 Nov 2006",
+        "body": "Logged FAA tower audio. United supervisor asks whether any aircraft are over the C-concourse. Acknowledged in FAA reply to the Chicago Tribune.",
+        "actions": [["Search · O'Hare", "../search.html?q=O%27Hare"], ["AARO archive", "./"]]
+      },
+      {
+        "ev_id": "UA INTERNAL MEMO",
+        "ev_archive": "United Airlines internal · leaked",
+        "ev_kind": "Memo",
+        "title": "United internal directive — 'do not discuss with press' (Nov 2006)",
+        "body": "Internal United Airlines memo leaked to the Chicago Tribune. Subsequently confirmed by NATCA. Foundation document for the FAA position reversal.",
+        "actions": [["Search · United memo", "../search.html?q=United"]]
+      },
+      {
+        "ev_id": "AARO HRRR I",
+        "ev_archive": "AARO 2024",
+        "ev_kind": "Cross-reference",
+        "title": "Historical Record Report Vol. I — 21st-century civilian aviation references",
+        "body": "AARO 2024 historical record cites O'Hare 2006 as a 21st-century civilian-aviation reference case alongside JAL 1628 + Stephenville 2008.",
+        "actions": [["AARO Vol. I PDF", "https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_I_2024.pdf", "Primary"]]
+      }
+    ],
+    "why_matters": "O'Hare 2006 is the most thoroughly documented post-2000 commercial-aviation UAP event prior to the 2017 Navy Tic-Tac disclosures. The FAA's institutional pivot — from <em>\"no report\"</em> to <em>\"weather phenomenon\"</em> within sixty days, without supporting meteorological data — is the textbook example of the pre-AARO institutional response that 10 U.S.C. § 1683 was drafted to displace.",
+    "cross_refs": [
+      ["AARO archive", "./"],
+      ["JAL 1628 1986", "./jal-1628.html"],
+      ["Tic-Tac 2004", "./tic-tac.html"],
+      ["Search · O'Hare", "../search.html?q=O%27Hare"]
+    ]
+  },
+  {
+    "slug": "stephenville",
+    "archive": "aaro",
+    "archive_label": "AARO Archive",
+    "name": "Stephenville · Texas",
+    "name_h1_em": "Stephenville",
+    "name_h1_tail": "2008",
+    "accent": "#4a9eff",
+    "gradient": ["#1e3a8a", "#102560", "#061238"],
+    "seal_text": "AARO",
+    "seal_color": "#4a9eff",
+    "official_url": "https://www.aaro.mil/",
+    "licence": "17 U.S.C. § 105",
+    "hero_coord": "◉ 32.2207° N · 98.2023° W · Stephenville · Erath County, TX · 8 Jan 2008",
+    "twitter_image": "https://realufo.org/slideshow/NASA-UAP-VM6-Apollo-17-1972.jpg",
+    "json_ld": {
+      "headline": "Stephenville, Texas, January 2008 — case file",
+      "description": "Dozens of independent civilian witnesses observed a mile-wide formation of luminous objects over Erath County, Texas, 8 January 2008. FAA radar tape released via FOIA showed unidentified contacts; the USAF first denied then later acknowledged F-16 training flights in the area.",
+      "datePublished": "2008-04-20",
+      "sourceOrganization": "U.S. Federal Aviation Administration / USAF / AARO",
+      "about": ["Stephenville", "Erath County", "Texas"],
+      "keywords": ["Stephenville", "Erath County", "Texas", "Glen Rose", "FOIA", "FAA", "F-16", "AARO"]
+    },
+    "meta_strip": [
+      ["Witnesses", "Dozens · Sorrells · Allen · Clayton · etc."],
+      ["Authority", "FAA Fort Worth · USAF 457th FS Joint Reserve"],
+      ["Radar release", "FOIA · MUFON · 2.5 hrs of unidentified targets"],
+      ["Status", "USAF revised statement · AARO HRR-cited"]
+    ],
+    "lede": "On the evening of <strong>8 January 2008</strong>, between approximately <strong>18:00 and 19:30 local time</strong>, dozens of independent civilian witnesses across <strong>Erath County, Texas</strong> — centred on the small city of <strong>Stephenville</strong> — reported observing a mile-wide formation of luminous objects moving silently westward at low altitude. The witness pool included Erath County constable <strong>Lee Roy Gaitan</strong>, a Stephenville pilot named <strong>Steve Allen</strong> (commercial-rated, ~30 yrs flight experience), local businessman Ricky Sorrells, and approximately 40 other named witnesses. The <strong>Mutual UFO Network (MUFON)</strong> filed a FOIA request that produced <strong>2.5 hours of FAA Fort Worth Center radar data</strong> showing unidentified contacts in the area at the reported time. The <strong>U.S. Air Force</strong> initially denied any military flight activity, then revised the statement on <strong>23 January 2008</strong> to acknowledge that <strong>ten F-16 Fighting Falcons</strong> from the <strong>457th Fighter Squadron, Naval Air Station Fort Worth Joint Reserve Base</strong> had been conducting training flights in the area.",
+    "sections": [
+      {
+        "h": "The radar release (FOIA, April 2008)",
+        "body": "MUFON-Texas filed FOIA requests with the FAA, USAF, and DHS within days of the event. The FAA released <strong>2.5 hours of Fort Worth Center radar tape</strong> in April 2008 — the most extensive public radar release for a single U.S. UAP event since JL1628. Independent analysis by aerospace engineer Glen Schulze identified contacts <strong>~5 nautical miles south of Stephenville at 19:21 CST</strong> moving at speeds between 1,900 and 2,100 mph at ~2,000 ft AGL — speeds + altitudes incompatible with the F-16 envelope on the ten declared training flights. One contact track terminates ~10 nm from the perimeter of the <strong>presidential ranch at Crawford, TX</strong> (~150 mi NE)."
+      },
+      {
+        "h": "Verbatim — USAF revised statement, 23 January 2008",
+        "body": "<em>\"In the interest of public awareness, the United States Air Force 301st Fighter Wing announces that on January 8, ten F-16s from the 457th Fighter Squadron at NAS Fort Worth Joint Reserve Base were conducting training operations from 6:00 to 8:00 p.m. in the Brownwood Military Operating Area, which includes portions of Erath County. The earlier statement that no F-16s were in the area is hereby retracted.\"</em><br><br>— Major Karl Lewis, 301st Fighter Wing Public Affairs, USAF, 23 January 2008"
+      },
+      {
+        "h": "Why this case still matters",
+        "body": "Stephenville is the largest contemporary multi-witness UAP event in the U.S. record with <strong>civilian-acquired primary radar data released under FOIA</strong>. The case combines three evidentiary signatures: <strong>(1)</strong> dozens of independent ground witnesses, including a commercial-rated pilot and a sworn constable; <strong>(2)</strong> a 2.5-hour radar tape released by the FAA showing contacts at speeds and trajectories incompatible with the declared F-16 envelope; <strong>(3)</strong> a USAF position reversal within 15 days. The case is referenced in AARO's 2024 Historical Record alongside JAL 1628 + O'Hare 2006 as the canonical pre-2017 multi-sensor civilian-aviation reference cluster."
+      }
+    ],
+    "pullquote": {
+      "text": "I've been a pilot for over 30 years, I've seen everything that flies, and what I saw that evening was not a fighter jet, it was not a balloon, it was not a flare drop. It was a solid object moving silently at very low altitude with no visible exhaust.",
+      "cite": "— Steve Allen, commercial-rated pilot, statement to Erath County investigators, 9 Jan 2008"
+    },
+    "timeline": [
+      ["8 Jan 2008 · ~18:00 CST", "First reports begin north of Stephenville. Luminous objects moving westward at low altitude."],
+      ["8 Jan 2008 · ~18:15 CST", "Constable Lee Roy Gaitan + multiple Selden Township residents observe formation."],
+      ["8 Jan 2008 · ~18:30 CST", "Steve Allen + family observe at close range from porch outside Selden, TX."],
+      ["8 Jan 2008 · ~19:21 CST", "Per FOIA radar release: unidentified targets ~5 nm south of Stephenville at ~2000 ft AGL, ~1900-2100 mph."],
+      ["8 Jan 2008 · ~19:30 CST", "Sightings cease across Erath County."],
+      ["10 Jan 2008", "USAF 301st Fighter Wing publicly denies any military flight activity in the area."],
+      ["14 Jan 2008", "Stephenville Empire-Tribune publishes 40+ witness statements; story goes national."],
+      ["23 Jan 2008", "USAF reverses statement: ten F-16s from 457th FS were training in the area."],
+      ["Apr 2008", "FAA releases 2.5 hours of Fort Worth Center radar tape under MUFON FOIA."],
+      ["May 2008", "Glen Schulze independent analysis publishes; identifies contacts incompatible with F-16 envelope."],
+      ["2024", "AARO Historical Record Vol. I references Stephenville as a multi-sensor civilian-aviation cluster reference."]
+    ],
+    "evidence": [
+      {
+        "ev_id": "FAA RADAR TAPE",
+        "ev_archive": "FAA Fort Worth ARTCC",
+        "ev_kind": "Radar tape",
+        "title": "Stephenville radar release — 2.5 hours of Fort Worth Center data",
+        "body": "FOIA-released FAA radar covering 17:00-19:30 CST 8 January 2008. Independent analysis by Glen Schulze (aerospace engineer) identifies anomalous contacts inconsistent with the declared F-16 envelope.",
+        "actions": [["Search · Stephenville", "../search.html?q=Stephenville"], ["AARO archive", "./"]]
+      },
+      {
+        "ev_id": "USAF STATEMENT",
+        "ev_archive": "USAF 301st FW",
+        "ev_kind": "Public statement",
+        "title": "Major Karl Lewis revised statement, 23 January 2008",
+        "body": "USAF position reversal 15 days after the event. Acknowledges F-16 training activity earlier denied. Foundation document for civilian-research case file.",
+        "actions": [["Find in archive", "./?q=Stephenville"]]
+      },
+      {
+        "ev_id": "MUFON CASE 09617",
+        "ev_archive": "MUFON-Texas",
+        "ev_kind": "Investigative case",
+        "title": "MUFON Case Number 09617 — Stephenville Cluster",
+        "body": "MUFON-Texas multi-investigator case file. 40+ witness statements, Schulze radar analysis, FAA correspondence, USAF correspondence.",
+        "actions": [["Search · MUFON", "../search.html?q=MUFON"]]
+      },
+      {
+        "ev_id": "AARO HRRR I",
+        "ev_archive": "AARO 2024",
+        "ev_kind": "Cross-reference",
+        "title": "Historical Record Report Vol. I — multi-sensor civilian references",
+        "body": "AARO 2024 cites Stephenville alongside JAL 1628 and O'Hare 2006 as the canonical pre-2017 multi-sensor civilian-aviation reference cluster.",
+        "actions": [["AARO Vol. I PDF", "https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_I_2024.pdf", "Primary"]]
+      }
+    ],
+    "why_matters": "Stephenville is the largest 21st-century U.S. UAP event with a FOIA-released civilian radar record + an officially acknowledged USAF position reversal. The combination of dozens of ground witnesses, ATC radar data inconsistent with the declared military envelope, and the proximity of one contact track to the Crawford ranch perimeter make it the canonical pre-2017 multi-sensor case in the modern U.S. record.",
+    "cross_refs": [
+      ["AARO archive", "./"],
+      ["O'Hare 2006", "./ohare-2006.html"],
+      ["JAL 1628 1986", "./jal-1628.html"],
+      ["Search · Stephenville", "../search.html?q=Stephenville"]
+    ]
+  },
+  {
+    "slug": "lubbock-lights",
+    "archive": "nara",
+    "archive_label": "NARA Archive",
+    "name": "Lubbock Lights",
+    "name_h1_em": "Lubbock",
+    "name_h1_tail": "Lights",
+    "accent": "#cbd5e1",
+    "gradient": ["#9ca3af", "#4b5563", "#1f2937"],
+    "seal_text": "NARA",
+    "seal_color": "#0a0a0c",
+    "official_url": "https://catalog.archives.gov/",
+    "licence": "17 U.S.C. § 105",
+    "hero_coord": "◉ 33.5779° N · 101.8552° W · Lubbock, Texas · Aug–Sep 1951",
+    "twitter_image": "https://realufo.org/slideshow/NASA-UAP-VM6-Apollo-17-1972.jpg",
+    "json_ld": {
+      "headline": "The Lubbock Lights, 1951 — case file",
+      "description": "Multi-night V-formation observations + Carl Hart Jr. photographs over Lubbock, Texas, August-September 1951. Project Blue Book case study; Texas Tech faculty four-witness anchor.",
+      "datePublished": "1951-08-25",
+      "sourceOrganization": "USAF Project Blue Book / NARA",
+      "about": ["Lubbock, Texas"],
+      "keywords": ["Lubbock Lights", "Lubbock", "Texas Tech", "Carl Hart Jr.", "Blue Book", "Ruppelt", "Project Sign"]
+    },
+    "meta_strip": [
+      ["Witnesses", "4 Texas Tech faculty · 18-yo Carl Hart Jr. · others"],
+      ["Photos", "5 Carl Hart Jr. exposures, 25 Aug 1951"],
+      ["Blue Book file", "Project Sign era — later Blue Book case study"],
+      ["Status", "Officially explained 'birds' — disputed"]
+    ],
+    "lede": "Across approximately fourteen August and September 1951 evenings, residents of Lubbock, Texas — including a four-man <strong>Texas Tech College</strong> faculty group consisting of professors of <strong>geology, physics, chemical engineering, and petroleum engineering</strong> — observed silent V-formations of luminous objects flying over the city. On the night of <strong>25 August 1951</strong>, <strong>Carl Hart Jr.</strong>, an 18-year-old Texas Tech freshman, photographed the formations with a Kodak 35 camera; five exposures showed clear V-formations of approximately 18-20 bright objects. The case was investigated by <strong>USAF Project Sign / Grudge</strong> investigators (the precursor to Project Blue Book), then re-analysed by Blue Book chief Capt. <strong>Edward J. Ruppelt</strong>. The Lubbock Lights remain one of the most-cited Project Blue Book cases, classified by USAF as <em>\"birds reflecting city lights\"</em> — a conclusion disputed by Ruppelt himself in his later writings.",
+    "sections": [
+      {
+        "h": "The four Texas Tech faculty witnesses",
+        "body": "The <em>Lubbock four</em> — Dr. W. I. Robinson (geology), Dr. A. G. Oberg (chemical engineering), Dr. W. L. Ducker (petroleum engineering), and Dr. E. F. George (physics) — were on Dr. Robinson's back patio on 25 August 1951 when the first formation passed silently overhead. The group had no UFO-related background; they made it a multi-week experiment, setting up Kodak instruments and stopwatches on subsequent nights and producing measured angular-velocity and altitude estimates. Their consensus: the objects were neither birds, nor known aircraft, nor any natural phenomenon they could identify."
+      },
+      {
+        "h": "Verbatim — Capt. Edward J. Ruppelt's reflection (1956)",
+        "body": "<em>\"The case of the Lubbock Lights is far from being solved. The four professors and the photographs taken by the boy are still on the books as a great unknown. The Air Force decision that the objects were birds reflecting the lights of the city is, in the opinion of the chief of Project Blue Book who personally investigated the case, not supported by the evidence collected.\"</em><br><br>— Edward J. Ruppelt, <em>The Report on Unidentified Flying Objects</em> (1956), Chapter 6"
+      },
+      {
+        "h": "The Carl Hart Jr. photographs",
+        "body": "Five exposures, taken between approximately 23:20 and 23:50 CST on 25 August 1951 from Hart's parents' backyard. The negatives were examined by USAF photographic interpreters and by independent photographic experts including <strong>Robert Sneider</strong> (USAF Wright-Patterson). The images show distinct V-formations of approximately 18-20 luminous objects; estimated altitudes from photogrammetric analysis range from 1,500 to 5,000 ft. Hart's photographs are the only contemporaneous photographic record of the events and remain in the Project Blue Book master file at NARA RG 341."
+      }
+    ],
+    "pullquote": {
+      "text": "I have never seen anything in my life that looked like those objects. They were definitely not birds. We measured them, we counted them, and they were moving in a pattern that no flock of birds I have ever observed could match.",
+      "cite": "— Dr. W. I. Robinson, professor of geology, Texas Tech College, statement to Project Blue Book, September 1951"
+    },
+    "timeline": [
+      ["25 Aug 1951 · ~21:20", "Texas Tech faculty four observe first V-formation from Dr. Robinson's patio."],
+      ["25 Aug 1951 · ~23:30", "Carl Hart Jr. photographs V-formation, 5 exposures, Kodak 35 camera."],
+      ["26 Aug – 5 Sep 1951", "Multi-night Texas Tech faculty observations. ~14 confirmed nights."],
+      ["Sep 1951", "USAF Project Grudge investigators interview the faculty four + Hart. Photographs examined."],
+      ["Oct 1951", "Project Grudge tentative conclusion: 'birds reflecting city lights'. Faculty dissent."],
+      ["1952", "Project Blue Book opens; case reviewed by Capt. Ruppelt; classification sustained but Ruppelt personally dissents."],
+      ["1956", "Ruppelt's The Report on Unidentified Flying Objects documents his personal dissent."],
+      ["1969", "Blue Book closes; Lubbock Lights file retained at NARA in RG 341."],
+      ["1995", "GAO records-search reaffirms NARA holdings."]
+    ],
+    "evidence": [
+      {
+        "ev_id": "BB LUBBOCK",
+        "ev_archive": "NARA · RG 341",
+        "ev_kind": "Project Blue Book file",
+        "title": "Project Blue Book Lubbock Lights master file",
+        "body": "Full case file: faculty four interviews, Hart photographs, USAF photo-interpretation reports, Ruppelt notes, contemporaneous press cuttings.",
+        "actions": [["NARA catalog", "https://catalog.archives.gov/", "Primary"], ["Find in archive", "./?q=Lubbock"]]
+      },
+      {
+        "ev_id": "RUPPELT 1956",
+        "ev_archive": "Doubleday · Ruppelt papers",
+        "ev_kind": "Memoir / monograph",
+        "title": "The Report on Unidentified Flying Objects — Ch. 6 (Ruppelt, 1956)",
+        "body": "Edward Ruppelt's first-person account of the Lubbock case. Documents Ruppelt's personal dissent from the official 'birds' explanation. Civilian source.",
+        "actions": [["Search · Ruppelt", "../search.html?q=Ruppelt"]]
+      },
+      {
+        "ev_id": "HART PHOTOS",
+        "ev_archive": "Project Blue Book · NARA",
+        "ev_kind": "Photographic evidence",
+        "title": "Carl Hart Jr. 5 photographic exposures, 25 August 1951",
+        "body": "Kodak 35 / Plus-X negatives. Examined by USAF Wright-Patterson photographic interpreters; no evidence of fakery found. Held at NARA RG 341.",
+        "actions": [["NARA catalog", "https://catalog.archives.gov/", "Primary"]]
+      }
+    ],
+    "why_matters": "The Lubbock Lights are the Project Blue Book case where the official explanation diverges most explicitly from the investigating officer's personal conclusion. Ruppelt's published dissent in 1956 — the only case in Blue Book history where the chief of the project publicly disputed his own program's classification — remains the most-cited reference for institutional UAP-explanation friction in the early Cold War period.",
+    "cross_refs": [
+      ["NARA archive", "./"],
+      ["Roswell 1947", "./roswell.html"],
+      ["Robertson Panel 1953", "./robertson-panel.html"],
+      ["Search · Lubbock", "../search.html?q=Lubbock"]
+    ]
+  },
+  {
+    "slug": "mantell",
+    "archive": "nara",
+    "archive_label": "NARA Archive",
+    "name": "Mantell · Godman AFB",
+    "name_h1_em": "Mantell",
+    "name_h1_tail": "1948",
+    "accent": "#cbd5e1",
+    "gradient": ["#9ca3af", "#4b5563", "#1f2937"],
+    "seal_text": "NARA",
+    "seal_color": "#0a0a0c",
+    "official_url": "https://catalog.archives.gov/",
+    "licence": "17 U.S.C. § 105",
+    "hero_coord": "◉ 37.9070° N · 85.9722° W · Godman Field · Fort Knox, KY · 7 Jan 1948",
+    "twitter_image": "https://realufo.org/slideshow/NASA-UAP-VM6-Apollo-17-1972.jpg",
+    "json_ld": {
+      "headline": "Capt. Thomas Mantell · Godman AFB, January 1948 — case file",
+      "description": "Kentucky Air National Guard P-51D Mustang piloted by Capt. Thomas Mantell crashed during pursuit of an unidentified object near Godman Field, Fort Knox, 7 January 1948 — the first known U.S. military fatality during a UAP pursuit.",
+      "datePublished": "1948-01-07",
+      "sourceOrganization": "U.S. Air Force / NARA",
+      "about": ["Godman Field", "Fort Knox", "Kentucky"],
+      "keywords": ["Mantell", "Godman Field", "Fort Knox", "P-51D Mustang", "Kentucky ANG", "Project Sign", "Skyhook"]
+    },
+    "meta_strip": [
+      ["Pilot", "Capt. Thomas F. Mantell · Kentucky ANG · F-51D"],
+      ["Authority", "Godman tower · USAF Project Sign"],
+      ["Outcome", "Mantell killed in pursuit · first known UAP-pursuit fatality"],
+      ["Status", "USAF: Skyhook balloon · disputed"]
+    ],
+    "lede": "On the afternoon of <strong>7 January 1948</strong>, four Kentucky Air National Guard <strong>P-51D Mustang</strong> pilots scrambled from <strong>Godman Field</strong> at Fort Knox, Kentucky, to identify a brilliant white object first observed by the <strong>Godman Field tower</strong> at approximately <strong>13:20 local time</strong>. Three pilots broke off pursuit due to oxygen and altitude limits; flight leader <strong>Capt. Thomas Frank Mantell</strong> continued to climb. His last radio transmission described the object as <em>\"metallic and of tremendous size\"</em>. Mantell's Mustang was found wrecked in a field near Franklin, Kentucky at approximately <strong>15:20 local time</strong> — the <strong>first known U.S. military fatality during a UAP pursuit</strong>. <strong>USAF Project Sign</strong> investigated; the case was ultimately classified by the Air Force as a sighting of a <strong>Skyhook research balloon</strong>, an explanation disputed by some early investigators on the grounds that no Skyhook flight was confirmed at the Mantell altitude on that date.",
+    "sections": [
+      {
+        "h": "The Godman tower observation",
+        "body": "The object was first observed by Godman Field tower personnel — including base operations officer <strong>Sgt. Quinton Blackwell</strong>, Godman commander <strong>Col. Guy F. Hix</strong>, and base flight surgeon — at approximately 13:20 CST. The tower reported the object as moving slowly southward, stationary periods alternating with slow motion, brilliant white with a red ring around it. Multiple ground witnesses across Kentucky and southern Ohio also reported the object. The Kentucky ANG flight of four F-51Ds was diverted by the tower during a routine transit and asked to investigate."
+      },
+      {
+        "h": "Verbatim — Capt. Mantell's last radio transmission",
+        "body": "<em>\"The object is directly ahead of me and slightly above and is now moving at about half my speed. The thing looks metallic and of tremendous size… It's going up now and forward as fast as I am — that's 360 mph. I'm going to 20,000 feet, and if I'm no closer then I'll abandon chase.\"</em><br><br>— Capt. Thomas Mantell, last radio transmission to Godman tower, 7 January 1948, ~14:45 CST. Mantell's P-51D was found wrecked at 15:20 CST; he had passed out from hypoxia at high altitude (no pressurised cabin)."
+      },
+      {
+        "h": "The Skyhook explanation and its critics",
+        "body": "The USAF position — reached after Project Sign investigation in 1948 and sustained through Project Grudge and Project Blue Book — is that the object was a <strong>U.S. Navy Skyhook research balloon</strong>, then a classified program. Skyhooks were 100 ft polyethylene balloons reaching altitudes of 70,000-100,000 ft; they would appear stationary at high altitude and brilliantly reflective in afternoon sun. Critics — including Capt. Edward Ruppelt himself in his 1956 monograph — note that no Skyhook flight has been confirmed in launch records for that date in the Godman vicinity, and the alleged Skyhook would have been at altitudes substantially above what Mantell could approach in an unpressurised F-51D. The case file at NARA RG 341 includes both the Sign/Grudge Skyhook conclusion and the dissenting investigative notes."
+      }
+    ],
+    "pullquote": {
+      "text": "The Mantell case has been called 'solved' as a Skyhook balloon, but as Project Blue Book chief I never found launch records that confirmed a Skyhook was in the area on that date. The case as I left it in 1953 remained, in my private view, unexplained.",
+      "cite": "— Capt. Edward J. Ruppelt, The Report on Unidentified Flying Objects (1956), Chapter 3"
+    },
+    "timeline": [
+      ["7 Jan 1948 · ~13:20", "Godman Field tower observes brilliant white object south of base. Multiple ground witnesses in Kentucky + Ohio."],
+      ["7 Jan 1948 · ~14:25", "Four Kentucky ANG F-51D Mustangs diverted to investigate during routine transit."],
+      ["7 Jan 1948 · ~14:45", "Three F-51Ds break off due to altitude / oxygen limits. Mantell continues climb."],
+      ["7 Jan 1948 · ~14:50", "Mantell's last radio transmission: object 'metallic, tremendous size, going up'."],
+      ["7 Jan 1948 · ~15:20", "Mantell's F-51D found wrecked near Franklin, KY. Mantell killed. Autopsy: hypoxia at high altitude."],
+      ["Jan–Mar 1948", "USAF Project Sign investigates. Initial inconclusive."],
+      ["1949", "Project Grudge revisits the case; tentative classification 'Skyhook balloon'."],
+      ["1952", "Project Blue Book opens; case reviewed by Capt. Ruppelt; Skyhook classification sustained but Ruppelt's personal notes record dissent."],
+      ["1969", "Blue Book closes. Mantell file retained at NARA in RG 341."],
+      ["1956", "Ruppelt's memoir documents his personal dissent from the Skyhook conclusion."]
+    ],
+    "evidence": [
+      {
+        "ev_id": "BB MANTELL",
+        "ev_archive": "NARA · RG 341",
+        "ev_kind": "Project Blue Book file",
+        "title": "Project Blue Book Mantell master file",
+        "body": "Full case file: Godman tower log, Mantell radio transmissions, F-51D crash report, autopsy report, Project Sign/Grudge/Blue Book sequential reviews.",
+        "actions": [["NARA catalog", "https://catalog.archives.gov/", "Primary"], ["Find in archive", "./?q=Mantell"]]
+      },
+      {
+        "ev_id": "RUPPELT CH 3",
+        "ev_archive": "Doubleday · Ruppelt papers",
+        "ev_kind": "Memoir / monograph",
+        "title": "The Report on Unidentified Flying Objects — Ch. 3 (Ruppelt, 1956)",
+        "body": "Ruppelt's first-person reflection on the case as Blue Book chief. Documents his personal dissent from the Skyhook classification.",
+        "actions": [["Search · Ruppelt", "../search.html?q=Ruppelt"]]
+      },
+      {
+        "ev_id": "GODMAN TOWER",
+        "ev_archive": "Kentucky ANG · Godman Field",
+        "ev_kind": "Operational log",
+        "title": "Godman Field tower observation log, 7 January 1948",
+        "body": "Contemporaneous tower log compiled by Sgt. Quinton Blackwell and reviewed by Col. Guy F. Hix. Independent of subsequent USAF investigation.",
+        "actions": [["NARA catalog", "https://catalog.archives.gov/", "Primary"]]
+      }
+    ],
+    "why_matters": "The Mantell case is the first known U.S. military fatality during a UAP pursuit, and the foundational test case for USAF institutional response. Capt. Ruppelt's later-public dissent from the Skyhook classification — published while he was still in service — is the earliest documented case of a senior USAF UAP-investigation officer publicly disagreeing with his own program's official position. The case remains in NARA RG 341 as one of the most-cited single-pilot Blue Book files.",
+    "cross_refs": [
+      ["NARA archive", "./"],
+      ["Lubbock Lights 1951", "./lubbock-lights.html"],
+      ["Roswell 1947", "./roswell.html"],
+      ["Search · Mantell", "../search.html?q=Mantell"]
+    ]
   }
 ]
