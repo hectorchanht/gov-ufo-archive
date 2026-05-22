@@ -201,6 +201,9 @@ main{max-width:1100px;margin:0 auto;padding:24px 16px 80px}
 .badge-type{background:rgba(232,227,216,0.07);color:var(--ink-dim);border:1px solid var(--rule)}
 .card-title{font-family:var(--serif);font-size:15px;font-weight:600;color:var(--ink);line-height:1.4;overflow-wrap:anywhere}
 .card-desc{font-family:var(--serif);font-size:13px;color:var(--ink-dim);line-height:1.5;overflow-wrap:anywhere}
+/* Search-term highlight inside result cards */
+.res-card mark{background:rgba(212,160,23,0.28);color:var(--ink);padding:0 2px;border-radius:2px;font-weight:600}
+.res-card .card-desc mark{font-weight:500}
 .card-meta{font-family:var(--mono);font-size:10px;color:var(--ink-faint);letter-spacing:0.08em;display:flex;flex-wrap:wrap;gap:4px 12px}
 .card-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}
 .btn{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;border-radius:4px;text-decoration:none;cursor:pointer;border:1px solid transparent;transition:background 0.15s,color 0.15s,border-color 0.15s;display:inline-flex;align-items:center;gap:4px;white-space:nowrap;min-height:36px}
@@ -794,18 +797,55 @@ footer a:hover{color:var(--ink)}
     return val;
   }
 
+  /* Highlight every search term inside an already-HTML-escaped string by
+     wrapping matches in <mark>. Operates on escaped text + escaped terms
+     so the substitution is XSS-safe. Returns escaped string with <mark>
+     tags interleaved. */
+  function highlight(escapedText, terms) {
+    if (!escapedText || !terms || !terms.length) return escapedText;
+    var pat = terms
+      .filter(Boolean)
+      .map(function(t){ return esc(t).replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); })
+      .filter(function(t){ return t.length >= 1; });
+    if (!pat.length) return escapedText;
+    return escapedText.replace(
+      new RegExp('(' + pat.join('|') + ')', 'gi'),
+      '<mark>$1</mark>'
+    );
+  }
+
   function renderCard(rec, idx) {
     var div = document.createElement('div');
     div.className = 'res-card';
     div.setAttribute('role', 'listitem');
     div.dataset.recIdx = String(idx);
 
+    /* Current search terms (split on whitespace). Used for <mark> highlights. */
+    var qTerms = (qEl.value || '').trim().toLowerCase().split(/\s+/).filter(Boolean);
+
     var badges = '<div class="card-badges"><span class="badge badge-site">' + esc(rec.site) + '</span>';
     if (rec.type) badges += '<span class="badge badge-type">' + esc(rec.type) + '</span>';
     badges += '</div>';
 
-    var title = '<div class="card-title">' + esc(rec.title || '(Untitled)') + '</div>';
-    var desc  = rec.desc ? '<div class="card-desc">' + esc(truncate(rec.desc, 160)) + '</div>' : '';
+    var title = '<div class="card-title">' + highlight(esc(rec.title || '(Untitled)'), qTerms) + '</div>';
+    /* When a query is active, prefer a desc snippet that contains the match
+       (centred around the first hit) rather than always truncating from the start. */
+    var descText = '';
+    if (rec.desc) {
+      if (qTerms.length) {
+        var low = rec.desc.toLowerCase();
+        var hit = low.indexOf(qTerms[0]);
+        if (hit > 80) {
+          var start = Math.max(0, hit - 60);
+          descText = (start > 0 ? '…' : '') + rec.desc.slice(start, start + 160) + (start + 160 < rec.desc.length ? '…' : '');
+        } else {
+          descText = truncate(rec.desc, 160);
+        }
+      } else {
+        descText = truncate(rec.desc, 160);
+      }
+    }
+    var desc  = descText ? '<div class="card-desc">' + highlight(esc(descText), qTerms) + '</div>' : '';
 
     var metas = [];
     if (rec.agency && rec.agency !== rec.site) metas.push(esc(rec.agency));
