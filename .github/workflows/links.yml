@@ -34,15 +34,16 @@ jobs:
           # --include-fragments validates #anchor targets exist in the page.
           # --exclude '^mailto:' skips mailto: links (replaces removed
           # --exclude-mail flag dropped in lychee v0.20+).
-          # --base . resolves root-relative hrefs like /manifest.webmanifest
-          # against the repo root instead of the runner filesystem root.
+          # --root-dir resolves root-relative hrefs like /manifest.webmanifest
+          # against the repo checkout instead of the runner filesystem root.
+          # Requires absolute path (lychee v0.23 hard-rejects relative).
           args: >-
             --no-progress
             --cache
             --max-cache-age 7d
             --include-fragments
-            --base
-            .
+            --root-dir
+            ${{ github.workspace }}
             --exclude
             ^mailto:
             --accept 200,206,301,302,308,403,429
