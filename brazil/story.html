@@ -163,6 +163,30 @@ footer a{color:var(--ink-dim);text-decoration:none}
 
 </main>
 
+
+<style>
+.related { border-top: 1px solid var(--rule, rgba(232,227,216,0.12)); background: var(--bg-2, #111114); padding: 40px 0; }
+.related .container { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+.related-title { font-family: var(--mono, monospace); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--caution, #d4a017); margin-bottom: 20px; }
+.rel-grid { display: grid; grid-template-columns: 1fr; gap: 28px; }
+@media (min-width: 720px) { .rel-grid { grid-template-columns: repeat(3, 1fr); gap: 32px; } }
+.rel-block h4 { font-family: var(--mono, monospace); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-dim, #a8a298); margin-bottom: 12px; }
+.rel-block ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+.rel-block a { color: var(--ink, #e8e3d8); text-decoration: none; font-family: var(--serif, Georgia); font-size: 14px; line-height: 1.5; border-bottom: 1px solid transparent; padding: 2px 0; }
+.rel-block a:hover { color: var(--caution, #d4a017); border-bottom-color: var(--caution, #d4a017); }
+</style>
+
+<section class="related" aria-label="Related pages">
+  <div class="container">
+    <h3 class="related-title">Related</h3>
+    <div class="rel-grid">
+      <div class="rel-block"><h4>More from this archive</h4><ul><li><a href="operacao-prato.html">Operação Prato — Colares (1977)</a></li><li><a href="varginha.html">Varginha (Jan 1996)</a></li><li><a href="trindade.html">Trindade Island (Jan 1958)</a></li></ul></div>
+      <div class="rel-block"><h4>Other flagship cases</h4><ul><li><a href="../aaro/tic-tac.html">Tic-Tac (US Navy, 2004)</a></li><li><a href="../uk/rendlesham.html">Rendlesham (UK MoD, 1980)</a></li><li><a href="../brazil/operacao-prato.html">Operação Prato (FAB, 1977)</a></li><li><a href="../aaro/phoenix-lights.html">Phoenix Lights (USAF, 1997)</a></li></ul></div>
+      <div class="rel-block"><h4>Explore</h4><ul><li><a href="../">War.gov / PURSUE</a></li><li><a href="./">BRAZIL archive</a></li><li><a href="../search.html">Search all archives</a></li><li><a href="../timeline.html">Timeline view</a></li><li><a href="../map.html">Map view</a></li></ul></div>
+    </div>
+  </div>
+</section>
+
 <footer>
   <p>
     <a href="../">realufo.org</a> · Brazil — Força Aérea Brasileira / Arquivo Nacional story · Mirrored from

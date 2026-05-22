@@ -18,16 +18,15 @@ PINNED = [
     ('NASA',    'nasa', 'nasa'),
     ('NARA',    'nara', 'nara'),
 ]
-# Top-bar utility pages (always visible after the 4 pinned US archives).
-# (label, file_relative_to_root, current_slug_key)
-UTILITY = [
+# "Site ▾" dropdown — pages about the site itself. (label, file, slug_key)
+SITE_PAGES = [
     ('Search',   'search.html',   'search'),
     ('Timeline', 'timeline.html', 'timeline'),
     ('Map',      'map.html',      'map'),
     ('About',    'about.html',    'about'),
     ('Support',  'donate.html',   'support'),
 ]
-# Secondary nav — the 11 non-US national mirrors, surfaced via "More ▾".
+# "Nations ▾" dropdown — 11 non-US national mirrors.
 MORE = [
     ('GEIPAN (France)',    'geipan'),
     ('UK Archives',        'uk'),
@@ -66,23 +65,25 @@ def make_nav(current_slug: str, depth: int = 1, internal_links=None) -> str:
                 f'<li><a href="{href}" data-i18n="{i18n_key}">{label}</a></li>'
             )
 
-    # Pinned cross-site links (4 US archives)
+    # Pinned US archives (4 — rich content stays at top level)
     pinned_html = ''
     for name, slug, key in PINNED:
         href = _href(slug, depth)
         active = ' class="active"' if key == current_slug else ''
         pinned_html += f'<li><a href="{href}"{active}>{name}</a></li>'
 
-    # Utility pages (search, timeline, map, about, support) — root-relative
+    # "Site ▾" — pages about the site. Root-relative.
     root = _href(None, depth)
-    utility_html = ''
-    for name, file, key in UTILITY:
-        active = ' class="active"' if key == current_slug else ''
-        utility_html += f'<li><a href="{root}{file}"{active}>{name}</a></li>'
+    site_active = any(k == current_slug for _, _, k in SITE_PAGES)
+    site_items = ''.join(
+        f'<li><a href="{root}{file}"{" class=\"active\"" if k == current_slug else ""}>{name}</a></li>'
+        for name, file, k in SITE_PAGES
+    )
 
-    # Secondary "More" dropdown — 11 national mirrors
+    # "Nations ▾" — 11 national mirrors
+    nations_active = any(slug == current_slug for _, slug in MORE)
     more_items = ''.join(
-        f'<li><a href="{_href(slug, depth)}">{name}</a></li>'
+        f'<li><a href="{_href(slug, depth)}"{" class=\"active\"" if slug == current_slug else ""}>{name}</a></li>'
         for name, slug in MORE
     )
 
@@ -92,9 +93,14 @@ def make_nav(current_slug: str, depth: int = 1, internal_links=None) -> str:
         {int_html}
         <li class="nav-sep"></li>
         {pinned_html}
-        {utility_html}
+        <li class="has-dropdown" id="nav-site-wrap">
+          <button class="nav-more-btn{' active' if site_active else ''}" id="nav-site-btn" aria-expanded="false">Site ▾</button>
+          <ul class="nav-dropdown" id="nav-site-dropdown" role="menu">
+            {site_items}
+          </ul>
+        </li>
         <li class="has-dropdown" id="nav-more-wrap">
-          <button class="nav-more-btn" id="nav-more-btn" aria-expanded="false" data-i18n="more">More ▾</button>
+          <button class="nav-more-btn{' active' if nations_active else ''}" id="nav-more-btn" aria-expanded="false">Nations ▾</button>
           <ul class="nav-dropdown" id="nav-dropdown" role="menu">
             {more_items}
           </ul>
@@ -499,21 +505,28 @@ SHARED_JS = r'''
     }
   }
 
-  /* ── "More" dropdown ──────────────────────────────────────────────── */
+  /* ── "Site ▾" + "Nations ▾" dropdowns ─────────────────────────────── */
   const moreWrap = document.getElementById('nav-more-wrap');
   const moreBtn  = document.getElementById('nav-more-btn');
-  if (moreWrap && moreBtn) {
-    moreBtn.addEventListener('click', e => {
+  const siteWrap = document.getElementById('nav-site-wrap');
+  const siteBtn  = document.getElementById('nav-site-btn');
+  function wireDropdown(wrap, btn, others) {
+    if (!wrap || !btn) return;
+    btn.addEventListener('click', e => {
       e.stopPropagation();
-      const open = moreWrap.classList.toggle('open');
-      moreBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      others.forEach(o => { if (o) { o.classList.remove('open'); } });
+      const open = wrap.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
   }
+  wireDropdown(moreWrap, moreBtn, [siteWrap]);
+  wireDropdown(siteWrap, siteBtn, [moreWrap]);
 
   /* Close dropdowns on outside click */
   document.addEventListener('click', () => {
     if (langPicker) { langPicker.classList.remove('open'); if (langBtn) langBtn.setAttribute('aria-expanded','false'); }
     if (moreWrap)  { moreWrap.classList.remove('open');  if (moreBtn) moreBtn.setAttribute('aria-expanded','false'); }
+    if (siteWrap)  { siteWrap.classList.remove('open');  if (siteBtn) siteBtn.setAttribute('aria-expanded','false'); }
   });
 
   /* ── Hamburger toggle ─────────────────────────────────────────────── */

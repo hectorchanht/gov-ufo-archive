@@ -1116,13 +1116,18 @@ li.nav-sep { display: none; }
         <li><a href="./aaro/">AARO</a></li>
         <li><a href="./nasa/">NASA</a></li>
         <li><a href="./nara/">NARA</a></li>
-        <li><a href="./search.html">Search</a></li>
-        <li><a href="./timeline.html">Timeline</a></li>
-        <li><a href="./map.html">Map</a></li>
-        <li><a href="./about.html">About</a></li>
-        <li><a href="./donate.html">Support</a></li>
+        <li class="has-dropdown" id="nav-site-wrap">
+          <button class="nav-more-btn" id="nav-site-btn" aria-expanded="false">Site ▾</button>
+          <ul class="nav-dropdown" id="nav-site-dropdown" role="menu">
+            <li><a href="./search.html">Search</a></li>
+            <li><a href="./timeline.html">Timeline</a></li>
+            <li><a href="./map.html">Map</a></li>
+            <li><a href="./about.html">About</a></li>
+            <li><a href="./donate.html">Support</a></li>
+          </ul>
+        </li>
         <li class="has-dropdown" id="nav-more-wrap">
-          <button class="nav-more-btn" id="nav-more-btn" aria-expanded="false" data-i18n="more">More ▾</button>
+          <button class="nav-more-btn" id="nav-more-btn" aria-expanded="false">Nations ▾</button>
           <ul class="nav-dropdown" id="nav-dropdown" role="menu">
             <li><a href="./geipan/">GEIPAN (France)</a></li>
             <li><a href="./uk/">UK Archives</a></li>
@@ -1476,15 +1481,26 @@ li.nav-sep { display: none; }
     langBtn.addEventListener('click', e => { e.stopPropagation(); const open = langPicker.classList.toggle('open'); langBtn.setAttribute('aria-expanded', open ? 'true' : 'false'); });
     if (langMenu) langMenu.addEventListener('click', e => { const btn = e.target.closest('button[data-lang]'); if (!btn) return; applyLang(btn.dataset.lang); langPicker.classList.remove('open'); langBtn.setAttribute('aria-expanded', 'false'); });
   }
-  /* ── More dropdown ── */
+  /* ── Site + Nations dropdowns ── */
   const moreWrap = document.getElementById('nav-more-wrap');
   const moreBtn  = document.getElementById('nav-more-btn');
-  if (moreWrap && moreBtn) {
-    moreBtn.addEventListener('click', e => { e.stopPropagation(); const open = moreWrap.classList.toggle('open'); moreBtn.setAttribute('aria-expanded', open ? 'true' : 'false'); });
+  const siteWrap = document.getElementById('nav-site-wrap');
+  const siteBtn  = document.getElementById('nav-site-btn');
+  function wireDD(wrap, btn, others) {
+    if (!wrap || !btn) return;
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      others.forEach(o => o && o.classList.remove('open'));
+      const open = wrap.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
   }
+  wireDD(moreWrap, moreBtn, [siteWrap]);
+  wireDD(siteWrap, siteBtn, [moreWrap]);
   document.addEventListener('click', () => {
     if (langPicker) { langPicker.classList.remove('open'); if (langBtn) langBtn.setAttribute('aria-expanded', 'false'); }
     if (moreWrap)   { moreWrap.classList.remove('open');  if (moreBtn) moreBtn.setAttribute('aria-expanded', 'false'); }
+    if (siteWrap)   { siteWrap.classList.remove('open');  if (siteBtn) siteBtn.setAttribute('aria-expanded', 'false'); }
   });
   /* ── Hamburger nav toggle (mobile) ── */
   const navToggle = document.getElementById('nav-toggle');

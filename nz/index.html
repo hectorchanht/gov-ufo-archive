@@ -283,11 +283,16 @@ body { background-image:
         <li><a href="#top" data-i18n="intro">Intro</a></li><li><a href="#headlines" data-i18n="headlines">Headlines</a></li><li><a href="#archive" data-i18n="archive">Records</a></li>
         <li class="nav-sep"></li>
         <li><a href="../">War.gov</a></li><li><a href="../aaro/">AARO</a></li><li><a href="../nasa/">NASA</a></li><li><a href="../nara/">NARA</a></li>
-        <li><a href="../search.html">Search</a></li><li><a href="../timeline.html">Timeline</a></li><li><a href="../map.html">Map</a></li><li><a href="../about.html">About</a></li><li><a href="../donate.html">Support</a></li>
+        <li class="has-dropdown" id="nav-site-wrap">
+          <button class="nav-more-btn" id="nav-site-btn" aria-expanded="false">Site ▾</button>
+          <ul class="nav-dropdown" id="nav-site-dropdown" role="menu">
+            <li><a href="../search.html">Search</a></li><li><a href="../timeline.html">Timeline</a></li><li><a href="../map.html">Map</a></li><li><a href="../about.html">About</a></li><li><a href="../donate.html">Support</a></li>
+          </ul>
+        </li>
         <li class="has-dropdown" id="nav-more-wrap">
-          <button class="nav-more-btn" id="nav-more-btn" aria-expanded="false" data-i18n="more">More ▾</button>
+          <button class="nav-more-btn active" id="nav-more-btn" aria-expanded="false">Nations ▾</button>
           <ul class="nav-dropdown" id="nav-dropdown" role="menu">
-            <li><a href="../geipan/">GEIPAN (France)</a></li><li><a href="../uk/">UK Archives</a></li><li><a href="../brazil/">Brazil FAB</a></li><li><a href="../chile/">Chile CEFAA</a></li><li><a href="../nz/">NZ NZDF</a></li><li><a href="../canada/">Canada LAC</a></li><li><a href="../argentina/">Argentina CEFAe</a></li><li><a href="../uruguay/">Uruguay CRIDOVNI</a></li><li><a href="../peru/">Peru OIFAA</a></li><li><a href="../spain/">Spain Ejército</a></li><li><a href="../italy/">Italy Aeronautica</a></li>
+            <li><a href="../geipan/">GEIPAN (France)</a></li><li><a href="../uk/">UK Archives</a></li><li><a href="../brazil/">Brazil FAB</a></li><li><a href="../chile/">Chile CEFAA</a></li><li><a href="../nz/" class="active">NZ NZDF</a></li><li><a href="../canada/">Canada LAC</a></li><li><a href="../argentina/">Argentina CEFAe</a></li><li><a href="../uruguay/">Uruguay CRIDOVNI</a></li><li><a href="../peru/">Peru OIFAA</a></li><li><a href="../spain/">Spain Ejército</a></li><li><a href="../italy/">Italy Aeronautica</a></li>
           </ul>
         </li>
       </ul>
@@ -454,21 +459,28 @@ body { background-image:
     }
   }
 
-  /* ── "More" dropdown ──────────────────────────────────────────────── */
+  /* ── "Site ▾" + "Nations ▾" dropdowns ─────────────────────────────── */
   const moreWrap = document.getElementById('nav-more-wrap');
   const moreBtn  = document.getElementById('nav-more-btn');
-  if (moreWrap && moreBtn) {
-    moreBtn.addEventListener('click', e => {
+  const siteWrap = document.getElementById('nav-site-wrap');
+  const siteBtn  = document.getElementById('nav-site-btn');
+  function wireDropdown(wrap, btn, others) {
+    if (!wrap || !btn) return;
+    btn.addEventListener('click', e => {
       e.stopPropagation();
-      const open = moreWrap.classList.toggle('open');
-      moreBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      others.forEach(o => { if (o) { o.classList.remove('open'); } });
+      const open = wrap.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
   }
+  wireDropdown(moreWrap, moreBtn, [siteWrap]);
+  wireDropdown(siteWrap, siteBtn, [moreWrap]);
 
   /* Close dropdowns on outside click */
   document.addEventListener('click', () => {
     if (langPicker) { langPicker.classList.remove('open'); if (langBtn) langBtn.setAttribute('aria-expanded','false'); }
     if (moreWrap)  { moreWrap.classList.remove('open');  if (moreBtn) moreBtn.setAttribute('aria-expanded','false'); }
+    if (siteWrap)  { siteWrap.classList.remove('open');  if (siteBtn) siteBtn.setAttribute('aria-expanded','false'); }
   });
 
   /* ── Hamburger toggle ─────────────────────────────────────────────── */

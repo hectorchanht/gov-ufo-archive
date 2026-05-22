@@ -91,14 +91,21 @@ footer a{color:var(--ink-dim);text-decoration:none}
       <a href="aaro/">AARO</a>
       <a href="nasa/">NASA</a>
       <a href="nara/">NARA</a>
-      <a href="search.html">Search</a>
-      <a href="timeline.html">Timeline</a>
-      <a href="map.html">Map</a>
-      <a href="about.html" class="active" aria-current="page">About</a>
-      <a href="donate.html">Support</a>
+      <div class="nav-dropdown" id="site-dropdown">
+        <button class="nav-dropdown-btn active" id="site-btn" aria-haspopup="true" aria-expanded="false" aria-controls="site-menu">
+          Site &#9660;
+        </button>
+        <div class="nav-dropdown-menu" id="site-menu" role="menu">
+          <a href="search.html" role="menuitem">Search</a>
+          <a href="timeline.html" role="menuitem">Timeline</a>
+          <a href="map.html" role="menuitem">Map</a>
+          <a href="about.html" class="active" aria-current="page" role="menuitem">About</a>
+          <a href="donate.html" role="menuitem">Support</a>
+        </div>
+      </div>
       <div class="nav-dropdown" id="more-dropdown">
         <button class="nav-dropdown-btn" id="more-btn" aria-haspopup="true" aria-expanded="false" aria-controls="more-menu">
-          More &#9660;
+          Nations &#9660;
         </button>
         <div class="nav-dropdown-menu" id="more-menu" role="menu">
           <a href="geipan/" role="menuitem">France GEIPAN</a>
@@ -258,6 +265,29 @@ footer a{color:var(--ink-dim);text-decoration:none}
 (function(){
   var t=document.getElementById('nav-toggle'),n=document.getElementById('primary-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o?'true':'false');});}
+})();
+</script>
+<script>
+(function() {
+  var moreBtn      = document.getElementById('more-btn');
+  var moreDropdown = document.getElementById('more-dropdown');
+  var siteBtn      = document.getElementById('site-btn');
+  var siteDropdown = document.getElementById('site-dropdown');
+  function wireDD(wrap, btn, others) {
+    if (!wrap || !btn) return;
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      others.forEach(function(o){ if (o) o.classList.remove('open'); });
+      var open = wrap.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  }
+  wireDD(moreDropdown, moreBtn, [siteDropdown]);
+  wireDD(siteDropdown, siteBtn, [moreDropdown]);
+  document.addEventListener('click', function() {
+    if (moreDropdown) { moreDropdown.classList.remove('open'); if (moreBtn) moreBtn.setAttribute('aria-expanded','false'); }
+    if (siteDropdown) { siteDropdown.classList.remove('open'); if (siteBtn) siteBtn.setAttribute('aria-expanded','false'); }
+  });
 })();
 </script>
 </body>
