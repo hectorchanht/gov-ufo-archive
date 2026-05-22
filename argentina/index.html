@@ -222,11 +222,20 @@ h2 { font-family: var(--serif); font-size: clamp(22px,3.5vw,34px); font-weight: 
 .empty { padding: 60px 0; text-align: center; color: var(--ink-faint); font-family: var(--mono); font-size: 13px; }
 
 /* ── Lightbox ─────────────────────────────────────────────────────────── */
-.lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.94); display: none; place-items: center; z-index: 200; padding: 16px; }
+.lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.96); display: none; align-items: center; justify-content: center; z-index: 200; padding: 16px; }
 @media (min-width: 720px) { .lightbox { padding: 32px; } }
-.lightbox.open { display: grid; }
+.lightbox.open { display: flex; }
 .lb-inner { max-width: 92vw; max-height: 92vh; display: flex; flex-direction: column; gap: 10px; align-items: center; }
 .lb-inner img, .lb-inner video { max-width: 90vw; max-height: 78vh; border: 1px solid var(--rule-strong); background: #000; }
+/* Rotate-to-landscape button (mobile only) */
+.lb-rotate { position: absolute; top: 12px; left: 12px; width: 40px; height: 40px; background: var(--bg-2); border: 1px solid var(--rule-strong); color: var(--ink); display: none; place-items: center; cursor: pointer; font-family: var(--mono); font-size: 18px; z-index: 3; transition: color .15s, border-color .15s; }
+.lb-rotate:hover { color: var(--caution); border-color: var(--caution); }
+@media (max-width: 719px) {
+  .lightbox.open .lb-rotate { display: grid; }
+  .lightbox.lb-rotated .lb-inner video,
+  .lightbox.lb-rotated .lb-inner img { transform: rotate(90deg); max-width: 88vh; max-height: 88vw; width: auto; height: auto; }
+  .lightbox.lb-rotated .lb-inner { max-height: none; max-width: none; }
+}
 .lb-inner iframe { width: 92vw; height: 84vh; border: 1px solid var(--rule-strong); background: #fff; }
 .lb-meta { font-family: var(--mono); font-size: 11px; color: var(--ink); background: var(--bg-2); border: 1px solid var(--rule-strong); padding: 8px 14px; max-width: 90vw; text-align: center; }
 .lb-meta a { color: var(--caution); }
@@ -271,7 +280,7 @@ body { background-image:
     <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
         <nav class="primary" id="primary-nav">
       <ul>
-        <li><a href="#top" data-i18n="intro">Intro</a></li><li><a href="#headlines" data-i18n="headlines">Headlines</a></li><li><a href="#archive" data-i18n="archive">Records</a></li><li><a href="./story.html">Story</a></li>
+        <li><a href="#top" data-i18n="intro">Intro</a></li><li><a href="#headlines" data-i18n="headlines">Headlines</a></li><li><a href="#archive" data-i18n="archive">Records</a></li>
         <li class="nav-sep"></li>
         <li><a href="../">War.gov</a></li><li><a href="../aaro/">AARO</a></li><li><a href="../nasa/">NASA</a></li><li><a href="../nara/">NARA</a></li>
         <li class="has-dropdown" id="nav-more-wrap">
@@ -374,6 +383,7 @@ body { background-image:
 
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Media viewer">
   <div class="lb-inner" id="lb-inner"></div>
+  <button class="lb-rotate" id="lb-rotate" aria-label="Rotate view" title="Rotate">⟳</button>
   <button class="lb-close" id="lb-close" aria-label="Close (Escape)">✕</button>
   <button class="lb-nav prev" id="lb-prev" aria-label="Previous (←)">‹</button>
   <button class="lb-nav next" id="lb-next" aria-label="Next (→)">›</button>
@@ -537,12 +547,14 @@ body { background-image:
   }
   function openAt(idx) { if (!lbList.length) return; lbIdx = (idx+lbList.length)%lbList.length; renderLb(); lb && lb.classList.add('open'); }
   function navLb(d)  { if (!lbList.length) return; lbIdx = (lbIdx+d+lbList.length)%lbList.length; renderLb(); }
-  function closeLb() { lb && lb.classList.remove('open'); lbI && (lbI.innerHTML=''); }
+  function closeLb() { lb && lb.classList.remove('open'); lb && lb.classList.remove('lb-rotated'); lbI && (lbI.innerHTML=''); }
 
   if (lb) {
     if (lbC)    lbC.addEventListener('click', closeLb);
     if (lbPrev) lbPrev.addEventListener('click', e => { e.stopPropagation(); navLb(-1); });
     if (lbNext) lbNext.addEventListener('click', e => { e.stopPropagation(); navLb(1); });
+    const lbR = document.getElementById('lb-rotate');
+    if (lbR) lbR.addEventListener('click', e => { e.stopPropagation(); lb.classList.toggle('lb-rotated'); });
     lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
   }
   document.addEventListener('keydown', e => {

@@ -1068,12 +1068,14 @@ Products</a></li>
   }
   function openAt(idx) { if (!lbList.length) return; lbIdx = (idx+lbList.length)%lbList.length; renderLb(); lb && lb.classList.add('open'); }
   function navLb(d)  { if (!lbList.length) return; lbIdx = (lbIdx+d+lbList.length)%lbList.length; renderLb(); }
-  function closeLb() { lb && lb.classList.remove('open'); lbI && (lbI.innerHTML=''); }
+  function closeLb() { lb && lb.classList.remove('open'); lb && lb.classList.remove('lb-rotated'); lbI && (lbI.innerHTML=''); }
 
   if (lb) {
     if (lbC)    lbC.addEventListener('click', closeLb);
     if (lbPrev) lbPrev.addEventListener('click', e => { e.stopPropagation(); navLb(-1); });
     if (lbNext) lbNext.addEventListener('click', e => { e.stopPropagation(); navLb(1); });
+    const lbR = document.getElementById('lb-rotate');
+    if (lbR) lbR.addEventListener('click', e => { e.stopPropagation(); lb.classList.toggle('lb-rotated'); });
     lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
   }
   document.addEventListener('keydown', e => {

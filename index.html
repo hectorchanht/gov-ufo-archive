@@ -529,13 +529,34 @@
   /* ============ LIGHTBOX ============ */
   .lightbox {
     position: fixed; inset: 0;
-    background: rgba(0,0,0,0.92);
+    background: rgba(0,0,0,0.96);
     display: none;
-    place-items: center; padding: 32px;
+    align-items: center; justify-content: center;
+    padding: 32px;
     z-index: 100;
     cursor: zoom-out;
   }
-  .lightbox.open { display: grid; }
+  .lightbox.open { display: flex; }
+  /* Rotate-to-landscape control (mobile only). JS toggles .lb-rotated on .lightbox */
+  .lb-rotate {
+    position: absolute; top: 16px; left: 16px;
+    width: 40px; height: 40px;
+    background: var(--bg-2); border: 1px solid var(--rule-strong);
+    color: var(--ink); display: none; place-items: center;
+    cursor: pointer; z-index: 3; font-family: var(--mono); font-size: 18px;
+    transition: color .15s, border-color .15s;
+  }
+  .lb-rotate:hover { color: var(--caution); border-color: var(--caution); }
+  @media (max-width: 720px) {
+    .lightbox.open .lb-rotate { display: grid; }
+    .lightbox.lb-rotated .lightbox-inner video,
+    .lightbox.lb-rotated .lightbox-inner img {
+      transform: rotate(90deg);
+      max-width: 88vh; max-height: 88vw;
+      width: auto; height: auto;
+    }
+    .lightbox.lb-rotated .lightbox-inner { max-height: none; max-width: none; }
+  }
   .lightbox img { max-width: 100%; max-height: 90vh; border: 1px solid var(--rule-strong); }
   .lightbox .lb-meta {
     position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
@@ -1423,6 +1444,7 @@ li.nav-sep { display: none; }
 
 <!-- ============ LIGHTBOX (unified) ============ -->
 <div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lb-rotate" id="lb-rotate" aria-label="Rotate view" title="Rotate">⟳</button>
   <div class="lb-close" id="lb-close">×</div>
   <button class="lb-nav prev" id="lb-prev" aria-label="Previous (←)">‹</button>
   <button class="lb-nav next" id="lb-next" aria-label="Next (→)">›</button>
@@ -1621,10 +1643,17 @@ li.nav-sep { display: none; }
   }
   function closeLb(){
     lb.classList.remove('open');
+    lb.classList.remove('lb-rotated');
     lb.setAttribute('aria-hidden','true');
     lbInner.innerHTML = '';
   }
   lbClose.addEventListener('click', closeLb);
+  // Rotate-to-landscape (mobile)
+  const lbRotate = document.getElementById('lb-rotate');
+  if (lbRotate) lbRotate.addEventListener('click', e => {
+    e.stopPropagation();
+    lb.classList.toggle('lb-rotated');
+  });
   if (lbPrev) lbPrev.addEventListener('click', e => { e.stopPropagation(); navLb(-1); });
   if (lbNext) lbNext.addEventListener('click', e => { e.stopPropagation(); navLb( 1); });
   lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
