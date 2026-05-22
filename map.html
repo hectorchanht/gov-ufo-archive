@@ -66,6 +66,29 @@ nav.primary{display:flex;align-items:center;gap:4px;margin-left:auto;list-style:
 nav.primary a{font-family:var(--mono);font-size:11px;color:var(--ink-dim);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;padding:10px;border-radius:4px}
 nav.primary a:hover{color:var(--ink);background:rgba(232,227,216,0.06)}
 nav.primary a.active{color:var(--caution)}
+
+/* Unified nav structure — ul/li layout to match mirror pages */
+nav.primary > ul{display:flex;align-items:center;gap:4px;list-style:none;padding:0;margin:0}
+nav.primary > ul > li{list-style:none;position:relative}
+@media(max-width:719px){
+  nav.primary > ul{flex-direction:column;align-items:stretch;gap:0;width:100%}
+  nav.primary > ul > li{width:100%}
+  nav.primary > ul > li > a, nav.primary .nav-more-btn{padding:12px 20px;width:100%;display:block;text-align:left;border-bottom:1px solid var(--rule)}
+}
+/* Dropdown button matches link styling */
+.nav-more-btn{background:none;border:none;color:var(--ink-dim);cursor:pointer;font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;padding:10px;border-radius:4px;display:flex;align-items:center;gap:4px}
+.nav-more-btn:hover,.nav-more-btn.active{color:var(--caution)}
+.has-dropdown{position:relative}
+.nav-dropdown{display:none;position:absolute;top:calc(100% + 4px);right:0;background:var(--panel);border:1px solid var(--rule-strong);border-radius:6px;min-width:200px;padding:6px 0;list-style:none;margin:0;z-index:1000;box-shadow:0 8px 24px rgba(0,0,0,0.6)}
+.nav-dropdown li{list-style:none;width:100%}
+.nav-dropdown a{display:block;padding:10px 16px;color:var(--ink-dim);text-decoration:none;font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;border-radius:0}
+.nav-dropdown a:hover{color:var(--ink);background:rgba(232,227,216,0.06)}
+.has-dropdown.open .nav-dropdown{display:block}
+@media(max-width:719px){
+  .nav-dropdown{position:static;border:0;background:rgba(255,255,255,0.03);box-shadow:none;border-radius:0;min-width:0;width:100%;padding:0}
+  .nav-dropdown a{padding:10px 32px}
+}
+
 .nav-toggle{display:none;background:none;border:none;color:var(--ink);font-size:22px;cursor:pointer;padding:10px 8px;line-height:1;margin-left:auto}
 @media(max-width:719px){.nav-toggle{display:flex;align-items:center;justify-content:center}nav.primary{display:none;position:fixed;top:64px;left:0;right:0;background:var(--panel);border-bottom:1px solid var(--rule-strong);flex-direction:column;align-items:stretch;padding:8px 0 16px;margin-left:0;gap:0;max-height:calc(100vh - 64px);overflow-y:auto}nav.primary.open{display:flex}nav.primary a{padding:12px 20px}}
 
@@ -101,40 +124,24 @@ nav.primary a.active{color:var(--caution)}
     </a>
     <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav">&#9776;</button>
     <nav class="primary" id="primary-nav" aria-label="Main navigation">
-      <a href="/">War.gov</a>
-      <a href="aaro/">AARO</a>
-      <a href="nasa/">NASA</a>
-      <a href="nara/">NARA</a>
-      <div class="nav-dropdown" id="site-dropdown">
-        <button class="nav-dropdown-btn active" id="site-btn" aria-haspopup="true" aria-expanded="false" aria-controls="site-menu">
-          Site &#9660;
-        </button>
-        <div class="nav-dropdown-menu" id="site-menu" role="menu">
-          <a href="search.html" role="menuitem">Search</a>
-          <a href="timeline.html" role="menuitem">Timeline</a>
-          <a href="map.html" class="active" aria-current="page" role="menuitem">Map</a>
-          <a href="about.html" role="menuitem">About</a>
-          <a href="donate.html" role="menuitem">Support</a>
-        </div>
-      </div>
-      <div class="nav-dropdown" id="more-dropdown">
-        <button class="nav-dropdown-btn" id="more-btn" aria-haspopup="true" aria-expanded="false" aria-controls="more-menu">
-          Nations &#9660;
-        </button>
-        <div class="nav-dropdown-menu" id="more-menu" role="menu">
-          <a href="geipan/" role="menuitem">France GEIPAN</a>
-          <a href="uk/" role="menuitem">UK Archives</a>
-          <a href="brazil/" role="menuitem">Brazil FAB</a>
-          <a href="chile/" role="menuitem">Chile CEFAA</a>
-          <a href="nz/" role="menuitem">New Zealand</a>
-          <a href="canada/" role="menuitem">Canada LAC</a>
-          <a href="argentina/" role="menuitem">Argentina CEFAe</a>
-          <a href="uruguay/" role="menuitem">Uruguay CRIDOVNI</a>
-          <a href="peru/" role="menuitem">Peru OIFAA</a>
-          <a href="spain/" role="menuitem">Spain Ejército</a>
-          <a href="italy/" role="menuitem">Italy AM</a>
-        </div>
-      </div>
+      <ul>
+        <li><a href="/">War.gov</a></li>
+        <li><a href="aaro/">AARO</a></li>
+        <li><a href="nasa/">NASA</a></li>
+        <li><a href="nara/">NARA</a></li>
+        <li class="has-dropdown" id="nav-site-wrap">
+          <button class="nav-more-btn active" id="nav-site-btn" aria-expanded="false">Site ▾</button>
+          <ul class="nav-dropdown" id="nav-site-dropdown" role="menu">
+            <li><a href="search.html">Search</a></li><li><a href="timeline.html">Timeline</a></li><li><a href="map.html" class="active" aria-current="page">Map</a></li><li><a href="about.html">About</a></li><li><a href="donate.html">Support</a></li>
+          </ul>
+        </li>
+        <li class="has-dropdown" id="nav-more-wrap">
+          <button class="nav-more-btn" id="nav-more-btn" aria-expanded="false">Nations ▾</button>
+          <ul class="nav-dropdown" id="nav-dropdown" role="menu">
+            <li><a href="geipan/">GEIPAN (France)</a></li><li><a href="uk/">UK Archives</a></li><li><a href="brazil/">Brazil FAB</a></li><li><a href="chile/">Chile CEFAA</a></li><li><a href="nz/">NZ NZDF</a></li><li><a href="canada/">Canada LAC</a></li><li><a href="argentina/">Argentina CEFAe</a></li><li><a href="uruguay/">Uruguay CRIDOVNI</a></li><li><a href="peru/">Peru OIFAA</a></li><li><a href="spain/">Spain Ejército</a></li><li><a href="italy/">Italy Aeronautica</a></li>
+          </ul>
+        </li>
+      </ul>
     </nav>
   </div>
 </div>

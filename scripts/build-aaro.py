@@ -834,6 +834,18 @@ footer .colophon {
   .lang-btn { width: auto; margin: 0; padding: 3px 8px; }
   .lang-menu { position: absolute; right: 0; top: calc(100% + 10px); min-width: 130px; }
 }
+
+.featured-cases{padding:32px 0;border-bottom:1px solid var(--rule)}
+.featured-cases .container{max-width:1200px;margin:0 auto;padding:0 16px}
+.featured-cases h2{font-family:var(--mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--caution);margin-bottom:20px;display:flex;align-items:baseline;gap:12px}
+.featured-cases h2 .sub{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--ink-dim);text-transform:none;letter-spacing:0}
+.case-grid{display:grid;gap:14px;grid-template-columns:1fr}
+@media (min-width:540px){.case-grid{grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}}
+.case-card{display:block;padding:18px 20px;background:var(--panel);border:1px solid var(--rule);border-left:3px solid var(--caution);text-decoration:none;transition:border-color .15s,transform .15s}
+.case-card:hover{border-color:var(--rule-strong);transform:translateY(-2px)}
+.case-card .c-when{font-family:var(--mono);font-size:10px;color:var(--caution);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:8px}
+.case-card .c-name{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--ink);margin-bottom:6px}
+.case-card .c-desc{font-family:var(--serif);font-size:13px;color:var(--ink-dim);line-height:1.5}
 </style>
 </head>
 <body>
@@ -914,6 +926,20 @@ footer .colophon {
         <div class="h-label">Transparency</div>
         <div class="h-text">Every release archived here. <em>Files are local</em> — no live aaro.mil calls required.</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="featured-cases" id="cases">
+  <div class="container">
+    <h2>Featured cases <span class="sub">— deep-dive stories</span></h2>
+    <div class="case-grid">
+      <a class="case-card" href="./tic-tac.html"><div class="c-when">USS Nimitz · 2004</div><div class="c-name">Tic-Tac</div><div class="c-desc">FLIR1 footage, multi-sensor radar lock</div></a>
+<a class="case-card" href="./gimbal.html"><div class="c-when">USS Roosevelt · 2015</div><div class="c-name">GIMBAL</div><div class="c-desc">F/A-18 FLIR — rotating object</div></a>
+<a class="case-card" href="./phoenix-lights.html"><div class="c-when">Arizona · Mar 1997</div><div class="c-name">Phoenix Lights</div><div class="c-desc">Mass sighting, V-formation lights</div></a>
+<a class="case-card" href="./belgian-wave.html"><div class="c-when">Belgium · 1989-90</div><div class="c-name">Belgian Wave</div><div class="c-desc">F-16 radar locks, 13,500 reports</div></a>
+<a class="case-card" href="./story.html"><div class="c-when">Mission · methodology</div><div class="c-name">AARO — full story</div><div class="c-desc">Trends & findings overview</div></a>
+
     </div>
   </div>
 </section>

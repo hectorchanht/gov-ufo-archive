@@ -144,6 +144,18 @@ __SHARED_CSS__
 body { background-image:
   radial-gradient(ellipse at 20% 0%, rgba(0,156,59,0.08) 0%, transparent 50%),
   radial-gradient(ellipse at 80% 100%, rgba(255,220,0,0.04) 0%, transparent 50%); background-attachment: fixed; }
+
+.featured-cases{padding:32px 0;border-bottom:1px solid var(--rule)}
+.featured-cases .container{max-width:1200px;margin:0 auto;padding:0 16px}
+.featured-cases h2{font-family:var(--mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--caution);margin-bottom:20px;display:flex;align-items:baseline;gap:12px}
+.featured-cases h2 .sub{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--ink-dim);text-transform:none;letter-spacing:0}
+.case-grid{display:grid;gap:14px;grid-template-columns:1fr}
+@media (min-width:540px){.case-grid{grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}}
+.case-card{display:block;padding:18px 20px;background:var(--panel);border:1px solid var(--rule);border-left:3px solid var(--caution);text-decoration:none;transition:border-color .15s,transform .15s}
+.case-card:hover{border-color:var(--rule-strong);transform:translateY(-2px)}
+.case-card .c-when{font-family:var(--mono);font-size:10px;color:var(--caution);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:8px}
+.case-card .c-name{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--ink);margin-bottom:6px}
+.case-card .c-desc{font-family:var(--serif);font-size:13px;color:var(--ink-dim);line-height:1.5}
 </style>
 </head>
 <body>
@@ -189,6 +201,19 @@ body { background-image:
       <div class="head-card"><div class="h-label">Authority</div><div class="h-text">2013 COMAER ordinance + Lei nº 12.527/2011 (LAI).</div></div>
       <div class="head-card"><div class="h-label">Current intake</div><div class="h-text">COMDABRA — Comando de Defesa Aeroespacial Brasileiro.</div></div>
       <div class="head-card"><div class="h-label">Reusable under</div><div class="h-text">Lei nº 12.527/2011 — Acesso à Informação.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="featured-cases" id="cases">
+  <div class="container">
+    <h2>Featured cases <span class="sub">— deep-dive stories</span></h2>
+    <div class="case-grid">
+      <a class="case-card" href="./operacao-prato.html"><div class="c-when">Colares, Pará · 1977</div><div class="c-name">Operação Prato</div><div class="c-desc">Mass sightings, FAB investigation</div></a>
+<a class="case-card" href="./varginha.html"><div class="c-when">Minas Gerais · Jan 1996</div><div class="c-name">Varginha</div><div class="c-desc">Multiple witness reports</div></a>
+<a class="case-card" href="./trindade.html"><div class="c-when">Atlantic · Jan 1958</div><div class="c-name">Trindade Island</div><div class="c-desc">Brazilian Navy photographs</div></a>
+<a class="case-card" href="./story.html"><div class="c-when">4,500+ files · 5 tranches</div><div class="c-name">Brazil OVNI</div><div class="c-desc">Programme history 1952-2016</div></a>
+
     </div>
   </div>
 </section>

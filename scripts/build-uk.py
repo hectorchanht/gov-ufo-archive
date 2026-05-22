@@ -201,6 +201,18 @@ __SHARED_CSS__
 body { background-image:
   radial-gradient(ellipse at 20% 0%, rgba(1,33,105,0.10) 0%, transparent 50%),
   radial-gradient(ellipse at 80% 100%, rgba(207,20,43,0.04) 0%, transparent 50%); background-attachment: fixed; }
+
+.featured-cases{padding:32px 0;border-bottom:1px solid var(--rule)}
+.featured-cases .container{max-width:1200px;margin:0 auto;padding:0 16px}
+.featured-cases h2{font-family:var(--mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--caution);margin-bottom:20px;display:flex;align-items:baseline;gap:12px}
+.featured-cases h2 .sub{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--ink-dim);text-transform:none;letter-spacing:0}
+.case-grid{display:grid;gap:14px;grid-template-columns:1fr}
+@media (min-width:540px){.case-grid{grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}}
+.case-card{display:block;padding:18px 20px;background:var(--panel);border:1px solid var(--rule);border-left:3px solid var(--caution);text-decoration:none;transition:border-color .15s,transform .15s}
+.case-card:hover{border-color:var(--rule-strong);transform:translateY(-2px)}
+.case-card .c-when{font-family:var(--mono);font-size:10px;color:var(--caution);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:8px}
+.case-card .c-name{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--ink);margin-bottom:6px}
+.case-card .c-desc{font-family:var(--serif);font-size:13px;color:var(--ink-dim);line-height:1.5}
 </style>
 </head>
 <body>
@@ -247,6 +259,17 @@ body { background-image:
       <div class="head-card"><div class="h-label">Final tranche</div><div class="h-text"><strong>24 files · 6,000 pages</strong> covering 1994–2000.</div></div>
       <div class="head-card"><div class="h-label">Flagship case</div><div class="h-text">Rendlesham Forest (Dec 1980) — the 'British Roswell'.</div></div>
       <div class="head-card"><div class="h-label">License</div><div class="h-text">Open Government Licence v3 — reusable, attributable.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="featured-cases" id="cases">
+  <div class="container">
+    <h2>Featured cases <span class="sub">— deep-dive stories</span></h2>
+    <div class="case-grid">
+      <a class="case-card" href="./rendlesham.html"><div class="c-when">RAF Bentwaters · Dec 1980</div><div class="c-name">Rendlesham Forest</div><div class="c-desc">UK's best-known UFO case</div></a>
+<a class="case-card" href="./story.html"><div class="c-when">DEFE 24 · 50 years</div><div class="c-name">UK MoD — full story</div><div class="c-desc">Programme history 1950-2009</div></a>
+
     </div>
   </div>
 </section>
