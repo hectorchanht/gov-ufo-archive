@@ -15,6 +15,19 @@
 (function() {
   'use strict';
 
+  /* Pool of case detail pages — chord `g r` picks one at random. Updated
+     by hand when new cases land; alternatively this can be hydrated from
+     /api/geo.json's `cases[].href`. */
+  var RANDOM_CASES = [
+    '/uk/rendlesham.html', '/aaro/tic-tac.html', '/aaro/gimbal.html',
+    '/aaro/phoenix-lights.html', '/aaro/belgian-wave.html',
+    '/aaro/tehran.html', '/aaro/jal-1628.html', '/aaro/coyne.html',
+    '/brazil/operacao-prato.html', '/brazil/varginha.html', '/brazil/trindade.html',
+    '/nz/kaikoura.html', '/spain/manises.html',
+    '/geipan/trans-en-provence.html',
+    '/nara/roswell.html', '/nara/socorro.html',
+  ];
+
   var DEST = {
     h: '/',
     s: '/search.html',
@@ -72,6 +85,7 @@
       '<dt><kbd>g g</kbd></dt><dd>Glossary</dd>' +
       '<dt><kbd>g b</kbd></dt><dd>About</dd>' +
       '<dt><kbd>g d</kbd></dt><dd>Support / donate</dd>' +
+      '<dt><kbd>g r</kbd></dt><dd>Random case</dd>' +
       '<dt><kbd>?</kbd></dt><dd>This help</dd>' +
       '<dt><kbd>Esc</kbd></dt><dd>Close</dd>' +
       '</dl>' +
@@ -105,6 +119,14 @@
       pending = null;
       e.preventDefault();
       window.location.href = DEST[k];
+      return;
+    }
+    if (pending === 'g' && k === 'r') {
+      clearTimeout(pendingTimer);
+      pending = null;
+      e.preventDefault();
+      var pick = RANDOM_CASES[Math.floor(Math.random() * RANDOM_CASES.length)];
+      window.location.href = pick;
       return;
     }
     if (k === 'g') {

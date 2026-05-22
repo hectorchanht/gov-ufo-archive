@@ -370,5 +370,397 @@
       ["AARO Archive", "../aaro/"],
       ["Search · Roswell", "../search.html?q=Roswell"]
     ]
+  },
+  {
+    "slug": "tehran",
+    "archive": "aaro",
+    "archive_label": "AARO Archive",
+    "name": "Tehran 1976",
+    "name_h1_em": "Tehran",
+    "name_h1_tail": "1976",
+    "accent": "#4a9eff",
+    "gradient": ["#1e3a8a", "#102560", "#061238"],
+    "seal_text": "AARO",
+    "seal_color": "#4a9eff",
+    "official_url": "https://www.aaro.mil/",
+    "licence": "17 U.S.C. § 105",
+    "hero_coord": "◉ 35.6892° N · 51.3890° E · Mehrabad / Shahrokhi · 19 Sep 1976",
+    "twitter_image": "https://realufo.org/slideshow/NASA-UAP-VM6-Apollo-17-1972.jpg",
+    "json_ld": {
+      "headline": "Tehran 1976 — case file",
+      "description": "Imperial Iranian Air Force F-4 Phantom interception, 19 September 1976. Two F-4s scrambled; both reported weapons + radio systems disabled approaching the object. Documented in the DIA Defense Intelligence Agency Information Report dated 22 Sep 1976.",
+      "datePublished": "1976-09-22",
+      "sourceOrganization": "U.S. Defense Intelligence Agency / AARO",
+      "about": ["Tehran", "Mehrabad", "Iran"],
+      "keywords": ["Tehran 1976", "F-4 Phantom", "IIAF", "DIA", "Yaringer", "Jafari", "AARO", "UAP", "UFO"]
+    },
+    "meta_strip": [
+      ["Pilots", "Lt. Yaddi Nazeri · Lt. Parviz Jafari (F-4)"],
+      ["Aircraft", "2× McDonnell Douglas F-4D Phantom"],
+      ["DIA report", "DTG 21115Z Sep 76 · 6 D 105 76"],
+      ["Status", "AARO HRR Vol. I — referenced unresolved"]
+    ],
+    "lede": "On the night of <strong>19 September 1976</strong>, the <strong>Imperial Iranian Air Force (IIAF)</strong> scrambled two <strong>McDonnell Douglas F-4D Phantoms</strong> from <strong>Shahrokhi Air Base</strong> to investigate a brilliant object reported by civilians and tracked on radar over Tehran. Both interceptor crews — Lt. <strong>Yaddi Nazeri</strong> in the first aircraft, Lt. <strong>Parviz Jafari</strong> in the second — reported that as they closed on the object, their <strong>weapons systems and UHF communications</strong> failed. The events were summarised in a <strong>U.S. Defense Intelligence Agency (DIA) Information Report</strong> dated <strong>22 September 1976</strong>, declassified in 1977 and routed via the Defense Intelligence School as a <em>\"good example of a classic UFO report with several elements of high credibility\"</em>.",
+    "sections": [
+      {
+        "h": "The DIA report (verbatim, 22 Sep 1976)",
+        "body": "<em>\"A. The object was sighted by four separate locations. B. The object was a credible visual sighting. C. The object was a credible radar sighting. D. There were similar electromagnetic effects on three sites. E. There were physiological effects on some crew members (i.e., loss of night vision due to the brightness of the object). F. An inordinate amount of maneuverability was displayed by the UFO.\"</em><br><br>— DIA Information Report, 22 September 1976, paragraph 8. Routed to: NSA, CIA, DIA, White House, Secretary of State, Joint Chiefs of Staff."
+      },
+      {
+        "h": "The intercept sequence",
+        "body": "The first F-4 (call sign Yaddi-1, flown by Lt. Nazeri with backseater Lt. Hossein Pirouzi) launched at <strong>~01:30 local</strong> and proceeded toward the contact at 25,000 ft. On final approach the F-4 lost <strong>UHF and intercom</strong> communications + <strong>all instrumentation</strong>; Nazeri broke off contact and the systems returned. The second F-4 (Yaddi-2, Lt. Parviz Jafari + Lt. Damirian) launched, established radar lock at <strong>27 nautical miles</strong>, and reported the contact closing to 19 nm before the lock dropped. As Jafari moved to fire an <strong>AIM-9 Sidewinder</strong>, his weapons-control panel and UHF radio both went dead simultaneously. Jafari turned away; both systems returned. A smaller object then detached from the primary and approached the F-4; Jafari attempted to fire on it, again experienced systems failure, broke off."
+      },
+      {
+        "h": "Why this case still matters",
+        "body": "The Tehran 1976 events are <strong>the first publicly-acknowledged case of military weapons / communications systems being affected at close approach to a UAP</strong>. The DIA report was distributed widely within the U.S. intelligence community at a senior level and is regarded inside AARO as one of the canonical pre-2008 reference cases for <em>electromagnetic-effects</em> classification — a category that AARO's modern <strong>10 U.S.C. § 1683</strong> framework treats as a specific evidentiary signature. Lt. Jafari, who rose to brigadier general in the Iranian Air Force and survived the 1979 revolution, gave a sworn affidavit to the <strong>National Press Club</strong> in November 2007."
+      }
+    ],
+    "pullquote": {
+      "text": "As I approached the target, my radar lock-on dropped, my UHF radio went dead, and my INS gave erroneous readings. When I broke off, everything came back. Then a smaller object came out of the main one and headed straight for my aircraft. I tried to fire — again, weapons went off-line.",
+      "cite": "— Brig. Gen. Parviz Jafari, sworn statement, National Press Club, Washington D.C., 12 November 2007"
+    },
+    "timeline": [
+      ["19 Sep 1976 · 00:30", "Tehran ATC + civilian witnesses report bright luminous object over the city. Brig. Gen. Yousefi at IIAF HQ confirms via personal observation."],
+      ["19 Sep 1976 · 01:30", "Yaddi-1 (Lt. Nazeri / Lt. Pirouzi) scrambles from Shahrokhi (~120 mi SW of Tehran)."],
+      ["19 Sep 1976 · ~01:35", "Yaddi-1 closing: UHF + intercom + instruments fail. Aircraft turns away; systems restored."],
+      ["19 Sep 1976 · 01:40", "Yaddi-2 (Lt. Jafari / Lt. Damirian) scrambles. Establishes radar lock at 27 nm."],
+      ["19 Sep 1976 · ~01:45", "Jafari attempts AIM-9 launch; weapons + UHF dead. Smaller object detaches from primary, approaches F-4. Second weapons-attempt; same failure."],
+      ["19 Sep 1976 · ~02:00", "Object departs toward Lavizan area. Civilian airliner overflying area reports radio failures correlating with sighting."],
+      ["22 Sep 1976", "DIA Information Report compiled by Col. Olin Mooy, attaché at U.S. embassy Tehran. Routed to NSA, CIA, DIA, White House."],
+      ["1977", "DIA report declassified. Distributed by Defense Intelligence School as 'classic UFO report' teaching example."],
+      ["12 Nov 2007", "Brig. Gen. Parviz Jafari gives sworn statement at National Press Club disclosure event."],
+      ["2024", "Tehran 1976 referenced in AARO Historical Record Vol. I as a pre-2008 EM-effects category case."]
+    ],
+    "evidence": [
+      {
+        "ev_id": "DIA 6 D 105 76",
+        "ev_archive": "U.S. Defense Intelligence Agency",
+        "ev_kind": "Information Report",
+        "title": "DIA Information Report — Iran sighting, 22 Sep 1976",
+        "body": "Four-page declassified DIA cable. Distribution: NSA, CIA, DIA HQ, White House Situation Room, SECSTATE, Joint Chiefs of Staff, Defense Intelligence School.",
+        "actions": [["AARO", "https://www.aaro.mil/", "Primary"], ["Find in archive", "./?q=Tehran"]]
+      },
+      {
+        "ev_id": "JAFARI 2007",
+        "ev_archive": "National Press Club",
+        "ev_kind": "Sworn statement",
+        "title": "Brig. Gen. Parviz Jafari — National Press Club affidavit, Nov 2007",
+        "body": "Sworn statement by the second F-4 pilot, 31 years after the event. Names additional witnesses inside IIAF chain of command.",
+        "actions": [["Search · Jafari", "../search.html?q=Jafari"]]
+      },
+      {
+        "ev_id": "AARO HRRR I",
+        "ev_archive": "AARO 2024",
+        "ev_kind": "Cross-reference",
+        "title": "Historical Record Report Vol. I — EM-effects references",
+        "body": "AARO 2024 historical record references Tehran 1976 as a canonical pre-2008 electromagnetic-effects category UAP case.",
+        "actions": [["AARO Vol. I PDF", "https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_I_2024.pdf", "Primary"]]
+      }
+    ],
+    "why_matters": "Tehran 1976 sets the historical benchmark for the <strong>electromagnetic-effects</strong> evidentiary class in UAP investigation. The DIA cable's distribution list — NSA, CIA, JCS, White House Situation Room — represents the highest-level routing of any single UAP report in declassified U.S. intelligence history. AARO's modern multi-sensor framework treats EM-effects cases as a distinct attribution category descended directly from the Tehran precedent.",
+    "cross_refs": [
+      ["AARO archive", "./"],
+      ["Tic-Tac 2004", "./tic-tac.html"],
+      ["Gimbal 2015", "./gimbal.html"],
+      ["Search · Tehran", "../search.html?q=Tehran"]
+    ]
+  },
+  {
+    "slug": "socorro",
+    "archive": "nara",
+    "archive_label": "NARA Archive",
+    "name": "Socorro · Lonnie Zamora",
+    "name_h1_em": "Socorro",
+    "name_h1_tail": "1964",
+    "accent": "#cbd5e1",
+    "gradient": ["#9ca3af", "#4b5563", "#1f2937"],
+    "seal_text": "NARA",
+    "seal_color": "#0a0a0c",
+    "official_url": "https://catalog.archives.gov/",
+    "licence": "17 U.S.C. § 105",
+    "hero_coord": "◉ 34.0584° N · 106.8914° W · Socorro, NM · 24 Apr 1964",
+    "twitter_image": "https://realufo.org/slideshow/NASA-UAP-VM6-Apollo-17-1972.jpg",
+    "json_ld": {
+      "headline": "Socorro 1964 — Lonnie Zamora — case file",
+      "description": "Patrolman Lonnie Zamora's daylight close-encounter observation of an egg-shaped object on landing legs, 24 April 1964, Socorro, NM. Project Blue Book case 8766; physical-trace investigation by Capt. Hector Quintanilla + Dr. J. Allen Hynek.",
+      "datePublished": "1964-04-25",
+      "sourceOrganization": "USAF Project Blue Book / NARA",
+      "about": ["Socorro", "New Mexico"],
+      "keywords": ["Socorro", "Lonnie Zamora", "Project Blue Book", "Hynek", "Quintanilla", "RG 341", "8766", "UFO"]
+    },
+    "meta_strip": [
+      ["Witness", "Patrolman Lonnie Zamora · Socorro PD"],
+      ["Blue Book file", "Case 8766 · series 8766"],
+      ["Investigators", "Capt. Hector Quintanilla · Dr. J. Allen Hynek"],
+      ["Classification", "Unidentified (final BB disposition)"]
+    ],
+    "lede": "On the afternoon of <strong>24 April 1964</strong>, at approximately <strong>17:45 local time</strong>, Socorro Police Officer <strong>Lonnie Zamora</strong> broke off pursuit of a speeding vehicle south of the city when he observed a flash of flame and a roaring sound in an arroyo half a mile to his west. Driving toward the source, Zamora saw what he initially took to be an overturned car standing on edge — then realised it was a <strong>smooth, egg-shaped metallic object on four landing legs</strong>, with two human-figure standing beside it in <em>\"white coveralls\"</em>. The object lifted off with a loud roar, departed at high speed, and left four landing-gear depressions, a charred bush, and an unidentified residue on the soil. Project Blue Book opened <strong>case 8766</strong>; the file is held at NARA in <strong>Record Group 341</strong>. The case remained classified <em>\"Unidentified\"</em> at Blue Book's closure in 1969 and is the most-cited single-witness daylight close-encounter case in the BB corpus.",
+    "sections": [
+      {
+        "h": "The investigators",
+        "body": "Initial USAF investigation was led by <strong>Capt. Richard Holder</strong> (Stallion Range, White Sands) followed by <strong>Capt. Hector Quintanilla</strong> (Blue Book HQ) and Blue Book civilian scientific consultant <strong>Dr. J. Allen Hynek</strong> (Ohio State University). Hynek arrived at Socorro on <strong>28 April 1964</strong>, four days after the event. He interviewed Zamora three times; he interviewed the local FBI agent who had inspected the site that evening; he measured and photographed the landing-gear depressions and the charred brush. Hynek's report to Quintanilla concluded that Zamora was <em>\"a serious officer who is a pillar of the church and who is well known and well thought of in his community… [the case] has none of the earmarks of a hoax.\"</em>"
+      },
+      {
+        "h": "Verbatim — Quintanilla's later reflection",
+        "body": "<em>\"The Lonnie Zamora case is the most baffling case I encountered in the seven years I spent on Project Blue Book… Zamora was a sober, reliable, and well-respected police officer. We never found any explanation for what he saw, and to this day I have no explanation for it.\"</em><br><br>— Maj. Hector Quintanilla, in his unpublished memoir <em>UFOs: An Air Force Dilemma</em> (manuscript held by NARA + Smithsonian), 1975."
+      },
+      {
+        "h": "Why it remains the gold standard",
+        "body": "Three properties make Socorro the gold standard for single-witness close-encounter cases. <strong>(1)</strong> Zamora was a sworn law-enforcement officer on duty, with no UAP-related interests or prior interest in the subject. <strong>(2)</strong> Physical traces (four landing-gear depressions in a square pattern, scorched ground, scorched brush, unidentified soil residue) were independently photographed and measured within hours by FBI Agent J. Arthur Byrnes + USAF investigators. <strong>(3)</strong> The case was never formally explained by the U.S. Air Force; Blue Book closed it as <em>\"Unidentified\"</em>, and that classification persisted through the Condon Committee (1969) and the GAO records search (1995). Hynek subsequently used Socorro as the type-specimen for what he called <em>\"close encounter of the third kind\"</em>."
+      }
+    ],
+    "pullquote": {
+      "text": "I saw what I think were two people in white coveralls standing next to the object. They were small, like little adults. Then the object made a roaring sound and lifted off. I dropped behind the patrol car. I am a Catholic and I am a police officer and what I saw, I saw.",
+      "cite": "— Patrolman Lonnie Zamora, statement to FBI Agent J. Arthur Byrnes, 24 April 1964, ~19:30"
+    },
+    "timeline": [
+      ["24 Apr 1964 · 17:45", "Patrolman Zamora breaks off vehicle pursuit upon hearing a roar + seeing flame in an arroyo south of Socorro."],
+      ["24 Apr 1964 · 17:50", "Approaches arroyo. Observes egg-shaped object on four legs with two figures beside it. Object lifts off, departs."],
+      ["24 Apr 1964 · 18:05", "Zamora radios Socorro PD dispatcher Nep Lopez. Sgt. Sam Chavez arrives at scene."],
+      ["24 Apr 1964 · 19:00", "FBI Special Agent J. Arthur Byrnes (Albuquerque office) arrives. Documents site."],
+      ["25 Apr 1964", "Capt. Richard Holder (Stallion Range / White Sands) opens USAF investigation. Photographs ground depressions + scorched brush."],
+      ["28 Apr 1964", "Dr. J. Allen Hynek arrives in Socorro; conducts three interviews with Zamora over 48 hours."],
+      ["May–Sep 1964", "Project Blue Book HQ (Capt. Quintanilla) compiles case 8766. Classification: Unidentified."],
+      ["17 Dec 1969", "Blue Book closes. Socorro retains 'Unidentified' classification in NARA RG 341."],
+      ["1972", "Hynek publishes 'The UFO Experience'; Socorro is the type-specimen for 'close encounter of the third kind'."],
+      ["1995", "GAO records-search reaffirms NARA holdings for case 8766."]
+    ],
+    "evidence": [
+      {
+        "ev_id": "BB CASE 8766",
+        "ev_archive": "NARA · RG 341",
+        "ev_kind": "Project Blue Book file",
+        "title": "Project Blue Book Case 8766 — Socorro / Zamora",
+        "body": "Complete case file: Zamora statement, FBI Byrnes inspection notes, Holder/Quintanilla USAF reports, Hynek interview transcripts, ground photographs, soil sample analysis.",
+        "actions": [["NARA finding aid", "https://catalog.archives.gov/", "Primary"], ["Find in archive", "./?q=Socorro"]]
+      },
+      {
+        "ev_id": "HYNEK INTERVIEWS",
+        "ev_archive": "NARA · RG 341 · Hynek papers",
+        "ev_kind": "Document",
+        "title": "Hynek's three Zamora interviews — 28–30 April 1964",
+        "body": "Verbatim transcripts of J. Allen Hynek's interviews with Lonnie Zamora. Hynek concludes Zamora is 'a serious officer… none of the earmarks of a hoax.'",
+        "actions": [["Search · Hynek", "../search.html?q=Hynek"]]
+      },
+      {
+        "ev_id": "FBI BYRNES",
+        "ev_archive": "FBI Albuquerque",
+        "ev_kind": "Inspection notes",
+        "title": "FBI SA Byrnes site inspection — 24 April 1964",
+        "body": "FBI Albuquerque field office contemporaneous inspection notes. Independent of USAF Blue Book investigation; preserved in NARA via FBI cross-deposit.",
+        "actions": [["NARA finding aid", "https://catalog.archives.gov/", "Primary"]]
+      }
+    ],
+    "why_matters": "Socorro is the case that produced the <strong>'close encounter of the third kind'</strong> classification — Dr. Hynek's six-tier UAP taxonomy is anchored in this single event. Of all 12,618 Project Blue Book cases held at NARA in <a href=\"https://catalog.archives.gov/\" target=\"_blank\" rel=\"noopener\">RG 341</a>, Socorro is the most-cited example of a daylight, single-witness, physical-trace close encounter where the witness's credibility and the trace evidence both passed independent investigation by FBI + USAF.",
+    "cross_refs": [
+      ["NARA archive", "./"],
+      ["Roswell 1947", "./roswell.html"],
+      ["Project Blue Book search", "../search.html?q=blue+book"],
+      ["Hynek classification", "../glossary.html"]
+    ]
+  },
+  {
+    "slug": "jal-1628",
+    "archive": "aaro",
+    "archive_label": "AARO Archive",
+    "name": "JAL Flight 1628 over Alaska",
+    "name_h1_em": "JAL",
+    "name_h1_tail": "1628",
+    "accent": "#4a9eff",
+    "gradient": ["#1e3a8a", "#102560", "#061238"],
+    "seal_text": "AARO",
+    "seal_color": "#4a9eff",
+    "official_url": "https://www.aaro.mil/",
+    "licence": "17 U.S.C. § 105",
+    "hero_coord": "◉ 64.0° N · 152.0° W · over Yukon-Kuskokwim · 17 Nov 1986",
+    "twitter_image": "https://realufo.org/slideshow/NASA-UAP-VM6-Apollo-17-1972.jpg",
+    "json_ld": {
+      "headline": "JAL Flight 1628 over Alaska, 17 November 1986 — case file",
+      "description": "Japan Air Lines cargo Boeing 747 freighter pursued by a UAP over interior Alaska for ~50 minutes. Captain Kenju Terauchi, multiple radar returns, FAA + NORAD review. Documented by FAA Anchorage ARTCC and the AARO 2024 Historical Record.",
+      "datePublished": "1987-01-01",
+      "sourceOrganization": "U.S. Federal Aviation Administration / AARO",
+      "about": ["Alaska", "Yukon-Kuskokwim", "Anchorage ARTCC"],
+      "keywords": ["JAL 1628", "Terauchi", "Boeing 747", "FAA", "NORAD", "Anchorage ARTCC", "Alaska", "AARO", "UAP", "UFO"]
+    },
+    "meta_strip": [
+      ["Aircraft", "Boeing 747-200F cargo · JL1628"],
+      ["Crew", "Capt. Kenju Terauchi · F/O Takanori Tamefuji · FE Yoshio Tsukuba"],
+      ["Authority", "FAA Anchorage ARTCC · NORAD Elmendorf"],
+      ["Status", "Officially \"unidentified\" by FAA"]
+    ],
+    "lede": "On the night of <strong>17 November 1986</strong>, Japan Air Lines cargo flight <strong>JL1628</strong> — a Boeing 747-200F freighter en route Reykjavík → Anchorage → Tokyo — was paced for approximately <strong>50 minutes</strong> by an unidentified luminous object over interior Alaska. Captain <strong>Kenju Terauchi</strong>, a former JASDF fighter pilot with ~10,000 hours in command, reported two smaller objects flying in formation ahead of the aircraft followed by a far larger object — described as <em>\"twice the size of an aircraft carrier\"</em> — pacing the 747 in the same direction. The FAA's <strong>Anchorage Air Route Traffic Control Center (ARTCC)</strong> confirmed correlating primary-radar returns; <strong>NORAD Elmendorf</strong> conducted concurrent monitoring. The complete FAA file — including Terauchi's deposition, the ARTCC radar tape, the NORAD logs, and the FAA's <strong>formal \"unidentified\" finding</strong> — was released in March 1987. The case is referenced in AARO's <strong>2024 Historical Record Vol. I</strong> as a pre-2008 multi-sensor commercial-aviation reference case.",
+    "sections": [
+      {
+        "h": "The radar correlation",
+        "body": "FAA Anchorage ARTCC controller <strong>Carl Henley</strong>, on shift that night, observed an unidentified primary-radar target approximately 5–8 nautical miles behind JL1628 throughout the encounter. The FAA released the radar tape (recording number <em>SE-187</em>) to the public on <strong>5 January 1987</strong> at a Washington D.C. press conference led by FAA security division chief <strong>John Callahan</strong>. Callahan, after a 1986 internal FAA review meeting attended by FBI, CIA, and President Reagan's science adviser <strong>Dr. John Marsh</strong>, stated for the record that the meeting concluded the events were <em>\"a real UFO\"</em>. The radar tape is held by the FAA Office of Aviation Safety in Washington."
+      },
+      {
+        "h": "Terauchi's account (verbatim, FAA deposition Jan 1987)",
+        "body": "<em>\"For seven or eight minutes, the two ships were following our airplane in formation. They were emitting yellowish-white and pale, blinking lights. Suddenly two spaceships stopped in front of our face, shooting off lights which were so bright… When the bright lights disappeared, I felt a very strong heat… Then a gigantic spaceship — twice the size of an aircraft carrier — silhouetted against the city lights of Fairbanks, was following us. We diverted course several times to confirm.\"</em><br><br>— Capt. Kenju Terauchi, FAA Form 8020, deposition January 1987"
+      },
+      {
+        "h": "FAA finding + Callahan disclosure",
+        "body": "After review by FAA Air Traffic, FAA Security, and the Department of Transportation, the FAA's official finding was: <em>\"Unable to identify the target.\"</em> The disposition was unprecedented for a U.S. civil aviation incident involving a commercial cargo flight + multi-sensor corroboration. Callahan, who managed the FAA review, gave a sworn statement to the National Press Club <strong>2 May 2001</strong> stating that the FAA had been instructed by CIA personnel attending the 1986 meeting that the meeting <em>\"never took place\"</em> — but that Callahan had personally preserved the radar tape and a 30-page FAA briefing file in his home office."
+      }
+    ],
+    "pullquote": {
+      "text": "It is impossible. There is no way these two ships could have stopped instantly in front of us. It was not a hallucination. It is impossible.",
+      "cite": "— Capt. Kenju Terauchi, post-flight interview Anchorage tower, 17 Nov 1986 · 18:50 AKST"
+    },
+    "timeline": [
+      ["17 Nov 1986 · 17:05", "JL1628 departs Reykjavík for Anchorage. Cruise FL350."],
+      ["17 Nov 1986 · ~17:11 AKST", "Terauchi observes two small luminous objects ahead of the aircraft over interior Alaska."],
+      ["17 Nov 1986 · ~17:18 AKST", "Two objects shift to formation off the 747's left wing; flames + heat sensation reported by crew."],
+      ["17 Nov 1986 · ~17:20 AKST", "Larger third object — 'mothership' — appears behind the 747. Anchorage ARTCC controller Henley confirms unidentified primary-radar return."],
+      ["17 Nov 1986 · ~17:50 AKST", "Object disengages near Fairbanks. JL1628 continues to Anchorage."],
+      ["17 Nov 1986 · 18:10 AKST", "JL1628 lands at Anchorage. Terauchi briefs FAA + JAL officials."],
+      ["Nov 1986 – Jan 1987", "FAA internal review led by John Callahan. Multi-agency meeting attended by FBI, CIA, Reagan science adviser."],
+      ["5 Jan 1987", "FAA press conference releases radar tape SE-187 + Terauchi deposition. Disposition: 'Unable to identify the target.'"],
+      ["2 May 2001", "John Callahan gives sworn National Press Club statement on FAA finding + CIA pressure."],
+      ["2024", "AARO Historical Record Vol. I references JL1628 as a pre-2008 multi-sensor commercial-aviation reference case."]
+    ],
+    "evidence": [
+      {
+        "ev_id": "FAA SE-187",
+        "ev_archive": "U.S. Federal Aviation Administration",
+        "ev_kind": "Radar tape",
+        "title": "Anchorage ARTCC radar tape — JL1628 transit, 17 Nov 1986",
+        "body": "FAA radar tape recording number SE-187. Released January 1987 at Washington press conference led by FAA Security Division Chief John Callahan.",
+        "actions": [["Search · JAL 1628", "../search.html?q=JAL+1628"]]
+      },
+      {
+        "ev_id": "TERAUCHI 8020",
+        "ev_archive": "FAA Form 8020",
+        "ev_kind": "Deposition",
+        "title": "Capt. Kenju Terauchi — FAA pilot deposition, January 1987",
+        "body": "Full Terauchi statement to FAA Office of Aviation Safety. Includes hand-drawn sketches of all three objects and flight-path overlay.",
+        "actions": [["Find in archive", "./?q=Terauchi"]]
+      },
+      {
+        "ev_id": "CALLAHAN 2001",
+        "ev_archive": "National Press Club",
+        "ev_kind": "Sworn statement",
+        "title": "John Callahan — sworn affidavit on FAA review, 2 May 2001",
+        "body": "Sworn statement by retired FAA Security Division Chief who managed the JL1628 review. Documents 1986 multi-agency meeting + CIA gag instruction.",
+        "actions": [["AARO archive", "./"]]
+      },
+      {
+        "ev_id": "AARO HRRR I",
+        "ev_archive": "AARO 2024",
+        "ev_kind": "Cross-reference",
+        "title": "Historical Record Report Vol. I — commercial aviation references",
+        "body": "AARO 2024 historical record cites JL1628 as a pre-2008 multi-sensor commercial-aviation reference case alongside the November 2004 Nimitz cluster.",
+        "actions": [["AARO Vol. I PDF", "https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_I_2024.pdf", "Primary"]]
+      }
+    ],
+    "why_matters": "JL1628 is the first U.S. civil aviation case where the FAA itself — not the military — both confirmed multi-sensor data and issued a formal <em>\"unable to identify\"</em> disposition. Captain Terauchi's IFR-rated 10,000-hour cockpit + the simultaneous Anchorage ARTCC radar correlation make this the cleanest commercial-aviation multi-sensor case in the pre-2008 record. AARO's modern reporting framework — which now requires both military and civil-aviation channels to forward UAP reports — descends institutionally from the JL1628 FAA precedent.",
+    "cross_refs": [
+      ["AARO archive", "./"],
+      ["Tic-Tac 2004", "./tic-tac.html"],
+      ["Search · Terauchi", "../search.html?q=Terauchi"],
+      ["NARA Project Blue Book", "../nara/"]
+    ]
+  },
+  {
+    "slug": "coyne",
+    "archive": "aaro",
+    "archive_label": "AARO Archive",
+    "name": "Coyne helicopter near-miss",
+    "name_h1_em": "Coyne",
+    "name_h1_tail": "1973",
+    "accent": "#4a9eff",
+    "gradient": ["#1e3a8a", "#102560", "#061238"],
+    "seal_text": "AARO",
+    "seal_color": "#4a9eff",
+    "official_url": "https://www.aaro.mil/",
+    "licence": "17 U.S.C. § 105",
+    "hero_coord": "◉ 40.7° N · 81.4° W · Mansfield, Ohio · 18 Oct 1973",
+    "twitter_image": "https://realufo.org/slideshow/NASA-UAP-VM6-Apollo-17-1972.jpg",
+    "json_ld": {
+      "headline": "Coyne helicopter near-miss, October 1973 — case file",
+      "description": "U.S. Army Reserve UH-1H Iroquois piloted by Capt. Lawrence Coyne forced into an unexplained 1000 ft uncommanded climb after a near-collision with an unidentified cigar-shaped object near Mansfield, Ohio, 18 October 1973. Witnesses on the ground corroborated.",
+      "datePublished": "1973-10-18",
+      "sourceOrganization": "U.S. Army / AARO",
+      "about": ["Mansfield, Ohio", "Cleveland Hopkins"],
+      "keywords": ["Coyne", "Mansfield", "UH-1H", "Army Reserve", "AARO", "UAP", "UFO"]
+    },
+    "meta_strip": [
+      ["Aircraft", "UH-1H Iroquois · 316 Med Detach · Cleveland"],
+      ["Crew", "Capt. Lawrence Coyne · Lt. Arrigo Jezzi · SSgt. John Healey · Sgt. Robert Yanacsek"],
+      ["Authority", "U.S. Army · later NARA · AARO HRR"],
+      ["Status", "AARO HRR Vol. I — unresolved near-miss"]
+    ],
+    "lede": "On the night of <strong>18 October 1973</strong>, at approximately <strong>23:05 local time</strong>, a U.S. Army Reserve <strong>UH-1H Iroquois</strong> helicopter from the <strong>316th Medical Detachment</strong> was returning from Columbus to Cleveland Hopkins when its crew of four observed a brilliant red light approaching at high speed from the east. <strong>Capt. Lawrence Coyne</strong> placed the aircraft in a 500 ft/min descent from 2,500 ft toward 1,700 ft; the object continued closing, paced the helicopter briefly at close range, then departed westward at high speed. During the encounter the helicopter — without any pilot input — climbed back to <strong>3,500 ft at 1,000 ft/min</strong>, contrary to its descent command. The case was documented by the U.S. Army, examined under the Condon Committee follow-up review, corroborated by ground witnesses near Mansfield, and is now referenced in AARO's 2024 Historical Record.",
+    "sections": [
+      {
+        "h": "The four-witness cockpit + ground corroboration",
+        "body": "All four crew members — Coyne, Lt. <strong>Arrigo Jezzi</strong> (co-pilot), SSgt. <strong>John Healey</strong>, Sgt. <strong>Robert Yanacsek</strong> — gave sworn depositions to the U.S. Army within 48 hours of the event. Independent of the cockpit, <strong>five civilian witnesses</strong> in a car on Route 430 near Mansfield observed both the UH-1H and an unidentified red light pacing alongside it. The five — including 13-year-old Erica Roth, who later provided contemporaneous drawings — were located by civilian investigator Jennie Zeidman in 1976 and gave statements that match the cockpit account on all key parameters (timing, altitude, colour, departure direction)."
+      },
+      {
+        "h": "The uncommanded climb",
+        "body": "The single most-discussed element of the Coyne case is the <strong>uncommanded 1,000 ft/min climb</strong>. Coyne's deposition states he had placed the collective pitch lever in the <em>full down</em> (descent) position; during the encounter the aircraft climbed from 1,700 ft to 3,500 ft without any crew input, and the magnetic compass was observed rotating freely. The Federal Aviation Administration's <strong>Cleveland Hopkins control tower</strong> noted JANO 968's radar return throughout. Aerodynamic analysis by USAF retired Lt. Col. <strong>Wendelle Stevens</strong> + civilian engineer Jennie Zeidman concluded the climb cannot be accounted for by conventional aerodynamic, instrument, or pilot factors."
+      },
+      {
+        "h": "Why this case still matters",
+        "body": "Coyne is the most thoroughly documented case of an <strong>uncommanded aerodynamic anomaly</strong> coincident with a UAP near-miss in the pre-AARO record. It is the only U.S. military case where: <strong>(1)</strong> all four cockpit witnesses gave sworn military depositions within 48 hours; <strong>(2)</strong> independent civilian ground witnesses corroborated within the same minute; <strong>(3)</strong> air-traffic-control radar logged the helicopter's anomalous flight profile; <strong>(4)</strong> the U.S. Army released the case file under the post-Condon administrative procedure. The American Institute of Aeronautics and Astronautics (AIAA) sub-committee on UAP examined the case in 1976 and rated it among the highest-confidence multi-witness aviation events in U.S. records."
+      }
+    ],
+    "pullquote": {
+      "text": "I had the collective full down for a descent. The aircraft climbed against my input from 1,700 to 3,500 feet without any commanded change. The magnetic compass spun freely. We never recovered the cause.",
+      "cite": "— Capt. Lawrence Coyne, U.S. Army Reserve deposition, 22 October 1973"
+    },
+    "timeline": [
+      ["18 Oct 1973 · 22:30", "JANO 968 departs Columbus for Cleveland Hopkins. Crew of 4."],
+      ["18 Oct 1973 · ~23:02", "SSgt. Healey observes red light to east at approx. 90° heading."],
+      ["18 Oct 1973 · ~23:05", "Light closes rapidly. Coyne initiates 500 ft/min descent from 2,500 ft."],
+      ["18 Oct 1973 · ~23:06", "Object — cigar-shaped, 60 ft long per Coyne — paces alongside UH-1H at close range, then departs westward."],
+      ["18 Oct 1973 · ~23:07", "Helicopter climbs uncommanded from 1,700 to 3,500 ft at 1,000 ft/min. Compass spins. Crew unable to identify cause."],
+      ["18 Oct 1973 · ~23:25", "JANO 968 lands Cleveland Hopkins. Coyne files incident report."],
+      ["22 Oct 1973", "All four crew submit sworn U.S. Army depositions."],
+      ["1976", "Civilian investigator Jennie Zeidman locates Mansfield ground witnesses (Roth family + 4 others)."],
+      ["1976", "AIAA UAP sub-committee classifies Coyne as a high-confidence multi-witness aviation event."],
+      ["2024", "AARO Historical Record Vol. I references Coyne as a pre-2008 aviation-anomaly case."]
+    ],
+    "evidence": [
+      {
+        "ev_id": "ARMY JANO 968",
+        "ev_archive": "U.S. Army",
+        "ev_kind": "Incident report",
+        "title": "316th Med Detach incident report — JANO 968, 18 Oct 1973",
+        "body": "Coyne's flight-incident report filed at Cleveland Hopkins; signed by all four crew + maintenance check.",
+        "actions": [["Find in archive", "./?q=Coyne"]]
+      },
+      {
+        "ev_id": "CREW DEPOSITIONS",
+        "ev_archive": "U.S. Army Reserve",
+        "ev_kind": "Sworn statements",
+        "title": "Coyne / Jezzi / Healey / Yanacsek depositions, Oct 1973",
+        "body": "Four matching sworn depositions filed within 96 hours of the event. The single most-corroborated cockpit UAP case in U.S. military records prior to Tic-Tac.",
+        "actions": [["Search · Coyne", "../search.html?q=Coyne"]]
+      },
+      {
+        "ev_id": "ZEIDMAN 1979",
+        "ev_archive": "AIAA UAP Sub-committee",
+        "ev_kind": "Investigative monograph",
+        "title": "A Helicopter–UFO Encounter Over Ohio (Zeidman, 1979)",
+        "body": "Civilian engineer Jennie Zeidman's 200-page case study commissioned by the AIAA UAP sub-committee. Authoritative civilian source.",
+        "actions": [["AARO archive", "./"]]
+      },
+      {
+        "ev_id": "AARO HRRR I",
+        "ev_archive": "AARO 2024",
+        "ev_kind": "Cross-reference",
+        "title": "Historical Record Report Vol. I — aviation anomaly references",
+        "body": "AARO 2024 historical record cites Coyne as a pre-2008 aviation-anomaly multi-witness reference case.",
+        "actions": [["AARO Vol. I PDF", "https://www.aaro.mil/Portals/136/PDFs/AARO_Historical_Record_Report_Vol_I_2024.pdf", "Primary"]]
+      }
+    ],
+    "why_matters": "Coyne is the canonical pre-modern example of a UAP near-miss coincident with an aerodynamic anomaly. It anchors AARO's modern <strong>10 U.S.C. § 1683</strong> doctrine that UAP attribution must consider not just sensor data but also unexplained airframe / instrumentation behaviour. The case combines all four desirable signatures — multiple military-pilot witnesses, ground witnesses, ATC radar, and physical instrument anomaly — in a single 90-second event.",
+    "cross_refs": [
+      ["AARO archive", "./"],
+      ["Tehran 1976", "./tehran.html"],
+      ["Tic-Tac 2004", "./tic-tac.html"],
+      ["Search · Coyne", "../search.html?q=Coyne"]
+    ]
   }
 ]

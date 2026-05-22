@@ -5,36 +5,36 @@
   <id>https://realufo.org/feeds/peru.xml</id>
   <link rel="self" type="application/atom+xml" href="https://realufo.org/feeds/peru.xml"/>
   <link rel="alternate" type="text/html" href="https://realufo.org/peru/"/>
-  <updated>2026-05-22T10:38:13Z</updated>
+  <updated>2026-05-22T10:45:46Z</updated>
   <author><name>realufo.org</name><uri>https://realufo.org/</uri></author>
   <rights>Per-source jurisdiction (US 17 U.S.C. §105, UK OGL v3, France Loi 78-753, Brazil LAI 12.527, Chile 20.285, etc.)</rights>
   <generator uri="https://realufo.org/">realufo.org build-feeds.py</generator>
   <entry>
-    <id>tag:realufo.org,2026:peru/588697085586</id>
+    <id>tag:realufo.org,2026:peru/956259681985</id>
     <title>Fuerza Aérea del Perú — official site</title>
     <link rel="alternate" type="text/html" href="https://www.fap.mil.pe/"/>
-    <updated>2026-05-22T10:38:13Z</updated>
-    <published>2026-05-22T10:38:13Z</published>
+    <updated>2026-05-22T10:45:46Z</updated>
+    <published>2026-05-22T10:45:46Z</published>
     <category term="Catalog"/>
     <category term="Peru · OIFAA"/>
     <summary type="text">FAP&#x27;s institutional site. OIFAA reactivation announcement and subsequent communiqués are published here.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:peru/502572119323</id>
+    <id>tag:realufo.org,2026:peru/135527508235</id>
     <title>Ministerio de Defensa del Perú</title>
     <link rel="alternate" type="text/html" href="https://www.gob.pe/mindef"/>
-    <updated>2026-05-22T10:38:13Z</updated>
-    <published>2026-05-22T10:38:13Z</published>
+    <updated>2026-05-22T10:45:46Z</updated>
+    <published>2026-05-22T10:45:46Z</published>
     <category term="Catalog"/>
     <category term="Peru · OIFAA"/>
     <summary type="text">Parent ministry. OIFAA-related ministerial decrees and policy publications are filed here.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:peru/774911153722</id>
+    <id>tag:realufo.org,2026:peru/242552692142</id>
     <title>Archivo General de la Nación — Perú</title>
     <link rel="alternate" type="text/html" href="https://www.gob.pe/agn"/>
-    <updated>2026-05-22T10:38:13Z</updated>
-    <published>2026-05-22T10:38:13Z</published>
+    <updated>2026-05-22T10:45:46Z</updated>
+    <published>2026-05-22T10:45:46Z</published>
     <category term="Catalog"/>
     <category term="Peru · OIFAA"/>
     <summary type="text">Peru&#x27;s national archives. Long-term custodian of declassified FAP records including those produced by OIFAA.</summary>

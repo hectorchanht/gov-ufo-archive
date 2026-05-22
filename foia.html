@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cloud.umami.is; script-src-attr 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://cloud.umami.is; object-src 'none'; base-uri 'self'; form-action 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to FOIA — file a UAP records request in any jurisdiction · realufo.org</title>
+<meta name="description" content="Step-by-step guide to filing UAP-records requests under U.S. FOIA, UK FOIA / SAR, France CADA, Brazil LAI, Spain Ley 19/2013, Italy D.lgs. 33/2013, Argentina 27.275, Uruguay 18.381, Chile 20.285, Peru 27.806 + Canada ATIA + NZ OIA.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://realufo.org/foia.html">
+<meta property="og:title" content="How to FOIA — UAP records requests · realufo.org">
+<meta property="og:description" content="Per-jurisdiction guide: 11 statutes, contact addresses, fee waivers, sample-letter templates.">
+<meta property="og:url" content="https://realufo.org/foia.html">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://realufo.org/assets/og.svg">
+<meta property="og:site_name" content="realufo.org">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="apple-touch-icon" href="/assets/favicon.svg">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#0a0a0c">
+<script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){});});}</script>
+<script defer src="/assets/vendor/hotkeys.js"></script>
+<script defer src="https://cloud.umami.is/script.js" data-website-id="9c4f36ef-30ad-4d76-947a-1724fe6acdba"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to file a UAP-records request in any jurisdiction",
+  "description": "Per-country guide to filing freedom-of-information requests for UAP records, with statutes, addresses and sample-letter templates.",
+  "url": "https://realufo.org/foia.html",
+  "publisher": { "@type": "Organization", "name": "realufo.org" },
+  "inLanguage": "en",
+  "isAccessibleForFree": true
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0a0a0c;--bg-2:#111114;--panel:#15151a;--ink:#e8e3d8;--ink-dim:#a8a298;--ink-faint:#6b665d;--rule:rgba(232,227,216,0.12);--rule-strong:rgba(232,227,216,0.28);--caution:#d4a017;--stamp:#b91c1c;--serif:"Source Serif 4",Georgia,serif;--mono:"JetBrains Mono",monospace}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{background:var(--bg);color:var(--ink);font-family:var(--serif);font-size:16px;line-height:1.7;overflow-x:hidden}
+.scanlines{position:fixed;inset:0;pointer-events:none;z-index:9999;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.03) 2px,rgba(0,0,0,0.03) 4px)}
+@media (prefers-reduced-motion: reduce){.scanlines{display:none}*,*::before,*::after{animation-duration:0.001ms!important;transition-duration:0.001ms!important;scroll-behavior:auto!important}}
+.container{max-width:900px;margin:0 auto;padding:0 16px}
+.header-wrap{position:sticky;top:0;z-index:900;background:rgba(21,21,26,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--rule);height:64px}
+.header{max-width:1400px;margin:0 auto;padding:0 16px;height:100%;display:flex;align-items:center;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;color:var(--ink)}
+.brand-seal{width:36px;height:36px;border-radius:50%;background:radial-gradient(circle,#b91c1c,#6b1010,#2a0606);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;color:var(--caution);letter-spacing:0.1em;border:1px solid rgba(212,160,23,0.35);flex-shrink:0}
+.brand-name{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--ink);letter-spacing:0.12em;text-transform:uppercase}
+nav.primary{display:flex;align-items:center;gap:4px;margin-left:auto;list-style:none}
+nav.primary a{font-family:var(--mono);font-size:11px;color:var(--ink-dim);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;padding:10px;border-radius:4px}
+nav.primary a:hover{color:var(--ink);background:rgba(232,227,216,0.06)}
+nav.primary a.active{color:var(--caution)}
+.nav-toggle{display:none;background:none;border:none;color:var(--ink);font-size:22px;cursor:pointer;padding:10px 8px;line-height:1;margin-left:auto}
+@media(max-width:719px){.nav-toggle{display:flex;align-items:center;justify-content:center}nav.primary{display:none;position:fixed;top:64px;left:0;right:0;background:var(--panel);border-bottom:1px solid var(--rule-strong);flex-direction:column;align-items:stretch;padding:8px 0 16px;margin-left:0;gap:0;max-height:calc(100vh - 64px);overflow-y:auto}nav.primary.open{display:flex}nav.primary a{padding:12px 20px}}
+.hero{padding:42px 0 26px;border-bottom:1px solid var(--rule)}
+h1{font-family:var(--serif);font-size:clamp(28px,5vw,42px);font-weight:700;letter-spacing:-0.02em}
+h1 em{font-style:italic;color:var(--caution)}
+.hero p.lede{max-width:65ch;color:var(--ink-dim);margin-top:14px;font-size:17px}
+.toc{display:flex;flex-wrap:wrap;gap:6px;margin:20px 0 8px;padding:14px 0;border-top:1px dashed var(--rule);border-bottom:1px dashed var(--rule)}
+.toc a{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;padding:5px 10px;border-radius:3px;border:1px solid var(--rule);color:var(--ink-dim);text-decoration:none}
+.toc a:hover{color:var(--caution);border-color:var(--caution)}
+.j{padding:32px 0;border-bottom:1px solid var(--rule)}
+.j-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.j h2{font-family:var(--serif);font-size:clamp(20px,3vw,28px);font-weight:600;letter-spacing:-0.01em}
+.j h2 em{color:var(--caution);font-style:italic}
+.j .statute{font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:0.08em;text-transform:uppercase}
+.j p{color:var(--ink-dim);margin:10px 0;max-width:70ch}
+.j p strong{color:var(--ink)}
+.j a{color:var(--caution);text-decoration:none}
+.j a:hover{text-decoration:underline}
+.j .meta{display:flex;flex-wrap:wrap;gap:6px 18px;margin:8px 0 16px;font-family:var(--mono);font-size:11px;color:var(--ink-dim);letter-spacing:0.06em}
+.j .meta strong{color:var(--ink-faint);font-weight:500;margin-right:6px;text-transform:uppercase;font-size:10px;letter-spacing:0.1em}
+.j pre.tmpl{background:var(--bg-2);border:1px solid var(--rule);border-left:3px solid var(--caution);border-radius:0 6px 6px 0;padding:14px 16px;font-family:var(--mono);font-size:11.5px;line-height:1.6;color:var(--ink);overflow-x:auto;white-space:pre-wrap;margin:6px 0 12px}
+.tips{background:rgba(212,160,23,0.06);border:1px solid rgba(212,160,23,0.3);border-radius:8px;padding:20px 22px;margin:32px 0 12px}
+.tips h2{font-family:var(--serif);font-size:22px;color:var(--ink);margin-bottom:10px}
+.tips ul{padding-left:1.4em}
+.tips li{color:var(--ink-dim);margin-bottom:7px}
+footer{border-top:1px solid var(--rule);margin-top:40px;padding:28px 16px;text-align:center}
+footer p{font-family:var(--mono);font-size:10px;color:var(--ink-faint);letter-spacing:0.08em;line-height:1.8}
+footer a{color:var(--ink-dim);text-decoration:none}
+</style>
+</head>
+<body>
+<div class="scanlines" aria-hidden="true"></div>
+
+<div class="header-wrap">
+  <div class="header">
+    <a href="/" class="brand"><div class="brand-seal">UAP</div><span class="brand-name">realufo.org</span></a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle nav" aria-expanded="false">&#9776;</button>
+    <nav class="primary" id="primary-nav">
+      <a href="/">War.gov</a>
+      <a href="/search.html">Search</a>
+      <a href="/compare.html">Compare</a>
+      <a href="/foia.html" class="active">FOIA</a>
+      <a href="/about.html">About</a>
+    </nav>
+  </div>
+</div>
+
+<main class="container">
+
+  <section class="hero">
+    <h1>How to <em>FOIA</em> a UAP record</h1>
+    <p class="lede">
+      Filing freedom-of-information requests is how this archive grows. Most national
+      programmes have a specific statute, a specific contact, and a sample-letter
+      template that works on the first try. Below: a per-jurisdiction recipe for the
+      14 source agencies we mirror.
+    </p>
+    <nav class="toc">
+      <a href="#us">USA</a><a href="#uk">UK</a><a href="#fr">France</a>
+      <a href="#br">Brazil</a><a href="#cl">Chile</a><a href="#ar">Argentina</a>
+      <a href="#uy">Uruguay</a><a href="#pe">Peru</a><a href="#es">Spain</a>
+      <a href="#it">Italy</a><a href="#nz">NZ</a><a href="#ca">Canada</a>
+      <a href="#tips">General tips</a>
+    </nav>
+  </section>
+
+  <section class="j" id="us">
+    <div class="j-head"><h2>USA &mdash; <em>FOIA</em></h2><span class="statute">5 U.S.C. § 552</span></div>
+    <div class="meta">
+      <div><strong>Agencies:</strong> AARO · DoD · NARA · NASA · USAF · CIA · FBI · NSA · FAA</div>
+      <div><strong>Reply window:</strong> 20 business days</div>
+      <div><strong>Fee waiver:</strong> education / news use</div>
+    </div>
+    <p>File via each agency's online FOIA portal. For UAP specifically:
+      <a href="https://www.aaro.mil/Contact-Us/" target="_blank" rel="noopener">AARO FOIA office</a>,
+      <a href="https://www.foia.gov/" target="_blank" rel="noopener">foia.gov</a> (federal hub),
+      <a href="https://catalog.archives.gov/" target="_blank" rel="noopener">NARA</a> for declassified Blue Book / RG 341.</p>
+    <pre class="tmpl">Subject: FOIA Request — Records relating to [SPECIFIC EVENT / VIRIN / FILE NUMBER]
+
+To Whom It May Concern,
+
+Pursuant to the Freedom of Information Act, 5 U.S.C. § 552, I request access to
+all records (including but not limited to memoranda, reports, photographs,
+video, audio, radar data, witness depositions, and correspondence) held by
+[AGENCY] that pertain to:
+
+  [Concrete subject — e.g. "the events of 14 November 2004 involving USS
+   Nimitz Carrier Strike Group" or "Project Blue Book case 8766 (Socorro NM,
+   24 April 1964)"]
+
+Time frame: [DATE RANGE]
+Format: digital copies preferred (PDF / WAV / MP4) via electronic delivery.
+
+I qualify for a fee waiver as the records are sought for non-commercial,
+public-interest use and will be made publicly accessible via realufo.org.
+If fees apply, please contact me before processing.
+
+Sincerely,
+[NAME]
+[ADDRESS]
+[EMAIL]</pre>
+  </section>
+
+  <section class="j" id="uk">
+    <div class="j-head"><h2>UK &mdash; <em>FOIA</em> + <em>SAR</em></h2><span class="statute">FOIA 2000 c. 36 · DPA 2018</span></div>
+    <div class="meta">
+      <div><strong>Agencies:</strong> Ministry of Defence · TNA Kew</div>
+      <div><strong>Reply window:</strong> 20 working days</div>
+      <div><strong>Cost cap:</strong> £600 (~24 hrs research)</div>
+    </div>
+    <p>Use <a href="https://www.gov.uk/government/organisations/ministry-of-defence/about/access-and-opening" target="_blank" rel="noopener">MoD's FOI form</a> for items still held by the department, or order directly from
+      <a href="https://discovery.nationalarchives.gov.uk/" target="_blank" rel="noopener">TNA Discovery</a> for accessioned files (DEFE, AIR, HO 305, DEFE 31 series).</p>
+    <pre class="tmpl">Subject: Freedom of Information Request — [FILE REFERENCE]
+
+Dear Information Officer,
+
+Under the Freedom of Information Act 2000, I request copies of the following
+records:
+
+  [File reference or descriptive title — e.g. "DEFE 24/1948 follow-up
+   correspondence post-2001 release" or "RAF Wattisham UAP incident logs
+   covering 1980-1985"]
+
+Please provide records in digital format if available. I am willing to pay
+reasonable copying / postage fees up to £25 without further authorisation;
+please notify me before exceeding this amount.
+
+If any part of this request would exceed the appropriate limit under
+section 12 of the Act, please advise which subset is feasible.
+
+Yours faithfully,
+[NAME] · [EMAIL]</pre>
+  </section>
+
+  <section class="j" id="fr">
+    <div class="j-head"><h2>France &mdash; <em>CADA</em></h2><span class="statute">Loi nº 78-753 du 17 juillet 1978</span></div>
+    <div class="meta">
+      <div><strong>Agencies:</strong> GEIPAN · CNES · Armée de l'Air et de l'Espace</div>
+      <div><strong>Reply window:</strong> 1 month silence = denial → escalate</div>
+      <div><strong>Appeal:</strong> CADA (Commission d'accès aux documents administratifs)</div>
+    </div>
+    <p>Most GEIPAN material is already public at <a href="https://www.cnes-geipan.fr/" target="_blank" rel="noopener">cnes-geipan.fr</a>.
+      For unreleased dossiers contact GEIPAN directly via the
+      <a href="https://www.cnes-geipan.fr/geipan/contactez-nous" target="_blank" rel="noopener">contact form</a>. For Armée de l'Air files go via
+      <a href="https://www.cada.fr/" target="_blank" rel="noopener">CADA</a> in case of refusal.</p>
+    <pre class="tmpl">Objet : Demande d'accès aux documents administratifs (Loi nº 78-753)
+
+Madame, Monsieur,
+
+Conformément à la loi nº 78-753 du 17 juillet 1978 portant diverses mesures
+d'amélioration des relations entre l'administration et le public, je sollicite
+l'accès aux documents suivants :
+
+  [Référence dossier — ex. « PAN D, observation du [DATE], commune de [LIEU] »]
+
+Je préfère recevoir les documents par voie électronique (PDF). En cas de refus
+partiel ou total, je vous remercie de me communiquer les voies et délais de
+recours, notamment auprès de la CADA.
+
+Cordialement,
+[NOM] · [E-MAIL]</pre>
+  </section>
+
+  <section class="j" id="br">
+    <div class="j-head"><h2>Brazil &mdash; <em>LAI</em></h2><span class="statute">Lei nº 12.527/2011</span></div>
+    <div class="meta">
+      <div><strong>Agencies:</strong> FAB CENDOC · Arquivo Nacional · COMDABRA</div>
+      <div><strong>Reply window:</strong> 20 dias (+10 prorrogáveis)</div>
+      <div><strong>Portal:</strong> <a href="https://www.gov.br/acessoainformacao/" target="_blank" rel="noopener">gov.br/acessoainformacao</a></div>
+    </div>
+    <p>Use the central <em>e-SIC</em> portal at <a href="https://falabr.cgu.gov.br/" target="_blank" rel="noopener">falabr.cgu.gov.br</a>.
+      Select the responding agency (Comando da Aeronáutica / Arquivo Nacional) and submit. Most OVNI tranches are already published; new requests target items not yet declassified.</p>
+    <pre class="tmpl">Assunto: Pedido de Acesso à Informação (Lei nº 12.527/2011)
+
+Prezados Senhores,
+
+Com base na Lei nº 12.527/2011 (Lei de Acesso à Informação), solicito acesso
+aos seguintes documentos relativos a observações de objetos voadores não
+identificados (OVNI):
+
+  [Descrição clara — ex.: "Relatórios do I COMAR referentes ao período
+   set/1977 – jan/1978, complementares aos publicados em Tranche 3"]
+
+Solicito o envio em formato digital (PDF) por meio do e-SIC.
+Caso o acesso seja parcial ou negado, solicito a fundamentação legal.
+
+Atenciosamente,
+[NOME] · [CPF] · [E-MAIL]</pre>
+  </section>
+
+  <section class="j" id="cl">
+    <div class="j-head"><h2>Chile &mdash; <em>Ley 20.285</em></h2><span class="statute">Ley nº 20.285 sobre Acceso a la Información Pública</span></div>
+    <div class="meta">
+      <div><strong>Agencies:</strong> DGAC / SEFAA · FACH</div>
+      <div><strong>Reply window:</strong> 20 días hábiles</div>
+      <div><strong>Portal:</strong> <a href="https://www.portaltransparencia.cl/" target="_blank" rel="noopener">portaltransparencia.cl</a></div>
+    </div>
+    <p>File via the central <em>Portal de Transparencia</em>. Most SEFAA case files are already published as monthly dispatches at sefaa.dgac.gob.cl — request only items not yet released.</p>
+  </section>
+
+  <section class="j" id="ar">
+    <div class="j-head"><h2>Argentina &mdash; <em>Ley 27.275</em></h2><span class="statute">Ley nº 27.275 de Acceso a la Información Pública</span></div>
+    <div class="meta">
+      <div><strong>Agencies:</strong> CEFAe · Fuerza Aérea Argentina · CONICET liaison</div>
+      <div><strong>Reply window:</strong> 15 días hábiles (+15 prorrogables)</div>
+      <div><strong>Portal:</strong> <a href="https://www.argentina.gob.ar/aaip/accesoalainformacion" target="_blank" rel="noopener">AAIP</a></div>
+    </div>
+    <p>The CEFAe is an unpaid commission — replies are slower than 15 days in practice. Direct correspondence to <em>cefae@faa.mil.ar</em> alongside the formal AAIP filing.</p>
+  </section>
+
+  <section class="j" id="uy">
+    <div class="j-head"><h2>Uruguay &mdash; <em>Ley 18.381</em></h2><span class="statute">Ley nº 18.381 sobre Acceso a la Información Pública</span></div>
+    <div class="meta">
+      <div><strong>Agencies:</strong> CRIDOVNI · Fuerza Aérea Uruguaya</div>
+      <div><strong>Reply window:</strong> 20 días hábiles</div>
+      <div><strong>Contact:</strong> Carrasco International Airport · FAU HQ</div>
+    </div>
+    <p>CRIDOVNI accepts requests by phone, in person at Carrasco, or by web form at <a href="https://www.fau.mil.uy/cridovni/" target="_blank" rel="noopener">fau.mil.uy/cridovni</a>. Annual aggregate stats are public; case-by-case detail requires a formal Ley 18.381 request.</p>
+  </section>
+
+  <section class="j" id="pe">
+    <div class="j-head"><h2>Peru &mdash; <em>Ley 27.806</em></h2><span class="statute">Ley nº 27.806 de Transparencia y Acceso a la Información</span></div>
+    <div class="meta">
+      <div><strong>Agencies:</strong> OIFAA · Fuerza Aérea del Perú</div>
+      <div><strong>Reply window:</strong> 10 días hábiles (+5 prorrogables)</div>
+      <div><strong>Portal:</strong> <a href="https://www.gob.pe/" target="_blank" rel="noopener">gob.pe</a></div>
+    </div>
+    <p>OIFAA's intake was paused 2008–2012 and is intermittently active. Best path: combined request to FAP Comando Conjunto + the Ministerio de Defensa transparency office.</p>
+  </section>
+
+  <section class="j" id="es">
+    <div class="j-head"><h2>Spain &mdash; <em>Ley 19/2013</em></h2><span class="statute">Ley 19/2013 de Transparencia, Acceso a la Información Pública y Buen Gobierno</span></div>
+    <div class="meta">
+      <div><strong>Agencies:</strong> Ejército del Aire · Archivo Histórico EA · Ministerio de Defensa</div>
+      <div><strong>Reply window:</strong> 1 mes</div>
+      <div><strong>Portal:</strong> <a href="https://transparencia.gob.es/" target="_blank" rel="noopener">transparencia.gob.es</a></div>
+    </div>
+    <p>The 1992 Orden 13/1992 desclassification covers most EA holdings. Newer requests typically route to the Archivo Histórico del Ejército del Aire in Villaviciosa de Odón.</p>
+  </section>
+
+  <section class="j" id="it">
+    <div class="j-head"><h2>Italy &mdash; <em>D.lgs. 33/2013</em></h2><span class="statute">D.lgs. 33/2013 (FOIA italiano) · D.lgs. 97/2016</span></div>
+    <div class="meta">
+      <div><strong>Agencies:</strong> Stato Maggiore Aeronautica · RGS</div>
+      <div><strong>Reply window:</strong> 30 giorni</div>
+      <div><strong>Portal:</strong> Per ente, via PEC certificata</div>
+    </div>
+    <p>Italian FOIA replies are mailed by <em>posta elettronica certificata (PEC)</em> for legal effect. The AM publishes aggregate stats annually; full case files require PEC-based requests to <em>Comando Logistico — Reparto Generale Sicurezza</em>.</p>
+  </section>
+
+  <section class="j" id="nz">
+    <div class="j-head"><h2>New Zealand &mdash; <em>OIA</em></h2><span class="statute">Official Information Act 1982</span></div>
+    <div class="meta">
+      <div><strong>Agencies:</strong> NZ Defence Force · NZ Police · DPMC</div>
+      <div><strong>Reply window:</strong> 20 working days</div>
+      <div><strong>Portal:</strong> <a href="https://www.nzdf.mil.nz/oia/" target="_blank" rel="noopener">nzdf.mil.nz/oia</a></div>
+    </div>
+    <p>The 2010 OIA release covers ~2,000 pages already public. New requests should target post-2010 incident logs or RNZAF operational records not yet declassified.</p>
+  </section>
+
+  <section class="j" id="ca">
+    <div class="j-head"><h2>Canada &mdash; <em>ATIA</em></h2><span class="statute">Access to Information Act, R.S.C. 1985, c. A-1</span></div>
+    <div class="meta">
+      <div><strong>Agencies:</strong> Library &amp; Archives Canada · DND · Transport Canada</div>
+      <div><strong>Reply window:</strong> 30 days (+ extensions)</div>
+      <div><strong>Portal:</strong> <a href="https://atip-aiprp.tbs-sct.gc.ca/" target="_blank" rel="noopener">atip-aiprp.tbs-sct.gc.ca</a></div>
+    </div>
+    <p>Project Magnet + Second Storey are at LAC and publicly indexed. New requests typically target DND incident reports from Northern airspace.</p>
+  </section>
+
+  <div class="tips" id="tips">
+    <h2>General tips that increase response rates</h2>
+    <ul>
+      <li><strong>Be specific.</strong> "All UAP records 1947-present" → form-letter denial. "AFOSI sighting reports from Kirtland AFB, June-August 1980" → results.</li>
+      <li><strong>Cite file references where known.</strong> DEFE 24/1948, RG 341, Notimp 250, Orden 13/1992 — using the agency's own catalog ID short-circuits the search.</li>
+      <li><strong>Identify yourself as non-commercial / educational</strong> where the statute supports fee waivers (USA, UK).</li>
+      <li><strong>Ask for digital delivery.</strong> Cheaper for the agency, faster for you, and lets you mirror without re-scanning.</li>
+      <li><strong>Pursue partial denials.</strong> Most statutes require the agency to specify the exemption (national-security clause, privacy, etc.). A targeted appeal often unlocks redacted sections.</li>
+      <li><strong>Pre-check the catalogue.</strong> NARA, TNA Discovery, Arquivo Nacional, LAC all have public search — sometimes the file you want is already accessioned and just needs a copy order.</li>
+      <li><strong>Don't conflate.</strong> Always file <em>one statute, one agency, one subject</em>. Combined requests get pinballed between offices.</li>
+      <li><strong>Share results.</strong> If you obtain previously-unreleased material, open an issue on
+        <a href="https://github.com/hectorchanht/gov-ufo-archive/issues/new" target="_blank" rel="noopener">our GitHub</a> and we will mirror it.</li>
+    </ul>
+  </div>
+
+</main>
+
+<footer>
+  <p>
+    <a href="/">realufo.org</a> · How-to-FOIA · 11 statutes covered ·
+    <a href="/about.html">About</a> · <a href="/compare.html">Compare programmes</a>
+  </p>
+</footer>
+
+<script>
+(function(){
+  var t=document.getElementById('nav-toggle'),n=document.getElementById('primary-nav');
+  if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o?'true':'false');});}
+})();
+</script>
+</body>
+</html>

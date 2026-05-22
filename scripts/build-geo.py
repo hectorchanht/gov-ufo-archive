@@ -36,7 +36,12 @@ CASE_PAGES = [
     'spain/manises.html',
     'geipan/trans-en-provence.html',
     'nara/roswell.html',
+    'aaro/tehran.html',
+    'nara/socorro.html',
+    'aaro/jal-1628.html',
+    'aaro/coyne.html',
 ]
+
 
 ARCHIVE_HQ = [
     ('wargov',    'War.gov / PURSUE',           '/',           38.8951, -77.0364),
@@ -67,6 +72,8 @@ COORD_RE = re.compile(
 MANUAL_COORDS = {
     'aaro/gimbal.html':           (36.85, -75.30,   'Atlantic test range, US east coast'),
     'brazil/operacao-prato.html': (-0.92, -48.30,   'Colares, Pará, Brazil'),
+    'aaro/jal-1628.html':         (64.00, -152.00,  'Yukon-Kuskokwim, interior Alaska'),
+    'aaro/coyne.html':            (40.70, -81.40,   'Mansfield, Ohio'),
 }
 TITLE_RE = re.compile(r'<title>([^<]+)</title>', re.I)
 DESC_RE  = re.compile(r'<meta\s+name="description"\s+content="([^"]+)"', re.I)

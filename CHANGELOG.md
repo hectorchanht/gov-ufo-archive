@@ -10,6 +10,20 @@ and the project loosely adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- **4 more case detail pages**: Tehran 1976 (AARO), Socorro 1964 (NARA),
+  JAL Flight 1628 Alaska 1986 (AARO), Coyne helicopter 1973 (AARO).
+  Now 16 case pages total.
+- **Programme comparison page** at [`/compare.html`](compare.html) — 15
+  national UAP programmes side-by-side. Mandate, host, classification,
+  release model, status.
+- **How-to-FOIA page** at [`/foia.html`](foia.html) — per-jurisdiction
+  guide covering 11 statutes (USA FOIA, UK FOIA, France CADA, Brazil LAI,
+  Spain Ley 19/2013, Italy D.lgs. 33/2013, etc.) with sample-letter
+  templates.
+- **`/api/pages-index.json`** — case + story pages are now Lunr-indexed at
+  /search.html. Narrative prose is searchable, not just manifest records.
+- **Random-case hotkey** `g r` — picks one of 16 case pages at random.
+  Helps casual visitors discover content.
 - **Per-archive story.html (14 pages)** mirroring verbatim official-source
   mission text. Sitemap + nav wired.
 - **Per-archive GitHub Release tags** (geipan-v1, uk-v1, brazil-v1, …) — empty
