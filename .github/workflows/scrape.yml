@@ -60,6 +60,12 @@ jobs:
           python3 scripts/build-details.py && \
           python3 scripts/build-wargov.py
 
+      - name: Install poppler-utils for PDF text extraction
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils || true
+
+      - name: Extract text from every locally-mirrored PDF
+        run: python3 scripts/extract-pdf-text.py || true
+
       - name: Validate every embedded manifest (warnings allowed)
         run: python3 scripts/validate-manifests.py || true
 

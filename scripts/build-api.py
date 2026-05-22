@@ -87,6 +87,29 @@ def load_archive(rel_html: str) -> List[dict]:
     return []
 
 
+def pdf_text_for(local_path: str, arc_id: str) -> str:
+    """Return first ~1500 chars of extracted PDF text if companion exists.
+
+    Companion convention: `<archive>/.pdftext/<basename>.txt` produced by
+    scripts/extract-pdf-text.py. Returns '' if no companion file.
+    """
+    if not local_path or not local_path.lower().endswith('.pdf'):
+        return ''
+    base = os.path.basename(local_path)[:-4] + '.txt'
+    if arc_id == 'wargov':
+        candidate = os.path.join(ROOT, 'bundles', '.pdftext', base)
+    else:
+        candidate = os.path.join(ROOT, arc_id, '.pdftext', base)
+    try:
+        with open(candidate, 'r', encoding='utf-8', errors='ignore') as f:
+            text = f.read(2000).strip()
+        # Collapse whitespace + strip page-break crud
+        text = ' '.join(text.split())
+        return text[:1500]
+    except FileNotFoundError:
+        return ''
+
+
 def normalise(raw: dict, arc_id: str, arc_label: str, arc_dir: str) -> dict:
     """Coerce heterogeneous record shapes into one schema."""
     def g(*keys):
@@ -95,12 +118,22 @@ def normalise(raw: dict, arc_id: str, arc_label: str, arc_dir: str) -> dict:
             if v:
                 return v
         return ''
+    local = g('l', 'local', 'Local')
+    pdf_body = pdf_text_for(local, arc_id)
+    base_desc = g('de', 'desc', 'description', 'Description')
+    # Append PDF body to description so Lunr ranks against full text without
+    # changing the visible schema. The visible description stays unchanged
+    # for clients reading the field directly — they get the curated blurb.
+    description = base_desc
+    if pdf_body and pdf_body not in description:
+        sep = ' ⋯ ' if description else ''
+        description = (description + sep + pdf_body)[:3000]
     return {
         'archive':      arc_id,
         'archiveLabel': arc_label,
         'archiveDir':   arc_dir,
         'title':        g('ti', 'title', 'Title'),
-        'description':  g('de', 'desc', 'description', 'Description'),
+        'description':  description,
         'agency':       g('ag', 'agency', 'Agency'),
         'category':     g('cat', 'type', 'category', 'Category'),
         'classification': g('cls', 'classification', 'st', 'status', 'Status'),
