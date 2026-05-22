@@ -234,17 +234,17 @@ printf "  DVIDS videos      %4d files (%s)\n" \
   "$(ls -1 "$ROOT/bundles/uapvideos" 2>/dev/null | wc -l | tr -d ' ')" \
   "$(du -sh "$ROOT/bundles/uapvideos" 2>/dev/null | cut -f1)"
 printf "  AARO pages        %4d files (%s)\n" \
-  "$(ls -1 "$ROOT/aaro-mirror/pages" 2>/dev/null | wc -l | tr -d ' ')" \
-  "$(du -sh "$ROOT/aaro-mirror/pages" 2>/dev/null | cut -f1)"
+  "$(ls -1 "$ROOT/aaro/pages" 2>/dev/null | wc -l | tr -d ' ')" \
+  "$(du -sh "$ROOT/aaro/pages" 2>/dev/null | cut -f1)"
 printf "  AARO PDFs         %4d files (%s)\n" \
-  "$(ls -1 "$ROOT/aaro-mirror/pdfs" 2>/dev/null | wc -l | tr -d ' ')" \
-  "$(du -sh "$ROOT/aaro-mirror/pdfs" 2>/dev/null | cut -f1)"
+  "$(ls -1 "$ROOT/aaro/pdfs" 2>/dev/null | wc -l | tr -d ' ')" \
+  "$(du -sh "$ROOT/aaro/pdfs" 2>/dev/null | cut -f1)"
 printf "  AARO videos       %4d files (%s)\n" \
-  "$(ls -1 "$ROOT/aaro-mirror/videos" 2>/dev/null | wc -l | tr -d ' ')" \
-  "$(du -sh "$ROOT/aaro-mirror/videos" 2>/dev/null | cut -f1)"
+  "$(ls -1 "$ROOT/aaro/videos" 2>/dev/null | wc -l | tr -d ' ')" \
+  "$(du -sh "$ROOT/aaro/videos" 2>/dev/null | cut -f1)"
 printf "  AARO images       %4d files (%s)\n" \
-  "$(ls -1 "$ROOT/aaro-mirror/assets/images" 2>/dev/null | wc -l | tr -d ' ')" \
-  "$(du -sh "$ROOT/aaro-mirror/assets/images" 2>/dev/null | cut -f1)"
+  "$(ls -1 "$ROOT/aaro/assets/images" 2>/dev/null | wc -l | tr -d ' ')" \
+  "$(du -sh "$ROOT/aaro/assets/images" 2>/dev/null | cut -f1)"
 
 echo ""
-echo "Done. Open index.html or aaro-mirror/index.html in a browser."
+echo "Done. Open index.html or aaro/index.html in a browser."

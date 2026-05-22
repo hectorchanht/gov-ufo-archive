@@ -46,12 +46,12 @@ if ! command -v gh >/dev/null 2>&1; then
   echo "  ! gh CLI not installed; skipping upload step"
 else
   # Videos
-  if ls bundles/uapvideos/*.mp4 aaro-mirror/videos/*.mp4 geipan-mirror/videos/*.mp4 2>/dev/null | grep -q .; then
+  if ls bundles/uapvideos/*.mp4 aaro/videos/*.mp4 geipan/videos/*.mp4 2>/dev/null | grep -q .; then
     echo "  → uploading mp4 files to videos-v1 (--clobber)"
-    maybe "gh release upload videos-v1 bundles/uapvideos/*.mp4 aaro-mirror/videos/*.mp4 geipan-mirror/videos/*.mp4 --clobber 2>/dev/null || true"
+    maybe "gh release upload videos-v1 bundles/uapvideos/*.mp4 aaro/videos/*.mp4 geipan/videos/*.mp4 --clobber 2>/dev/null || true"
   fi
   # PDFs
-  PDF_FILES=(bundles/Release_1/*.pdf aaro-mirror/pdfs/*.pdf nasa-mirror/pdfs/*.pdf nara-mirror/pdfs/*.pdf geipan-mirror/pdfs/*.pdf uk-mirror/pdfs/*.pdf chile-mirror/pdfs/*.pdf)
+  PDF_FILES=(bundles/Release_1/*.pdf aaro/pdfs/*.pdf nasa/pdfs/*.pdf nara/pdfs/*.pdf geipan/pdfs/*.pdf uk/pdfs/*.pdf chile/pdfs/*.pdf)
   for d in nz-mirror canada-mirror argentina-mirror uruguay-mirror peru-mirror spain-mirror italy-mirror; do
     if ls "$d"/pdfs/*.pdf 2>/dev/null | grep -q .; then
       PDF_FILES+=("$d/pdfs/"*.pdf)
@@ -85,21 +85,21 @@ BASE = 'https://realufo.org'
 today = datetime.datetime.utcnow().strftime('%Y-%m-%d')
 URLS = [
     ('/', 'weekly', '1.0'),
-    ('/aaro-mirror/', 'weekly', '0.9'),
-    ('/aaro-mirror/details.html', 'monthly', '0.7'),
-    ('/nasa-mirror/', 'monthly', '0.8'),
-    ('/nara-mirror/', 'monthly', '0.8'),
-    ('/geipan-mirror/', 'monthly', '0.8'),
-    ('/uk-mirror/', 'monthly', '0.7'),
-    ('/brazil-mirror/', 'monthly', '0.7'),
-    ('/chile-mirror/', 'monthly', '0.7'),
-    ('/nz-mirror/', 'monthly', '0.7'),
-    ('/canada-mirror/', 'monthly', '0.7'),
-    ('/argentina-mirror/', 'monthly', '0.7'),
-    ('/uruguay-mirror/', 'monthly', '0.7'),
-    ('/peru-mirror/', 'monthly', '0.7'),
-    ('/spain-mirror/', 'monthly', '0.7'),
-    ('/italy-mirror/', 'monthly', '0.7'),
+    ('/aaro/', 'weekly', '0.9'),
+    ('/aaro/details.html', 'monthly', '0.7'),
+    ('/nasa/', 'monthly', '0.8'),
+    ('/nara/', 'monthly', '0.8'),
+    ('/geipan/', 'monthly', '0.8'),
+    ('/uk/', 'monthly', '0.7'),
+    ('/brazil/', 'monthly', '0.7'),
+    ('/chile/', 'monthly', '0.7'),
+    ('/nz/', 'monthly', '0.7'),
+    ('/canada/', 'monthly', '0.7'),
+    ('/argentina/', 'monthly', '0.7'),
+    ('/uruguay/', 'monthly', '0.7'),
+    ('/peru/', 'monthly', '0.7'),
+    ('/spain/', 'monthly', '0.7'),
+    ('/italy/', 'monthly', '0.7'),
 ]
 out = ['<?xml version="1.0" encoding="UTF-8"?>',
        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']

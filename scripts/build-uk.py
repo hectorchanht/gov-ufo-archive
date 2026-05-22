@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build uk-mirror/index.html — UK National Archives MoD UFO files mirror.
+"""Build uk/index.html — UK National Archives MoD UFO files mirror.
 
 The MoD UFO desk closed in 2009; ~52,000 pages of files transferred to
 The National Archives at Kew over 2008-2017, all digitized and free to
@@ -7,17 +7,20 @@ view via Discovery (the TNA catalog). We surface the curated topic page
 + flagship file deep-links + the press release PDF.
 Tone: Royal Navy blue (#012169).
 """
-import json, os, subprocess
+import json, os, sys, subprocess
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ROOT = os.path.join(REPO, 'uk-mirror')
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from _mirror_shared import SHARED_CSS, SHARED_JS
+from _site_template import make_nav, LIGHTBOX_HTML
+ROOT = os.path.join(REPO, 'uk')
 
 
 def git_tracked(rel_dir):
     try:
-        out = subprocess.run(['git','-C',REPO,'ls-files',f'uk-mirror/{rel_dir}/'],
+        out = subprocess.run(['git','-C',REPO,'ls-files',f'uk/{rel_dir}/'],
             capture_output=True, text=True, check=True).stdout
-        prefix = f'uk-mirror/{rel_dir}/'
+        prefix = f'uk/{rel_dir}/'
         return {ln[len(prefix):] for ln in out.splitlines() if ln.startswith(prefix)}
     except (subprocess.CalledProcessError, FileNotFoundError):
         p = os.path.join(ROOT, rel_dir)
@@ -143,11 +146,11 @@ PAGE = r'''<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>UK MoD UFO Files — The National Archives (Offline Mirror)</title>
 <meta name="description" content="Offline mirror of the UK's Ministry of Defence UFO files at The National Archives, Kew. 52,000+ pages transferred 2008–2017.">
-<link rel="canonical" href="https://realufo.org/uk-mirror/">
+<link rel="canonical" href="https://realufo.org/uk/">
 <meta property="og:title" content="UK MoD UFO Files — National Archives at Kew | realufo.org">
 <meta property="og:description" content="Britain's Ministry of Defence UFO desk (1950-2009). 52,000+ pages transferred to The National Archives at Kew. Deep-links into Discovery: Rendlesham Forest, DEFE 24, AIR 2.">
 <meta property="og:image" content="https://realufo.org/slideshow/FBI-Photo-1.jpg">
-<meta property="og:url" content="https://realufo.org/uk-mirror/">
+<meta property="og:url" content="https://realufo.org/uk/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="realufo.org">
 <meta name="twitter:card" content="summary_large_image">
@@ -182,18 +185,7 @@ body { background-image:
       </div>
     </a>
     <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
-    <nav class="primary" id="primary-nav">
-      <ul>
-        <li><a href="#top">Intro</a></li>
-        <li><a href="#headlines">Headlines</a></li>
-        <li><a href="#archive" class="active">Records</a></li>
-        <li><a href="../index.html">war.gov</a></li>
-        <li><a href="../aaro-mirror/index.html">AARO</a></li>
-        <li><a href="../nasa-mirror/index.html">NASA</a></li>
-        <li><a href="../nara-mirror/index.html">NARA</a></li>
-        <li><a href="../geipan-mirror/index.html">GEIPAN</a></li>
-      </ul>
-    </nav>
+    __NAV__
   </div>
 </header>
 </div>
@@ -264,10 +256,10 @@ body { background-image:
       <h4>Related Mirrors</h4>
       <ul>
         <li><a href="../index.html">war.gov / UFO Release 01</a></li>
-        <li><a href="../aaro-mirror/index.html">AARO — DoW</a></li>
-        <li><a href="../nasa-mirror/index.html">NASA UAP Study</a></li>
-        <li><a href="../nara-mirror/index.html">NARA UAP Records</a></li>
-        <li><a href="../geipan-mirror/index.html">France GEIPAN</a></li>
+        <li><a href="../aaro/index.html">AARO — DoW</a></li>
+        <li><a href="../nasa/index.html">NASA UAP Study</a></li>
+        <li><a href="../nara/index.html">NARA UAP Records</a></li>
+        <li><a href="../geipan/index.html">France GEIPAN</a></li>
       </ul>
     </div>
     <div>
@@ -285,13 +277,7 @@ body { background-image:
   </div>
 </footer>
 
-<div class="lightbox" id="lightbox" aria-hidden="true">
-  <div class="lb-close" id="lb-close">×</div>
-  <button class="lb-nav prev" id="lb-prev" aria-label="Previous (←)">‹</button>
-  <button class="lb-nav next" id="lb-next" aria-label="Next (→)">›</button>
-  <div class="lb-counter" id="lb-counter"></div>
-  <div class="lb-inner" id="lb-inner"></div>
-</div>
+__LIGHTBOX__
 
 <script id="arch-data" type="application/json">__DATA__</script>
 <script>__SHARED_JS__</script>
@@ -299,301 +285,15 @@ body { background-image:
 </html>
 '''
 
-# Shared CSS — same skeleton for every mirror, only --caution + body bg differs.
-SHARED_CSS = r'''
-:root {
-  --bg:#0a0a0c; --bg-2:#111114; --panel:#15151a;
-  --ink:#e8e3d8; --ink-dim:#a8a298; --ink-faint:#6b665d;
-  --rule:rgba(232,227,216,0.12); --rule-strong:rgba(232,227,216,0.28);
-  --stamp:#b91c1c; --warm:#d4a017; --classified:#c9362c;
-  --serif:"Source Serif 4","Iowan Old Style",Georgia,serif;
-  --mono:"JetBrains Mono","SF Mono",Consolas,monospace;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; scroll-padding-top: 70px; }
-body { background: var(--bg); color: var(--ink); font-family: var(--serif); font-size: 15px; line-height: 1.65; overflow-x: hidden; }
-@media (min-width: 720px) { body { font-size: 16px; } }
-.scanlines { position: fixed; inset: 0; background: repeating-linear-gradient(to bottom, transparent 0, transparent 2px, rgba(255,255,255,0.012) 3px, transparent 4px); pointer-events: none; z-index: 50; }
-.container { max-width: 1200px; margin: 0 auto; padding: 0 16px; position: relative; z-index: 2; }
-@media (min-width: 720px) { .container { padding: 0 32px; } }
-.header-wrap { position: sticky; top: 0; z-index: 40; background: rgba(10,10,12,0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--rule); }
-header { padding: 14px 0; }
-header .container { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); flex: 1; min-width: 0; }
-.seal { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; box-shadow: 0 0 0 2px var(--ink), 0 0 0 4px var(--bg), 0 0 0 5px var(--ink-faint); font-family: var(--mono); font-weight: 700; font-size: 10px; color: var(--ink); flex-shrink: 0; }
-.brand-text { display: flex; flex-direction: column; line-height: 1.1; min-width: 0; }
-.brand-text .super { font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em; color: var(--ink-dim); text-transform: uppercase; }
-.brand-text .name { font-family: var(--serif); font-size: 16px; font-weight: 600; margin-top: 2px; }
-@media (min-width: 720px) { .seal { width: 44px; height: 44px; } .brand-text .name { font-size: 18px; } }
-.nav-toggle { display: flex; background: transparent; border: 1px solid var(--rule-strong); width: 40px; height: 40px; cursor: pointer; padding: 0; flex-direction: column; justify-content: center; align-items: center; gap: 4px; flex-shrink: 0; }
-.nav-toggle span { display: block; width: 18px; height: 2px; background: var(--ink); transition: transform .2s, opacity .2s; }
-.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
-.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
-nav.primary { display: none; flex-basis: 100%; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; }
-nav.primary.open { display: block; }
-nav.primary ul { display: flex; flex-direction: column; gap: 0; list-style: none; padding-top: 12px; margin-top: 12px; border-top: 1px solid var(--rule); }
-nav.primary ul li { width: 100%; }
-nav.primary a { color: var(--ink-dim); text-decoration: none; text-transform: uppercase; display: block; padding: 12px 0; border-bottom: 1px solid var(--rule); }
-nav.primary a:hover, nav.primary a.active { color: var(--caution); }
-@media (min-width: 720px) {
-  .nav-toggle { display: none; }
-  nav.primary { display: block; flex: 1; flex-basis: auto; }
-  nav.primary ul { flex-direction: row; gap: 4px 22px; flex-wrap: wrap; justify-content: flex-end; padding-top: 0; margin-top: 0; border: 0; }
-  nav.primary ul li { width: auto; }
-  nav.primary a { padding: 0; border: 0; }
-}
-.hero { padding: 48px 0 32px; border-bottom: 1px solid var(--rule); }
-@media (min-width: 720px) { .hero { padding: 64px 0 48px; } }
-.coords { font-family: var(--mono); font-size: 11px; color: var(--caution); letter-spacing: 0.12em; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-.coords::before { content: "◉"; color: var(--stamp); }
-h1.hero-title { font-family: var(--serif); font-weight: 700; font-size: clamp(26px,5.5vw,52px); line-height: 1.05; letter-spacing: -0.02em; max-width: 24ch; margin-bottom: 18px; word-break: break-word; }
-h1.hero-title em { color: var(--caution); font-style: italic; }
-.hero-sub { max-width: 65ch; color: var(--ink-dim); font-size: 16px; line-height: 1.65; }
-.hero-sub a { color: var(--caution); }
-.headlines { padding: 32px 0; border-bottom: 1px solid var(--rule); }
-.head-grid { display: grid; gap: 14px; grid-template-columns: 1fr; }
-@media (min-width: 540px) { .head-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; } }
-.head-card { padding: 18px 20px; background: var(--panel); border: 1px solid var(--rule); border-left: 3px solid var(--caution); }
-.head-card .h-label { font-family: var(--mono); font-size: 10px; color: var(--caution); letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 10px; }
-.head-card .h-text { font-size: 16px; line-height: 1.4; color: var(--ink); }
-.head-card .h-num { font-family: var(--mono); font-size: 28px; color: var(--ink); font-weight: 600; display: block; margin-bottom: 4px; }
-section { padding: 40px 0; border-bottom: 1px solid var(--rule); }
-@media (min-width: 720px) { section { padding: 56px 0; } }
-.section-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-faint); display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
-.section-label::before { content: ""; width: 28px; height: 1px; background: var(--ink-faint); }
-h2 { font-family: var(--serif); font-size: clamp(22px,3.5vw,34px); font-weight: 700; letter-spacing: -0.015em; margin-bottom: 18px; max-width: 28ch; word-break: break-word; }
-.lede { max-width: 70ch; color: var(--ink); font-size: 16px; }
-.lede a { color: var(--caution); }
-.stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin: 20px 0 24px; }
-@media (min-width: 540px) { .stats-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); } }
-.stat { background: var(--panel); padding: 14px 18px; font-family: var(--mono); }
-.stat b { display: block; font-size: 24px; color: var(--ink); font-weight: 500; }
-.stat small { display: block; font-size: 10px; color: var(--ink-faint); letter-spacing: 0.16em; text-transform: uppercase; margin-top: 6px; }
-.arch-controls-bar { position: sticky; top: 64px; z-index: 30; background: rgba(10,10,12,0.95); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin: 24px -16px 0; padding: 12px 16px; display: flex; flex-direction: column; gap: 10px; }
-@media (min-width: 720px) { .arch-controls-bar { margin: 24px -32px 0; padding: 14px 32px; flex-direction: row; align-items: center; gap: 14px; } }
-.tabs { display: flex; gap: 6px; flex-wrap: wrap; width: 100%; }
-.tab { font-family: var(--mono); font-size: 10px; padding: 6px 10px; border: 1px solid var(--rule-strong); background: var(--panel); color: var(--ink-dim); cursor: pointer; letter-spacing: 0.08em; text-transform: uppercase; }
-@media (min-width: 720px) { .tab { font-size: 11px; padding: 8px 14px; } .tabs { width: auto; } }
-.tab:hover { color: var(--ink); border-color: var(--ink-faint); }
-.tab.active { background: var(--caution); color: var(--bg); border-color: var(--caution); font-weight: 700; }
-.tab .count { opacity: 0.6; margin-left: 6px; font-size: 10px; }
-.search-wrap { display: flex; align-items: center; gap: 8px; background: var(--panel); border: 1px solid var(--rule-strong); padding: 6px 12px; width: 100%; }
-@media (min-width: 720px) { .search-wrap { margin-left: auto; min-width: 240px; width: auto; } }
-.search-wrap::before { content: "⌕"; color: var(--ink-faint); font-family: var(--mono); }
-.search-wrap input { background: transparent; border: 0; outline: 0; color: var(--ink); font-family: var(--mono); font-size: 12px; flex: 1; }
-.search-wrap input::placeholder { color: var(--ink-faint); }
-.arch-grid { display: grid; grid-template-columns: 1fr; gap: 14px; padding: 16px 0 24px; }
-@media (min-width: 540px) { .arch-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; } }
-.card { background: var(--panel); border: 1px solid var(--rule); display: flex; flex-direction: column; overflow: hidden; transition: border-color .2s, transform .2s; }
-.card:hover { border-color: var(--caution); transform: translateY(-2px); }
-.card-media { aspect-ratio: 16/9; background: var(--bg-2); position: relative; overflow: hidden; display: grid; place-items: center; border-bottom: 1px solid var(--rule); cursor: pointer; }
-.card-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.pdf-glyph { font-family: var(--mono); font-size: 12px; color: var(--ink-faint); background: repeating-linear-gradient(45deg,#1a1a1f,#1a1a1f 8px,#15151a 8px,#15151a 16px); width: 100%; height: 100%; display: grid; place-items: center; text-align: center; padding: 16px; }
-.pdf-glyph .ico { font-size: 22px; color: var(--caution); margin-bottom: 6px; border: 2px solid var(--caution); padding: 4px 10px; font-weight: 700; letter-spacing: 0.04em; display: inline-block; }
-.glyph-cat { background: linear-gradient(135deg, rgba(212,160,23,0.12), transparent); }
-.glyph-cat .ico { color: var(--warm); border-color: var(--warm); }
-.badge { position: absolute; top: 8px; left: 8px; background: rgba(0,0,0,0.78); color: var(--caution); font-family: var(--mono); font-size: 9px; padding: 3px 8px; letter-spacing: 0.14em; text-transform: uppercase; }
-.badge.local { bottom: 8px; left: 8px; top: auto; color: var(--warm); }
-.badge.source { bottom: 8px; left: 8px; top: auto; color: var(--ink-faint); }
-.card-body { padding: 14px 16px; flex: 1; display: flex; flex-direction: column; gap: 6px; }
-.card-title { font-family: var(--serif); font-size: 14px; font-weight: 600; line-height: 1.35; color: var(--ink); overflow-wrap: anywhere; }
-.card-desc { font-family: var(--serif); font-size: 12.5px; color: var(--ink-dim); line-height: 1.5; margin-top: 4px; }
-.card-meta { display: grid; grid-template-columns: 72px 1fr; gap: 4px 12px; margin-top: 8px; padding: 10px 0; border-top: 1px solid var(--rule); }
-.card-meta dt { font-family: var(--mono); font-size: 9px; color: var(--ink-faint); letter-spacing: 0.14em; text-transform: uppercase; }
-.card-meta dd { font-family: var(--serif); color: var(--ink); font-size: 12px; line-height: 1.4; }
-.card-actions { display: flex; gap: 8px; margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--rule); flex-wrap: wrap; }
-.card-actions a { font-family: var(--mono); font-size: 10px; color: var(--caution); text-decoration: none; letter-spacing: 0.12em; text-transform: uppercase; padding: 6px 10px; border: 1px solid var(--rule-strong); min-height: 30px; display: inline-flex; align-items: center; }
-.card-actions a:hover { background: var(--caution); color: var(--bg); border-color: var(--caution); }
-.card-actions a.warn { color: var(--ink-faint); }
-.card-actions a.warn:hover { background: var(--ink-faint); color: var(--bg); }
-.empty { padding: 60px 0; text-align: center; color: var(--ink-faint); font-family: var(--mono); font-size: 13px; }
-.lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.94); display: none; place-items: center; z-index: 200; padding: 16px; }
-@media (min-width: 720px) { .lightbox { padding: 32px; } }
-.lightbox.open { display: grid; }
-.lb-inner { max-width: 92vw; max-height: 92vh; display: flex; flex-direction: column; gap: 10px; align-items: center; }
-.lb-inner img, .lb-inner video { max-width: 90vw; max-height: 78vh; border: 1px solid var(--rule-strong); background: #000; }
-.lb-inner iframe { width: 92vw; height: 84vh; border: 1px solid var(--rule-strong); background: #fff; }
-.lb-meta { font-family: var(--mono); font-size: 11px; color: var(--ink); background: var(--bg-2); border: 1px solid var(--rule-strong); padding: 8px 14px; max-width: 90vw; text-align: center; }
-.lb-meta a { color: var(--caution); }
-.lb-close { position: absolute; top: 12px; right: 12px; width: 40px; height: 40px; background: var(--bg-2); border: 1px solid var(--rule-strong); color: var(--ink); display: grid; place-items: center; cursor: pointer; font-family: var(--mono); font-size: 22px; z-index: 2; }
-.lb-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; background: rgba(20,20,24,0.6); border: 1px solid var(--rule-strong); color: var(--ink); display: grid; place-items: center; cursor: pointer; font-family: var(--serif); font-size: 24px; z-index: 2; }
-@media (min-width: 720px) { .lb-nav { width: 52px; height: 52px; font-size: 32px; } }
-.lb-nav:hover { background: rgba(0,0,0,0.85); color: var(--caution); border-color: var(--caution); }
-.lb-nav.prev { left: 8px; } .lb-nav.next { right: 8px; }
-@media (min-width: 720px) { .lb-nav.prev { left: 16px; } .lb-nav.next { right: 16px; } }
-.lb-counter { position: absolute; top: 16px; left: 50%; transform: translateX(-50%); font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; color: var(--ink-dim); background: var(--bg-2); border: 1px solid var(--rule); padding: 4px 12px; z-index: 2; }
-footer { background: #060608; padding: 32px 0 24px; color: var(--ink-dim); font-family: var(--mono); font-size: 12px; }
-footer .container { display: grid; grid-template-columns: 1fr; gap: 24px; }
-@media (min-width: 720px) { footer .container { grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; } }
-footer h4 { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink); margin-bottom: 14px; }
-footer ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-footer a { color: var(--ink-dim); text-decoration: none; }
-footer a:hover { color: var(--caution); }
-footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); padding-top: 20px; margin-top: 12px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; font-size: 10px; color: var(--ink-faint); letter-spacing: 0.1em; }
-'''
-
-# Shared JS — same for every catalog-style mirror (no carousel needed when no images).
-SHARED_JS = r'''
-(() => {
-  const navToggle = document.getElementById('nav-toggle');
-  const primaryNav = document.getElementById('primary-nav');
-  if (navToggle && primaryNav) {
-    navToggle.addEventListener('click', () => {
-      const open = primaryNav.classList.toggle('open');
-      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-    primaryNav.addEventListener('click', e => {
-      if (e.target.tagName === 'A') { primaryNav.classList.remove('open'); navToggle.setAttribute('aria-expanded', 'false'); }
-    });
-  }
-  const D = JSON.parse(document.getElementById('arch-data').textContent);
-  const items = D.assets;
-  const STATS = D.stats;
-  function esc(s){return (s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-
-  document.getElementById('arch-stats').innerHTML = [
-    ['Total', STATS.total],
-    ['Local', STATS.local_total],
-    ['Documents', STATS.pdf_total],
-    ['Catalog', STATS.catalog_total],
-  ].map(([k,v]) => `<div class="stat"><b>${v}</b><small>${k}</small></div>`).join('');
-
-  const TABS = [
-    {key:'ALL', label:'All'},
-    {key:'PDF', label:'Documents'},
-    {key:'CATALOG', label:'Catalog'},
-  ];
-  const state = { tab: 'ALL', q: '' };
-  const tabsEl = document.getElementById('arch-tabs');
-  function count(k){ return k === 'ALL' ? items.length : items.filter(a => a.t === k).length; }
-  tabsEl.innerHTML = TABS.map(t => `<button class="tab${t.key===state.tab?' active':''}" data-key="${t.key}">${t.label}<span class="count">${count(t.key)}</span></button>`).join('');
-  tabsEl.addEventListener('click', e => {
-    const t = e.target.closest('.tab'); if (!t) return;
-    state.tab = t.dataset.key;
-    tabsEl.querySelectorAll('.tab').forEach(x => x.classList.toggle('active', x.dataset.key === state.tab));
-    render();
-  });
-  document.getElementById('arch-search').addEventListener('input', e => { state.q = e.target.value.trim().toLowerCase(); render(); });
-
-  function glyphFor(a) {
-    if (a.t === 'CATALOG') return `<div class="pdf-glyph glyph-cat"><span class="ico">⌕</span><span>${esc(a.cat||'Catalog')}</span></div>`;
-    return `<div class="pdf-glyph"><span class="ico">PDF</span><span>${esc(a.ag||'Document')}</span></div>`;
-  }
-  function metaFor(a) {
-    const rows = [];
-    if (a.ag) rows.push(['Agency', a.ag]);
-    if (a.cat) rows.push(['Category', a.cat]);
-    if (a.region) rows.push(['Region', a.region]);
-    if (a.date) rows.push(['Date', a.date]);
-    return `<dl class="card-meta">${rows.map(r => `<dt>${r[0]}</dt><dd>${esc(r[1])}</dd>`).join('')}</dl>`;
-  }
-  function actionsFor(a) {
-    const out = [];
-    if (a.l) {
-      out.push(`<a href="#" data-action="open" data-title="${esc(a.ti)}">Open PDF</a>`);
-      out.push(`<a href="./${esc(a.l)}" download>Download</a>`);
-    } else if (a.u && a.t === 'PDF') {
-      out.push(`<a href="${esc(a.u)}" target="_blank" rel="noopener">Open PDF</a>`);
-    }
-    const src = a.s || a.u;
-    if (src) out.push(`<a class="warn" href="${esc(src)}" target="_blank" rel="noopener">${a.t==='CATALOG'?'Open ↗':'Source ↗'}</a>`);
-    return `<div class="card-actions">${out.join('')}</div>`;
-  }
-  function cardHtml(a, gidx) {
-    const localBadge = a.l ? '<span class="badge local">LOCAL</span>' : '<span class="badge source">SOURCE</span>';
-    return `<article class="card" data-idx="${gidx}">
-      <div class="card-media">
-        ${glyphFor(a)}
-        <span class="badge">${esc(a.t)}</span>
-        ${a.t!=='CATALOG' ? localBadge : ''}
-      </div>
-      <div class="card-body">
-        <div class="card-title">${esc(a.ti)}</div>
-        ${a.de ? `<div class="card-desc">${esc(a.de)}</div>` : ''}
-        ${metaFor(a)}
-        ${actionsFor(a)}
-      </div>
-    </article>`;
-  }
-
-  let lbList = [], lbIdx = 0;
-  function filtered() {
-    return items.filter(a => {
-      if (state.tab !== 'ALL' && a.t !== state.tab) return false;
-      if (state.q) {
-        const hay = [a.ti, a.de, a.ag, a.cat, a.date, a.region].join(' ').toLowerCase();
-        if (!hay.includes(state.q)) return false;
-      }
-      return true;
-    });
-  }
-  const grid = document.getElementById('arch-grid');
-  const emptyEl = document.getElementById('arch-empty');
-  function render() {
-    const list = filtered(); lbList = list;
-    grid.innerHTML = list.map((a, i) => cardHtml(a, i)).join('');
-    emptyEl.hidden = list.length > 0;
-  }
-  render();
-
-  const lb = document.getElementById('lightbox');
-  const lbI = document.getElementById('lb-inner');
-  const lbC = document.getElementById('lb-close');
-  const lbPrev = document.getElementById('lb-prev');
-  const lbNext = document.getElementById('lb-next');
-  const lbCounter = document.getElementById('lb-counter');
-
-  function renderLb() {
-    const a = lbList[lbIdx]; if (!a) return;
-    let html;
-    if (a.l) {
-      html = `<iframe src="./${esc(a.l)}#view=FitH" sandbox="allow-same-origin allow-popups"></iframe><div class="lb-meta">${esc(a.ti)} — <a href="./${esc(a.l)}" target="_blank">open in new tab ↗</a></div>`;
-    } else if (a.u) {
-      window.open(a.u, '_blank'); closeLb(); return;
-    } else {
-      html = `<div class="lb-meta">${esc(a.ti)} — no local or live link.</div>`;
-    }
-    lbI.innerHTML = html;
-    if (lbCounter) lbCounter.textContent = (lbIdx + 1) + ' / ' + lbList.length;
-    if (lbPrev) lbPrev.style.visibility = lbList.length > 1 ? 'visible' : 'hidden';
-    if (lbNext) lbNext.style.visibility = lbList.length > 1 ? 'visible' : 'hidden';
-  }
-  function openAt(idx) { if (!lbList.length) return; lbIdx = (idx + lbList.length) % lbList.length; renderLb(); if (lbI.innerHTML) lb.classList.add('open'); }
-  function navLb(d) { if (!lbList.length) return; lbIdx = (lbIdx + d + lbList.length) % lbList.length; renderLb(); }
-  function closeLb() { lb.classList.remove('open'); lbI.innerHTML = ''; }
-  lbC.addEventListener('click', closeLb);
-  if (lbPrev) lbPrev.addEventListener('click', e => { e.stopPropagation(); navLb(-1); });
-  if (lbNext) lbNext.addEventListener('click', e => { e.stopPropagation(); navLb(1); });
-  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
-  document.addEventListener('keydown', e => {
-    if (!lb.classList.contains('open')) return;
-    if (e.key === 'Escape') closeLb();
-    else if (e.key === 'ArrowRight') navLb(1);
-    else if (e.key === 'ArrowLeft')  navLb(-1);
-  });
-  let touchX=0, touchY=0, touchT=0;
-  lb.addEventListener('touchstart', e => { if (!e.touches.length) return; touchX = e.touches[0].clientX; touchY = e.touches[0].clientY; touchT = Date.now(); }, { passive:true });
-  lb.addEventListener('touchend', e => {
-    if (!e.changedTouches.length) return;
-    const dx = e.changedTouches[0].clientX - touchX, dy = e.changedTouches[0].clientY - touchY;
-    if (Date.now() - touchT < 800 && Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) navLb(dx < 0 ? 1 : -1);
-  }, { passive:true });
-
-  grid.addEventListener('click', e => {
-    const action = e.target.closest('a[data-action]');
-    const card = e.target.closest('.card');
-    const media = e.target.closest('.card-media');
-    if (action) e.preventDefault();
-    if (card && card.dataset.idx !== undefined && (action || media)) {
-      const a = lbList[parseInt(card.dataset.idx, 10)];
-      if (a && a.t === 'CATALOG') { window.open(a.u || a.s, '_blank'); return; }
-      openAt(parseInt(card.dataset.idx, 10));
-    }
-  });
-})();
-'''
-
-PAGE = PAGE.replace('__SHARED_CSS__', SHARED_CSS).replace('__SHARED_JS__', SHARED_JS).replace('__DATA__', data_json)
+_nav = make_nav('uk', depth=1, internal_links=[
+    ('Intro','#top','intro'), ('Headlines','#headlines','headlines'), ('Records','#archive','archive'),
+])
+PAGE = (PAGE
+    .replace('__SHARED_CSS__', SHARED_CSS)
+    .replace('__SHARED_JS__', SHARED_JS)
+    .replace('__DATA__', data_json)
+    .replace('__NAV__', _nav)
+    .replace('__LIGHTBOX__', LIGHTBOX_HTML)
+)
 open(os.path.join(ROOT, 'index.html'), 'w', encoding='utf-8').write(PAGE)
 print(f'wrote {ROOT}/index.html ({len(PAGE):,} bytes) · {stats["local_total"]}/{stats["total"]} local')

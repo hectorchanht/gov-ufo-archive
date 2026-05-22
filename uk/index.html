@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>UK MoD UFO Files — The National Archives (Offline Mirror)</title>
 <meta name="description" content="Offline mirror of the UK's Ministry of Defence UFO files at The National Archives, Kew. 52,000+ pages transferred 2008–2017.">
-<link rel="canonical" href="https://realufo.org/uk-mirror/">
+<link rel="canonical" href="https://realufo.org/uk/">
 <meta property="og:title" content="UK MoD UFO Files — National Archives at Kew | realufo.org">
 <meta property="og:description" content="Britain's Ministry of Defence UFO desk (1950-2009). 52,000+ pages transferred to The National Archives at Kew. Deep-links into Discovery: Rendlesham Forest, DEFE 24, AIR 2.">
 <meta property="og:image" content="https://realufo.org/slideshow/FBI-Photo-1.jpg">
-<meta property="og:url" content="https://realufo.org/uk-mirror/">
+<meta property="og:url" content="https://realufo.org/uk/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="realufo.org">
 <meta name="twitter:card" content="summary_large_image">
@@ -38,33 +38,99 @@ body { background: var(--bg); color: var(--ink); font-family: var(--serif); font
 .scanlines { position: fixed; inset: 0; background: repeating-linear-gradient(to bottom, transparent 0, transparent 2px, rgba(255,255,255,0.012) 3px, transparent 4px); pointer-events: none; z-index: 50; }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 16px; position: relative; z-index: 2; }
 @media (min-width: 720px) { .container { padding: 0 32px; } }
-.header-wrap { position: sticky; top: 0; z-index: 40; background: rgba(10,10,12,0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--rule); }
-header { padding: 14px 0; }
-header .container { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); flex: 1; min-width: 0; }
-.seal { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; box-shadow: 0 0 0 2px var(--ink), 0 0 0 4px var(--bg), 0 0 0 5px var(--ink-faint); font-family: var(--mono); font-weight: 700; font-size: 10px; color: var(--ink); flex-shrink: 0; }
+
+/* ── Header ─────────────────────────────────────────────────────────── */
+.header-wrap { position: sticky; top: 0; z-index: 40; background: rgba(10,10,12,0.96); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--rule); }
+header { padding: 12px 0; }
+header .container { display: flex; align-items: center; gap: 12px; }
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); flex-shrink: 0; min-width: 0; }
+.seal { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; box-shadow: 0 0 0 2px var(--ink), 0 0 0 4px var(--bg), 0 0 0 5px var(--ink-faint); font-family: var(--mono); font-weight: 700; font-size: 9px; color: var(--ink); flex-shrink: 0; }
 .brand-text { display: flex; flex-direction: column; line-height: 1.1; min-width: 0; }
-.brand-text .super { font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em; color: var(--ink-dim); text-transform: uppercase; }
-.brand-text .name { font-family: var(--serif); font-size: 16px; font-weight: 600; margin-top: 2px; }
-@media (min-width: 720px) { .seal { width: 44px; height: 44px; } .brand-text .name { font-size: 18px; } }
-.nav-toggle { display: flex; background: transparent; border: 1px solid var(--rule-strong); width: 40px; height: 40px; cursor: pointer; padding: 0; flex-direction: column; justify-content: center; align-items: center; gap: 4px; flex-shrink: 0; }
+.brand-text .super { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.14em; color: var(--ink-dim); text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 180px; }
+.brand-text .name { font-family: var(--serif); font-size: 15px; font-weight: 600; margin-top: 1px; }
+@media (min-width: 720px) { .seal { width: 42px; height: 42px; } .brand-text .name { font-size: 17px; } .brand-text .super { max-width: none; } }
+
+/* Hamburger — right-most, never pushed to next line */
+.nav-toggle { display: none; background: transparent; border: 1px solid var(--rule-strong); width: 38px; height: 38px; cursor: pointer; padding: 0; flex-direction: column; justify-content: center; align-items: center; gap: 4px; flex-shrink: 0; margin-left: auto; }
 .nav-toggle span { display: block; width: 18px; height: 2px; background: var(--ink); transition: transform .2s, opacity .2s; }
 .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
 .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
 .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
-nav.primary { display: none; flex-basis: 100%; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; }
+
+/* ── Primary nav ─────────────────────────────────────────────────────── */
+nav.primary { display: none; flex-basis: 100%; font-family: var(--mono); font-size: 11px; letter-spacing: 0.07em; }
 nav.primary.open { display: block; }
-nav.primary ul { display: flex; flex-direction: column; gap: 0; list-style: none; padding-top: 12px; margin-top: 12px; border-top: 1px solid var(--rule); }
-nav.primary ul li { width: 100%; }
-nav.primary a { color: var(--ink-dim); text-decoration: none; text-transform: uppercase; display: block; padding: 12px 0; border-bottom: 1px solid var(--rule); }
+nav.primary > ul { display: flex; flex-direction: column; gap: 0; list-style: none; padding-top: 10px; margin-top: 10px; border-top: 1px solid var(--rule); }
+nav.primary > ul > li { width: 100%; }
+nav.primary > ul > li.nav-sep { display: none; }
+nav.primary a { color: var(--ink-dim); text-decoration: none; text-transform: uppercase; display: block; padding: 11px 0; border-bottom: 1px solid var(--rule); }
 nav.primary a:hover, nav.primary a.active { color: var(--caution); }
+
 @media (min-width: 720px) {
-  .nav-toggle { display: none; }
-  nav.primary { display: block; flex: 1; flex-basis: auto; }
-  nav.primary ul { flex-direction: row; gap: 4px 22px; flex-wrap: wrap; justify-content: flex-end; padding-top: 0; margin-top: 0; border: 0; }
-  nav.primary ul li { width: auto; }
-  nav.primary a { padding: 0; border: 0; }
+  .nav-toggle { display: none !important; }
+  nav.primary { display: flex !important; flex-basis: auto; flex: 1; align-items: center; justify-content: flex-end; }
+  nav.primary > ul { flex-direction: row; align-items: center; gap: 2px 18px; flex-wrap: nowrap; padding-top: 0; margin-top: 0; border: 0; }
+  nav.primary > ul > li { width: auto; }
+  nav.primary a { padding: 0; border: 0; font-size: 10.5px; }
+  nav.primary > ul > li.nav-sep { display: block; width: 1px; height: 16px; background: var(--rule-strong); flex-shrink: 0; }
 }
+
+/* mobile hamburger visible only below 720px */
+@media (max-width: 719px) {
+  .nav-toggle { display: flex; }
+}
+
+/* ── "More" dropdown ─────────────────────────────────────────────────── */
+.has-dropdown { position: relative; }
+.nav-more-btn {
+  background: none; border: none; color: var(--ink-dim); cursor: pointer;
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.07em;
+  text-transform: uppercase; padding: 11px 0; display: block; width: 100%;
+  text-align: left; border-bottom: 1px solid var(--rule);
+}
+.nav-more-btn:hover { color: var(--caution); }
+.nav-dropdown {
+  display: none; list-style: none;
+  background: var(--panel); border: 1px solid var(--rule-strong);
+  padding: 6px 0; z-index: 200;
+}
+.nav-dropdown li a { border: 0 !important; padding: 9px 16px !important; font-size: 10.5px; white-space: nowrap; }
+/* Mobile: inline expansion */
+@media (max-width: 719px) {
+  .has-dropdown.open .nav-dropdown { display: block; margin: 0 0 0 12px; border: 0; background: transparent; }
+}
+/* Desktop: floating dropdown */
+@media (min-width: 720px) {
+  .nav-more-btn { padding: 0; border: 0; width: auto; font-size: 10.5px; }
+  .nav-dropdown { position: absolute; right: 0; top: calc(100% + 10px); min-width: 180px; }
+  .has-dropdown:hover .nav-dropdown,
+  .has-dropdown:focus-within .nav-dropdown { display: block; }
+}
+
+/* ── Language picker ─────────────────────────────────────────────────── */
+.lang-picker { position: relative; }
+.lang-btn {
+  background: transparent; border: 1px solid var(--rule-strong);
+  color: var(--ink-dim); cursor: pointer; font-family: var(--mono);
+  font-size: 9.5px; letter-spacing: 0.12em; padding: 4px 8px;
+  text-transform: uppercase; transition: color .15s, border-color .15s;
+  display: block; width: 100%; text-align: left; margin: 8px 0;
+}
+.lang-btn:hover { color: var(--caution); border-color: var(--caution); }
+.lang-menu { display: none; list-style: none; background: var(--panel); border: 1px solid var(--rule-strong); padding: 6px 0; z-index: 300; }
+.lang-menu button { background: none; border: none; color: var(--ink-dim); cursor: pointer; font-family: var(--mono); font-size: 10.5px; padding: 8px 16px; width: 100%; text-align: left; }
+.lang-menu button:hover { color: var(--caution); }
+.lang-picker.open .lang-menu { display: block; }
+@media (max-width: 719px) {
+  .lang-btn { border: 0; margin: 0; padding: 11px 0; font-size: 11px; border-bottom: 1px solid var(--rule); }
+  .lang-picker.open .lang-menu { margin-left: 12px; border: 0; background: transparent; }
+}
+@media (min-width: 720px) {
+  .lang-btn { width: auto; margin: 0; padding: 3px 8px; }
+  .lang-menu { position: absolute; right: 0; top: calc(100% + 10px); min-width: 130px; }
+}
+
+/* ── Hero ────────────────────────────────────────────────────────────── */
 .hero { padding: 48px 0 32px; border-bottom: 1px solid var(--rule); }
 @media (min-width: 720px) { .hero { padding: 64px 0 48px; } }
 .coords { font-family: var(--mono); font-size: 11px; color: var(--caution); letter-spacing: 0.12em; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
@@ -73,6 +139,8 @@ h1.hero-title { font-family: var(--serif); font-weight: 700; font-size: clamp(26
 h1.hero-title em { color: var(--caution); font-style: italic; }
 .hero-sub { max-width: 65ch; color: var(--ink-dim); font-size: 16px; line-height: 1.65; }
 .hero-sub a { color: var(--caution); }
+
+/* ── Headlines ───────────────────────────────────────────────────────── */
 .headlines { padding: 32px 0; border-bottom: 1px solid var(--rule); }
 .head-grid { display: grid; gap: 14px; grid-template-columns: 1fr; }
 @media (min-width: 540px) { .head-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; } }
@@ -80,6 +148,8 @@ h1.hero-title em { color: var(--caution); font-style: italic; }
 .head-card .h-label { font-family: var(--mono); font-size: 10px; color: var(--caution); letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 10px; }
 .head-card .h-text { font-size: 16px; line-height: 1.4; color: var(--ink); }
 .head-card .h-num { font-family: var(--mono); font-size: 28px; color: var(--ink); font-weight: 600; display: block; margin-bottom: 4px; }
+
+/* ── Archive section ─────────────────────────────────────────────────── */
 section { padding: 40px 0; border-bottom: 1px solid var(--rule); }
 @media (min-width: 720px) { section { padding: 56px 0; } }
 .section-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-faint); display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
@@ -87,24 +157,42 @@ section { padding: 40px 0; border-bottom: 1px solid var(--rule); }
 h2 { font-family: var(--serif); font-size: clamp(22px,3.5vw,34px); font-weight: 700; letter-spacing: -0.015em; margin-bottom: 18px; max-width: 28ch; word-break: break-word; }
 .lede { max-width: 70ch; color: var(--ink); font-size: 16px; }
 .lede a { color: var(--caution); }
+
+/* Stats */
 .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin: 20px 0 24px; }
 @media (min-width: 540px) { .stats-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); } }
 .stat { background: var(--panel); padding: 14px 18px; font-family: var(--mono); }
 .stat b { display: block; font-size: 24px; color: var(--ink); font-weight: 500; }
 .stat small { display: block; font-size: 10px; color: var(--ink-faint); letter-spacing: 0.16em; text-transform: uppercase; margin-top: 6px; }
-.arch-controls-bar { position: sticky; top: 64px; z-index: 30; background: rgba(10,10,12,0.95); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin: 24px -16px 0; padding: 12px 16px; display: flex; flex-direction: column; gap: 10px; }
-@media (min-width: 720px) { .arch-controls-bar { margin: 24px -32px 0; padding: 14px 32px; flex-direction: row; align-items: center; gap: 14px; } }
+
+/* ── Archive controls (tabs + search) — stays sticky ─────────────────── */
+.arch-controls-bar {
+  position: sticky; top: 64px; z-index: 30;
+  background: rgba(10,10,12,0.96); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+  margin: 24px -16px 0; padding: 10px 16px;
+  display: flex; flex-direction: column; gap: 8px;
+  transition: top 0.28s ease;
+}
+@media (min-width: 720px) {
+  .arch-controls-bar { margin: 24px -32px 0; padding: 12px 32px; flex-direction: row; align-items: center; gap: 14px; }
+}
+.arch-controls-bar.bar-hidden { top: -160px; }
+
 .tabs { display: flex; gap: 6px; flex-wrap: wrap; width: 100%; }
 .tab { font-family: var(--mono); font-size: 10px; padding: 6px 10px; border: 1px solid var(--rule-strong); background: var(--panel); color: var(--ink-dim); cursor: pointer; letter-spacing: 0.08em; text-transform: uppercase; }
 @media (min-width: 720px) { .tab { font-size: 11px; padding: 8px 14px; } .tabs { width: auto; } }
 .tab:hover { color: var(--ink); border-color: var(--ink-faint); }
 .tab.active { background: var(--caution); color: var(--bg); border-color: var(--caution); font-weight: 700; }
 .tab .count { opacity: 0.6; margin-left: 6px; font-size: 10px; }
+
 .search-wrap { display: flex; align-items: center; gap: 8px; background: var(--panel); border: 1px solid var(--rule-strong); padding: 6px 12px; width: 100%; }
 @media (min-width: 720px) { .search-wrap { margin-left: auto; min-width: 240px; width: auto; } }
 .search-wrap::before { content: "⌕"; color: var(--ink-faint); font-family: var(--mono); }
-.search-wrap input { background: transparent; border: 0; outline: 0; color: var(--ink); font-family: var(--mono); font-size: 12px; flex: 1; }
+.search-wrap input { background: transparent; border: 0; outline: 0; color: var(--ink); font-family: var(--mono); font-size: 12px; flex: 1; min-width: 0; }
 .search-wrap input::placeholder { color: var(--ink-faint); }
+
+/* ── Cards ───────────────────────────────────────────────────────────── */
 .arch-grid { display: grid; grid-template-columns: 1fr; gap: 14px; padding: 16px 0 24px; }
 @media (min-width: 540px) { .arch-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; } }
 .card { background: var(--panel); border: 1px solid var(--rule); display: flex; flex-direction: column; overflow: hidden; transition: border-color .2s, transform .2s; }
@@ -125,11 +213,13 @@ h2 { font-family: var(--serif); font-size: clamp(22px,3.5vw,34px); font-weight: 
 .card-meta dt { font-family: var(--mono); font-size: 9px; color: var(--ink-faint); letter-spacing: 0.14em; text-transform: uppercase; }
 .card-meta dd { font-family: var(--serif); color: var(--ink); font-size: 12px; line-height: 1.4; }
 .card-actions { display: flex; gap: 8px; margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--rule); flex-wrap: wrap; }
-.card-actions a { font-family: var(--mono); font-size: 10px; color: var(--caution); text-decoration: none; letter-spacing: 0.12em; text-transform: uppercase; padding: 6px 10px; border: 1px solid var(--rule-strong); min-height: 30px; display: inline-flex; align-items: center; }
-.card-actions a:hover { background: var(--caution); color: var(--bg); border-color: var(--caution); }
-.card-actions a.warn { color: var(--ink-faint); }
-.card-actions a.warn:hover { background: var(--ink-faint); color: var(--bg); }
+.card-actions a, .card-actions button { font-family: var(--mono); font-size: 10px; color: var(--caution); text-decoration: none; letter-spacing: 0.12em; text-transform: uppercase; padding: 6px 10px; border: 1px solid var(--rule-strong); min-height: 30px; display: inline-flex; align-items: center; background: none; cursor: pointer; }
+.card-actions a:hover, .card-actions button:hover { background: var(--caution); color: var(--bg); border-color: var(--caution); }
+.card-actions .warn { color: var(--ink-faint); }
+.card-actions .warn:hover { background: var(--ink-faint); color: var(--bg); }
 .empty { padding: 60px 0; text-align: center; color: var(--ink-faint); font-family: var(--mono); font-size: 13px; }
+
+/* ── Lightbox ─────────────────────────────────────────────────────────── */
 .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.94); display: none; place-items: center; z-index: 200; padding: 16px; }
 @media (min-width: 720px) { .lightbox { padding: 32px; } }
 .lightbox.open { display: grid; }
@@ -139,12 +229,14 @@ h2 { font-family: var(--serif); font-size: clamp(22px,3.5vw,34px); font-weight: 
 .lb-meta { font-family: var(--mono); font-size: 11px; color: var(--ink); background: var(--bg-2); border: 1px solid var(--rule-strong); padding: 8px 14px; max-width: 90vw; text-align: center; }
 .lb-meta a { color: var(--caution); }
 .lb-close { position: absolute; top: 12px; right: 12px; width: 40px; height: 40px; background: var(--bg-2); border: 1px solid var(--rule-strong); color: var(--ink); display: grid; place-items: center; cursor: pointer; font-family: var(--mono); font-size: 22px; z-index: 2; }
-.lb-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; background: rgba(20,20,24,0.6); border: 1px solid var(--rule-strong); color: var(--ink); display: grid; place-items: center; cursor: pointer; font-family: var(--serif); font-size: 24px; z-index: 2; }
+.lb-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; background: rgba(20,20,24,0.6); border: 1px solid var(--rule-strong); color: var(--ink); display: grid; place-items: center; cursor: pointer; font-family: var(--serif); font-size: 24px; z-index: 2; transition: background .15s, color .15s, border-color .15s; }
 @media (min-width: 720px) { .lb-nav { width: 52px; height: 52px; font-size: 32px; } }
 .lb-nav:hover { background: rgba(0,0,0,0.85); color: var(--caution); border-color: var(--caution); }
 .lb-nav.prev { left: 8px; } .lb-nav.next { right: 8px; }
 @media (min-width: 720px) { .lb-nav.prev { left: 16px; } .lb-nav.next { right: 16px; } }
 .lb-counter { position: absolute; top: 16px; left: 50%; transform: translateX(-50%); font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; color: var(--ink-dim); background: var(--bg-2); border: 1px solid var(--rule); padding: 4px 12px; z-index: 2; }
+
+/* ── Footer ──────────────────────────────────────────────────────────── */
 footer { background: #060608; padding: 32px 0 24px; color: var(--ink-dim); font-family: var(--mono); font-size: 12px; }
 footer .container { display: grid; grid-template-columns: 1fr; gap: 24px; }
 @media (min-width: 720px) { footer .container { grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; } }
@@ -175,16 +267,28 @@ body { background-image:
       </div>
     </a>
     <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
-    <nav class="primary" id="primary-nav">
+        <nav class="primary" id="primary-nav">
       <ul>
-        <li><a href="#top">Intro</a></li>
-        <li><a href="#headlines">Headlines</a></li>
-        <li><a href="#archive" class="active">Records</a></li>
-        <li><a href="../index.html">war.gov</a></li>
-        <li><a href="../aaro-mirror/index.html">AARO</a></li>
-        <li><a href="../nasa-mirror/index.html">NASA</a></li>
-        <li><a href="../nara-mirror/index.html">NARA</a></li>
-        <li><a href="../geipan-mirror/index.html">GEIPAN</a></li>
+        <li><a href="#top" data-i18n="intro">Intro</a></li><li><a href="#headlines" data-i18n="headlines">Headlines</a></li><li><a href="#archive" data-i18n="archive">Records</a></li>
+        <li class="nav-sep"></li>
+        <li><a href="../">War.gov</a></li><li><a href="../aaro/">AARO</a></li><li><a href="../nasa/">NASA</a></li><li><a href="../nara/">NARA</a></li>
+        <li class="has-dropdown" id="nav-more-wrap">
+          <button class="nav-more-btn" id="nav-more-btn" aria-expanded="false" data-i18n="more">More ▾</button>
+          <ul class="nav-dropdown" id="nav-dropdown" role="menu">
+            <li><a href="../geipan/">GEIPAN (France)</a></li><li><a href="../uk/">UK Archives</a></li><li><a href="../brazil/">Brazil FAB</a></li><li><a href="../chile/">Chile CEFAA</a></li><li><a href="../nz/">NZ NZDF</a></li><li><a href="../canada/">Canada LAC</a></li><li><a href="../argentina/">Argentina CEFAe</a></li><li><a href="../uruguay/">Uruguay CRIDOVNI</a></li><li><a href="../peru/">Peru OIFAA</a></li><li><a href="../spain/">Spain Ejército</a></li><li><a href="../italy/">Italy Aeronautica</a></li>
+          </ul>
+        </li>
+        <li class="lang-picker" id="lang-picker">
+          <button class="lang-btn" id="lang-btn" aria-expanded="false">EN</button>
+          <ul class="lang-menu" id="lang-menu" role="menu">
+            <li><button data-lang="en">English</button></li>
+            <li><button data-lang="fr">Français</button></li>
+            <li><button data-lang="es">Español</button></li>
+            <li><button data-lang="pt">Português</button></li>
+            <li><button data-lang="zh">中文</button></li>
+            <li><button data-lang="ja">日本語</button></li>
+          </ul>
+        </li>
       </ul>
     </nav>
   </div>
@@ -257,10 +361,10 @@ body { background-image:
       <h4>Related Mirrors</h4>
       <ul>
         <li><a href="../index.html">war.gov / UFO Release 01</a></li>
-        <li><a href="../aaro-mirror/index.html">AARO — DoW</a></li>
-        <li><a href="../nasa-mirror/index.html">NASA UAP Study</a></li>
-        <li><a href="../nara-mirror/index.html">NARA UAP Records</a></li>
-        <li><a href="../geipan-mirror/index.html">France GEIPAN</a></li>
+        <li><a href="../aaro/index.html">AARO — DoW</a></li>
+        <li><a href="../nasa/index.html">NASA UAP Study</a></li>
+        <li><a href="../nara/index.html">NARA UAP Records</a></li>
+        <li><a href="../geipan/index.html">France GEIPAN</a></li>
       </ul>
     </div>
     <div>
@@ -278,17 +382,95 @@ body { background-image:
   </div>
 </footer>
 
-<div class="lightbox" id="lightbox" aria-hidden="true">
-  <div class="lb-close" id="lb-close">×</div>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Media viewer">
+  <div class="lb-inner" id="lb-inner"></div>
+  <button class="lb-close" id="lb-close" aria-label="Close (Escape)">✕</button>
   <button class="lb-nav prev" id="lb-prev" aria-label="Previous (←)">‹</button>
   <button class="lb-nav next" id="lb-next" aria-label="Next (→)">›</button>
   <div class="lb-counter" id="lb-counter"></div>
-  <div class="lb-inner" id="lb-inner"></div>
 </div>
 
 <script id="arch-data" type="application/json">{"assets": [{"t": "PDF", "ti": "Final Tranche of UFO Files Released — Press Release", "de": "TNA's press release accompanying the final tranche (24 files, 6,000+ pages spanning 1994–2000) — closing the MoD's 50-year UFO investigation programme.", "ag": "The National Archives", "cat": "Press Release", "date": "2013", "l": "pdfs/Final-Tranche-UFO-Files-Press-Release.pdf", "u": "pdfs/Final-Tranche-UFO-Files-Press-Release.pdf", "s": "https://cdn.nationalarchives.gov.uk/documents/final-tranche-of-UFO-files-released.pdf"}, {"t": "CATALOG", "ti": "AIR 2/17318 — Early UFO sightings letters (1963)", "de": "Earliest UFO correspondence held by TNA — letters to the Air Ministry on 'vehicles from other planets', 1963. AIR series record.", "ag": "Air Ministry · UK", "cat": "Catalog", "date": "1963", "l": "", "u": "https://discovery.nationalarchives.gov.uk/details/r/C2645184", "s": "https://discovery.nationalarchives.gov.uk/details/r/C2645184"}, {"t": "CATALOG", "ti": "DEFE 24/1948/1 — Rendlesham Forest incident", "de": "The MoD file on the Rendlesham Forest incident of December 1980 — UK's best-known UFO case. Includes the Charles I. Halt 'Unexplained Lights' memo.", "ag": "Ministry of Defence", "cat": "Catalog", "date": "Dec 1980", "region": "Suffolk, England", "l": "", "u": "https://discovery.nationalarchives.gov.uk/details/r/C10342055", "s": "https://discovery.nationalarchives.gov.uk/details/r/C10342055"}, {"t": "CATALOG", "ti": "DEFE 24/1958/1 — UFO policy and communications (1985–1995)", "de": "A decade of MoD UFO desk policy, correspondence, and communications with overseas embassies and ministers.", "ag": "Ministry of Defence", "cat": "Catalog", "date": "1985–1995", "l": "", "u": "https://discovery.nationalarchives.gov.uk/details/r/C11707525", "s": "https://discovery.nationalarchives.gov.uk/details/r/C11707525"}, {"t": "CATALOG", "ti": "DEFE 24/1943/1 — Reports of alien encounters (1985–1992)", "de": "Reports submitted by members of the public claiming alien abduction, contact, or close-encounter experiences. Includes annotated sketches.", "ag": "Ministry of Defence", "cat": "Catalog", "date": "1985–1992", "l": "", "u": "https://discovery.nationalarchives.gov.uk/details/r/C10130127", "s": "https://discovery.nationalarchives.gov.uk/details/r/C10130127"}, {"t": "CATALOG", "ti": "DEFE 31/172/1 — UFO observation reports (1982)", "de": "Printed MoD UFO report form: date, time, duration of sighting, weather conditions, witness details — the standard intake form used through the 1980s.", "ag": "Ministry of Defence", "cat": "Catalog", "date": "21 Feb 1982", "l": "", "u": "https://discovery.nationalarchives.gov.uk/details/r/C10023454", "s": "https://discovery.nationalarchives.gov.uk/details/r/C10023454"}, {"t": "CATALOG", "ti": "DEFE 24/1930 — UFO correspondence (digitised, redacted)", "de": "Digital copy of DEFE 24/1930 with redactions, hosted on Discovery — example of TNA's fully-online UFO file delivery.", "ag": "Ministry of Defence", "cat": "Catalog", "l": "", "u": "https://discovery.nationalarchives.gov.uk/details/r/C10130118", "s": "https://discovery.nationalarchives.gov.uk/details/r/C10130118"}, {"t": "CATALOG", "ti": "TNA — UFO Reports topic gateway", "de": "The National Archives' curated entry-point for every UFO/UAP file it holds. Browse by record group (AIR, DEFE, PREM) or by case.", "ag": "The National Archives", "cat": "Catalog", "l": "", "u": "https://www.nationalarchives.gov.uk/explore-the-collection/explore-by-time-period/postwar/ufo-reports/", "s": "https://www.nationalarchives.gov.uk/explore-the-collection/explore-by-time-period/postwar/ufo-reports/"}, {"t": "CATALOG", "ti": "Discovery — TNA full catalog search", "de": "Discovery is TNA's master catalog — search 28 million records across all series. Filter by date, record group, or place.", "ag": "The National Archives", "cat": "Catalog", "l": "", "u": "https://discovery.nationalarchives.gov.uk/", "s": "https://discovery.nationalarchives.gov.uk/"}], "stats": {"total": 9, "local_total": 1, "pdf_total": 1, "catalog_total": 8}}</script>
 <script>
 (() => {
+  /* ── i18n ─────────────────────────────────────────────────────────── */
+  const I18N = {"en": {"lang": "English", "code": "EN", "intro": "Intro", "headlines": "Headlines", "archive": "Archive", "faq": "About / FAQ", "more": "More ▾", "all": "All", "docs": "Documents", "videos": "Videos", "catalog": "Catalog", "imagery": "Imagery", "search": "Search…", "total": "Total", "local": "Local", "open_pdf": "Open PDF", "download": "Download", "source": "Source ↗", "play": "Play", "view": "View", "no_results": "No results."}, "fr": {"lang": "Français", "code": "FR", "intro": "Intro", "headlines": "Titres", "archive": "Archives", "faq": "À propos", "more": "Plus ▾", "all": "Tout", "docs": "Documents", "videos": "Vidéos", "catalog": "Catalogue", "imagery": "Images", "search": "Rechercher…", "total": "Total", "local": "Local", "open_pdf": "Ouvrir PDF", "download": "Télécharger", "source": "Source ↗", "play": "Lire", "view": "Voir", "no_results": "Aucun résultat."}, "es": {"lang": "Español", "code": "ES", "intro": "Intro", "headlines": "Titulares", "archive": "Archivo", "faq": "Acerca de", "more": "Más ▾", "all": "Todo", "docs": "Documentos", "videos": "Videos", "catalog": "Catálogo", "imagery": "Imágenes", "search": "Buscar…", "total": "Total", "local": "Local", "open_pdf": "Abrir PDF", "download": "Descargar", "source": "Fuente ↗", "play": "Reproducir", "view": "Ver", "no_results": "Sin resultados."}, "pt": {"lang": "Português", "code": "PT", "intro": "Intro", "headlines": "Destaques", "archive": "Arquivo", "faq": "Sobre", "more": "Mais ▾", "all": "Tudo", "docs": "Documentos", "videos": "Vídeos", "catalog": "Catálogo", "imagery": "Imagens", "search": "Pesquisar…", "total": "Total", "local": "Local", "open_pdf": "Abrir PDF", "download": "Baixar", "source": "Fonte ↗", "play": "Reproduzir", "view": "Ver", "no_results": "Sem resultados."}, "zh": {"lang": "中文", "code": "中文", "intro": "介绍", "headlines": "要闻", "archive": "档案", "faq": "关于", "more": "更多 ▾", "all": "全部", "docs": "文件", "videos": "视频", "catalog": "目录", "imagery": "图像", "search": "搜索…", "total": "总计", "local": "本地", "open_pdf": "打开 PDF", "download": "下载", "source": "来源 ↗", "play": "播放", "view": "查看", "no_results": "无结果。"}, "ja": {"lang": "日本語", "code": "JP", "intro": "はじめに", "headlines": "ヘッドライン", "archive": "アーカイブ", "faq": "について", "more": "もっと ▾", "all": "すべて", "docs": "書類", "videos": "ビデオ", "catalog": "カタログ", "imagery": "画像", "search": "検索…", "total": "合計", "local": "ローカル", "open_pdf": "PDF を開く", "download": "ダウンロード", "source": "ソース ↗", "play": "再生", "view": "表示", "no_results": "結果なし。"}};
+  let lang = localStorage.getItem('realufo_lang') || 'en';
+  if (!I18N[lang]) lang = 'en';
+
+  function applyLang(code) {
+    lang = code;
+    localStorage.setItem('realufo_lang', code);
+    const t = I18N[code];
+    // Update all data-i18n elements
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (t[key] !== undefined) el.textContent = t[key];
+    });
+    // Update lang button label
+    const lb = document.getElementById('lang-btn');
+    if (lb) lb.textContent = t.code || code.toUpperCase();
+    // Update tab labels if archive page
+    updateTabLabels(t);
+  }
+
+  function updateTabLabels(t) {
+    const TAB_MAP = { ALL: t.all, PDF: t.docs, VID: t.videos,
+                      IMG: t.imagery, CATALOG: t.catalog };
+    document.querySelectorAll('.tab[data-key]').forEach(btn => {
+      const key = btn.dataset.key;
+      if (TAB_MAP[key]) {
+        const count = btn.querySelector('.count');
+        const countText = count ? count.outerHTML : '';
+        btn.innerHTML = TAB_MAP[key] + countText;
+        if (count) btn.appendChild(btn.querySelector('.count'));
+      }
+    });
+    const si = document.getElementById('arch-search');
+    if (si) si.setAttribute('placeholder', t.search || 'Search…');
+    const empty = document.getElementById('arch-empty');
+    if (empty) empty.textContent = t.no_results || 'No results.';
+  }
+
+  /* ── Language picker ──────────────────────────────────────────────── */
+  const langPicker = document.getElementById('lang-picker');
+  const langBtn    = document.getElementById('lang-btn');
+  const langMenu   = document.getElementById('lang-menu');
+  if (langBtn && langPicker) {
+    langBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      const open = langPicker.classList.toggle('open');
+      langBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    if (langMenu) {
+      langMenu.addEventListener('click', e => {
+        const btn = e.target.closest('button[data-lang]');
+        if (!btn) return;
+        applyLang(btn.dataset.lang);
+        langPicker.classList.remove('open');
+        langBtn.setAttribute('aria-expanded', 'false');
+      });
+    }
+  }
+
+  /* ── "More" dropdown ──────────────────────────────────────────────── */
+  const moreWrap = document.getElementById('nav-more-wrap');
+  const moreBtn  = document.getElementById('nav-more-btn');
+  if (moreWrap && moreBtn) {
+    moreBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      const open = moreWrap.classList.toggle('open');
+      moreBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  }
+
+  /* Close dropdowns on outside click */
+  document.addEventListener('click', () => {
+    if (langPicker) { langPicker.classList.remove('open'); if (langBtn) langBtn.setAttribute('aria-expanded','false'); }
+    if (moreWrap)  { moreWrap.classList.remove('open');  if (moreBtn) moreBtn.setAttribute('aria-expanded','false'); }
+  });
+
+  /* ── Hamburger toggle ─────────────────────────────────────────────── */
   const navToggle = document.getElementById('nav-toggle');
   const primaryNav = document.getElementById('primary-nav');
   if (navToggle && primaryNav) {
@@ -297,15 +479,109 @@ body { background-image:
       navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
     primaryNav.addEventListener('click', e => {
-      if (e.target.tagName === 'A') { primaryNav.classList.remove('open'); navToggle.setAttribute('aria-expanded', 'false'); }
+      if (e.target.tagName === 'A') {
+        primaryNav.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
     });
   }
-  const D = JSON.parse(document.getElementById('arch-data').textContent);
+
+  /* ── Scroll-hide controls bar (mobile) ───────────────────────────── */
+  const ctrlBar = document.querySelector('.arch-controls-bar');
+  if (ctrlBar) {
+    let lastY = window.scrollY;
+    window.addEventListener('scroll', () => {
+      if (window.innerWidth >= 720) { ctrlBar.classList.remove('bar-hidden'); return; }
+      const y = window.scrollY;
+      if (y < 80) { ctrlBar.classList.remove('bar-hidden'); }
+      else if (y > lastY + 4) { ctrlBar.classList.add('bar-hidden'); }
+      else if (y < lastY - 4) { ctrlBar.classList.remove('bar-hidden'); }
+      lastY = y;
+    }, { passive: true });
+  }
+
+  /* Apply saved language */
+  applyLang(lang);
+
+  /* ── Lightbox ─────────────────────────────────────────────────────── */
+  let lbList = [], lbIdx = 0;
+  const lb      = document.getElementById('lightbox');
+  const lbI     = document.getElementById('lb-inner');
+  const lbC     = document.getElementById('lb-close');
+  const lbPrev  = document.getElementById('lb-prev');
+  const lbNext  = document.getElementById('lb-next');
+  const lbCount = document.getElementById('lb-counter');
+
+  function esc(s) {
+    return (s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  function renderLb() {
+    const a = lbList[lbIdx]; if (!a) return;
+    const title = a.ti || a.title || '';
+    let html;
+    if (a.t === 'IMG' || a.type === 'IMG') {
+      const src = a.l || a.local ? './' + (a.l || a.local) : (a.u || a.url);
+      const fb  = (a.u || a.url) && (a.l || a.local) ? `onerror="this.onerror=null;this.src='${esc(a.u||a.url)}';"` : '';
+      html = `<img src="${esc(src)}" alt="${esc(title)}" ${fb}><div class="lb-meta">${esc(title)}</div>`;
+    } else if (a.t === 'VID' || a.type === 'VID') {
+      const loc = a.l || a.local; const rem = a.u || a.url;
+      if (loc) {
+        html = `<video controls autoplay style="max-width:90vw;max-height:78vh"><source src="./${esc(loc)}"><source src="${esc(rem)}"></video><div class="lb-meta">${esc(title)}</div>`;
+      } else if (a.embed) {
+        html = `<iframe src="${esc(a.embed)}?autoplay=1" allow="autoplay;encrypted-media" allowfullscreen></iframe><div class="lb-meta">${esc(title)}</div>`;
+      } else { window.open(rem,'_blank'); closeLb(); return; }
+    } else if (a.t === 'PDF' || a.type === 'PDF') {
+      const loc = a.l || a.local;
+      if (loc) {
+        html = `<iframe src="./${esc(loc)}#view=FitH" sandbox="allow-same-origin allow-popups"></iframe><div class="lb-meta">${esc(title)} — <a href="./${esc(loc)}" target="_blank">open in new tab ↗</a></div>`;
+      } else { window.open(a.u || a.url,'_blank'); closeLb(); return; }
+    } else {
+      const target = (a.l||a.local) ? './'+(a.l||a.local) : (a.u||a.url);
+      window.open(target,'_blank'); closeLb(); return;
+    }
+    lbI.innerHTML = html;
+    if (lbCount) lbCount.textContent = (lbIdx+1) + ' / ' + lbList.length;
+    if (lbPrev) lbPrev.style.visibility = lbList.length > 1 ? 'visible' : 'hidden';
+    if (lbNext) lbNext.style.visibility = lbList.length > 1 ? 'visible' : 'hidden';
+  }
+  function openAt(idx) { if (!lbList.length) return; lbIdx = (idx+lbList.length)%lbList.length; renderLb(); lb && lb.classList.add('open'); }
+  function navLb(d)  { if (!lbList.length) return; lbIdx = (lbIdx+d+lbList.length)%lbList.length; renderLb(); }
+  function closeLb() { lb && lb.classList.remove('open'); lbI && (lbI.innerHTML=''); }
+
+  if (lb) {
+    if (lbC)    lbC.addEventListener('click', closeLb);
+    if (lbPrev) lbPrev.addEventListener('click', e => { e.stopPropagation(); navLb(-1); });
+    if (lbNext) lbNext.addEventListener('click', e => { e.stopPropagation(); navLb(1); });
+    lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  }
+  document.addEventListener('keydown', e => {
+    if (!lb || !lb.classList.contains('open')) return;
+    if (e.key==='Escape') closeLb();
+    else if (e.key==='ArrowRight') navLb(1);
+    else if (e.key==='ArrowLeft')  navLb(-1);
+  });
+  let tx=0, ty=0, tt=0;
+  if (lb) {
+    lb.addEventListener('touchstart', e => { if (!e.touches.length) return; tx=e.touches[0].clientX; ty=e.touches[0].clientY; tt=Date.now(); }, {passive:true});
+    lb.addEventListener('touchend',   e => { if (!e.changedTouches.length) return; const dx=e.changedTouches[0].clientX-tx, dy=e.changedTouches[0].clientY-ty; if(Date.now()-tt<800&&Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)) navLb(dx<0?1:-1); }, {passive:true});
+  }
+
+  /* Export for caller scripts that need openAt/lbList */
+  window._lb = { open: openAt, setList: l => { lbList = l; }, getList: () => lbList };
+})();
+
+
+(() => {
+  const archData = document.getElementById('arch-data');
+  if (!archData) return;
+  const D = JSON.parse(archData.textContent);
   const items = D.assets;
   const STATS = D.stats;
   function esc(s){return (s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 
-  document.getElementById('arch-stats').innerHTML = [
+  const statsEl = document.getElementById('arch-stats');
+  if (statsEl) statsEl.innerHTML = [
     ['Total', STATS.total],
     ['Local', STATS.local_total],
     ['Documents', STATS.pdf_total],
@@ -320,14 +596,17 @@ body { background-image:
   const state = { tab: 'ALL', q: '' };
   const tabsEl = document.getElementById('arch-tabs');
   function count(k){ return k === 'ALL' ? items.length : items.filter(a => a.t === k).length; }
-  tabsEl.innerHTML = TABS.map(t => `<button class="tab${t.key===state.tab?' active':''}" data-key="${t.key}">${t.label}<span class="count">${count(t.key)}</span></button>`).join('');
-  tabsEl.addEventListener('click', e => {
-    const t = e.target.closest('.tab'); if (!t) return;
-    state.tab = t.dataset.key;
-    tabsEl.querySelectorAll('.tab').forEach(x => x.classList.toggle('active', x.dataset.key === state.tab));
-    render();
-  });
-  document.getElementById('arch-search').addEventListener('input', e => { state.q = e.target.value.trim().toLowerCase(); render(); });
+  if (tabsEl) {
+    tabsEl.innerHTML = TABS.map(t => `<button class="tab${t.key===state.tab?' active':''}" data-key="${t.key}">${t.label}<span class="count">${count(t.key)}</span></button>`).join('');
+    tabsEl.addEventListener('click', e => {
+      const tab = e.target.closest('.tab'); if (!tab) return;
+      state.tab = tab.dataset.key;
+      tabsEl.querySelectorAll('.tab').forEach(x => x.classList.toggle('active', x.dataset.key === state.tab));
+      render();
+    });
+  }
+  const searchEl = document.getElementById('arch-search');
+  if (searchEl) searchEl.addEventListener('input', e => { state.q = e.target.value.trim().toLowerCase(); render(); });
 
   function glyphFor(a) {
     if (a.t === 'CATALOG') return `<div class="pdf-glyph glyph-cat"><span class="ico">⌕</span><span>${esc(a.cat||'Catalog')}</span></div>`;
@@ -335,16 +614,16 @@ body { background-image:
   }
   function metaFor(a) {
     const rows = [];
-    if (a.ag) rows.push(['Agency', a.ag]);
-    if (a.cat) rows.push(['Category', a.cat]);
+    if (a.ag)     rows.push(['Agency', a.ag]);
+    if (a.cat)    rows.push(['Category', a.cat]);
     if (a.region) rows.push(['Region', a.region]);
-    if (a.date) rows.push(['Date', a.date]);
-    return `<dl class="card-meta">${rows.map(r => `<dt>${r[0]}</dt><dd>${esc(r[1])}</dd>`).join('')}</dl>`;
+    if (a.date)   rows.push(['Date', a.date]);
+    return `<dl class="card-meta">${rows.map(r=>`<dt>${r[0]}</dt><dd>${esc(r[1])}</dd>`).join('')}</dl>`;
   }
   function actionsFor(a) {
     const out = [];
     if (a.l) {
-      out.push(`<a href="#" data-action="open" data-title="${esc(a.ti)}">Open PDF</a>`);
+      out.push(`<a href="#" data-action="open">Open PDF</a>`);
       out.push(`<a href="./${esc(a.l)}" download>Download</a>`);
     } else if (a.u && a.t === 'PDF') {
       out.push(`<a href="${esc(a.u)}" target="_blank" rel="noopener">Open PDF</a>`);
@@ -359,23 +638,22 @@ body { background-image:
       <div class="card-media">
         ${glyphFor(a)}
         <span class="badge">${esc(a.t)}</span>
-        ${a.t!=='CATALOG' ? localBadge : ''}
+        ${a.t!=='CATALOG'?localBadge:''}
       </div>
       <div class="card-body">
         <div class="card-title">${esc(a.ti)}</div>
-        ${a.de ? `<div class="card-desc">${esc(a.de)}</div>` : ''}
+        ${a.de?`<div class="card-desc">${esc(a.de)}</div>`:''}
         ${metaFor(a)}
         ${actionsFor(a)}
       </div>
     </article>`;
   }
 
-  let lbList = [], lbIdx = 0;
   function filtered() {
     return items.filter(a => {
       if (state.tab !== 'ALL' && a.t !== state.tab) return false;
       if (state.q) {
-        const hay = [a.ti, a.de, a.ag, a.cat, a.date, a.region].join(' ').toLowerCase();
+        const hay = [a.ti,a.de,a.ag,a.cat,a.date,a.region].join(' ').toLowerCase();
         if (!hay.includes(state.q)) return false;
       }
       return true;
@@ -384,66 +662,26 @@ body { background-image:
   const grid = document.getElementById('arch-grid');
   const emptyEl = document.getElementById('arch-empty');
   function render() {
-    const list = filtered(); lbList = list;
-    grid.innerHTML = list.map((a, i) => cardHtml(a, i)).join('');
-    emptyEl.hidden = list.length > 0;
+    const list = filtered();
+    if (window._lb) window._lb.setList(list);
+    if (grid) grid.innerHTML = list.map((a,i) => cardHtml(a,i)).join('');
+    if (emptyEl) emptyEl.hidden = list.length > 0;
   }
   render();
 
-  const lb = document.getElementById('lightbox');
-  const lbI = document.getElementById('lb-inner');
-  const lbC = document.getElementById('lb-close');
-  const lbPrev = document.getElementById('lb-prev');
-  const lbNext = document.getElementById('lb-next');
-  const lbCounter = document.getElementById('lb-counter');
-
-  function renderLb() {
-    const a = lbList[lbIdx]; if (!a) return;
-    let html;
-    if (a.l) {
-      html = `<iframe src="./${esc(a.l)}#view=FitH" sandbox="allow-same-origin allow-popups"></iframe><div class="lb-meta">${esc(a.ti)} — <a href="./${esc(a.l)}" target="_blank">open in new tab ↗</a></div>`;
-    } else if (a.u) {
-      window.open(a.u, '_blank'); closeLb(); return;
-    } else {
-      html = `<div class="lb-meta">${esc(a.ti)} — no local or live link.</div>`;
-    }
-    lbI.innerHTML = html;
-    if (lbCounter) lbCounter.textContent = (lbIdx + 1) + ' / ' + lbList.length;
-    if (lbPrev) lbPrev.style.visibility = lbList.length > 1 ? 'visible' : 'hidden';
-    if (lbNext) lbNext.style.visibility = lbList.length > 1 ? 'visible' : 'hidden';
+  if (grid) {
+    grid.addEventListener('click', e => {
+      const action = e.target.closest('a[data-action]');
+      const card   = e.target.closest('.card');
+      const media  = e.target.closest('.card-media');
+      if (action) e.preventDefault();
+      if (card && card.dataset.idx !== undefined && (action || media)) {
+        const a = (window._lb ? window._lb.getList() : [])[parseInt(card.dataset.idx, 10)];
+        if (a && a.t === 'CATALOG') { window.open(a.u || a.s, '_blank'); return; }
+        if (window._lb) window._lb.open(parseInt(card.dataset.idx, 10));
+      }
+    });
   }
-  function openAt(idx) { if (!lbList.length) return; lbIdx = (idx + lbList.length) % lbList.length; renderLb(); if (lbI.innerHTML) lb.classList.add('open'); }
-  function navLb(d) { if (!lbList.length) return; lbIdx = (lbIdx + d + lbList.length) % lbList.length; renderLb(); }
-  function closeLb() { lb.classList.remove('open'); lbI.innerHTML = ''; }
-  lbC.addEventListener('click', closeLb);
-  if (lbPrev) lbPrev.addEventListener('click', e => { e.stopPropagation(); navLb(-1); });
-  if (lbNext) lbNext.addEventListener('click', e => { e.stopPropagation(); navLb(1); });
-  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
-  document.addEventListener('keydown', e => {
-    if (!lb.classList.contains('open')) return;
-    if (e.key === 'Escape') closeLb();
-    else if (e.key === 'ArrowRight') navLb(1);
-    else if (e.key === 'ArrowLeft')  navLb(-1);
-  });
-  let touchX=0, touchY=0, touchT=0;
-  lb.addEventListener('touchstart', e => { if (!e.touches.length) return; touchX = e.touches[0].clientX; touchY = e.touches[0].clientY; touchT = Date.now(); }, { passive:true });
-  lb.addEventListener('touchend', e => {
-    if (!e.changedTouches.length) return;
-    const dx = e.changedTouches[0].clientX - touchX, dy = e.changedTouches[0].clientY - touchY;
-    if (Date.now() - touchT < 800 && Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) navLb(dx < 0 ? 1 : -1);
-  }, { passive:true });
-
-  grid.addEventListener('click', e => {
-    const action = e.target.closest('a[data-action]');
-    const card = e.target.closest('.card');
-    const media = e.target.closest('.card-media');
-    if (action) e.preventDefault();
-    if (card && card.dataset.idx !== undefined && (action || media)) {
-      const a = lbList[parseInt(card.dataset.idx, 10)];
-      if (a && a.t === 'CATALOG') { window.open(a.u || a.s, '_blank'); return; }
-      openAt(parseInt(card.dataset.idx, 10));
-    }
-  });
 })();
 </script>
 </body>

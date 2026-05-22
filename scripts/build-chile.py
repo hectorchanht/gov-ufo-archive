@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build chile-mirror/index.html — Chile DGAC SEFAA (formerly CEFAA) mirror.
+"""Build chile/index.html — Chile DGAC SEFAA (formerly CEFAA) mirror.
 
 SEFAA — Sección de Estudios de Fenómenos Aéreos Anómalos — is the only
 civil-aviation UAP unit in the world. Monthly resolved-case dispatches
@@ -8,15 +8,16 @@ since 2020. Tone: Chilean red (#d52b1e).
 import json, os, sys, subprocess
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ROOT = os.path.join(REPO, 'chile-mirror')
+ROOT = os.path.join(REPO, 'chile')
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _mirror_shared import SHARED_CSS, SHARED_JS
+from _site_template import make_nav, LIGHTBOX_HTML
 
 def git_tracked(rel_dir):
     try:
-        out = subprocess.run(['git','-C',REPO,'ls-files',f'chile-mirror/{rel_dir}/'],
+        out = subprocess.run(['git','-C',REPO,'ls-files',f'chile/{rel_dir}/'],
             capture_output=True, text=True, check=True).stdout
-        prefix = f'chile-mirror/{rel_dir}/'
+        prefix = f'chile/{rel_dir}/'
         return {ln[len(prefix):] for ln in out.splitlines() if ln.startswith(prefix)}
     except Exception:
         p = os.path.join(ROOT, rel_dir)
@@ -105,11 +106,11 @@ PAGE = r'''<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SEFAA — Sección de Estudios de Fenómenos Aéreos Anómalos · Chile (Offline Mirror)</title>
 <meta name="description" content="Offline mirror of Chile's SEFAA (formerly CEFAA) — the world's only civil-aviation UAP unit, at DGAC.">
-<link rel="canonical" href="https://realufo.org/chile-mirror/">
+<link rel="canonical" href="https://realufo.org/chile/">
 <meta property="og:title" content="SEFAA / CEFAA — Chile's Civil-Aviation UAP Unit | realufo.org">
 <meta property="og:description" content="Chile's SEFAA (formerly CEFAA) at DGAC — the world's only UAP unit embedded in a civil aviation authority. Monthly resolved-case dispatches since 2020.">
 <meta property="og:image" content="https://realufo.org/slideshow/FBI-Photo-B18.jpg">
-<meta property="og:url" content="https://realufo.org/chile-mirror/">
+<meta property="og:url" content="https://realufo.org/chile/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="realufo.org">
 <meta name="twitter:card" content="summary_large_image">
@@ -144,20 +145,7 @@ body { background-image:
       </div>
     </a>
     <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
-    <nav class="primary" id="primary-nav">
-      <ul>
-        <li><a href="#top">Intro</a></li>
-        <li><a href="#headlines">Headlines</a></li>
-        <li><a href="#archive" class="active">Records</a></li>
-        <li><a href="../index.html">war.gov</a></li>
-        <li><a href="../aaro-mirror/index.html">AARO</a></li>
-        <li><a href="../nasa-mirror/index.html">NASA</a></li>
-        <li><a href="../nara-mirror/index.html">NARA</a></li>
-        <li><a href="../geipan-mirror/index.html">GEIPAN</a></li>
-        <li><a href="../uk-mirror/index.html">UK</a></li>
-        <li><a href="../brazil-mirror/index.html">Brazil</a></li>
-      </ul>
-    </nav>
+    __NAV__
   </div>
 </header>
 </div>
@@ -228,12 +216,12 @@ body { background-image:
       <h4>Related Mirrors</h4>
       <ul>
         <li><a href="../index.html">war.gov / UFO Release 01</a></li>
-        <li><a href="../aaro-mirror/index.html">AARO — DoW</a></li>
-        <li><a href="../nasa-mirror/index.html">NASA UAP Study</a></li>
-        <li><a href="../nara-mirror/index.html">NARA UAP Records</a></li>
-        <li><a href="../geipan-mirror/index.html">France GEIPAN</a></li>
-        <li><a href="../uk-mirror/index.html">UK MoD UFO Files</a></li>
-        <li><a href="../brazil-mirror/index.html">Brazil OVNI</a></li>
+        <li><a href="../aaro/index.html">AARO — DoW</a></li>
+        <li><a href="../nasa/index.html">NASA UAP Study</a></li>
+        <li><a href="../nara/index.html">NARA UAP Records</a></li>
+        <li><a href="../geipan/index.html">France GEIPAN</a></li>
+        <li><a href="../uk/index.html">UK MoD UFO Files</a></li>
+        <li><a href="../brazil/index.html">Brazil OVNI</a></li>
       </ul>
     </div>
     <div>
@@ -250,19 +238,22 @@ body { background-image:
   </div>
 </footer>
 
-<div class="lightbox" id="lightbox" aria-hidden="true">
-  <div class="lb-close" id="lb-close">×</div>
-  <button class="lb-nav prev" id="lb-prev" aria-label="Previous (←)">‹</button>
-  <button class="lb-nav next" id="lb-next" aria-label="Next (→)">›</button>
-  <div class="lb-counter" id="lb-counter"></div>
-  <div class="lb-inner" id="lb-inner"></div>
-</div>
+__LIGHTBOX__
 
 <script id="arch-data" type="application/json">__DATA__</script>
 <script>__SHARED_JS__</script>
 </body>
 </html>
 '''
-PAGE = PAGE.replace('__SHARED_CSS__', SHARED_CSS).replace('__SHARED_JS__', SHARED_JS).replace('__DATA__', data_json)
+_nav = make_nav('chile', depth=1, internal_links=[
+    ('Intro','#top','intro'), ('Headlines','#headlines','headlines'), ('Records','#archive','archive'),
+])
+PAGE = (PAGE
+    .replace('__SHARED_CSS__', SHARED_CSS)
+    .replace('__SHARED_JS__', SHARED_JS)
+    .replace('__DATA__', data_json)
+    .replace('__NAV__', _nav)
+    .replace('__LIGHTBOX__', LIGHTBOX_HTML)
+)
 open(os.path.join(ROOT, 'index.html'), 'w', encoding='utf-8').write(PAGE)
 print(f'wrote {ROOT}/index.html ({len(PAGE):,} bytes) · {stats["local_total"]}/{stats["total"]} local')

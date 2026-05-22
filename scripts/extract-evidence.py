@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """Build evidence map (videos, PDFs, images + captions) from parsed page data.
 
-Input:  aaro-mirror/.cache/parsed.json   (from parse-aaro.py)
-Output: aaro-mirror/.cache/evidence.json (consumed by build-aaro.py)
+Input:  aaro/.cache/parsed.json   (from parse-aaro.py)
+Output: aaro/.cache/evidence.json (consumed by build-aaro.py)
 """
 import os, re, json
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-AARO = os.path.join(ROOT, 'aaro-mirror')
+AARO = os.path.join(ROOT, 'aaro')
 PAGES = os.path.join(AARO, 'pages')
 CACHE = os.path.join(AARO, '.cache')
 os.makedirs(CACHE, exist_ok=True)

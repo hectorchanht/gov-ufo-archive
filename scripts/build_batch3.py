@@ -9,6 +9,7 @@ import json, os, sys, subprocess
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _mirror_shared import SHARED_CSS, SHARED_JS
+from _site_template import make_nav, LIGHTBOX_HTML
 
 # ============================================================
 # Country definitions
@@ -539,26 +540,26 @@ CONFIG = [
 # All-mirror nav list (used in every header + footer)
 ALL_MIRRORS = [
     ('war.gov', '../index.html'),
-    ('AARO',    '../aaro-mirror/index.html'),
-    ('NASA',    '../nasa-mirror/index.html'),
-    ('NARA',    '../nara-mirror/index.html'),
-    ('GEIPAN',  '../geipan-mirror/index.html'),
-    ('UK',      '../uk-mirror/index.html'),
-    ('Brazil',  '../brazil-mirror/index.html'),
-    ('Chile',   '../chile-mirror/index.html'),
-    ('NZ',      '../nz-mirror/index.html'),
-    ('Canada',  '../canada-mirror/index.html'),
-    ('Argentina','../argentina-mirror/index.html'),
-    ('Uruguay', '../uruguay-mirror/index.html'),
-    ('Peru',    '../peru-mirror/index.html'),
-    ('Spain',   '../spain-mirror/index.html'),
-    ('Italy',   '../italy-mirror/index.html'),
+    ('AARO',    '../aaro/index.html'),
+    ('NASA',    '../nasa/index.html'),
+    ('NARA',    '../nara/index.html'),
+    ('GEIPAN',  '../geipan/index.html'),
+    ('UK',      '../uk/index.html'),
+    ('Brazil',  '../brazil/index.html'),
+    ('Chile',   '../chile/index.html'),
+    ('NZ',      '../nz/index.html'),
+    ('Canada',  '../canada/index.html'),
+    ('Argentina','../argentina/index.html'),
+    ('Uruguay', '../uruguay/index.html'),
+    ('Peru',    '../peru/index.html'),
+    ('Spain',   '../spain/index.html'),
+    ('Italy',   '../italy/index.html'),
 ]
 
 
 def write_favicon(slug, label, c1, c2, c3, dark_text=False):
     text_fill = '#0a0a0c' if dark_text else '#e8e3d8'
-    p = os.path.join(REPO, f'{slug}-mirror', 'assets', 'favicon.svg')
+    p = os.path.join(REPO, f'{slug}', 'assets', 'favicon.svg')
     os.makedirs(os.path.dirname(p), exist_ok=True)
     open(p, 'w').write(f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <defs>
@@ -578,35 +579,27 @@ def write_favicon(slug, label, c1, c2, c3, dark_text=False):
 
 def git_tracked(mirror_slug, sub):
     try:
-        out = subprocess.run(['git','-C',REPO,'ls-files',f'{mirror_slug}-mirror/{sub}/'],
+        out = subprocess.run(['git','-C',REPO,'ls-files',f'{mirror_slug}/{sub}/'],
             capture_output=True, text=True, check=True).stdout
-        prefix = f'{mirror_slug}-mirror/{sub}/'
+        prefix = f'{mirror_slug}/{sub}/'
         return {ln[len(prefix):] for ln in out.splitlines() if ln.startswith(prefix)}
     except Exception:
-        p = os.path.join(REPO, f'{mirror_slug}-mirror', sub)
+        p = os.path.join(REPO, f'{mirror_slug}', sub)
         return set(os.listdir(p)) if os.path.isdir(p) else set()
 
 
 def build_mirror(cfg):
     slug = cfg['slug']
-    root = os.path.join(REPO, f'{slug}-mirror')
+    root = os.path.join(REPO, f'{slug}')
     os.makedirs(root, exist_ok=True)
 
     write_favicon(slug, cfg['seal_label'], cfg['seal_from'], cfg['seal_mid'], cfg['seal_to'])
 
-    # Filter out this mirror's self-link in nav.
-    nav_html = '\n'.join(
-        f'        <li><a href="{href.replace("../", "../"+slug+"-mirror/" if href.endswith("index.html") and "/{slug}-mirror/" in href else "../")}">{label}</a></li>'
-        for label, href in ALL_MIRRORS
-        if not href.endswith(f'/{slug}-mirror/index.html')
-    )
-    # Simpler: just emit all and let the self-link be a no-op anchor.
-    nav_lines = []
-    for label, href in ALL_MIRRORS:
-        if href.endswith(f'/{slug}-mirror/index.html'):
-            continue
-        nav_lines.append(f'        <li><a href="{href}">{label}</a></li>')
-    nav_html = '\n'.join(nav_lines)
+    nav_html = make_nav(slug, depth=1, internal_links=[
+        ('Intro',    '#top',       'intro'),
+        ('Headlines','#headlines', 'headlines'),
+        ('Records',  '#archive',   'archive'),
+    ])
 
     headlines_html = '\n      '.join(
         f'<div class="head-card"><div class="h-label">{label}</div>{html}</div>'
@@ -633,11 +626,11 @@ def build_mirror(cfg):
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{cfg['page_title']}</title>
 <meta name="description" content="{cfg['meta_desc']}">
-<link rel="canonical" href="https://realufo.org/{slug}-mirror/">
+<link rel="canonical" href="https://realufo.org/{slug}/">
 <meta property="og:title" content="{cfg['og_title']}">
 <meta property="og:description" content="{cfg['og_desc']}">
 <meta property="og:image" content="{cfg['og_image']}">
-<meta property="og:url" content="https://realufo.org/{slug}-mirror/">
+<meta property="og:url" content="https://realufo.org/{slug}/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="realufo.org">
 <meta name="twitter:card" content="summary_large_image">
@@ -672,14 +665,7 @@ body {{ background-image:
       </div>
     </a>
     <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
-    <nav class="primary" id="primary-nav">
-      <ul>
-        <li><a href="#top">Intro</a></li>
-        <li><a href="#headlines">Headlines</a></li>
-        <li><a href="#archive" class="active">Records</a></li>
-{nav_html}
-      </ul>
-    </nav>
+    {nav_html}
   </div>
 </header>
 </div>
@@ -737,13 +723,13 @@ body {{ background-image:
       <h4>Related Mirrors</h4>
       <ul>
         <li><a href="../index.html">war.gov / UFO Release 01</a></li>
-        <li><a href="../aaro-mirror/index.html">AARO — DoW</a></li>
-        <li><a href="../nasa-mirror/index.html">NASA UAP Study</a></li>
-        <li><a href="../nara-mirror/index.html">NARA UAP Records</a></li>
-        <li><a href="../geipan-mirror/index.html">France GEIPAN</a></li>
-        <li><a href="../uk-mirror/index.html">UK MoD UFO Files</a></li>
-        <li><a href="../brazil-mirror/index.html">Brazil OVNI</a></li>
-        <li><a href="../chile-mirror/index.html">Chile SEFAA</a></li>
+        <li><a href="../aaro/index.html">AARO — DoW</a></li>
+        <li><a href="../nasa/index.html">NASA UAP Study</a></li>
+        <li><a href="../nara/index.html">NARA UAP Records</a></li>
+        <li><a href="../geipan/index.html">France GEIPAN</a></li>
+        <li><a href="../uk/index.html">UK MoD UFO Files</a></li>
+        <li><a href="../brazil/index.html">Brazil OVNI</a></li>
+        <li><a href="../chile/index.html">Chile SEFAA</a></li>
       </ul>
     </div>
     <div>
@@ -759,13 +745,7 @@ body {{ background-image:
   </div>
 </footer>
 
-<div class="lightbox" id="lightbox" aria-hidden="true">
-  <div class="lb-close" id="lb-close">×</div>
-  <button class="lb-nav prev" id="lb-prev" aria-label="Previous (←)">‹</button>
-  <button class="lb-nav next" id="lb-next" aria-label="Next (→)">›</button>
-  <div class="lb-counter" id="lb-counter"></div>
-  <div class="lb-inner" id="lb-inner"></div>
-</div>
+{LIGHTBOX_HTML}
 
 <script id="arch-data" type="application/json">{data_json}</script>
 <script>{SHARED_JS}</script>

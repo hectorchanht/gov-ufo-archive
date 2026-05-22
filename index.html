@@ -1015,6 +1015,27 @@
     body { font-size: 15px; }
   }
 
+/* ── More dropdown ─────────────────────────────────── */
+.has-dropdown { position: relative; }
+.nav-more-btn { background: none; border: none; color: var(--ink-dim); cursor: pointer; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; padding: 12px 0; display: block; width: 100%; text-align: left; border-bottom: 1px solid var(--rule); }
+.nav-more-btn:hover { color: var(--ink); }
+.nav-dropdown { display: none; list-style: none; background: var(--panel); border: 1px solid var(--rule-strong); padding: 6px 0; z-index: 200; }
+.nav-dropdown li a { border: 0 !important; padding: 9px 16px !important; font-size: 10.5px !important; white-space: nowrap; display: block; }
+@media (max-width: 720px) { .has-dropdown.open .nav-dropdown { display: block; margin: 0 0 0 12px; border: 0; background: transparent; } }
+@media (min-width: 721px) { .nav-more-btn { padding: 0; border: 0; width: auto; font-size: 10.5px; } .nav-dropdown { position: absolute; right: 0; top: calc(100% + 10px); min-width: 200px; } .has-dropdown:hover .nav-dropdown, .has-dropdown:focus-within .nav-dropdown { display: block; } }
+/* ── Lang picker ────────────────────────────────────── */
+.lang-picker { position: relative; }
+.lang-btn { background: transparent; border: 1px solid var(--rule-strong); color: var(--ink-dim); cursor: pointer; font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.12em; padding: 4px 8px; text-transform: uppercase; display: block; width: 100%; text-align: left; margin: 8px 0; }
+.lang-btn:hover { color: var(--caution); border-color: var(--caution); }
+.lang-menu { display: none; list-style: none; background: var(--panel); border: 1px solid var(--rule-strong); padding: 6px 0; z-index: 300; }
+.lang-menu button { background: none; border: none; color: var(--ink-dim); cursor: pointer; font-family: var(--mono); font-size: 10.5px; padding: 8px 16px; width: 100%; text-align: left; }
+.lang-menu button:hover { color: var(--caution); }
+.lang-picker.open .lang-menu { display: block; }
+@media (max-width: 720px) { .lang-btn { border: 0; margin: 0; padding: 12px 0; font-size: 11px; border-bottom: 1px solid var(--rule); } .lang-picker.open .lang-menu { margin-left: 12px; border: 0; background: transparent; } }
+@media (min-width: 721px) { .lang-btn { width: auto; margin: 0; padding: 3px 8px; } .lang-menu { position: absolute; right: 0; top: calc(100% + 10px); min-width: 130px; } }
+/* ── Nav sep ─────────────────────────────────────────── */
+li.nav-sep { display: none; }
+@media (min-width: 721px) { li.nav-sep { display: block; width: 1px; height: 16px; background: var(--rule-strong); flex-shrink: 0; } }
 </style>
 </head>
 <body>
@@ -1035,26 +1056,44 @@
     <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
-    <nav id="primary-nav">
+    <nav class="primary" id="primary-nav">
       <ul>
-        <li><a href="#intro">Intro</a></li>
+        <li><a href="#intro" data-i18n="intro">Intro</a></li>
         <li><a href="#directive">Directive</a></li>
-        <li><a href="#archive">Archive</a></li>
-        <li><a href="#learn">Learn More</a></li>
-        <li><a href="./aaro-mirror/index.html">AARO</a></li>
-        <li><a href="./nasa-mirror/index.html">NASA</a></li>
-        <li><a href="./nara-mirror/index.html">NARA</a></li>
-        <li><a href="./geipan-mirror/index.html">GEIPAN</a></li>
-        <li><a href="./uk-mirror/index.html">UK</a></li>
-        <li><a href="./brazil-mirror/index.html">Brazil</a></li>
-        <li><a href="./chile-mirror/index.html">Chile</a></li>
-        <li><a href="./nz-mirror/index.html">NZ</a></li>
-        <li><a href="./canada-mirror/index.html">Canada</a></li>
-        <li><a href="./argentina-mirror/index.html">Argentina</a></li>
-        <li><a href="./uruguay-mirror/index.html">Uruguay</a></li>
-        <li><a href="./peru-mirror/index.html">Peru</a></li>
-        <li><a href="./spain-mirror/index.html">Spain</a></li>
-        <li><a href="./italy-mirror/index.html">Italy</a></li>
+        <li><a href="#archive" data-i18n="archive">Archive</a></li>
+        <li><a href="#learn" data-i18n="headlines">Learn More</a></li>
+        <li class="nav-sep"></li>
+        <li><a href="./" class="active">War.gov</a></li>
+        <li><a href="aaro/">AARO</a></li>
+        <li><a href="nasa/">NASA</a></li>
+        <li><a href="nara/">NARA</a></li>
+        <li class="has-dropdown" id="nav-more-wrap">
+          <button class="nav-more-btn" id="nav-more-btn" aria-expanded="false" data-i18n="more">More ▾</button>
+          <ul class="nav-dropdown" id="nav-dropdown" role="menu">
+            <li><a href="geipan/">GEIPAN (France)</a></li>
+            <li><a href="uk/">UK Archives</a></li>
+            <li><a href="brazil/">Brazil FAB</a></li>
+            <li><a href="chile/">Chile CEFAA</a></li>
+            <li><a href="nz/">NZ NZDF</a></li>
+            <li><a href="canada/">Canada LAC</a></li>
+            <li><a href="argentina/">Argentina CEFAe</a></li>
+            <li><a href="uruguay/">Uruguay CRIDOVNI</a></li>
+            <li><a href="peru/">Peru OIFAA</a></li>
+            <li><a href="spain/">Spain Ejército</a></li>
+            <li><a href="italy/">Italy Aeronautica</a></li>
+          </ul>
+        </li>
+        <li class="lang-picker" id="lang-picker">
+          <button class="lang-btn" id="lang-btn" aria-expanded="false">EN</button>
+          <ul class="lang-menu" id="lang-menu" role="menu">
+            <li><button data-lang="en">English</button></li>
+            <li><button data-lang="fr">Français</button></li>
+            <li><button data-lang="es">Español</button></li>
+            <li><button data-lang="pt">Português</button></li>
+            <li><button data-lang="zh">中文</button></li>
+            <li><button data-lang="ja">日本語</button></li>
+          </ul>
+        </li>
       </ul>
     </nav>
   </div>
@@ -1375,7 +1414,35 @@
 
 <script>
 (() => {
-  // Hamburger nav toggle (mobile).
+  /* ── i18n ── */
+  const I18N = {"en":{"lang":"English","code":"EN","intro":"Intro","headlines":"Headlines","archive":"Archive","faq":"About / FAQ","more":"More ▾","all":"All","docs":"Documents","videos":"Videos","catalog":"Catalog","imagery":"Imagery","search":"Search…","total":"Total","local":"Local","open_pdf":"Open PDF","download":"Download","source":"Source ↗","play":"Play","view":"View","no_results":"No results."},"fr":{"lang":"Français","code":"FR","intro":"Intro","headlines":"Titres","archive":"Archives","faq":"À propos","more":"Plus ▾","all":"Tout","docs":"Documents","videos":"Vidéos","catalog":"Catalogue","imagery":"Images","search":"Rechercher…","total":"Total","local":"Local","open_pdf":"Ouvrir PDF","download":"Télécharger","source":"Source ↗","play":"Lire","view":"Voir","no_results":"Aucun résultat."},"es":{"lang":"Español","code":"ES","intro":"Intro","headlines":"Titulares","archive":"Archivo","faq":"Acerca de","more":"Más ▾","all":"Todo","docs":"Documentos","videos":"Videos","catalog":"Catálogo","imagery":"Imágenes","search":"Buscar…","total":"Total","local":"Local","open_pdf":"Abrir PDF","download":"Descargar","source":"Fuente ↗","play":"Reproducir","view":"Ver","no_results":"Sin resultados."},"pt":{"lang":"Português","code":"PT","intro":"Intro","headlines":"Destaques","archive":"Arquivo","faq":"Sobre","more":"Mais ▾","all":"Tudo","docs":"Documentos","videos":"Vídeos","catalog":"Catálogo","imagery":"Imagens","search":"Pesquisar…","total":"Total","local":"Local","open_pdf":"Abrir PDF","download":"Baixar","source":"Fonte ↗","play":"Reproduzir","view":"Ver","no_results":"Sem resultados."},"zh":{"lang":"中文","code":"中文","intro":"介绍","headlines":"要闻","archive":"档案","faq":"关于","more":"更多 ▾","all":"全部","docs":"文件","videos":"视频","catalog":"目录","imagery":"图像","search":"搜索…","total":"总计","local":"本地","open_pdf":"打开 PDF","download":"下载","source":"来源 ↗","play":"播放","view":"查看","no_results":"无结果。"},"ja":{"lang":"日本語","code":"JP","intro":"はじめに","headlines":"ヘッドライン","archive":"アーカイブ","faq":"について","more":"もっと ▾","all":"すべて","docs":"書類","videos":"ビデオ","catalog":"カタログ","imagery":"画像","search":"検索…","total":"合計","local":"ローカル","open_pdf":"PDF を開く","download":"ダウンロード","source":"ソース ↗","play":"再生","view":"表示","no_results":"結果なし。"}};
+  let lang = localStorage.getItem('realufo_lang') || 'en';
+  if (!I18N[lang]) lang = 'en';
+  function applyLang(code) {
+    lang = code; localStorage.setItem('realufo_lang', code);
+    const t = I18N[code];
+    document.querySelectorAll('[data-i18n]').forEach(el => { const k = el.getAttribute('data-i18n'); if (t[k] !== undefined) el.textContent = t[k]; });
+    const lb = document.getElementById('lang-btn'); if (lb) lb.textContent = t.code || code.toUpperCase();
+  }
+  /* ── Lang picker ── */
+  const langPicker = document.getElementById('lang-picker');
+  const langBtn = document.getElementById('lang-btn');
+  const langMenu = document.getElementById('lang-menu');
+  if (langBtn && langPicker) {
+    langBtn.addEventListener('click', e => { e.stopPropagation(); const open = langPicker.classList.toggle('open'); langBtn.setAttribute('aria-expanded', open ? 'true' : 'false'); });
+    if (langMenu) langMenu.addEventListener('click', e => { const btn = e.target.closest('button[data-lang]'); if (!btn) return; applyLang(btn.dataset.lang); langPicker.classList.remove('open'); langBtn.setAttribute('aria-expanded', 'false'); });
+  }
+  /* ── More dropdown ── */
+  const moreWrap = document.getElementById('nav-more-wrap');
+  const moreBtn  = document.getElementById('nav-more-btn');
+  if (moreWrap && moreBtn) {
+    moreBtn.addEventListener('click', e => { e.stopPropagation(); const open = moreWrap.classList.toggle('open'); moreBtn.setAttribute('aria-expanded', open ? 'true' : 'false'); });
+  }
+  document.addEventListener('click', () => {
+    if (langPicker) { langPicker.classList.remove('open'); if (langBtn) langBtn.setAttribute('aria-expanded', 'false'); }
+    if (moreWrap)   { moreWrap.classList.remove('open');  if (moreBtn) moreBtn.setAttribute('aria-expanded', 'false'); }
+  });
+  /* ── Hamburger nav toggle (mobile) ── */
   const navToggle = document.getElementById('nav-toggle');
   const primaryNav = document.getElementById('primary-nav');
   if (navToggle && primaryNav) {
@@ -1387,6 +1454,7 @@
       if (e.target.tagName === 'A') { primaryNav.classList.remove('open'); navToggle.setAttribute('aria-expanded', 'false'); }
     });
   }
+  applyLang(lang);
 
   const DATA = JSON.parse(document.getElementById('archive-manifest').textContent);
   const rows = DATA.rows;

@@ -1,204 +1,4 @@
-#!/usr/bin/env python3
-"""Build nara/index.html — curated NARA UAP records gateway.
-
-NARA's UAP holdings span dozens of record groups and millions of pages;
-this mirror surfaces the official topic pages + the legal basis (2024
-NDAA) + direct deep-links into the NARA Catalog. Tone color: silver
-charcoal (#9ca3af).
-"""
-import json, os, subprocess, sys
-sys.path.insert(0, __import__("os").path.dirname(__import__("os").path.abspath(__file__)))
-from _site_template import make_nav, LIGHTBOX_HTML, _I18N_JSON
-
-REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ROOT = os.path.join(REPO, 'nara')
-
-
-def git_tracked(rel_dir):
-    try:
-        out = subprocess.run(
-            ['git', '-C', REPO, 'ls-files', f'nara/{rel_dir}/'],
-            capture_output=True, text=True, check=True,
-        ).stdout
-        prefix = f'nara/{rel_dir}/'
-        return {ln[len(prefix):] for ln in out.splitlines() if ln.startswith(prefix)}
-    except (subprocess.CalledProcessError, FileNotFoundError):
-        p = os.path.join(ROOT, rel_dir)
-        return set(os.listdir(p)) if os.path.isdir(p) else set()
-
-
-tracked_pages = git_tracked('pages')
-tracked_pdfs = git_tracked('pdfs')
-
-def Lp(fname): return f'pages/{fname}' if fname in tracked_pages else ''
-def Lf(fname): return f'pdfs/{fname}' if fname in tracked_pdfs else ''
-
-
-ASSETS = [
-    # Gateway / legal basis
-    {
-        't': 'PDF',
-        'ti': '2024 National Defense Authorization Act — Public Law 118-31',
-        'de': "The 2024 NDAA established Record Group 615 ('Unidentified Anomalous Phenomena Records Collection') at NARA, mandating that federal agencies transfer UAP records and authorising a 25-year sealing review.",
-        'ag': 'U.S. Congress',
-        'cat': 'Legal',
-        'date': 'Dec 22, 2023',
-        'l': Lf('2024-NDAA-Public-Law-118-31.pdf'),
-        'u': 'https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/2024-NDAA-Public-Law-118-31.pdf',
-        's': 'https://www.congress.gov/118/bills/hr2670/BILLS-118hr2670enr.pdf',
-    },
-    # NARA topic pages (one card per page)
-    {
-        't': 'PAGE',
-        'ti': 'UAP Records — Topic Gateway',
-        'de': 'NARA\'s top-level gateway to UAP-related records across every collection it holds.',
-        'ag': 'NARA',
-        'cat': 'Gateway',
-        'l': Lp('topic.html'),
-        'u': 'https://www.archives.gov/research/topics/uaps',
-    },
-    {
-        't': 'PAGE',
-        'ti': 'Record Group 615 — Unidentified Anomalous Phenomena Records Collection',
-        'de': 'The dedicated RG established by the 2024 NDAA. Holdings transferred from DoD, ODNI, AARO, FBI, CIA, NASA, DOE, NSA, and others.',
-        'ag': 'NARA',
-        'cat': 'Record Group',
-        'l': Lp('rg-615.html'),
-        'u': 'https://www.archives.gov/research/topics/uaps/rg-615',
-    },
-    {
-        't': 'PAGE',
-        'ti': 'Photographs',
-        'de': 'NARA\'s photographic UAP holdings — Air Force Project Blue Book stills, NICAP files, presidential library photos.',
-        'ag': 'NARA',
-        'cat': 'Imagery',
-        'l': Lp('photographs.html'),
-        'u': 'https://www.archives.gov/research/topics/uaps/photographs',
-    },
-    {
-        't': 'PAGE',
-        'ti': 'Moving Images and Sound Recordings',
-        'de': 'Films and audio relating to UAP investigations across federal agencies.',
-        'ag': 'NARA',
-        'cat': 'A/V',
-        'l': Lp('moving-images-and-sound.html'),
-        'u': 'https://www.archives.gov/research/topics/uaps/moving-images-and-sound',
-    },
-    {
-        't': 'PAGE',
-        'ti': 'Textual and Microfilm',
-        'de': 'Paper records and microfilm — including Project Blue Book\'s 12,618-case textual file, J. Allen Hynek collection, and FBI HQ files.',
-        'ag': 'NARA',
-        'cat': 'Textual',
-        'l': Lp('textual-and-microfilm.html'),
-        'u': 'https://www.archives.gov/research/topics/uaps/textual-and-microfilm',
-    },
-    {
-        't': 'PAGE',
-        'ti': 'Presidential Libraries',
-        'de': 'UAP-related material held in the presidential libraries (Truman, Eisenhower, Kennedy, Johnson, Nixon, Carter, Reagan, Clinton).',
-        'ag': 'NARA',
-        'cat': 'Presidential',
-        'l': Lp('presidential-libraries.html'),
-        'u': 'https://www.archives.gov/research/topics/uaps/presidential-libraries',
-    },
-    {
-        't': 'PAGE',
-        'ti': 'Research by Record Group or Collection',
-        'de': 'Cross-index of every NARA record group containing UAP material — RG 18 (Army Air Forces), RG 65 (FBI), RG 341 (Air Staff), and many more.',
-        'ag': 'NARA',
-        'cat': 'Index',
-        'l': Lp('federal-agency.html'),
-        'u': 'https://www.archives.gov/research/topics/uaps/federal-agency',
-    },
-    {
-        't': 'PAGE',
-        'ti': 'NARA Publications, Blogs & Articles',
-        'de': 'NARA-authored publications, archivist blog posts, and Prologue magazine articles about UAP collections.',
-        'ag': 'NARA',
-        'cat': 'Reference',
-        'l': Lp('blogs-and-articles.html'),
-        'u': 'https://www.archives.gov/research/topics/uaps/blogs-and-articles',
-    },
-    {
-        't': 'PAGE',
-        'ti': 'Frequently Asked Questions',
-        'de': 'Common research questions about the UAP collection and how to request materials.',
-        'ag': 'NARA',
-        'cat': 'FAQ',
-        'l': Lp('faqs.html'),
-        'u': 'https://www.archives.gov/research/topics/uaps/faqs',
-    },
-    # External catalog links — no local copy possible, NARA Catalog is millions of pages
-    {
-        't': 'CATALOG',
-        'ti': 'NARA Catalog — Bulk UAP Download Manifest',
-        'de': 'Curated bulk-download index of digitised UAP records in the NARA online catalog — Project Blue Book, FBI HQ files, etc.',
-        'ag': 'NARA',
-        'cat': 'Catalog',
-        'l': '',
-        'u': 'https://www.archives.gov/research/catalog/catalog-bulk-downloads/uap-bulk-download',
-    },
-    {
-        't': 'CATALOG',
-        'ti': 'NARA Catalog — Full Search',
-        'de': 'Search the entire NARA Catalog for keywords across all 600 million digitised pages.',
-        'ag': 'NARA',
-        'cat': 'Catalog',
-        'l': '',
-        'u': 'https://catalog.archives.gov/',
-    },
-    {
-        't': 'CATALOG',
-        'ti': 'Project Blue Book — Online File',
-        'de': 'Air Force\'s 1947-1969 UFO investigation files: 12,618 cases, 130,000+ pages, fully digitised.',
-        'ag': 'NARA',
-        'cat': 'Catalog',
-        'l': '',
-        'u': 'https://catalog.archives.gov/search?q=project+blue+book',
-    },
-    {
-        't': 'CATALOG',
-        'ti': 'FBI Vault — UFO files',
-        'de': 'FBI\'s declassified UFO holdings hosted on the FBI Vault — Hottel memo, Roswell-era memos, internal investigations.',
-        'ag': 'FBI',
-        'cat': 'Catalog',
-        'l': '',
-        'u': 'https://vault.fbi.gov/UFO',
-    },
-]
-
-# Merge additional records discovered by scrape-nara.py
-_scraped_cache = os.path.join(ROOT, '.cache', 'scraped-index.json')
-if os.path.exists(_scraped_cache):
-    _seen = {a.get('u', '') or a.get('url', '') for a in ASSETS}
-    for _r in json.load(open(_scraped_cache)):
-        _url = _r.get('url', '')
-        if _url and _url not in _seen:
-            _seen.add(_url)
-            ASSETS.append({
-                't': _r.get('type', 'PDF'),
-                'ti': _r.get('title', ''),
-                'de': _r.get('desc', ''),
-                'ag': _r.get('agency', 'NARA'),
-                'cat': _r.get('type', 'PDF').capitalize(),
-                'date': _r.get('date', ''),
-                'l': '',
-                'u': _url,
-                's': _r.get('src', ''),
-            })
-
-stats = {
-    'total': len(ASSETS),
-    'local_total': sum(1 for a in ASSETS if a.get('l')),
-    'pages_total': sum(1 for a in ASSETS if a['t'] == 'PAGE'),
-    'pdf_total': sum(1 for a in ASSETS if a['t'] == 'PDF'),
-    'catalog_total': sum(1 for a in ASSETS if a['t'] == 'CATALOG'),
-}
-
-data_json = json.dumps({'assets': ASSETS, 'stats': stats}, ensure_ascii=False).replace('</script', '<\\/script')
-
-PAGE = '''<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -401,7 +201,30 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
       </div>
     </a>
     <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
-    __SITE_NAV__
+        <nav class="primary" id="primary-nav">
+      <ul>
+        <li><a href="#top" data-i18n="intro">Intro</a></li><li><a href="#headlines" data-i18n="headlines">Headlines</a></li><li><a href="#archive" data-i18n="archive">Records</a></li>
+        <li class="nav-sep"></li>
+        <li><a href="../">War.gov</a></li><li><a href="../aaro/">AARO</a></li><li><a href="../nasa/">NASA</a></li><li><a href="../nara/" class="active">NARA</a></li>
+        <li class="has-dropdown" id="nav-more-wrap">
+          <button class="nav-more-btn" id="nav-more-btn" aria-expanded="false" data-i18n="more">More ▾</button>
+          <ul class="nav-dropdown" id="nav-dropdown" role="menu">
+            <li><a href="../geipan/">GEIPAN (France)</a></li><li><a href="../uk/">UK Archives</a></li><li><a href="../brazil/">Brazil FAB</a></li><li><a href="../chile/">Chile CEFAA</a></li><li><a href="../nz/">NZ NZDF</a></li><li><a href="../canada/">Canada LAC</a></li><li><a href="../argentina/">Argentina CEFAe</a></li><li><a href="../uruguay/">Uruguay CRIDOVNI</a></li><li><a href="../peru/">Peru OIFAA</a></li><li><a href="../spain/">Spain Ejército</a></li><li><a href="../italy/">Italy Aeronautica</a></li>
+          </ul>
+        </li>
+        <li class="lang-picker" id="lang-picker">
+          <button class="lang-btn" id="lang-btn" aria-expanded="false">EN</button>
+          <ul class="lang-menu" id="lang-menu" role="menu">
+            <li><button data-lang="en">English</button></li>
+            <li><button data-lang="fr">Français</button></li>
+            <li><button data-lang="es">Español</button></li>
+            <li><button data-lang="pt">Português</button></li>
+            <li><button data-lang="zh">中文</button></li>
+            <li><button data-lang="ja">日本語</button></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
   </div>
 </header>
 </div>
@@ -502,8 +325,10 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
   <div class="lb-inner" id="lb-inner"></div>
 </div>
 
-<script id="arch-data" type="application/json">__DATA__</script>
-__SITE_NAV_JS__
+<script id="arch-data" type="application/json">{"assets": [{"t": "PDF", "ti": "2024 National Defense Authorization Act — Public Law 118-31", "de": "The 2024 NDAA established Record Group 615 ('Unidentified Anomalous Phenomena Records Collection') at NARA, mandating that federal agencies transfer UAP records and authorising a 25-year sealing review.", "ag": "U.S. Congress", "cat": "Legal", "date": "Dec 22, 2023", "l": "", "u": "https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/2024-NDAA-Public-Law-118-31.pdf", "s": "https://www.congress.gov/118/bills/hr2670/BILLS-118hr2670enr.pdf"}, {"t": "PAGE", "ti": "UAP Records — Topic Gateway", "de": "NARA's top-level gateway to UAP-related records across every collection it holds.", "ag": "NARA", "cat": "Gateway", "l": "pages/topic.html", "u": "https://www.archives.gov/research/topics/uaps"}, {"t": "PAGE", "ti": "Record Group 615 — Unidentified Anomalous Phenomena Records Collection", "de": "The dedicated RG established by the 2024 NDAA. Holdings transferred from DoD, ODNI, AARO, FBI, CIA, NASA, DOE, NSA, and others.", "ag": "NARA", "cat": "Record Group", "l": "pages/rg-615.html", "u": "https://www.archives.gov/research/topics/uaps/rg-615"}, {"t": "PAGE", "ti": "Photographs", "de": "NARA's photographic UAP holdings — Air Force Project Blue Book stills, NICAP files, presidential library photos.", "ag": "NARA", "cat": "Imagery", "l": "pages/photographs.html", "u": "https://www.archives.gov/research/topics/uaps/photographs"}, {"t": "PAGE", "ti": "Moving Images and Sound Recordings", "de": "Films and audio relating to UAP investigations across federal agencies.", "ag": "NARA", "cat": "A/V", "l": "pages/moving-images-and-sound.html", "u": "https://www.archives.gov/research/topics/uaps/moving-images-and-sound"}, {"t": "PAGE", "ti": "Textual and Microfilm", "de": "Paper records and microfilm — including Project Blue Book's 12,618-case textual file, J. Allen Hynek collection, and FBI HQ files.", "ag": "NARA", "cat": "Textual", "l": "pages/textual-and-microfilm.html", "u": "https://www.archives.gov/research/topics/uaps/textual-and-microfilm"}, {"t": "PAGE", "ti": "Presidential Libraries", "de": "UAP-related material held in the presidential libraries (Truman, Eisenhower, Kennedy, Johnson, Nixon, Carter, Reagan, Clinton).", "ag": "NARA", "cat": "Presidential", "l": "pages/presidential-libraries.html", "u": "https://www.archives.gov/research/topics/uaps/presidential-libraries"}, {"t": "PAGE", "ti": "Research by Record Group or Collection", "de": "Cross-index of every NARA record group containing UAP material — RG 18 (Army Air Forces), RG 65 (FBI), RG 341 (Air Staff), and many more.", "ag": "NARA", "cat": "Index", "l": "pages/federal-agency.html", "u": "https://www.archives.gov/research/topics/uaps/federal-agency"}, {"t": "PAGE", "ti": "NARA Publications, Blogs & Articles", "de": "NARA-authored publications, archivist blog posts, and Prologue magazine articles about UAP collections.", "ag": "NARA", "cat": "Reference", "l": "pages/blogs-and-articles.html", "u": "https://www.archives.gov/research/topics/uaps/blogs-and-articles"}, {"t": "PAGE", "ti": "Frequently Asked Questions", "de": "Common research questions about the UAP collection and how to request materials.", "ag": "NARA", "cat": "FAQ", "l": "pages/faqs.html", "u": "https://www.archives.gov/research/topics/uaps/faqs"}, {"t": "CATALOG", "ti": "NARA Catalog — Bulk UAP Download Manifest", "de": "Curated bulk-download index of digitised UAP records in the NARA online catalog — Project Blue Book, FBI HQ files, etc.", "ag": "NARA", "cat": "Catalog", "l": "", "u": "https://www.archives.gov/research/catalog/catalog-bulk-downloads/uap-bulk-download"}, {"t": "CATALOG", "ti": "NARA Catalog — Full Search", "de": "Search the entire NARA Catalog for keywords across all 600 million digitised pages.", "ag": "NARA", "cat": "Catalog", "l": "", "u": "https://catalog.archives.gov/"}, {"t": "CATALOG", "ti": "Project Blue Book — Online File", "de": "Air Force's 1947-1969 UFO investigation files: 12,618 cases, 130,000+ pages, fully digitised.", "ag": "NARA", "cat": "Catalog", "l": "", "u": "https://catalog.archives.gov/search?q=project+blue+book"}, {"t": "CATALOG", "ti": "FBI Vault — UFO files", "de": "FBI's declassified UFO holdings hosted on the FBI Vault — Hottel memo, Roswell-era memos, internal investigations.", "ag": "FBI", "cat": "Catalog", "l": "", "u": "https://vault.fbi.gov/UFO"}, {"t": "CATALOG", "ti": "Project Blue Book (NARA RG 341)", "de": "US Air Force Project Blue Book records — the primary historical UAP file (1947–1969).", "ag": "NARA", "cat": "Catalog", "date": "1947-1969", "l": "", "u": "https://catalog.archives.gov/id/182466", "s": "https://www.archives.gov/"}, {"t": "CATALOG", "ti": "CIA Robertson Panel Report (1953)", "de": "Declassified CIA Scientific Advisory Panel on Unidentified Flying Objects report.", "ag": "NARA", "cat": "Catalog", "date": "Jan 1953", "l": "", "u": "https://www.cia.gov/readingroom/docs/DOC_0000015458.pdf", "s": "https://www.archives.gov/"}, {"t": "CATALOG", "ti": "NSA FOIA Reading Room — UFO/UAP Documents", "de": "NSA declassified UFO/UAP documents collection — over 1,500 pages.", "ag": "NARA", "cat": "Catalog", "date": "", "l": "", "u": "https://www.nsa.gov/Portals/75/documents/news-features/declassified-documents/ufo/", "s": "https://www.archives.gov/"}, {"t": "PDF", "ti": "UAP Disclosure Act — NARA Implementation Guidance", "de": "NARA guidance on implementation of the UAP Disclosure Act of 2023.", "ag": "NARA", "cat": "Pdf", "date": "2024", "l": "", "u": "https://www.archives.gov/about/laws/uap-disclosure-act.html", "s": "https://www.archives.gov/"}, {"t": "CATALOG", "ti": "NARA ARC — Aerial Phenomena Records", "de": "NARA Archival Research Catalog search for aerial phenomena records.", "ag": "NARA", "cat": "Catalog", "date": "", "l": "", "u": "https://catalog.archives.gov/search?q=%22unidentified+aerial%22&resultTypes=item", "s": "https://www.archives.gov/"}, {"t": "PDF", "ti": "Twining Memo — 1947 (AFB Roswell)", "de": "Lt. Gen. Nathan Twining memo on \"Flying Discs\" — first official USAF documentation.", "ag": "NARA", "cat": "Pdf", "date": "Sep 1947", "l": "", "u": "https://www.archives.gov/files/research/military/air-force/twining-memo-1947.pdf", "s": "https://www.archives.gov/"}, {"t": "CATALOG", "ti": "RG 255 — NASA Historical Records", "de": "NASA historical records at NARA including early aerospace observations.", "ag": "NARA", "cat": "Catalog", "date": "", "l": "", "u": "https://catalog.archives.gov/id/566916", "s": "https://www.archives.gov/"}, {"t": "CATALOG", "ti": "RG 330 — Office of Secretary of Defense UAP files", "de": "OSD records including UAP-related correspondence and analysis.", "ag": "NARA", "cat": "Catalog", "date": "", "l": "", "u": "https://catalog.archives.gov/search?q=%22UAP%22&recordGroupNumber=330", "s": "https://www.archives.gov/"}, {"t": "PDF", "ti": "ISCAP Appeal Decision — UAP Classification Challenges", "de": "ISCAP decisions on UAP-related declassification challenges.", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://www.archives.gov/declassification/iscap/decisions.html", "s": "https://www.archives.gov/"}, {"t": "CATALOG", "ti": "NARA FOIA Reading Room — UAP", "de": "NARA FOIA Electronic Reading Room with UAP-relevant records.", "ag": "NARA", "cat": "Catalog", "date": "", "l": "", "u": "https://www.archives.gov/research/request-records/foia/reading-room", "s": "https://www.archives.gov/"}, {"t": "PDF", "ti": "Index", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Index.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "Index", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-I.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part I] Vietnam and the U.S., 1940-1950", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-II.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part II] U.S. Involvement in the Franco-Viet Minh War, 1950-1954", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-III.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part III] The Geneva Accords", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-IV-A-1.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part IV. A. 1.] Evolution of the War. NATO and SEATO: A Comparison", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-IV-A-2.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part IV. A. 2.] Evolution of the War. Aid for France in Indochina, 1950-54", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-IV-A-3.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part IV. A. 3.] Evolution of the War. U.S. and France's Withdrawal from Vietnam, 1954-56", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-IV-A-4.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part IV. A. 4.] Evolution of the War. U.S. Training of Vietnamese National Army, 1954-59", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-IV-A-5.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part IV. A. 5.] Evolution of the War. Origins of the Insurgency", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-IV-B-1.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part IV. B. 1.] Evolution of the War. Counterinsurgency: The Kennedy Commitments and Programs, 1961", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-IV-B-2.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part IV. B. 2.] Evolution of the War. Counterinsurgency: Strategic Hamlet Program, 1961-63", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-IV-B-3.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part IV. B. 3.] Evolution of the War. Counterinsurgency: The Advisory Build-up, 1961-67", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-IV-B-4.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part IV. B. 4.] Evolution of the War. Counterinsurgency: Phased Withdrawal of U.S. Forces in Vietnam, 1962-64", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-IV-B-5.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part IV. B. 5.] Evolution of the War. Counterinsurgency: The Overthrow of Ngo Dinh Diem, May-Nov. 1963", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-IV-C-1.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part IV. C. 2. a.] Evolution of the War. Military Pressures Against NVN. February - June 1964", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-IV-C-2a.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part IV. C. 2. a.] Evolution of the War. Military Pressures Against NVN. February - June 1964", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-IV-C-2b.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part IV. C. 2. b.] Evolution of the War. Military Pressures Against NVN. July - October 1964", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-IV-C-2c.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part IV. C. 2. c.] Evolution of the War. Military Pressures Against NVN. November - December 1964", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-IV-C-3.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part IV. C. 3.] Evolution of the War. ROLLING THUNDER Program Begins: January - June 1965", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-IV-C-4.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part IV. C. 4.] Evolution of the War. Marine Combat Units Go to DaNang, March 1965", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-IV-C-5.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part IV. C. 5.] Evolution of the War. Phase I in the Build-up of U.S. Forces: March - July 1965", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-IV-C-6-a.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part IV. C. 6. b.] Evolution of the War. U.S. Ground Strategy and Force Deployments: 1965 - 1967. Volume II: Program 5", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-IV-C-6-b.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part IV. C. 6. b.] Evolution of the War. U.S. Ground Strategy and Force Deployments: 1965 - 1967. Volume II: Program 5", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-IV-C-6-c.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part IV. C. 7. a.] Evolution of the War. Air War in the North: 1965 - 1968. Volume I", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-IV-C-7-a.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part IV. C. 7. a.] Evolution of the War. Air War in the North: 1965 - 1968. Volume I", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-IV-C-7-b.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part IV. C. 7. b.] Evolution of the War. Air War in the North: 1965 - 1968. Volume II", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-IV-C-8.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part IV. C. 8.] Evolution of the War. Re-emphasis on Pacification: 1965-1967", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-IV-C-9a.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part IV. C. 9. a.] Evolution of the War. U.S.-GVN Relations. Volume 1: December 1963 - June 1965", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-IV-C-9b.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part IV. C. 9. b.] Evolution of the War. U.S.-GVN Relations. Volume 2: July 1965 - December 1967", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-IV-C-10.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part IV. C. 10.] Evolution of the War. Statistical Survey of the War, North and South: 1965 - 1967", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-V-A-Vol-IA.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part V. A.] Justification of the War. Public Statements. Volume I: A--The Truman Administration", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-V-A-Vol-IB.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part V. A.] Justification of the War. Public Statements. Volume I: B--The Eisenhower Administration", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-V-A-Vol-IC.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part V. A.] Justification of the War. Public Statements. Volume I: C--The Kennedy Administration", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-V-A-Vol-IID.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part V. A.] Justification of the War. Public Statements. Volume II: D--The Johnson Administration", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-V-B1.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part V. B. 1.] Justification of the War. Internal Documents. The Roosevelt Administration", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-V-B-2a.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part V. B. 2. a.] Justification of the War. Internal Documents. The Truman Administration. Volume I: 1945 - 1949", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-V-B-2b.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part V. B. 2. b.] Justification of the War. Internal Documents. The Truman Administration. Volume II: 1950 -1952", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-V-B-3a.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part V. B. 3. a.] Justification of the War. Internal Documents. The Eisenhower Administration. Volume I: 1953", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-V-B-3b.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "Pentagon Papers Part V B 3c", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-V-B-3c.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "Pentagon Papers Part V B 3d", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-V-B-3d.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part V. B. 4.] Justification of the War. Internal Documents. The Kennedy Administration. Book I", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-V-B-4-Book-I.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part V. B. 4.] Justification of the War. Internal Documents. The Kennedy Administration. Book I", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-V-B-4-Book-II.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part V. B. 4.] Justification of the War. Internal Documents. The Kennedy Administration. Book II", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-VI-A.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part VI. A.] Settlement of the Conflict. Negotiations, 1965-67: The Public Record", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-VI-B.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part VI. B.] Settlement of the Conflict. Negotiations, 1965-67: Announced Position Statements", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-VI-C-1.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part VI. C. 1.] Settlement of the Conflict. Histories of Contacts. 1965-1966", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-VI-C-2.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part VI. C. 2.] Settlement of the Conflict. Histories of Contacts. Polish Track", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-VI-C-3.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}, {"t": "PDF", "ti": "[Part VI. C. 3.] Settlement of the Conflict. Histories of Contacts. Moscow-London Track", "de": "", "ag": "NARA", "cat": "Pdf", "date": "", "l": "", "u": "https://nara-media-001.s3.amazonaws.com/arcmedia/research/pentagon-papers/Pentagon-Papers-Part-VI-C-4.pdf", "s": "https://www.archives.gov/research/pentagon-papers"}], "stats": {"total": 73, "local_total": 9, "pages_total": 9, "pdf_total": 53, "catalog_total": 11}}</script>
+<script>
+(function(){var I18N={"en": {"lang": "English", "code": "EN", "intro": "Intro", "headlines": "Headlines", "archive": "Archive", "faq": "About / FAQ", "more": "More ▾", "all": "All", "docs": "Documents", "videos": "Videos", "catalog": "Catalog", "imagery": "Imagery", "search": "Search…", "total": "Total", "local": "Local", "open_pdf": "Open PDF", "download": "Download", "source": "Source ↗", "play": "Play", "view": "View", "no_results": "No results."}, "fr": {"lang": "Français", "code": "FR", "intro": "Intro", "headlines": "Titres", "archive": "Archives", "faq": "À propos", "more": "Plus ▾", "all": "Tout", "docs": "Documents", "videos": "Vidéos", "catalog": "Catalogue", "imagery": "Images", "search": "Rechercher…", "total": "Total", "local": "Local", "open_pdf": "Ouvrir PDF", "download": "Télécharger", "source": "Source ↗", "play": "Lire", "view": "Voir", "no_results": "Aucun résultat."}, "es": {"lang": "Español", "code": "ES", "intro": "Intro", "headlines": "Titulares", "archive": "Archivo", "faq": "Acerca de", "more": "Más ▾", "all": "Todo", "docs": "Documentos", "videos": "Videos", "catalog": "Catálogo", "imagery": "Imágenes", "search": "Buscar…", "total": "Total", "local": "Local", "open_pdf": "Abrir PDF", "download": "Descargar", "source": "Fuente ↗", "play": "Reproducir", "view": "Ver", "no_results": "Sin resultados."}, "pt": {"lang": "Português", "code": "PT", "intro": "Intro", "headlines": "Destaques", "archive": "Arquivo", "faq": "Sobre", "more": "Mais ▾", "all": "Tudo", "docs": "Documentos", "videos": "Vídeos", "catalog": "Catálogo", "imagery": "Imagens", "search": "Pesquisar…", "total": "Total", "local": "Local", "open_pdf": "Abrir PDF", "download": "Baixar", "source": "Fonte ↗", "play": "Reproduzir", "view": "Ver", "no_results": "Sem resultados."}, "zh": {"lang": "中文", "code": "中文", "intro": "介绍", "headlines": "要闻", "archive": "档案", "faq": "关于", "more": "更多 ▾", "all": "全部", "docs": "文件", "videos": "视频", "catalog": "目录", "imagery": "图像", "search": "搜索…", "total": "总计", "local": "本地", "open_pdf": "打开 PDF", "download": "下载", "source": "来源 ↗", "play": "播放", "view": "查看", "no_results": "无结果。"}, "ja": {"lang": "日本語", "code": "JP", "intro": "はじめに", "headlines": "ヘッドライン", "archive": "アーカイブ", "faq": "について", "more": "もっと ▾", "all": "すべて", "docs": "書類", "videos": "ビデオ", "catalog": "カタログ", "imagery": "画像", "search": "検索…", "total": "合計", "local": "ローカル", "open_pdf": "PDF を開く", "download": "ダウンロード", "source": "ソース ↗", "play": "再生", "view": "表示", "no_results": "結果なし。"}};var lang=localStorage.getItem('realufo_lang')||'en';if(!I18N[lang])lang='en';function applyLang(c){lang=c;localStorage.setItem('realufo_lang',c);var t=I18N[c];document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');if(t[k]!==undefined)el.textContent=t[k];});var lb=document.getElementById('lang-btn');if(lb)lb.textContent=t.code||c.toUpperCase();};var lp=document.getElementById('lang-picker'),lbtn=document.getElementById('lang-btn'),lm=document.getElementById('lang-menu');if(lbtn&&lp){lbtn.addEventListener('click',function(e){e.stopPropagation();lp.classList.toggle('open');});if(lm)lm.addEventListener('click',function(e){var b=e.target.closest('button[data-lang]');if(!b)return;applyLang(b.dataset.lang);lp.classList.remove('open');});}var mw=document.getElementById('nav-more-wrap'),mb=document.getElementById('nav-more-btn');if(mw&&mb)mb.addEventListener('click',function(e){e.stopPropagation();mw.classList.toggle('open');});document.addEventListener('click',function(){if(lp)lp.classList.remove('open');if(mw)mw.classList.remove('open');});var bar=document.querySelector('.arch-controls-bar');if(bar){var lY=window.scrollY;window.addEventListener('scroll',function(){if(window.innerWidth>=720){bar.classList.remove('bar-hidden');return;}var y=window.scrollY;if(y<80)bar.classList.remove('bar-hidden');else if(y>lY+4)bar.classList.add('bar-hidden');else if(y<lY-4)bar.classList.remove('bar-hidden');lY=y;},{passive:true});}applyLang(lang);})();
+</script>
 <script>
 (() => {
   const navToggle = document.getElementById('nav-toggle');
@@ -669,14 +494,3 @@ __SITE_NAV_JS__
 </script>
 </body>
 </html>
-'''
-_site_nav = make_nav('nara', depth=1, internal_links=[('Intro', '#top', 'intro'), ('Headlines', '#headlines', 'headlines'), ('Records', '#archive', 'archive')])
-_nav_js = '''<script>
-(function(){var I18N=__I18N__;var lang=localStorage.getItem('realufo_lang')||'en';if(!I18N[lang])lang='en';function applyLang(c){lang=c;localStorage.setItem('realufo_lang',c);var t=I18N[c];document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');if(t[k]!==undefined)el.textContent=t[k];});var lb=document.getElementById('lang-btn');if(lb)lb.textContent=t.code||c.toUpperCase();};var lp=document.getElementById('lang-picker'),lbtn=document.getElementById('lang-btn'),lm=document.getElementById('lang-menu');if(lbtn&&lp){lbtn.addEventListener('click',function(e){e.stopPropagation();lp.classList.toggle('open');});if(lm)lm.addEventListener('click',function(e){var b=e.target.closest('button[data-lang]');if(!b)return;applyLang(b.dataset.lang);lp.classList.remove('open');});}var mw=document.getElementById('nav-more-wrap'),mb=document.getElementById('nav-more-btn');if(mw&&mb)mb.addEventListener('click',function(e){e.stopPropagation();mw.classList.toggle('open');});document.addEventListener('click',function(){if(lp)lp.classList.remove('open');if(mw)mw.classList.remove('open');});var bar=document.querySelector('.arch-controls-bar');if(bar){var lY=window.scrollY;window.addEventListener('scroll',function(){if(window.innerWidth>=720){bar.classList.remove('bar-hidden');return;}var y=window.scrollY;if(y<80)bar.classList.remove('bar-hidden');else if(y>lY+4)bar.classList.add('bar-hidden');else if(y<lY-4)bar.classList.remove('bar-hidden');lY=y;},{passive:true});}applyLang(lang);})();
-</script>'''.replace('__I18N__', _I18N_JSON)
-PAGE = PAGE.replace('__DATA__', data_json)
-PAGE = PAGE.replace('__SITE_NAV__', _site_nav)
-PAGE = PAGE.replace('__SITE_NAV_JS__', _nav_js)
-open(os.path.join(ROOT, 'index.html'), 'w', encoding='utf-8').write(PAGE)
-print(f'wrote {ROOT}/index.html ({len(PAGE):,} bytes)')
-print(f'  total: {stats["total"]}, local: {stats["local_total"]}')

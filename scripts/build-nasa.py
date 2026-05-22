@@ -1,22 +1,24 @@
 #!/usr/bin/env python3
-"""Build nasa-mirror/index.html — NASA UAP Independent Study mirror.
+"""Build nasa/index.html — NASA UAP Independent Study mirror.
 
 Smaller than war.gov/AARO: a single curated asset list (4 PDFs +
 3 YouTube videos + 2 images). Tone color = NASA red (#fc3d21).
 """
-import json, os, subprocess
+import json, os, subprocess, sys
+sys.path.insert(0, __import__("os").path.dirname(__import__("os").path.abspath(__file__)))
+from _site_template import make_nav, LIGHTBOX_HTML, _I18N_JSON
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ROOT = os.path.join(REPO, 'nasa-mirror')
+ROOT = os.path.join(REPO, 'nasa')
 
 
 def git_tracked(rel_dir):
     try:
         out = subprocess.run(
-            ['git', '-C', REPO, 'ls-files', f'nasa-mirror/{rel_dir}/'],
+            ['git', '-C', REPO, 'ls-files', f'nasa/{rel_dir}/'],
             capture_output=True, text=True, check=True,
         ).stdout
-        prefix = f'nasa-mirror/{rel_dir}/'
+        prefix = f'nasa/{rel_dir}/'
         return {ln[len(prefix):] for ln in out.splitlines() if ln.startswith(prefix)}
     except (subprocess.CalledProcessError, FileNotFoundError):
         p = os.path.join(ROOT, rel_dir)
@@ -137,6 +139,26 @@ ASSETS = [
     },
 ]
 
+# Merge any additional records discovered by scrape-nasa.py
+_scraped_cache = os.path.join(ROOT, '.cache', 'scraped-index.json')
+if os.path.exists(_scraped_cache):
+    _seen = {a.get('u', '') or a.get('url', '') for a in ASSETS}
+    for _r in json.load(open(_scraped_cache)):
+        _url = _r.get('url', '')
+        if _url and _url not in _seen:
+            _seen.add(_url)
+            ASSETS.append({
+                't': _r.get('type', 'PDF'),
+                'ti': _r.get('title', ''),
+                'de': _r.get('desc', ''),
+                'ag': _r.get('agency', 'NASA'),
+                'cat': _r.get('type', 'PDF').capitalize(),
+                'date': _r.get('date', ''),
+                'l': '',
+                'u': _url,
+                's': _r.get('src', ''),
+            })
+
 stats = {
     'total': len(ASSETS),
     'local_total': sum(1 for a in ASSETS if a.get('l')),
@@ -167,17 +189,17 @@ PAGE = '''<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NASA UAP Independent Study — Offline Mirror</title>
 <meta name="description" content="Offline mirror of NASA's UAP Independent Study Team final report, briefings, and public meeting record.">
-<link rel="canonical" href="https://realufo.org/nasa-mirror/">
+<link rel="canonical" href="https://realufo.org/nasa/">
 <meta property="og:title" content="NASA UAP Independent Study | realufo.org">
 <meta property="og:description" content="NASA's UAP Independent Study Team final report (Sep 2023). 4 PDFs + 3 YouTube briefings + study-team imagery. Led by Dr David Spergel.">
-<meta property="og:image" content="https://realufo.org/nasa-mirror/assets/images/uap-report-cover.png">
-<meta property="og:url" content="https://realufo.org/nasa-mirror/">
+<meta property="og:image" content="https://realufo.org/nasa/assets/images/uap-report-cover.png">
+<meta property="og:url" content="https://realufo.org/nasa/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="realufo.org">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="NASA UAP Independent Study | realufo.org">
 <meta name="twitter:description" content="NASA's UAP Independent Study Team final report (Sep 2023). 4 PDFs + 3 YouTube briefings + study-team imagery. Led by Dr David Spergel.">
-<meta name="twitter:image" content="https://realufo.org/nasa-mirror/assets/images/uap-report-cover.png">
+<meta name="twitter:image" content="https://realufo.org/nasa/assets/images/uap-report-cover.png">
 <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
 <link rel="apple-touch-icon" href="./assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -406,6 +428,26 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
   .lb-nav { width: 40px; height: 40px; font-size: 24px; }
   .lb-nav.prev { left: 8px; } .lb-nav.next { right: 8px; }
 }
+
+/* ── More dropdown + lang picker + scroll-hide ── */
+.nav-sep { display: none; }
+@media (min-width: 720px) { .nav-sep { display: block; width: 1px; height: 16px; background: var(--rule-strong); } }
+.has-dropdown { position: relative; }
+.nav-more-btn { background: none; border: none; color: var(--ink-dim); cursor: pointer; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; padding: 12px 0; display: block; width: 100%; text-align: left; border-bottom: 1px solid var(--rule); }
+.nav-more-btn:hover { color: var(--caution); }
+.nav-dropdown { display: none; list-style: none; background: var(--panel); border: 1px solid var(--rule-strong); padding: 6px 0; z-index: 200; }
+.nav-dropdown li a { border: 0 !important; padding: 9px 16px !important; white-space: nowrap; }
+.lang-picker { position: relative; }
+.lang-btn { background: transparent; border: 1px solid var(--rule-strong); color: var(--ink-dim); cursor: pointer; font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.12em; padding: 4px 8px; text-transform: uppercase; display: block; width: 100%; text-align: left; margin: 8px 0; }
+.lang-btn:hover { color: var(--caution); border-color: var(--caution); }
+.lang-menu { display: none; list-style: none; background: var(--panel); border: 1px solid var(--rule-strong); padding: 6px 0; z-index: 300; }
+.lang-menu button { background: none; border: none; color: var(--ink-dim); cursor: pointer; font-family: var(--mono); font-size: 10.5px; padding: 8px 16px; width: 100%; text-align: left; }
+.lang-menu button:hover { color: var(--caution); }
+.lang-picker.open .lang-menu, .has-dropdown.open .nav-dropdown { display: block; }
+.arch-controls-bar { transition: top 0.28s ease; }
+.arch-controls-bar.bar-hidden { top: -160px; }
+@media (max-width: 719px) { .nav-more-btn { padding: 11px 0; } .has-dropdown.open .nav-dropdown { margin-left: 12px; border: 0; background: transparent; } .lang-btn { border: 0; margin: 0; padding: 11px 0; font-size: 11px; border-bottom: 1px solid var(--rule); } .lang-picker.open .lang-menu { margin-left: 12px; border: 0; background: transparent; } }
+@media (min-width: 720px) { .nav-more-btn { padding: 0; border: 0; font-size: 10.5px; } .nav-dropdown { position: absolute; right: 0; top: calc(100% + 10px); min-width: 180px; } .has-dropdown:hover .nav-dropdown, .has-dropdown:focus-within .nav-dropdown { display: block; } .lang-btn { width: auto; margin: 0; padding: 3px 8px; } .lang-menu { position: absolute; right: 0; top: calc(100% + 10px); min-width: 130px; } }
 </style>
 </head>
 <body>
@@ -422,20 +464,7 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
       </div>
     </a>
     <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
-    <nav class="primary" id="primary-nav">
-      <ul>
-        <li><a href="#top">Intro</a></li>
-        <li><a href="#headlines">Headlines</a></li>
-        <li><a href="#archive" class="active">Evidence</a></li>
-        <li><a href="../index.html">war.gov</a></li>
-        <li><a href="../aaro-mirror/index.html">AARO</a></li>
-        <li><a href="../nara-mirror/index.html">NARA</a></li>
-        <li><a href="../geipan-mirror/index.html">GEIPAN</a></li>
-        <li><a href="../uk-mirror/index.html">UK</a></li>
-        <li><a href="../brazil-mirror/index.html">Brazil</a></li>
-        <li><a href="../chile-mirror/index.html">Chile</a></li>
-      </ul>
-    </nav>
+    __SITE_NAV__
   </div>
 </header>
 </div>
@@ -514,8 +543,8 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
       <h4>Related Mirrors</h4>
       <ul>
         <li><a href="../index.html">war.gov / UFO Release 01</a></li>
-        <li><a href="../aaro-mirror/index.html">AARO — DoW</a></li>
-        <li><a href="../nara-mirror/index.html">NARA — US Archives</a></li>
+        <li><a href="../aaro/index.html">AARO — DoW</a></li>
+        <li><a href="../nara/index.html">NARA — US Archives</a></li>
       </ul>
     </div>
     <div>
@@ -541,6 +570,7 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
 </div>
 
 <script id="arch-data" type="application/json">__DATA__</script>
+__SITE_NAV_JS__
 <script>
 (() => {
   const navToggle = document.getElementById('nav-toggle');
@@ -765,7 +795,13 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
 </body>
 </html>
 '''
+_site_nav = make_nav('nasa', depth=1, internal_links=[('Intro', '#top', 'intro'), ('Headlines', '#headlines', 'headlines'), ('Archive', '#archive', 'archive')])
+_nav_js = '''<script>
+(function(){var I18N=__I18N__;var lang=localStorage.getItem('realufo_lang')||'en';if(!I18N[lang])lang='en';function applyLang(c){lang=c;localStorage.setItem('realufo_lang',c);var t=I18N[c];document.querySelectorAll('[data-i18n]').forEach(function(el){var k=el.getAttribute('data-i18n');if(t[k]!==undefined)el.textContent=t[k];});var lb=document.getElementById('lang-btn');if(lb)lb.textContent=t.code||c.toUpperCase();};var lp=document.getElementById('lang-picker'),lbtn=document.getElementById('lang-btn'),lm=document.getElementById('lang-menu');if(lbtn&&lp){lbtn.addEventListener('click',function(e){e.stopPropagation();lp.classList.toggle('open');});if(lm)lm.addEventListener('click',function(e){var b=e.target.closest('button[data-lang]');if(!b)return;applyLang(b.dataset.lang);lp.classList.remove('open');});}var mw=document.getElementById('nav-more-wrap'),mb=document.getElementById('nav-more-btn');if(mw&&mb)mb.addEventListener('click',function(e){e.stopPropagation();mw.classList.toggle('open');});document.addEventListener('click',function(){if(lp)lp.classList.remove('open');if(mw)mw.classList.remove('open');});var bar=document.querySelector('.arch-controls-bar');if(bar){var lY=window.scrollY;window.addEventListener('scroll',function(){if(window.innerWidth>=720){bar.classList.remove('bar-hidden');return;}var y=window.scrollY;if(y<80)bar.classList.remove('bar-hidden');else if(y>lY+4)bar.classList.add('bar-hidden');else if(y<lY-4)bar.classList.remove('bar-hidden');lY=y;},{passive:true});}applyLang(lang);})();
+</script>'''.replace('__I18N__', _I18N_JSON)
 PAGE = PAGE.replace('__DATA__', data_json)
+PAGE = PAGE.replace('__SITE_NAV__', _site_nav)
+PAGE = PAGE.replace('__SITE_NAV_JS__', _nav_js)
 open(os.path.join(ROOT, 'index.html'), 'w', encoding='utf-8').write(PAGE)
 print(f'wrote {ROOT}/index.html ({len(PAGE):,} bytes)')
 print(f'  total assets: {stats["total"]}, local: {stats["local_total"]}')

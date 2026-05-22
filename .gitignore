@@ -15,15 +15,27 @@ bundles/uapvideos/
 # PDFs all moved to GitHub Releases (pdfs-v1) — the repo keeps only
 # images for fast page loads. Source: ./scripts/sync.sh re-populates.
 bundles/Release_1/*.pdf
-aaro-mirror/pdfs/
-nasa-mirror/pdfs/
-nara-mirror/pdfs/
+aaro/pdfs/
+nasa/pdfs/
+nara/pdfs/
+geipan/pdfs/
+uk/pdfs/
+brazil/pdfs/
+chile/pdfs/
+nz/pdfs/
+canada/pdfs/
+argentina/pdfs/
+uruguay/pdfs/
+peru/pdfs/
+spain/pdfs/
+italy/pdfs/
 
 # Local extraction cache
 download.zip
 
 # AARO official UAP videos (cloudfront, often >100 MB)
-aaro-mirror/videos/
+aaro/videos/
+geipan/videos/
 
 # Build / runtime artifacts
 .DS_Store

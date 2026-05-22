@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """Parse the downloaded aaro.mil page snapshots into a clean JSON manifest.
 
-Output: aaro-mirror/.cache/parsed.json
+Output: aaro/.cache/parsed.json
 Idempotent — safe to re-run anytime new page snapshots arrive.
 """
 import os, re, json, html, urllib.parse
 from html.parser import HTMLParser
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-AARO = os.path.join(ROOT, 'aaro-mirror')
+AARO = os.path.join(ROOT, 'aaro')
 PAGES_DIR = os.path.join(AARO, 'pages')
 CACHE_DIR = os.path.join(AARO, '.cache')
 os.makedirs(CACHE_DIR, exist_ok=True)

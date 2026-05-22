@@ -84,7 +84,7 @@ export UA
 
 # ---------- PAGES ----------
 do_pages() {
-  echo "» AARO page snapshots → aaro-mirror/pages/"
+  echo "» AARO page snapshots → aaro/pages/"
   local PAGES=(
     "home|https://www.aaro.mil/"
     "mission-vision|https://www.aaro.mil/About/Mission-Vision/"
