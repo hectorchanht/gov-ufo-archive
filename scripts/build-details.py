@@ -4,7 +4,9 @@
 Reads:  aaro/.cache/parsed.json
 Writes: aaro/details.html
 """
-import os, re, json, html, urllib.parse
+import os, re, json, html, urllib.parse, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from _site_template import make_nav, SHARED_CSS, SHARED_JS
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT = os.path.join(REPO, 'aaro')
@@ -224,6 +226,15 @@ nav.primary { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em;
 nav.primary ul { display: flex; gap: 4px 14px; list-style: none; flex-wrap: wrap; justify-content: flex-end; }
 nav.primary a { color: var(--ink-dim); text-decoration: none; text-transform: uppercase; }
 nav.primary a:hover { color: var(--caution); }
+.nav-toggle { display: none; background: transparent; border: 1px solid rgba(232,227,216,0.28); width: 38px; height: 38px; cursor: pointer; padding: 0; flex-direction: column; justify-content: center; align-items: center; gap: 4px; flex-shrink: 0; margin-left: auto; }
+.nav-toggle span { display: block; width: 18px; height: 2px; background: #e8e3d8; transition: transform .2s, opacity .2s; }
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+.has-dropdown { position: relative; } .nav-more-btn { background: none; border: none; color: #a8a298; cursor: pointer; font-family: var(--mono); font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; padding: 11px 0; display: block; width: 100%; text-align: left; border-bottom: 1px solid rgba(232,227,216,0.12); } .nav-more-btn:hover { color: var(--caution); } .nav-dropdown { display: none; list-style: none; background: #15151a; border: 1px solid rgba(232,227,216,0.28); padding: 6px 0; z-index: 200; } .nav-dropdown li a { border: 0 !important; padding: 9px 16px !important; font-size: 10.5px !important; white-space: nowrap; display: block; } .has-dropdown.open .nav-dropdown { display: block; margin: 0 0 0 12px; } .lang-picker { position: relative; } .lang-btn { background: transparent; border: 1px solid rgba(232,227,216,0.28); color: #a8a298; cursor: pointer; font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.12em; padding: 11px 0; text-transform: uppercase; display: block; width: 100%; text-align: left; border-bottom: 1px solid rgba(232,227,216,0.12); } .lang-btn:hover { color: var(--caution); } .lang-menu { display: none; list-style: none; background: #15151a; border: 1px solid rgba(232,227,216,0.28); padding: 6px 0; z-index: 300; } .lang-menu button { background: none; border: none; color: #a8a298; cursor: pointer; font-family: var(--mono); font-size: 10.5px; padding: 8px 16px; width: 100%; text-align: left; } .lang-menu button:hover { color: var(--caution); } .lang-picker.open .lang-menu { display: block; margin-left: 12px; }
+@media (max-width: 719px) { .nav-toggle { display: flex; } nav.primary { display: none; flex-basis: 100%; } nav.primary.open { display: block; } nav.primary > ul { flex-direction: column; gap: 0; padding-top: 10px; margin-top: 10px; border-top: 1px solid rgba(232,227,216,0.12); } nav.primary > ul > li { width: 100%; } nav.primary a { display: block; padding: 11px 0; border-bottom: 1px solid rgba(232,227,216,0.12); } .nav-more-btn { border: 0; padding: 11px 0; font-size: 11px; } .lang-btn { border: 0; margin: 0; font-size: 11px; } }
+@media (min-width: 720px) { header .container { flex-wrap: nowrap; } .nav-more-btn { padding: 0; border: 0; width: auto; font-size: 10.5px; } .nav-dropdown { position: absolute; right: 0; top: calc(100% + 10px); min-width: 180px; } .has-dropdown:hover .nav-dropdown, .has-dropdown:focus-within .nav-dropdown { display: block; } .lang-btn { width: auto; margin: 0; padding: 3px 8px; font-size: 9.5px; border: 1px solid rgba(232,227,216,0.28); } .lang-menu { position: absolute; right: 0; top: calc(100% + 10px); min-width: 130px; } .lang-picker.open .lang-menu { margin-left: 0; } li.nav-sep { display: block; width: 1px; height: 16px; background: rgba(232,227,216,0.28); flex-shrink: 0; } }
+li.nav-sep { display: none; }
 
 /* Page hero */
 .hero { padding: 56px 0 32px; border-bottom: 1px solid var(--rule); }
@@ -341,13 +352,8 @@ footer a:hover { color: var(--caution); }
         <span class="name">Details · About / FAQ</span>
       </div>
     </a>
-    <nav class="primary">
-      <ul>
-        <li><a href="./index.html">← Evidence</a></li>
-        <li><a href="#top">Top</a></li>
-        <li><a href="../index.html">war.gov/UFO ↗</a></li>
-      </ul>
-    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+    __DETAILS_NAV__
   </div>
 </header>
 </div>
@@ -382,7 +388,16 @@ __SECTIONS__
 </body>
 </html>'''
 
+_details_nav = make_nav('aaro', depth=1, internal_links=[
+    ('← Evidence', './index.html', 'archive'),
+])
+
 toc_html = '\n        '.join(f'<li><a href="#{s}">{LABELS[s]}</a></li>' for s in ORDER if s in parsed['pages'])
-out_html = HTML_TEMPLATE.replace('__TOC__', toc_html).replace('__SECTIONS__', '\n'.join(sections))
+out_html = (HTML_TEMPLATE
+    .replace('__TOC__', toc_html)
+    .replace('__SECTIONS__', '\n'.join(sections))
+    .replace('__DETAILS_NAV__', _details_nav)
+    .replace('</body>', f'<script>{SHARED_JS}</script></body>')
+)
 open(os.path.join(ROOT, 'details.html'), 'w', encoding='utf-8').write(out_html)
 print(f'wrote details.html ({len(out_html):,} bytes)')

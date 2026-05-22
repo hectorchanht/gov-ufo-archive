@@ -74,8 +74,8 @@ body::before {
   border-bottom: 1px solid var(--rule);
 }
 header { padding: 16px 0; }
-header .container { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
-.brand { display: flex; align-items: center; gap: 14px; text-decoration: none; color: var(--ink); flex-shrink: 0; }
+header .container { display: flex; align-items: center; gap: 12px; flex-wrap: nowrap; }
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); flex-shrink: 1; min-width: 0; }
 .seal {
   width: 48px; height: 48px;
   background: radial-gradient(circle at 50% 50%, #1e3a8a 0%, #102560 60%, #061238 100%);
@@ -85,11 +85,11 @@ header .container { display: flex; align-items: center; gap: 24px; flex-wrap: wr
   letter-spacing: 0.04em; position: relative;
 }
 .seal::after { content: ""; position: absolute; inset: 4px; border: 1px dashed rgba(232, 227, 216, 0.4); border-radius: 50%; }
-.brand-text { display: flex; flex-direction: column; line-height: 1.1; }
-.brand-text .super { font-family: var(--mono); font-size: 9px; letter-spacing: 0.2em; color: var(--ink-dim); text-transform: uppercase; }
-.brand-text .name { font-family: var(--serif); font-size: 20px; font-weight: 600; margin-top: 2px; }
+.brand-text { display: flex; flex-direction: column; line-height: 1.1; min-width: 0; }
+.brand-text .super { font-family: var(--mono); font-size: 9px; letter-spacing: 0.2em; color: var(--ink-dim); text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 210px; }
+.brand-text .name { font-family: var(--serif); font-size: 18px; font-weight: 600; margin-top: 2px; }
 nav.primary { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; flex: 1; }
-.nav-toggle { display: none; background: transparent; border: 1px solid var(--rule-strong); width: 40px; height: 40px; cursor: pointer; padding: 0; flex-direction: column; justify-content: center; align-items: center; gap: 4px; }
+.nav-toggle { display: none; background: transparent; border: 1px solid var(--rule-strong); width: 38px; height: 38px; cursor: pointer; padding: 0; flex-direction: column; justify-content: center; align-items: center; gap: 4px; flex-shrink: 0; margin-left: auto; }
 .nav-toggle span { display: block; width: 18px; height: 2px; background: var(--ink); transition: transform .2s, opacity .2s; }
 .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
 .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }

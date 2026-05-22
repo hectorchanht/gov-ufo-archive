@@ -93,6 +93,17 @@ ASSETS = [
     },
 ]
 
+_scraped_cache = os.path.join(ROOT, '.cache', 'scraped-index.json')
+if os.path.exists(_scraped_cache):
+    _seen = {a.get('u', '') or a.get('url', '') for a in ASSETS}
+    for _r in json.load(open(_scraped_cache)):
+        _url = _r.get('url', '')
+        if _url and _url not in _seen:
+            _seen.add(_url)
+            ASSETS.append({'t': _r.get('type', 'PDF'), 'ti': _r.get('title', ''), 'de': _r.get('desc', ''),
+                           'ag': _r.get('agency', 'FAB / COMDABRA'), 'cat': _r.get('type', 'PDF').capitalize(),
+                           'date': _r.get('date', ''), 'l': '', 'u': _url, 's': _r.get('src', ''),})
+
 stats = {
     'total': len(ASSETS),
     'local_total': sum(1 for a in ASSETS if a.get('l')),

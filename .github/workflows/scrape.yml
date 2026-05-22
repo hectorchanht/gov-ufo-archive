@@ -1,0 +1,57 @@
+name: Weekly mirror scrape & rebuild
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'   # Monday 06:00 UTC
+  workflow_dispatch:        # manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  scrape-and-rebuild:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Run scrapers (failures tolerated)
+        run: |
+          python3 scripts/scrape-nasa.py   || true
+          python3 scripts/scrape-nara.py   || true
+          python3 scripts/scrape-aaro.py   || true
+          python3 scripts/scrape-geipan.py || true
+          python3 scripts/scrape-uk.py     || true
+          python3 scripts/scrape-brazil.py || true
+          python3 scripts/scrape-chile.py  || true
+
+      - name: Rebuild all mirror HTML
+        run: |
+          python3 scripts/build-nasa.py && \
+          python3 scripts/build-nara.py && \
+          python3 scripts/build-aaro.py && \
+          python3 scripts/build-geipan.py && \
+          python3 scripts/build-uk.py && \
+          python3 scripts/build-brazil.py && \
+          python3 scripts/build-chile.py && \
+          python3 scripts/build_batch3.py && \
+          python3 scripts/build-details.py && \
+          python3 scripts/build-wargov.py
+
+      - name: Commit rebuilt HTML
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "*/index.html" "aaro/details.html" "index.html"
+          git diff --cached --quiet || git commit -m "chore: auto-rebuild mirrors [skip ci]"
+
+      - name: Push to main
+        run: git push origin main

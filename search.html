@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Global Search — realufo.org</title>
+<meta name="description" content="Search across all 14 official government UAP archives: AARO, NASA, NARA, GEIPAN, UK, Brazil, Chile, NZ, Canada, Argentina, Uruguay, Peru, Spain, Italy, and War.gov.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://realufo.org/search.html">
+<meta property="og:title" content="Global Search — realufo.org">
+<meta property="og:description" content="Search across all 14 official government UAP archives.">
+<meta property="og:url" content="https://realufo.org/search.html">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a0c;
+  --bg-2:#111114;
+  --panel:#15151a;
+  --ink:#e8e3d8;
+  --ink-dim:#a8a298;
+  --ink-faint:#6b665d;
+  --rule:rgba(232,227,216,0.12);
+  --rule-strong:rgba(232,227,216,0.28);
+  --caution:#d4a017;
+  --stamp:#b91c1c;
+  --warm:#d4a017;
+  --classified:#c9362c;
+  --serif:"Source Serif 4",Georgia,serif;
+  --mono:"JetBrains Mono",monospace;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--serif);
+  font-size:16px;
+  line-height:1.6;
+  overflow-x:hidden;
+  min-height:100vh;
+}
+/* scanlines */
+.scanlines{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:9999;
+  background:repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.03) 2px,
+    rgba(0,0,0,0.03) 4px
+  );
+}
+/* header */
+.header-wrap{
+  position:sticky;
+  top:0;
+  z-index:900;
+  background:rgba(21,21,26,0.92);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--rule);
+  height:64px;
+}
+.header{
+  max-width:1400px;
+  margin:0 auto;
+  padding:0 16px;
+  height:100%;
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  text-decoration:none;
+  flex-shrink:0;
+}
+.brand-seal{
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  background:radial-gradient(circle,#b91c1c,#6b1010,#2a0606);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:var(--mono);
+  font-size:10px;
+  color:var(--caution);
+  letter-spacing:0.1em;
+  border:1px solid rgba(212,160,23,0.35);
+  flex-shrink:0;
+}
+.brand-name{
+  font-family:var(--mono);
+  font-size:13px;
+  font-weight:700;
+  color:var(--ink);
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+}
+nav.primary{
+  display:flex;
+  align-items:center;
+  gap:4px;
+  margin-left:auto;
+  list-style:none;
+}
+nav.primary a{
+  font-family:var(--mono);
+  font-size:11px;
+  font-weight:500;
+  color:var(--ink-dim);
+  text-decoration:none;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  padding:10px 10px;
+  border-radius:4px;
+  transition:color 0.15s,background 0.15s;
+  display:block;
+  white-space:nowrap;
+}
+nav.primary a:hover{color:var(--ink);background:rgba(232,227,216,0.06)}
+nav.primary a.active{color:var(--caution)}
+.nav-dropdown{
+  position:relative;
+}
+.nav-dropdown-btn{
+  font-family:var(--mono);
+  font-size:11px;
+  font-weight:500;
+  color:var(--ink-dim);
+  background:none;
+  border:none;
+  cursor:pointer;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  padding:10px 10px;
+  border-radius:4px;
+  transition:color 0.15s,background 0.15s;
+  white-space:nowrap;
+  display:flex;
+  align-items:center;
+  gap:4px;
+}
+.nav-dropdown-btn:hover{color:var(--ink);background:rgba(232,227,216,0.06)}
+.nav-dropdown-menu{
+  display:none;
+  position:absolute;
+  top:calc(100% + 4px);
+  right:0;
+  background:var(--panel);
+  border:1px solid var(--rule-strong);
+  border-radius:6px;
+  min-width:180px;
+  padding:4px 0;
+  z-index:1000;
+  box-shadow:0 8px 24px rgba(0,0,0,0.6);
+}
+.nav-dropdown-menu a{
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--ink-dim);
+  text-decoration:none;
+  display:block;
+  padding:8px 14px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  transition:color 0.15s,background 0.15s;
+}
+.nav-dropdown-menu a:hover{color:var(--ink);background:rgba(232,227,216,0.06)}
+.nav-dropdown.open .nav-dropdown-menu{display:block}
+.nav-lang{
+  font-family:var(--mono);
+  font-size:11px;
+  font-weight:700;
+  color:var(--caution);
+  background:rgba(212,160,23,0.12);
+  border:1px solid rgba(212,160,23,0.3);
+  border-radius:3px;
+  padding:4px 8px;
+  letter-spacing:0.1em;
+  cursor:default;
+  flex-shrink:0;
+}
+.nav-toggle{
+  display:none;
+  background:none;
+  border:none;
+  color:var(--ink);
+  font-size:22px;
+  cursor:pointer;
+  padding:10px 8px;
+  flex-shrink:0;
+  margin-left:auto;
+  line-height:1;
+}
+@media(max-width:719px){
+  .nav-toggle{display:flex;align-items:center;justify-content:center}
+  nav.primary{
+    display:none;
+    position:fixed;
+    top:64px;
+    left:0;right:0;
+    background:var(--panel);
+    border-bottom:1px solid var(--rule-strong);
+    flex-direction:column;
+    align-items:stretch;
+    padding:8px 0 16px;
+    margin-left:0;
+    gap:0;
+    max-height:calc(100vh - 64px);
+    overflow-y:auto;
+    z-index:800;
+  }
+  nav.primary.open{display:flex}
+  nav.primary a{padding:12px 20px;font-size:12px}
+  .nav-dropdown-btn{padding:12px 20px;font-size:12px;width:100%}
+  .nav-dropdown-menu{position:static;border:none;border-top:1px solid var(--rule);border-radius:0;background:rgba(255,255,255,0.03);box-shadow:none;display:none;padding:0}
+  .nav-dropdown-menu a{padding:10px 32px;font-size:11px}
+  .nav-dropdown.open .nav-dropdown-menu{display:block}
+  .nav-lang{margin:12px 20px 0;align-self:flex-start}
+}
+/* main content */
+main{max-width:1100px;margin:0 auto;padding:40px 16px 80px}
+/* hero / search box */
+.search-hero{
+  text-align:center;
+  padding:48px 0 32px;
+}
+.search-hero h1{
+  font-family:var(--serif);
+  font-size:clamp(24px,5vw,42px);
+  font-weight:600;
+  color:var(--ink);
+  letter-spacing:-0.01em;
+  margin-bottom:10px;
+}
+.search-hero h1 em{
+  color:var(--caution);
+  font-style:italic;
+}
+.search-hero p{
+  font-family:var(--mono);
+  font-size:12px;
+  color:var(--ink-faint);
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  margin-bottom:28px;
+}
+.search-box-wrap{
+  position:relative;
+  max-width:680px;
+  margin:0 auto;
+}
+#q{
+  width:100%;
+  background:var(--bg-2);
+  border:1px solid var(--rule-strong);
+  border-radius:6px;
+  color:var(--ink);
+  font-family:var(--serif);
+  font-size:18px;
+  padding:16px 48px 16px 20px;
+  outline:none;
+  transition:border-color 0.2s,box-shadow 0.2s;
+  -webkit-appearance:none;
+  appearance:none;
+}
+#q::placeholder{color:var(--ink-faint)}
+#q:focus{
+  border-color:rgba(212,160,23,0.5);
+  box-shadow:0 0 0 3px rgba(212,160,23,0.1);
+}
+.search-clear{
+  position:absolute;
+  right:14px;
+  top:50%;
+  transform:translateY(-50%);
+  background:none;
+  border:none;
+  color:var(--ink-faint);
+  font-size:18px;
+  cursor:pointer;
+  padding:4px;
+  display:none;
+  line-height:1;
+}
+.search-clear.visible{display:block}
+/* stats bar */
+.stats-bar{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px 16px;
+  align-items:center;
+  margin:20px 0 0;
+  min-height:24px;
+}
+.stats-total{
+  font-family:var(--mono);
+  font-size:12px;
+  color:var(--ink-dim);
+  letter-spacing:0.08em;
+}
+.stats-total strong{color:var(--caution)}
+.archive-pills{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+}
+.archive-pill{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  padding:3px 8px;
+  border-radius:3px;
+  border:1px solid var(--rule);
+  background:var(--bg-2);
+  color:var(--ink-faint);
+  display:flex;
+  align-items:center;
+  gap:5px;
+  transition:border-color 0.2s,color 0.2s;
+}
+.archive-pill.loaded{
+  color:var(--ink-dim);
+  border-color:var(--rule-strong);
+}
+.archive-pill.error{
+  color:var(--classified);
+  border-color:rgba(201,54,44,0.3);
+}
+.pill-spinner{
+  width:8px;height:8px;
+  border:1.5px solid var(--ink-faint);
+  border-top-color:var(--caution);
+  border-radius:50%;
+  animation:spin 0.7s linear infinite;
+  flex-shrink:0;
+}
+.archive-pill.loaded .pill-spinner,
+.archive-pill.error .pill-spinner{display:none}
+.pill-count{font-weight:700}
+@keyframes spin{to{transform:rotate(360deg)}}
+/* result info */
+.result-info{
+  font-family:var(--mono);
+  font-size:12px;
+  color:var(--ink-faint);
+  letter-spacing:0.08em;
+  margin:24px 0 16px;
+  min-height:20px;
+}
+.result-info strong{color:var(--ink-dim)}
+/* results grid */
+#results{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+  gap:16px;
+}
+@media(max-width:600px){
+  #results{grid-template-columns:1fr}
+}
+/* card */
+.res-card{
+  background:var(--bg-2);
+  border:1px solid var(--rule);
+  border-radius:8px;
+  padding:16px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  transition:border-color 0.2s;
+}
+.res-card:hover{border-color:var(--rule-strong)}
+.card-badges{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  align-items:center;
+}
+.badge{
+  font-family:var(--mono);
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  padding:3px 7px;
+  border-radius:3px;
+}
+.badge-site{
+  background:rgba(212,160,23,0.15);
+  color:var(--caution);
+  border:1px solid rgba(212,160,23,0.3);
+}
+.badge-type{
+  background:rgba(232,227,216,0.07);
+  color:var(--ink-dim);
+  border:1px solid var(--rule);
+}
+.card-title{
+  font-family:var(--serif);
+  font-size:15px;
+  font-weight:600;
+  color:var(--ink);
+  line-height:1.4;
+  overflow-wrap:anywhere;
+}
+.card-desc{
+  font-family:var(--serif);
+  font-size:13px;
+  color:var(--ink-dim);
+  line-height:1.5;
+  overflow-wrap:anywhere;
+}
+.card-meta{
+  font-family:var(--mono);
+  font-size:10px;
+  color:var(--ink-faint);
+  letter-spacing:0.08em;
+  display:flex;
+  flex-wrap:wrap;
+  gap:4px 12px;
+}
+.card-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:auto;
+}
+.btn{
+  font-family:var(--mono);
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  padding:8px 14px;
+  border-radius:4px;
+  text-decoration:none;
+  cursor:pointer;
+  border:1px solid transparent;
+  transition:background 0.15s,color 0.15s,border-color 0.15s;
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+  white-space:nowrap;
+  min-height:36px;
+}
+.btn-source{
+  background:transparent;
+  border-color:var(--rule-strong);
+  color:var(--ink-dim);
+}
+.btn-source:hover{
+  background:rgba(232,227,216,0.07);
+  color:var(--ink);
+  border-color:rgba(232,227,216,0.4);
+}
+.btn-open{
+  background:rgba(212,160,23,0.15);
+  border-color:rgba(212,160,23,0.4);
+  color:var(--caution);
+}
+.btn-open:hover{
+  background:rgba(212,160,23,0.25);
+  border-color:rgba(212,160,23,0.6);
+}
+/* empty / loading states */
+.state-message{
+  grid-column:1/-1;
+  text-align:center;
+  padding:60px 20px;
+  color:var(--ink-faint);
+  font-family:var(--mono);
+  font-size:13px;
+  letter-spacing:0.08em;
+  line-height:1.7;
+}
+.state-message strong{
+  display:block;
+  color:var(--ink-dim);
+  font-size:15px;
+  font-family:var(--serif);
+  margin-bottom:8px;
+}
+/* pagination */
+.pagination{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  margin-top:36px;
+  flex-wrap:wrap;
+}
+.page-btn{
+  font-family:var(--mono);
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:0.08em;
+  padding:8px 14px;
+  border-radius:4px;
+  border:1px solid var(--rule-strong);
+  background:var(--bg-2);
+  color:var(--ink-dim);
+  cursor:pointer;
+  transition:background 0.15s,color 0.15s;
+  min-height:36px;
+}
+.page-btn:hover:not(:disabled){background:rgba(232,227,216,0.07);color:var(--ink)}
+.page-btn:disabled{opacity:0.35;cursor:default}
+.page-btn.active{
+  background:rgba(212,160,23,0.15);
+  border-color:rgba(212,160,23,0.4);
+  color:var(--caution);
+}
+.page-info{
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--ink-faint);
+  letter-spacing:0.08em;
+}
+/* footer */
+footer{
+  border-top:1px solid var(--rule);
+  margin-top:60px;
+  padding:32px 16px;
+  text-align:center;
+}
+footer p{
+  font-family:var(--mono);
+  font-size:10px;
+  color:var(--ink-faint);
+  letter-spacing:0.08em;
+  line-height:1.8;
+}
+footer a{color:var(--ink-dim);text-decoration:none}
+footer a:hover{color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="scanlines" aria-hidden="true"></div>
+
+<div class="header-wrap">
+  <div class="header">
+    <a href="/" class="brand" aria-label="realufo.org home">
+      <div class="brand-seal" aria-hidden="true">UAP</div>
+      <span class="brand-name">realufo.org</span>
+    </a>
+
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav">&#9776;</button>
+
+    <nav class="primary" id="primary-nav" aria-label="Main navigation">
+      <a href="/">War.gov</a>
+      <a href="aaro/">AARO</a>
+      <a href="nasa/">NASA</a>
+      <a href="nara/">NARA</a>
+      <div class="nav-dropdown" id="more-dropdown">
+        <button class="nav-dropdown-btn" id="more-btn" aria-haspopup="true" aria-expanded="false" aria-controls="more-menu">
+          More &#9660;
+        </button>
+        <div class="nav-dropdown-menu" id="more-menu" role="menu">
+          <a href="geipan/" role="menuitem">France GEIPAN</a>
+          <a href="uk/" role="menuitem">UK Archives</a>
+          <a href="brazil/" role="menuitem">Brazil FAB</a>
+          <a href="chile/" role="menuitem">Chile CEFAA</a>
+          <a href="nz/" role="menuitem">New Zealand</a>
+          <a href="canada/" role="menuitem">Canada LAC</a>
+          <a href="argentina/" role="menuitem">Argentina CEFAe</a>
+          <a href="uruguay/" role="menuitem">Uruguay CRIDOVNI</a>
+          <a href="peru/" role="menuitem">Peru OIFAA</a>
+          <a href="spain/" role="menuitem">Spain Ejército</a>
+          <a href="italy/" role="menuitem">Italy AM</a>
+        </div>
+      </div>
+      <a href="search.html" class="active" aria-current="page">Search</a>
+      <span class="nav-lang" aria-label="Language: English">EN</span>
+    </nav>
+  </div>
+</div>
+
+<main>
+  <div class="search-hero">
+    <h1>Search <em>all</em> archives</h1>
+    <p>14 official government UAP sources &mdash; unified</p>
+    <div class="search-box-wrap">
+      <input type="search" id="q" placeholder="Search across all 14 archives&hellip;" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-label="Search all archives">
+      <button class="search-clear" id="search-clear" aria-label="Clear search" title="Clear">&times;</button>
+    </div>
+  </div>
+
+  <div class="stats-bar" id="stats-bar">
+    <span class="stats-total" id="stats-total">Loading archives&hellip;</span>
+    <div class="archive-pills" id="archive-pills"></div>
+  </div>
+
+  <div class="result-info" id="result-info" aria-live="polite" aria-atomic="true"></div>
+
+  <div id="results" role="list" aria-label="Search results"></div>
+
+  <div class="pagination" id="pagination"></div>
+</main>
+
+<footer>
+  <p>
+    <a href="/">realufo.org</a> &mdash;
+    Global search across official government UAP disclosure archives.<br>
+    All content public domain under applicable law (17 U.S.C. &sect;105, OGL v3, LAI, etc.).<br>
+    Not affiliated with any government agency.
+  </p>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+
+  /* ── hamburger ── */
+  var navToggle = document.getElementById('nav-toggle');
+  var primaryNav = document.getElementById('primary-nav');
+  if (navToggle && primaryNav) {
+    navToggle.addEventListener('click', function() {
+      var open = primaryNav.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    primaryNav.addEventListener('click', function(e) {
+      if (e.target.tagName === 'A') {
+        primaryNav.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  /* ── More dropdown ── */
+  var moreBtn = document.getElementById('more-btn');
+  var moreDropdown = document.getElementById('more-dropdown');
+  if (moreBtn && moreDropdown) {
+    moreBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var open = moreDropdown.classList.toggle('open');
+      moreBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    document.addEventListener('click', function() {
+      moreDropdown.classList.remove('open');
+      moreBtn.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  /* ── Archive source definitions ── */
+  var ARCHIVES = [
+    { id: 'wargov',    label: 'War.gov',    url: 'index.html',       scriptId: 'archive-manifest', type: 'wargov' },
+    { id: 'aaro',      label: 'AARO',       url: 'aaro/index.html',  scriptId: 'arch-data',        type: 'standard' },
+    { id: 'nasa',      label: 'NASA',       url: 'nasa/index.html',  scriptId: 'arch-data',        type: 'standard' },
+    { id: 'nara',      label: 'NARA',       url: 'nara/index.html',  scriptId: 'arch-data',        type: 'standard' },
+    { id: 'geipan',    label: 'GEIPAN',     url: 'geipan/index.html',scriptId: 'arch-data',        type: 'geipan' },
+    { id: 'uk',        label: 'UK',         url: 'uk/index.html',    scriptId: 'arch-data',        type: 'standard' },
+    { id: 'brazil',    label: 'Brazil',     url: 'brazil/index.html',scriptId: 'arch-data',        type: 'standard' },
+    { id: 'chile',     label: 'Chile',      url: 'chile/index.html', scriptId: 'arch-data',        type: 'standard' },
+    { id: 'nz',        label: 'NZ',         url: 'nz/index.html',    scriptId: 'arch-data',        type: 'standard' },
+    { id: 'canada',    label: 'Canada',     url: 'canada/index.html',scriptId: 'arch-data',        type: 'standard' },
+    { id: 'argentina', label: 'Argentina',  url: 'argentina/index.html', scriptId: 'arch-data',   type: 'standard' },
+    { id: 'uruguay',   label: 'Uruguay',    url: 'uruguay/index.html',   scriptId: 'arch-data',   type: 'standard' },
+    { id: 'peru',      label: 'Peru',       url: 'peru/index.html',  scriptId: 'arch-data',        type: 'standard' },
+    { id: 'spain',     label: 'Spain',      url: 'spain/index.html', scriptId: 'arch-data',        type: 'standard' },
+    { id: 'italy',     label: 'Italy',      url: 'italy/index.html', scriptId: 'arch-data',        type: 'standard' }
+  ];
+
+  /* ── State ── */
+  var allRecords = [];
+  var filteredRecords = [];
+  var currentPage = 1;
+  var PAGE_SIZE = 100;
+  var debounceTimer = null;
+  var totalLoaded = 0;
+  var archivesLoaded = 0;
+  var archivesTotal = ARCHIVES.length;
+
+  /* ── DOM refs ── */
+  var qEl = document.getElementById('q');
+  var clearBtn = document.getElementById('search-clear');
+  var statsTotal = document.getElementById('stats-total');
+  var archivePills = document.getElementById('archive-pills');
+  var resultInfo = document.getElementById('result-info');
+  var resultsEl = document.getElementById('results');
+  var paginationEl = document.getElementById('pagination');
+
+  /* ── Build pill elements ── */
+  var pillMap = {};
+  ARCHIVES.forEach(function(arc) {
+    var pill = document.createElement('span');
+    pill.className = 'archive-pill';
+    pill.id = 'pill-' + arc.id;
+    pill.innerHTML = '<span class="pill-spinner" aria-hidden="true"></span>' +
+      '<span class="pill-label">' + arc.label + '</span>' +
+      '<span class="pill-count" style="display:none"></span>';
+    archivePills.appendChild(pill);
+    pillMap[arc.id] = pill;
+  });
+
+  /* ── Extract JSON from fetched HTML ── */
+  function extractScript(html, scriptId) {
+    var re = new RegExp('<script[^>]+id=["\']' + scriptId + '["\'][^>]*>([\\s\\S]*?)<\/script>', 'i');
+    var m = html.match(re);
+    if (!m) return null;
+    try {
+      return JSON.parse(m[1].trim());
+    } catch(e) {
+      return null;
+    }
+  }
+
+  /* ── Normalise a record from standard arch-data format ── */
+  function normaliseStandard(raw, arc) {
+    return {
+      title:  raw.ti || raw.title || '',
+      desc:   raw.de || raw.desc || raw.description || '',
+      agency: raw.ag || raw.agency || arc.label,
+      type:   raw.cat || raw.type || raw.category || '',
+      date:   raw.t || raw.date || '',
+      status: raw.st || raw.status || '',
+      region: raw.re || raw.region || '',
+      url:    raw.u || raw.url || '',
+      src:    raw.s || raw.src || '',
+      local:  raw.l || raw.local || '',
+      site:   arc.label,
+      siteId: arc.id,
+      siteDir: arc.id === 'wargov' ? '' : arc.id + '/'
+    };
+  }
+
+  /* ── Normalise war.gov manifest row ── */
+  function normaliseWargov(row, arc) {
+    /* rows may be arrays [Title, Agency, Desc, Date, Status, Region, URL, Src, Local]
+       or objects with named keys — handle both */
+    var title, agency, desc, date, status, region, url, src, local, type;
+    if (Array.isArray(row)) {
+      title  = row[0] || '';
+      agency = row[1] || 'War.gov';
+      desc   = row[2] || '';
+      date   = row[3] || '';
+      status = row[4] || '';
+      region = row[5] || '';
+      url    = row[6] || '';
+      src    = row[7] || '';
+      local  = row[8] || '';
+      type   = row[9] || '';
+    } else {
+      title  = row.Title || row.title || row.ti || '';
+      agency = row.Agency || row.agency || row.ag || 'War.gov';
+      desc   = row['Description Blurb'] || row.Description || row.desc || row.de || '';
+      date   = row.Date || row.date || row.t || '';
+      status = row.Status || row.status || row.st || '';
+      region = row.Region || row.region || row.re || '';
+      url    = row.URL || row.url || row.u || '';
+      src    = row.Src || row.src || row.s || '';
+      local  = row.Local || row.local || row.l || '';
+      type   = row.Type || row.type || row.cat || '';
+    }
+    return {
+      title: title, desc: desc, agency: agency, type: type,
+      date: date, status: status, region: region,
+      url: url, src: src, local: local,
+      site: 'War.gov', siteId: 'wargov', siteDir: ''
+    };
+  }
+
+  /* ── Normalise GEIPAN ── */
+  function normaliseGeipan(raw, arc) {
+    /* GEIPAN has both assets and cases; both normalised same way */
+    return {
+      title:  raw.ti || raw.title || raw.name || '',
+      desc:   raw.de || raw.desc || raw.description || raw.summary || '',
+      agency: raw.ag || raw.agency || 'GEIPAN',
+      type:   raw.cat || raw.type || raw.category || 'Case',
+      date:   raw.t || raw.date || raw.year || '',
+      status: raw.st || raw.status || raw.classification || '',
+      region: raw.re || raw.region || raw.department || '',
+      url:    raw.u || raw.url || '',
+      src:    raw.s || raw.src || '',
+      local:  raw.l || raw.local || '',
+      site:   'GEIPAN',
+      siteId: 'geipan',
+      siteDir: 'geipan/'
+    };
+  }
+
+  /* ── Fetch and parse one archive ── */
+  function fetchArchive(arc) {
+    return fetch(arc.url, { cache: 'no-cache' })
+      .then(function(r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.text();
+      })
+      .then(function(html) {
+        var data = extractScript(html, arc.scriptId);
+        if (!data) throw new Error('no script#' + arc.scriptId);
+
+        var records = [];
+
+        if (arc.type === 'wargov') {
+          var rows = data.rows || data.assets || data.records || (Array.isArray(data) ? data : []);
+          rows.forEach(function(row) {
+            records.push(normaliseWargov(row, arc));
+          });
+        } else if (arc.type === 'geipan') {
+          var assets = data.assets || [];
+          var cases  = data.cases  || [];
+          assets.forEach(function(raw) { records.push(normaliseGeipan(raw, arc)); });
+          cases.forEach(function(raw)  { records.push(normaliseGeipan(raw, arc)); });
+          if (!assets.length && !cases.length && Array.isArray(data)) {
+            data.forEach(function(raw) { records.push(normaliseGeipan(raw, arc)); });
+          }
+        } else {
+          var arr = data.assets || (Array.isArray(data) ? data : []);
+          arr.forEach(function(raw) {
+            records.push(normaliseStandard(raw, arc));
+          });
+        }
+
+        return records;
+      });
+  }
+
+  /* ── Pill state helpers ── */
+  function setPillLoaded(id, count) {
+    var pill = pillMap[id];
+    if (!pill) return;
+    pill.classList.add('loaded');
+    var countEl = pill.querySelector('.pill-count');
+    if (countEl) {
+      countEl.textContent = count;
+      countEl.style.display = '';
+    }
+  }
+
+  function setPillError(id) {
+    var pill = pillMap[id];
+    if (!pill) return;
+    pill.classList.add('error');
+    var countEl = pill.querySelector('.pill-count');
+    if (countEl) {
+      countEl.textContent = '—';
+      countEl.style.display = '';
+    }
+  }
+
+  /* ── Update global stats ── */
+  function updateStats() {
+    statsTotal.innerHTML = '<strong>' + allRecords.length.toLocaleString() + '</strong> total records across ' + archivesTotal + ' archives' +
+      (archivesLoaded < archivesTotal ? ' (' + archivesLoaded + '/' + archivesTotal + ' loaded)' : '');
+  }
+
+  /* ── Render ── */
+  function esc(str) {
+    return String(str || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function truncate(str, n) {
+    str = str || '';
+    if (str.length <= n) return str;
+    return str.slice(0, n).replace(/\s+\S*$/, '') + '…';
+  }
+
+  function resolveUrl(rec, field) {
+    /* If value starts with http/https it's absolute; otherwise prefix with siteDir */
+    var val = rec[field] || '';
+    if (!val) return '';
+    if (/^https?:\/\//i.test(val)) return val;
+    if (rec.siteDir && val && !/^\//.test(val)) return rec.siteDir + val;
+    return val;
+  }
+
+  function renderCard(rec) {
+    var div = document.createElement('div');
+    div.className = 'res-card';
+    div.setAttribute('role', 'listitem');
+
+    var badges = '<div class="card-badges">' +
+      '<span class="badge badge-site">' + esc(rec.site) + '</span>';
+    if (rec.type) badges += '<span class="badge badge-type">' + esc(rec.type) + '</span>';
+    badges += '</div>';
+
+    var title = '<div class="card-title">' + esc(rec.title || '(Untitled)') + '</div>';
+
+    var desc = '';
+    if (rec.desc) {
+      desc = '<div class="card-desc">' + esc(truncate(rec.desc, 160)) + '</div>';
+    }
+
+    var metas = [];
+    if (rec.agency && rec.agency !== rec.site) metas.push(esc(rec.agency));
+    if (rec.date) metas.push(esc(rec.date));
+    if (rec.status) metas.push(esc(rec.status));
+    if (rec.region) metas.push(esc(rec.region));
+    var meta = metas.length ? '<div class="card-meta">' + metas.join(' &nbsp;&middot;&nbsp; ') + '</div>' : '';
+
+    var actions = '<div class="card-actions">';
+    var openUrl = resolveUrl(rec, 'local') || resolveUrl(rec, 'url');
+    if (openUrl) {
+      actions += '<a class="btn btn-open" href="' + esc(openUrl) + '" target="_blank" rel="noopener">Open</a>';
+    }
+    var srcUrl = resolveUrl(rec, 'src');
+    if (srcUrl) {
+      actions += '<a class="btn btn-source" href="' + esc(srcUrl) + '" target="_blank" rel="noopener">Source &#8599;</a>';
+    }
+    actions += '</div>';
+
+    div.innerHTML = badges + title + desc + meta + actions;
+    return div;
+  }
+
+  function renderResults() {
+    resultsEl.innerHTML = '';
+    paginationEl.innerHTML = '';
+
+    var q = (qEl.value || '').trim();
+
+    if (q === '') {
+      /* empty query — show prompt */
+      resultInfo.innerHTML = '';
+      var msg = document.createElement('div');
+      msg.className = 'state-message';
+      msg.innerHTML = '<strong>Search across 14 official UAP archives</strong>' +
+        'Type a keyword to find documents, cases, imagery and more.';
+      resultsEl.appendChild(msg);
+      return;
+    }
+
+    if (filteredRecords.length === 0) {
+      resultInfo.innerHTML = '';
+      var noMsg = document.createElement('div');
+      noMsg.className = 'state-message';
+      noMsg.innerHTML = '<strong>No results for &ldquo;' + esc(q) + '&rdquo;</strong>' +
+        'Try broader terms or check spelling.';
+      resultsEl.appendChild(noMsg);
+      return;
+    }
+
+    var totalPages = Math.ceil(filteredRecords.length / PAGE_SIZE);
+    if (currentPage > totalPages) currentPage = 1;
+    var start = (currentPage - 1) * PAGE_SIZE;
+    var pageRecords = filteredRecords.slice(start, start + PAGE_SIZE);
+
+    /* result count */
+    var archivesRepresented = {};
+    filteredRecords.forEach(function(r) { archivesRepresented[r.siteId] = true; });
+    var arcCount = Object.keys(archivesRepresented).length;
+    resultInfo.innerHTML = '<strong>' + filteredRecords.length.toLocaleString() + ' results</strong>' +
+      ' across ' + arcCount + ' archive' + (arcCount !== 1 ? 's' : '') +
+      (totalPages > 1 ? ' &mdash; page ' + currentPage + ' of ' + totalPages : '');
+
+    pageRecords.forEach(function(rec) {
+      resultsEl.appendChild(renderCard(rec));
+    });
+
+    /* pagination */
+    if (totalPages > 1) {
+      var prevBtn = document.createElement('button');
+      prevBtn.className = 'page-btn';
+      prevBtn.textContent = '← Prev';
+      prevBtn.disabled = currentPage === 1;
+      prevBtn.addEventListener('click', function() {
+        currentPage--;
+        renderResults();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+      paginationEl.appendChild(prevBtn);
+
+      /* page buttons — show up to 7 around current */
+      var pageNums = [];
+      var delta = 3;
+      for (var p = 1; p <= totalPages; p++) {
+        if (p === 1 || p === totalPages || (p >= currentPage - delta && p <= currentPage + delta)) {
+          pageNums.push(p);
+        }
+      }
+      var prev2 = null;
+      pageNums.forEach(function(p) {
+        if (prev2 !== null && p - prev2 > 1) {
+          var dots = document.createElement('span');
+          dots.className = 'page-info';
+          dots.textContent = '…';
+          paginationEl.appendChild(dots);
+        }
+        var btn = document.createElement('button');
+        btn.className = 'page-btn' + (p === currentPage ? ' active' : '');
+        btn.textContent = p;
+        if (p !== currentPage) {
+          btn.addEventListener('click', (function(pg) {
+            return function() {
+              currentPage = pg;
+              renderResults();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+          })(p));
+        }
+        paginationEl.appendChild(btn);
+        prev2 = p;
+      });
+
+      var nextBtn = document.createElement('button');
+      nextBtn.className = 'page-btn';
+      nextBtn.textContent = 'Next →';
+      nextBtn.disabled = currentPage === totalPages;
+      nextBtn.addEventListener('click', function() {
+        currentPage++;
+        renderResults();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+      paginationEl.appendChild(nextBtn);
+    }
+  }
+
+  /* ── Filter ── */
+  function applyFilter() {
+    var q = (qEl.value || '').trim().toLowerCase();
+    clearBtn.classList.toggle('visible', q.length > 0);
+
+    if (!q) {
+      filteredRecords = [];
+      currentPage = 1;
+      renderResults();
+      return;
+    }
+
+    var terms = q.split(/\s+/).filter(Boolean);
+    filteredRecords = allRecords.filter(function(rec) {
+      var haystack = [rec.title, rec.desc, rec.agency, rec.type, rec.status, rec.region, rec.site]
+        .join(' ').toLowerCase();
+      return terms.every(function(term) { return haystack.indexOf(term) !== -1; });
+    });
+    currentPage = 1;
+    renderResults();
+  }
+
+  /* ── Input listener with debounce ── */
+  qEl.addEventListener('input', function() {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(applyFilter, 200);
+  });
+
+  qEl.addEventListener('search', function() {
+    clearTimeout(debounceTimer);
+    applyFilter();
+  });
+
+  clearBtn.addEventListener('click', function() {
+    qEl.value = '';
+    qEl.focus();
+    applyFilter();
+  });
+
+  /* ── Show initial empty state ── */
+  renderResults();
+
+  /* ── Fetch all archives in parallel ── */
+  ARCHIVES.forEach(function(arc) {
+    fetchArchive(arc)
+      .then(function(records) {
+        records.forEach(function(r) { allRecords.push(r); });
+        archivesLoaded++;
+        totalLoaded += records.length;
+        setPillLoaded(arc.id, records.length);
+        updateStats();
+        /* re-filter live if user already typed something */
+        if (qEl.value.trim()) {
+          clearTimeout(debounceTimer);
+          debounceTimer = setTimeout(applyFilter, 80);
+        }
+      })
+      .catch(function(err) {
+        archivesLoaded++;
+        setPillError(arc.id);
+        updateStats();
+        /* not fatal — continue */
+      });
+  });
+
+})();
+</script>
+</body>
+</html>
