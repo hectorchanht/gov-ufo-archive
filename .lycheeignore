@@ -30,7 +30,3 @@
 ^https?://discovery\.nationalarchives\.gov\.uk/.*
 ^https?://(www\.)?aeronautica\.difesa\.it/.*
 ^https?://spotthestation\.nasa\.gov/.*
-# TODO: FLIR1.mp4 / Gimbal.mp4 don't exist in videos-v1 — HTML references
-# the canonical names but the release ships DOD_* official filenames.
-# Skip until HTML uses correct asset names or release adds these aliases.
-^https?://github\.com/hectorchanht/war-gov-ufo-release/releases/download/videos-v1/(FLIR1|Gimbal)\.mp4$
