@@ -15,7 +15,7 @@
  *  automatically invalidates stale caches on the next page load.
  */
 
-const VERSION    = '0969475-20260522';
+const VERSION    = '99b2fda-20260524';
 const SHELL_CACHE = 'realufo-shell-' + VERSION;
 const DATA_CACHE  = 'realufo-data-'  + VERSION;
 const IMG_CACHE   = 'realufo-img-'   + VERSION;
@@ -70,12 +70,18 @@ self.addEventListener('fetch', (event) => {
   if (url.origin !== self.location.origin) return;
 
   // Navigation requests — network first, fall back to cache, then offline page.
+  // CRITICAL: only cache successful (2xx) responses. Previous behaviour cached
+  // every response including 404s, which then served stale 404s to users who
+  // visited a page during a transient bad server / pre-deploy moment even
+  // after the file was published.
   if (req.mode === 'navigate' || (req.headers.get('accept') || '').includes('text/html')) {
     event.respondWith(
       fetch(req)
         .then((res) => {
-          const copy = res.clone();
-          caches.open(SHELL_CACHE).then((c) => c.put(req, copy));
+          if (res && res.ok) {
+            const copy = res.clone();
+            caches.open(SHELL_CACHE).then((c) => c.put(req, copy));
+          }
           return res;
         })
         .catch(() => caches.match(req).then((hit) => hit || caches.match('/404.html')))
