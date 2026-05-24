@@ -33,8 +33,19 @@ LIGHTBOX_CSS = r'''
   .lightbox.lb-rotated .lb-inner { max-height: none; max-width: none; }
 }
 .lb-inner iframe { width: 92vw; height: 84vh; border: 1px solid var(--rule-strong); background: #fff; }
-.lb-meta { font-family: var(--mono); font-size: 11px; color: var(--ink); background: var(--bg-2); border: 1px solid var(--rule-strong); padding: 8px 14px; max-width: 90vw; text-align: center; }
+/* Rich meta panel — title + structured fields + description + source links.
+   Sized to keep the media generous; scrolls internally on long descriptions. */
+.lb-meta { font-family: var(--mono); font-size: 11px; color: var(--ink); background: var(--bg-2); border: 1px solid var(--rule-strong); padding: 10px 14px; max-width: min(720px, 92vw); width: 100%; text-align: left; box-sizing: border-box; max-height: 32vh; overflow-y: auto; }
 .lb-meta a { color: var(--caution); }
+.lb-meta .lbm-title { font-family: var(--serif); font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 6px; line-height: 1.35; }
+.lb-meta .lbm-red { display: inline-block; font-family: var(--mono); font-size: 9px; letter-spacing: 0.14em; color: var(--stamp); border: 1px solid rgba(185,28,28,0.55); padding: 1px 6px; border-radius: 3px; margin-left: 8px; vertical-align: middle; }
+.lb-meta .lbm-fields { display: grid; grid-template-columns: max-content 1fr; gap: 3px 12px; margin: 6px 0 8px; font-size: 10.5px; }
+.lb-meta .lbm-fields dt { color: var(--ink-faint); letter-spacing: 0.1em; text-transform: uppercase; font-size: 9.5px; }
+.lb-meta .lbm-fields dd { color: var(--ink-dim); margin: 0; overflow-wrap: anywhere; }
+.lb-meta .lbm-desc { font-family: var(--serif); font-size: 13px; color: var(--ink-dim); line-height: 1.55; margin: 6px 0 8px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.lb-meta .lbm-links { display: flex; flex-wrap: wrap; gap: 6px 12px; padding-top: 6px; border-top: 1px solid var(--rule); font-size: 10.5px; letter-spacing: 0.08em; }
+.lb-meta .lbm-links a { text-decoration: none; }
+.lb-meta .lbm-links a:hover { text-decoration: underline; }
 .lb-close { position: absolute; top: 12px; right: 12px; width: 40px; height: 40px; background: var(--bg-2); border: 1px solid var(--rule-strong); color: var(--ink); display: grid; place-items: center; cursor: pointer; font-family: var(--mono); font-size: 22px; z-index: 2; }
 .lb-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; background: rgba(20,20,24,0.6); border: 1px solid var(--rule-strong); color: var(--ink); display: grid; place-items: center; cursor: pointer; font-family: var(--serif); font-size: 24px; z-index: 2; transition: background .15s, color .15s, border-color .15s; }
 @media (min-width: 720px) { .lb-nav { width: 52px; height: 52px; font-size: 32px; } }
@@ -60,13 +71,61 @@ LIGHTBOX_JS = r'''
   var lbCnt  = document.getElementById('lb-counter');
   var list = [], idx = 0;
   function esc(s){return String(s||'').replace(/[&<>"']/g,function(c){return({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]})}
+  /* Build rich meta panel — every related field on the asset, normalized
+     across short (ti/ag/dt/lo/de/u/s/…) and long (title/agency/date/…) key
+     variants used by different build scripts. */
+  function metaPanel(a) {
+    function g() { for (var i=0;i<arguments.length;i++){var k=arguments[i]; if (a && a[k]) return a[k];} return ''; }
+    var title = g('title','ti');
+    var agency = g('agency','ag');
+    var date = g('date','dt','incidentDate','incident_date');
+    var releaseDate = g('releaseDate','release_date');
+    var location = g('location','lo','region','re','incidentLocation','incident_location');
+    var type = g('type','t','category','ca');
+    var classification = g('classification','cl','status');
+    var virin = g('virin');
+    var dvidsId = g('dvidsId','dvids');
+    var videoTitle = g('videoTitle');
+    var vidPair = g('vidPairing','videoPairing');
+    var pdfPair = g('pdfPairing');
+    var alt = g('alt','altText','imageAlt');
+    var desc = g('desc','de','description','blurb','descriptionBlurb');
+    var src = g('src','s','sourceUrl');
+    var url = g('url','u','downloadUrl');
+    var local = g('local','l');
+    var redacted = a && (a.redacted === true || a.r === true || String(a.redaction||'').toUpperCase() === 'TRUE');
+    var rows = [];
+    function add(k,v){ if (v) rows.push('<div><dt>'+esc(k)+'</dt><dd>'+esc(v)+'</dd></div>'); }
+    add('Agency', agency);
+    add('Type', type);
+    add('Date', date);
+    if (releaseDate && releaseDate !== date) add('Released', releaseDate);
+    add('Location', location);
+    add('Classification', classification);
+    add('VIRIN', virin);
+    if (dvidsId) rows.push('<div><dt>DVIDS</dt><dd><a href="https://www.dvidshub.net/video/' + encodeURIComponent(dvidsId) + '" target="_blank" rel="noopener">' + esc(dvidsId) + ' &#8599;</a></dd></div>');
+    add('Video title', videoTitle);
+    add('Video pairing', vidPair);
+    add('PDF pairing', pdfPair);
+    add('Alt text', alt);
+    var html = '<div class="lb-meta">';
+    if (title) html += '<div class="lbm-title">' + esc(title) + (redacted ? ' <span class="lbm-red">REDACTED</span>' : '') + '</div>';
+    if (rows.length) html += '<dl class="lbm-fields">' + rows.join('') + '</dl>';
+    if (desc) html += '<div class="lbm-desc">' + esc(desc) + '</div>';
+    var links = [];
+    if (src) links.push('<a href="' + esc(src) + '" target="_blank" rel="noopener">Source &#8599;</a>');
+    var openUrl = url || (local && (String(local).startsWith('http') ? local : './' + local));
+    if (openUrl && openUrl !== src) links.push('<a href="' + esc(openUrl) + '" target="_blank" rel="noopener">Open &#8599;</a>');
+    if (links.length) html += '<div class="lbm-links">' + links.join(' &middot; ') + '</div>';
+    html += '</div>';
+    return html;
+  }
   function render() {
     var a = list[idx]; if (!a) return;
     var href = a.local || a.l || a.url || a.u || '';
     if (a.l) href = a.l.startsWith('http') ? a.l : './' + a.l;
     var t = href.toLowerCase().split('?')[0].split('#')[0];
-    var title = a.title || a.ti || '';
-    var meta = '<div class="lb-meta">' + esc(title) + '</div>';
+    var meta = metaPanel(a);
     var html = '';
     /* Pre-baked YouTube/Vimeo embed (NASA UAP videos use this field). */
     if (a.embed) {
@@ -100,7 +159,7 @@ LIGHTBOX_JS = r'''
       else { window.open(href, '_blank'); close(); return; }
     }
     else if (/\.html?$/.test(t))                     html = '<iframe src="'+esc(href)+'" sandbox="allow-same-origin allow-popups"></iframe>' + meta;
-    else                                             html = meta + '<a class="lb-meta" href="'+esc(href)+'" target="_blank" rel="noopener">Open ↗</a>';
+    else                                             html = meta;
     lbI.innerHTML = html;
     if (lbCnt) lbCnt.textContent = (idx+1) + ' / ' + list.length;
   }

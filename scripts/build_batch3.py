@@ -558,23 +558,20 @@ ALL_MIRRORS = [
 
 
 def write_favicon(slug, label, c1, c2, c3, dark_text=False):
-    text_fill = '#0a0a0c' if dark_text else '#e8e3d8'
+    """Per-archive favicon writer.
+
+    CLAUDE.md § 3.4 mandates a single shared classic-disk-UFO favicon
+    across every archive. The (label, c1, c2, c3, dark_text) args are
+    kept on the signature for back-compat with the existing call site but
+    are ignored — we always copy the canonical /assets/favicon.svg so the
+    icon md5 stays identical across all 15 archives. Per-archive identity
+    lives in the page-header seal, not the favicon.
+    """
+    canonical = os.path.join(REPO, 'assets', 'favicon.svg')
     p = os.path.join(REPO, f'{slug}', 'assets', 'favicon.svg')
     os.makedirs(os.path.dirname(p), exist_ok=True)
-    open(p, 'w').write(f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <defs>
-    <radialGradient id="g" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="{c1}"/>
-      <stop offset="60%" stop-color="{c2}"/>
-      <stop offset="100%" stop-color="{c3}"/>
-    </radialGradient>
-  </defs>
-  <rect width="64" height="64" fill="#0a0a0c"/>
-  <circle cx="32" cy="32" r="26" fill="url(#g)" stroke="#e8e3d8" stroke-width="2"/>
-  <circle cx="32" cy="32" r="20" fill="none" stroke="#e8e3d8" stroke-width="1" stroke-dasharray="2 2" opacity="0.5"/>
-  <text x="32" y="37" font-family="ui-monospace,Consolas,monospace" font-size="{10 if len(label)<=4 else 9}" font-weight="700" text-anchor="middle" fill="{text_fill}" letter-spacing="-0.3">{label}</text>
-</svg>
-''')
+    with open(canonical, 'rb') as src, open(p, 'wb') as dst:
+        dst.write(src.read())
 
 
 def git_tracked(mirror_slug, sub):

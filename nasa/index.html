@@ -8,14 +8,14 @@
 <link rel="canonical" href="https://realufo.org/nasa/">
 <meta property="og:title" content="NASA UAP Independent Study | realufo.org">
 <meta property="og:description" content="NASA's UAP Independent Study Team final report (Sep 2023). 4 PDFs + 3 YouTube briefings + study-team imagery. Led by Dr David Spergel.">
-<meta property="og:image" content="https://realufo.org/nasa/assets/og.svg">
+<meta property="og:image" content="https://realufo.org/nasa/assets/images/uap-report-cover.png">
 <meta property="og:url" content="https://realufo.org/nasa/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="realufo.org">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="NASA UAP Independent Study | realufo.org">
 <meta name="twitter:description" content="NASA's UAP Independent Study Team final report (Sep 2023). 4 PDFs + 3 YouTube briefings + study-team imagery. Led by Dr David Spergel.">
-<meta name="twitter:image" content="https://realufo.org/nasa/assets/og.svg">
+<meta name="twitter:image" content="https://realufo.org/nasa/assets/images/uap-report-cover.png">
 <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
 <link rel="apple-touch-icon" href="./assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -130,9 +130,8 @@ h1.hero-title em { color: var(--caution); font-style: italic; }
 }
 .carousel-btn:hover { background: rgba(0,0,0,0.9); border-color: var(--caution); color: var(--caution); }
 .carousel-btn.prev { left: 14px; } .carousel-btn.next { right: 14px; }
-.carousel-dots { position: absolute; bottom: 48px; left: 50%; transform: translateX(-50%); display: flex; gap: 0; z-index: 3; }
-/* Button click region is 24×24 (WCAG 2.5.8 minimum target size); visible
-   dot drawn via ::before so the design stays compact. */
+.carousel-dots { position: absolute; bottom: 56px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; z-index: 3; }
+/* Button click region is 24×24 (WCAG 2.5.8); visible dot drawn via ::before. */
 .carousel-dots button { width: 24px; height: 24px; border: 0; background: transparent; cursor: pointer; padding: 0; position: relative; }
 .carousel-dots button::before { content: ""; position: absolute; top: 50%; left: 50%; width: 8px; height: 8px; margin: -4px 0 0 -4px; border-radius: 50%; background: rgba(255,255,255,0.4); transition: transform .15s, background .15s; }
 .carousel-dots button.active::before { background: var(--caution); transform: scale(1.4); }
@@ -231,8 +230,19 @@ h2 { font-family: var(--serif); font-size: clamp(24px,3vw,36px); font-weight: 70
   .lightbox.lb-rotated .lb-inner { max-height: none; max-width: none; }
 }
 .lb-inner iframe { width: 92vw; height: 84vh; border: 1px solid var(--rule-strong); background: #fff; }
-.lb-meta { font-family: var(--mono); font-size: 11px; color: var(--ink); background: var(--bg-2); border: 1px solid var(--rule-strong); padding: 8px 14px; max-width: 90vw; text-align: center; }
+/* Rich meta panel — title + structured fields + description + source links.
+   Sized to keep the media generous; scrolls internally on long descriptions. */
+.lb-meta { font-family: var(--mono); font-size: 11px; color: var(--ink); background: var(--bg-2); border: 1px solid var(--rule-strong); padding: 10px 14px; max-width: min(720px, 92vw); width: 100%; text-align: left; box-sizing: border-box; max-height: 32vh; overflow-y: auto; }
 .lb-meta a { color: var(--caution); }
+.lb-meta .lbm-title { font-family: var(--serif); font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 6px; line-height: 1.35; }
+.lb-meta .lbm-red { display: inline-block; font-family: var(--mono); font-size: 9px; letter-spacing: 0.14em; color: var(--stamp); border: 1px solid rgba(185,28,28,0.55); padding: 1px 6px; border-radius: 3px; margin-left: 8px; vertical-align: middle; }
+.lb-meta .lbm-fields { display: grid; grid-template-columns: max-content 1fr; gap: 3px 12px; margin: 6px 0 8px; font-size: 10.5px; }
+.lb-meta .lbm-fields dt { color: var(--ink-faint); letter-spacing: 0.1em; text-transform: uppercase; font-size: 9.5px; }
+.lb-meta .lbm-fields dd { color: var(--ink-dim); margin: 0; overflow-wrap: anywhere; }
+.lb-meta .lbm-desc { font-family: var(--serif); font-size: 13px; color: var(--ink-dim); line-height: 1.55; margin: 6px 0 8px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.lb-meta .lbm-links { display: flex; flex-wrap: wrap; gap: 6px 12px; padding-top: 6px; border-top: 1px solid var(--rule); font-size: 10.5px; letter-spacing: 0.08em; }
+.lb-meta .lbm-links a { text-decoration: none; }
+.lb-meta .lbm-links a:hover { text-decoration: underline; }
 .lb-close { position: absolute; top: 12px; right: 12px; width: 40px; height: 40px; background: var(--bg-2); border: 1px solid var(--rule-strong); color: var(--ink); display: grid; place-items: center; cursor: pointer; font-family: var(--mono); font-size: 22px; z-index: 2; }
 .lb-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; background: rgba(20,20,24,0.6); border: 1px solid var(--rule-strong); color: var(--ink); display: grid; place-items: center; cursor: pointer; font-family: var(--serif); font-size: 24px; z-index: 2; transition: background .15s, color .15s, border-color .15s; }
 @media (min-width: 720px) { .lb-nav { width: 52px; height: 52px; font-size: 32px; } }
@@ -310,7 +320,7 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
       </div>
     </a>
     <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
-            <nav class="primary" id="primary-nav" aria-label="Main navigation">
+        <nav class="primary" id="primary-nav" aria-label="Main navigation">
       <ul>
         <li><a href="../">War.gov</a></li><li><a href="../aaro/">AARO</a></li><li><a href="../nasa/" class="active">NASA</a></li><li><a href="../nara/">NARA</a></li>
         <li class="has-dropdown" id="nav-site-wrap">
@@ -355,13 +365,13 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
       observation assets, and the application of AI/ML to anomaly detection. Source: <a href="https://science.nasa.gov/uap/" target="_blank" rel="noopener">science.nasa.gov/uap</a>.
     </p>
 
-    <section class="hero-carousel" id="hero-carousel" aria-label="Featured NASA UAP imagery">
+    <div class="hero-carousel" id="hero-carousel" aria-label="Featured NASA UAP imagery">
       <div id="carousel-track"></div>
       <button class="carousel-btn prev" id="carousel-prev" aria-label="Previous">‹</button>
       <button class="carousel-btn next" id="carousel-next" aria-label="Next">›</button>
       <div class="carousel-dots" id="carousel-dots"></div>
       <div class="carousel-caption" id="carousel-caption"></div>
-    </section>
+    </div>
   </div>
 </div>
 
@@ -435,7 +445,7 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
   </div>
 </footer>
 
-<div class="lightbox" id="lightbox">
+<div class="lightbox" id="lightbox" aria-hidden="true">
   <button class="lb-rotate" id="lb-rotate" aria-label="Rotate view" title="Rotate">⟳</button>
   <div class="lb-close" id="lb-close">×</div>
   <button class="lb-nav prev" id="lb-prev" aria-label="Previous (←)">‹</button>
@@ -628,13 +638,61 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
   var lbCnt  = document.getElementById('lb-counter');
   var list = [], idx = 0;
   function esc(s){return String(s||'').replace(/[&<>"']/g,function(c){return({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]})}
+  /* Build rich meta panel — every related field on the asset, normalized
+     across short (ti/ag/dt/lo/de/u/s/…) and long (title/agency/date/…) key
+     variants used by different build scripts. */
+  function metaPanel(a) {
+    function g() { for (var i=0;i<arguments.length;i++){var k=arguments[i]; if (a && a[k]) return a[k];} return ''; }
+    var title = g('title','ti');
+    var agency = g('agency','ag');
+    var date = g('date','dt','incidentDate','incident_date');
+    var releaseDate = g('releaseDate','release_date');
+    var location = g('location','lo','region','re','incidentLocation','incident_location');
+    var type = g('type','t','category','ca');
+    var classification = g('classification','cl','status');
+    var virin = g('virin');
+    var dvidsId = g('dvidsId','dvids');
+    var videoTitle = g('videoTitle');
+    var vidPair = g('vidPairing','videoPairing');
+    var pdfPair = g('pdfPairing');
+    var alt = g('alt','altText','imageAlt');
+    var desc = g('desc','de','description','blurb','descriptionBlurb');
+    var src = g('src','s','sourceUrl');
+    var url = g('url','u','downloadUrl');
+    var local = g('local','l');
+    var redacted = a && (a.redacted === true || a.r === true || String(a.redaction||'').toUpperCase() === 'TRUE');
+    var rows = [];
+    function add(k,v){ if (v) rows.push('<div><dt>'+esc(k)+'</dt><dd>'+esc(v)+'</dd></div>'); }
+    add('Agency', agency);
+    add('Type', type);
+    add('Date', date);
+    if (releaseDate && releaseDate !== date) add('Released', releaseDate);
+    add('Location', location);
+    add('Classification', classification);
+    add('VIRIN', virin);
+    if (dvidsId) rows.push('<div><dt>DVIDS</dt><dd><a href="https://www.dvidshub.net/video/' + encodeURIComponent(dvidsId) + '" target="_blank" rel="noopener">' + esc(dvidsId) + ' &#8599;</a></dd></div>');
+    add('Video title', videoTitle);
+    add('Video pairing', vidPair);
+    add('PDF pairing', pdfPair);
+    add('Alt text', alt);
+    var html = '<div class="lb-meta">';
+    if (title) html += '<div class="lbm-title">' + esc(title) + (redacted ? ' <span class="lbm-red">REDACTED</span>' : '') + '</div>';
+    if (rows.length) html += '<dl class="lbm-fields">' + rows.join('') + '</dl>';
+    if (desc) html += '<div class="lbm-desc">' + esc(desc) + '</div>';
+    var links = [];
+    if (src) links.push('<a href="' + esc(src) + '" target="_blank" rel="noopener">Source &#8599;</a>');
+    var openUrl = url || (local && (String(local).startsWith('http') ? local : './' + local));
+    if (openUrl && openUrl !== src) links.push('<a href="' + esc(openUrl) + '" target="_blank" rel="noopener">Open &#8599;</a>');
+    if (links.length) html += '<div class="lbm-links">' + links.join(' &middot; ') + '</div>';
+    html += '</div>';
+    return html;
+  }
   function render() {
     var a = list[idx]; if (!a) return;
     var href = a.local || a.l || a.url || a.u || '';
     if (a.l) href = a.l.startsWith('http') ? a.l : './' + a.l;
     var t = href.toLowerCase().split('?')[0].split('#')[0];
-    var title = a.title || a.ti || '';
-    var meta = '<div class="lb-meta">' + esc(title) + '</div>';
+    var meta = metaPanel(a);
     var html = '';
     /* Pre-baked YouTube/Vimeo embed (NASA UAP videos use this field). */
     if (a.embed) {
@@ -668,7 +726,7 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
       else { window.open(href, '_blank'); close(); return; }
     }
     else if (/\.html?$/.test(t))                     html = '<iframe src="'+esc(href)+'" sandbox="allow-same-origin allow-popups"></iframe>' + meta;
-    else                                             html = meta + '<a class="lb-meta" href="'+esc(href)+'" target="_blank" rel="noopener">Open ↗</a>';
+    else                                             html = meta;
     lbI.innerHTML = html;
     if (lbCnt) lbCnt.textContent = (idx+1) + ' / ' + list.length;
   }

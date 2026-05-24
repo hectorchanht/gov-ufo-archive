@@ -559,12 +559,23 @@
   }
   .lightbox img { max-width: 100%; max-height: 90vh; border: 1px solid var(--rule-strong); }
   .lightbox .lb-meta {
-    position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
+    position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
     font-family: var(--mono); font-size: 11px; color: var(--ink);
-    background: var(--bg-2); padding: 8px 14px;
-    border: 1px solid var(--rule-strong); letter-spacing: 0.1em;
-    max-width: 80%; text-align: center;
+    background: var(--bg-2); padding: 10px 14px;
+    border: 1px solid var(--rule-strong); letter-spacing: normal;
+    max-width: min(720px, 92vw); width: 92vw; text-align: left;
+    box-sizing: border-box; max-height: 32vh; overflow-y: auto;
   }
+  .lightbox .lb-meta a { color: var(--caution); }
+  .lightbox .lb-meta .lbm-title { font-family: var(--serif); font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 6px; line-height: 1.35; letter-spacing: 0; }
+  .lightbox .lb-meta .lbm-red { display: inline-block; font-family: var(--mono); font-size: 9px; letter-spacing: 0.14em; color: var(--stamp); border: 1px solid rgba(185,28,28,0.55); padding: 1px 6px; border-radius: 3px; margin-left: 8px; vertical-align: middle; }
+  .lightbox .lb-meta .lbm-fields { display: grid; grid-template-columns: max-content 1fr; gap: 3px 12px; margin: 6px 0 8px; font-size: 10.5px; }
+  .lightbox .lb-meta .lbm-fields dt { color: var(--ink-faint); letter-spacing: 0.1em; text-transform: uppercase; font-size: 9.5px; }
+  .lightbox .lb-meta .lbm-fields dd { color: var(--ink-dim); margin: 0; overflow-wrap: anywhere; }
+  .lightbox .lb-meta .lbm-desc { font-family: var(--serif); font-size: 13px; color: var(--ink-dim); line-height: 1.55; margin: 6px 0 8px; white-space: pre-wrap; overflow-wrap: anywhere; letter-spacing: 0; }
+  .lightbox .lb-meta .lbm-links { display: flex; flex-wrap: wrap; gap: 6px 12px; padding-top: 6px; border-top: 1px solid var(--rule); font-size: 10.5px; letter-spacing: 0.08em; }
+  .lightbox .lb-meta .lbm-links a { text-decoration: none; }
+  .lightbox .lb-meta .lbm-links a:hover { text-decoration: underline; }
 
   /* ============ NOISE / SCAN LINES ============ */
   .scanlines {
@@ -1641,20 +1652,71 @@ li.nav-sep { display: none; }
   let lbList = [];
   let lbIdx = 0;
 
+  /* Build the rich meta panel — every related field on the asset, normalized
+     across short (ti/ag/dt/lo/de/u/s/…) and long (title/agency/date/…) key
+     variants. Used by every render path so the user sees the same metadata
+     regardless of file type. */
+  function lbMetaPanel(a) {
+    const g = (...ks) => { for (const k of ks) { if (a && a[k]) return a[k]; } return ''; };
+    const title         = g('title','ti');
+    const agency        = g('agency','ag');
+    const date          = g('date','dt','incidentDate','incident_date');
+    const releaseDate   = g('releaseDate','release_date');
+    const location      = g('location','lo','region','re','incidentLocation','incident_location');
+    const type          = g('type','t','category','ca');
+    const classification = g('classification','cl','status');
+    const virin         = g('virin');
+    const dvidsId       = g('dvidsId','dvids');
+    const videoTitle    = g('videoTitle');
+    const vidPair       = g('vidPairing','videoPairing');
+    const pdfPair       = g('pdfPairing');
+    const alt           = g('alt','altText','imageAlt');
+    const desc          = g('desc','de','description','blurb','descriptionBlurb');
+    const src           = g('src','s','sourceUrl');
+    const url           = g('url','u','downloadUrl');
+    const local         = g('local','l');
+    const redacted = a && (a.redacted === true || a.r === true || String(a.redaction||'').toUpperCase() === 'TRUE');
+    const rows = [];
+    const add = (k, v) => { if (v) rows.push(`<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`); };
+    add('Agency', agency);
+    add('Type', type);
+    add('Date', date);
+    if (releaseDate && releaseDate !== date) add('Released', releaseDate);
+    add('Location', location);
+    add('Classification', classification);
+    add('VIRIN', virin);
+    if (dvidsId) rows.push(`<div><dt>DVIDS</dt><dd><a href="https://www.dvidshub.net/video/${encodeURIComponent(dvidsId)}" target="_blank" rel="noopener">${esc(dvidsId)} ↗</a></dd></div>`);
+    add('Video title', videoTitle);
+    add('Video pairing', vidPair);
+    add('PDF pairing', pdfPair);
+    add('Alt text', alt);
+    let html = '<div class="lb-meta">';
+    if (title) html += `<div class="lbm-title">${esc(title)}${redacted ? ' <span class="lbm-red">REDACTED</span>' : ''}</div>`;
+    if (rows.length) html += `<dl class="lbm-fields">${rows.join('')}</dl>`;
+    if (desc) html += `<div class="lbm-desc">${esc(desc)}</div>`;
+    const links = [];
+    if (src) links.push(`<a href="${esc(src)}" target="_blank" rel="noopener">Source ↗</a>`);
+    const openUrl = url || (local && (String(local).startsWith('http') ? local : './' + local));
+    if (openUrl && openUrl !== src) links.push(`<a href="${esc(openUrl)}" target="_blank" rel="noopener">Open ↗</a>`);
+    if (links.length) html += `<div class="lbm-links">${links.join(' · ')}</div>`;
+    html += '</div>';
+    return html;
+  }
+
   function renderLightbox() {
     const a = lbList[lbIdx];
     if (!a) return;
     const local = a.local || '';
     const remote = a.url || '';
     const target = local || remote;
+    const meta = lbMetaPanel(a);
     if (!target) {
-      lbInner.innerHTML = `<div class="lb-meta">${esc(a.title || 'Unavailable')} — file unavailable.</div>`;
+      lbInner.innerHTML = meta || `<div class="lb-meta">${esc(a.title || 'Unavailable')} — file unavailable.</div>`;
       lb.classList.add('open');
       return;
     }
     const localHref = local ? './' + local : '';
     const title = a.title || '';
-    const meta = `<div class="lb-meta">${esc(title)}</div>`;
     const ext = target.split('?')[0].split('#')[0].split('.').pop().toLowerCase();
     let html;
     if (['jpg','jpeg','png','gif','webp'].includes(ext)) {
@@ -1669,7 +1731,7 @@ li.nav-sep { display: none; }
       html = `<audio controls autoplay src="${esc(localHref || remote)}"></audio>${meta}`;
     } else if (ext === 'pdf') {
       const src = localHref || remote;
-      html = `<iframe src="${esc(src)}#view=FitH"></iframe><div class="lb-meta">${esc(title)} — <a href="${esc(src)}" target="_blank" style="color:var(--caution)">open in new tab ↗</a></div>`;
+      html = `<iframe src="${esc(src)}#view=FitH"></iframe>${meta}`;
     } else {
       window.open(localHref || remote, '_blank'); closeLb(); return;
     }

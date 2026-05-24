@@ -8,14 +8,14 @@
 <link rel="canonical" href="https://realufo.org/uk/">
 <meta property="og:title" content="UK MoD UFO Files — National Archives at Kew | realufo.org">
 <meta property="og:description" content="Britain's Ministry of Defence UFO desk (1950-2009). 52,000+ pages transferred to The National Archives at Kew. Deep-links into Discovery: Rendlesham Forest, DEFE 24, AIR 2.">
-<meta property="og:image" content="https://realufo.org/uk/assets/og.svg">
+<meta property="og:image" content="https://realufo.org/slideshow/FBI-Photo-1.jpg">
 <meta property="og:url" content="https://realufo.org/uk/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="realufo.org">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="UK MoD UFO Files — National Archives at Kew | realufo.org">
 <meta name="twitter:description" content="Britain's Ministry of Defence UFO desk (1950-2009). 52,000+ pages transferred to The National Archives at Kew. Deep-links into Discovery: Rendlesham Forest, DEFE 24, AIR 2.">
-<meta name="twitter:image" content="https://realufo.org/uk/assets/og.svg">
+<meta name="twitter:image" content="https://realufo.org/slideshow/FBI-Photo-1.jpg">
 <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
 <link rel="apple-touch-icon" href="./assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -244,8 +244,19 @@ h2 { font-family: var(--serif); font-size: clamp(22px,3.5vw,34px); font-weight: 
   .lightbox.lb-rotated .lb-inner { max-height: none; max-width: none; }
 }
 .lb-inner iframe { width: 92vw; height: 84vh; border: 1px solid var(--rule-strong); background: #fff; }
-.lb-meta { font-family: var(--mono); font-size: 11px; color: var(--ink); background: var(--bg-2); border: 1px solid var(--rule-strong); padding: 8px 14px; max-width: 90vw; text-align: center; }
+/* Rich meta panel — title + structured fields + description + source links.
+   Sized to keep the media generous; scrolls internally on long descriptions. */
+.lb-meta { font-family: var(--mono); font-size: 11px; color: var(--ink); background: var(--bg-2); border: 1px solid var(--rule-strong); padding: 10px 14px; max-width: min(720px, 92vw); width: 100%; text-align: left; box-sizing: border-box; max-height: 32vh; overflow-y: auto; }
 .lb-meta a { color: var(--caution); }
+.lb-meta .lbm-title { font-family: var(--serif); font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 6px; line-height: 1.35; }
+.lb-meta .lbm-red { display: inline-block; font-family: var(--mono); font-size: 9px; letter-spacing: 0.14em; color: var(--stamp); border: 1px solid rgba(185,28,28,0.55); padding: 1px 6px; border-radius: 3px; margin-left: 8px; vertical-align: middle; }
+.lb-meta .lbm-fields { display: grid; grid-template-columns: max-content 1fr; gap: 3px 12px; margin: 6px 0 8px; font-size: 10.5px; }
+.lb-meta .lbm-fields dt { color: var(--ink-faint); letter-spacing: 0.1em; text-transform: uppercase; font-size: 9.5px; }
+.lb-meta .lbm-fields dd { color: var(--ink-dim); margin: 0; overflow-wrap: anywhere; }
+.lb-meta .lbm-desc { font-family: var(--serif); font-size: 13px; color: var(--ink-dim); line-height: 1.55; margin: 6px 0 8px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.lb-meta .lbm-links { display: flex; flex-wrap: wrap; gap: 6px 12px; padding-top: 6px; border-top: 1px solid var(--rule); font-size: 10.5px; letter-spacing: 0.08em; }
+.lb-meta .lbm-links a { text-decoration: none; }
+.lb-meta .lbm-links a:hover { text-decoration: underline; }
 .lb-close { position: absolute; top: 12px; right: 12px; width: 40px; height: 40px; background: var(--bg-2); border: 1px solid var(--rule-strong); color: var(--ink); display: grid; place-items: center; cursor: pointer; font-family: var(--mono); font-size: 22px; z-index: 2; }
 .lb-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; background: rgba(20,20,24,0.6); border: 1px solid var(--rule-strong); color: var(--ink); display: grid; place-items: center; cursor: pointer; font-family: var(--serif); font-size: 24px; z-index: 2; transition: background .15s, color .15s, border-color .15s; }
 @media (min-width: 720px) { .lb-nav { width: 52px; height: 52px; font-size: 32px; } }
@@ -268,8 +279,19 @@ h2 { font-family: var(--serif); font-size: clamp(22px,3.5vw,34px); font-weight: 
   .lightbox.lb-rotated .lb-inner { max-height: none; max-width: none; }
 }
 .lb-inner iframe { width: 92vw; height: 84vh; border: 1px solid var(--rule-strong); background: #fff; }
-.lb-meta { font-family: var(--mono); font-size: 11px; color: var(--ink); background: var(--bg-2); border: 1px solid var(--rule-strong); padding: 8px 14px; max-width: 90vw; text-align: center; }
+/* Rich meta panel — title + structured fields + description + source links.
+   Sized to keep the media generous; scrolls internally on long descriptions. */
+.lb-meta { font-family: var(--mono); font-size: 11px; color: var(--ink); background: var(--bg-2); border: 1px solid var(--rule-strong); padding: 10px 14px; max-width: min(720px, 92vw); width: 100%; text-align: left; box-sizing: border-box; max-height: 32vh; overflow-y: auto; }
 .lb-meta a { color: var(--caution); }
+.lb-meta .lbm-title { font-family: var(--serif); font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 6px; line-height: 1.35; }
+.lb-meta .lbm-red { display: inline-block; font-family: var(--mono); font-size: 9px; letter-spacing: 0.14em; color: var(--stamp); border: 1px solid rgba(185,28,28,0.55); padding: 1px 6px; border-radius: 3px; margin-left: 8px; vertical-align: middle; }
+.lb-meta .lbm-fields { display: grid; grid-template-columns: max-content 1fr; gap: 3px 12px; margin: 6px 0 8px; font-size: 10.5px; }
+.lb-meta .lbm-fields dt { color: var(--ink-faint); letter-spacing: 0.1em; text-transform: uppercase; font-size: 9.5px; }
+.lb-meta .lbm-fields dd { color: var(--ink-dim); margin: 0; overflow-wrap: anywhere; }
+.lb-meta .lbm-desc { font-family: var(--serif); font-size: 13px; color: var(--ink-dim); line-height: 1.55; margin: 6px 0 8px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.lb-meta .lbm-links { display: flex; flex-wrap: wrap; gap: 6px 12px; padding-top: 6px; border-top: 1px solid var(--rule); font-size: 10.5px; letter-spacing: 0.08em; }
+.lb-meta .lbm-links a { text-decoration: none; }
+.lb-meta .lbm-links a:hover { text-decoration: underline; }
 .lb-close { position: absolute; top: 12px; right: 12px; width: 40px; height: 40px; background: var(--bg-2); border: 1px solid var(--rule-strong); color: var(--ink); display: grid; place-items: center; cursor: pointer; font-family: var(--mono); font-size: 22px; z-index: 2; }
 .lb-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; background: rgba(20,20,24,0.6); border: 1px solid var(--rule-strong); color: var(--ink); display: grid; place-items: center; cursor: pointer; font-family: var(--serif); font-size: 24px; z-index: 2; transition: background .15s, color .15s, border-color .15s; }
 @media (min-width: 720px) { .lb-nav { width: 52px; height: 52px; font-size: 32px; } }
@@ -338,7 +360,7 @@ body { background-image:
       </div>
     </a>
     <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
-            <nav class="primary" id="primary-nav" aria-label="Main navigation">
+        <nav class="primary" id="primary-nav" aria-label="Main navigation">
       <ul>
         <li><a href="../">War.gov</a></li><li><a href="../aaro/">AARO</a></li><li><a href="../nasa/">NASA</a></li><li><a href="../nara/">NARA</a></li>
         <li class="has-dropdown" id="nav-site-wrap">
