@@ -287,7 +287,23 @@ body { background-image: radial-gradient(ellipse at 20% 0%, rgba(0,85,164,0.08) 
 @media (min-width: 720px) { .pagination .info { flex-basis: auto; margin: 0 0 0 12px; text-align: left; } }
 .result-count { font-family: var(--mono); font-size: 11px; color: var(--ink-faint); letter-spacing: 0.12em; text-transform: uppercase; padding: 18px 0 8px; }
 .result-count b { color: var(--caution); }
-</style></head>
+</style><!-- NAV-STYLE:SHARED -->
+<style id="nav-style-shared">
+/* Canonical dropdown styling — overrides any per-page nav.primary ul flex
+   inheritance and survives both legacy `.has-dropdown.open` and native
+   <details open> open-states. Injected by scripts/sync-nav.py. */
+.has-dropdown > details > summary { list-style: none; cursor: pointer; }
+.has-dropdown > details > summary::-webkit-details-marker { display: none; }
+.has-dropdown > details > summary::marker { content: ''; }
+.has-dropdown > details > .nav-dropdown,
+.has-dropdown .nav-dropdown { display: none; flex-direction: column; }
+.has-dropdown details[open] > .nav-dropdown,
+.has-dropdown.open .nav-dropdown { display: block !important; }
+.has-dropdown .nav-dropdown li { display: block; width: 100%; list-style: none; }
+.has-dropdown .nav-dropdown a { display: block; white-space: nowrap; }
+</style>
+<!-- /NAV-STYLE:SHARED -->
+</head>
 <body><div class="scanlines"></div>
 <div class="header-wrap"><header><div class="container"><a href="#top" class="brand"><div class="seal">GEIPAN</div><div class="brand-text"><span class="super">Groupe d'Études · Phénomènes Aérospatiaux</span><span class="name">GEIPAN · CNES</span></div></a><button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>        <nav class="primary" id="primary-nav" aria-label="Main navigation">
       <ul>
@@ -729,4 +745,29 @@ body { background-image: radial-gradient(ellipse at 20% 0%, rgba(0,85,164,0.08) 
   }
   render();
 })();
-</script></body></html>
+</script><!-- NAV-SCRIPT:SHARED -->
+<script id="nav-script-shared">
+/* Canonical nav-dropdown wiring — bridges native <details> to legacy
+   `.has-dropdown.open` class, closes peer dropdowns, outside-click + ESC.
+   Injected by scripts/sync-nav.py. */
+(function(){
+  var ds = Array.prototype.slice.call(document.querySelectorAll('.has-dropdown > details'));
+  function sync(d){ if (d && d.parentElement) d.parentElement.classList.toggle('open', !!d.open); }
+  ds.forEach(function(d){
+    sync(d);
+    d.addEventListener('toggle', function(){
+      sync(d);
+      if (d.open) ds.forEach(function(o){ if (o !== d) o.open = false; });
+    });
+  });
+  document.addEventListener('click', function(e){
+    if (e.target.closest && e.target.closest('.has-dropdown')) return;
+    ds.forEach(function(d){ d.open = false; });
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') ds.forEach(function(d){ d.open = false; });
+  });
+})();
+</script>
+<!-- /NAV-SCRIPT:SHARED -->
+</body></html>

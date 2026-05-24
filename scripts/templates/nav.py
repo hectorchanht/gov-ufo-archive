@@ -102,6 +102,56 @@ STORIES = [
 ]
 
 
+# ── Canonical nav CSS / JS blocks (single source of truth) ──────────────────
+#
+# These are injected by sync-nav.py into every page between the markers
+#   <!-- NAV-STYLE: SYNCED -->…<!-- /NAV-STYLE -->
+#   <!-- NAV-SCRIPT: SYNCED -->…<!-- /NAV-SCRIPT -->
+# The CSS is written defensively (high specificity + !important on the
+# show/hide rule) so it survives whatever per-page nav styles already exist.
+# The JS bridges native <details>/<summary> to the legacy `.has-dropdown.open`
+# class, peer-closes, outside-click-closes, and ESC-closes — uniformly.
+
+NAV_STYLE = '''<style id="nav-style-shared">
+/* Canonical dropdown styling — overrides any per-page nav.primary ul flex
+   inheritance and survives both legacy `.has-dropdown.open` and native
+   <details open> open-states. Injected by scripts/sync-nav.py. */
+.has-dropdown > details > summary { list-style: none; cursor: pointer; }
+.has-dropdown > details > summary::-webkit-details-marker { display: none; }
+.has-dropdown > details > summary::marker { content: ''; }
+.has-dropdown > details > .nav-dropdown,
+.has-dropdown .nav-dropdown { display: none; flex-direction: column; }
+.has-dropdown details[open] > .nav-dropdown,
+.has-dropdown.open .nav-dropdown { display: block !important; }
+.has-dropdown .nav-dropdown li { display: block; width: 100%; list-style: none; }
+.has-dropdown .nav-dropdown a { display: block; white-space: nowrap; }
+</style>'''
+
+NAV_SCRIPT = '''<script id="nav-script-shared">
+/* Canonical nav-dropdown wiring — bridges native <details> to legacy
+   `.has-dropdown.open` class, closes peer dropdowns, outside-click + ESC.
+   Injected by scripts/sync-nav.py. */
+(function(){
+  var ds = Array.prototype.slice.call(document.querySelectorAll('.has-dropdown > details'));
+  function sync(d){ if (d && d.parentElement) d.parentElement.classList.toggle('open', !!d.open); }
+  ds.forEach(function(d){
+    sync(d);
+    d.addEventListener('toggle', function(){
+      sync(d);
+      if (d.open) ds.forEach(function(o){ if (o !== d) o.open = false; });
+    });
+  });
+  document.addEventListener('click', function(e){
+    if (e.target.closest && e.target.closest('.has-dropdown')) return;
+    ds.forEach(function(d){ d.open = false; });
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') ds.forEach(function(d){ d.open = false; });
+  });
+})();
+</script>'''
+
+
 # ── Builder ──────────────────────────────────────────────────────────────────
 
 def _href(slug, depth):

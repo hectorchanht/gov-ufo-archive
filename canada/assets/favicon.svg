@@ -1,13 +1,34 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <defs>
-    <radialGradient id="g" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#ff0000"/>
-      <stop offset="60%" stop-color="#990000"/>
-      <stop offset="100%" stop-color="#330000"/>
-    </radialGradient>
-  </defs>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="realufo.org — classic-disk UFO">
+  <!-- Dark space backdrop -->
   <rect width="64" height="64" fill="#0a0a0c"/>
-  <circle cx="32" cy="32" r="26" fill="url(#g)" stroke="#e8e3d8" stroke-width="2"/>
-  <circle cx="32" cy="32" r="20" fill="none" stroke="#e8e3d8" stroke-width="1" stroke-dasharray="2 2" opacity="0.5"/>
-  <text x="32" y="37" font-family="ui-monospace,Consolas,monospace" font-size="10" font-weight="700" text-anchor="middle" fill="#e8e3d8" letter-spacing="-0.3">CA</text>
+  <!-- Faint star field -->
+  <circle cx="8"  cy="12" r="0.6" fill="#e8e3d8" opacity="0.55"/>
+  <circle cx="56" cy="10" r="0.5" fill="#e8e3d8" opacity="0.45"/>
+  <circle cx="50" cy="22" r="0.4" fill="#e8e3d8" opacity="0.4"/>
+  <circle cx="14" cy="48" r="0.5" fill="#e8e3d8" opacity="0.4"/>
+  <circle cx="54" cy="54" r="0.5" fill="#e8e3d8" opacity="0.45"/>
+  <!-- Saucer shadow on ground plane -->
+  <ellipse cx="32" cy="50" rx="20" ry="2.2" fill="#000" opacity="0.5"/>
+  <!-- Lower disk under-belly -->
+  <path d="M 8 36 Q 32 48 56 36 Q 32 41 8 36 Z" fill="#1a1a20"/>
+  <!-- Saucer rim (main disk) -->
+  <ellipse cx="32" cy="36" rx="26" ry="6" fill="#cdc8bd"/>
+  <!-- Disk highlight -->
+  <ellipse cx="32" cy="34.4" rx="22" ry="2" fill="#fdfaf2" opacity="0.6"/>
+  <!-- Disk underline shadow -->
+  <ellipse cx="32" cy="38.2" rx="20" ry="1.4" fill="#0a0a0c" opacity="0.55"/>
+  <!-- Top dome -->
+  <path d="M 19 36 A 13 12 0 0 1 45 36 Z" fill="#e8e3d8"/>
+  <!-- Dome highlight (light source top-left) -->
+  <path d="M 22 35.5 A 10 9 0 0 1 33 28.5" stroke="#fdfaf2" stroke-width="1.4" fill="none" stroke-linecap="round" opacity="0.85"/>
+  <!-- Window slits on dome -->
+  <rect x="26.5" y="29"   width="2.4" height="4"   rx="0.5" fill="#0a0a0c"/>
+  <rect x="30.8" y="28.4" width="2.4" height="4.5" rx="0.5" fill="#0a0a0c"/>
+  <rect x="35.1" y="29"   width="2.4" height="4"   rx="0.5" fill="#0a0a0c"/>
+  <!-- Landing-light glow (gold accent) -->
+  <circle cx="32" cy="40" r="2.4" fill="#d4a017" opacity="0.9"/>
+  <circle cx="32" cy="40" r="4.2" fill="#d4a017" opacity="0.25"/>
+  <circle cx="32" cy="40" r="6.5" fill="#d4a017" opacity="0.1"/>
+  <!-- Faint tractor beam -->
+  <path d="M 28 42 L 24 60 L 40 60 L 36 42 Z" fill="#d4a017" opacity="0.07"/>
 </svg>

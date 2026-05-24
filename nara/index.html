@@ -200,6 +200,22 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
 @media (max-width: 719px) { .nav-more-btn { padding: 11px 0; } .nav-dropdown { position: static; right: auto; top: auto; min-width: 0; width: 100%; } .has-dropdown.open .nav-dropdown { margin-left: 12px; border: 0; background: transparent; box-shadow: none; padding: 0; } .lang-btn { border: 0; margin: 0; padding: 11px 0; font-size: 11px; border-bottom: 1px solid var(--rule); } .lang-picker.open .lang-menu { margin-left: 12px; border: 0; background: transparent; } }
 @media (min-width: 720px) { .nav-more-btn { padding: 0; border: 0; font-size: 10.5px; } .nav-dropdown { position: absolute; right: 0; top: calc(100% + 10px); min-width: 240px; max-height: 70vh; overflow-y: auto;; } .has-dropdown.open .nav-dropdown { display: block; } .lang-btn { width: auto; margin: 0; padding: 3px 8px; } .lang-menu { position: absolute; right: 0; top: calc(100% + 10px); min-width: 130px; } }
 </style>
+<!-- NAV-STYLE:SHARED -->
+<style id="nav-style-shared">
+/* Canonical dropdown styling — overrides any per-page nav.primary ul flex
+   inheritance and survives both legacy `.has-dropdown.open` and native
+   <details open> open-states. Injected by scripts/sync-nav.py. */
+.has-dropdown > details > summary { list-style: none; cursor: pointer; }
+.has-dropdown > details > summary::-webkit-details-marker { display: none; }
+.has-dropdown > details > summary::marker { content: ''; }
+.has-dropdown > details > .nav-dropdown,
+.has-dropdown .nav-dropdown { display: none; flex-direction: column; }
+.has-dropdown details[open] > .nav-dropdown,
+.has-dropdown.open .nav-dropdown { display: block !important; }
+.has-dropdown .nav-dropdown li { display: block; width: 100%; list-style: none; }
+.has-dropdown .nav-dropdown a { display: block; white-space: nowrap; }
+</style>
+<!-- /NAV-STYLE:SHARED -->
 </head>
 <body>
 <div class="scanlines"></div>
@@ -550,5 +566,30 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
     getList: function(){ return list; }
   };
 })();</script>
+<!-- NAV-SCRIPT:SHARED -->
+<script id="nav-script-shared">
+/* Canonical nav-dropdown wiring — bridges native <details> to legacy
+   `.has-dropdown.open` class, closes peer dropdowns, outside-click + ESC.
+   Injected by scripts/sync-nav.py. */
+(function(){
+  var ds = Array.prototype.slice.call(document.querySelectorAll('.has-dropdown > details'));
+  function sync(d){ if (d && d.parentElement) d.parentElement.classList.toggle('open', !!d.open); }
+  ds.forEach(function(d){
+    sync(d);
+    d.addEventListener('toggle', function(){
+      sync(d);
+      if (d.open) ds.forEach(function(o){ if (o !== d) o.open = false; });
+    });
+  });
+  document.addEventListener('click', function(e){
+    if (e.target.closest && e.target.closest('.has-dropdown')) return;
+    ds.forEach(function(d){ d.open = false; });
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') ds.forEach(function(d){ d.open = false; });
+  });
+})();
+</script>
+<!-- /NAV-SCRIPT:SHARED -->
 </body>
 </html>

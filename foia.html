@@ -83,6 +83,22 @@ footer{border-top:1px solid var(--rule);margin-top:40px;padding:28px 16px;text-a
 footer p{font-family:var(--mono);font-size:10px;color:var(--ink-faint);letter-spacing:0.08em;line-height:1.8}
 footer a{color:var(--ink-dim);text-decoration:underline;text-decoration-color:var(--rule-strong);text-underline-offset:2px}
 </style>
+<!-- NAV-STYLE:SHARED -->
+<style id="nav-style-shared">
+/* Canonical dropdown styling — overrides any per-page nav.primary ul flex
+   inheritance and survives both legacy `.has-dropdown.open` and native
+   <details open> open-states. Injected by scripts/sync-nav.py. */
+.has-dropdown > details > summary { list-style: none; cursor: pointer; }
+.has-dropdown > details > summary::-webkit-details-marker { display: none; }
+.has-dropdown > details > summary::marker { content: ''; }
+.has-dropdown > details > .nav-dropdown,
+.has-dropdown .nav-dropdown { display: none; flex-direction: column; }
+.has-dropdown details[open] > .nav-dropdown,
+.has-dropdown.open .nav-dropdown { display: block !important; }
+.has-dropdown .nav-dropdown li { display: block; width: 100%; list-style: none; }
+.has-dropdown .nav-dropdown a { display: block; white-space: nowrap; }
+</style>
+<!-- /NAV-STYLE:SHARED -->
 </head>
 <body>
 <div class="scanlines" aria-hidden="true"></div>
@@ -373,5 +389,30 @@ Atenciosamente,
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o?'true':'false');});}
 })();
 </script>
+<!-- NAV-SCRIPT:SHARED -->
+<script id="nav-script-shared">
+/* Canonical nav-dropdown wiring — bridges native <details> to legacy
+   `.has-dropdown.open` class, closes peer dropdowns, outside-click + ESC.
+   Injected by scripts/sync-nav.py. */
+(function(){
+  var ds = Array.prototype.slice.call(document.querySelectorAll('.has-dropdown > details'));
+  function sync(d){ if (d && d.parentElement) d.parentElement.classList.toggle('open', !!d.open); }
+  ds.forEach(function(d){
+    sync(d);
+    d.addEventListener('toggle', function(){
+      sync(d);
+      if (d.open) ds.forEach(function(o){ if (o !== d) o.open = false; });
+    });
+  });
+  document.addEventListener('click', function(e){
+    if (e.target.closest && e.target.closest('.has-dropdown')) return;
+    ds.forEach(function(d){ d.open = false; });
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') ds.forEach(function(d){ d.open = false; });
+  });
+})();
+</script>
+<!-- /NAV-SCRIPT:SHARED -->
 </body>
 </html>

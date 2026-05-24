@@ -22,6 +22,7 @@ _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
 
 from templates.nav import (  # noqa: E402,F401
     PINNED, SITE_PAGES, MORE, STORIES, _href, make_nav,
+    NAV_STYLE, NAV_SCRIPT,
 )
 from templates.footer import (  # noqa: E402,F401
     make_footer, make_footer_sources,

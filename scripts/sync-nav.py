@@ -34,6 +34,7 @@ REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from _site_template import make_nav, STORIES, SITE_PAGES, MORE
+from templates.nav import NAV_STYLE, NAV_SCRIPT
 
 
 def page_meta(path: str) -> tuple[str, int]:
@@ -74,6 +75,20 @@ NAV_RE = re.compile(
     re.M,
 )
 
+# Canonical shared style/script — re-injected on every sync. The wrapper
+# markers let sync-nav.py find and replace its own previous injection
+# without disturbing any other page content.
+NAV_STYLE_MARK = '<!-- NAV-STYLE:SHARED -->'
+NAV_STYLE_END  = '<!-- /NAV-STYLE:SHARED -->'
+NAV_SCRIPT_MARK = '<!-- NAV-SCRIPT:SHARED -->'
+NAV_SCRIPT_END  = '<!-- /NAV-SCRIPT:SHARED -->'
+
+NAV_STYLE_RE  = re.compile(re.escape(NAV_STYLE_MARK)  + r'[\s\S]*?' + re.escape(NAV_STYLE_END))
+NAV_SCRIPT_RE = re.compile(re.escape(NAV_SCRIPT_MARK) + r'[\s\S]*?' + re.escape(NAV_SCRIPT_END))
+
+NAV_STYLE_BLOCK  = f'{NAV_STYLE_MARK}\n{NAV_STYLE}\n{NAV_STYLE_END}'
+NAV_SCRIPT_BLOCK = f'{NAV_SCRIPT_MARK}\n{NAV_SCRIPT}\n{NAV_SCRIPT_END}'
+
 # Pages to skip entirely
 SKIP = {'README.md', 'CLAUDE.md'}
 SKIP_DIRS = {'.git', '.cache', 'node_modules', 'bundles', 'slideshow',
@@ -94,6 +109,42 @@ def collect_html_files() -> list[str]:
     return sorted(out)
 
 
+def _ensure_shared_assets(src: str) -> tuple[str, bool]:
+    """Inject (or refresh) the canonical nav <style> + <script> blocks.
+
+    Returns (new_src, changed).
+    """
+    changed = False
+
+    # ── STYLE block ──────────────────────────────────────────────────────
+    if NAV_STYLE_RE.search(src):
+        new_src = NAV_STYLE_RE.sub(NAV_STYLE_BLOCK, src, count=1)
+    else:
+        # Inject right before </head>
+        if '</head>' in src:
+            new_src = src.replace('</head>', NAV_STYLE_BLOCK + '\n</head>', 1)
+        else:
+            new_src = src + '\n' + NAV_STYLE_BLOCK + '\n'
+    if new_src != src:
+        changed = True
+        src = new_src
+
+    # ── SCRIPT block ─────────────────────────────────────────────────────
+    if NAV_SCRIPT_RE.search(src):
+        new_src = NAV_SCRIPT_RE.sub(NAV_SCRIPT_BLOCK, src, count=1)
+    else:
+        # Inject right before </body>
+        if '</body>' in src:
+            new_src = src.replace('</body>', NAV_SCRIPT_BLOCK + '\n</body>', 1)
+        else:
+            new_src = src + '\n' + NAV_SCRIPT_BLOCK + '\n'
+    if new_src != src:
+        changed = True
+        src = new_src
+
+    return src, changed
+
+
 def sync(check: bool = False) -> int:
     drift = []
     updated = []
@@ -104,18 +155,22 @@ def sync(check: bool = False) -> int:
         if not NAV_RE.search(src):
             skipped.append(path)
             continue
+        original = src
         slug, depth = page_meta(path)
         new_nav = make_nav(slug, depth).rstrip()
-        # Compare against existing
+        # Replace <nav> if needed
         existing = NAV_RE.search(src).group(0)
-        if existing.strip() == new_nav.strip():
+        if existing.strip() != new_nav.strip():
+            src = NAV_RE.sub(new_nav, src, count=1)
+        # Re-inject canonical shared style + script
+        src, _ = _ensure_shared_assets(src)
+        if src == original:
             continue   # no drift
         if check:
             drift.append(path)
             continue
-        new_src = NAV_RE.sub(new_nav, src, count=1)
         with open(path, 'w', encoding='utf-8') as f:
-            f.write(new_src)
+            f.write(src)
         updated.append(path)
 
     if check:

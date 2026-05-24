@@ -145,6 +145,22 @@ footer a{color:var(--ink-dim)}
 .cite-hint{font-family:var(--mono);font-size:10px;letter-spacing:0.06em;color:var(--ink-faint);line-height:1.5}
 @media print{.scanlines,.header-wrap,footer,.back-link,#share-mount,.cite-box{display:none}body{background:#fff;color:#000;font-size:11pt}a{color:#000;text-decoration:underline}a[href^="http"]::after{content:" <" attr(href) ">";font-size:9pt;color:#444}.pullquote{border-color:#000;background:#f0f0f0;color:#000}section{break-inside:avoid;border:0}h1,h2,h3{color:#000}}
 </style>
+<!-- NAV-STYLE:SHARED -->
+<style id="nav-style-shared">
+/* Canonical dropdown styling — overrides any per-page nav.primary ul flex
+   inheritance and survives both legacy `.has-dropdown.open` and native
+   <details open> open-states. Injected by scripts/sync-nav.py. */
+.has-dropdown > details > summary { list-style: none; cursor: pointer; }
+.has-dropdown > details > summary::-webkit-details-marker { display: none; }
+.has-dropdown > details > summary::marker { content: ''; }
+.has-dropdown > details > .nav-dropdown,
+.has-dropdown .nav-dropdown { display: none; flex-direction: column; }
+.has-dropdown details[open] > .nav-dropdown,
+.has-dropdown.open .nav-dropdown { display: block !important; }
+.has-dropdown .nav-dropdown li { display: block; width: 100%; list-style: none; }
+.has-dropdown .nav-dropdown a { display: block; white-space: nowrap; }
+</style>
+<!-- /NAV-STYLE:SHARED -->
 </head>
 <body>
 <div class="scanlines" aria-hidden="true"></div>
@@ -300,5 +316,30 @@ footer a{color:var(--ink-dim)}
 <script defer src="/assets/vendor/related-media.js"></script>
 <script defer src="/assets/vendor/citation.js"></script>
 <script defer src="/assets/vendor/share.js"></script>
+<!-- NAV-SCRIPT:SHARED -->
+<script id="nav-script-shared">
+/* Canonical nav-dropdown wiring — bridges native <details> to legacy
+   `.has-dropdown.open` class, closes peer dropdowns, outside-click + ESC.
+   Injected by scripts/sync-nav.py. */
+(function(){
+  var ds = Array.prototype.slice.call(document.querySelectorAll('.has-dropdown > details'));
+  function sync(d){ if (d && d.parentElement) d.parentElement.classList.toggle('open', !!d.open); }
+  ds.forEach(function(d){
+    sync(d);
+    d.addEventListener('toggle', function(){
+      sync(d);
+      if (d.open) ds.forEach(function(o){ if (o !== d) o.open = false; });
+    });
+  });
+  document.addEventListener('click', function(e){
+    if (e.target.closest && e.target.closest('.has-dropdown')) return;
+    ds.forEach(function(d){ d.open = false; });
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') ds.forEach(function(d){ d.open = false; });
+  });
+})();
+</script>
+<!-- /NAV-SCRIPT:SHARED -->
 </body>
 </html>
