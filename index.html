@@ -1662,6 +1662,7 @@ li.nav-sep { display: none; }
     const agency        = g('agency','ag');
     const date          = g('date','dt','incidentDate','incident_date');
     const releaseDate   = g('releaseDate','release_date');
+    const release       = g('release');
     const location      = g('location','lo','region','re','incidentLocation','incident_location');
     const type          = g('type','t','category','ca');
     const classification = g('classification','cl','status');
@@ -1676,13 +1677,32 @@ li.nav-sep { display: none; }
     const url           = g('url','u','downloadUrl');
     const local         = g('local','l');
     const redacted = a && (a.redacted === true || a.r === true || String(a.redaction||'').toUpperCase() === 'TRUE');
+
+    // Derive filename + extension from the most-resolvable URL.
+    const ref = (local && (String(local).startsWith('http') ? local : './' + local)) || url || src || '';
+    const base = ref ? decodeURIComponent(String(ref).split('?')[0].split('#')[0].split('/').pop() || '') : '';
+    const ext  = base.includes('.') ? base.slice(base.lastIndexOf('.')) : '';
+    const stem = ext ? base.slice(0, -ext.length) : base;
+    // Pretty "Release 01 / 02" labels keyed off the date.
+    const RELEASE_BY_DATE = { '5/8/26': 'Release 01', '5/22/26': 'Release 02' };
+    const releaseLabel = releaseDate
+      ? (RELEASE_BY_DATE[releaseDate] ? `${releaseDate} — ${RELEASE_BY_DATE[releaseDate]}` : releaseDate)
+      : (release ? `Release ${release}` : '');
+    // Pretty document type — actual file extension wins over CSV Type.
+    const docType = ext ? ext.toLowerCase()
+      : (type === 'PDF' ? '.pdf'
+       : type === 'VID' || type === 'VID-FILE' ? '.mp4'
+       : type === 'AUD' ? '.mp3'
+       : type === 'IMG' || type === 'SLIDE' ? '.jpg' : type);
+
     const rows = [];
     const add = (k, v) => { if (v) rows.push(`<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`); };
+    if (stem) add('Asset File Name', stem);
+    if (releaseLabel) add('Release', releaseLabel);
     add('Agency', agency);
-    add('Type', type);
-    add('Date', date);
-    if (releaseDate && releaseDate !== date) add('Released', releaseDate);
-    add('Location', location);
+    add('Incident Date', date || 'N/A');
+    add('Incident Location', location || 'N/A');
+    add('Document Type', docType);
     add('Classification', classification);
     add('VIRIN', virin);
     if (dvidsId) rows.push(`<div><dt>DVIDS</dt><dd><a href="https://www.dvidshub.net/video/${encodeURIComponent(dvidsId)}" target="_blank" rel="noopener">${esc(dvidsId)} ↗</a></dd></div>`);
@@ -1690,15 +1710,16 @@ li.nav-sep { display: none; }
     add('Video pairing', vidPair);
     add('PDF pairing', pdfPair);
     add('Alt text', alt);
+
     let html = '<div class="lb-meta">';
     if (title) html += `<div class="lbm-title">${esc(title)}${redacted ? ' <span class="lbm-red">REDACTED</span>' : ''}</div>`;
-    if (rows.length) html += `<dl class="lbm-fields">${rows.join('')}</dl>`;
     if (desc) html += `<div class="lbm-desc">${esc(desc)}</div>`;
     const links = [];
-    if (src) links.push(`<a href="${esc(src)}" target="_blank" rel="noopener">Source ↗</a>`);
     const openUrl = url || (local && (String(local).startsWith('http') ? local : './' + local));
-    if (openUrl && openUrl !== src) links.push(`<a href="${esc(openUrl)}" target="_blank" rel="noopener">Open ↗</a>`);
+    if (openUrl) links.push(`<a href="${esc(openUrl)}" target="_blank" rel="noopener" download>Download</a>`);
+    if (src && src !== openUrl) links.push(`<a href="${esc(src)}" target="_blank" rel="noopener">Source ↗</a>`);
     if (links.length) html += `<div class="lbm-links">${links.join(' · ')}</div>`;
+    if (rows.length) html += `<dl class="lbm-fields">${rows.join('')}</dl>`;
     html += '</div>';
     return html;
   }
@@ -1829,6 +1850,22 @@ li.nav-sep { display: none; }
       local: r.local || '',
     });
   }
+  // Index CSV rows by basename so loose bundle videos + slideshow images
+  // inherit the same rich metadata (Agency, Description, Incident Date,
+  // Location, VIRIN, classification, pairings, redaction flag) as their
+  // catalog row, instead of the generic "Department of War / DVIDS" stub.
+  function basenameLower(u) {
+    if (!u) return '';
+    return decodeURIComponent(String(u).split('?')[0].split('#')[0].split('/').pop() || '').toLowerCase();
+  }
+  const rowByFile = {};
+  for (const r of rows) {
+    [r['PDF | Image Link'], r['Modal Image']].forEach(u => {
+      const b = basenameLower(u);
+      if (b && !rowByFile[b]) rowByFile[b] = r;
+    });
+  }
+
   for (const f of videoFiles) {
     const tracked = trackedVideos.has(f);
     const isR02 = videoFilesR02.has(f);
@@ -1837,28 +1874,50 @@ li.nav-sep { display: none; }
     const srcZip      = isR02
       ? 'https://d34w7g4gy10iej.cloudfront.net/uap052226.zip'
       : 'https://cdn.dvidshub.net/press/uapvideos.zip';
-    // No filler description — the title + DOD ID are the context.
+    const row = rowByFile[f.toLowerCase()] || null;
     assets.push({
       type: 'VID-FILE',
-      title: f.replace(/\.mp4$/i,''),
-      desc: '',
+      title: (row && row.Title) || f.replace(/\.mp4$/i,''),
+      desc: (row && row['Description Blurb']) || '',
       release: isR02 ? '02' : '01',
+      releaseDate: row ? row['Release Date'] : (isR02 ? '5/22/26' : '5/8/26'),
+      agency: (row && row.Agency) || 'Department of War',
+      date: row ? row['Incident Date'] : '',
+      location: row ? row['Incident Location'] : '',
+      videoTitle: row ? row['Video Title'] : '',
+      vidPairing: row ? row['Video Pairing'] : '',
+      pdfPairing: row ? row['PDF Pairing'] : '',
+      virin: row ? row['Image VIRIN'] : '',
+      dvidsId: row ? row['DVIDS Video ID'] : '',
+      alt: row ? row['Image Alt Text'] : '',
+      redacted: row ? (row.Redaction||'').toUpperCase() === 'TRUE' : false,
       local: tracked ? localDir + f : '',
       url: releaseBase + f,
-      src: srcZip,
-      agency: 'Department of War / DVIDS',
+      src: row && row['PDF | Image Link'] ? row['PDF | Image Link'] : srcZip,
+      thumb: row ? row['Modal Image'] : '',
     });
   }
   for (const f of slideshow) {
     const isR02 = slideshowR02.has(f);
+    const row = rowByFile[f.toLowerCase()] || null;
     assets.push({
-      type:'SLIDE', title: f, desc: '',
+      type:'SLIDE',
+      title: (row && row.Title) || f,
+      desc: (row && row['Description Blurb']) || '',
       release: isR02 ? '02' : '01',
+      releaseDate: row ? row['Release Date'] : (isR02 ? '5/22/26' : '5/8/26'),
+      agency: (row && row.Agency) || 'War.gov highlight',
+      date: row ? row['Incident Date'] : '',
+      location: row ? row['Incident Location'] : '',
+      virin: row ? row['Image VIRIN'] : '',
+      dvidsId: row ? row['DVIDS Video ID'] : '',
+      alt: row ? row['Image Alt Text'] : '',
+      redacted: row ? (row.Redaction||'').toUpperCase() === 'TRUE' : false,
       local: (isR02 ? 'slideshow-2/' : 'slideshow/') + f,
+      url: row && row['PDF | Image Link'] ? row['PDF | Image Link'] : '',
       src: 'https://www.war.gov/portals/1/Interactive/2026/UFO/'
            + (isR02 ? 'Slideshow-2/' : 'Slideshow/')
            + encodeURIComponent(f),
-      agency: 'War.gov highlight',
     });
   }
 

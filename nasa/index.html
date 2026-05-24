@@ -647,6 +647,7 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
     var agency = g('agency','ag');
     var date = g('date','dt','incidentDate','incident_date');
     var releaseDate = g('releaseDate','release_date');
+    var release = g('release');
     var location = g('location','lo','region','re','incidentLocation','incident_location');
     var type = g('type','t','category','ca');
     var classification = g('classification','cl','status');
@@ -661,13 +662,30 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
     var url = g('url','u','downloadUrl');
     var local = g('local','l');
     var redacted = a && (a.redacted === true || a.r === true || String(a.redaction||'').toUpperCase() === 'TRUE');
+
+    var ref = (local && (String(local).indexOf('http') === 0 ? local : './' + local)) || url || src || '';
+    var base = ref ? decodeURIComponent(String(ref).split('?')[0].split('#')[0].split('/').pop() || '') : '';
+    var dot = base.lastIndexOf('.');
+    var ext = dot > 0 ? base.slice(dot) : '';
+    var stem = ext ? base.slice(0, -ext.length) : base;
+    var RELEASE_BY_DATE = { '5/8/26': 'Release 01', '5/22/26': 'Release 02' };
+    var releaseLabel = releaseDate
+      ? (RELEASE_BY_DATE[releaseDate] ? releaseDate + ' — ' + RELEASE_BY_DATE[releaseDate] : releaseDate)
+      : (release ? 'Release ' + release : '');
+    var docType = ext ? ext.toLowerCase()
+      : (type === 'PDF' ? '.pdf'
+       : (type === 'VID' || type === 'VID-FILE' ? '.mp4'
+       : (type === 'AUD' ? '.mp3'
+       : ((type === 'IMG' || type === 'SLIDE') ? '.jpg' : type))));
+
     var rows = [];
     function add(k,v){ if (v) rows.push('<div><dt>'+esc(k)+'</dt><dd>'+esc(v)+'</dd></div>'); }
+    if (stem) add('Asset File Name', stem);
+    if (releaseLabel) add('Release', releaseLabel);
     add('Agency', agency);
-    add('Type', type);
-    add('Date', date);
-    if (releaseDate && releaseDate !== date) add('Released', releaseDate);
-    add('Location', location);
+    add('Incident Date', date || 'N/A');
+    add('Incident Location', location || 'N/A');
+    add('Document Type', docType);
     add('Classification', classification);
     add('VIRIN', virin);
     if (dvidsId) rows.push('<div><dt>DVIDS</dt><dd><a href="https://www.dvidshub.net/video/' + encodeURIComponent(dvidsId) + '" target="_blank" rel="noopener">' + esc(dvidsId) + ' &#8599;</a></dd></div>');
@@ -675,15 +693,16 @@ footer .colophon { grid-column: 1 / -1; border-top: 1px solid var(--rule); paddi
     add('Video pairing', vidPair);
     add('PDF pairing', pdfPair);
     add('Alt text', alt);
+
     var html = '<div class="lb-meta">';
     if (title) html += '<div class="lbm-title">' + esc(title) + (redacted ? ' <span class="lbm-red">REDACTED</span>' : '') + '</div>';
-    if (rows.length) html += '<dl class="lbm-fields">' + rows.join('') + '</dl>';
     if (desc) html += '<div class="lbm-desc">' + esc(desc) + '</div>';
     var links = [];
-    if (src) links.push('<a href="' + esc(src) + '" target="_blank" rel="noopener">Source &#8599;</a>');
-    var openUrl = url || (local && (String(local).startsWith('http') ? local : './' + local));
-    if (openUrl && openUrl !== src) links.push('<a href="' + esc(openUrl) + '" target="_blank" rel="noopener">Open &#8599;</a>');
+    var openUrl = url || (local && (String(local).indexOf('http') === 0 ? local : './' + local));
+    if (openUrl) links.push('<a href="' + esc(openUrl) + '" target="_blank" rel="noopener" download>Download</a>');
+    if (src && src !== openUrl) links.push('<a href="' + esc(src) + '" target="_blank" rel="noopener">Source &#8599;</a>');
     if (links.length) html += '<div class="lbm-links">' + links.join(' &middot; ') + '</div>';
+    if (rows.length) html += '<dl class="lbm-fields">' + rows.join('') + '</dl>';
     html += '</div>';
     return html;
   }
