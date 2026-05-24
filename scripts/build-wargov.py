@@ -142,9 +142,10 @@ _rel_vids = _rel_man.get('videos', {})
 
 for r in rows:
     url = r.get('PDF | Image Link', '')
-    # Catalog VID rows (PR050, PR051, …) ship only a DVIDS Video ID; resolve
-    # it to the release URL of the DOD_*.mp4 so the card has a playable link.
-    if not url and r.get('Type', '').strip() == 'VID':
+    # Catalog VID + AUD rows (PR050, PR051, NASA-UAP-D008, …) ship only a
+    # DVIDS Video ID; resolve it to the release URL of the DOD_*.mp4 so the
+    # card has a playable link. AUD is audio-served-as-mp4 in this bundle.
+    if not url and r.get('Type', '').strip() in ('VID', 'AUD'):
         d = (r.get('DVIDS Video ID') or '').strip()
         dod = DVIDS_TO_DOD.get(d)
         if dod:

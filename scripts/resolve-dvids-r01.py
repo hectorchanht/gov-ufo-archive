@@ -52,11 +52,13 @@ def main() -> int:
     if os.path.exists(OUT_PATH):
         existing = json.load(open(OUT_PATH))
 
-    # Gather R01 DVIDS IDs from CSV where PDF|Image Link is empty.
+    # Gather R01 DVIDS IDs from CSV where PDF|Image Link is empty. Include
+    # AUD (audio-served-as-mp4) rows too — NASA Mercury/Gemini/Apollo audio
+    # excerpts share the same DVIDS → DOD mapping pattern.
     needed: list[str] = []
     with open(CSV_PATH, encoding='utf-8-sig') as f:
         for r in csv.DictReader(f):
-            if (r.get('Type') or '').strip() != 'VID':
+            if (r.get('Type') or '').strip() not in ('VID', 'AUD'):
                 continue
             if (r.get('Release Date') or '').strip() != '5/8/26':
                 continue
