@@ -35,6 +35,12 @@ local_pdfs = set(os.listdir(os.path.join(ROOT,'pdfs'))) if os.path.isdir(os.path
 local_imgs = set(os.listdir(os.path.join(ROOT,'assets/images'))) if os.path.isdir(os.path.join(ROOT,'assets/images')) else set()
 local_vids = set(os.listdir(os.path.join(ROOT,'videos'))) if os.path.isdir(os.path.join(ROOT,'videos')) else set()
 
+# PDFs live in the pdfs-v1 GitHub Release (gitignored from the tree).
+# On deployed GitHub Pages the relative ./pdfs/<bn>.pdf path 404s, so we
+# emit the release URL instead. Local dev still resolves because GitHub
+# auto-redirects from the old repo name + the file exists on disk.
+PDFS_RELEASE_BASE = 'https://github.com/hectorchanht/gov-ufo-archive/releases/download/pdfs-v1/'
+
 def basename(url):
     return urllib.parse.unquote(url.rsplit('/',1)[-1].split('?')[0])
 def local_for(url, kind):
@@ -42,6 +48,10 @@ def local_for(url, kind):
     if kind == 'pdf' and bn in local_pdfs: return 'pdfs/' + bn
     if kind == 'img' and bn in local_imgs: return 'assets/images/' + bn
     return ''
+def release_url_for_pdf(href):
+    """If a PDF is in the local pdfs/ dir, return its release URL. Else ''."""
+    bn = basename(href)
+    return PDFS_RELEASE_BASE + bn if bn in local_pdfs else ''
 
 def text_to_html(txt):
     if not txt: return ''
@@ -84,9 +94,9 @@ def render_links(links, max_n=60):
         if not href.startswith('http'):
             href = urllib.parse.urljoin('https://www.aaro.mil/', href)
         if href.startswith('https://www.aaro.mil/') and href.lower().endswith('.pdf'):
-            local = local_for(href,'pdf')
-            if local:
-                out.append(f'<li><a href="./{local}" target="_blank">{html.escape(label)} <span class="lk-meta">[PDF · local]</span></a></li>')
+            release = release_url_for_pdf(href)
+            if release:
+                out.append(f'<li><a href="{html.escape(release)}" target="_blank" rel="noopener">{html.escape(label)} <span class="lk-meta">[PDF · release]</span></a></li>')
             else:
                 out.append(f'<li><a href="{html.escape(href)}" target="_blank" rel="noopener">{html.escape(label)} <span class="lk-meta">[PDF · source]</span></a></li>')
         else:
