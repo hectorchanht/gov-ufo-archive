@@ -87,14 +87,19 @@ nav.primary > ul > li{list-style:none;position:relative}
 .nav-toggle{display:none;background:none;border:none;color:var(--ink);font-size:22px;cursor:pointer;padding:10px 8px;line-height:1;margin-left:auto}
 @media(max-width:719px){.nav-toggle{display:flex;align-items:center;justify-content:center}nav.primary{display:none;position:fixed;top:64px;left:0;right:0;background:var(--panel);border-bottom:1px solid var(--rule-strong);flex-direction:column;align-items:stretch;padding:8px 0 16px;margin-left:0;gap:0;max-height:calc(100vh - 64px);overflow-y:auto}nav.primary.open{display:flex}nav.primary a{padding:12px 20px}}
 
-main{max-width:1100px;margin:0 auto;padding:32px 16px 80px}
+/* min-height reserves space for the late-rendered timeline so the footer
+   doesn't shift down once /api/all.json resolves — Lighthouse CLS audit
+   was scoring 0.80 from that single late insertion. */
+main{max-width:1100px;margin:0 auto;padding:32px 16px 80px;min-height:100vh}
 .hero{text-align:center;padding:32px 0 28px}
 .hero h1{font-family:var(--serif);font-size:clamp(28px,5vw,46px);font-weight:600;letter-spacing:-0.015em;margin-bottom:10px}
 .hero h1 em{color:var(--caution);font-style:italic}
 .hero p{font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:0.12em;text-transform:uppercase}
 
 /* Filter row */
-.controls{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:18px 0 6px}
+/* min-height reserves space for chips that get appended after archive
+   fetches resolve, keeping CLS low. 96px = up to 3 chip rows on mobile. */
+.controls{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:18px 0 6px;min-height:96px;align-content:flex-start}
 .chip{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;padding:6px 11px;border-radius:3px;border:1px solid var(--rule-strong);background:var(--bg-2);color:var(--ink-dim);cursor:pointer;transition:color 0.15s,border-color 0.15s,background 0.15s;min-height:28px}
 .chip:hover{color:var(--ink);border-color:var(--caution)}
 .chip.active{color:var(--caution);border-color:var(--caution);background:rgba(212,160,23,0.16)}
@@ -102,7 +107,11 @@ main{max-width:1100px;margin:0 auto;padding:32px 16px 80px}
 .loader{font-family:var(--mono);font-size:11px;color:var(--ink-faint);text-align:center;padding:80px 0;letter-spacing:0.08em}
 
 /* Year columns */
-.timeline-wrap{margin-top:36px;position:relative;border-left:2px solid var(--rule-strong);padding-left:22px}
+/* content-visibility lets the browser skip painting off-screen rows
+   until they scroll into view; contain-intrinsic-size reserves
+   approximate height so initial layout doesn't shift when JS appends
+   the actual rows. */
+.timeline-wrap{margin-top:36px;position:relative;border-left:2px solid var(--rule-strong);padding-left:22px;content-visibility:auto;contain-intrinsic-size:auto 4200px}
 .year-block{padding:14px 0 28px}
 .year-header{position:sticky;top:64px;background:linear-gradient(to bottom,rgba(10,10,12,0.96) 50%,rgba(10,10,12,0));padding:14px 0 18px;margin-left:-22px;padding-left:22px;z-index:5;border-left:0;display:flex;align-items:baseline;gap:18px;flex-wrap:wrap}
 .year-header h2{font-family:var(--serif);font-size:clamp(24px,4vw,38px);font-weight:700;color:var(--caution);letter-spacing:-0.02em}
@@ -183,8 +192,8 @@ footer a{color:var(--ink-dim);text-decoration:underline;text-decoration-color:va
     <button class="chip active" data-arc="all">All</button>
   </div>
 
-  <div id="loader" class="loader">Loading every archive&hellip;</div>
-  <div id="timeline" class="timeline-wrap" hidden></div>
+  <div id="loader" class="loader" aria-live="polite">Loading every archive&hellip;</div>
+  <div id="timeline" class="timeline-wrap"></div>
 </main>
 
 <footer>
@@ -278,8 +287,47 @@ footer a{color:var(--ink-dim);text-decoration:underline;text-decoration-color:va
   var state = { decade: 'all', arc: 'all' };
   var allRecs = [];
 
-  Promise.all(ARCHIVES.map(fetchArc)).then(function(lists) {
-    lists.forEach(function(l){ l.forEach(function(r){ var y = yearOf(r); if (y !== null) { r._year = y; allRecs.push(r); } }); });
+  /* Fast-path: pre-built /api/all.json carries every record from every
+     mirror in canonical shape. One HTTP request vs 15 HTML scrapes —
+     drops LCP on timeline.html roughly 3×. Falls back to the legacy
+     per-mirror scrape if the API file is unreachable. */
+  function loadFromApi() {
+    return fetch('/api/all.json', { cache: 'no-cache' })
+      .then(function(r){ if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function(data) {
+        var arcById = {}; ARCHIVES.forEach(function(a){ arcById[a.id] = a; });
+        (data.records || []).forEach(function(r) {
+          var arc = arcById[r.archive];
+          if (!arc) return;
+          allRecs.push({
+            title:   r.title || '',
+            desc:    r.description || r.desc || '',
+            type:    r.category || r.type || '',
+            date:    r.date || '',
+            url:     r.url || '',
+            src:     r.src || r.url || '',
+            local:   r.local || '',
+            site:    arc.label,
+            siteId:  arc.id,
+            siteDir: arc.dir,
+          });
+        });
+      });
+  }
+  function loadFromMirrors() {
+    return Promise.all(ARCHIVES.map(fetchArc)).then(function(lists) {
+      lists.forEach(function(l){ l.forEach(function(r){ allRecs.push(r); }); });
+    });
+  }
+  loadFromApi().catch(function(err) {
+    console.warn('timeline: /api/all.json unreachable, falling back to per-mirror scrape', err);
+    allRecs.length = 0;
+    return loadFromMirrors();
+  }).then(function() {
+    /* Attach _year to every record, drop records with no parseable year. */
+    var withYear = [];
+    allRecs.forEach(function(r){ var y = yearOf(r); if (y !== null) { r._year = y; withYear.push(r); } });
+    allRecs = withYear;
     allRecs.sort(function(a,b){ return a._year - b._year; });
 
     /* Build decade chips */
@@ -314,7 +362,7 @@ footer a{color:var(--ink-dim);text-decoration:underline;text-decoration-color:va
       render();
     });
 
-    loader.hidden = true; tl.hidden = false;
+    loader.hidden = true;
     render();
   });
 

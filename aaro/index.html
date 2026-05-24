@@ -188,12 +188,19 @@ h1.hero-title em { color: var(--caution); font-style: italic; }
   position: absolute; bottom: 64px; left: 50%; transform: translateX(-50%);
   display: flex; gap: 6px; z-index: 3;
 }
+/* Button click region is 24×24 (WCAG 2.5.8); visible dot drawn via
+   ::before so the design stays compact. */
 .carousel-dots button {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: rgba(255,255,255,0.4); border: 0; cursor: pointer; padding: 0;
+  width: 24px; height: 24px; border: 0; background: transparent;
+  cursor: pointer; padding: 0; position: relative;
+}
+.carousel-dots button::before {
+  content: ""; position: absolute; top: 50%; left: 50%;
+  width: 8px; height: 8px; margin: -4px 0 0 -4px;
+  border-radius: 50%; background: rgba(255,255,255,0.4);
   transition: background .15s, transform .15s;
 }
-.carousel-dots button.active { background: var(--caution); transform: scale(1.4); }
+.carousel-dots button.active::before { background: var(--caution); transform: scale(1.4); }
 .carousel-caption {
   position: absolute; bottom: 18px; left: 0; right: 0; text-align: center;
   font-family: var(--mono); font-size: 12px; color: var(--ink); letter-spacing: 0.06em;
