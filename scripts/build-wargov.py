@@ -80,13 +80,22 @@ EXPECTED_VIDEOS_R01 = [
 # Release 02: 57 mp4 files (51 video + 7 audio-served-as-mp4) inside
 # uap052226.zip. The bundle ships them as `video_2605_DOD_<id>_DOD_<id>.mp4`;
 # they're renamed to canonical `DOD_<id>.mp4` on extract.
-def _load_r02_dod_ids() -> list[str]:
-    p = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'dvids2dod-r02.json')
+def _load_dvids_map(name: str) -> dict[str, str]:
+    p = os.path.join(os.path.dirname(os.path.abspath(__file__)), name)
     if not os.path.exists(p):
-        return []
-    return sorted({f"DOD_{v}.mp4" for v in json.load(open(p)).values()})
+        return {}
+    return json.load(open(p))
+
+def _load_r02_dod_ids() -> list[str]:
+    m = _load_dvids_map('dvids2dod-r02.json')
+    return sorted({f"DOD_{v}.mp4" for v in m.values()})
 
 EXPECTED_VIDEOS_R02 = _load_r02_dod_ids()
+
+# Combined DVIDS Video ID → DOD record-id map (R01 + R02). Used to fill
+# in the playable URL for catalog VID rows that ship only a DVIDS ID.
+DVIDS_TO_DOD = {**_load_dvids_map('dvids2dod-r01.json'),
+                **_load_dvids_map('dvids2dod-r02.json')}
 
 # ---------------------------------------------------------------------------
 # Build the manifest
@@ -133,6 +142,16 @@ _rel_vids = _rel_man.get('videos', {})
 
 for r in rows:
     url = r.get('PDF | Image Link', '')
+    # Catalog VID rows (PR050, PR051, …) ship only a DVIDS Video ID; resolve
+    # it to the release URL of the DOD_*.mp4 so the card has a playable link.
+    if not url and r.get('Type', '').strip() == 'VID':
+        d = (r.get('DVIDS Video ID') or '').strip()
+        dod = DVIDS_TO_DOD.get(d)
+        if dod:
+            vid_bn = f'DOD_{dod}.mp4'
+            if vid_bn in _rel_vids:
+                url = _rel_vids[vid_bn]
+                r['PDF | Image Link'] = url
     bn_l = basename(url).lower()
     bn   = basename(url)
     # Local file mapping (bundles/slideshow) takes precedence for offline.
