@@ -1,0 +1,24 @@
+{
+  "_metadata": {
+    "source": "CLAUDE.md §3.1 tone-colour table",
+    "locked_per": "D-22",
+    "purpose": "Fixture for tests/tone-colours.spec.ts — must match :root --caution per archive",
+    "phase": "02-infrastructure-ci-scaffolding/02-06",
+    "captured": "2026-05-25"
+  },
+  "wargov":    "#d4a017",
+  "aaro":      "#4a9eff",
+  "nasa":      "#fc3d21",
+  "nara":      "#cbd5e1",
+  "geipan":    "#0055a4",
+  "uk":        "#012169",
+  "brazil":    "#009c3b",
+  "chile":     "#d52b1e",
+  "nz":        "#5b8def",
+  "canada":    "#ff6b6b",
+  "argentina": "#74acdf",
+  "uruguay":   "#3ba0d8",
+  "peru":      "#ff6b6b",
+  "spain":     "#f4c542",
+  "italy":     "#5cb85c"
+}
