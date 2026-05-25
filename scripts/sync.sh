@@ -141,7 +141,7 @@ if [ "$DO_WARGOV" -eq 1 ]; then
     echo "  ! Install with: pip install curl_cffi"
     echo "  ! Skipping war.gov side."
   else
-    python3 "$ROOT/download.py"
+    python3 "$ROOT/scripts/download-war.gov.py"
   fi
 fi
 
