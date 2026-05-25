@@ -1,0 +1,6 @@
+{
+  "worker_lane": [],
+  "actions_lane": [],
+  "_status": "scaffolding-only — Task 1 created the placeholder; Task 2 (operator-driven 1-hour bilateral spike) populates the two arrays.",
+  "_consumers_note": "Task 3 (write .planning/decisions/akamai-spike.md) refuses to run until BOTH worker_lane and actions_lane contain non-empty result rows. The precondition guard at the top of Task 3 enforces this."
+}
