@@ -19,7 +19,7 @@ Requirements for this milestone. Each maps to a roadmap phase.
 ### Infrastructure & CI Scaffolding (INF)
 
 - [ ] **INF-01**: Cloudflare Pages project created, connected to repo, building from a long-running `ssg-migration` branch
-- [ ] **INF-02**: `_headers` + `_redirects` files scaffolded with CSP, HSTS, MIME types, explicit 301 redirects (CF Pages default is 302)
+- [ ] **INF-02**: `_headers` + `_redirects` files scaffolded with HSTS, MIME types, `/sw.js` no-cache, explicit redirects (CF Pages default is 302). CSP component deferred to Phase 6 cutover per Phase 2 CONTEXT.md D-07 — current site's inline CSS/JS would break under strict CSP before SSG markup settles.
 - [ ] **INF-03**: Cloudflare Workers Paid plan activated ($5/mo — Free is unusable: 10 ms CPU cap)
 - [ ] **INF-04**: Playwright visual-regression suite — baselines captured against current `main` for all 15 archives × 4 viewports (360/768/1024/1440)
 - [ ] **INF-05**: `verify-fidelity.py` CI gate — byte-equivalent check on a sample of verbatim text (hero ledes, FAQ answers, license footers, official titles)
