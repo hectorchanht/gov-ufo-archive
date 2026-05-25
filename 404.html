@@ -11,7 +11,7 @@
 <link rel="apple-touch-icon" href="/assets/favicon.svg">
 <link rel="manifest" href="/manifest.webmanifest">
 <meta name="theme-color" content="#0a0a0c">
-<script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){});});}</script>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js", { updateViaCache: 'none' }).catch(function(){});});}</script>
 <script defer src="/assets/vendor/hotkeys.js"></script>
 <script defer src="https://cloud.umami.is/script.js" data-website-id="9c4f36ef-30ad-4d76-947a-1724fe6acdba"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
