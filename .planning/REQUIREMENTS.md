@@ -131,22 +131,75 @@ Explicitly excluded — documented to prevent scope creep.
 
 ## Traceability
 
-Empty initially. Populated during roadmap creation.
+Finalized by roadmapper agent 2026-05-25 against `.planning/ROADMAP.md` (6-phase horizontal-layers structure). Every v1 requirement maps to exactly one phase; no orphans, no duplicates.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| PMS-01 → PMS-06 | Phase 1 | Pending |
-| INF-01 → INF-08 | Phase 2 | Pending |
-| SSG-01 → SSG-05 | Phase 3 | Pending |
-| SSG-06 → SSG-12, SRC-*, SW-*, PERF-* | Phase 4 | Pending |
-| SCRP-* | Phase 5 | Pending |
-| HOST-* | Phase 6 | Pending |
+| PMS-01 | Phase 1: Pre-Migration Safety | Pending |
+| PMS-02 | Phase 1: Pre-Migration Safety | Pending |
+| PMS-03 | Phase 1: Pre-Migration Safety | Pending |
+| PMS-04 | Phase 1: Pre-Migration Safety | Pending |
+| PMS-05 | Phase 1: Pre-Migration Safety | Pending |
+| PMS-06 | Phase 1: Pre-Migration Safety | Pending |
+| INF-01 | Phase 2: Infrastructure & CI Scaffolding | Pending |
+| INF-02 | Phase 2: Infrastructure & CI Scaffolding | Pending |
+| INF-03 | Phase 2: Infrastructure & CI Scaffolding | Pending |
+| INF-04 | Phase 2: Infrastructure & CI Scaffolding | Pending |
+| INF-05 | Phase 2: Infrastructure & CI Scaffolding | Pending |
+| INF-06 | Phase 2: Infrastructure & CI Scaffolding | Pending |
+| INF-07 | Phase 2: Infrastructure & CI Scaffolding | Pending |
+| INF-08 | Phase 2: Infrastructure & CI Scaffolding | Pending |
+| SSG-01 | Phase 3: SSG Foundation | Pending |
+| SSG-02 | Phase 3: SSG Foundation | Pending |
+| SSG-03 | Phase 3: SSG Foundation | Pending |
+| SSG-04 | Phase 3: SSG Foundation | Pending |
+| SSG-05 | Phase 3: SSG Foundation | Pending |
+| SSG-06 | Phase 4: Full Migration, Search, Offline, Performance | Pending |
+| SSG-07 | Phase 4: Full Migration, Search, Offline, Performance | Pending |
+| SSG-08 | Phase 4: Full Migration, Search, Offline, Performance | Pending |
+| SSG-09 | Phase 4: Full Migration, Search, Offline, Performance | Pending |
+| SSG-10 | Phase 4: Full Migration, Search, Offline, Performance | Pending |
+| SSG-11 | Phase 4: Full Migration, Search, Offline, Performance | Pending |
+| SSG-12 | Phase 4: Full Migration, Search, Offline, Performance | Pending |
+| SRC-01 | Phase 4: Full Migration, Search, Offline, Performance | Pending |
+| SRC-02 | Phase 4: Full Migration, Search, Offline, Performance | Pending |
+| SRC-03 | Phase 4: Full Migration, Search, Offline, Performance | Pending |
+| SRC-04 | Phase 4: Full Migration, Search, Offline, Performance | Pending |
+| SRC-05 | Phase 4: Full Migration, Search, Offline, Performance | Pending |
+| SW-01 | Phase 4: Full Migration, Search, Offline, Performance | Pending |
+| SW-02 | Phase 4: Full Migration, Search, Offline, Performance | Pending |
+| SW-03 | Phase 4: Full Migration, Search, Offline, Performance | Pending |
+| SW-04 | Phase 4: Full Migration, Search, Offline, Performance | Pending |
+| SW-05 | Phase 4: Full Migration, Search, Offline, Performance | Pending |
+| SW-06 | Phase 4: Full Migration, Search, Offline, Performance | Pending |
+| SW-07 | Phase 4: Full Migration, Search, Offline, Performance | Pending |
+| PERF-01 | Phase 4: Full Migration, Search, Offline, Performance | Pending |
+| PERF-02 | Phase 4: Full Migration, Search, Offline, Performance | Pending |
+| PERF-03 | Phase 4: Full Migration, Search, Offline, Performance | Pending |
+| PERF-04 | Phase 4: Full Migration, Search, Offline, Performance | Pending |
+| SCRP-01 | Phase 5: Scrape Automation | Pending |
+| SCRP-02 | Phase 5: Scrape Automation | Pending |
+| SCRP-03 | Phase 5: Scrape Automation | Pending |
+| SCRP-04 | Phase 5: Scrape Automation | Pending |
+| SCRP-05 | Phase 5: Scrape Automation | Pending |
+| SCRP-06 | Phase 5: Scrape Automation | Pending |
+| SCRP-07 | Phase 5: Scrape Automation | Pending |
+| SCRP-08 | Phase 5: Scrape Automation | Pending |
+| SCRP-09 | Phase 5: Scrape Automation | Pending |
+| SCRP-10 | Phase 5: Scrape Automation | Pending |
+| HOST-01 | Phase 6: Hosting & Cutover | Pending |
+| HOST-02 | Phase 6: Hosting & Cutover | Pending |
+| HOST-03 | Phase 6: Hosting & Cutover | Pending |
+| HOST-04 | Phase 6: Hosting & Cutover | Pending |
+| HOST-05 | Phase 6: Hosting & Cutover | Pending |
+| HOST-06 | Phase 6: Hosting & Cutover | Pending |
 
-**Coverage (tentative):**
+**Coverage:**
 - v1 requirements: 56 total
-- Mapped to phases: 56 (provisional — roadmapper will refine)
-- Unmapped: 0
+- Mapped to phases: 56 (Phase 1: 6, Phase 2: 8, Phase 3: 5, Phase 4: 23, Phase 5: 10, Phase 6: 6)
+- Unmapped: 0 ✓
+- Duplicates: 0 ✓
 
 ---
 *Requirements defined: 2026-05-25*
-*Last updated: 2026-05-25 after initialization*
+*Last updated: 2026-05-25 — traceability finalized by roadmapper against ROADMAP.md*
