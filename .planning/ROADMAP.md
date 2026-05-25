@@ -31,7 +31,8 @@ This roadmap derives 6 phases from the v1 REQUIREMENTS.md categories (PMS / INF 
 **Requirements**: PMS-01, PMS-02, PMS-03, PMS-04, PMS-05, PMS-06
 
 **Success Criteria** (what must be TRUE):
-  1. `URL-CONTRACT.txt` exists on `main` listing every public route/anchor served by today's GitHub Pages deployment; a CI gate fails any later PR that drops or renames a URL without an explicit `_redirects` entry.
+
+  1. `URL-CONTRACT.txt` exists on `main` listing every public route + `#card-<id>` anchor served by today's GitHub Pages deployment. (The CI gate that fails PRs dropping/renaming URLs is Phase 2 work per CONTEXT.md D-04 / INF-02 — not Phase 1's deliverable.)
   2. A SW kill-switch (`unregister()` + `caches.delete(all)`) is deployed to the live GitHub Pages origin and verified in DevTools on a returning-user profile — returning visitors self-deregister, and the gate against the Phase 6 cutover window is the `≥ 14 days since kill-switch deploy` counter.
   3. A documented 1-day Akamai egress spike (Workers vs GH Actions runners against war.gov + aaro.mil) determines the Phase 5 scrape architecture; the decision is recorded in `.planning/decisions/akamai-spike.md` before Phase 5 code is written.
   4. DNS TTL on `realufo.org` is dropped to 300 s and verified via `dig +noall +answer realufo.org` (gate against Phase 6 cutover: TTL must read 300 s for ≥ 7 consecutive days before DNS swap).
@@ -40,10 +41,15 @@ This roadmap derives 6 phases from the v1 REQUIREMENTS.md categories (PMS / INF 
 **Plans**: 5 plans
 
 Plans:
+**Wave 1**
+
 - [ ] 01-01-PLAN.md — Close PMS-05 (sync.sh:144 broken download.py path) + PMS-06 (CLAUDE.md §5.1 verification)
 - [ ] 01-02-PLAN.md — PMS-01: generate scripts/snapshot-urls.py + commit URL-CONTRACT.txt from main
 - [ ] 01-03-PLAN.md — PMS-03: bilateral Akamai egress spike (Workers vs Actions) + write .planning/decisions/akamai-spike.md
 - [ ] 01-04-PLAN.md — PMS-04: discover DNS provider for realufo.org, drop TTL to 300 s, verify via dig
+
+**Wave 2** *(blocked on Wave 1 completion)*
+
 - [ ] 01-05-PLAN.md — PMS-02: replace sw.js with kill-switch SW, deploy to GH Pages, verify on returning-user profile
 
 ### Phase 2: Infrastructure & CI Scaffolding
@@ -55,6 +61,7 @@ Plans:
 **Requirements**: INF-01, INF-02, INF-03, INF-04, INF-05, INF-06, INF-07, INF-08
 
 **Success Criteria** (what must be TRUE):
+
   1. A Cloudflare Pages project builds a long-running `ssg-migration` branch on every push, and the build product is served at a stable `*.realufo.pages.dev` preview URL.
   2. `_headers` (CSP / HSTS / MIME / `Cache-Control: no-cache` on `/sw.js`) and `_redirects` (explicit 301s for every legacy URL from `URL-CONTRACT.txt`) are committed and verified by a `scripts/verify-redirects.sh`-style curl harness against the preview.
   3. Cloudflare Workers Paid plan is active (a $5/mo line item is visible in billing), unlocking the 15-min cron CPU budget required for Phase 5.
@@ -73,6 +80,7 @@ Plans:
 **Requirements**: SSG-01, SSG-02, SSG-03, SSG-04, SSG-05
 
 **Success Criteria** (what must be TRUE):
+
   1. An Astro 5.x scaffold builds in the repo with `astro` pinned as `~5.x.y` (NOT `^5`, to defend against accidental Astro 6 upgrades that broke the Cloudflare adapter per research/PITFALLS.md); both the old Python build and the new Astro build coexist on `ssg-migration` without one overwriting the other.
   2. Content Collections are defined for all 15 archives with a Zod schema and a `file()` loader reading from `data/<slug>.json`; a fresh clone can run `pnpm build` and the build fails loudly (not silently) on any schema-incompatible row.
   3. Shared layout components (`RootLayout.astro`, `BaseHead.astro`, `Nav.astro`, `Footer.astro`) exist and are the canonical source of nav/footer markup — `sync-nav.py` / `sync-footer.py` and their drift gates can be retired (deferred to Phase 4, but the components themselves must exist here).
@@ -90,6 +98,7 @@ Plans:
 **Requirements**: SSG-06, SSG-07, SSG-08, SSG-09, SSG-10, SSG-11, SSG-12, SRC-01, SRC-02, SRC-03, SRC-04, SRC-05, SW-01, SW-02, SW-03, SW-04, SW-05, SW-06, SW-07, PERF-01, PERF-02, PERF-03, PERF-04
 
 **Success Criteria** (what must be TRUE):
+
   1. All 15 archives (AARO, NASA, NARA, GEIPAN, UK, Brazil, Chile, Argentina, Canada, Italy, NZ, Peru, Spain, Uruguay, plus the Phase 3 wargov port) render from Astro with byte-equivalent verbatim text, correct per-archive tone colour, correct public-domain licence footer, and surviving CLAUDE.md §7 JS invariants (hamburger, lightbox prev/next + arrow keys + swipe, image/video/PDF fallback, `/` keydown focus, `?q=` persistence).
   2. Every archive page weighs ≤ 500 KB HTML+inline and renders meaningful card content with JS disabled; GEIPAN's LCP measures ≤ 2.5 s on mobile + 4× CPU throttle, with the data shard split into ≤ 3 chunks (not naive per-card atomisation).
   3. Pagefind 1.x runs at the end of the build and outputs a sharded WASM index to `dist/pagefind/`; `/search.html` returns results from Pagefind (Lunr removed), `api/all.json` 4.6 MB blob is deleted, and search result links use stable `#card-<id>` anchors.
@@ -107,6 +116,7 @@ Plans:
 **Requirements**: SCRP-01, SCRP-02, SCRP-03, SCRP-04, SCRP-05, SCRP-06, SCRP-07, SCRP-08, SCRP-09, SCRP-10
 
 **Success Criteria** (what must be TRUE):
+
   1. A Cloudflare Worker cron with a KV-backed fingerprint store (last-seen ETag + content-hash per source) runs on schedule and writes to an R2 staging bucket; per-source lanes are partitioned so a single bad source cannot starve others, and a KV cron-lock prevents overlapping invocations from racing.
   2. The hybrid Akamai strategy from the PMS-03 spike is implemented: Akamai-blocked sources fall through to a GitHub Actions runner using `curl_cffi`, all others stay on Workers; the `|| true` masks on `curl_cffi` install are removed, so a failed install fails the workflow loudly.
   3. New scraped binaries land in GitHub Releases via a `scripts/release-upload.py` helper with SHA-256 idempotency, explicit delete-then-upload (never `--clobber`), serialised concurrency, and per-archive release tags (`wargov-pdfs-2026q2`-style) — avoiding the 1000-asset/tag ceiling on shared `pdfs-v1` / `videos-v1`.
@@ -124,6 +134,7 @@ Plans:
 **Requirements**: HOST-01, HOST-02, HOST-03, HOST-04, HOST-05, HOST-06
 
 **Success Criteria** (what must be TRUE):
+
   1. Cloudflare Pages preview deploy on `ssg-migration` runs without regression for ≥ 7 consecutive days (no visual-regression breakage, no SW errors, no fidelity drift), with an optional `preview.realufo.org` alias exposed for 1–2 weeks of public staging.
   2. DNS for `realufo.org` is swapped from GitHub Pages → Cloudflare Pages during a low-traffic window; the new SW registers from `BaseHead.astro` with a new cache-name prefix (so any stale-but-not-yet-deregistered kill-switch SW from Phase 1 cannot collide) and `updateViaCache: 'none'` on registration.
   3. A 7-day post-cutover monitoring window completes with Umami traffic, Lighthouse scores, and SW error tracking all stable — no spike in 404s, no LCP regression, no user-reported "site is empty" issues.
