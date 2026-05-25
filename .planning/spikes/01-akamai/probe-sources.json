@@ -1,0 +1,32 @@
+{
+  "rng_seed": 20260525,
+  "rng_method": "random.seed(20260525); random.sample(other_13, 3)",
+  "source_table": "CLAUDE.md §2 — Sources covered (Official site column)",
+  "always_included": [
+    "https://www.war.gov/UFO/",
+    "https://www.aaro.mil/"
+  ],
+  "sampled_from_other_13": [
+    "https://science.nasa.gov/uap/",
+    "https://www.fau.mil.uy/",
+    "https://www.sefaa.cl/"
+  ],
+  "probe_targets": [
+    "https://www.war.gov/UFO/",
+    "https://www.aaro.mil/",
+    "https://science.nasa.gov/uap/",
+    "https://www.fau.mil.uy/",
+    "https://www.sefaa.cl/"
+  ],
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+  "fetches_per_source": 100,
+  "duration_seconds": 3600,
+  "spacing_seconds_between_fetches": 36,
+  "akamai_block_signals": {
+    "cookies_any_of": ["_abck=", "bm_sc=", "AKAM_SC="],
+    "server_header_contains": "AkamaiGHost",
+    "body_title_any_of": ["Pardon Our Interruption", "Access Denied"],
+    "blocked_body_length_approx_bytes": 12288
+  },
+  "_provenance": "Computed at plan-execution time. Re-run with the same seed over the same 13-URL list to reproduce identically. The 13 'other' URLs are the Official-site column of CLAUDE.md §2 with war.gov + aaro.mil removed."
+}
