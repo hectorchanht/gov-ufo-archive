@@ -57,3 +57,14 @@ node_modules/
 
 # Generated PDF text extracts (re-derived from .pdf by scripts/extract-pdf-text.py)
 **/.pdftext/
+
+# SSG migration (Phase 2+)
+node_modules/
+dist/
+.pnpm-store/
+.wrangler/
+tests/.playwright-cache/
+.lighthouseci/
+.env
+.dev.vars
+*.pre-bounce.md
