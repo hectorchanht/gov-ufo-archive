@@ -69,7 +69,28 @@ Plans:
   5. `scripts/verify-fidelity.py` is wired into CI: it asserts byte-equivalence on a curated sample of verbatim text (hero ledes, FAQ answers, license footers, official titles) between the snapshot of `main` and any SSG output.
   6. Tone-colour smoke test, JS-off rendering test, and Lighthouse-mobile budgets (LCP ≤ 2.5 s, transfer ≤ 500 KB @ 4× CPU throttle) are all live as CI gates against the preview deployment.
 
-**Plans**: TBD
+**Plans**: 8 plans
+
+Plans:
+**Wave 1**
+
+- [ ] 02-01-PLAN.md — INF-01 + INF-02 (_headers): CF Pages project creation, ssg-migration branch, _headers (operator checkpoint inside)
+
+**Wave 2**
+
+- [ ] 02-02-PLAN.md — INF-03: Workers Paid plan activation (operator-only checkpoint)
+- [ ] 02-03-PLAN.md — INF-04: Playwright setup + capture 60 PNG baselines against live realufo.org
+- [ ] 02-04-PLAN.md — INF-05: extract-fidelity-samples.py + fidelity-samples.json + verify-fidelity.py
+- [ ] 02-05-PLAN.md — INF-02 (_redirects): build-redirects.py auto-gen from URL-CONTRACT.txt
+
+**Wave 3**
+
+- [ ] 02-06-PLAN.md — INF-06 + INF-07: tone-colour + JS-off Playwright specs
+- [ ] 02-07-PLAN.md — INF-08: Lighthouse-CI mobile budgets + verify-lighthouse-budgets.py (soft per D-28)
+
+**Wave 4**
+
+- [ ] 02-08-PLAN.md — wire 5 parallel CI jobs via quality-gates.yml + verify-redirects.sh curl harness
 
 ### Phase 3: SSG Foundation
 
@@ -150,7 +171,7 @@ Plans:
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Pre-Migration Safety | 0/5 | Not started | - |
-| 2. Infrastructure & CI Scaffolding | 0/0 | Not started | - |
+| 2. Infrastructure & CI Scaffolding | 0/8 | Not started | - |
 | 3. SSG Foundation | 0/0 | Not started | - |
 | 4. Full Migration, Search, Offline, Performance | 0/0 | Not started | - |
 | 5. Scrape Automation | 0/0 | Not started | - |
