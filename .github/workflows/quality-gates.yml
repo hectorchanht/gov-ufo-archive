@@ -1,0 +1,261 @@
+name: Phase 2 quality gates
+
+# Phase 2 quality gates — runs 5 parallel data checks (D-30) against the CF Pages
+# preview deployment URL (D-31) after each successful CF Pages build, plus a
+# redirects drift+curl-harness job (ROADMAP §Phase 2 SC#2). One preflight job
+# coordinates by reading the deployment_status event payload.
+#
+# Existing workflows (html-validate, lighthouse, links, sync-nav, sync-footer,
+# scrape) remain on main per D-32 — this workflow is a sibling, not a replacement.
+# No DNS changes (D-37). No SSG code (D-38).
+#
+# Job map (7 total: 1 coordinator + 6 data jobs run in parallel after preflight):
+#   preflight          — reads deployment_status.environment_url; HEAD-sanity probe
+#   visual-regression  — Playwright vs tests/visual-baselines/*.png (60 PNGs, hard)
+#   fidelity           — verify-fidelity.py against locked tests/fidelity-samples.json (hard)
+#   tone-colours       — Playwright getComputedStyle vs CLAUDE.md §3.1 (D-23, hard)
+#   js-off             — Playwright with JS disabled (D-25 + B3, HARD-FAIL unconditional)
+#   lighthouse         — LHCI mobile profile + budget parser (D-28 SOFT for Phase 2/3)
+#   redirects          — build-redirects.py --check (drift) + verify-redirects.sh (curl)
+
+on:
+  deployment_status:           # CF Pages emits via its GitHub App after each preview deploy
+  workflow_dispatch:           # manual trigger for debugging
+    inputs:
+      preview_url:
+        description: 'CF Pages preview URL (override deployment_status payload)'
+        required: false
+        default: 'https://realufo.pages.dev'
+
+permissions:
+  contents: read
+  deployments: read
+  pull-requests: write         # so an optional follow-up bot can post LHCI temp-storage URLs
+
+concurrency:
+  group: quality-gates-${{ github.event.deployment.ref || github.ref }}
+  cancel-in-progress: true     # newer pushes supersede older runs
+
+jobs:
+  # ----------------------------------------------------------------
+  # preflight — Coordinator. Reads deployment_status payload (CF Pages
+  # sends this via its GH App after each preview build), extracts the
+  # preview URL, exposes it to downstream jobs via job output. Skips
+  # non-success deployments (pending / in_progress / failure) so the
+  # gate matrix doesn't fan out while the preview is still building.
+  # ----------------------------------------------------------------
+  preflight:
+    name: Resolve CF Pages preview URL
+    # Only run after CF Pages reports a successful deploy. Skip pending /
+    # failure / in_progress states. workflow_dispatch always runs.
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'deployment_status' &&
+       github.event.deployment_status.state == 'success' &&
+       github.event.deployment_status.environment_url != '')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      preview_url: ${{ steps.url.outputs.preview_url }}
+    steps:
+      - name: Resolve preview URL
+        id: url
+        run: |
+          if [ -n "${{ github.event.inputs.preview_url }}" ]; then
+            URL="${{ github.event.inputs.preview_url }}"
+          else
+            URL="${{ github.event.deployment_status.environment_url }}"
+          fi
+          # Strip trailing slash — downstream concatenation always uses paths starting with '/'
+          URL="${URL%/}"
+          echo "preview_url=$URL" >> "$GITHUB_OUTPUT"
+          echo "Resolved preview URL: $URL"
+      - name: HEAD-sanity probe
+        run: |
+          URL="${{ steps.url.outputs.preview_url }}"
+          STATUS=$(curl -sI -o /dev/null -w '%{http_code}' --max-time 10 "$URL/")
+          echo "Sanity HEAD $URL/ → $STATUS"
+          if [[ "$STATUS" != 2* && "$STATUS" != 3* ]]; then
+            echo "::error::Preview URL returned $STATUS — aborting gate matrix"
+            exit 1
+          fi
+
+  # ----------------------------------------------------------------
+  # visual-regression — D-30 #1. Hard-fail per D-16 (0.1% pixel threshold).
+  # Compares against 60 PNGs in tests/visual-baselines/ captured by
+  # scripts/capture-baselines.py against live realufo.org (D-12).
+  # ----------------------------------------------------------------
+  visual-regression:
+    name: Visual regression (Playwright)
+    needs: preflight
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - name: Install deps
+        run: pnpm install --frozen-lockfile
+      - name: Install Chromium for Playwright
+        run: pnpm exec playwright install --with-deps chromium
+      - name: Run visual-regression spec
+        run: pnpm exec playwright test tests/visual-regression.spec.ts --config=tests/playwright.config.ts
+        env:
+          PREVIEW_URL: ${{ needs.preflight.outputs.preview_url }}
+      - name: Upload diff artifacts on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-diff-${{ github.run_id }}
+          path: test-results/
+          retention-days: 7
+
+  # ----------------------------------------------------------------
+  # fidelity — D-30 #2. Hard-fail per D-21 (loud diff on any mismatch).
+  # Asserts byte-equivalence between the locked tests/fidelity-samples.json
+  # and the live preview text nodes (hero ledes, FAQ, licence footers,
+  # 5-per-archive card titles).
+  # ----------------------------------------------------------------
+  fidelity:
+    name: Fidelity samples (verify-fidelity.py)
+    needs: preflight
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify fidelity samples
+        run: |
+          python3 scripts/verify-fidelity.py \
+            --base-url "${{ needs.preflight.outputs.preview_url }}" \
+            --color
+
+  # ----------------------------------------------------------------
+  # tone-colours — D-30 #3. Hard-fail per D-23 (one assertion per archive
+  # against CLAUDE.md §3.1 fixture, copied verbatim into
+  # tests/tone-colours-fixture.json).
+  # ----------------------------------------------------------------
+  tone-colours:
+    name: Tone colours (Playwright getComputedStyle)
+    needs: preflight
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+      - name: Run tone-colour smoke test
+        run: pnpm exec playwright test tests/tone-colours.spec.ts --config=tests/playwright.config.ts
+        env:
+          PREVIEW_URL: ${{ needs.preflight.outputs.preview_url }}
+
+  # ----------------------------------------------------------------
+  # js-off — D-30 #4. HARD-FAIL UNCONDITIONALLY per D-25 + B3 revision.
+  #
+  # IMPORTANT: NO continue-on-error here. The gate is hard-fail from day one.
+  # During Phase 2/3 wargov-only window this gate WILL fail for archives that
+  # still hydrate client-side — those failures signal that Phase 3 SSG port
+  # work for the affected archive is PENDING, NOT a gate-mode softening.
+  # Each Phase 3+ archive-port PR must demonstrate the affected archive's row
+  # in js-off flips FAIL→PASS before merge. Softening this gate (adding
+  # continue-on-error: true) would defeat the entire pre-rendered-cards
+  # architecture promised by PROJECT.md.
+  # ----------------------------------------------------------------
+  js-off:
+    name: JS-off rendering (Playwright, hard-fail)
+    needs: preflight
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # D-25 + B3: NO continue-on-error. Failures during Phase 2/3 are EXPECTED
+    # SIGNAL of Phase 3 SSG work pending for the affected archive.
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+      - name: Run JS-off rendering test
+        run: pnpm exec playwright test tests/js-off.spec.ts --config=tests/playwright.config.ts
+        env:
+          PREVIEW_URL: ${{ needs.preflight.outputs.preview_url }}
+
+  # ----------------------------------------------------------------
+  # lighthouse — D-30 #5. SOFT per D-28 — continue-on-error: true.
+  # Asserts mobile LCP ≤ 2.5 s + total transfer ≤ 500 KB. Phase 4 close
+  # plan flips both .lighthouserc.cf.json assertion levels (warn → error)
+  # and removes continue-on-error here.
+  # ----------------------------------------------------------------
+  lighthouse:
+    name: Lighthouse budgets (soft per D-28)
+    needs: preflight
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    continue-on-error: true        # D-28 SOFT for Phase 2/3; flip to false at Phase 4 close
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - run: pnpm install --frozen-lockfile
+      - name: Render LHCI config with preview URL
+        run: |
+          sed "s|__PREVIEW_URL__|${{ needs.preflight.outputs.preview_url }}|g" \
+            .lighthouserc.cf.json > /tmp/lhci.json
+      - name: Run lighthouse-ci
+        run: pnpm exec lhci autorun --config=/tmp/lhci.json
+      - name: Verify budgets (soft)
+        run: python3 scripts/verify-lighthouse-budgets.py
+      - name: Upload LHCI artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouseci-${{ github.run_id }}
+          path: .lighthouseci/
+          retention-days: 14
+
+  # ----------------------------------------------------------------
+  # redirects — ROADMAP §Phase 2 SC#2 gate (hard-fail). Two steps:
+  #   (a) drift gate: scripts/build-redirects.py --check fails on any
+  #       structural diff between _redirects on disk and what regen
+  #       would produce from URL-CONTRACT.txt (modulo the volatile
+  #       sha+date stamp on line 1).
+  #   (b) curl harness: scripts/verify-redirects.sh probes the preview
+  #       origin for each canonical route, asserts 200. Catches Pitfall #8
+  #       (CF Pages silently drops _redirects rules at parse time).
+  # ----------------------------------------------------------------
+  redirects:
+    name: _redirects drift + curl harness
+    needs: preflight
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: _redirects drift gate
+        run: python3 scripts/build-redirects.py --check
+      - name: Curl harness against preview
+        run: bash scripts/verify-redirects.sh "${{ needs.preflight.outputs.preview_url }}"
