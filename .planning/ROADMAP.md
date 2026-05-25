@@ -108,7 +108,26 @@ Plans:
   4. Cards on the ported archive are pre-rendered HTML (no client hydration of card data); progressive-enhancement JS reads `data-*` attributes for lightbox / filter / sort, and a Playwright test confirms the cards remain visible with JS disabled.
   5. The wargov archive is fully ported and passes every Phase 2 gate (visual regression at all 4 viewports, fidelity byte-match, tone colour, JS-off rendering, Lighthouse mobile budget).
 
-**Plans**: TBD
+**Plans**: 6 plans
+
+Plans:
+**Wave 1**
+
+- [ ] 03-01-PLAN.md — SSG-01: Astro 5.18.x scaffold + @astrojs/cloudflare adapter + tsconfig + ADR
+- [ ] 03-02-PLAN.md — SSG-02 (schema side): src/content.config.ts Zod schema for all 15 archives + 14 skeleton data/<slug>.json files
+
+**Wave 2** *(blocked on Wave 1 completion)*
+
+- [ ] 03-03-PLAN.md — SSG-02 (data side, wargov): scripts/normalize-csv.py + data/wargov.json + shards + pnpm prebuild wiring
+- [ ] 03-04-PLAN.md — SSG-03 + SSG-04 (JS invariants): RootLayout + BaseHead + Nav + Footer + global.css + invariants.ts (CLAUDE.md §7)
+
+**Wave 3** *(blocked on Wave 2 completion)*
+
+- [ ] 03-05-PLAN.md — SSG-04 + SSG-05 (output): src/pages/index.astro wargov port + Card.astro + Lightbox.astro + HeroCarousel.astro + wargov.css
+
+**Wave 4** *(blocked on Wave 3 completion — operator checkpoint)*
+
+- [ ] 03-06-PLAN.md — SSG-05 acceptance: wargov port passes all 7 quality-gates.yml jobs on CF Pages preview URL
 
 ### Phase 4: Full Migration, Search, Offline, Performance
 
@@ -172,7 +191,7 @@ Plans:
 |-------|----------------|--------|-----------|
 | 1. Pre-Migration Safety | 0/5 | Not started | - |
 | 2. Infrastructure & CI Scaffolding | 0/8 | Not started | - |
-| 3. SSG Foundation | 0/0 | Not started | - |
+| 3. SSG Foundation | 0/6 | Not started | - |
 | 4. Full Migration, Search, Offline, Performance | 0/0 | Not started | - |
 | 5. Scrape Automation | 0/0 | Not started | - |
 | 6. Hosting & Cutover | 0/0 | Not started | - |
