@@ -1,0 +1,927 @@
+[
+  {
+    "archive": "wargov",
+    "kind": "hero-lede",
+    "selector": "h1.hero-title",
+    "source_path": "/",
+    "expected_text": "Presidential Unsealing and Reporting System for UAP Encounters (PURSUE)",
+    "source_file": "index.html"
+  },
+  {
+    "archive": "wargov",
+    "kind": "license-footer",
+    "selector": "footer p",
+    "source_path": "/",
+    "expected_text": "The Department of War provides the military forces needed to deter war and ensure our nation's security.",
+    "source_file": "index.html"
+  },
+  {
+    "archive": "wargov",
+    "kind": "card-title",
+    "selector": "script#arch-data[0].ti",
+    "source_path": "/",
+    "expected_text": "DOW-UAP-PR050, \"4 UAP Formation Iran 26 Aug 2022 over water [CALLSIGN]\"",
+    "source_file": "index.html"
+  },
+  {
+    "archive": "wargov",
+    "kind": "card-title",
+    "selector": "script#arch-data[1].ti",
+    "source_path": "/",
+    "expected_text": "DOW-UAP-PR051, \"Syrian UAP instant acceleration\"",
+    "source_file": "index.html"
+  },
+  {
+    "archive": "wargov",
+    "kind": "card-title",
+    "selector": "script#arch-data[2].ti",
+    "source_path": "/",
+    "expected_text": "DOW-UAP-D017, UAP Reported at Sandia Base, 1948-1950",
+    "source_file": "index.html"
+  },
+  {
+    "archive": "wargov",
+    "kind": "card-title",
+    "selector": "script#arch-data[3].ti",
+    "source_path": "/",
+    "expected_text": "CIA-UAP-D001, Intelligence Information Report, USSR, 1973",
+    "source_file": "index.html"
+  },
+  {
+    "archive": "wargov",
+    "kind": "card-title",
+    "selector": "script#arch-data[4].ti",
+    "source_path": "/",
+    "expected_text": "ODNI-UAP-D001, USPER Narrative, Senior USIC Official",
+    "source_file": "index.html"
+  },
+  {
+    "archive": "aaro",
+    "kind": "hero-lede",
+    "selector": "h1.hero-title",
+    "source_path": "/aaro/",
+    "expected_text": "All-domain Anomaly Resolution Office",
+    "source_file": "aaro/index.html"
+  },
+  {
+    "archive": "aaro",
+    "kind": "hero-sub",
+    "selector": "p.hero-sub",
+    "source_path": "/aaro/",
+    "expected_text": "AARO leads the U.S. government's effort to detect, identify, attribute, and mitigate Unidentified Anomalous Phenomena using a rigorous scientific framework and a data-driven approach. This is an offline archival mirror of aaro.mil — every video, image, and report you see below is served from this local archive.",
+    "source_file": "aaro/index.html"
+  },
+  {
+    "archive": "aaro",
+    "kind": "license-footer",
+    "selector": "footer p",
+    "source_path": "/aaro/",
+    "expected_text": "Offline archival replica of aaro.mil. Federal U.S. government works are public domain (17 U.S.C. § 105).",
+    "source_file": "aaro/index.html"
+  },
+  {
+    "archive": "aaro",
+    "kind": "card-title",
+    "selector": "script#arch-data[0].ti",
+    "source_path": "/aaro/",
+    "expected_text": "NAVAIR - FOIA: Unresolved Case: GIMBAL Video",
+    "source_file": "aaro/index.html"
+  },
+  {
+    "archive": "aaro",
+    "kind": "card-title",
+    "selector": "script#arch-data[1].ti",
+    "source_path": "/aaro/",
+    "expected_text": "NAVAIR - FOIA: Unresolved Case: GIMBAL Video",
+    "source_file": "aaro/index.html"
+  },
+  {
+    "archive": "aaro",
+    "kind": "card-title",
+    "selector": "script#arch-data[2].ti",
+    "source_path": "/aaro/",
+    "expected_text": "NAVAIR - FOIA: Unresolved Case: GIMBAL Video",
+    "source_file": "aaro/index.html"
+  },
+  {
+    "archive": "aaro",
+    "kind": "card-title",
+    "selector": "script#arch-data[3].ti",
+    "source_path": "/aaro/",
+    "expected_text": "NAVAIR - FOIA: Unresolved Case: GIMBAL Video",
+    "source_file": "aaro/index.html"
+  },
+  {
+    "archive": "aaro",
+    "kind": "card-title",
+    "selector": "script#arch-data[4].ti",
+    "source_path": "/aaro/",
+    "expected_text": "NAVAIR - FOIA: Unresolved Case: GIMBAL Video",
+    "source_file": "aaro/index.html"
+  },
+  {
+    "archive": "nasa",
+    "kind": "hero-lede",
+    "selector": "h1.hero-title",
+    "source_path": "/nasa/",
+    "expected_text": "NASA UAP Independent Study",
+    "source_file": "nasa/index.html"
+  },
+  {
+    "archive": "nasa",
+    "kind": "hero-sub",
+    "selector": "p.hero-sub",
+    "source_path": "/nasa/",
+    "expected_text": "In June 2022 NASA commissioned a 16-member independent study team led by astrophysicist Dr. David Spergel to examine unidentified anomalous phenomena from a strictly scientific perspective. The team delivered its final report on September 14, 2023 — recommending a unified data pipeline, expanded use of NASA Earth observation assets, and the application of AI/ML to anomaly detection. Source: science.nasa.gov/uap.",
+    "source_file": "nasa/index.html"
+  },
+  {
+    "archive": "nasa",
+    "kind": "license-footer",
+    "selector": "footer p",
+    "source_path": "/nasa/",
+    "expected_text": "Offline archival mirror of the NASA UAP Independent Study materials. Federal U.S. government works are public domain (17 U.S.C. § 105).",
+    "source_file": "nasa/index.html"
+  },
+  {
+    "archive": "nasa",
+    "kind": "card-title",
+    "selector": "script#arch-data[0].ti",
+    "source_path": "/nasa/",
+    "expected_text": "NASA UAP Independent Study Team — Final Report",
+    "source_file": "nasa/index.html"
+  },
+  {
+    "archive": "nasa",
+    "kind": "card-title",
+    "selector": "script#arch-data[1].ti",
+    "source_path": "/nasa/",
+    "expected_text": "UAP Independent Study Team — Terms of Reference",
+    "source_file": "nasa/index.html"
+  },
+  {
+    "archive": "nasa",
+    "kind": "card-title",
+    "selector": "script#arch-data[2].ti",
+    "source_path": "/nasa/",
+    "expected_text": "Public Meeting Agenda — May 31, 2023",
+    "source_file": "nasa/index.html"
+  },
+  {
+    "archive": "nasa",
+    "kind": "card-title",
+    "selector": "script#arch-data[3].ti",
+    "source_path": "/nasa/",
+    "expected_text": "Federal Register Notice — UAP Public Meeting",
+    "source_file": "nasa/index.html"
+  },
+  {
+    "archive": "nasa",
+    "kind": "card-title",
+    "selector": "script#arch-data[4].ti",
+    "source_path": "/nasa/",
+    "expected_text": "Media Briefing: UAP Independent Study Report (Sep 14, 2023)",
+    "source_file": "nasa/index.html"
+  },
+  {
+    "archive": "nara",
+    "kind": "hero-lede",
+    "selector": "h1.hero-title",
+    "source_path": "/nara/",
+    "expected_text": "National Archives — UAP Records",
+    "source_file": "nara/index.html"
+  },
+  {
+    "archive": "nara",
+    "kind": "hero-sub",
+    "selector": "p.hero-sub",
+    "source_path": "/nara/",
+    "expected_text": "Under the 2024 NDAA (Public Law 118-31) Congress created Record Group 615 at NARA — the legal sink for every federal agency's UAP files. RG 615 sits alongside dozens of pre-existing collections: Project Blue Book, the FBI Vault, presidential libraries, NICAP donations, J. Allen Hynek's papers, and more. NARA holds, by their own estimate, millions of pages of UAP-related material — most digitised, all searchable via the NARA Catalog. This mirror gives you the official navigation gateway offline; the catalog itself stays live.",
+    "source_file": "nara/index.html"
+  },
+  {
+    "archive": "nara",
+    "kind": "license-footer",
+    "selector": "footer p",
+    "source_path": "/nara/",
+    "expected_text": "Offline archival mirror of the NARA UAP records gateway. Federal U.S. government works are public domain (17 U.S.C. § 105).",
+    "source_file": "nara/index.html"
+  },
+  {
+    "archive": "nara",
+    "kind": "card-title",
+    "selector": "script#arch-data[0].ti",
+    "source_path": "/nara/",
+    "expected_text": "2024 National Defense Authorization Act — Public Law 118-31",
+    "source_file": "nara/index.html"
+  },
+  {
+    "archive": "nara",
+    "kind": "card-title",
+    "selector": "script#arch-data[1].ti",
+    "source_path": "/nara/",
+    "expected_text": "UAP Records — Topic Gateway",
+    "source_file": "nara/index.html"
+  },
+  {
+    "archive": "nara",
+    "kind": "card-title",
+    "selector": "script#arch-data[2].ti",
+    "source_path": "/nara/",
+    "expected_text": "Record Group 615 — Unidentified Anomalous Phenomena Records Collection",
+    "source_file": "nara/index.html"
+  },
+  {
+    "archive": "nara",
+    "kind": "card-title",
+    "selector": "script#arch-data[3].ti",
+    "source_path": "/nara/",
+    "expected_text": "Photographs",
+    "source_file": "nara/index.html"
+  },
+  {
+    "archive": "nara",
+    "kind": "card-title",
+    "selector": "script#arch-data[4].ti",
+    "source_path": "/nara/",
+    "expected_text": "Moving Images and Sound Recordings",
+    "source_file": "nara/index.html"
+  },
+  {
+    "archive": "geipan",
+    "kind": "hero-lede",
+    "selector": "h1.hero-title",
+    "source_path": "/geipan/",
+    "expected_text": "France's civilian UAP office — every case since 1977.",
+    "source_file": "geipan/index.html"
+  },
+  {
+    "archive": "geipan",
+    "kind": "hero-sub",
+    "selector": "p.hero-sub",
+    "source_path": "/geipan/",
+    "expected_text": "GEIPAN at CNES is the world's longest-running official civilian UAP programme. 3,334 cases classified and published in the public database — every one of them browsable below. Tone: French blue.",
+    "source_file": "geipan/index.html"
+  },
+  {
+    "archive": "geipan",
+    "kind": "license-footer",
+    "selector": "footer p",
+    "source_path": "/geipan/",
+    "expected_text": "Offline archival mirror of GEIPAN at CNES — the entire public case database scraped & cached. Reusable under Loi n° 78-753.",
+    "source_file": "geipan/index.html"
+  },
+  {
+    "archive": "geipan",
+    "kind": "card-title",
+    "selector": "script#arch-data[0].ti",
+    "source_path": "/geipan/",
+    "expected_text": "GEIPAN — FAQ (English)",
+    "source_file": "geipan/index.html"
+  },
+  {
+    "archive": "geipan",
+    "kind": "card-title",
+    "selector": "script#arch-data[1].ti",
+    "source_path": "/geipan/",
+    "expected_text": "GEIPAN — FAQ (Français)",
+    "source_file": "geipan/index.html"
+  },
+  {
+    "archive": "geipan",
+    "kind": "card-title",
+    "selector": "script#arch-data[2].ti",
+    "source_path": "/geipan/",
+    "expected_text": "GEIPAN — Mission, History, Methodology (English)",
+    "source_file": "geipan/index.html"
+  },
+  {
+    "archive": "geipan",
+    "kind": "card-title",
+    "selector": "script#arch-data[3].ti",
+    "source_path": "/geipan/",
+    "expected_text": "GEIPAN — Mission, Historique, Méthodologie (Français)",
+    "source_file": "geipan/index.html"
+  },
+  {
+    "archive": "geipan",
+    "kind": "card-title",
+    "selector": "script#arch-data[4].ti",
+    "source_path": "/geipan/",
+    "expected_text": "Saint-Germain-en-Laye (78) — 30 May 2020",
+    "source_file": "geipan/index.html"
+  },
+  {
+    "archive": "uk",
+    "kind": "hero-lede",
+    "selector": "h1.hero-title",
+    "source_path": "/uk/",
+    "expected_text": "UK's MoD UFO Desk — closed for good, files all here.",
+    "source_file": "uk/index.html"
+  },
+  {
+    "archive": "uk",
+    "kind": "hero-sub",
+    "selector": "p.hero-sub",
+    "source_path": "/uk/",
+    "expected_text": "The Ministry of Defence's UFO desk and its public hotline ran from 1950 to 2009. On closure the surviving files — 52,000+ pages across the AIR, DEFE and PREM record groups — were transferred to The National Archives at Kew in successive tranches between 2008 and 2017. All are digitised and free to view via Discovery. Reusable under the Open Government Licence v3. Source: TNA UFO Reports.",
+    "source_file": "uk/index.html"
+  },
+  {
+    "archive": "uk",
+    "kind": "license-footer",
+    "selector": "footer p",
+    "source_path": "/uk/",
+    "expected_text": "Offline archival mirror of The National Archives' MoD UFO collection at Kew. Crown-copyright material reused under the Open Government Licence v3.",
+    "source_file": "uk/index.html"
+  },
+  {
+    "archive": "uk",
+    "kind": "card-title",
+    "selector": "script#arch-data[0].ti",
+    "source_path": "/uk/",
+    "expected_text": "Final Tranche of UFO Files Released — Press Release",
+    "source_file": "uk/index.html"
+  },
+  {
+    "archive": "uk",
+    "kind": "card-title",
+    "selector": "script#arch-data[1].ti",
+    "source_path": "/uk/",
+    "expected_text": "AIR 2/17318 — Early UFO sightings letters (1963)",
+    "source_file": "uk/index.html"
+  },
+  {
+    "archive": "uk",
+    "kind": "card-title",
+    "selector": "script#arch-data[2].ti",
+    "source_path": "/uk/",
+    "expected_text": "DEFE 24/1948/1 — Rendlesham Forest incident",
+    "source_file": "uk/index.html"
+  },
+  {
+    "archive": "uk",
+    "kind": "card-title",
+    "selector": "script#arch-data[3].ti",
+    "source_path": "/uk/",
+    "expected_text": "DEFE 24/1958/1 — UFO policy and communications (1985–1995)",
+    "source_file": "uk/index.html"
+  },
+  {
+    "archive": "uk",
+    "kind": "card-title",
+    "selector": "script#arch-data[4].ti",
+    "source_path": "/uk/",
+    "expected_text": "DEFE 24/1943/1 — Reports of alien encounters (1985–1992)",
+    "source_file": "uk/index.html"
+  },
+  {
+    "archive": "brazil",
+    "kind": "hero-lede",
+    "selector": "h1.hero-title",
+    "source_path": "/brazil/",
+    "expected_text": "Brazil's OVNI files — declassified in five tranches.",
+    "source_file": "brazil/index.html"
+  },
+  {
+    "archive": "brazil",
+    "kind": "hero-sub",
+    "selector": "p.hero-sub",
+    "source_path": "/brazil/",
+    "expected_text": "Between 2008 and 2016, the Força Aérea Brasileira (FAB) declassified approximately 4,500 documents spanning 1952-2016 and transferred them to the Arquivo Nacional. A 2013 COMAER ordinance formalised the procedure for registering UFO reports. Releases are reusable under Lei nº 12.527/2011 (LAI) — Brazil's Freedom of Information Act.",
+    "source_file": "brazil/index.html"
+  },
+  {
+    "archive": "brazil",
+    "kind": "license-footer",
+    "selector": "footer p",
+    "source_path": "/brazil/",
+    "expected_text": "Offline gateway to Brazil's official OVNI record. Federal Brazilian works are reusable under Lei nº 12.527/2011 (LAI).",
+    "source_file": "brazil/index.html"
+  },
+  {
+    "archive": "brazil",
+    "kind": "card-title",
+    "selector": "script#arch-data[0].ti",
+    "source_path": "/brazil/",
+    "expected_text": "Arquivo Nacional — Dibrarq · OVNI collection",
+    "source_file": "brazil/index.html"
+  },
+  {
+    "archive": "brazil",
+    "kind": "card-title",
+    "selector": "script#arch-data[1].ti",
+    "source_path": "/brazil/",
+    "expected_text": "FAB CENDOC — Documentos Especiais (Special Documents)",
+    "source_file": "brazil/index.html"
+  },
+  {
+    "archive": "brazil",
+    "kind": "card-title",
+    "selector": "script#arch-data[2].ti",
+    "source_path": "/brazil/",
+    "expected_text": "Arquivo Nacional — Comando da Aeronáutica fonds",
+    "source_file": "brazil/index.html"
+  },
+  {
+    "archive": "brazil",
+    "kind": "card-title",
+    "selector": "script#arch-data[3].ti",
+    "source_path": "/brazil/",
+    "expected_text": "FAB Notimp 250 (08/09/2013) — OVNI policy ordinance",
+    "source_file": "brazil/index.html"
+  },
+  {
+    "archive": "brazil",
+    "kind": "card-title",
+    "selector": "script#arch-data[4].ti",
+    "source_path": "/brazil/",
+    "expected_text": "FAB Notimp 173 (21/06/2015) — UFO reporting update",
+    "source_file": "brazil/index.html"
+  },
+  {
+    "archive": "chile",
+    "kind": "hero-lede",
+    "selector": "h1.hero-title",
+    "source_path": "/chile/",
+    "expected_text": "Chile's civil-aviation UAP office — the only one of its kind.",
+    "source_file": "chile/index.html"
+  },
+  {
+    "archive": "chile",
+    "kind": "hero-sub",
+    "selector": "p.hero-sub",
+    "source_path": "/chile/",
+    "expected_text": "SEFAA (Sección de Estudios de Fenómenos Aéreos Anómalos) — formerly CEFAA — is the world's only UAP unit embedded inside a civil aviation authority. Sitting within DGAC, it investigates anomalies reported by pilots, air traffic controllers, and the public, and publishes monthly resolved-case dispatches. Records reusable under Ley nº 20.285 (Acceso a la Información Pública).",
+    "source_file": "chile/index.html"
+  },
+  {
+    "archive": "chile",
+    "kind": "license-footer",
+    "selector": "footer p",
+    "source_path": "/chile/",
+    "expected_text": "Offline gateway to Chile's SEFAA UAP unit at DGAC. Government records reusable under Ley nº 20.285 sobre Acceso a la Información Pública.",
+    "source_file": "chile/index.html"
+  },
+  {
+    "archive": "chile",
+    "kind": "card-title",
+    "selector": "script#arch-data[0].ti",
+    "source_path": "/chile/",
+    "expected_text": "DGAC — CEFAA: An Investigative Model for Anomalous Aerial Phenomena",
+    "source_file": "chile/index.html"
+  },
+  {
+    "archive": "chile",
+    "kind": "card-title",
+    "selector": "script#arch-data[1].ti",
+    "source_path": "/chile/",
+    "expected_text": "SEFAA — resolved cases archive",
+    "source_file": "chile/index.html"
+  },
+  {
+    "archive": "chile",
+    "kind": "card-title",
+    "selector": "script#arch-data[2].ti",
+    "source_path": "/chile/",
+    "expected_text": "SEFAA — Quiénes somos (about the office)",
+    "source_file": "chile/index.html"
+  },
+  {
+    "archive": "chile",
+    "kind": "card-title",
+    "selector": "script#arch-data[3].ti",
+    "source_path": "/chile/",
+    "expected_text": "DGAC — CEFAA: An Investigative Model (page)",
+    "source_file": "chile/index.html"
+  },
+  {
+    "archive": "chile",
+    "kind": "card-title",
+    "selector": "script#arch-data[4].ti",
+    "source_path": "/chile/",
+    "expected_text": "DGAC — CEFAA→SEFAA transition announcement",
+    "source_file": "chile/index.html"
+  },
+  {
+    "archive": "argentina",
+    "kind": "hero-lede",
+    "selector": "h1.hero-title",
+    "source_path": "/argentina/",
+    "expected_text": "Argentina's CEFAe — Air Force commission, since 2011.",
+    "source_file": "argentina/index.html"
+  },
+  {
+    "archive": "argentina",
+    "kind": "hero-sub",
+    "selector": "p.hero-sub",
+    "source_path": "/argentina/",
+    "expected_text": "CEFAe (Comisión de Estudio de Fenómenos Aeroespaciales) is the Fuerza Aérea Argentina's official UAP body, formed in 2011 under the Ministerio de Defensa. Operates inside the Air Force; investigates reports from pilots, ATC, and the public; publishes findings via FAA's institutional channels. Records are accessible via argentina.gob.ar/fuerzaaerea.",
+    "source_file": "argentina/index.html"
+  },
+  {
+    "archive": "argentina",
+    "kind": "license-footer",
+    "selector": "footer p",
+    "source_path": "/argentina/",
+    "expected_text": "Offline gateway to CEFAe. Public-sector works reusable under Ley 27.275 (acceso a la información pública).",
+    "source_file": "argentina/index.html"
+  },
+  {
+    "archive": "argentina",
+    "kind": "card-title",
+    "selector": "script#arch-data[0].ti",
+    "source_path": "/argentina/",
+    "expected_text": "Fuerza Aérea Argentina — official site",
+    "source_file": "argentina/index.html"
+  },
+  {
+    "archive": "argentina",
+    "kind": "card-title",
+    "selector": "script#arch-data[1].ti",
+    "source_path": "/argentina/",
+    "expected_text": "Ministerio de Defensa — Argentine national defence",
+    "source_file": "argentina/index.html"
+  },
+  {
+    "archive": "argentina",
+    "kind": "card-title",
+    "selector": "script#arch-data[2].ti",
+    "source_path": "/argentina/",
+    "expected_text": "Archivo General de la Nación — Argentina",
+    "source_file": "argentina/index.html"
+  },
+  {
+    "archive": "canada",
+    "kind": "hero-lede",
+    "selector": "h1.hero-title",
+    "source_path": "/canada/",
+    "expected_text": "Canada's Operation Magnet — the first state UFO programme.",
+    "source_file": "canada/index.html"
+  },
+  {
+    "archive": "canada",
+    "kind": "hero-sub",
+    "selector": "p.hero-sub",
+    "source_path": "/canada/",
+    "expected_text": "In 1950, engineer Wilbert B. Smith launched Project Magnet at Canada's Department of Transport — the first state-funded UFO investigation programme anywhere. Project Second Story followed at the Defence Research Board. Both their records, plus subsequent RCMP and DND files, live at Library and Archives Canada.",
+    "source_file": "canada/index.html"
+  },
+  {
+    "archive": "canada",
+    "kind": "license-footer",
+    "selector": "footer p",
+    "source_path": "/canada/",
+    "expected_text": "Offline gateway to Operation Magnet. Crown copyright — Government of Canada Open Government Licence.",
+    "source_file": "canada/index.html"
+  },
+  {
+    "archive": "canada",
+    "kind": "card-title",
+    "selector": "script#arch-data[0].ti",
+    "source_path": "/canada/",
+    "expected_text": "Library and Archives Canada — UFO research guide",
+    "source_file": "canada/index.html"
+  },
+  {
+    "archive": "canada",
+    "kind": "card-title",
+    "selector": "script#arch-data[1].ti",
+    "source_path": "/canada/",
+    "expected_text": "LAC — Project Magnet (DOT records, RG 12)",
+    "source_file": "canada/index.html"
+  },
+  {
+    "archive": "canada",
+    "kind": "card-title",
+    "selector": "script#arch-data[2].ti",
+    "source_path": "/canada/",
+    "expected_text": "LAC — Defence Research Board (RG 24)",
+    "source_file": "canada/index.html"
+  },
+  {
+    "archive": "canada",
+    "kind": "card-title",
+    "selector": "script#arch-data[3].ti",
+    "source_path": "/canada/",
+    "expected_text": "LAC — RCMP UFO files (RG 18)",
+    "source_file": "canada/index.html"
+  },
+  {
+    "archive": "canada",
+    "kind": "card-title",
+    "selector": "script#arch-data[4].ti",
+    "source_path": "/canada/",
+    "expected_text": "LAC catalog search — UFO",
+    "source_file": "canada/index.html"
+  },
+  {
+    "archive": "italy",
+    "kind": "hero-lede",
+    "selector": "h1.hero-title",
+    "source_path": "/italy/",
+    "expected_text": "Italy's Aeronautica Militare — UAP records since 1933.",
+    "source_file": "italy/index.html"
+  },
+  {
+    "archive": "italy",
+    "kind": "hero-sub",
+    "selector": "p.hero-sub",
+    "source_path": "/italy/",
+    "expected_text": "Italy's Aeronautica Militare has investigated aerial phenomena since 1933 — the longest unbroken state interest worldwide. Since 2008, the Stato Maggiore Aeronautica has systematically declassified UFO case files via the Sicurezza Aerea portal. Records spread across Aeronautica Militare archives and ufficio statistica. Source: aeronautica.difesa.it.",
+    "source_file": "italy/index.html"
+  },
+  {
+    "archive": "italy",
+    "kind": "license-footer",
+    "selector": "footer p",
+    "source_path": "/italy/",
+    "expected_text": "Offline gateway to Aeronautica Militare. Reusable under D.lgs. 33/2013 (decreto trasparenza).",
+    "source_file": "italy/index.html"
+  },
+  {
+    "archive": "italy",
+    "kind": "card-title",
+    "selector": "script#arch-data[0].ti",
+    "source_path": "/italy/",
+    "expected_text": "Aeronautica Militare — official site",
+    "source_file": "italy/index.html"
+  },
+  {
+    "archive": "italy",
+    "kind": "card-title",
+    "selector": "script#arch-data[1].ti",
+    "source_path": "/italy/",
+    "expected_text": "Stato Maggiore Aeronautica — UFO portal",
+    "source_file": "italy/index.html"
+  },
+  {
+    "archive": "italy",
+    "kind": "card-title",
+    "selector": "script#arch-data[2].ti",
+    "source_path": "/italy/",
+    "expected_text": "Ministero della Difesa — Italy",
+    "source_file": "italy/index.html"
+  },
+  {
+    "archive": "italy",
+    "kind": "card-title",
+    "selector": "script#arch-data[3].ti",
+    "source_path": "/italy/",
+    "expected_text": "Archivio Centrale dello Stato — Italy",
+    "source_file": "italy/index.html"
+  },
+  {
+    "archive": "nz",
+    "kind": "hero-lede",
+    "selector": "h1.hero-title",
+    "source_path": "/nz/",
+    "expected_text": "New Zealand's declassified RNZAF UFO files.",
+    "source_file": "nz/index.html"
+  },
+  {
+    "archive": "nz",
+    "kind": "hero-sub",
+    "selector": "p.hero-sub",
+    "source_path": "/nz/",
+    "expected_text": "In December 2010, the New Zealand Defence Force released 2,010 pages of previously classified UFO files (1952-2009) to Archives New Zealand. Centrepiece: the AIR 1080/6/897 series on the 1978 Kaikoura sightings. Released after a 14-month campaign by UFOCUS NZ. Source: archives.govt.nz.",
+    "source_file": "nz/index.html"
+  },
+  {
+    "archive": "nz",
+    "kind": "license-footer",
+    "selector": "footer p",
+    "source_path": "/nz/",
+    "expected_text": "Offline gateway to NZDF UFO Files. Crown copyright — reusable under Creative Commons BY 4.0 by default.",
+    "source_file": "nz/index.html"
+  },
+  {
+    "archive": "nz",
+    "kind": "card-title",
+    "selector": "script#arch-data[0].ti",
+    "source_path": "/nz/",
+    "expected_text": "NZDF — UAP/UFO/USO OIA response (2023-4763)",
+    "source_file": "nz/index.html"
+  },
+  {
+    "archive": "nz",
+    "kind": "card-title",
+    "selector": "script#arch-data[1].ti",
+    "source_path": "/nz/",
+    "expected_text": "NZDF — UFO/UAP reporting OIA response (2024-5199)",
+    "source_file": "nz/index.html"
+  },
+  {
+    "archive": "nz",
+    "kind": "card-title",
+    "selector": "script#arch-data[2].ti",
+    "source_path": "/nz/",
+    "expected_text": "National Library of NZ — UFO files record",
+    "source_file": "nz/index.html"
+  },
+  {
+    "archive": "nz",
+    "kind": "card-title",
+    "selector": "script#arch-data[3].ti",
+    "source_path": "/nz/",
+    "expected_text": "AIR 1080/6/897 — Kaikoura 1978 file (PDF)",
+    "source_file": "nz/index.html"
+  },
+  {
+    "archive": "nz",
+    "kind": "card-title",
+    "selector": "script#arch-data[4].ti",
+    "source_path": "/nz/",
+    "expected_text": "Archives New Zealand — homepage",
+    "source_file": "nz/index.html"
+  },
+  {
+    "archive": "peru",
+    "kind": "hero-lede",
+    "selector": "h1.hero-title",
+    "source_path": "/peru/",
+    "expected_text": "Peru's OIFAA — reactivated 2022 under the Air Force.",
+    "source_file": "peru/index.html"
+  },
+  {
+    "archive": "peru",
+    "kind": "hero-sub",
+    "selector": "p.hero-sub",
+    "source_path": "/peru/",
+    "expected_text": "OIFAA (Oficina de Investigación de Fenómenos Aéreos Anómalos) is the Fuerza Aérea del Perú's UAP investigation office. Originally founded in 2001, deactivated, then reactivated in 2022 by FAP directive. Receives reports from pilots, ATC and the public; cross-correlates with radar / satellite data. Sources: fap.mil.pe.",
+    "source_file": "peru/index.html"
+  },
+  {
+    "archive": "peru",
+    "kind": "license-footer",
+    "selector": "footer p",
+    "source_path": "/peru/",
+    "expected_text": "Offline gateway to OIFAA. Reusable under Ley 27.806 (Acceso a la información pública).",
+    "source_file": "peru/index.html"
+  },
+  {
+    "archive": "peru",
+    "kind": "card-title",
+    "selector": "script#arch-data[0].ti",
+    "source_path": "/peru/",
+    "expected_text": "Fuerza Aérea del Perú — official site",
+    "source_file": "peru/index.html"
+  },
+  {
+    "archive": "peru",
+    "kind": "card-title",
+    "selector": "script#arch-data[1].ti",
+    "source_path": "/peru/",
+    "expected_text": "Ministerio de Defensa del Perú",
+    "source_file": "peru/index.html"
+  },
+  {
+    "archive": "peru",
+    "kind": "card-title",
+    "selector": "script#arch-data[2].ti",
+    "source_path": "/peru/",
+    "expected_text": "Archivo General de la Nación — Perú",
+    "source_file": "peru/index.html"
+  },
+  {
+    "archive": "spain",
+    "kind": "hero-lede",
+    "selector": "h1.hero-title",
+    "source_path": "/spain/",
+    "expected_text": "Spain's pioneering Air Force declassification.",
+    "source_file": "spain/index.html"
+  },
+  {
+    "archive": "spain",
+    "kind": "hero-sub",
+    "selector": "p.hero-sub",
+    "source_path": "/spain/",
+    "expected_text": "Between 1992 and 1999, Spain's Ejército del Aire became one of the first NATO air forces to systematically declassify its UFO archive. 86 case files · ~1,900 pages spanning 1962-1995 were released under General Alfredo Chamorro Chapinal. The files are held at the Archivo Histórico del Ejército del Aire. Source: ejercitodelaire.defensa.gob.es.",
+    "source_file": "spain/index.html"
+  },
+  {
+    "archive": "spain",
+    "kind": "license-footer",
+    "selector": "footer p",
+    "source_path": "/spain/",
+    "expected_text": "Offline gateway to Ejército del Aire. Reusable under Ley 19/2013 sobre transparencia y acceso a la información pública.",
+    "source_file": "spain/index.html"
+  },
+  {
+    "archive": "spain",
+    "kind": "card-title",
+    "selector": "script#arch-data[0].ti",
+    "source_path": "/spain/",
+    "expected_text": "Ejército del Aire y del Espacio — homepage",
+    "source_file": "spain/index.html"
+  },
+  {
+    "archive": "spain",
+    "kind": "card-title",
+    "selector": "script#arch-data[1].ti",
+    "source_path": "/spain/",
+    "expected_text": "Archivo Histórico del Ejército del Aire",
+    "source_file": "spain/index.html"
+  },
+  {
+    "archive": "spain",
+    "kind": "card-title",
+    "selector": "script#arch-data[2].ti",
+    "source_path": "/spain/",
+    "expected_text": "Ministerio de Defensa — Portal de la Cultura de Defensa",
+    "source_file": "spain/index.html"
+  },
+  {
+    "archive": "uruguay",
+    "kind": "hero-lede",
+    "selector": "h1.hero-title",
+    "source_path": "/uruguay/",
+    "expected_text": "Uruguay's CRIDOVNI — oldest continuously-running UFO office.",
+    "source_file": "uruguay/index.html"
+  },
+  {
+    "archive": "uruguay",
+    "kind": "hero-sub",
+    "selector": "p.hero-sub",
+    "source_path": "/uruguay/",
+    "expected_text": "CRIDOVNI (Comisión Receptora e Investigadora de Denuncias de OVNI) was established in 1979 inside Uruguay's Air Force — the world's oldest continuously-operating state UAP programme. Receives reports from pilots and the public, investigates with a scientific framework, and maintains a classified case archive of nearly five decades of Uruguayan sightings. Source: fau.mil.uy.",
+    "source_file": "uruguay/index.html"
+  },
+  {
+    "archive": "uruguay",
+    "kind": "license-footer",
+    "selector": "footer p",
+    "source_path": "/uruguay/",
+    "expected_text": "Offline gateway to CRIDOVNI. Reusable under Ley nº 18.381 (acceso a la información pública).",
+    "source_file": "uruguay/index.html"
+  },
+  {
+    "archive": "uruguay",
+    "kind": "card-title",
+    "selector": "script#arch-data[0].ti",
+    "source_path": "/uruguay/",
+    "expected_text": "Fuerza Aérea Uruguaya — homepage",
+    "source_file": "uruguay/index.html"
+  },
+  {
+    "archive": "uruguay",
+    "kind": "card-title",
+    "selector": "script#arch-data[1].ti",
+    "source_path": "/uruguay/",
+    "expected_text": "Ministerio de Defensa Nacional — Uruguay",
+    "source_file": "uruguay/index.html"
+  },
+  {
+    "archive": "uruguay",
+    "kind": "card-title",
+    "selector": "script#arch-data[2].ti",
+    "source_path": "/uruguay/",
+    "expected_text": "Archivo General de la Nación — Uruguay",
+    "source_file": "uruguay/index.html"
+  },
+  {
+    "archive": "wargov",
+    "kind": "faq-answer",
+    "selector": "main h2#0 + p",
+    "source_path": "/about.html",
+    "expected_text": "realufo.org is a static, offline-first archive of every government UAP / UFO disclosure programme we could find — fifteen so far, from the U.S. Department of War's PURSUE release through France's GEIPAN to Uruguay's CRIDOVNI. Every record on this site is mirrored verbatim from an official source. Where the source is unreachable (Akamai blocks, 404, paywall), we link back through the Wayback Machine.",
+    "source_file": "about.html",
+    "heading": "What this is"
+  },
+  {
+    "archive": "wargov",
+    "kind": "faq-answer",
+    "selector": "main h2#1 + p",
+    "source_path": "/about.html",
+    "expected_text": "We keep five rules, in this order:",
+    "source_file": "about.html",
+    "heading": "Editorial rules"
+  },
+  {
+    "archive": "wargov",
+    "kind": "faq-answer",
+    "selector": "main h2#2 + p",
+    "source_path": "/about.html",
+    "expected_text": "Every page is a single self-contained HTML file. No JS framework, no build tool, no runtime. CSS and JS inlined per page. The full source including build scripts is on GitHub.",
+    "source_file": "about.html",
+    "heading": "How it's built"
+  },
+  {
+    "archive": "wargov",
+    "kind": "faq-answer",
+    "selector": "main h2#3 + p",
+    "source_path": "/about.html",
+    "expected_text": "Each archived record inherits the licence of its source jurisdiction:",
+    "source_file": "about.html",
+    "heading": "Licensing"
+  },
+  {
+    "archive": "wargov",
+    "kind": "faq-answer",
+    "selector": "main h2#4 + p",
+    "source_path": "/about.html",
+    "expected_text": "realufo.org · About this project · MIT code · public-domain content per jurisdiction",
+    "source_file": "about.html",
+    "heading": "Acknowledgements"
+  }
+]
