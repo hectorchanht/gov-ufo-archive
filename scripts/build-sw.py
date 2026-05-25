@@ -1,12 +1,21 @@
 #!/usr/bin/env python3
 """Stamp the service-worker version with the current commit / timestamp.
 
-Reads sw.js, replaces the literal `__SW_VERSION__` placeholder with a
-short version stamp (git commit short SHA when available, otherwise an
-ISO date), and writes the file back in place.
+As of Phase 1 of the realufo.org SSG migration, ``sw.js`` is the
+**kill-switch** SW — cache-name prefix ``realufo-killswitch-`` — not the
+prior versioned offline-first shell. See ``.planning/research/PITFALLS.md``
+Pitfall #1 and ``.planning/phases/01-pre-migration-safety/01-CONTEXT.md``
+decisions D-05..D-08. The real (offline-first) SW returns at Phase 6
+cutover with a different cache-name prefix so the two builds cannot
+collide.
+
+This stamper reads sw.js, replaces the literal ``__SW_VERSION__``
+placeholder with a short version stamp (git commit short SHA when
+available, otherwise an ISO date), and writes the file back in place.
 
 Run before deploying so users on previous caches get invalidated on
-their next page load. Idempotent.
+their next page load. Idempotent — a previously-stamped sw.js gets
+re-stamped to the current build's identity.
 
     python3 scripts/build-sw.py
 """
@@ -47,6 +56,15 @@ def main() -> int:
     )
     if n != 1:
         print('warn: VERSION line not found in sw.js'); return 1
+
+    # Defensive: warn if the kill-switch identity has been removed from
+    # sw.js (e.g. someone hand-edited a non-kill-switch SW into this path).
+    # Phase 1's contract REQUIRES the prefix to be present; the real SW at
+    # Phase 6 cutover will use a different prefix and this warning will be
+    # updated alongside that change.
+    if 'realufo-killswitch-' not in patched:
+        print('warn: sw.js no longer contains the kill-switch tag '
+              '(realufo-killswitch-); ensure this is intentional')
 
     if patched == src:
         print(f'sw.js already at {new_version}')
