@@ -37,7 +37,14 @@ This roadmap derives 6 phases from the v1 REQUIREMENTS.md categories (PMS / INF 
   4. DNS TTL on `realufo.org` is dropped to 300 s and verified via `dig +noall +answer realufo.org` (gate against Phase 6 cutover: TTL must read 300 s for ≥ 7 consecutive days before DNS swap).
   5. Two latent FIX bugs are closed: `scripts/sync.sh:144` resolves to a real path (PMS-05), and `CLAUDE.md §5.1` reflects the actual remote `hectorchanht/gov-ufo-archive` (PMS-06).
 
-**Plans**: TBD
+**Plans**: 5 plans
+
+Plans:
+- [ ] 01-01-PLAN.md — Close PMS-05 (sync.sh:144 broken download.py path) + PMS-06 (CLAUDE.md §5.1 verification)
+- [ ] 01-02-PLAN.md — PMS-01: generate scripts/snapshot-urls.py + commit URL-CONTRACT.txt from main
+- [ ] 01-03-PLAN.md — PMS-03: bilateral Akamai egress spike (Workers vs Actions) + write .planning/decisions/akamai-spike.md
+- [ ] 01-04-PLAN.md — PMS-04: discover DNS provider for realufo.org, drop TTL to 300 s, verify via dig
+- [ ] 01-05-PLAN.md — PMS-02: replace sw.js with kill-switch SW, deploy to GH Pages, verify on returning-user profile
 
 ### Phase 2: Infrastructure & CI Scaffolding
 
@@ -131,7 +138,7 @@ This roadmap derives 6 phases from the v1 REQUIREMENTS.md categories (PMS / INF 
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Pre-Migration Safety | 0/0 | Not started | - |
+| 1. Pre-Migration Safety | 0/5 | Not started | - |
 | 2. Infrastructure & CI Scaffolding | 0/0 | Not started | - |
 | 3. SSG Foundation | 0/0 | Not started | - |
 | 4. Full Migration, Search, Offline, Performance | 0/0 | Not started | - |
