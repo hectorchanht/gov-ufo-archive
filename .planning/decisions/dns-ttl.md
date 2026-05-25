@@ -10,9 +10,14 @@ the `dig` outputs confirming propagation. Phase 6's cutover-gate reads the
 
 ## Status
 
-`discovered` — Task 1 complete (provider identified, current TTL captured).
-Transitions to `dropped` after Task 2 step 3, then `verified` after Task 2
-step 6.
+`migration-pending` — Task 1 complete (Porkbun DNS discovered). Decision
+revised 2026-05-25: migrate DNS authority Porkbun → Cloudflare DNS before
+TTL drop, since Phase 2 hosts the site on Cloudflare Pages and the zone is
+already imported into the user's CF account (account
+`f1868a071996e836eae6da2b65f37929`). New Task 2 path: change NS at Porkbun
+registrar → CF NS, wait for propagation, then set TTL=300 in CF DNS dash.
+Transitions: `migration-pending` → `ns-changed` → `dns-on-cloudflare` →
+`ttl-dropped` → `verified`.
 
 ## DNS Provider
 
@@ -155,7 +160,51 @@ cutover-gate reads this file's `## TTL Change Log` timestamp.
 
 ## Provider-Specific Change Procedure
 
-Porkbun DNS dashboard procedure (4 steps; expanded notes follow):
+> **REVISED 2026-05-25**: Path migrated from "drop TTL at Porkbun" to
+> "delegate DNS Porkbun → Cloudflare, then drop TTL at Cloudflare". The
+> original Porkbun-only procedure is preserved below as a fallback.
+
+### Path A (CHOSEN) — Migrate DNS authority Porkbun → Cloudflare
+
+CF dash: <https://dash.cloudflare.com/f1868a071996e836eae6da2b65f37929/realufo.org>
+
+1. **At Cloudflare**: Confirm zone `realufo.org` is imported. Note the two
+   assigned CF nameservers (e.g. `aaa.ns.cloudflare.com`,
+   `bbb.ns.cloudflare.com` — exact pair shown on the zone Overview tab).
+2. **At Cloudflare**: Verify all 5 DNS records imported correctly — 4× apex
+   `A` records (185.199.108-111.153) + 1× `www` CNAME →
+   `hectorchanht.github.io.`. Add any missing rows. Set proxy status to
+   **DNS only** (grey cloud) initially — orange-cloud proxy can be enabled
+   later once GitHub Pages → CF Pages cutover (Phase 6).
+3. **At Porkbun**: <https://porkbun.com/account/login> → Domain Management
+   → `realufo.org` → "Details" → "Authoritative Nameservers". Replace the 4
+   Porkbun NS (`curitiba/fortaleza/maceio/salvador.ns.porkbun.com`) with
+   the 2 Cloudflare NS from step 1. Save.
+4. **Wait for NS propagation** (~30 min to a few hours; Porkbun's own
+   parent-zone update is usually <30 min). Verify:
+   ```
+   dig +noall +answer NS realufo.org @1.1.1.1
+   dig +noall +answer NS realufo.org @8.8.8.8
+   ```
+   Both should report the two `*.ns.cloudflare.com` names.
+5. **At Cloudflare**: Once NS propagated, set TTL on every DNS record to
+   `300` seconds (DNS tab → edit each row → change TTL from `Auto` to
+   `2 minutes` or custom `300`). Auto-TTL on CF is normally 300 s for
+   non-proxied records anyway, but pin explicitly to satisfy the
+   `## Verification Log` evidence below.
+6. **Verify** at multiple resolvers (per CONTEXT.md D-10 + 01-04 Task 2
+   methodology):
+   ```
+   dig +noall +answer realufo.org @1.1.1.1
+   dig +noall +answer realufo.org @8.8.8.8
+   dig +noall +answer realufo.org @9.9.9.9
+   ```
+   All three should report TTL `≤ 300` and the same four A-record values.
+7. **Record** the propagation-confirmed UTC timestamp in `## TTL Change Log`
+   below — this anchors the 7-day Phase 6 cutover gate (NOT the NS-swap
+   timestamp; the gate measures from TTL-on-Cloudflare-verified).
+
+### Path B (FALLBACK) — Original Porkbun-DNS-only procedure
 
 1. **Log in** to <https://porkbun.com/account/login>.
 2. **Open the DNS records page** for `realufo.org`: navigate to "Domain
