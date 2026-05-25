@@ -52,6 +52,13 @@ War.gov / PURSUE landing page (historical reasons — it predates the others).
 
 ## 3. Design system
 
+> **Status (2026-05-25)**: This design system is the **starting point** for the
+> in-flight SSG migration (see §13). Visual identity (§3.1 tone colours, §3.2
+> palette, per-archive seals) is **locked** — must survive migration verbatim.
+> Markup, class names, and CSS structure (§4 skeleton, §7 JS invariants) may
+> evolve to fit Astro idioms, but mobile-first rules (§8) and content rules
+> (§9) remain non-negotiable.
+
 ### 3.1 Tone colours (per archive)
 
 Each archive picks ONE primary accent (`--caution`). Everything else is
@@ -226,7 +233,7 @@ never at the bare local path.
 | `pdfs-v1` | 165 PDFs across all archives |
 | Per-archive tags as the catalogue grows (`geipan-v1`, `uk-v1`, …) |
 
-URL pattern: `https://github.com/hectorchanht/war-gov-ufo-release/releases/download/<tag>/<filename>` — referenced from manifest as `a.url`.
+URL pattern: `https://github.com/hectorchanht/gov-ufo-archive/releases/download/<tag>/<filename>` — referenced from manifest as `a.url`. (Local folder name `war-gov-ufo-release` is historical; the remote canonical name is `gov-ufo-archive`.)
 
 ### 5.2 `.gitignore` policy
 
@@ -391,3 +398,46 @@ git ls-files <dir>/ | wc -l
 # View a release
 gh release view <tag>
 ```
+
+---
+
+## 13. SSG migration in progress (2026-05)
+
+The project is migrating from plain HTML + Python build scripts to a formal
+SSG. The design rules in §3–§11 are the **starting contract**; this section
+points at the migration source-of-truth so agents picking up work know where
+the latest decisions live.
+
+| Artifact | Path | Purpose |
+| --- | --- | --- |
+| Project context | `.planning/PROJECT.md` | Core value, constraints, active requirements, key decisions |
+| Requirements | `.planning/REQUIREMENTS.md` | 56 v1 requirements with REQ-IDs (PMS / INF / SSG / SRC / SW / HOST / SCRP / PERF) |
+| Roadmap | `.planning/ROADMAP.md` | 6 phases, dependencies, success criteria |
+| Research summary | `.planning/research/SUMMARY.md` | Synthesized findings (stack / arch / features / pitfalls) |
+| Codebase map | `.planning/codebase/*.md` | STACK, ARCHITECTURE, STRUCTURE, CONVENTIONS, TESTING, INTEGRATIONS, CONCERNS |
+| Phase artifacts | `.planning/phases/NN-name/` | Per-phase CONTEXT, RESEARCH, PLAN, VERIFICATION |
+| State | `.planning/STATE.md` | Current phase / plan / progress |
+
+**Target stack** (research-decided, see `.planning/research/STACK.md`):
+- **SSG**: Astro 5.x (pinned `~5.x.y`, NOT 6.x)
+- **Hosting**: Cloudflare Pages (replaces GitHub Pages)
+- **Binary CDN**: GitHub Releases stays (R2 for >2 GB overflow)
+- **Search**: Pagefind (replaces Lunr `api/all.json`)
+- **Scrape automation**: Cloudflare Workers cron + GH Actions hybrid (Akamai egress spike pending — `.planning/decisions/akamai-spike.md`)
+- **Service worker**: `@vite-pwa/astro` `injectManifest`; structurally registered from shared `BaseHead.astro` on every page
+
+**House rules that survive migration** (non-negotiable):
+- §3.1 per-archive tone colours + seal gradients
+- §7 JS invariants (lightbox, hamburger, search-focus on `/`, `?q=` persist)
+- §8 mobile-first (360 px baseline, 44 px touch targets)
+- §9 content fidelity (verbatim official text, no filler, public-domain attribution per jurisdiction)
+- §11 don'ts (no force-push, no inline `↗` in nav, no horizontal scroll)
+
+**House rules that may evolve**:
+- §4 page-skeleton DOM (Astro components may rearrange wrappers)
+- Class names, file paths, inline-script structure
+- Python build scripts disappear (replaced by SSG + content collections)
+
+When in doubt: read `.planning/PROJECT.md`, then this file. PROJECT.md decisions
+override sections of CLAUDE.md they explicitly supersede.
+
