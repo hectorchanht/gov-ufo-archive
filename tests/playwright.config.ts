@@ -16,7 +16,10 @@
 import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
-  testDir: './tests',
+  // testDir is resolved relative to this config file's directory, so '.'
+  // means `tests/` (where this config lives). Setting './tests' here would
+  // resolve to `tests/tests/` and find zero specs.
+  testDir: '.',
   testMatch: '**/*.spec.ts',
   fullyParallel: true,
   workers: 4,
@@ -40,5 +43,9 @@ export default defineConfig({
       animations: 'disabled',
     },
   },
-  snapshotPathTemplate: 'tests/visual-baselines/{arg}{ext}',
+  // snapshotPathTemplate is resolved relative to the config file's directory
+  // (i.e. `tests/`). Use `visual-baselines/{arg}{ext}` so PNGs resolve to
+  // `tests/visual-baselines/<slug>-<width>.png` — matching what
+  // scripts/capture-baselines.py writes.
+  snapshotPathTemplate: 'visual-baselines/{arg}{ext}',
 });

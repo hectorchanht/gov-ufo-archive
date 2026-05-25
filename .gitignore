@@ -64,6 +64,10 @@ dist/
 .pnpm-store/
 .wrangler/
 tests/.playwright-cache/
+# Playwright test runner output — diff PNGs, traces, video on failure.
+# Baselines live under tests/visual-baselines/ and ARE tracked.
+test-results/
+playwright-report/
 .lighthouseci/
 .env
 .dev.vars
