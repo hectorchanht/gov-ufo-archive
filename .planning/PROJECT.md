@@ -43,7 +43,7 @@ the official source verbatim — durable, free, and resistant to source-site tak
 - [ ] **HOST-01**: Migrate hosting from GitHub Pages to Cloudflare Pages
 - [ ] **PERF-01**: Reduce per-page inline-JSON bundle weight (target ≤ 500 KB; geipan currently 3.3 MB)
 - [ ] **FIX-01**: Fix broken `scripts/sync.sh:144` (`$ROOT/download.py` should be `scripts/download-war.gov.py`)
-- [ ] **FIX-02**: Fix broken `scripts/build-details.py:42` (repo name `gov-ufo-archive` should be `war-gov-ufo-release`)
+- [ ] **FIX-02**: Reconcile `CLAUDE.md §5.1` URL pattern (says `war-gov-ufo-release`; actual remote is `hectorchanht/gov-ufo-archive`)
 - [ ] **FIX-03**: Add release-upload step to `.github/workflows/scrape.yml` (currently local-only)
 
 ### Out of Scope
@@ -56,6 +56,11 @@ the official source verbatim — durable, free, and resistant to source-site tak
 - User accounts, payments, native mobile app — outside the read-only archive mission
 
 ## Context
+
+**Deployment:**
+- Live site: <https://realufo.org>
+- Source repo: <https://github.com/hectorchanht/gov-ufo-archive> (local folder name `war-gov-ufo-release` is historical)
+- Binary assets: GitHub Releases on `hectorchanht/gov-ufo-archive` (`videos-v1`, `pdfs-v1`, etc.)
 
 **Codebase state (brownfield, fully mapped):**
 - 95 HTML files, 15 archive directories, 23+ Python build scripts, 15+ shell download scripts
