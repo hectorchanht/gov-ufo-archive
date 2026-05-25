@@ -52,6 +52,12 @@ War.gov / PURSUE landing page (historical reasons — it predates the others).
 
 ## 3. Design system
 
+> **Status (2026-05):** this design system is the **starting point** for the SSG
+> migration — visual identity (palette, type, seal gradients, scanlines) is locked;
+> markup, class names, and per-archive HTML shape may evolve as Astro components
+> replace the inline-CSS+JS pages. See `## 13. SSG migration in progress` and
+> `.planning/PROJECT.md` for the migration meta-state.
+
 ### 3.1 Tone colours (per archive)
 
 Each archive picks ONE primary accent (`--caution`). Everything else is
@@ -226,7 +232,7 @@ never at the bare local path.
 | `pdfs-v1` | 165 PDFs across all archives |
 | Per-archive tags as the catalogue grows (`geipan-v1`, `uk-v1`, …) |
 
-URL pattern: `https://github.com/hectorchanht/war-gov-ufo-release/releases/download/<tag>/<filename>` — referenced from manifest as `a.url`.
+URL pattern: `https://github.com/hectorchanht/gov-ufo-archive/releases/download/<tag>/<filename>` — referenced from manifest as `a.url`. (The local folder name `war-gov-ufo-release` is historical — kept for clone-path stability; the live GitHub remote is `gov-ufo-archive`.)
 
 ### 5.2 `.gitignore` policy
 
@@ -391,3 +397,49 @@ git ls-files <dir>/ | wc -l
 # View a release
 gh release view <tag>
 ```
+
+---
+
+## 13. SSG migration in progress (2026-05)
+
+This repo is mid-migration from a hand-built inline-CSS+JS static site to an
+Astro 5 SSG hosted on Cloudflare Pages, with cron-driven scrape Workers
+replacing today's `./scripts/sync.sh` mirror loop. Phase 1 (Pre-Migration
+Safety) is the current active phase; no SSG code has landed on `main` yet.
+
+**Authoritative migration docs (read these first when working on the SSG):**
+
+- `.planning/PROJECT.md` — Core value, constraints, locked decisions
+  (Astro 5 / Cloudflare Pages / Workers cron / big-bang cutover).
+- `.planning/ROADMAP.md` — Phase-by-phase plan (Phase 1..6) with hard
+  sequencing constraints between phases.
+- `.planning/REQUIREMENTS.md` — Numbered requirements PMS / INF / SSG /
+  SRC / SW / HOST / SCRP / PERF. Phase 1 closes PMS-01..06.
+- `.planning/research/SUMMARY.md` — Top-5 pitfalls and rationale for the
+  phase ordering (esp. Pitfall #1: SW cache poisoning on cutover; #2: URL
+  drift; #5: Akamai egress blocks).
+
+**Target stack (for context when editing build / generation code):**
+
+- **SSG:** Astro 5, file-based routing, MDX for long-form content.
+- **Hosting:** Cloudflare Pages (replaces GitHub Pages on cutover).
+- **Scrape lane:** Workers cron + KV state; hybrid Actions+`curl_cffi`
+  fallback for any source the Akamai spike (PMS-03) shows is Workers-blocked.
+- **CI:** GitHub Actions for URL-CONTRACT.txt drift gate and SW guard.
+
+**House-rule survivability across the migration:**
+
+The design system in §3 (palette, type, seal gradients, scanlines, the
+shared classic-disk-UFO favicon, §3.2 colour tokens, §3.3 typography rules)
+is **locked** — Astro components must render visually identical output.
+Markup, class names, and JS invariants (§7) may be refactored into Astro
+components; the **observable behavior** (mobile-first §8, button schema
+§4.3, lightbox keyboard/swipe contract, `/`-to-focus search shortcut)
+survives unchanged. §9 content rules (no filler, verbatim official text,
+public-domain attribution) apply equally to MDX-authored prose.
+
+**Precedence note (D-15):** When `.planning/PROJECT.md` decisions
+explicitly supersede a CLAUDE.md section, the PROJECT.md decision wins —
+this file documents the historical project shape; PROJECT.md documents
+where it is going. If a contradiction is found, surface it; do not
+silently follow CLAUDE.md against an explicit migration decision.
