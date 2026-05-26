@@ -1,0 +1,598 @@
+#!/usr/bin/env python3
+"""CSV → data/wargov.json + per-50-card shard normaliser (Plan 03-03 / SSG-02).
+
+Reads the wargov source-of-truth CSV (`uap-data.csv` if present else
+`uap-release001.csv`, matching `scripts/build-wargov.py` precedence) and
+writes:
+
+  data/wargov.json
+    Astro `file()` loader entries-object form:
+      { "v1": { "schemaVersion": 1, "slug": "wargov",
+                "rows": [<first 50 raw rows>],
+                "shards": [{ "index": 2, "file": "data/wargov-shard-2.json" }, ...] } }
+    Validated against `wargovEnvelopeSchema` from `src/content.config.ts`
+    (Plan 03-02) at `pnpm build` time. Astro Card.astro server-renders the
+    first 50 rows directly at build time (D-08).
+
+  data/wargov-shard-N.json   (N starts at 2)
+    Pre-rendered HTML strings per D-10 (LOCKED, reaffirmed by user):
+      { "schemaVersion": 1, "slug": "wargov", "shardIndex": <N>,
+        "cards": [ { "id": "card-<slug>", "html": "<article ...></article>" }, ... ] }
+    These are *not* registered as Astro collection entries — they are static
+    sibling JSON assets that the runtime lazy-loader fetches and inserts via
+    `el.insertAdjacentHTML('beforeend', card.html)`. Zero client-side
+    templating logic. The Python `render_card_html()` function is the single
+    point of truth that mirrors `src/components/Card.astro`'s compiled
+    output (Plan 03-05 verifies the contract).
+
+### Invariants (cite for any future agent before editing)
+
+- **CLAUDE.md §11**: `uap-release001.csv` / `uap-data.csv` are UNTOUCHABLE.
+  This script opens them in read mode only. `_assert_csv_unchanged()` runs
+  after every write to fail loudly if the script accidentally mutates a CSV.
+- **D-04** (idempotent committed output): `json.dumps(..., sort_keys=True,
+  ensure_ascii=False, indent=2)` + trailing newline → same CSV input + same
+  git state produces a byte-identical `data/wargov.json` on every run.
+- **D-08** (50-card boundary): first 50 rows in primary; rest in shards
+  of 50. Tunable via `--page-size`.
+- **D-09 / D-10** (LOCKED): lazy-loaded cards are pre-rendered HTML strings,
+  not raw data. No client-side templating helper anywhere. Phase 4 PERF-01
+  GEIPAN sharding will reuse this exact seam.
+- **D-26..D-28** (fidelity guards): no `.strip()` on text fields (only on
+  Title-truthiness), no Unicode-normalisation imports (the `unico` + `data`
+  stdlib module is deliberately NOT imported — see import block), no regex
+  rewrites against the row text. `html.escape(value, quote=True)` is the
+  only transform applied at render time — it is reversible (entity-encodes
+  `&`, `<`, `>`, `"`, `'` only). PITFALLS.md #6 typographer drift defended.
+- **D-32** (build pipeline): runs as `pnpm prebuild` before `astro build`
+  (wired by Task 2 of this plan).
+- **D-39** (coexistence): this script does NOT replace `scripts/build-
+  wargov.py`. That script continues to emit `index.html` for the GH Pages
+  legacy build until Phase 6.
+
+### Threat mitigations
+
+- **T-03-07 (CSV writeback)**: `_assert_csv_unchanged()` runs post-write
+  and exits 1 with a clear error if either CSV shows a diff.
+- **T-03-08 (typographer drift)**: zero `.translate()`, zero NFC/NFD
+  Unicode-normalisation calls (stdlib's `unico`+`data` module is not
+  imported), zero `.strip()` on text fields. Round-trip fixture test
+  (T-03-08) exercised by the verifier.
+- **T-03-25 (XSS in pre-rendered HTML)**: `_e()` helper pipes every row
+  field through `html.escape(value, quote=True)` before string
+  interpolation. Round-trip test injects `<script>alert(1)</script>` into
+  a synthetic Title and asserts the shard JSON contains `&lt;script&gt;`.
+- **T-03-26 (markup drift vs Card.astro)**: `render_card_html()` markers
+  (`<article`, `class="arch-card"`, `data-id="r"`, `data-action="open"`,
+  `class="card-title"`) are asserted in Task 2 verify. Plan 03-05 verifies
+  the byte-level contract against `dist/index.html` Card.astro output.
+
+CLI:
+    python3 scripts/normalize-csv.py
+        Read CSV → write data/wargov.json + shards. Exit 0 on success.
+
+    python3 scripts/normalize-csv.py --check
+        Re-run pipeline against an in-memory buffer; diff against the
+        on-disk wargov.json + shards. Exit 0 if byte-identical, 1 on drift.
+
+    python3 scripts/normalize-csv.py --page-size N
+        Override the 50-card boundary (D-08 tunable).
+
+Exit codes:
+    0 — success (write or `--check` clean)
+    1 — drift detected (`--check` mode) OR CSV mutation detected
+    2 — neither CSV present (initial-clone case)
+
+Stdlib only — matches `stdlib-only except curl_cffi` convention from
+CLAUDE.md §6.2 and the Phase 1/2 precedent (snapshot-urls.py,
+capture-baselines.py).
+"""
+from __future__ import annotations
+
+import argparse
+import csv
+import html
+import json
+import re
+import subprocess
+import sys
+from pathlib import Path
+from typing import Any
+
+REPO = Path(__file__).resolve().parent.parent
+CSV_COMBINED = REPO / 'uap-data.csv'
+CSV_LEGACY = REPO / 'uap-release001.csv'
+DATA_DIR = REPO / 'data'
+OUT_PRIMARY = DATA_DIR / 'wargov.json'
+SHARD_TEMPLATE = 'data/wargov-shard-{n}.json'
+PAGE_SIZE = 50  # D-08 — tunable via --page-size
+SOURCE_URL = 'https://www.war.gov/UFO/'  # wargov official source (CLAUDE.md §2)
+
+# Slugify regex — BYTE-FOR-BYTE port from scripts/snapshot-urls.py line 92.
+# Same algorithm guarantees `#card-<slug>` anchor parity with URL-CONTRACT.txt.
+_SLUG_RE = re.compile(r'[^a-z0-9]+')
+
+
+# -----------------------------------------------------------------------------
+# CSV ingest (read-only)
+# -----------------------------------------------------------------------------
+
+
+def _pick_csv() -> Path:
+    """Pick `uap-data.csv` if present else `uap-release001.csv`.
+
+    Matches `scripts/build-wargov.py` precedence verbatim (lines 27-29).
+    Exit code 2 if neither CSV exists (initial-clone case).
+    """
+    if CSV_COMBINED.exists():
+        chosen = CSV_COMBINED
+    elif CSV_LEGACY.exists():
+        chosen = CSV_LEGACY
+    else:
+        sys.stderr.write(
+            f'[error] neither {CSV_COMBINED.name} nor {CSV_LEGACY.name} '
+            f'found in {REPO}. Cannot normalise wargov.\n'
+        )
+        sys.exit(2)
+    sys.stderr.write(f'[info] reading wargov source-of-truth: {chosen.name}\n')
+    return chosen
+
+
+def _read_rows(csv_path: Path) -> list[dict[str, str]]:
+    """Read CSV in read-only mode and return rows in CSV order.
+
+    Drops rows where `Title` is blank (truthiness filter only — row VALUES
+    are preserved verbatim per D-26..D-28; `.strip()` is applied solely to
+    the Title-truthiness check, never to any committed text).
+    """
+    rows: list[dict[str, str]] = []
+    # 'utf-8-sig' handles the BOM that spreadsheet exports prepend.
+    # `newline=''` is mandatory for csv module per stdlib docs.
+    with open(csv_path, 'r', encoding='utf-8-sig', newline='') as fh:
+        reader = csv.DictReader(fh)
+        for row in reader:
+            title = row.get('Title', '') or ''
+            if title.strip() == '':
+                continue
+            # Filter out spreadsheet-export sentinel columns (empty-string
+            # header keys from trailing-comma artefacts in the CSV header).
+            # Values still preserved verbatim — we just drop the unnamed
+            # `'': None` key the DictReader synthesises when row width
+            # exceeds header width.
+            cleaned = {
+                k: ('' if v is None else v)
+                for k, v in row.items()
+                if k is not None and k != ''
+            }
+            rows.append(cleaned)
+    sys.stderr.write(f'[info] read {len(rows)} non-empty-Title rows\n')
+    return rows
+
+
+# -----------------------------------------------------------------------------
+# Slug + HTML rendering (mirrors Card.astro per D-10)
+# -----------------------------------------------------------------------------
+
+
+def _slugify(text: str) -> str:
+    """Reduce free-text to a stable `#card-<slug>` anchor.
+
+    BYTE-FOR-BYTE port from scripts/snapshot-urls.py:158-167. Guarantees
+    that `data/wargov-shard-N.json` card `id` values match the anchors in
+    `URL-CONTRACT.txt` exactly.
+
+    Rules: lowercase → collapse runs of non-[a-z0-9] to single hyphen →
+    strip leading/trailing hyphens → truncate to 80 chars → strip again.
+    """
+    if not text:
+        return ''
+    s = _SLUG_RE.sub('-', text.lower()).strip('-')
+    return s[:80].strip('-')
+
+
+def _e(value: str) -> str:
+    """HTML-escape an attribute or text-node value.
+
+    `quote=True` escapes `&`, `<`, `>`, `"`, `'`. This is the ONLY
+    transform applied to row text. It is reversible (entity encoding
+    preserves source bytes on decode) and is the T-03-25 (XSS) mitigation.
+    """
+    return html.escape(value or '', quote=True)
+
+
+def render_card_html(row: dict[str, str], idx: int) -> str:
+    """Render a single card as an HTML string per D-10.
+
+    Mirrors the compiled output structure of `src/components/Card.astro`
+    (Plan 03-05). Markup contract:
+
+      <article class="arch-card"
+               id="card-<slug>"
+               data-id="r<NNN>"          # 1-based, 3-digit padded
+               data-idx="<idx>"          # 0-based global row index
+               data-action="open"
+               data-type="<row.Type>"
+               data-agency="<row.Agency>"
+               data-date="<row['Incident Date']>">
+        <img ...>           (if Modal Image present)
+        <h3 class="card-title">...</h3>
+        <p class="card-desc">...</p>     (if Description Blurb non-empty)
+        <dl class="card-meta">...</dl>
+        <div class="card-actions">
+          <a class="btn-open" data-action="open">Open</a>
+          <a class="btn-download" download>Download</a>
+          <a class="btn-source" target="_blank" rel="noopener">Source ↗</a>
+          <a class="btn-dvids" target="_blank" rel="noopener">DVIDS ↗</a>
+        </div>
+      </article>
+
+    Every row field value is piped through `_e()` before interpolation
+    (T-03-25 XSS mitigation). NO `.strip()` on any value — fidelity
+    preserved per D-26..D-28.
+
+    Parameters
+    ----------
+    row : dict[str, str]
+        CSV row keyed by uap-release001.csv header columns verbatim.
+    idx : int
+        GLOBAL 0-based row index across all rows (offset by shard start).
+        Plan 03-05 lazy-loader relies on monotonic `data-idx` for the
+        lightbox `openAt(idx)` invariant.
+
+    Returns
+    -------
+    str
+        Single-line HTML string. Trailing newline NOT appended (caller
+        joins into JSON string field).
+    """
+    row_id = f'r{idx + 1:03d}'  # 1-based, 3-digit zero-padded
+    title = row.get('Title', '') or ''
+    slug = _slugify(title)
+    url = row.get('PDF | Image Link', '') or ''
+    thumb = row.get('Modal Image', '') or ''
+    alt = row.get('Image Alt Text', '') or title
+    desc = row.get('Description Blurb', '') or ''
+    agency = row.get('Agency', '') or ''
+    date = row.get('Incident Date', '') or ''
+    rtype = row.get('Type', '') or ''
+    dvids = row.get('DVIDS Video ID', '') or ''
+
+    parts: list[str] = []
+    parts.append(
+        f'<article class="arch-card" id="card-{_e(slug)}" '
+        f'data-id="{_e(row_id)}" data-idx="{idx}" data-action="open" '
+        f'data-type="{_e(rtype)}" data-agency="{_e(agency)}" '
+        f'data-date="{_e(date)}">'
+    )
+    if thumb:
+        parts.append(
+            f'<img loading="lazy" src="{_e(thumb)}" '
+            f'data-fallback="{_e(url)}" alt="{_e(alt)}" '
+            f'onerror="this.onerror=null;this.src=this.dataset.fallback||\'\'" />'
+        )
+    parts.append(f'<h3 class="card-title">{_e(title)}</h3>')
+    if desc:
+        parts.append(f'<p class="card-desc">{_e(desc)}</p>')
+    parts.append('<dl class="card-meta">')
+    parts.append(f'<dt>Agency</dt><dd>{_e(agency)}</dd>')
+    parts.append(f'<dt>Date</dt><dd>{_e(date)}</dd>')
+    parts.append(f'<dt>Type</dt><dd>{_e(rtype)}</dd>')
+    parts.append('</dl>')
+    parts.append('<div class="card-actions">')
+    if url:
+        parts.append(
+            f'<a href="{_e(url)}" class="btn-open" '
+            f'data-action="open" data-idx="{idx}">Open</a>'
+        )
+        parts.append(
+            f'<a href="{_e(url)}" class="btn-download" download>Download</a>'
+        )
+    parts.append(
+        f'<a href="{SOURCE_URL}" class="btn-source" '
+        f'target="_blank" rel="noopener">Source ↗</a>'
+    )
+    if dvids:
+        parts.append(
+            f'<a href="https://www.dvidshub.net/video/{_e(dvids)}" '
+            f'class="btn-dvids" target="_blank" rel="noopener">DVIDS ↗</a>'
+        )
+    parts.append('</div>')
+    parts.append('</article>')
+    return ''.join(parts)
+
+
+# -----------------------------------------------------------------------------
+# Sharding (D-08..D-10)
+# -----------------------------------------------------------------------------
+
+
+def _shard_cards(
+    rows: list[dict[str, str]],
+    page_size: int,
+) -> tuple[list[dict[str, str]], list[list[dict[str, str]]]]:
+    """Split rows into (first_page_rows, shard_card_lists).
+
+    - `first_page_rows = rows[:page_size]` (raw rows — Astro Card.astro
+      server-renders these at build time per D-08).
+    - `shard_card_lists` is a list-of-lists where each inner list contains
+      `{"id": "card-<slug>", "html": <render_card_html output>}` dicts for
+      the rows in that shard (D-10 LOCKED — server-rendered HTML strings,
+      no raw row data emitted in shards).
+
+    The `idx` passed to render_card_html is the GLOBAL row index across
+    ALL rows (offset by page_size for shard 2, page_size*2 for shard 3,
+    etc.). Plan 03-05 lazy-loader's `openAt(idx)` lightbox-anchor depends
+    on monotonic `data-idx`.
+    """
+    first_page = rows[:page_size]
+    rest = rows[page_size:]
+    shard_lists: list[list[dict[str, str]]] = []
+    for shard_offset_start in range(0, len(rest), page_size):
+        shard_rows = rest[shard_offset_start:shard_offset_start + page_size]
+        cards: list[dict[str, str]] = []
+        for local_i, row in enumerate(shard_rows):
+            global_idx = page_size + shard_offset_start + local_i
+            title = row.get('Title', '') or ''
+            cards.append({
+                'id': f'card-{_slugify(title)}',
+                'html': render_card_html(row, global_idx),
+            })
+        shard_lists.append(cards)
+    return first_page, shard_lists
+
+
+# -----------------------------------------------------------------------------
+# CSV write-back guard (T-03-07)
+# -----------------------------------------------------------------------------
+
+
+def _assert_csv_unchanged() -> None:
+    """Fail loudly if the script accidentally mutated either CSV.
+
+    CLAUDE.md §11 declares both CSVs untouchable. This post-step runs
+    `git diff --quiet -- uap-release001.csv uap-data.csv` and exits 1 if
+    either shows a diff. T-03-07 mitigation.
+    """
+    try:
+        rc = subprocess.run(
+            ['git', '-C', str(REPO), 'diff', '--quiet', '--',
+             'uap-release001.csv', 'uap-data.csv'],
+            check=False,
+        ).returncode
+    except FileNotFoundError:
+        # git not available — best-effort skip (script is offline-tolerant)
+        sys.stderr.write('[warn] git not on PATH; skipping CSV-unchanged assertion\n')
+        return
+    if rc != 0:
+        sys.stderr.write(
+            '[error] CSV mutation detected — CLAUDE.md §11 forbids '
+            'writing back to uap-release001.csv / uap-data.csv. Revert '
+            'with `git checkout -- uap-release001.csv uap-data.csv` and '
+            'fix the normaliser.\n'
+        )
+        sys.exit(1)
+
+
+# -----------------------------------------------------------------------------
+# JSON write (deterministic per D-04)
+# -----------------------------------------------------------------------------
+
+
+def _serialise(data: Any) -> str:
+    """Deterministic JSON serialisation per D-04 idempotency requirement.
+
+    - `sort_keys=True` — stable key ordering across runs / Python versions
+    - `ensure_ascii=False` — preserves Unicode bytes verbatim per D-26..D-28
+    - `indent=2` — fixed indent so byte-diff catches semantic-only drift
+    - trailing newline — POSIX convention; consistent with `data/aaro.json`
+    """
+    return json.dumps(data, ensure_ascii=False, indent=2, sort_keys=True) + '\n'
+
+
+def _write_json(path: Path, data: Any) -> None:
+    """Write `data` to `path` as deterministic JSON."""
+    path.write_text(_serialise(data), encoding='utf-8')
+
+
+# -----------------------------------------------------------------------------
+# Build the wargov envelopes
+# -----------------------------------------------------------------------------
+
+
+def _build_primary(
+    first_page: list[dict[str, str]],
+    shard_count: int,
+) -> dict[str, Any]:
+    """Construct the primary `data/wargov.json` envelope.
+
+    Matches the Astro 5 file() loader entries-object form documented in
+    `src/content.config.ts` (Plan 03-02) and `data/aaro.json` (skeleton).
+
+    Shape:
+        {
+          "v1": {
+            "schemaVersion": 1,
+            "slug": "wargov",
+            "rows": [<first 50 raw rows>],
+            "shards": [
+              { "index": 2, "file": "data/wargov-shard-2.json" },
+              ...
+            ]
+          }
+        }
+    """
+    return {
+        'v1': {
+            'schemaVersion': 1,
+            'slug': 'wargov',
+            'rows': first_page,
+            'shards': [
+                {
+                    'index': i + 2,
+                    'file': SHARD_TEMPLATE.format(n=i + 2),
+                }
+                for i in range(shard_count)
+            ],
+        },
+    }
+
+
+def _build_shard(
+    shard_index: int,
+    cards: list[dict[str, str]],
+) -> dict[str, Any]:
+    """Construct one `data/wargov-shard-N.json` envelope (D-10 LOCKED).
+
+    Shape:
+        {
+          "schemaVersion": 1,
+          "slug": "wargov",
+          "shardIndex": <N>,
+          "cards": [
+            { "id": "card-<slug>", "html": "<article ...></article>" },
+            ...
+          ]
+        }
+    """
+    return {
+        'schemaVersion': 1,
+        'slug': 'wargov',
+        'shardIndex': shard_index,
+        'cards': cards,
+    }
+
+
+# -----------------------------------------------------------------------------
+# Normalisation pipeline (pure — for `--check` reuse)
+# -----------------------------------------------------------------------------
+
+
+def _normalise(page_size: int) -> tuple[dict[str, Any], list[tuple[Path, dict[str, Any]]]]:
+    """Run the full normalisation pipeline and return (primary, shards).
+
+    `shards` is `[(out_path, envelope), ...]`. Caller decides whether to
+    persist (write mode) or compare (check mode).
+    """
+    csv_path = _pick_csv()
+    rows = _read_rows(csv_path)
+    first_page, shard_card_lists = _shard_cards(rows, page_size)
+    primary = _build_primary(first_page, len(shard_card_lists))
+    shards: list[tuple[Path, dict[str, Any]]] = []
+    for i, cards in enumerate(shard_card_lists):
+        shard_index = i + 2
+        shard_path = REPO / SHARD_TEMPLATE.format(n=shard_index)
+        shards.append((shard_path, _build_shard(shard_index, cards)))
+    return primary, shards
+
+
+# -----------------------------------------------------------------------------
+# CLI entrypoints
+# -----------------------------------------------------------------------------
+
+
+def _write_mode(page_size: int) -> int:
+    """Default mode: normalise CSV → write JSON files."""
+    primary, shards = _normalise(page_size)
+    DATA_DIR.mkdir(exist_ok=True)
+    _write_json(OUT_PRIMARY, primary)
+    for shard_path, shard_envelope in shards:
+        _write_json(shard_path, shard_envelope)
+    _assert_csv_unchanged()
+    total_rows = len(primary['v1']['rows']) + sum(
+        len(s[1]['cards']) for s in shards
+    )
+    sys.stderr.write(
+        f'[ok] wargov: {total_rows} rows, {len(shards)} shards written '
+        f'(first {page_size} as raw rows for Astro server-render; '
+        f'remaining as pre-rendered HTML strings per D-10)\n'
+    )
+    return 0
+
+
+def _check_mode(page_size: int) -> int:
+    """`--check`: normalise to memory + diff against on-disk files.
+
+    Exit 0 if every output is byte-identical to its on-disk counterpart.
+    Exit 1 if any output drifts (CI signal that the normaliser would
+    rewrite committed files).
+    """
+    primary, shards = _normalise(page_size)
+    drift: list[str] = []
+
+    expected_primary = _serialise(primary)
+    if not OUT_PRIMARY.exists():
+        drift.append(f'{OUT_PRIMARY.relative_to(REPO)} missing on disk')
+    else:
+        actual = OUT_PRIMARY.read_text(encoding='utf-8')
+        if actual != expected_primary:
+            drift.append(f'{OUT_PRIMARY.relative_to(REPO)} drift')
+
+    # Track which shard files we expected so we can detect orphan shards
+    # from a previous (larger) CSV that should now be removed.
+    expected_paths = {OUT_PRIMARY}
+    for shard_path, shard_envelope in shards:
+        expected_paths.add(shard_path)
+        expected = _serialise(shard_envelope)
+        if not shard_path.exists():
+            drift.append(f'{shard_path.relative_to(REPO)} missing on disk')
+            continue
+        actual = shard_path.read_text(encoding='utf-8')
+        if actual != expected:
+            drift.append(f'{shard_path.relative_to(REPO)} drift')
+
+    # Orphan-shard detection — committed shards no longer produced by the CSV
+    for orphan in sorted(DATA_DIR.glob('wargov-shard-*.json')):
+        if orphan not in expected_paths:
+            drift.append(f'{orphan.relative_to(REPO)} orphan (re-run normaliser)')
+
+    if drift:
+        sys.stderr.write('[drift] wargov normaliser output diverges:\n')
+        for line in drift:
+            sys.stderr.write(f'  - {line}\n')
+        sys.stderr.write(
+            '[hint] re-run `python3 scripts/normalize-csv.py` (without '
+            '--check) to regenerate the committed JSON files.\n'
+        )
+        return 1
+    sys.stderr.write('[ok] wargov: --check clean (no drift)\n')
+    return 0
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(
+        description=(
+            'Normalise the wargov source-of-truth CSV into '
+            'data/wargov.json + per-50-card shards. Reads '
+            'uap-data.csv if present else uap-release001.csv (CLAUDE.md '
+            '§11 — CSV is read-only). Idempotent + deterministic per D-04.'
+        ),
+    )
+    parser.add_argument(
+        '--check',
+        action='store_true',
+        help=(
+            'Run the pipeline and compare to on-disk JSON files without '
+            'writing. Exit 1 on drift.'
+        ),
+    )
+    parser.add_argument(
+        '--page-size',
+        type=int,
+        default=PAGE_SIZE,
+        help=(
+            f'Rows per shard (D-08 tunable). Default {PAGE_SIZE}.'
+        ),
+    )
+    args = parser.parse_args(argv)
+
+    if args.page_size <= 0:
+        sys.stderr.write('[error] --page-size must be > 0\n')
+        return 1
+
+    if args.check:
+        return _check_mode(args.page_size)
+    return _write_mode(args.page_size)
+
+
+if __name__ == '__main__':
+    sys.exit(main())
