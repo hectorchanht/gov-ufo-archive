@@ -21,22 +21,14 @@ import Footer from '../components/Footer.astro';
 import { INVARIANTS_JS } from '../scripts/invariants';
 
 // 15-literal union — re-exported so Nav.astro + Footer.astro share one source.
-export type ArchiveSlug =
-  | 'wargov'
-  | 'aaro'
-  | 'nasa'
-  | 'nara'
-  | 'geipan'
-  | 'uk'
-  | 'brazil'
-  | 'chile'
-  | 'argentina'
-  | 'canada'
-  | 'italy'
-  | 'nz'
-  | 'peru'
-  | 'spain'
-  | 'uruguay';
+// MUST stay on ONE LINE: @astrojs/compiler 2.13.1 mis-compiles multi-line
+// `export type` declarations in `.astro` frontmatter, splicing the
+// $$createComponent block in between the union members and emitting
+// orphan `| 'literal'` lines that esbuild then rejects with
+// `Unexpected "|"`. Surfaced when consumed by src/pages/index.astro (Plan
+// 03-05); did not trip Plan 03-04's build because no page imported the
+// layout yet. [Rule 3 — auto-fix blocking issue]
+export type ArchiveSlug = 'wargov' | 'aaro' | 'nasa' | 'nara' | 'geipan' | 'uk' | 'brazil' | 'chile' | 'argentina' | 'canada' | 'italy' | 'nz' | 'peru' | 'spain' | 'uruguay';
 
 interface Props {
   title: string;

@@ -1,0 +1,479 @@
+/* wargov.css — wargov-specific page styles per CLAUDE.md §3-§4-§8.
+ *
+ * WARGOV-SPECIFIC styles only — shared palette + base layout lives in
+ * src/styles/global.css (Plan 03-04). This file:
+ *   - Lays out the hero (coords, hero-title acronym, hero-sub, classified-stamp)
+ *   - Lays out the .headlines section (4-6 head-card tiles)
+ *   - Lays out the .archive section (stats-grid, arch-controls-bar polish,
+ *     filter-bar, result-count, .arch-card visual contract)
+ *
+ * Tone-colour wiring: --caution is set on <html> by RootLayout.astro
+ * (Plan 03-04) so every selector here can reference it via var(--caution).
+ * For wargov: var(--caution) = #d4a017 (gold) per CLAUDE.md §3.1.
+ *
+ * Mobile-first per CLAUDE.md §8 — base styles assume 360 px viewport.
+ */
+
+/* ── HERO ────────────────────────────────────────────────────────────────── */
+.hero {
+  padding: 56px 0 48px;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+
+@media (min-width: 720px) {
+  .hero { padding: 72px 0 56px; }
+}
+
+.coords {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--caution);
+  letter-spacing: 0.12em;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.coords::before {
+  content: "◉";
+  color: var(--stamp);
+}
+
+.coords::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, var(--caution), transparent);
+  margin-left: 12px;
+  max-width: 240px;
+}
+
+h1.hero-title {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(32px, 5.2vw, 60px);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  max-width: 18ch;
+  margin-bottom: 24px;
+  overflow-wrap: anywhere;
+}
+
+h1.hero-title .acronym {
+  color: var(--caution);
+  font-style: italic;
+}
+
+p.hero-sub {
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--ink-dim);
+  max-width: 65ch;
+  margin-bottom: 24px;
+}
+
+p.hero-sub a {
+  color: var(--caution);
+  text-decoration-color: rgba(212, 160, 23, 0.4);
+}
+
+/* Classified stamp — red border rotation per CLAUDE.md §4 hero block. */
+.classified-stamp {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.24em;
+  color: var(--classified);
+  border: 2px solid var(--classified);
+  padding: 6px 14px;
+  transform: rotate(-2deg);
+  text-transform: uppercase;
+  margin: 8px 0 16px;
+  background: rgba(201, 54, 44, 0.06);
+}
+
+.classified-stamp small {
+  display: block;
+  font-size: 9px;
+  opacity: 0.72;
+  margin-top: 2px;
+  letter-spacing: 0.14em;
+}
+
+@media (max-width: 360px) {
+  .classified-stamp { font-size: 11px; padding: 5px 10px; }
+}
+
+/* ── HEADLINES ───────────────────────────────────────────────────────────── */
+.headlines {
+  padding: 56px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.section-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.headlines h2 {
+  font-family: var(--serif);
+  font-size: clamp(24px, 3.6vw, 36px);
+  margin-bottom: 32px;
+  letter-spacing: -0.01em;
+}
+
+.head-card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 720px) {
+  .head-card-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
+
+.head-card {
+  background: var(--bg-2);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.head-card:hover {
+  border-color: var(--rule-strong);
+}
+
+.head-card .hc-tag {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  color: var(--caution);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.head-card h3 {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.3;
+  color: var(--ink);
+  margin: 0;
+  font-weight: 700;
+}
+
+.head-card p {
+  font-family: var(--serif);
+  font-size: 14px;
+  color: var(--ink-dim);
+  line-height: 1.5;
+}
+
+.head-card p a {
+  color: var(--caution);
+  text-decoration-color: rgba(212, 160, 23, 0.45);
+}
+
+/* ── ARCHIVE SECTION (stats + tabs + filter + grid) ──────────────────────── */
+.archive {
+  padding: 56px 0 80px;
+}
+
+.archive h2 {
+  font-family: var(--serif);
+  font-size: clamp(24px, 3.6vw, 36px);
+  margin-bottom: 32px;
+  letter-spacing: -0.01em;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+@media (min-width: 720px) {
+  .stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+}
+
+.stat {
+  background: var(--bg-2);
+  border: 1px solid var(--rule);
+  padding: 16px;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.stat-num {
+  font-family: var(--mono);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--caution);
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.stat-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+
+/* arch-controls-bar polish on top of global.css base (already sticky 64px). */
+.arch-controls-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.arch-controls-bar .tabs {
+  display: flex;
+  flex-wrap: wrap;          /* CLAUDE.md §8 — tab strip wraps */
+  gap: 6px;
+}
+
+.arch-controls-bar .tab {
+  background: transparent;
+  border: 1px solid var(--rule);
+  padding: 8px 14px;
+  min-height: 44px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  cursor: pointer;
+  border-radius: 4px;
+  transition: border-color 200ms ease, color 200ms ease;
+}
+
+.arch-controls-bar .tab:hover,
+.arch-controls-bar .tab:focus-visible {
+  color: var(--caution);
+  border-color: var(--caution);
+}
+
+.arch-controls-bar .tab.active {
+  color: var(--bg);
+  background: var(--caution);
+  border-color: var(--caution);
+}
+
+.arch-controls-bar .sort-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--ink-dim);
+  text-transform: uppercase;
+}
+
+.arch-controls-bar select {
+  background: var(--bg-2);
+  border: 1px solid var(--rule);
+  color: var(--ink);
+  padding: 8px 10px;
+  font-family: var(--mono);
+  font-size: 12px;
+  min-height: 44px;
+  border-radius: 4px;
+}
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 16px 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--ink-dim);
+  text-transform: uppercase;
+}
+
+.filter-bar label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+@media (max-width: 720px) {
+  .filter-bar { flex-direction: column; }
+  .filter-bar label { width: 100%; }
+  .filter-bar select { flex: 1; }
+}
+
+.filter-bar select {
+  background: var(--bg-2);
+  border: 1px solid var(--rule);
+  color: var(--ink);
+  padding: 8px 10px;
+  font-family: var(--mono);
+  font-size: 12px;
+  min-height: 44px;
+  border-radius: 4px;
+}
+
+.result-count {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  margin: 8px 0 12px;
+  text-transform: uppercase;
+}
+
+/* ── ARCH-CARD (card visual contract — Card.astro renders <article class="arch-card">) ─ */
+.arch-card {
+  background: var(--bg-2);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: border-color 200ms ease, transform 200ms ease;
+  position: relative;
+}
+
+.arch-card:hover {
+  border-color: var(--caution);
+  transform: translateY(-2px);
+}
+
+.arch-card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: var(--bg);
+  display: block;
+}
+
+.arch-card .card-title {
+  font-family: var(--serif);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.32;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+  padding: 14px 14px 0;
+  overflow-wrap: anywhere;
+  margin: 0;
+}
+
+.arch-card .card-desc {
+  font-family: var(--serif);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-dim);
+  padding: 6px 14px 0;
+  /* Clamp long descriptions to keep card heights consistent. */
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  line-clamp: 4;
+  overflow: hidden;
+  margin: 0;
+}
+
+.arch-card .card-meta {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 2px 12px;
+  padding: 10px 14px;
+  margin: 8px 0 0;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  border-top: 1px solid var(--rule);
+}
+
+.arch-card .card-meta dt {
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+}
+
+.arch-card .card-meta dd {
+  color: var(--ink-dim);
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.arch-card .card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 10px 14px 14px;
+  border-top: 1px solid var(--rule);
+  margin-top: auto;
+}
+
+.arch-card .card-actions a {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 8px 10px;
+  min-height: 36px;        /* mobile-friendly without ballooning card height */
+  border: 1px solid var(--rule-strong);
+  border-radius: 3px;
+  color: var(--ink);
+  text-decoration: none;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  transition: background 200ms ease, border-color 200ms ease, color 200ms ease;
+}
+
+.arch-card .card-actions a:hover,
+.arch-card .card-actions a:focus-visible {
+  background: var(--caution);
+  border-color: var(--caution);
+  color: var(--bg);
+}
+
+.arch-card .card-actions .btn-open {
+  background: var(--caution);
+  border-color: var(--caution);
+  color: var(--bg);
+}
+
+.arch-card .card-actions .btn-source {
+  color: var(--ink-dim);
+}
+
+.arch-card .card-actions .btn-dvids {
+  color: var(--ink-dim);
+}
+
+/* ── Hide carousel scanline ghost behind hero (defence-in-depth) ────────── */
+.hero-carousel {
+  /* spec lives in HeroCarousel.astro scoped style — no override here */
+}
+
+/* ── Footer breathing space when archive ends ───────────────────────────── */
+.archive + footer { margin-top: 64px; }

@@ -107,6 +107,12 @@ OUT_PRIMARY = DATA_DIR / 'wargov.json'
 SHARD_TEMPLATE = 'data/wargov-shard-{n}.json'
 PAGE_SIZE = 50  # D-08 — tunable via --page-size
 SOURCE_URL = 'https://www.war.gov/UFO/'  # wargov official source (CLAUDE.md §2)
+# Plan 03-05 (Rule 3 — auto-fix blocking issue): the wargov page's lazy-loader
+# fetches `/data/wargov-shard-N.json` at runtime, but Astro only serves files
+# from `public/` at the URL root. We mirror the shards into `public/data/` so
+# the same path resolves both at build time (Astro file() loader reads from
+# `data/`) AND at runtime (browser fetch hits `dist/data/` via public/).
+PUBLIC_DATA_DIR = REPO / 'public' / 'data'
 
 # Slugify regex — BYTE-FOR-BYTE port from scripts/snapshot-urls.py line 92.
 # Same algorithm guarantees `#card-<slug>` anchor parity with URL-CONTRACT.txt.
@@ -497,6 +503,15 @@ def _write_mode(page_size: int) -> int:
     _write_json(OUT_PRIMARY, primary)
     for shard_path, shard_envelope in shards:
         _write_json(shard_path, shard_envelope)
+    # Plan 03-05 (Rule 3): also mirror the primary + shards into public/data/
+    # so the runtime lazy-loader's `fetch('/data/wargov-shard-N.json')` resolves
+    # against Astro's built static assets. Astro copies public/* into dist/
+    # verbatim, so this gives us URL-equivalent access without changing the
+    # content-collection input path (which still reads from data/).
+    PUBLIC_DATA_DIR.mkdir(parents=True, exist_ok=True)
+    _write_json(PUBLIC_DATA_DIR / 'wargov.json', primary)
+    for shard_path, shard_envelope in shards:
+        _write_json(PUBLIC_DATA_DIR / shard_path.name, shard_envelope)
     _assert_csv_unchanged()
     total_rows = len(primary['v1']['rows']) + sum(
         len(s[1]['cards']) for s in shards

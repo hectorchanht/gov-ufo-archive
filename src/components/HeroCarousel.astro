@@ -87,8 +87,19 @@ if (!slides || slides.length < 4) {
   </div>
 </div>
 
-<script is:inline define:vars={{ slidesData: slides.map((s) => ({ id: s.id ?? '', caption: s.caption ?? s.alt })) }}>
+<script
+  is:inline
+  type="application/json"
+  id="hero-carousel-data"
+  set:html={JSON.stringify(slides.map((s) => ({ id: s.id ?? '', caption: s.caption ?? s.alt })))}
+></script>
+
+<script is:inline>
   (function () {
+    var dataEl = document.getElementById('hero-carousel-data');
+    var slidesData = [];
+    try { slidesData = JSON.parse((dataEl && dataEl.textContent) || '[]'); } catch (_) { return; }
+
     var carousel = document.getElementById('hero-carousel');
     if (!carousel) return;
     var track = document.getElementById('carousel-track');
