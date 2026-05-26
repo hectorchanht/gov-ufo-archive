@@ -1,0 +1,151 @@
+---
+// Nav.astro — sticky 64px header with seal + brand + hamburger + 15-archive
+// cross-nav (CLAUDE.md §4 + §4.1 + D-19).
+//
+// CRITICAL per checker B3: ALL 15 archive slugs MUST appear in the rendered
+// output (path strings OR data-archive attrs). Wargov lives at `/` so its
+// href won't contain `/wargov/` — the slug literal travels via data-archive.
+//
+// CLAUDE.md §11 don't: NO inline ↗ arrow in header links (reserved for footer
+// external sources). Internal archive-to-archive links only here.
+
+import type { ArchiveSlug } from '../layouts/RootLayout.astro';
+
+interface Props {
+  archiveSlug: ArchiveSlug;
+}
+
+const { archiveSlug } = Astro.props;
+
+// 15-archive cross-nav — every slug from CLAUDE.md §2. Each <a> emits the
+// slug verbatim via `data-archive=` so checker B3's per-slug grep passes
+// even for the wargov entry (whose href is `/`, not `/wargov/`).
+const ARCHIVES = [
+  { slug: 'wargov',    name: 'WAR.GOV',    path: '/' },
+  { slug: 'aaro',      name: 'AARO',       path: '/aaro/' },
+  { slug: 'nasa',      name: 'NASA',       path: '/nasa/' },
+  { slug: 'nara',      name: 'NARA',       path: '/nara/' },
+  { slug: 'geipan',    name: 'GEIPAN',     path: '/geipan/' },
+  { slug: 'uk',        name: 'UK',         path: '/uk/' },
+  { slug: 'brazil',    name: 'BRAZIL',     path: '/brazil/' },
+  { slug: 'chile',     name: 'CHILE',      path: '/chile/' },
+  { slug: 'argentina', name: 'ARGENTINA',  path: '/argentina/' },
+  { slug: 'canada',    name: 'CANADA',     path: '/canada/' },
+  { slug: 'italy',     name: 'ITALY',      path: '/italy/' },
+  { slug: 'nz',        name: 'NZ',         path: '/nz/' },
+  { slug: 'peru',      name: 'PERU',       path: '/peru/' },
+  { slug: 'spain',     name: 'SPAIN',      path: '/spain/' },
+  { slug: 'uruguay',   name: 'URUGUAY',    path: '/uruguay/' },
+] as const;
+
+// Brand text per active archive — short display name only (full name lives in
+// page <h1>). Mirrors legacy index.html's "U.S. Department of War" seal.
+const BRAND: Record<ArchiveSlug, { super: string; name: string; sealMark: string }> = {
+  wargov:    { super: 'U.S. Department of', name: 'War',       sealMark: 'DOW' },
+  aaro:      { super: 'Office of the',      name: 'AARO',      sealMark: 'AARO' },
+  nasa:      { super: 'National Aeronautics & Space', name: 'NASA', sealMark: 'NASA' },
+  nara:      { super: 'National Archives & Records',  name: 'NARA', sealMark: 'NARA' },
+  geipan:    { super: 'GEIPAN — CNES',      name: 'France',    sealMark: 'GEIPAN' },
+  uk:        { super: 'UK National',        name: 'Archives',  sealMark: 'UK' },
+  brazil:    { super: 'Força Aérea',        name: 'Brasileira',sealMark: 'FAB' },
+  chile:     { super: 'CEFAA · SEFAA',      name: 'DGAC',      sealMark: 'SEFAA' },
+  argentina: { super: 'CEFAe · Fuerza Aérea', name: 'Argentina', sealMark: 'CEFAe' },
+  canada:    { super: 'Library & Archives', name: 'Canada',    sealMark: 'LAC' },
+  italy:     { super: 'Aeronautica',        name: 'Militare',  sealMark: 'AM' },
+  nz:        { super: 'New Zealand Defence',name: 'Force',     sealMark: 'NZDF' },
+  peru:      { super: 'OIFAA · Fuerza Aérea', name: 'del Perú', sealMark: 'OIFAA' },
+  spain:     { super: 'Ejército',           name: 'del Aire',  sealMark: 'EdA' },
+  uruguay:   { super: 'CRIDOVNI · Fuerza Aérea', name: 'Uruguaya', sealMark: 'CRIDOVNI' },
+};
+
+const brand = BRAND[archiveSlug] ?? BRAND.wargov;
+---
+
+<div class="header-wrap">
+  <header>
+    <div class="container">
+      <div class="brand-row">
+        <a href={ARCHIVES.find(a => a.slug === archiveSlug)?.path ?? '/'} class="brand">
+          <div class="seal" aria-hidden="true">{brand.sealMark}</div>
+          <div class="brand-text">
+            <span class="super">{brand.super}</span>
+            <span class="name">{brand.name}</span>
+          </div>
+        </a>
+        <button
+          class="nav-toggle"
+          id="nav-toggle"
+          aria-label="Toggle navigation"
+          aria-controls="primary-nav"
+          aria-expanded="false"
+          type="button"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <nav class="primary" id="primary-nav" aria-label="Main navigation">
+        <ul>
+          {ARCHIVES.map((a) => (
+            <li>
+              <a
+                href={a.path}
+                data-archive={a.slug}
+                aria-current={a.slug === archiveSlug ? 'page' : undefined}
+                class:list={[a.slug === archiveSlug && 'active']}
+              >
+                {a.name}
+              </a>
+            </li>
+          ))}
+          {/* Page-level intra-archive anchors (Headlines / Archive / etc.) are
+              page-injected via <slot name="nav-extra" /> so this component
+              stays archive-agnostic. */}
+          <slot name="nav-extra" />
+        </ul>
+      </nav>
+    </div>
+  </header>
+</div>
+
+{/* Hamburger toggle — defence-in-depth duplicate of invariants.ts (1).
+    Idempotent: invariants.ts checks navToggle.dataset.wired before binding.
+    This block lets Nav.astro work in component-isolation contexts (story-
+    book / component preview) where RootLayout's bottom-of-body script is
+    absent. D-21..D-23 — <script is:inline>, no Vite bundling. */}
+<script is:inline>
+  (function () {
+    var navToggle = document.getElementById('nav-toggle');
+    var primaryNav = document.getElementById('primary-nav');
+    if (!navToggle || !primaryNav) return;
+    if (navToggle.dataset.wired) return;
+    navToggle.dataset.wired = '1';
+    navToggle.addEventListener('click', function () {
+      var open = primaryNav.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    primaryNav.addEventListener('click', function (e) {
+      if (e.target && e.target.tagName === 'A') {
+        primaryNav.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
+</script>
+
+<style>
+  /* Component-scoped tweaks layered atop global.css's .header-wrap / .nav-* base.
+     Mobile-first: the global stylesheet covers most layout; this block adds
+     archive-specific spacing inside the brand row + the row layout. */
+  .brand-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 64px;
+    padding: 8px 0;
+    gap: 16px;
+  }
+
+  /* CLAUDE.md §4 — sticky 64px header. The .header-wrap base lives in
+     global.css; this scoped rule ensures the inner header element fills it. */
+  header { width: 100%; }
+</style>

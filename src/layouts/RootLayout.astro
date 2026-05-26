@@ -1,0 +1,114 @@
+---
+// RootLayout.astro — top-level wrapper per D-16 + D-17.
+//
+// Composes BaseHead + Nav + slot + Footer. The 15-archive `archiveSlug` prop
+// drives both the per-archive `--caution` CSS variable (CLAUDE.md §3.1) and
+// the seal-gradient CSS variable used by Nav.astro's .seal element.
+//
+// D-23 hard-invariant: NO `client:*` directives. Every interactive behaviour
+// arrives via <script is:inline> injected at the end of <body> from
+// `src/scripts/invariants.ts` (D-21..D-22).
+//
+// T-03-11 mitigation (Tampering): `archiveSlug` is a literal-union prop;
+// TypeScript catches typos at compile time. At runtime, if the lookup misses
+// the table, we fall back to wargov defaults so the page still renders.
+// T-03-13 mitigation (XSS): the slug is NEVER inlined into the JS body. Only
+// the pre-sanitised TONE map values flow into the CSS variables.
+
+import BaseHead from './BaseHead.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { INVARIANTS_JS } from '../scripts/invariants';
+
+// 15-literal union — re-exported so Nav.astro + Footer.astro share one source.
+export type ArchiveSlug =
+  | 'wargov'
+  | 'aaro'
+  | 'nasa'
+  | 'nara'
+  | 'geipan'
+  | 'uk'
+  | 'brazil'
+  | 'chile'
+  | 'argentina'
+  | 'canada'
+  | 'italy'
+  | 'nz'
+  | 'peru'
+  | 'spain'
+  | 'uruguay';
+
+interface Props {
+  title: string;
+  description: string;
+  archiveSlug: ArchiveSlug;
+  canonicalUrl?: string;
+  ogImage?: string;
+  /** Optional record count for Footer colophon. */
+  totalRecords?: number;
+  /** Optional ISO date for Footer "Last updated". */
+  lastUpdated?: string;
+}
+
+const {
+  title,
+  description,
+  archiveSlug,
+  canonicalUrl,
+  ogImage,
+  totalRecords,
+  lastUpdated,
+} = Astro.props;
+
+// 15-archive TONE map — verbatim from CLAUDE.md §3.1.
+// Must match tests/tone-colours-fixture.json exactly (caution column).
+const TONE: Record<ArchiveSlug, { caution: string; sealStart: string; sealMid: string; sealEnd: string }> = {
+  wargov:    { caution: '#d4a017', sealStart: '#b91c1c', sealMid: '#6b1010', sealEnd: '#2a0606' },
+  aaro:      { caution: '#4a9eff', sealStart: '#1e3a8a', sealMid: '#102560', sealEnd: '#061238' },
+  nasa:      { caution: '#fc3d21', sealStart: '#fc3d21', sealMid: '#a01818', sealEnd: '#400606' },
+  nara:      { caution: '#cbd5e1', sealStart: '#9ca3af', sealMid: '#4b5563', sealEnd: '#1f2937' },
+  geipan:    { caution: '#0055a4', sealStart: '#0055a4', sealMid: '#003278', sealEnd: '#001f4d' },
+  uk:        { caution: '#012169', sealStart: '#012169', sealMid: '#001440', sealEnd: '#000820' },
+  brazil:    { caution: '#009c3b', sealStart: '#ffdc00', sealMid: '#009c3b', sealEnd: '#002776' },
+  chile:     { caution: '#d52b1e', sealStart: '#d52b1e', sealMid: '#8b1413', sealEnd: '#3d0908' },
+  nz:        { caution: '#5b8def', sealStart: '#000000', sealMid: '#333333', sealEnd: '#000000' },
+  canada:    { caution: '#ff6b6b', sealStart: '#ff0000', sealMid: '#990000', sealEnd: '#330000' },
+  argentina: { caution: '#74acdf', sealStart: '#74acdf', sealMid: '#3d6a9c', sealEnd: '#1e3a5e' },
+  uruguay:   { caution: '#3ba0d8', sealStart: '#3ba0d8', sealMid: '#1e5d80', sealEnd: '#0d2c3e' },
+  peru:      { caution: '#ff6b6b', sealStart: '#d91023', sealMid: '#7d0b14', sealEnd: '#3a0508' },
+  spain:     { caution: '#f4c542', sealStart: '#aa151b', sealMid: '#700c10', sealEnd: '#350608' },
+  italy:     { caution: '#5cb85c', sealStart: '#009246', sealMid: '#005a2b', sealEnd: '#002612' },
+};
+
+// Defensive default — T-03-11. If a typo slips past the literal-union type,
+// or the slug arrives from JSON (loosened to string), we still render wargov
+// defaults instead of leaking `undefined` into the CSS.
+const tone = TONE[archiveSlug] ?? TONE.wargov;
+const sealGradient = `radial-gradient(circle at center, ${tone.sealStart} 0%, ${tone.sealMid} 50%, ${tone.sealEnd} 100%)`;
+const rootStyle = `--caution: ${tone.caution}; --seal-gradient: ${sealGradient};`;
+---
+
+<!doctype html>
+<html lang="en" data-archive={archiveSlug} style={rootStyle}>
+  <head>
+    <BaseHead title={title} description={description} canonicalUrl={canonicalUrl} ogImage={ogImage}>
+      <slot name="head-extra" slot="head-extra" />
+    </BaseHead>
+  </head>
+  <body>
+    <div class="scanlines" aria-hidden="true"></div>
+    <Nav archiveSlug={archiveSlug}>
+      <slot name="nav-extra" slot="nav-extra" />
+    </Nav>
+    <main>
+      <slot />
+    </main>
+    <Footer archiveSlug={archiveSlug} totalRecords={totalRecords} lastUpdated={lastUpdated} />
+
+    {/* CLAUDE.md §7 invariants 1-8 — inlined verbatim from src/scripts/invariants.ts.
+        D-21..D-23: <script is:inline> guarantees no Vite bundling, no module
+        hoisting, no client:* hydration. set:html lets us inject the template
+        literal as the script body. */}
+    <script is:inline set:html={INVARIANTS_JS}></script>
+  </body>
+</html>
