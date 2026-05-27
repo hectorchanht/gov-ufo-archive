@@ -75,9 +75,15 @@ ARCHIVES_AND_PATHS: list[tuple[str, str, str]] = [
     ('uruguay',   'uruguay/index.html',   '/uruguay/'),
 ]
 
-# Inline JSON manifest regex (mirrors scripts/snapshot-urls.py).
+# Inline JSON manifest regex (mirrors scripts/snapshot-urls.py +
+# scripts/verify-fidelity.py — keep in sync). Phase 4 Plan 04-05
+# [Rule 1] — relaxed to tolerate attribute order swaps. Astro's HTML
+# compiler emits `<script type="application/json" id="...">`, whereas
+# the legacy Python build scripts emitted `id="..." type="application
+# /json"`. The pattern below accepts ANY attribute ordering between
+# `<script` and the closing `>` so both forms parse identically.
 MANIFEST_RE = re.compile(
-    r'<script id="(?:arch-data|archive-manifest)" type="application/json">(.*?)</script>',
+    r'<script[^>]*id="(?:arch-data|archive-manifest)"[^>]*>(.*?)</script>',
     re.DOTALL,
 )
 

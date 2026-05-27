@@ -1,0 +1,186 @@
+---
+// CatalogCard.astro — generic card for the 14 catalog-shape archives
+// (aaro, nasa, nara, geipan, uk, brazil, chile, argentina, canada,
+// italy, nz, peru, spain, uruguay). Sibling of Card.astro which
+// remains wargov-specific (CSV-keyed shape per Plan 03-05).
+//
+// THIS COMPONENT IS THE MARKUP CONTRACT for Plan 04-05 onwards. It is
+// reused unchanged by 13 subsequent per-archive port plans (04-06..
+// 04-18). DO NOT make assumptions specific to a single archive in this
+// file — anything archive-specific belongs in the per-archive page
+// (src/pages/<slug>/index.astro) or per-archive CSS.
+//
+// Schema: matches catalogAssetSchema (`src/content.config.ts`,
+// Plan 03-02) — abbreviated keys (t, ti, de, ag, cat, date, region, l,
+// u, s, th). `.strict()` is enforced at build time so unknown fields
+// would already have failed Zod validation upstream — no defensive
+// guards needed here beyond `?? ''` defaults for stable templating.
+//
+// D-21..D-23: NO client:* directives. NO framework imports. Astro
+// auto-escapes every `{expr}` text node and attribute value per docs;
+// all asset field values are XSS-safe by default (T-04-21 mitigation).
+//
+// D-26..D-28: NO smartypants, NO .trim()/.replaceAll()/.replace() on
+// text fields. Astro markdown smartypants is disabled in astro.config
+// .mjs. Pass values straight through — typography preserved byte-exact.
+//
+// Plan 04-01 lightbox contract (inherited from Card.astro post-04-01):
+//   - data-row-id on the <article> + on .btn-open + .btn-download
+//   - data-url on .btn-open + .btn-download (asset.u, R2-rewritten)
+//   - data-local on .btn-open + .btn-download (asset.l)
+//   - btn-open href="#" so the click delegate intercepts it cleanly
+//     (Pitfall #6: a direct href would bypass the openAt() handler).
+//
+// Plan 04-19 Pagefind contract (stubbed here, finalised in 04-19):
+//   - data-pagefind-filter="archive:<slug>,type:<t>,agency:<ag>"
+//   - data-pagefind-meta="title:<ti>,agency:<ag>,date:<date>"
+// Pagefind indexes these as filter+meta facets at site-build time.
+// Wiring them now means Plan 04-19 finds them already in the rendered
+// HTML and only needs to add the data-pagefind-body wrapper at the
+// page level (or rely on Pagefind's default body indexing).
+//
+// CLAUDE.md §4.3 action-button matrix:
+//   - Open      → .btn-open      shown when asset.u present (lightbox)
+//   - Download  → .btn-download  shown when asset.u present (file)
+//   - Source ↗  → .btn-source    shown when asset.s present
+//   - DVIDS ↗   → (wargov-only; Card.astro handles via DVIDS Video ID)
+//   - Catalog ↗ → (not modelled here; t="CATALOG" rows render Open +
+//                  Source which already routes to the catalog page)
+// Never emit a button that would 404 (CLAUDE.md §4.3 invariant). The
+// `{asset.u && ...}` and `{asset.s && ...}` guards enforce this — if
+// the URL is empty, the button is omitted entirely.
+//
+// Cross-references:
+//   - src/components/Card.astro (wargov-specific sibling)
+//   - src/content.config.ts (catalogAssetSchema.strict)
+//   - .planning/phases/04-full-migration-search-offline-performance/
+//     04-PATTERNS.md §3 (markup template) + §4 (lightbox patches)
+//   - .planning/phases/04-full-migration-search-offline-performance/
+//     04-RESEARCH.md §8 (Card.astro generalisation)
+
+interface CatalogAsset {
+  /** Type discriminator — PDF / VID / IMG / CATALOG / AUDIO / CASE / PAGE.
+   *  See catalogAssetSchema's enum in src/content.config.ts. */
+  t: string;
+  /** Title — verbatim official title per CLAUDE.md §4.2. */
+  ti: string;
+  /** Description — substantive context or empty per CLAUDE.md §9 (no filler). */
+  de?: string;
+  /** Agency — primary releasing body. */
+  ag?: string;
+  /** Category — Document / Imagery / Video / Catalog / etc. */
+  cat?: string;
+  /** Date — incident date OR release date (free-form string). */
+  date?: string;
+  /** Region — geographic context (optional). */
+  region?: string;
+  /** Local path — repo-relative path if committed; empty otherwise. */
+  l?: string;
+  /** Download URL — R2 URL for PDF/VID per Plan 04-02, or external. */
+  u?: string;
+  /** Source URL — official site page (Source ↗ button). */
+  s?: string;
+  /** Thumbnail relative path (optional). */
+  th?: string;
+}
+
+interface Props {
+  asset: CatalogAsset;
+  /** Global 0-based row index within this archive's assets[]. */
+  idx: number;
+  /** Pre-computed slug for the `#card-<slug>` anchor. Caller must use the
+   *  same slugify algorithm as scripts/_archive_common.slugify(). */
+  slug: string;
+  /** Archive slug — used for the Pagefind filter facet ("archive:<slug>").
+   *  This is the per-archive identifier (e.g. "nz", "aaro"), NOT the
+   *  per-card slug. */
+  archiveSlug: string;
+}
+
+const { asset, idx, slug, archiveSlug } = Astro.props;
+
+// 1-based, 3-digit zero-padded — matches normalize-csv.py render_card_html
+// and the convention every per-archive normaliser will follow (Plan 04-05+).
+const rowId = `r${String(idx + 1).padStart(3, '0')}`;
+
+// Field aliases — destructure with defaults so the template never reads
+// `undefined` into an attribute (Astro would coerce that to the string
+// "undefined" which corrupts the data-* contract).
+const title = asset.ti ?? '';
+const desc = asset.de ?? '';
+const agency = asset.ag ?? '';
+const date = asset.date ?? '';
+const rtype = asset.t ?? '';
+const url = asset.u ?? '';
+const local = asset.l ?? '';
+const source = asset.s ?? '';
+const thumb = asset.th ?? '';
+const alt = title; // catalog schema has no separate alt; reuse title
+
+// Pagefind filter + meta strings — Plan 04-19 contract. Comma-separated
+// key:value pairs are Pagefind's documented filter syntax. Empty values
+// are passed through; Pagefind tolerates them but they'll show up as
+// "no agency" filter buckets — acceptable for archives where the source
+// data legitimately has no agency on a row.
+const pagefindFilter = `archive:${archiveSlug},type:${rtype},agency:${agency}`;
+const pagefindMeta = `title:${title},agency:${agency},date:${date}`;
+---
+<article
+  class="arch-card"
+  id={`card-${slug}`}
+  data-id={rowId}
+  data-row-id={rowId}
+  data-idx={idx}
+  data-action="open"
+  data-type={rtype}
+  data-agency={agency}
+  data-date={date}
+  data-pagefind-filter={pagefindFilter}
+  data-pagefind-meta={pagefindMeta}
+>
+  {thumb && (
+    <img
+      loading="lazy"
+      src={thumb}
+      data-fallback={url}
+      alt={alt}
+      onerror="this.onerror=null;this.src=this.dataset.fallback||''"
+    />
+  )}
+  <h3 class="card-title">{title}</h3>
+  {desc && <p class="card-desc">{desc}</p>}
+  <dl class="card-meta">
+    <dt>Agency</dt><dd>{agency}</dd>
+    <dt>Date</dt><dd>{date}</dd>
+    <dt>Type</dt><dd>{rtype}</dd>
+  </dl>
+  <div class="card-actions">
+    {url && (
+      <a
+        href="#"
+        class="btn-open"
+        data-action="open"
+        data-row-id={rowId}
+        data-url={url}
+        data-local={local}
+      >Open</a>
+    )}
+    {url && (
+      <a
+        href={local || url}
+        class="btn-download"
+        data-url={url}
+        data-local={local}
+        download
+      >Download</a>
+    )}
+    {source && (
+      <a
+        href={source}
+        class="btn-source"
+        target="_blank"
+        rel="noopener"
+      >Source ↗</a>
+    )}
+  </div>
+</article>
