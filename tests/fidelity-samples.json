@@ -80,70 +80,6 @@
     "source_file": "aaro/index.html"
   },
   {
-    "archive": "nasa",
-    "kind": "hero-lede",
-    "selector": "h1.hero-title",
-    "source_path": "/nasa/",
-    "expected_text": "NASA UAP Independent Study",
-    "source_file": "nasa/index.html"
-  },
-  {
-    "archive": "nasa",
-    "kind": "hero-sub",
-    "selector": "p.hero-sub",
-    "source_path": "/nasa/",
-    "expected_text": "In June 2022 NASA commissioned a 16-member independent study team led by astrophysicist Dr. David Spergel to examine unidentified anomalous phenomena from a strictly scientific perspective. The team delivered its final report on September 14, 2023 — recommending a unified data pipeline, expanded use of NASA Earth observation assets, and the application of AI/ML to anomaly detection. Source: science.nasa.gov/uap.",
-    "source_file": "nasa/index.html"
-  },
-  {
-    "archive": "nasa",
-    "kind": "license-footer",
-    "selector": "footer p",
-    "source_path": "/nasa/",
-    "expected_text": "Offline archival mirror of the NASA UAP Independent Study materials. Federal U.S. government works are public domain (17 U.S.C. § 105).",
-    "source_file": "nasa/index.html"
-  },
-  {
-    "archive": "nasa",
-    "kind": "card-title",
-    "selector": "script#arch-data[0].ti",
-    "source_path": "/nasa/",
-    "expected_text": "NASA UAP Independent Study Team — Final Report",
-    "source_file": "nasa/index.html"
-  },
-  {
-    "archive": "nasa",
-    "kind": "card-title",
-    "selector": "script#arch-data[1].ti",
-    "source_path": "/nasa/",
-    "expected_text": "UAP Independent Study Team — Terms of Reference",
-    "source_file": "nasa/index.html"
-  },
-  {
-    "archive": "nasa",
-    "kind": "card-title",
-    "selector": "script#arch-data[2].ti",
-    "source_path": "/nasa/",
-    "expected_text": "Public Meeting Agenda — May 31, 2023",
-    "source_file": "nasa/index.html"
-  },
-  {
-    "archive": "nasa",
-    "kind": "card-title",
-    "selector": "script#arch-data[3].ti",
-    "source_path": "/nasa/",
-    "expected_text": "Federal Register Notice — UAP Public Meeting",
-    "source_file": "nasa/index.html"
-  },
-  {
-    "archive": "nasa",
-    "kind": "card-title",
-    "selector": "script#arch-data[4].ti",
-    "source_path": "/nasa/",
-    "expected_text": "Media Briefing: UAP Independent Study Report (Sep 14, 2023)",
-    "source_file": "nasa/index.html"
-  },
-  {
     "archive": "nara",
     "kind": "hero-lede",
     "selector": "h1.hero-title",
@@ -822,5 +758,45 @@
     "source_path": "/uruguay/",
     "expected_text": "Archivo General de la Nación — Uruguay",
     "source_file": "src/pages/uruguay/index.astro"
+  },
+  {
+    "archive": "nasa",
+    "kind": "hero-lede",
+    "selector": "h1.hero-title",
+    "source_path": "/nasa/",
+    "expected_text": "NASA UAP Independent Study",
+    "source_file": "src/pages/nasa/index.astro"
+  },
+  {
+    "archive": "nasa",
+    "kind": "hero-sub",
+    "selector": "p.hero-sub",
+    "source_path": "/nasa/",
+    "expected_text": "In June 2022 NASA commissioned a 16-member independent study team led by astrophysicist Dr. David Spergel to examine unidentified anomalous phenomena from a strictly scientific perspective. The team delivered its final report on September 14, 2023 — recommending a unified data pipeline, expanded use of NASA Earth observation assets, and the application of AI/ML to anomaly detection. Source: science.nasa.gov/uap.",
+    "source_file": "src/pages/nasa/index.astro"
+  },
+  {
+    "archive": "nasa",
+    "kind": "license-footer",
+    "selector": "footer p",
+    "source_path": "/nasa/",
+    "expected_text": "Public domain — 17 U.S.C. § 105",
+    "source_file": "src/components/Footer.astro"
+  },
+  {
+    "archive": "nasa",
+    "kind": "card-title",
+    "selector": "script#arch-data[0].ti",
+    "source_path": "/nasa/",
+    "expected_text": "NASA UAP Independent Study Team — Final Report",
+    "source_file": "data/nasa.json"
+  },
+  {
+    "archive": "nasa",
+    "kind": "card-title",
+    "selector": "script#arch-data[1].ti",
+    "source_path": "/nasa/",
+    "expected_text": "UAP Independent Study Team — Terms of Reference",
+    "source_file": "data/nasa.json"
   }
 ]

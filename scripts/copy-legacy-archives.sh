@@ -54,7 +54,7 @@ copy_one() {
 # are now served by src/pages/[archive]/index.astro. As subsequent Wave 3+
 # ports complete (04-07..04-18), drop each slug from this list. When the
 # list is empty, this script can be deleted entirely.
-for slug in aaro nasa geipan uk brazil chile argentina canada italy peru spain; do
+for slug in aaro geipan uk brazil chile argentina canada italy peru spain; do
   if [ -d "$slug" ]; then
     while IFS= read -r f; do
       copy_one "$f"
@@ -84,6 +84,22 @@ if [ -d "uruguay" ]; then
       *) copy_one "$f" ;;
     esac
   done < <(git ls-files "uruguay/")
+fi
+if [ -d "nasa" ]; then
+  # Plan 04-16 partial-port: Astro owns /nasa/ (src/pages/nasa/index.astro)
+  # but NASA has a legacy long-form sub-page (nasa/story.html — full
+  # narrative of the UAP Independent Study Team's work) plus
+  # nasa/assets/* (favicon.svg, og.svg, images/uap-meeting-2023.jpeg,
+  # images/uap-report-cover.png). All are policed by
+  # scripts/sync-footer.py STORY_META + URL-CONTRACT.txt; missing them
+  # would 404 cross-archive nav links. Copy everything EXCEPT
+  # nasa/index.html (which Astro owns).
+  while IFS= read -r f; do
+    case "$f" in
+      nasa/index.html) continue ;;  # Astro now owns /nasa/ — never copy
+      *) copy_one "$f" ;;
+    esac
+  done < <(git ls-files "nasa/")
 fi
 if [ -d "nara" ]; then
   # Plan 04-15 partial-port: Astro owns /nara/ (src/pages/nara/index.astro)
