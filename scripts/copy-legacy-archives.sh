@@ -54,7 +54,7 @@ copy_one() {
 # are now served by src/pages/[archive]/index.astro. As subsequent Wave 3+
 # ports complete (04-07..04-18), drop each slug from this list. When the
 # list is empty, this script can be deleted entirely.
-for slug in aaro nasa nara geipan uk brazil chile argentina canada italy peru spain; do
+for slug in aaro nasa geipan uk brazil chile argentina canada italy peru spain; do
   if [ -d "$slug" ]; then
     while IFS= read -r f; do
       copy_one "$f"
@@ -84,6 +84,24 @@ if [ -d "uruguay" ]; then
       *) copy_one "$f" ;;
     esac
   done < <(git ls-files "uruguay/")
+fi
+if [ -d "nara" ]; then
+  # Plan 04-15 partial-port: Astro owns /nara/ (src/pages/nara/index.astro)
+  # but NARA has many legacy sub-pages — case-specific narratives
+  # (chiles-whitted, condon-committee, levelland, lubbock-lights,
+  # mantell, mcminnville, robertson-panel, roswell, socorro, story) and
+  # a nara/pages/* directory (blogs-and-articles, faqs, federal-agency,
+  # moving-images-and-sound, photographs, presidential-libraries,
+  # rg-615, textual-and-microfilm, topic). All are policed by
+  # scripts/sync-footer.py STORY_META and URL-CONTRACT.txt; missing them
+  # would 404 cross-archive nav links. Copy everything EXCEPT
+  # nara/index.html (which Astro owns).
+  while IFS= read -r f; do
+    case "$f" in
+      nara/index.html) continue ;;  # Astro now owns /nara/ — never copy
+      *) copy_one "$f" ;;
+    esac
+  done < <(git ls-files "nara/")
 fi
 
 # --- top-level static pages (NOT root index.html — Astro owns wargov at /) ---

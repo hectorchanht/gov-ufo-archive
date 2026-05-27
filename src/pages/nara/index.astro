@@ -1,0 +1,479 @@
+---
+// src/pages/nara/index.astro — NARA (National Archives & Records
+// Administration) UAP Records archive page at /nara/.
+//
+// Third per-archive port (Plan 04-15). Wave 5 medium-catalog tier
+// (D-08) — 73 assets at capture (53 PDF + 11 CATALOG + 9 PAGE).
+// Reuses CatalogCard.astro template established by Plan 04-05 +
+// pagination pattern established by Plan 04-04, both verbatim.
+//
+// Composes:
+//   - RootLayout (Plan 03-04) — archiveSlug="nara" → tone-colour
+//     `--caution: #cbd5e1` per CLAUDE.md §3.1.
+//   - CatalogCard (Plan 04-05 Task 1) — generic over catalogAssetSchema.
+//   - Lightbox (Plan 03-05 + scope-pivot extension) — static shell +
+//     invariants.ts handlers; meta panel reads data-* from cards.
+//
+// Hero copy (h1 + lede + footer license) is verbatim from the legacy
+// nara/index.html (CLAUDE.md §9 fidelity rule) so tests/fidelity-
+// samples.json's 5+ NARA entries continue to byte-match against the
+// rendered DOM. The legacy nara/index.html is deleted in this same
+// plan (D-09 — per-archive Python retirement), so /nara/ now serves
+// Astro-rendered HTML instead of the postbuild-copied legacy file.
+//
+// NARA sub-pages (chiles-whitted, condon-committee, levelland,
+// lubbock-lights, mantell, mcminnville, robertson-panel, roswell,
+// socorro, story + pages/blogs-and-articles, pages/faqs, etc.) are
+// PRESERVED via a partial-port block in scripts/copy-legacy-archives.sh
+// — same pattern as NZ + Uruguay (Plans 04-05 / 04-06).
+//
+// Key invariants:
+//   - D-21..D-23: every <script> here is <script is:inline>. NO client:*.
+//   - D-26..D-28: no transforms on text. Astro auto-escapes `{expr}` but
+//     does NOT rewrite typography. Hero copy + card titles round-trip
+//     byte-exact.
+//   - Plan 04-04 (D-27..D-28) pagination contract inherited: PAGE_SIZE=20,
+//     ?page=N URL param. NARA has 73 assets so the handler emits 4 pages
+//     of pagination links at base load. Future operator sharding (Plan
+//     04-15 sentinel data/nara-shard-1.json) does not currently feed
+//     into the page template — the inline arch-data manifest carries
+//     all 73 assets server-rendered, paginated client-side.
+//   - Pitfall #6: refreshLbList walks ALL .arch-card (including
+//     display:none) so lightbox prev/next crosses page boundaries.
+//
+// CLAUDE.md §2 NARA tone:
+//   - Path: /nara/ (this file → dist/nara/index.html)
+//   - Tone: #cbd5e1 (NARA silver)
+//   - Source URL: https://catalog.archives.gov/
+//   - License: 17 U.S.C. § 105 (USA federal works — public domain)
+
+import RootLayout from '../../layouts/RootLayout.astro';
+import CatalogCard from '../../components/CatalogCard.astro';
+import Lightbox from '../../components/Lightbox.astro';
+import { getEntry } from 'astro:content';
+import '../../styles/nara.css';
+
+const nara = await getEntry('nara', 'v1');
+if (!nara) {
+  throw new Error(
+    'nara collection entry "v1" missing — run `python3 scripts/normalize-nara.py` to regenerate data/nara.json',
+  );
+}
+
+const { assets, stats } = nara.data;
+
+// Slugify — byte-for-byte port of scripts/_archive_common.slugify (and
+// the same rule used by scripts/snapshot-urls.py + normalize-csv.py).
+// Algorithm: lowercase → collapse runs of non-[a-z0-9] to single hyphen →
+// strip leading/trailing hyphens → truncate to 80 chars → strip again.
+function slugify(text: string): string {
+  if (!text) return '';
+  const s = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  return s.slice(0, 80).replace(/^-+|-+$/g, '');
+}
+
+// Page meta — title clean per scope-pivot precedent (DROPS legacy
+// "Offline Mirror" suffix per CLAUDE.md §11 "no mirror in user-facing
+// copy"). Description derived from legacy nara/index.html
+// <meta name="description"> content verbatim.
+const title = 'NARA — National Archives & Records Administration UAP Records | realufo.org';
+const description = "Offline mirror of the National Archives' Unidentified Anomalous Phenomena records gateway.";
+---
+<RootLayout
+  archiveSlug="nara"
+  title={title}
+  description={description}
+  totalRecords={stats.total}
+  lastUpdated="2026-05-27"
+>
+  <section class="hero" id="intro">
+    <div class="container">
+      <div class="coords">38°53′34″N, 77°01′23″W · NATIONAL ARCHIVES BUILDING, WASHINGTON, D.C.</div>
+      <h1 class="hero-title">National Archives — <em>UAP</em> Records</h1>
+      <p class="hero-sub">Under the 2024 NDAA (Public Law 118-31) Congress created <strong>Record Group 615</strong>
+        at NARA — the legal sink for every federal agency's UAP files. RG 615 sits alongside dozens
+        of pre-existing collections: Project Blue Book, the FBI Vault, presidential libraries, NICAP
+        donations, J. Allen Hynek's papers, and more. NARA holds, by their own estimate, millions of
+        pages of UAP-related material — most digitised, all searchable via the
+        <a href="https://catalog.archives.gov/" target="_blank" rel="noopener">NARA Catalog</a>.
+        This mirror gives you the official navigation gateway offline; the catalog itself stays live.</p>
+    </div>
+  </section>
+
+  <section class="headlines" id="headlines">
+    <div class="container">
+      <div class="section-label">§ Headlines · NARA UAP, distilled</div>
+      <div class="head-card-grid">
+        <article class="head-card">
+          <div class="hc-tag">Authority</div>
+          <h3>2024 NDAA</h3>
+          <p>Public Law 118-31 · Sec. 1841–1843.</p>
+        </article>
+        <article class="head-card">
+          <div class="hc-tag">Record Group</div>
+          <h3>615</h3>
+          <p>UAP Records Collection.</p>
+        </article>
+        <article class="head-card">
+          <div class="hc-tag">Project Blue Book</div>
+          <h3>12,618</h3>
+          <p>USAF UFO cases, 1947–1969. 130k+ pages, fully digitised.</p>
+        </article>
+        <article class="head-card">
+          <div class="hc-tag">Catalog</div>
+          <h3>600M+</h3>
+          <p>Digitised pages searchable via catalog.archives.gov.</p>
+        </article>
+        <article class="head-card">
+          <div class="hc-tag">Format</div>
+          <h3>Multi-medium</h3>
+          <p>Textual · Microfilm · Photographs · Moving Images · Sound.</p>
+        </article>
+        <article class="head-card">
+          <div class="hc-tag">Review</div>
+          <h3>25-year</h3>
+          <p>Automatic declassification review mandated by statute.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="archive" id="archive">
+    <div class="container">
+      <div class="section-label">§ Records · Catalog gateways + RG 615 documents</div>
+      <h2>Every official entry-point.</h2>
+
+      <div class="stats-grid" id="arch-stats">
+        <div class="stat">
+          <div class="stat-num">{stats.total}</div>
+          <div class="stat-label">Total records</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">{stats.local_total}</div>
+          <div class="stat-label">Locally archived</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">{stats.pdf_total}</div>
+          <div class="stat-label">PDF documents</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">{stats.catalog_total}</div>
+          <div class="stat-label">Catalog gateways</div>
+        </div>
+      </div>
+
+      <div class="arch-controls-bar" id="arch-controls-bar">
+        <div class="tabs" id="arch-tabs">
+          <button type="button" class="tab active" data-tab="all">All</button>
+          <button type="button" class="tab" data-tab="PDF">PDF</button>
+          <button type="button" class="tab" data-tab="CATALOG">Catalog</button>
+          <button type="button" class="tab" data-tab="PAGE">Pages</button>
+        </div>
+        <div class="sort-wrap">
+          <label for="arch-sort">Sort:</label>
+          <select id="arch-sort">
+            <option value="type">Type</option>
+            <option value="title">Title (A→Z)</option>
+            <option value="title-desc">Title (Z→A)</option>
+            <option value="date-new">Date (newest)</option>
+            <option value="date-old">Date (oldest)</option>
+            <option value="agency">Agency</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="filter-bar">
+        <label>Agency:
+          <select id="filter-agency">
+            <option value="">All</option>
+          </select>
+        </label>
+        <label>Per page:
+          <select id="filter-perpage">
+            <option value="12">12</option>
+            <option value="24" selected>24</option>
+            <option value="48">48</option>
+            <option value="96">96</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="result-count" id="arch-count" aria-live="polite"></div>
+
+      <div class="arch-grid" id="nara-grid">
+        {assets.map((asset, idx) => (
+          <CatalogCard
+            asset={asset}
+            idx={idx}
+            slug={slugify(asset.ti)}
+            archiveSlug="nara"
+          />
+        ))}
+      </div>
+
+      {/* Pagination nav — populated by the ?page=N handler below (Plan 04-04
+          contract inherited). data-pagefind-ignore keeps the nav links out of
+          the search index (SRC-04). For NARA (73 assets, PAGE_SIZE=20), the
+          handler emits 4 page links at first load (current + 3 sibs). */}
+      <nav class="pagination" id="nara-pagination" data-pagefind-ignore aria-label="Pagination"></nav>
+    </div>
+  </section>
+
+  <Lightbox />
+
+  {/* Inline arch-data JSON manifest — mirrors the legacy
+      nara/index.html `<script id="arch-data">` block so external
+      tooling continues to work without per-archive special-cases:
+        - scripts/verify-fidelity.py (card-title extractor reads this
+          via MANIFEST_RE — see scripts/verify-fidelity.py)
+        - tests/fidelity-samples.json (NARA card-title samples
+          reference `script#arch-data[N].ti` selectors)
+        - any future cross-archive aggregator looking for inline data
+      Shape matches the legacy emit: `{ assets: [...], stats: {...} }`
+      with abbreviated catalog keys (same as data/nara.json's
+      v1.assets, v1.stats — but without the schemaVersion / slug
+      wrapper, since the legacy build-<slug>.py scripts emitted the
+      bare shape). Plan 04-19 Pagefind reads data-pagefind-* attributes
+      from cards (CatalogCard.astro), NOT this manifest — no
+      double-indexing. */}
+  <script
+    is:inline
+    type="application/json"
+    id="arch-data"
+    set:html={JSON.stringify({ assets: assets, stats: stats })}
+  ></script>
+
+  {/* Pagination + filter/sort runtime — Plan 04-04 PAGE_SIZE=20 contract,
+      adapted for NARA. NARA has 73 assets so the handler emits 4 pages.
+      Pitfall #6: lbList walks ALL .arch-card (including display:none) so
+      lightbox prev/next crosses page boundaries. D-21..D-23: <script
+      is:inline> — no Vite bundling, no hydration. */}
+  <script is:inline>
+    (() => {
+      const PAGE_SIZE = 20; // D-27
+      const grid = document.getElementById('nara-grid');
+      const paginationNav = document.getElementById('nara-pagination');
+      if (!grid || !paginationNav) return;
+
+      function readPage() {
+        const raw = new URLSearchParams(location.search).get('page') || '1';
+        const p = parseInt(raw, 10);
+        return Math.max(1, isNaN(p) ? 1 : p);
+      }
+
+      function renderPaginationNav(current, total) {
+        if (!paginationNav) return;
+        if (total <= 1) {
+          paginationNav.innerHTML = '';
+          return;
+        }
+        const parts = [];
+        if (current > 1) {
+          parts.push(
+            '<a href="?page=' + (current - 1) + '" class="pg-prev" rel="prev">← Prev</a>',
+          );
+        }
+        for (let i = 1; i <= total; i++) {
+          if (i === current) {
+            parts.push('<span class="pg-current" aria-current="page">' + i + '</span>');
+          } else {
+            parts.push('<a href="?page=' + i + '">' + i + '</a>');
+          }
+        }
+        if (current < total) {
+          parts.push(
+            '<a href="?page=' + (current + 1) + '" class="pg-next" rel="next">Next →</a>',
+          );
+        }
+        paginationNav.innerHTML = parts.join('');
+      }
+
+      function renderPage(pageNum, opts) {
+        opts = opts || {};
+        const cards = Array.from(grid.querySelectorAll('.arch-card'));
+        if (!cards.length) return;
+        const totalPages = Math.max(1, Math.ceil(cards.length / PAGE_SIZE));
+        pageNum = Math.min(Math.max(1, pageNum), totalPages);
+
+        const start = (pageNum - 1) * PAGE_SIZE;
+        const end = start + PAGE_SIZE;
+        for (let i = 0; i < cards.length; i++) {
+          cards[i].style.display = i >= start && i < end ? '' : 'none';
+        }
+
+        renderPaginationNav(pageNum, totalPages);
+
+        if (location.hash && !opts.fromHash) {
+          let target = null;
+          try { target = document.querySelector(location.hash); } catch (_) { target = null; }
+          if (target && target.classList && target.classList.contains('arch-card')) {
+            const idx = cards.indexOf(target);
+            if (idx >= 0) {
+              const targetPage = Math.floor(idx / PAGE_SIZE) + 1;
+              if (targetPage !== pageNum) {
+                renderPage(targetPage, { fromHash: true });
+                target.scrollIntoView({ block: 'start' });
+                return;
+              }
+              target.scrollIntoView({ block: 'start' });
+            }
+          }
+        } else if (!opts.fromHash && !opts.skipScroll) {
+          try { window.scrollTo({ top: 0, behavior: 'instant' }); }
+          catch (_) { window.scrollTo(0, 0); }
+        }
+
+        try {
+          grid.dispatchEvent(new CustomEvent('nara:page-rendered', {
+            bubbles: true,
+            detail: { page: pageNum, totalPages: totalPages, totalCards: cards.length },
+          }));
+        } catch (_) { /* CustomEvent unavailable in very old browsers — silent */ }
+      }
+
+      document.addEventListener('click', (e) => {
+        const a = e.target && e.target.closest && e.target.closest('#nara-pagination a');
+        if (!a) return;
+        e.preventDefault();
+        const url = new URL(a.getAttribute('href'), location.origin + location.pathname);
+        try { history.pushState({}, '', url); }
+        catch (_) { location.search = url.search; return; }
+        const pageNum = parseInt(url.searchParams.get('page') || '1', 10);
+        renderPage(isNaN(pageNum) ? 1 : pageNum);
+      });
+      window.addEventListener('popstate', () => renderPage(readPage()));
+      renderPage(readPage());
+    })();
+  </script>
+
+  {/* Filter/sort progressive enhancement — operates on rendered DOM
+      data-* attributes per D-11. Identical to the wargov + nz + uruguay
+      handler; kept inline so each per-archive page is self-contained. */}
+  <script is:inline>
+    (() => {
+      const grid = document.getElementById('nara-grid');
+      const tabs = document.querySelectorAll('.arch-controls-bar .tab');
+      const sort = document.getElementById('arch-sort');
+      const agencyFilter = document.getElementById('filter-agency');
+      const countEl = document.getElementById('arch-count');
+      if (!grid) return;
+
+      function getCards() {
+        return Array.from(grid.querySelectorAll('.arch-card'));
+      }
+
+      function applyFilters() {
+        const activeTab = document.querySelector('.arch-controls-bar .tab.active');
+        const typeFilter = activeTab ? activeTab.getAttribute('data-tab') : 'all';
+        const agencyVal = agencyFilter ? agencyFilter.value : '';
+        let visible = 0;
+        for (const c of getCards()) {
+          const type = c.getAttribute('data-type') || '';
+          const agency = c.getAttribute('data-agency') || '';
+          const typeOk = typeFilter === 'all' || type === typeFilter;
+          const agencyOk = !agencyVal || agency === agencyVal;
+          const show = typeOk && agencyOk;
+          c.style.display = show ? '' : 'none';
+          if (show) visible++;
+        }
+        if (countEl) {
+          countEl.textContent = visible + ' / ' + getCards().length + ' records';
+        }
+      }
+
+      function populateAgencies() {
+        if (!agencyFilter) return;
+        const agencies = new Set();
+        for (const c of getCards()) {
+          const a = c.getAttribute('data-agency');
+          if (a) agencies.add(a);
+        }
+        const current = agencyFilter.value;
+        agencyFilter.innerHTML = '<option value="">All</option>';
+        Array.from(agencies).sort().forEach((a) => {
+          const opt = document.createElement('option');
+          opt.value = a;
+          opt.textContent = a;
+          if (a === current) opt.selected = true;
+          agencyFilter.appendChild(opt);
+        });
+      }
+
+      function applySort() {
+        if (!sort) return;
+        const mode = sort.value;
+        const cards = getCards();
+        cards.sort((a, b) => {
+          if (mode === 'title') {
+            return (a.querySelector('.card-title')?.textContent || '').localeCompare(
+              b.querySelector('.card-title')?.textContent || ''
+            );
+          }
+          if (mode === 'title-desc') {
+            return (b.querySelector('.card-title')?.textContent || '').localeCompare(
+              a.querySelector('.card-title')?.textContent || ''
+            );
+          }
+          if (mode === 'agency') {
+            return (a.getAttribute('data-agency') || '').localeCompare(b.getAttribute('data-agency') || '');
+          }
+          return (a.getAttribute('data-type') || '').localeCompare(b.getAttribute('data-type') || '');
+        });
+        for (const c of cards) grid.appendChild(c);
+      }
+
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+          tabs.forEach((t) => t.classList.remove('active'));
+          tab.classList.add('active');
+          applyFilters();
+        });
+      });
+      if (sort) sort.addEventListener('change', () => { applySort(); applyFilters(); });
+      if (agencyFilter) agencyFilter.addEventListener('change', applyFilters);
+
+      const obs = new MutationObserver(() => {
+        populateAgencies();
+        applyFilters();
+      });
+      obs.observe(grid, { childList: true });
+
+      populateAgencies();
+      applyFilters();
+
+      // Populate lightbox list — invariants.ts reads window.__lbList.
+      // Pitfall #6: walk ALL .arch-card (including display:none) so
+      // lightbox prev/next traverses the full set across filter +
+      // pagination boundaries.
+      function refreshLbList() {
+        const list = [];
+        for (const c of grid.querySelectorAll('.arch-card')) {
+          const rowId = c.dataset.rowId;
+          const titleEl = c.querySelector('.card-title');
+          const openA = c.querySelector('a.btn-open');
+          list.push({
+            rowId,
+            title: titleEl ? titleEl.textContent : '',
+            url: openA ? (openA.dataset.url || '') : '',
+            local: openA ? (openA.dataset.local || '') : '',
+            // Scope pivot 2026-05-28 — enrich lbList for lightbox meta
+            // panel + dual action buttons. CatalogCard.astro emits these.
+            desc: c.dataset.desc || '',
+            agency: c.dataset.agency || '',
+            date: c.dataset.date || '',
+            region: c.dataset.region || '',
+            category: c.dataset.category || '',
+            type: c.dataset.type || '',
+            source: c.dataset.src || '',
+          });
+        }
+        window.__lbList = list;
+      }
+      refreshLbList();
+      const lbObs = new MutationObserver(refreshLbList);
+      lbObs.observe(grid, { childList: true });
+      // Plan 04-04 — refresh lbList on page change.
+      grid.addEventListener('nara:page-rendered', refreshLbList);
+    })();
+  </script>
+</RootLayout>

@@ -120,7 +120,9 @@ SKIP_PATHS = {
     'index.html',                # War.gov landing — keeps its multi-section branded footer
     'aaro/index.html',           # mirror index pages have their own structured footer via build script
     'nasa/index.html',
-    'nara/index.html',
+    # nara/index.html removed (Plan 04-15): Astro owns the route now; the
+    # legacy nara/index.html is deleted in this plan. sync-footer.py
+    # never sees the file.
     'geipan/index.html',
     'uk/index.html',
     'brazil/index.html',
