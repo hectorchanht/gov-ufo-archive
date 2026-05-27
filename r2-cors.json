@@ -1,0 +1,31 @@
+{
+  "rules": [
+    {
+      "allowed": {
+        "origins": [
+          "https://realufo.org",
+          "https://*.realufo.pages.dev",
+          "https://realufo.pages.dev",
+          "http://localhost:4321",
+          "http://localhost:8788"
+        ],
+        "methods": ["GET", "HEAD"],
+        "headers": [
+          "Range",
+          "If-Match",
+          "If-None-Match",
+          "If-Modified-Since",
+          "If-Unmodified-Since"
+        ]
+      },
+      "exposeHeaders": [
+        "Content-Length",
+        "Content-Range",
+        "Content-Type",
+        "ETag",
+        "Last-Modified"
+      ],
+      "maxAgeSeconds": 86400
+    }
+  ]
+}
