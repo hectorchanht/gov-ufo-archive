@@ -1,0 +1,23 @@
+# Cloudflare Pages headers — Phase 2 02-01, copied into public/ per Phase 4
+# Plan 04-03 (Pitfall #8 + D-25 + 03-06 SUMMARY D-38). Astro auto-copies
+# public/ → dist/ so dist/_headers ships byte-equivalent to the repo-root
+# _headers file (which the legacy Python build path also relies on).
+#
+# /sw.js no-cache rule is the Phase 1 PMS-02 kill-switch invariant — without
+# it the browser caches the SW script itself, defeating updates and stranding
+# users on a stale SW indefinitely.
+#
+# CSP deferred to Phase 6 cutover (D-07). Edit via PR only.
+
+/sw.js
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Content-Type-Options: nosniff
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable

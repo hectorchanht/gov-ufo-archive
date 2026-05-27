@@ -8,6 +8,18 @@
 // NO client:* directives — pure progressive enhancement (D-21..D-23).
 import '../styles/global.css';
 
+// Phase 4 Plan 04-03 SW-07 — self-hosted fonts via @fontsource (D-23).
+// Replaces Phase 3 Google Fonts preconnect block. Astro bundles font-face
+// CSS + emits self-hosted woff2 files into dist/_astro/; the SW precaches
+// woff2 via injectManifest.globPatterns so fonts work offline.
+// CLAUDE.md §3.3 — Source Serif 4 + JetBrains Mono ONLY (no third font).
+import '@fontsource/source-serif-4/400.css';
+import '@fontsource/source-serif-4/600.css';
+import '@fontsource/source-serif-4/400-italic.css';
+import '@fontsource/jetbrains-mono/400.css';
+import '@fontsource/jetbrains-mono/500.css';
+import '@fontsource/jetbrains-mono/700.css';
+
 interface Props {
   title: string;
   description: string;
@@ -45,15 +57,11 @@ const ogImg = ogImage ?? 'https://realufo.org/assets/og.svg';
 <link rel="apple-touch-icon" href="/assets/favicon.svg" />
 
 {/* Fonts — CLAUDE.md §3.3 (Source Serif 4 + JetBrains Mono ONLY).
-    Preconnect lives here so DNS warm-up happens before paint. Phase 4 SW-07
-    will swap this to self-hosted @fontsource/*; until then, the preconnect
-    pair matches legacy index.html @ lines 45-47. */}
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link
-  href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap"
-  rel="stylesheet"
-/>
+    Phase 4 Plan 04-03 SW-07: self-hosted via @fontsource imports in the
+    frontmatter above. The Google Fonts preconnect + stylesheet links from
+    Phase 3 are gone — woff2 files now ship from dist/_astro/ and are
+    precached by the SW per D-20. Closes the offline-first regression
+    Google CDN caused (woff2 fetches fail when offline). */}
 
 {/* Service-worker registration — verbatim from legacy index.html line 26.
     research/PITFALLS.md Pitfall #1 / Phase 1 PMS-02 kill-switch:
