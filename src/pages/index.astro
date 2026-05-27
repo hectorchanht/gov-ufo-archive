@@ -275,7 +275,9 @@ const jsonLd = {
         ))}
       </div>
 
-      <div id="wargov-lazy-sentinel" aria-hidden="true"></div>
+      {/* Pagination nav — populated by the ?page=N handler below (Plan 04-04 D-27..D-33).
+          data-pagefind-ignore keeps the nav links out of the search index (SRC-04). */}
+      <nav class="pagination" id="wargov-pagination" data-pagefind-ignore aria-label="Pagination"></nav>
     </div>
   </section>
 
@@ -292,61 +294,185 @@ const jsonLd = {
     set:html={JSON.stringify(shards)}
   ></script>
 
-  {/* Lazy-load runtime — D-10 LOCKED.
-      The ONLY HTML-producing operation is grid.insertAdjacentHTML('beforeend',
-      card.html) against pre-baked server-rendered HTML strings. There is NO
-      client-side card-templating helper of any kind. NO string interpolation
-      building <article> from row data. The verify gate in this plan's
-      automated check grep-NEGATES `function templ`+`ateCard` and friends
-      anywhere in src/ or dist/. */}
+  {/* Pagination runtime — Plan 04-04 (D-27..D-33).
+      Replaces Phase 3 IntersectionObserver lazy-load.
+      D-10 LOCKED: the ONLY HTML-producing operation is
+      grid.insertAdjacentHTML('beforeend', card.html) against pre-baked
+      server-rendered HTML strings. ZERO client-side templating.
+      D-27 PAGE_SIZE = 20. D-28 URL = ?page=N (page 1 = no param OR ?page=1).
+      D-31 footer reachable below the 20-card window.
+      D-32 server-side shard unit unchanged (50 cards/shard, 222 total).
+      D-33 IntersectionObserver removed; client fetches all shards upfront in
+      parallel, then toggles display:none to window 20 cards per page.
+      Pitfall #6: lbList walks ALL .arch-card (including display:none) so
+      lightbox prev/next crosses page boundaries — refreshLbList is kicked
+      via the custom 'wargov:page-rendered' event the handler emits below. */}
   <script is:inline>
     (() => {
-      const manifestEl = document.getElementById('wargov-shards');
+      const PAGE_SIZE = 20; // D-27
       const grid = document.getElementById('wargov-grid');
-      const sentinel = document.getElementById('wargov-lazy-sentinel');
-      if (!manifestEl || !grid || !sentinel) return;
+      const manifestEl = document.getElementById('wargov-shards');
+      const paginationNav = document.getElementById('wargov-pagination');
+      if (!grid || !manifestEl || !paginationNav) return;
 
       let manifest;
       try {
         manifest = JSON.parse(manifestEl.textContent || '[]');
       } catch (_) {
-        return; // malformed manifest — abort lazy-load silently
+        return; // malformed manifest — abort pagination silently
       }
-      if (!Array.isArray(manifest) || !manifest.length) return;
+      if (!Array.isArray(manifest)) return;
 
-      const loaded = new Set();
+      // D-33: fetch ALL shards upfront, in parallel. ~250 KB JSON total for
+      // wargov (4 shards × ~50 KB); subsequent visits served from SW SWR
+      // cache per D-21 (Plan 04-03). Failed fetches degrade silently — the
+      // server-rendered first 50 cards remain interactive regardless.
+      const allShardsLoaded = Promise.all(
+        manifest.map((s) =>
+          fetch('/' + s.file)
+            .then((r) => (r.ok ? r.json() : { cards: [] }))
+            .catch(() => ({ cards: [] })),
+        ),
+      );
 
-      async function loadShard(file) {
-        if (loaded.has(file)) return;
-        loaded.add(file);
-        try {
-          const resp = await fetch('/' + file);
-          if (!resp.ok) return;
-          const shard = await resp.json();
-          if (!shard || !Array.isArray(shard.cards)) return;
-          // D-10 LOCKED INVARIANT: shard.cards[i] = { id, html } where html is
-          // the server-rendered <article>...</article> string produced by
-          // scripts/normalize-csv.py:render_card_html() (Plan 03-03).
-          // Client does ONLY insertAdjacentHTML — no templating, no string
-          // interpolation building cards, no DOM-from-data construction.
+      function readPage() {
+        const raw = new URLSearchParams(location.search).get('page') || '1';
+        const p = parseInt(raw, 10);
+        return Math.max(1, isNaN(p) ? 1 : p);
+      }
+
+      let materialised = false;
+
+      async function ensureCardsMaterialised() {
+        if (materialised) return;
+        const shards = await allShardsLoaded;
+        for (const shard of shards) {
+          if (!shard || !Array.isArray(shard.cards)) continue;
           for (const card of shard.cards) {
+            // D-10 LOCKED INVARIANT — insertAdjacentHTML on pre-rendered string.
             if (card && typeof card.html === 'string') {
               grid.insertAdjacentHTML('beforeend', card.html);
             }
           }
+        }
+        grid.dataset.fullyLoaded = '1';
+        materialised = true;
+      }
+
+      function renderPaginationNav(current, total) {
+        if (!paginationNav) return;
+        if (total <= 1) {
+          paginationNav.innerHTML = '';
+          return;
+        }
+        const parts = [];
+        if (current > 1) {
+          parts.push(
+            '<a href="?page=' + (current - 1) + '" class="pg-prev" rel="prev">← Prev</a>',
+          );
+        }
+        for (let i = 1; i <= total; i++) {
+          if (i === current) {
+            parts.push('<span class="pg-current" aria-current="page">' + i + '</span>');
+          } else {
+            parts.push('<a href="?page=' + i + '">' + i + '</a>');
+          }
+        }
+        if (current < total) {
+          parts.push(
+            '<a href="?page=' + (current + 1) + '" class="pg-next" rel="next">Next →</a>',
+          );
+        }
+        paginationNav.innerHTML = parts.join('');
+      }
+
+      async function renderPage(pageNum, opts) {
+        opts = opts || {};
+        await ensureCardsMaterialised();
+
+        const cards = Array.from(grid.querySelectorAll('.arch-card'));
+        if (!cards.length) return;
+        const totalPages = Math.max(1, Math.ceil(cards.length / PAGE_SIZE));
+        pageNum = Math.min(Math.max(1, pageNum), totalPages);
+
+        const start = (pageNum - 1) * PAGE_SIZE;
+        const end = start + PAGE_SIZE;
+        for (let i = 0; i < cards.length; i++) {
+          cards[i].style.display = i >= start && i < end ? '' : 'none';
+        }
+
+        renderPaginationNav(pageNum, totalPages);
+
+        // Hash handling — if a #card-<slug> anchor is present but the target
+        // card is not on the current page, re-render the page that contains
+        // it then scroll into view. Guarded by opts.fromHash to avoid loops.
+        if (location.hash && !opts.fromHash) {
+          let target = null;
+          try {
+            target = document.querySelector(location.hash);
+          } catch (_) {
+            target = null; // malformed selector — ignore
+          }
+          if (target && target.classList && target.classList.contains('arch-card')) {
+            const idx = cards.indexOf(target);
+            if (idx >= 0) {
+              const targetPage = Math.floor(idx / PAGE_SIZE) + 1;
+              if (targetPage !== pageNum) {
+                await renderPage(targetPage, { fromHash: true });
+                target.scrollIntoView({ block: 'start' });
+                return;
+              }
+              target.scrollIntoView({ block: 'start' });
+            }
+          }
+        } else if (!opts.fromHash && !opts.skipScroll) {
+          // Standard page change — reset scroll to top. 'instant' avoids the
+          // smooth-scroll delay on rapid prev/next clicks.
+          try {
+            window.scrollTo({ top: 0, behavior: 'instant' });
+          } catch (_) {
+            window.scrollTo(0, 0);
+          }
+        }
+
+        // Notify dependent handlers (refreshLbList, filter agency populate,
+        // result-count). lbList must include ALL cards regardless of display
+        // per Pitfall #6 so the lightbox prev/next crosses page boundaries.
+        try {
+          grid.dispatchEvent(
+            new CustomEvent('wargov:page-rendered', {
+              bubbles: true,
+              detail: { page: pageNum, totalPages: totalPages, totalCards: cards.length },
+            }),
+          );
         } catch (_) {
-          // fetch / parse failed — silent; user can scroll to retry not implemented
+          // CustomEvent unavailable in very old browsers — silent.
         }
       }
 
-      const observer = new IntersectionObserver((entries) => {
-        if (!entries[0].isIntersecting) return;
-        const next = manifest.find((s) => !loaded.has(s.file));
-        if (next) loadShard(next.file);
-        if (loaded.size === manifest.length) observer.disconnect();
-      }, { rootMargin: '200px' });
+      // Click delegate scoped to pagination anchors only — preventDefault and
+      // pushState so the URL stays bookmarkable without a full page nav.
+      document.addEventListener('click', (e) => {
+        const a = e.target && e.target.closest && e.target.closest('#wargov-pagination a');
+        if (!a) return;
+        e.preventDefault();
+        const url = new URL(a.getAttribute('href'), location.origin + location.pathname);
+        try {
+          history.pushState({}, '', url);
+        } catch (_) {
+          // pushState may be disabled in privacy modes — fall back to assignment.
+          location.search = url.search;
+          return;
+        }
+        const pageNum = parseInt(url.searchParams.get('page') || '1', 10);
+        renderPage(isNaN(pageNum) ? 1 : pageNum);
+      });
 
-      observer.observe(sentinel);
+      // Browser back/forward — popstate replays the URL's ?page=N.
+      window.addEventListener('popstate', () => renderPage(readPage()));
+
+      // Initial render — handles deep-link ?page=N AND #card-<slug>.
+      renderPage(readPage());
     })();
   </script>
 
@@ -454,9 +580,12 @@ const jsonLd = {
       // Plan 04-01 `rowId` key used by openAt() for stable per-row lookup.
       //
       // Pitfall #6 — walk ALL .arch-card (including display:none from filter
-      // tabs); the lightbox prev/next must traverse the full set so users can
-      // arrow across hidden cards. data-idx-only lookup would silently break
-      // on filter/sort/lazy-load.
+      // tabs OR Plan 04-04 ?page=N windowing); the lightbox prev/next must
+      // traverse the full set so users can arrow across hidden cards.
+      // data-idx-only lookup would silently break on filter/sort/lazy-load.
+      // grid.querySelectorAll('.arch-card') already returns hidden elements —
+      // the pseudo-class :visible is NOT applied — so this satisfies the
+      // Plan 04-04 contract.
       function refreshLbList() {
         const list = [];
         for (const c of grid.querySelectorAll('.arch-card')) {
@@ -478,6 +607,11 @@ const jsonLd = {
       // Also re-build the list right after a shard insert completes.
       const lbObs = new MutationObserver(refreshLbList);
       lbObs.observe(grid, { childList: true });
+      // Plan 04-04 — when ?page=N changes, re-derive lbList so the lightbox
+      // list reflects the current full card universe (the page change itself
+      // doesn't add/remove cards, but the FIRST page-render materialises all
+      // 222 cards, after which lbList MUST cover the full set).
+      grid.addEventListener('wargov:page-rendered', refreshLbList);
     })();
   </script>
 </RootLayout>
