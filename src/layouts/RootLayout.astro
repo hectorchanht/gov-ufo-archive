@@ -89,6 +89,19 @@ const ACTIVE_ARCHIVES: ReadonlySet<ArchiveSlug> = new Set<ArchiveSlug>(
   ['wargov', 'aaro', 'nasa', 'nara'],
 );
 const isDormant = !ACTIVE_ARCHIVES.has(archiveSlug);
+
+// Plan 04-19 — Pagefind selective indexing.
+// Per pagefind.app/docs/indexing: if ANY page in the site has
+// `data-pagefind-body`, pages WITHOUT it are NOT indexed. We attach it
+// ONLY to the 4 active archives' <main>; the 11 dormant Astro pages
+// (nz, uruguay) and every legacy postbuild-copied HTML file (geipan,
+// uk, brazil, chile, argentina, canada, italy, peru, spain — plus the
+// AARO/NASA/NARA partial-port story.html sub-pages) lack the attribute
+// and are skipped at index time. Belt-and-braces: dormant Astro pages
+// retain `data-pagefind-ignore` from scope pivot 80efc70 so even if a
+// future change forgot the body-attribute logic the dormant content
+// stays out of the index.
+const isActiveForSearch = ACTIVE_ARCHIVES.has(archiveSlug);
 ---
 
 <!doctype html>
@@ -103,7 +116,10 @@ const isDormant = !ACTIVE_ARCHIVES.has(archiveSlug);
     <Nav archiveSlug={archiveSlug}>
       <slot name="nav-extra" slot="nav-extra" />
     </Nav>
-    <main data-pagefind-ignore={isDormant ? '' : undefined}>
+    <main
+      data-pagefind-body={isActiveForSearch ? '' : undefined}
+      data-pagefind-ignore={isDormant ? '' : undefined}
+    >
       <slot />
     </main>
     <Footer archiveSlug={archiveSlug} totalRecords={totalRecords} lastUpdated={lastUpdated} />
