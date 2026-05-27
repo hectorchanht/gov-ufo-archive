@@ -26,7 +26,7 @@ Port the remaining 14 archives to Astro (matching Plan 03-05 wargov pattern), sw
 
 ### R2 Binary CDN Migration (NEW user requirement)
 
-- **D-01:** **Full migration** — ALL PDFs, videos, AND thumbnails migrate to Cloudflare R2. GitHub Releases tags (`pdfs-v1`, `videos-v1`, etc.) archived as cold-storage backup; site fetches everything from R2; card `url` fields rewritten at build time. (Expands PROJECT.md §STACK which said "GH Releases stays, R2 for >2 GB overflow only" — Phase 4 supersedes.)
+- **D-01:** **R2 migration for PDFs + videos only** — thumbnails STAY LOCAL (tracked in git, served from dist/ via Astro Image). Astro Image component only processes local files for responsive srcset + format conversion + lazy-load hints; pushing thumbs to R2 loses PERF-04 image perf path. GitHub Releases tags (`pdfs-v1`, `videos-v1`, etc.) archived as cold-storage backup; site fetches PDFs/videos from R2 at `assets.realufo.org`; card `url` fields rewritten at build time. Refined per 04-RESEARCH.md §5 + A3 assumption. (Expands PROJECT.md §STACK which said "GH Releases stays, R2 for >2 GB overflow only" — Phase 4 supersedes for PDFs/videos.)
 - **D-02:** **R2 URL serving via custom domain `assets.realufo.org`** — bind R2 bucket to subdomain via CF dashboard custom-domain feature + DNS CNAME `assets` → R2 public URL. Stable URLs (survive bucket regeneration via DNS swap), easy SW allowlist, no opaque `*.r2.dev` URLs hardcoded into cards.
 - **D-03:** **GH Actions upload pipeline** — new `.github/workflows/r2-sync.yml` runs on push to `main`. Detects new/changed binaries via `git diff` vs last successful run, `wrangler r2 object put` each. Uses `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID` repo secrets (already configured per 03-06 user note). Idempotent.
 - **D-04:** **First-run batch migration** — initial workflow run uploads existing 165 PDFs + 60 videos. One-time bulk; subsequent runs incremental. Document the bulk-migration in 04-CONTEXT.md follow-ups so operator can sanity-check object count post-upload.
@@ -55,7 +55,8 @@ Port the remaining 14 archives to Astro (matching Plan 03-05 wargov pattern), sw
 - **D-14:** **`api/all.json` (4.6 MB) deletion** — confirmed when Pagefind index green per success criteria. Single commit drops it; doesn't gradual deprecate.
 - **D-15:** **Search result link format** `https://<host>/<slug>/#card-<id>` per SRC-04 (stable anchors preserved from URL-CONTRACT.txt + Plan 03-05 slugify).
 - **D-16:** **`/search.html` rewrite** — replaced with `src/pages/search.astro` consuming Pagefind UI. Drops Lunr code path entirely.
-- **D-17:** **Pagefind integration point** — `pnpm postbuild` hook chain extends `scripts/copy-legacy-archives.sh` to also run `npx pagefind --site dist`. Builds after copy step so legacy `<slug>/` HTML is indexed too.
+- **D-17:** **Pagefind integration point** — `pnpm postbuild` hook chain extends `scripts/copy-legacy-archives.sh` to also run `pnpm exec pagefind --site dist`. Builds after copy step so legacy `<slug>/` HTML is indexed too.
+- **D-17b:** **Pagefind plan lands AFTER all 14 archive ports complete** (Wave order: ports → Pagefind, not parallel). Reason: `data-pagefind-body` on RootLayout.astro would silently exclude legacy postbuild-copied HTML during transition window. Per 04-RESEARCH.md §2 Pitfall #5.
 
 ### Service Worker (SW-01..07)
 
@@ -77,12 +78,12 @@ Port the remaining 14 archives to Astro (matching Plan 03-05 wargov pattern), sw
 ### Pagination (NEW user requirement, ties to SSG-09)
 
 - **D-27:** **PAGE_SIZE = 20 cards per page** (Phase 3 wargov shipped 50/page; Phase 4 reduces). Reason: footer reachable from each page without scrolling through all cards.
-- **D-28:** **Explicit `?page=N` query parameter in URL** — bookmarkable, browser-history-friendly. Page 1 = no query param OR `?page=1` (both resolve identically). Page N = `?page=N`.
+- **D-28:** **Explicit `?page=N` query parameter in URL** — bookmarkable, browser-history-friendly. Page 1 = no query param OR `?page=1` (both resolve identically). Page N = `?page=N`. Implementation is CLIENT-SIDE windowing (see D-33), not Astro file-based paginate() (Astro `paginate()` only generates path-based routes per 04-RESEARCH.md §6 — query strings unsupported).
 - **D-29:** **URL contract compatibility** — `?page=N` is a query string; URL-CONTRACT.txt + redirects gate operate on paths only. No URL-CONTRACT.txt modification needed. `verify-redirects.sh` unchanged.
 - **D-30:** **Retroactive wargov re-paging** — Plan 03-05's wargov page reflows from 50/page-lazy-load → 20/page + `?page=N` URL. NEW Phase 4 plan `04-wargov-repaging` does this so all 15 archives share the same UI.
 - **D-31:** **Footer always reachable** below the 20 cards rendered. No infinite-scroll trap.
-- **D-32:** **Shard scheme unchanged (D-08..D-10 Plan 03-03)** — `data/<slug>-shard-N.json` shards stay at 50 cards/shard (server-side render unit). UI consumes shards and slices to 20/page. Server-side rendering doesn't change; client pagination reshapes display.
-- **D-33:** **Lazy-load behavior dropped** for paginated pages — each `?page=N` renders 20 cards as static SSR output via Astro `[...page].astro` dynamic route. IntersectionObserver removed for paginated paths.
+- **D-32:** **Shard scheme unchanged (D-08..D-10 Plan 03-03)** — `data/<slug>-shard-N.json` shards stay at 50 cards/shard (server-side render unit). All shards fetched upfront on initial load (~250 KB JSON for wargov, SW SWR-cached), client JS windows to 20 cards/page based on `URL.searchParams.get('page')`. Server-side rendering doesn't change; client pagination reshapes display.
+- **D-33:** **IntersectionObserver lazy-load REMOVED; client-side windowing replaces it** — `URL.searchParams.get('page')` reads page number, JS calls `insertAdjacentHTML('beforeend', ...)` for the 20 cards in that page's window (cards still come from pre-rendered shard HTML strings per D-10 LOCKED — zero client templating). Browser back/forward + `#card-` anchors continue to work. Per 04-RESEARCH.md §6 recommendation.
 
 ### Lightbox Fix (NEW user requirement, ties to SSG-09)
 
