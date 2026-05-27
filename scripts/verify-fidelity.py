@@ -67,8 +67,13 @@ USER_AGENT = 'realufo-fidelity-gate/1.0 (+https://github.com/hectorchanht/gov-uf
 FETCH_TIMEOUT_S = 30
 
 # Inline JSON manifest regex (mirrors scripts/extract-fidelity-samples.py + snapshot-urls.py).
+# Phase 4 Plan 04-05 [Rule 1] — relaxed to tolerate attribute order swaps.
+# Astro's HTML compiler emits `<script type="application/json" id="...">`,
+# whereas the legacy Python build scripts emitted `id="..." type="application/json"`.
+# Pattern allows ANY attribute between `<script` and the closing `>` so both
+# attribute orderings parse identically.
 MANIFEST_RE = re.compile(
-    r'<script id="(?:arch-data|archive-manifest)" type="application/json">(.*?)</script>',
+    r'<script[^>]*id="(?:arch-data|archive-manifest)"[^>]*>(.*?)</script>',
     re.DOTALL,
 )
 

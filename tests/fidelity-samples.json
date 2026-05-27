@@ -637,7 +637,7 @@
     "selector": "h1.hero-title",
     "source_path": "/nz/",
     "expected_text": "New Zealand's declassified RNZAF UFO files.",
-    "source_file": "nz/index.html"
+    "source_file": "src/pages/nz/index.astro"
   },
   {
     "archive": "nz",
@@ -645,15 +645,15 @@
     "selector": "p.hero-sub",
     "source_path": "/nz/",
     "expected_text": "In December 2010, the New Zealand Defence Force released 2,010 pages of previously classified UFO files (1952-2009) to Archives New Zealand. Centrepiece: the AIR 1080/6/897 series on the 1978 Kaikoura sightings. Released after a 14-month campaign by UFOCUS NZ. Source: archives.govt.nz.",
-    "source_file": "nz/index.html"
+    "source_file": "src/pages/nz/index.astro"
   },
   {
     "archive": "nz",
     "kind": "license-footer",
     "selector": "footer p",
     "source_path": "/nz/",
-    "expected_text": "Offline gateway to NZDF UFO Files. Crown copyright \u2014 reusable under Creative Commons BY 4.0 by default.",
-    "source_file": "nz/index.html"
+    "expected_text": "Public domain \u2014 Crown Copyright (NZDF)",
+    "source_file": "src/pages/nz/index.astro"
   },
   {
     "archive": "nz",
@@ -661,7 +661,7 @@
     "selector": "script#arch-data[0].ti",
     "source_path": "/nz/",
     "expected_text": "NZDF \u2014 UAP/UFO/USO OIA response (2023-4763)",
-    "source_file": "nz/index.html"
+    "source_file": "src/pages/nz/index.astro"
   },
   {
     "archive": "nz",
@@ -669,7 +669,7 @@
     "selector": "script#arch-data[1].ti",
     "source_path": "/nz/",
     "expected_text": "NZDF \u2014 UFO/UAP reporting OIA response (2024-5199)",
-    "source_file": "nz/index.html"
+    "source_file": "src/pages/nz/index.astro"
   },
   {
     "archive": "nz",
@@ -677,7 +677,7 @@
     "selector": "script#arch-data[2].ti",
     "source_path": "/nz/",
     "expected_text": "National Library of NZ \u2014 UFO files record",
-    "source_file": "nz/index.html"
+    "source_file": "src/pages/nz/index.astro"
   },
   {
     "archive": "nz",
@@ -685,7 +685,7 @@
     "selector": "script#arch-data[3].ti",
     "source_path": "/nz/",
     "expected_text": "AIR 1080/6/897 \u2014 Kaikoura 1978 file (PDF)",
-    "source_file": "nz/index.html"
+    "source_file": "src/pages/nz/index.astro"
   },
   {
     "archive": "nz",
@@ -693,7 +693,7 @@
     "selector": "script#arch-data[4].ti",
     "source_path": "/nz/",
     "expected_text": "Archives New Zealand \u2014 homepage",
-    "source_file": "nz/index.html"
+    "source_file": "src/pages/nz/index.astro"
   },
   {
     "archive": "peru",
