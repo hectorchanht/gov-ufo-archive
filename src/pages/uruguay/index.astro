@@ -1,0 +1,459 @@
+---
+// src/pages/uruguay/index.astro — Uruguay CRIDOVNI archive page at /uruguay/.
+//
+// Second per-archive port (Plan 04-06). Wave 1 small/static tier
+// (D-08) — 3 CATALOG rows. Reuses CatalogCard.astro template
+// established by Plan 04-05 without modification.
+//
+// Composes:
+//   - RootLayout (Plan 03-04) — archiveSlug="uruguay" → tone-colour
+//     `--caution: #3ba0d8` per CLAUDE.md §3.1.
+//   - CatalogCard (Plan 04-05 Task 1) — generic over catalogAssetSchema.
+//   - Lightbox (Plan 03-05) — static shell + invariants.ts handlers.
+//
+// Hero copy (h1 + lede + footer license) is verbatim from the legacy
+// uruguay/index.html (CLAUDE.md §9 fidelity rule) so tests/fidelity-
+// samples.json's 6 Uruguay entries continue to byte-match against the
+// rendered DOM. The legacy uruguay/index.html is deleted in this same
+// plan (D-09 — per-archive Python retirement), so /uruguay/ now serves
+// Astro-rendered HTML instead of the postbuild-copied legacy file.
+//
+// Key invariants:
+//   - D-21..D-23: every <script> here is <script is:inline>. NO client:*.
+//   - D-26..D-28: no transforms on text. Astro auto-escapes `{expr}` but
+//     does NOT rewrite typography. Hero copy + card titles round-trip
+//     byte-exact.
+//   - Plan 04-04 (D-27..D-28) pagination contract inherited: PAGE_SIZE=20,
+//     ?page=N URL param, footer reachable below window. Uruguay has 3
+//     assets today (< 20) so renderPaginationNav() emits an empty <nav>
+//     on page 1 — the handler is still wired so future growth (or
+//     shards) Just Works without page-template changes.
+//   - Pitfall #6: refreshLbList walks ALL .arch-card (including
+//     display:none) so lightbox prev/next crosses page boundaries.
+//
+// CLAUDE.md §2 Uruguay tone:
+//   - Path: /uruguay/ (this file → dist/uruguay/index.html)
+//   - Tone: #3ba0d8 (Uruguay CRIDOVNI blue)
+//   - Source URL: https://www.fau.mil.uy/
+//   - License: Ley nº 18.381 (acceso a la información pública)
+
+import RootLayout from '../../layouts/RootLayout.astro';
+import CatalogCard from '../../components/CatalogCard.astro';
+import Lightbox from '../../components/Lightbox.astro';
+import { getEntry } from 'astro:content';
+import '../../styles/uruguay.css';
+
+const uruguay = await getEntry('uruguay', 'v1');
+if (!uruguay) {
+  throw new Error(
+    'uruguay collection entry "v1" missing — run `python3 scripts/normalize-uruguay.py` to regenerate data/uruguay.json',
+  );
+}
+
+const { assets, stats } = uruguay.data;
+
+// Slugify — byte-for-byte port of scripts/_archive_common.slugify (and
+// the same rule used by scripts/snapshot-urls.py + normalize-csv.py).
+// Algorithm: lowercase → collapse runs of non-[a-z0-9] to single hyphen →
+// strip leading/trailing hyphens → truncate to 80 chars → strip again.
+function slugify(text: string): string {
+  if (!text) return '';
+  const s = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  return s.slice(0, 80).replace(/^-+|-+$/g, '');
+}
+
+// Page meta — title + description verbatim from the legacy
+// uruguay/index.html <title> + <meta name="description"> (CLAUDE.md §9
+// fidelity rule).
+const title = 'CRIDOVNI — Uruguay Air Force UFO Commission (Offline Mirror)';
+const description = "Offline mirror of CRIDOVNI — Uruguay's UFO investigation commission, world's oldest continuously-operating state UAP programme (1979→).";
+---
+<RootLayout
+  archiveSlug="uruguay"
+  title={title}
+  description={description}
+  totalRecords={stats.total}
+  lastUpdated="2026-05-27"
+>
+  <section class="hero" id="intro">
+    <div class="container">
+      <div class="coords">34°54′S, 56°10′W · FUERZA AÉREA URUGUAYA · MONTEVIDEO</div>
+      <h1 class="hero-title">Uruguay's <em>CRIDOVNI</em> — oldest continuously-running UFO office.</h1>
+      <p class="hero-sub"><strong>CRIDOVNI</strong> (Comisión Receptora e Investigadora de Denuncias de OVNI)
+            was established in <strong>1979</strong> inside Uruguay's Air Force — the
+            <em>world's oldest continuously-operating</em> state UAP programme. Receives reports
+            from pilots and the public, investigates with a scientific framework, and maintains a
+            classified case archive of nearly five decades of Uruguayan sightings.
+            Source: <a href="https://www.fau.mil.uy/" target="_blank" rel="noopener">fau.mil.uy</a>.</p>
+    </div>
+  </section>
+
+  <section class="headlines" id="headlines">
+    <div class="container">
+      <div class="section-label">§ Headlines · CRIDOVNI, distilled</div>
+      <div class="head-card-grid">
+        <article class="head-card">
+          <div class="hc-tag">Founded</div>
+          <h3>1979</h3>
+          <p>By Air Force resolution — under Fuerza Aérea Uruguaya.</p>
+        </article>
+        <article class="head-card">
+          <div class="hc-tag">Tenure</div>
+          <h3>45+ years</h3>
+          <p>Longest continuously-operating in the world.</p>
+        </article>
+        <article class="head-card">
+          <div class="hc-tag">Estimate</div>
+          <h3>~2,000 reports</h3>
+          <p>Investigated since founding (FAU public statements).</p>
+        </article>
+        <article class="head-card">
+          <div class="hc-tag">Resolution</div>
+          <h3>~40%</h3>
+          <p>Remain unexplained after investigation (FAU figure).</p>
+        </article>
+        <article class="head-card">
+          <div class="hc-tag">Parent</div>
+          <h3>Fuerza Aérea Uruguaya</h3>
+          <p>Comando General.</p>
+        </article>
+        <article class="head-card">
+          <div class="hc-tag">Status</div>
+          <h3>Active</h3>
+          <p>Still receiving reports today.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="archive" id="archive">
+    <div class="container">
+      <div class="section-label">§ Records · Catalog gateways</div>
+      <h2>Every official entry-point.</h2>
+
+      <div class="stats-grid" id="arch-stats">
+        <div class="stat">
+          <div class="stat-num">{stats.total}</div>
+          <div class="stat-label">Total records</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">{stats.local_total}</div>
+          <div class="stat-label">Locally archived</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">{stats.pdf_total}</div>
+          <div class="stat-label">PDF documents</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">{stats.catalog_total}</div>
+          <div class="stat-label">Catalog gateways</div>
+        </div>
+      </div>
+
+      <div class="arch-controls-bar" id="arch-controls-bar">
+        <div class="tabs" id="arch-tabs">
+          <button type="button" class="tab active" data-tab="all">All</button>
+          <button type="button" class="tab" data-tab="CATALOG">Catalog</button>
+        </div>
+        <div class="sort-wrap">
+          <label for="arch-sort">Sort:</label>
+          <select id="arch-sort">
+            <option value="type">Type</option>
+            <option value="title">Title (A→Z)</option>
+            <option value="title-desc">Title (Z→A)</option>
+            <option value="date-new">Date (newest)</option>
+            <option value="date-old">Date (oldest)</option>
+            <option value="agency">Agency</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="filter-bar">
+        <label>Agency:
+          <select id="filter-agency">
+            <option value="">All</option>
+          </select>
+        </label>
+        <label>Per page:
+          <select id="filter-perpage">
+            <option value="12">12</option>
+            <option value="24" selected>24</option>
+            <option value="48">48</option>
+            <option value="96">96</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="result-count" id="arch-count" aria-live="polite"></div>
+
+      <div class="arch-grid" id="uruguay-grid">
+        {assets.map((asset, idx) => (
+          <CatalogCard
+            asset={asset}
+            idx={idx}
+            slug={slugify(asset.ti)}
+            archiveSlug="uruguay"
+          />
+        ))}
+      </div>
+
+      {/* Pagination nav — populated by the ?page=N handler below (Plan 04-04
+          contract inherited). data-pagefind-ignore keeps the nav links out of
+          the search index (SRC-04). For Uruguay (3 assets < PAGE_SIZE=20),
+          the handler short-circuits via renderPaginationNav(1,1) → empty
+          nav. */}
+      <nav class="pagination" id="uruguay-pagination" data-pagefind-ignore aria-label="Pagination"></nav>
+    </div>
+  </section>
+
+  <Lightbox />
+
+  {/* Inline arch-data JSON manifest — mirrors the legacy
+      uruguay/index.html `<script id="arch-data">` block so external
+      tooling continues to work without per-archive special-cases:
+        - scripts/verify-fidelity.py (card-title extractor reads this
+          via MANIFEST_RE — see scripts/verify-fidelity.py)
+        - tests/fidelity-samples.json (3 Uruguay card-title samples
+          reference `script#arch-data[N].ti` selectors)
+        - any future cross-archive aggregator looking for inline data
+      Shape matches the legacy emit: `{ assets: [...], stats: {...} }`
+      with abbreviated catalog keys (same as data/uruguay.json's
+      v1.assets, v1.stats — but without the schemaVersion / slug
+      wrapper, since the legacy build-<slug>.py scripts emitted the
+      bare shape). Plan 04-19 Pagefind reads data-pagefind-* attributes
+      from cards (CatalogCard.astro), NOT this manifest — no
+      double-indexing. */}
+  <script
+    is:inline
+    type="application/json"
+    id="arch-data"
+    set:html={JSON.stringify({ assets: assets, stats: stats })}
+  ></script>
+
+  {/* Pagination + filter/sort runtime — Plan 04-04 PAGE_SIZE=20 contract,
+      adapted for Uruguay. Uruguay has no shards (3 assets fit entirely
+      on page 1) so the manifest is omitted; the handler walks the
+      in-DOM cards directly. Pitfall #6: lbList walks ALL .arch-card
+      (including display:none) so lightbox prev/next crosses page
+      boundaries. D-21..D-23: <script is:inline> — no Vite bundling,
+      no hydration. */}
+  <script is:inline>
+    (() => {
+      const PAGE_SIZE = 20; // D-27
+      const grid = document.getElementById('uruguay-grid');
+      const paginationNav = document.getElementById('uruguay-pagination');
+      if (!grid || !paginationNav) return;
+
+      function readPage() {
+        const raw = new URLSearchParams(location.search).get('page') || '1';
+        const p = parseInt(raw, 10);
+        return Math.max(1, isNaN(p) ? 1 : p);
+      }
+
+      function renderPaginationNav(current, total) {
+        if (!paginationNav) return;
+        if (total <= 1) {
+          paginationNav.innerHTML = '';
+          return;
+        }
+        const parts = [];
+        if (current > 1) {
+          parts.push(
+            '<a href="?page=' + (current - 1) + '" class="pg-prev" rel="prev">← Prev</a>',
+          );
+        }
+        for (let i = 1; i <= total; i++) {
+          if (i === current) {
+            parts.push('<span class="pg-current" aria-current="page">' + i + '</span>');
+          } else {
+            parts.push('<a href="?page=' + i + '">' + i + '</a>');
+          }
+        }
+        if (current < total) {
+          parts.push(
+            '<a href="?page=' + (current + 1) + '" class="pg-next" rel="next">Next →</a>',
+          );
+        }
+        paginationNav.innerHTML = parts.join('');
+      }
+
+      function renderPage(pageNum, opts) {
+        opts = opts || {};
+        const cards = Array.from(grid.querySelectorAll('.arch-card'));
+        if (!cards.length) return;
+        const totalPages = Math.max(1, Math.ceil(cards.length / PAGE_SIZE));
+        pageNum = Math.min(Math.max(1, pageNum), totalPages);
+
+        const start = (pageNum - 1) * PAGE_SIZE;
+        const end = start + PAGE_SIZE;
+        for (let i = 0; i < cards.length; i++) {
+          cards[i].style.display = i >= start && i < end ? '' : 'none';
+        }
+
+        renderPaginationNav(pageNum, totalPages);
+
+        if (location.hash && !opts.fromHash) {
+          let target = null;
+          try { target = document.querySelector(location.hash); } catch (_) { target = null; }
+          if (target && target.classList && target.classList.contains('arch-card')) {
+            const idx = cards.indexOf(target);
+            if (idx >= 0) {
+              const targetPage = Math.floor(idx / PAGE_SIZE) + 1;
+              if (targetPage !== pageNum) {
+                renderPage(targetPage, { fromHash: true });
+                target.scrollIntoView({ block: 'start' });
+                return;
+              }
+              target.scrollIntoView({ block: 'start' });
+            }
+          }
+        } else if (!opts.fromHash && !opts.skipScroll) {
+          try { window.scrollTo({ top: 0, behavior: 'instant' }); }
+          catch (_) { window.scrollTo(0, 0); }
+        }
+
+        try {
+          grid.dispatchEvent(new CustomEvent('uruguay:page-rendered', {
+            bubbles: true,
+            detail: { page: pageNum, totalPages: totalPages, totalCards: cards.length },
+          }));
+        } catch (_) { /* CustomEvent unavailable in very old browsers — silent */ }
+      }
+
+      document.addEventListener('click', (e) => {
+        const a = e.target && e.target.closest && e.target.closest('#uruguay-pagination a');
+        if (!a) return;
+        e.preventDefault();
+        const url = new URL(a.getAttribute('href'), location.origin + location.pathname);
+        try { history.pushState({}, '', url); }
+        catch (_) { location.search = url.search; return; }
+        const pageNum = parseInt(url.searchParams.get('page') || '1', 10);
+        renderPage(isNaN(pageNum) ? 1 : pageNum);
+      });
+      window.addEventListener('popstate', () => renderPage(readPage()));
+      renderPage(readPage());
+    })();
+  </script>
+
+  {/* Filter/sort progressive enhancement — operates on rendered DOM
+      data-* attributes per D-11. Identical to the wargov + nz handler;
+      kept inline so each per-archive page is self-contained. */}
+  <script is:inline>
+    (() => {
+      const grid = document.getElementById('uruguay-grid');
+      const tabs = document.querySelectorAll('.arch-controls-bar .tab');
+      const sort = document.getElementById('arch-sort');
+      const agencyFilter = document.getElementById('filter-agency');
+      const countEl = document.getElementById('arch-count');
+      if (!grid) return;
+
+      function getCards() {
+        return Array.from(grid.querySelectorAll('.arch-card'));
+      }
+
+      function applyFilters() {
+        const activeTab = document.querySelector('.arch-controls-bar .tab.active');
+        const typeFilter = activeTab ? activeTab.getAttribute('data-tab') : 'all';
+        const agencyVal = agencyFilter ? agencyFilter.value : '';
+        let visible = 0;
+        for (const c of getCards()) {
+          const type = c.getAttribute('data-type') || '';
+          const agency = c.getAttribute('data-agency') || '';
+          const typeOk = typeFilter === 'all' || type === typeFilter;
+          const agencyOk = !agencyVal || agency === agencyVal;
+          const show = typeOk && agencyOk;
+          c.style.display = show ? '' : 'none';
+          if (show) visible++;
+        }
+        if (countEl) {
+          countEl.textContent = visible + ' / ' + getCards().length + ' records';
+        }
+      }
+
+      function populateAgencies() {
+        if (!agencyFilter) return;
+        const agencies = new Set();
+        for (const c of getCards()) {
+          const a = c.getAttribute('data-agency');
+          if (a) agencies.add(a);
+        }
+        const current = agencyFilter.value;
+        agencyFilter.innerHTML = '<option value="">All</option>';
+        Array.from(agencies).sort().forEach((a) => {
+          const opt = document.createElement('option');
+          opt.value = a;
+          opt.textContent = a;
+          if (a === current) opt.selected = true;
+          agencyFilter.appendChild(opt);
+        });
+      }
+
+      function applySort() {
+        if (!sort) return;
+        const mode = sort.value;
+        const cards = getCards();
+        cards.sort((a, b) => {
+          if (mode === 'title') {
+            return (a.querySelector('.card-title')?.textContent || '').localeCompare(
+              b.querySelector('.card-title')?.textContent || ''
+            );
+          }
+          if (mode === 'title-desc') {
+            return (b.querySelector('.card-title')?.textContent || '').localeCompare(
+              a.querySelector('.card-title')?.textContent || ''
+            );
+          }
+          if (mode === 'agency') {
+            return (a.getAttribute('data-agency') || '').localeCompare(b.getAttribute('data-agency') || '');
+          }
+          return (a.getAttribute('data-type') || '').localeCompare(b.getAttribute('data-type') || '');
+        });
+        for (const c of cards) grid.appendChild(c);
+      }
+
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+          tabs.forEach((t) => t.classList.remove('active'));
+          tab.classList.add('active');
+          applyFilters();
+        });
+      });
+      if (sort) sort.addEventListener('change', () => { applySort(); applyFilters(); });
+      if (agencyFilter) agencyFilter.addEventListener('change', applyFilters);
+
+      const obs = new MutationObserver(() => {
+        populateAgencies();
+        applyFilters();
+      });
+      obs.observe(grid, { childList: true });
+
+      populateAgencies();
+      applyFilters();
+
+      // Populate lightbox list — invariants.ts reads window.__lbList.
+      // Pitfall #6: walk ALL .arch-card (including display:none) so
+      // lightbox prev/next traverses the full set across filter +
+      // pagination boundaries.
+      function refreshLbList() {
+        const list = [];
+        for (const c of grid.querySelectorAll('.arch-card')) {
+          const rowId = c.dataset.rowId;
+          const titleEl = c.querySelector('.card-title');
+          const openA = c.querySelector('a.btn-open');
+          list.push({
+            rowId,
+            title: titleEl ? titleEl.textContent : '',
+            url: openA ? (openA.dataset.url || '') : '',
+            local: openA ? (openA.dataset.local || '') : '',
+          });
+        }
+        window.__lbList = list;
+      }
+      refreshLbList();
+      const lbObs = new MutationObserver(refreshLbList);
+      lbObs.observe(grid, { childList: true });
+      // Plan 04-04 — refresh lbList on page change.
+      grid.addEventListener('uruguay:page-rendered', refreshLbList);
+    })();
+  </script>
+</RootLayout>

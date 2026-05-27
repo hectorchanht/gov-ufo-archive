@@ -50,11 +50,11 @@ copy_one() {
 }
 
 # --- non-wargov archive directories (excluding ones now ported to Astro) ---
-# Plan 04-05 (D-09): the New Zealand archive index page is now served by
-# src/pages/[archive]/index.astro. As subsequent Wave 3+ ports complete
-# (04-06..04-18), drop each slug from this list. When the list is empty,
-# this script can be deleted entirely.
-for slug in aaro nasa nara geipan uk brazil chile argentina canada italy peru spain uruguay; do
+# Plans 04-05/04-06 (D-09): the New Zealand + Uruguay archive index pages
+# are now served by src/pages/[archive]/index.astro. As subsequent Wave 3+
+# ports complete (04-07..04-18), drop each slug from this list. When the
+# list is empty, this script can be deleted entirely.
+for slug in aaro nasa nara geipan uk brazil chile argentina canada italy peru spain; do
   if [ -d "$slug" ]; then
     while IFS= read -r f; do
       copy_one "$f"
@@ -63,8 +63,8 @@ for slug in aaro nasa nara geipan uk brazil chile argentina canada italy peru sp
 done
 
 # --- partial-port archives ---
-# Plan 04-05 (D-09): the [archive]/ index page was ported to Astro but
-# legacy story sub-pages remain (story.html, case-specific narratives).
+# Plans 04-05/04-06 (D-09): the [archive]/ index page was ported to Astro
+# but legacy story sub-pages remain (story.html, case-specific narratives).
 # Copy ONLY the sub-pages, NEVER the legacy index.html — Astro now owns
 # the index route and the legacy HTML would shadow it. Cross-archive
 # links policed by scripts/sync-nav.py + sync-footer.py still target
@@ -76,6 +76,14 @@ if [ -d "nz" ]; then
       *) copy_one "$f" ;;
     esac
   done < <(git ls-files "nz/")
+fi
+if [ -d "uruguay" ]; then
+  while IFS= read -r f; do
+    case "$f" in
+      uruguay/index.html) continue ;;  # Astro now owns /uruguay/ — never copy
+      *) copy_one "$f" ;;
+    esac
+  done < <(git ls-files "uruguay/")
 fi
 
 # --- top-level static pages (NOT root index.html — Astro owns wargov at /) ---

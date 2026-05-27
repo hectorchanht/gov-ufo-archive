@@ -1,0 +1,34 @@
+/* uruguay.css — Uruguay CRIDOVNI per-archive page styles (Plan 04-06).
+ *
+ * Inherits ~95% of its layout from src/styles/wargov.css's shared
+ * `.hero`, `.headlines`, `.archive`, `.stats-grid`, `.arch-controls-bar`,
+ * `.filter-bar`, `.result-count`, and `.arch-card` selectors (Plan
+ * 03-05). To avoid duplicating ~500 lines of CSS across 14 archive
+ * pages, this file re-imports the shared wargov layout — every
+ * selector inside is archive-agnostic (uses var(--caution) which the
+ * <html style> attribute from RootLayout.astro sets to #3ba0d8 for
+ * Uruguay per CLAUDE.md §3.1).
+ *
+ * Uruguay has no per-archive layout deltas beyond the tone-colour:
+ *   - hero structure: same coords + h1 + lede pattern as wargov.
+ *     Hero title uses <em>CRIDOVNI</em> for italic accent — coloured
+ *     via the global.css `h1.hero-title em { color: var(--caution) }`
+ *     rule (Plan 03-04 base).
+ *   - headlines: same head-card-grid (6 tiles — purely a content count
+ *     difference vs. wargov's 5, no CSS change).
+ *   - archive grid: same stats + tabs + filter + arch-grid structure.
+ *
+ * If a future Wave 3+ port needs archive-specific overrides (e.g.,
+ * NASA's red headline ribbon, NARA's silver borders), THAT archive's
+ * <slug>.css adds the deltas here. Uruguay ships clean inheritance —
+ * same as NZ (Plan 04-05).
+ *
+ * Tone-colour wiring (CLAUDE.md §3.1):
+ *   var(--caution) = #3ba0d8 (Uruguay CRIDOVNI blue), set by
+ *   RootLayout.astro via the TONE map when archiveSlug="uruguay".
+ *
+ * Mobile-first per CLAUDE.md §8 — base styles assume 360 px viewport.
+ */
+
+/* Re-use wargov.css layout — same skeleton, different tone-colour. */
+@import url('./wargov.css');
