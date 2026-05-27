@@ -312,6 +312,11 @@ def render_card_html(row: dict[str, str], idx: int) -> str:
     date = row.get('Incident Date', '') or ''
     rtype = row.get('Type', '') or ''
     dvids = row.get('DVIDS Video ID', '') or ''
+    # Scope pivot 2026-05-28 — Card.astro now emits data-desc/region/
+    # category/src for lightbox meta-panel consumption. Mirror byte-
+    # equivalent (D-10 LOCKED pair).
+    region = row.get('Incident Location', '') or ''
+    category = rtype  # Card.astro uses rtype for both data-type + data-category
 
     parts: list[str] = []
     local = row.get('local', '') or ''
@@ -320,7 +325,9 @@ def render_card_html(row: dict[str, str], idx: int) -> str:
         f'data-id="{_e(row_id)}" data-row-id="{_e(row_id)}" '
         f'data-idx="{idx}" data-action="open" '
         f'data-type="{_e(rtype)}" data-agency="{_e(agency)}" '
-        f'data-date="{_e(date)}">'
+        f'data-date="{_e(date)}" data-desc="{_e(desc)}" '
+        f'data-region="{_e(region)}" data-category="{_e(category)}" '
+        f'data-src="{_e(SOURCE_URL)}">'
     )
     if thumb:
         parts.append(

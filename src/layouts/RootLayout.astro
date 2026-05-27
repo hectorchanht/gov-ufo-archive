@@ -78,6 +78,17 @@ const TONE: Record<ArchiveSlug, { caution: string; sealStart: string; sealMid: s
 const tone = TONE[archiveSlug] ?? TONE.wargov;
 const sealGradient = `radial-gradient(circle at center, ${tone.sealStart} 0%, ${tone.sealMid} 50%, ${tone.sealEnd} 100%)`;
 const rootStyle = `--caution: ${tone.caution}; --seal-gradient: ${sealGradient};`;
+
+// Scope pivot (2026-05-28) — 4 active archives surface in user-facing nav +
+// Pagefind index. The 11 dormant archives still render (NZ + Uruguay Astro
+// pages preserved; legacy postbuild copies for the rest) for direct-URL
+// access, but their <main> receives `data-pagefind-ignore` so Plan 04-19
+// Pagefind skips them at indexing time. Removing a slug from this set is
+// the single switch needed to re-include an archive in search results.
+const ACTIVE_ARCHIVES: ReadonlySet<ArchiveSlug> = new Set<ArchiveSlug>(
+  ['wargov', 'aaro', 'nasa', 'nara'],
+);
+const isDormant = !ACTIVE_ARCHIVES.has(archiveSlug);
 ---
 
 <!doctype html>
@@ -92,7 +103,7 @@ const rootStyle = `--caution: ${tone.caution}; --seal-gradient: ${sealGradient};
     <Nav archiveSlug={archiveSlug}>
       <slot name="nav-extra" slot="nav-extra" />
     </Nav>
-    <main>
+    <main data-pagefind-ignore={isDormant ? '' : undefined}>
       <slot />
     </main>
     <Footer archiveSlug={archiveSlug} totalRecords={totalRecords} lastUpdated={lastUpdated} />

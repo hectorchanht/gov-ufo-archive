@@ -13,10 +13,30 @@
 //   #lb-next     (next nav — invariants.ts line ~125)
 //   #lb-counter  (1 / N counter)
 //   #lb-inner    (the asset render target — image / video / iframe)
+//   #lb-meta     (NEW 2026-05-28 — description + agency + date + region +
+//                 category panel rendered from window.__lbList entries)
+//   #lb-actions  (NEW 2026-05-28 — dual action buttons: Download from
+//                 realufo + View on original source)
 //
 // .open class triggers display:flex via global.css (Plan 03-04 line 365).
 // Mobile sizing (40×40 nav buttons + edge-pinned) is in global.css per
 // CLAUDE.md §8.
+//
+// Asset-type coverage (renderLb() in invariants.ts handles all 7):
+//   PDF      → iframe (local) OR new-tab link (remote, via Download button)
+//   VID      → <video controls> + dual <source> children (local + remote)
+//   IMG      → <img> with onerror fallback to remote
+//   AUDIO    → <audio controls> + <source>
+//   CATALOG  → text-only meta panel + Download/Source buttons route external
+//   CASE     → iframe rendering the case detail HTML page
+//   PAGE     → iframe rendering the legacy long-form text page
+//
+// SCOPE PIVOT (2026-05-28): all 4 active archives share this Lightbox
+// shell. The CatalogCard.astro + Card.astro contracts both emit data-desc,
+// data-agency, data-date, data-region, data-category, data-src on the
+// <article> element; refreshLbList() in each per-archive page reads these
+// into window.__lbList so renderLb() can populate the meta panel + action
+// buttons without per-archive customisation.
 ---
 <div class="lightbox" id="lightbox" aria-hidden="true">
   <button class="lb-rotate" id="lb-rotate" aria-label="Rotate view" title="Rotate" type="button">⟳</button>
@@ -24,7 +44,27 @@
   <button class="lb-nav prev" id="lb-prev" aria-label="Previous (←)" type="button">‹</button>
   <button class="lb-nav next" id="lb-next" aria-label="Next (→)" type="button">›</button>
   <div class="lb-counter" id="lb-counter"></div>
-  <div class="lightbox-inner" id="lb-inner"></div>
+  <div class="lb-frame">
+    <div class="lightbox-inner" id="lb-inner"></div>
+    {/* Meta panel — populated by renderLb() from window.__lbList[lbIdx].
+        Fields: title (h3), desc (p), then dl with agency / date / region /
+        category. Empty fields are omitted so cards with sparse metadata
+        don't render hollow rows. CLAUDE.md §9 "no filler" — empty desc =
+        no <p>, not a placeholder string. */}
+    <div class="lb-meta-panel" id="lb-meta" aria-live="polite"></div>
+    {/* Dual action buttons per operator spec 2026-05-28:
+          - Download from realufo (uses lbList[i].local || lbList[i].url,
+            falls back to .url; R2 URL when card.local empty + url is R2)
+          - View on original source (uses lbList[i].source, the official
+            archive page URL — opens in new tab with rel=noopener)
+        Buttons are populated/hidden by renderLb(); a button with an empty
+        href is hidden via aria-hidden + display:none so cards lacking a
+        source or download URL don't show a broken link. */}
+    <div class="lb-actions" id="lb-actions">
+      <a class="lb-btn lb-btn-download" id="lb-download" href="#" download rel="noopener">Download</a>
+      <a class="lb-btn lb-btn-source" id="lb-source" href="#" target="_blank" rel="noopener">View on source ↗</a>
+    </div>
+  </div>
 </div>
 
 <style>
@@ -44,35 +84,140 @@
     padding: 6px 12px;
     border-radius: 4px;
     border: 1px solid var(--rule);
+    z-index: 3;
+  }
+
+  /* Frame wraps asset render target + meta panel + action buttons so the
+     three stack vertically inside the 92vw / 86vh viewport. */
+  .lb-frame {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    gap: 12px;
+    max-width: min(92vw, 1280px);
+    max-height: 92vh;
+    position: relative;
+    z-index: 2;
   }
 
   .lightbox-inner {
-    max-width: min(92vw, 1280px);
-    max-height: 86vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    z-index: 2;
+    max-height: 70vh;
   }
 
   .lightbox-inner img,
   .lightbox-inner video {
     max-width: 100%;
-    max-height: 86vh;
+    max-height: 70vh;
     border: 1px solid var(--rule-strong);
     background: var(--bg-2);
   }
 
   .lightbox-inner iframe {
     width: min(92vw, 1280px);
-    height: 86vh;
+    height: 70vh;
     border: 1px solid var(--rule-strong);
     background: var(--bg-2);
   }
 
   .lightbox-inner audio {
     width: min(86vw, 700px);
+  }
+
+  /* Meta panel — dark card with serif description + mono metadata dl.
+     CLAUDE.md §3.2 palette + §3.3 typography rules. Mobile-first: tight
+     padding on 360 px viewport, looser at 720 px+. */
+  .lb-meta-panel {
+    background: var(--bg-2);
+    border: 1px solid var(--rule);
+    color: var(--ink);
+    padding: 12px 16px;
+    font-family: var(--serif);
+    font-size: 14px;
+    line-height: 1.5;
+    max-width: 100%;
+    overflow-y: auto;
+    max-height: 28vh;
+  }
+
+  .lb-meta-panel:empty {
+    display: none;
+  }
+
+  .lb-meta-panel h3 {
+    margin: 0 0 6px;
+    font-family: var(--serif);
+    font-size: 16px;
+    color: var(--ink);
+  }
+
+  .lb-meta-panel p {
+    margin: 0 0 8px;
+    color: var(--ink-dim);
+  }
+
+  .lb-meta-panel dl {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 4px 12px;
+    margin: 0;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+  }
+
+  .lb-meta-panel dt {
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .lb-meta-panel dd {
+    margin: 0;
+    color: var(--ink-dim);
+    overflow-wrap: anywhere; /* CLAUDE.md §8 — long titles never overflow */
+  }
+
+  /* Dual action buttons — Download (R2 / local) + View on source (external).
+     CLAUDE.md §8 44 px touch targets. The wargov gold (--caution) accent
+     marks both as primary actions. */
+  .lb-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-end;
+  }
+
+  .lb-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 10px 16px;
+    border: 1px solid var(--rule-strong);
+    background: var(--bg-2);
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: border-color 120ms ease, color 120ms ease;
+  }
+
+  .lb-btn:hover,
+  .lb-btn:focus-visible {
+    border-color: var(--caution);
+    color: var(--caution);
+  }
+
+  .lb-btn[aria-hidden="true"],
+  .lb-btn[hidden] {
+    display: none;
   }
 
   /* CLAUDE.md §8 — rotate-to-landscape is mobile-only and only when the
@@ -91,10 +236,27 @@
     font-size: 18px;
     cursor: pointer;
     place-items: center;
+    z-index: 3;
   }
 
   @media (max-width: 720px) {
     .lightbox.open .lb-rotate { display: grid; }
+    .lb-frame {
+      max-height: 96vh;
+    }
+    .lb-meta-panel {
+      font-size: 13px;
+      padding: 10px 12px;
+      max-height: 30vh;
+    }
+    .lb-actions {
+      justify-content: stretch;
+    }
+    .lb-btn {
+      flex: 1 1 auto;
+      padding: 10px 12px;
+      font-size: 11px;
+    }
   }
 
   .lightbox.lb-rotated .lightbox-inner img,

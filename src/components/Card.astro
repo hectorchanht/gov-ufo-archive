@@ -86,6 +86,10 @@ const SOURCE_URL = 'https://www.war.gov/UFO/';
   data-type={rtype}
   data-agency={agency}
   data-date={date}
+  data-desc={desc}
+  data-region={row['Incident Location'] ?? ''}
+  data-category={rtype}
+  data-src={SOURCE_URL}
 >
   {thumb && (
     <img

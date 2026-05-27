@@ -25,28 +25,38 @@ When two goals conflict: pick **mobile-first** over desktop polish, and
 
 ## 2. Sources covered
 
-15 official government archives, each at its own path under the root domain.
+15 official government archives in the long-term plan. **Scope status
+(2026-05-28):** realufo.org currently ships **4 ACTIVE** archives linked
+from Nav + Footer + Pagefind search. The remaining **11 DORMANT**
+archives have full code + data + content-collection + tone-colour entries
+preserved in the repo but are not user-navigable from the active surface.
+Direct-URL access still works (NZ + Uruguay via Astro pages; the other 9
+via legacy `scripts/copy-legacy-archives.sh` postbuild). Re-activating any
+dormant archive = adding its slug to `Nav.astro` `ARCHIVES`, `Footer.astro`
+`ACTIVE_ARCHIVES`, and `RootLayout.astro` `ACTIVE_ARCHIVES` (one line each).
 
-| Slug | Path | Source | Official site |
-| --- | --- | --- | --- |
-| `wargov` | `/` | War.gov / PURSUE — Release 01 | <https://www.war.gov/UFO/> |
-| `aaro` | `/aaro/` | All-domain Anomaly Resolution Office | <https://www.aaro.mil/> |
-| `nasa` | `/nasa/` | NASA UAP Independent Study Team | <https://science.nasa.gov/uap/> |
-| `nara` | `/nara/` | National Archives & Records Administration (Project Blue Book + JFK + …) | <https://catalog.archives.gov/> |
-| `geipan` | `/geipan/` | France — GEIPAN (CNES) | <https://www.cnes-geipan.fr/> |
-| `uk` | `/uk/` | UK National Archives (MoD UAP files) | <https://discovery.nationalarchives.gov.uk/> |
-| `brazil` | `/brazil/` | Brazil FAB / Operação Prato | <https://www.fab.mil.br/> |
-| `chile` | `/chile/` | Chile CEFAA / SEFAA (DGAC) | <https://www.sefaa.cl/> |
-| `argentina` | `/argentina/` | Argentina CEFAe (Fuerza Aérea) | <https://www.argentina.gob.ar/fuerzaaerea/cefae> |
-| `canada` | `/canada/` | Library & Archives Canada — Project Magnet | <https://www.bac-lac.gc.ca/> |
-| `italy` | `/italy/` | Italy Aeronautica Militare | <https://www.aeronautica.difesa.it/> |
-| `nz` | `/nz/` | NZ Defence Force | <https://www.nzdf.mil.nz/> |
-| `peru` | `/peru/` | Peru OIFAA (Fuerza Aérea) | <https://www.gob.pe/fap> |
-| `spain` | `/spain/` | Spain Ejército del Aire | <https://ejercitodelaire.defensa.gob.es/> |
-| `uruguay` | `/uruguay/` | Uruguay CRIDOVNI | <https://www.fau.mil.uy/> |
+| Slug | Path | Source | Official site | Status |
+| --- | --- | --- | --- | --- |
+| `wargov` | `/` | War.gov / PURSUE — Release 01 | <https://www.war.gov/UFO/> | **ACTIVE** |
+| `aaro` | `/aaro/` | All-domain Anomaly Resolution Office | <https://www.aaro.mil/> | **ACTIVE** |
+| `nasa` | `/nasa/` | NASA UAP Independent Study Team | <https://science.nasa.gov/uap/> | **ACTIVE** |
+| `nara` | `/nara/` | National Archives & Records Administration (Project Blue Book + JFK + …) | <https://catalog.archives.gov/> | **ACTIVE** |
+| `geipan` | `/geipan/` | France — GEIPAN (CNES) | <https://www.cnes-geipan.fr/> | dormant |
+| `uk` | `/uk/` | UK National Archives (MoD UAP files) | <https://discovery.nationalarchives.gov.uk/> | dormant |
+| `brazil` | `/brazil/` | Brazil FAB / Operação Prato | <https://www.fab.mil.br/> | dormant |
+| `chile` | `/chile/` | Chile CEFAA / SEFAA (DGAC) | <https://www.sefaa.cl/> | dormant |
+| `argentina` | `/argentina/` | Argentina CEFAe (Fuerza Aérea) | <https://www.argentina.gob.ar/fuerzaaerea/cefae> | dormant |
+| `canada` | `/canada/` | Library & Archives Canada — Project Magnet | <https://www.bac-lac.gc.ca/> | dormant |
+| `italy` | `/italy/` | Italy Aeronautica Militare | <https://www.aeronautica.difesa.it/> | dormant |
+| `nz` | `/nz/` | NZ Defence Force | <https://www.nzdf.mil.nz/> | dormant |
+| `peru` | `/peru/` | Peru OIFAA (Fuerza Aérea) | <https://www.gob.pe/fap> | dormant |
+| `spain` | `/spain/` | Spain Ejército del Aire | <https://ejercitodelaire.defensa.gob.es/> | dormant |
+| `uruguay` | `/uruguay/` | Uruguay CRIDOVNI | <https://www.fau.mil.uy/> | dormant |
 
 Cross-archive search lives at `/search.html`. Top-level `index.html` is the
 War.gov / PURSUE landing page (historical reasons — it predates the others).
+Dormant pages emit `data-pagefind-ignore` on `<main>` (RootLayout) so Plan
+04-19 Pagefind never indexes them while the dormant flag is set.
 
 ---
 
@@ -407,6 +417,15 @@ The project is migrating from plain HTML + Python build scripts to a formal
 SSG. The design rules in §3–§11 are the **starting contract**; this section
 points at the migration source-of-truth so agents picking up work know where
 the latest decisions live.
+
+**Active milestone (2026-05-28 scope pivot):** v1 ships **4 ACTIVE
+archives** (wargov, aaro, nasa, nara — all US jurisdiction, all 17 U.S.C.
+§ 105) wired into Nav + Footer + Pagefind. The 11 dormant archives stay
+in the repo (full code, data, content collections, tone-colour entries,
+NZ + Uruguay Astro page templates) as a **future-milestone re-add pool**.
+See `.planning/phases/04-full-migration-search-offline-performance/
+04-SCOPE-PIVOT-SUMMARY.md` for rationale + mechanics. Plans 04-15..04-17
+(AARO/NASA/NARA ports) are the in-flight build path for the 4-active set.
 
 | Artifact | Path | Purpose |
 | --- | --- | --- |
