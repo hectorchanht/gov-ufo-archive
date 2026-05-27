@@ -93,13 +93,22 @@ export const INVARIANTS_JS: string = String.raw`
     if (lbCounter) lbCounter.textContent = (lbIdx + 1) + ' / ' + lbList.length;
   }
 
-  function openAt(idx) {
+  function openAt(rowIdOrIdx) {
     if (!lb) return;
     /* Refresh lbList in case the page mutated it after first paint
        (e.g. filter/sort recomputes lazy-loaded shards). */
     lbList = (window.__lbList && window.__lbList.length) ? window.__lbList : lbList;
     if (!lbList.length) return;
-    lbIdx = ((idx % lbList.length) + lbList.length) % lbList.length;
+    /* Plan 04-01 Patch C — prefer stable row-id lookup; fall back to numeric
+       idx for backwards compat (any caller still passing 0..N via the legacy
+       data-idx attribute). */
+    var foundIdx = lbList.findIndex(function (x) { return x.rowId === rowIdOrIdx; });
+    if (foundIdx < 0) {
+      var n = parseInt(rowIdOrIdx, 10);
+      if (!isNaN(n)) foundIdx = ((n % lbList.length) + lbList.length) % lbList.length;
+    }
+    if (foundIdx < 0) return;
+    lbIdx = foundIdx;
     renderLb();
     lb.classList.add('open');
     lb.setAttribute('aria-hidden', 'false');
@@ -155,22 +164,23 @@ export const INVARIANTS_JS: string = String.raw`
   }
 
   /* (6) CLAUDE.md §7 — data-action="open" delegated click handler.
-     Cards emit <a href="#" data-action="open" data-idx="N"> alongside their
-     download/source anchors; this listener intercepts ONLY data-action="open"
-     and routes to openAt() — every other anchor keeps native behaviour
-     (Download, Source ↗, DVIDS ↗). Reads data-idx from the action OR from
-     its closest .card ancestor (legacy index.html supports both). */
+     Cards emit <a href="#" data-action="open" data-row-id="rNNN"> alongside
+     their download/source anchors; this listener intercepts ONLY
+     data-action="open" and routes to openAt() — every other anchor keeps
+     native behaviour (Download, Source ↗, DVIDS ↗).
+     Plan 04-01 Patch D — prefer data-row-id (stable per-row identifier);
+     fall back to data-idx (legacy numeric global index) and to the closest
+     .card / .arch-card ancestor for either attribute. */
   document.addEventListener('click', function (e) {
     var action = e.target.closest && e.target.closest('a[data-action="open"]');
     if (!action) return;
     e.preventDefault();
-    var raw = action.dataset.idx;
-    if (raw === undefined) {
-      var card = action.closest('.card');
-      raw = card && card.dataset.idx;
+    var rowId = action.dataset.rowId || action.dataset.idx;
+    if (rowId === undefined || rowId === null || rowId === '') {
+      var card = action.closest('.card, .arch-card');
+      rowId = card && (card.dataset.rowId || card.dataset.idx);
     }
-    var idx = parseInt(raw, 10);
-    if (!isNaN(idx)) openAt(idx);
+    if (rowId) openAt(rowId);
   });
 
   /* (3) Image fallback — delegated. Any <img data-fallback="..."> swaps src on

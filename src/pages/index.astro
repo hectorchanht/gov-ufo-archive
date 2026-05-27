@@ -450,18 +450,24 @@ const jsonLd = {
       applyFilters();
 
       // Populate lightbox list — invariants.ts reads window.__lbList.
-      // We expose a minimal asset list for now (title + url + local).
-      // Each entry mirrors what Plan 03-04's renderLb() reads.
+      // Each entry mirrors what Plan 03-04's renderLb() reads, plus the new
+      // Plan 04-01 `rowId` key used by openAt() for stable per-row lookup.
+      //
+      // Pitfall #6 — walk ALL .arch-card (including display:none from filter
+      // tabs); the lightbox prev/next must traverse the full set so users can
+      // arrow across hidden cards. data-idx-only lookup would silently break
+      // on filter/sort/lazy-load.
       function refreshLbList() {
         const list = [];
-        for (const c of getCards()) {
+        for (const c of grid.querySelectorAll('.arch-card')) {
+          const rowId = c.dataset.rowId;
           const titleEl = c.querySelector('.card-title');
           const openA = c.querySelector('a.btn-open');
-          const dlA = c.querySelector('a.btn-download');
           list.push({
+            rowId,
             title: titleEl ? titleEl.textContent : '',
-            url: openA ? openA.getAttribute('href') : '',
-            local: dlA ? dlA.getAttribute('href') : '',
+            url: openA ? (openA.dataset.url || '') : '',
+            local: openA ? (openA.dataset.local || '') : '',
           });
         }
         window.__lbList = list;
