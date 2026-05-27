@@ -118,7 +118,9 @@ for path, m in STORY_META.items():
 # Pages to leave alone (rich, hand-tuned footers)
 SKIP_PATHS = {
     'index.html',                # War.gov landing — keeps its multi-section branded footer
-    'aaro/index.html',           # mirror index pages have their own structured footer via build script
+    # aaro/index.html removed (Plan 04-17): Astro owns the route now; the
+    # legacy aaro/index.html is deleted in this plan. sync-footer.py
+    # never sees the file.
     # nasa/index.html removed (Plan 04-16): Astro owns the route now; the
     # legacy nasa/index.html is deleted in this plan. sync-footer.py
     # never sees the file.

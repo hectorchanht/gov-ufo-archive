@@ -16,70 +16,6 @@
     "source_file": "index.html"
   },
   {
-    "archive": "aaro",
-    "kind": "hero-lede",
-    "selector": "h1.hero-title",
-    "source_path": "/aaro/",
-    "expected_text": "All-domain Anomaly Resolution Office",
-    "source_file": "aaro/index.html"
-  },
-  {
-    "archive": "aaro",
-    "kind": "hero-sub",
-    "selector": "p.hero-sub",
-    "source_path": "/aaro/",
-    "expected_text": "AARO leads the U.S. government's effort to detect, identify, attribute, and mitigate Unidentified Anomalous Phenomena using a rigorous scientific framework and a data-driven approach. This is an offline archival mirror of aaro.mil — every video, image, and report you see below is served from this local archive.",
-    "source_file": "aaro/index.html"
-  },
-  {
-    "archive": "aaro",
-    "kind": "license-footer",
-    "selector": "footer p",
-    "source_path": "/aaro/",
-    "expected_text": "Offline archival replica of aaro.mil. Federal U.S. government works are public domain (17 U.S.C. § 105).",
-    "source_file": "aaro/index.html"
-  },
-  {
-    "archive": "aaro",
-    "kind": "card-title",
-    "selector": "script#arch-data[0].ti",
-    "source_path": "/aaro/",
-    "expected_text": "NAVAIR - FOIA: Unresolved Case: GIMBAL Video",
-    "source_file": "aaro/index.html"
-  },
-  {
-    "archive": "aaro",
-    "kind": "card-title",
-    "selector": "script#arch-data[1].ti",
-    "source_path": "/aaro/",
-    "expected_text": "NAVAIR - FOIA: Unresolved Case: GIMBAL Video",
-    "source_file": "aaro/index.html"
-  },
-  {
-    "archive": "aaro",
-    "kind": "card-title",
-    "selector": "script#arch-data[2].ti",
-    "source_path": "/aaro/",
-    "expected_text": "NAVAIR - FOIA: Unresolved Case: GIMBAL Video",
-    "source_file": "aaro/index.html"
-  },
-  {
-    "archive": "aaro",
-    "kind": "card-title",
-    "selector": "script#arch-data[3].ti",
-    "source_path": "/aaro/",
-    "expected_text": "NAVAIR - FOIA: Unresolved Case: GIMBAL Video",
-    "source_file": "aaro/index.html"
-  },
-  {
-    "archive": "aaro",
-    "kind": "card-title",
-    "selector": "script#arch-data[4].ti",
-    "source_path": "/aaro/",
-    "expected_text": "NAVAIR - FOIA: Unresolved Case: GIMBAL Video",
-    "source_file": "aaro/index.html"
-  },
-  {
     "archive": "nara",
     "kind": "hero-lede",
     "selector": "h1.hero-title",
@@ -798,5 +734,45 @@
     "source_path": "/nasa/",
     "expected_text": "UAP Independent Study Team — Terms of Reference",
     "source_file": "data/nasa.json"
+  },
+  {
+    "archive": "aaro",
+    "kind": "hero-lede",
+    "selector": "h1.hero-title",
+    "source_path": "/aaro/",
+    "expected_text": "All-domain Anomaly Resolution Office",
+    "source_file": "src/pages/aaro/index.astro"
+  },
+  {
+    "archive": "aaro",
+    "kind": "hero-sub",
+    "selector": "p.hero-sub",
+    "source_path": "/aaro/",
+    "expected_text": "AARO leads the U.S. government's effort to detect, identify, attribute, and mitigate Unidentified Anomalous Phenomena using a rigorous scientific framework and a data-driven approach. This is an offline archival mirror of aaro.mil — every video, image, and report you see below is served from this local archive.",
+    "source_file": "src/pages/aaro/index.astro"
+  },
+  {
+    "archive": "aaro",
+    "kind": "license-footer",
+    "selector": "footer p",
+    "source_path": "/aaro/",
+    "expected_text": "Public domain — 17 U.S.C. § 105",
+    "source_file": "src/components/Footer.astro"
+  },
+  {
+    "archive": "aaro",
+    "kind": "card-title",
+    "selector": "script#arch-data[0].ti",
+    "source_path": "/aaro/",
+    "expected_text": "NAVAIR - FOIA: Unresolved Case: GIMBAL Video",
+    "source_file": "data/aaro.json"
+  },
+  {
+    "archive": "aaro",
+    "kind": "card-title",
+    "selector": "script#arch-data[32].ti",
+    "source_path": "/aaro/",
+    "expected_text": "Al Taqaddum Case Resolution",
+    "source_file": "data/aaro.json"
   }
 ]

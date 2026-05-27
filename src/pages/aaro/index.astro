@@ -1,0 +1,483 @@
+---
+// src/pages/aaro/index.astro — AARO (All-domain Anomaly Resolution
+// Office) archive page at /aaro/.
+//
+// Fifth per-archive port (Plan 04-17) — closes the 4-active set
+// (wargov + aaro + nasa + nara). Wave 5 large-catalog tier (D-08) —
+// 112 assets at capture (32 VID + 59 PDF + 21 IMG). Reuses
+// CatalogCard.astro template established by Plan 04-05 + pagination
+// pattern established by Plan 04-04, both verbatim.
+//
+// Composes:
+//   - RootLayout (Plan 03-04) — archiveSlug="aaro" → tone-colour
+//     `--caution: #4a9eff` per CLAUDE.md §3.1 (AARO blue).
+//   - CatalogCard (Plan 04-05 Task 1) — generic over catalogAssetSchema.
+//   - Lightbox (Plan 03-05 + scope-pivot extension) — static shell +
+//     invariants.ts handlers; meta panel reads data-* from cards.
+//
+// Hero copy (h1 + lede + footer license) is verbatim from the legacy
+// aaro/index.html (CLAUDE.md §9 fidelity rule) so tests/fidelity-
+// samples.json's 5 AARO entries continue to byte-match against the
+// rendered DOM. The legacy aaro/index.html is deleted in this same
+// plan (D-09 — per-archive Python retirement), so /aaro/ now serves
+// Astro-rendered HTML instead of the postbuild-copied legacy file.
+//
+// AARO sub-pages (aaro/<case>.html × 14 + aaro/pages/* × 12 +
+// aaro/assets/*) are PRESERVED via a partial-port block in
+// scripts/copy-legacy-archives.sh — same pattern as NZ + Uruguay +
+// NARA + NASA (Plans 04-05 / 04-06 / 04-15 / 04-16) but with the
+// largest set of sub-pages of any partial-port archive to date.
+//
+// DVIDS deep-link contract (CLAUDE.md §4.3):
+//   VID cards carry `asset.s` = full dvidshub.net page URL (e.g.
+//   https://www.dvidshub.net/video/956955). CatalogCard.astro renders
+//   the Source ↗ button targeting this URL, effectively delivering the
+//   DVIDS ↗ button behaviour without needing a dedicated `dvidsId`
+//   schema field.
+//
+// Key invariants:
+//   - D-21..D-23: every <script> here is <script is:inline>. NO client:*.
+//   - D-26..D-28: no transforms on text. Astro auto-escapes `{expr}` but
+//     does NOT rewrite typography. Hero copy + card titles round-trip
+//     byte-exact.
+//   - Plan 04-04 (D-27..D-28) pagination contract inherited: PAGE_SIZE=20,
+//     ?page=N URL param. AARO has 112 assets so the handler emits 6
+//     pages (Math.ceil(112/20)=6). lbList walks ALL .arch-card
+//     (including display:none) so lightbox prev/next traverses the full
+//     set across page boundaries.
+//   - Pitfall #6: refreshLbList walks ALL .arch-card (including
+//     display:none) so lightbox prev/next crosses page boundaries.
+//
+// CLAUDE.md §2 AARO tone:
+//   - Path: /aaro/ (this file → dist/aaro/index.html)
+//   - Tone: #4a9eff (AARO blue)
+//   - Source URL: https://www.aaro.mil/
+//   - License: 17 U.S.C. § 105 (USA federal works — public domain)
+
+import RootLayout from '../../layouts/RootLayout.astro';
+import CatalogCard from '../../components/CatalogCard.astro';
+import Lightbox from '../../components/Lightbox.astro';
+import { getEntry } from 'astro:content';
+import '../../styles/aaro.css';
+
+const aaro = await getEntry('aaro', 'v1');
+if (!aaro) {
+  throw new Error(
+    'aaro collection entry "v1" missing — run `python3 scripts/normalize-aaro.py` to regenerate data/aaro.json',
+  );
+}
+
+const { assets, stats } = aaro.data;
+
+// Slugify — byte-for-byte port of scripts/_archive_common.slugify (and
+// the same rule used by scripts/snapshot-urls.py + normalize-csv.py).
+// Algorithm: lowercase → collapse runs of non-[a-z0-9] to single hyphen →
+// strip leading/trailing hyphens → truncate to 80 chars → strip again.
+function slugify(text: string): string {
+  if (!text) return '';
+  const s = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  return s.slice(0, 80).replace(/^-+|-+$/g, '');
+}
+
+// Page meta — title CLEAN per scope-pivot precedent (DROPS legacy
+// "(Offline Mirror)" suffix per CLAUDE.md §11 "no mirror in user-facing
+// copy" + NARA 04-15 + NASA 04-16 precedent).
+const title = 'AARO — All-domain Anomaly Resolution Office | realufo.org';
+const description = 'Offline archival mirror of aaro.mil — official UAP imagery, case resolution reports, and historical records.';
+---
+<RootLayout
+  archiveSlug="aaro"
+  title={title}
+  description={description}
+  totalRecords={stats.total}
+  lastUpdated="2026-05-27"
+>
+  <section class="hero" id="intro">
+    <div class="container">
+      <div class="coords">38°52′15″N, 77°03′18″W · OFFICE OF THE UNDER SECRETARY OF DEFENSE FOR INTELLIGENCE &amp; SECURITY</div>
+      <h1 class="hero-title">All-domain Anomaly <em>Resolution</em> Office</h1>
+      <p class="hero-sub">AARO leads the U.S. government's effort to detect, identify, attribute, and mitigate
+        Unidentified Anomalous Phenomena using a rigorous scientific framework and a data-driven
+        approach. This is an offline archival mirror of <a href="https://www.aaro.mil/" target="_blank" rel="noopener">aaro.mil</a> — every video, image, and report you see below
+        is served from this local archive.</p>
+    </div>
+  </section>
+
+  <section class="headlines" id="headlines">
+    <div class="container">
+      <div class="section-label">§ Headlines · The mission, distilled</div>
+      <div class="head-card-grid">
+        <article class="head-card">
+          <div class="hc-tag">Mandate</div>
+          <h3>Resolve UAP</h3>
+          <p>Detect, track, attribute, and resolve UAP near national-security areas.</p>
+        </article>
+        <article class="head-card">
+          <div class="hc-tag">Established</div>
+          <h3>2022</h3>
+          <p>Stood up under the Office of the Under Secretary of Defense for Intelligence &amp; Security.</p>
+        </article>
+        <article class="head-card">
+          <div class="hc-tag">Director</div>
+          <h3>Dr. Jon T. Kosloski</h3>
+          <p>Formerly NSA Research Directorate; Ph.D., Electrical Engineering (Johns Hopkins).</p>
+        </article>
+        <article class="head-card">
+          <div class="hc-tag">Methodology</div>
+          <h3>Scientific framework</h3>
+          <p>Reports treated like intelligence: collected, analyzed, attributed.</p>
+        </article>
+        <article class="head-card">
+          <div class="hc-tag">Outputs</div>
+          <h3>Case &amp; trend reports</h3>
+          <p>Case Resolution Reports · Historical Record Reports · Periodic Trend Reports · Public imagery.</p>
+        </article>
+        <article class="head-card">
+          <div class="hc-tag">Transparency</div>
+          <h3>Files are local</h3>
+          <p>Every release archived here. No live aaro.mil calls required.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="archive" id="archive">
+    <div class="container">
+      <div class="section-label">§ Evidence · Official AARO Releases</div>
+      <h2>Videos, case-resolution reports, congressional briefs, and FOIA releases.</h2>
+
+      <div class="stats-grid" id="arch-stats">
+        <div class="stat">
+          <div class="stat-num">{stats.total}</div>
+          <div class="stat-label">Total records</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">{stats.local_total}</div>
+          <div class="stat-label">Locally archived</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">{stats.pdf_total}</div>
+          <div class="stat-label">PDF documents</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">{stats.catalog_total}</div>
+          <div class="stat-label">Catalog gateways</div>
+        </div>
+      </div>
+
+      <div class="arch-controls-bar" id="arch-controls-bar">
+        <div class="tabs" id="arch-tabs">
+          <button type="button" class="tab active" data-tab="all">All</button>
+          <button type="button" class="tab" data-tab="VID">Video</button>
+          <button type="button" class="tab" data-tab="PDF">PDF</button>
+          <button type="button" class="tab" data-tab="IMG">Imagery</button>
+        </div>
+        <div class="sort-wrap">
+          <label for="arch-sort">Sort:</label>
+          <select id="arch-sort">
+            <option value="type">Type</option>
+            <option value="title">Title (A→Z)</option>
+            <option value="title-desc">Title (Z→A)</option>
+            <option value="date-new">Date (newest)</option>
+            <option value="date-old">Date (oldest)</option>
+            <option value="agency">Agency</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="filter-bar">
+        <label>Agency:
+          <select id="filter-agency">
+            <option value="">All</option>
+          </select>
+        </label>
+        <label>Per page:
+          <select id="filter-perpage">
+            <option value="12">12</option>
+            <option value="24" selected>24</option>
+            <option value="48">48</option>
+            <option value="96">96</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="result-count" id="arch-count" aria-live="polite"></div>
+
+      <div class="arch-grid" id="aaro-grid">
+        {assets.map((asset, idx) => (
+          <CatalogCard
+            asset={asset}
+            idx={idx}
+            slug={slugify(asset.ti)}
+            archiveSlug="aaro"
+          />
+        ))}
+      </div>
+
+      {/* Pagination nav — populated by the ?page=N handler below (Plan 04-04
+          contract inherited). data-pagefind-ignore keeps the nav links out of
+          the search index (SRC-04). For AARO (112 assets, PAGE_SIZE=20),
+          the handler emits 6 pages on first load. */}
+      <nav class="pagination" id="aaro-pagination" data-pagefind-ignore aria-label="Pagination"></nav>
+    </div>
+  </section>
+
+  <Lightbox />
+
+  {/* Inline arch-data JSON manifest — mirrors the legacy
+      aaro/index.html `<script id="arch-data">` block so external
+      tooling continues to work without per-archive special-cases:
+        - scripts/verify-fidelity.py (card-title extractor reads this
+          via MANIFEST_RE — see scripts/verify-fidelity.py)
+        - tests/fidelity-samples.json (AARO card-title samples
+          reference `script#arch-data[N].ti` selectors)
+        - any future cross-archive aggregator looking for inline data
+      Shape matches the legacy emit: `{ assets: [...], stats: {...} }`
+      with abbreviated catalog keys (same as data/aaro.json's
+      v1.assets, v1.stats — but without the schemaVersion / slug
+      wrapper, since the legacy build-<slug>.py scripts emitted the
+      bare shape). Plan 04-19 Pagefind reads data-pagefind-* attributes
+      from cards (CatalogCard.astro), NOT this manifest — no
+      double-indexing. */}
+  <script
+    is:inline
+    type="application/json"
+    id="arch-data"
+    set:html={JSON.stringify({ assets: assets, stats: stats })}
+  ></script>
+
+  {/* Pagination + filter/sort runtime — Plan 04-04 PAGE_SIZE=20 contract,
+      adapted for AARO. AARO has 112 assets → 6 pages on first load.
+      Pitfall #6: lbList walks ALL .arch-card (including display:none)
+      so lightbox prev/next crosses page boundaries. D-21..D-23:
+      <script is:inline> — no Vite bundling, no hydration. */}
+  <script is:inline>
+    (() => {
+      const PAGE_SIZE = 20; // D-27
+      const grid = document.getElementById('aaro-grid');
+      const paginationNav = document.getElementById('aaro-pagination');
+      if (!grid || !paginationNav) return;
+
+      function readPage() {
+        const raw = new URLSearchParams(location.search).get('page') || '1';
+        const p = parseInt(raw, 10);
+        return Math.max(1, isNaN(p) ? 1 : p);
+      }
+
+      function renderPaginationNav(current, total) {
+        if (!paginationNav) return;
+        if (total <= 1) {
+          paginationNav.innerHTML = '';
+          return;
+        }
+        const parts = [];
+        if (current > 1) {
+          parts.push(
+            '<a href="?page=' + (current - 1) + '" class="pg-prev" rel="prev">← Prev</a>',
+          );
+        }
+        for (let i = 1; i <= total; i++) {
+          if (i === current) {
+            parts.push('<span class="pg-current" aria-current="page">' + i + '</span>');
+          } else {
+            parts.push('<a href="?page=' + i + '">' + i + '</a>');
+          }
+        }
+        if (current < total) {
+          parts.push(
+            '<a href="?page=' + (current + 1) + '" class="pg-next" rel="next">Next →</a>',
+          );
+        }
+        paginationNav.innerHTML = parts.join('');
+      }
+
+      function renderPage(pageNum, opts) {
+        opts = opts || {};
+        const cards = Array.from(grid.querySelectorAll('.arch-card'));
+        if (!cards.length) return;
+        const totalPages = Math.max(1, Math.ceil(cards.length / PAGE_SIZE));
+        pageNum = Math.min(Math.max(1, pageNum), totalPages);
+
+        const start = (pageNum - 1) * PAGE_SIZE;
+        const end = start + PAGE_SIZE;
+        for (let i = 0; i < cards.length; i++) {
+          cards[i].style.display = i >= start && i < end ? '' : 'none';
+        }
+
+        renderPaginationNav(pageNum, totalPages);
+
+        if (location.hash && !opts.fromHash) {
+          let target = null;
+          try { target = document.querySelector(location.hash); } catch (_) { target = null; }
+          if (target && target.classList && target.classList.contains('arch-card')) {
+            const idx = cards.indexOf(target);
+            if (idx >= 0) {
+              const targetPage = Math.floor(idx / PAGE_SIZE) + 1;
+              if (targetPage !== pageNum) {
+                renderPage(targetPage, { fromHash: true });
+                target.scrollIntoView({ block: 'start' });
+                return;
+              }
+              target.scrollIntoView({ block: 'start' });
+            }
+          }
+        } else if (!opts.fromHash && !opts.skipScroll) {
+          try { window.scrollTo({ top: 0, behavior: 'instant' }); }
+          catch (_) { window.scrollTo(0, 0); }
+        }
+
+        try {
+          grid.dispatchEvent(new CustomEvent('aaro:page-rendered', {
+            bubbles: true,
+            detail: { page: pageNum, totalPages: totalPages, totalCards: cards.length },
+          }));
+        } catch (_) { /* CustomEvent unavailable in very old browsers — silent */ }
+      }
+
+      document.addEventListener('click', (e) => {
+        const a = e.target && e.target.closest && e.target.closest('#aaro-pagination a');
+        if (!a) return;
+        e.preventDefault();
+        const url = new URL(a.getAttribute('href'), location.origin + location.pathname);
+        try { history.pushState({}, '', url); }
+        catch (_) { location.search = url.search; return; }
+        const pageNum = parseInt(url.searchParams.get('page') || '1', 10);
+        renderPage(isNaN(pageNum) ? 1 : pageNum);
+      });
+      window.addEventListener('popstate', () => renderPage(readPage()));
+      renderPage(readPage());
+    })();
+  </script>
+
+  {/* Filter/sort progressive enhancement — operates on rendered DOM
+      data-* attributes per D-11. Identical to the wargov + nz + uruguay
+      + nara + nasa handler; kept inline so each per-archive page is
+      self-contained. */}
+  <script is:inline>
+    (() => {
+      const grid = document.getElementById('aaro-grid');
+      const tabs = document.querySelectorAll('.arch-controls-bar .tab');
+      const sort = document.getElementById('arch-sort');
+      const agencyFilter = document.getElementById('filter-agency');
+      const countEl = document.getElementById('arch-count');
+      if (!grid) return;
+
+      function getCards() {
+        return Array.from(grid.querySelectorAll('.arch-card'));
+      }
+
+      function applyFilters() {
+        const activeTab = document.querySelector('.arch-controls-bar .tab.active');
+        const typeFilter = activeTab ? activeTab.getAttribute('data-tab') : 'all';
+        const agencyVal = agencyFilter ? agencyFilter.value : '';
+        let visible = 0;
+        for (const c of getCards()) {
+          const type = c.getAttribute('data-type') || '';
+          const agency = c.getAttribute('data-agency') || '';
+          const typeOk = typeFilter === 'all' || type === typeFilter;
+          const agencyOk = !agencyVal || agency === agencyVal;
+          const show = typeOk && agencyOk;
+          c.style.display = show ? '' : 'none';
+          if (show) visible++;
+        }
+        if (countEl) {
+          countEl.textContent = visible + ' / ' + getCards().length + ' records';
+        }
+      }
+
+      function populateAgencies() {
+        if (!agencyFilter) return;
+        const agencies = new Set();
+        for (const c of getCards()) {
+          const a = c.getAttribute('data-agency');
+          if (a) agencies.add(a);
+        }
+        const current = agencyFilter.value;
+        agencyFilter.innerHTML = '<option value="">All</option>';
+        Array.from(agencies).sort().forEach((a) => {
+          const opt = document.createElement('option');
+          opt.value = a;
+          opt.textContent = a;
+          if (a === current) opt.selected = true;
+          agencyFilter.appendChild(opt);
+        });
+      }
+
+      function applySort() {
+        if (!sort) return;
+        const mode = sort.value;
+        const cards = getCards();
+        cards.sort((a, b) => {
+          if (mode === 'title') {
+            return (a.querySelector('.card-title')?.textContent || '').localeCompare(
+              b.querySelector('.card-title')?.textContent || ''
+            );
+          }
+          if (mode === 'title-desc') {
+            return (b.querySelector('.card-title')?.textContent || '').localeCompare(
+              a.querySelector('.card-title')?.textContent || ''
+            );
+          }
+          if (mode === 'agency') {
+            return (a.getAttribute('data-agency') || '').localeCompare(b.getAttribute('data-agency') || '');
+          }
+          return (a.getAttribute('data-type') || '').localeCompare(b.getAttribute('data-type') || '');
+        });
+        for (const c of cards) grid.appendChild(c);
+      }
+
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+          tabs.forEach((t) => t.classList.remove('active'));
+          tab.classList.add('active');
+          applyFilters();
+        });
+      });
+      if (sort) sort.addEventListener('change', () => { applySort(); applyFilters(); });
+      if (agencyFilter) agencyFilter.addEventListener('change', applyFilters);
+
+      const obs = new MutationObserver(() => {
+        populateAgencies();
+        applyFilters();
+      });
+      obs.observe(grid, { childList: true });
+
+      populateAgencies();
+      applyFilters();
+
+      // Populate lightbox list — invariants.ts reads window.__lbList.
+      // Pitfall #6: walk ALL .arch-card (including display:none) so
+      // lightbox prev/next traverses the full set across filter +
+      // pagination boundaries.
+      function refreshLbList() {
+        const list = [];
+        for (const c of grid.querySelectorAll('.arch-card')) {
+          const rowId = c.dataset.rowId;
+          const titleEl = c.querySelector('.card-title');
+          const openA = c.querySelector('a.btn-open');
+          list.push({
+            rowId,
+            title: titleEl ? titleEl.textContent : '',
+            url: openA ? (openA.dataset.url || '') : '',
+            local: openA ? (openA.dataset.local || '') : '',
+            // Scope pivot 2026-05-28 — enrich lbList for lightbox meta
+            // panel + dual action buttons. CatalogCard.astro emits these.
+            desc: c.dataset.desc || '',
+            agency: c.dataset.agency || '',
+            date: c.dataset.date || '',
+            region: c.dataset.region || '',
+            category: c.dataset.category || '',
+            type: c.dataset.type || '',
+            source: c.dataset.src || '',
+          });
+        }
+        window.__lbList = list;
+      }
+      refreshLbList();
+      const lbObs = new MutationObserver(refreshLbList);
+      lbObs.observe(grid, { childList: true });
+      // Plan 04-04 — refresh lbList on page change.
+      grid.addEventListener('aaro:page-rendered', refreshLbList);
+    })();
+  </script>
+</RootLayout>

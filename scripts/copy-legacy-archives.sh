@@ -54,7 +54,7 @@ copy_one() {
 # are now served by src/pages/[archive]/index.astro. As subsequent Wave 3+
 # ports complete (04-07..04-18), drop each slug from this list. When the
 # list is empty, this script can be deleted entirely.
-for slug in aaro geipan uk brazil chile argentina canada italy peru spain; do
+for slug in geipan uk brazil chile argentina canada italy peru spain; do
   if [ -d "$slug" ]; then
     while IFS= read -r f; do
       copy_one "$f"
@@ -118,6 +118,27 @@ if [ -d "nara" ]; then
       *) copy_one "$f" ;;
     esac
   done < <(git ls-files "nara/")
+fi
+if [ -d "aaro" ]; then
+  # Plan 04-17 partial-port: Astro owns /aaro/ (src/pages/aaro/index.astro)
+  # but AARO has the LARGEST legacy sub-page set of any partial-port
+  # archive — 14 case-specific narratives (belgian-wave, cash-landrum,
+  # coyne, gimbal, jal-1628, ohare-2006, phoenix-lights, stephenville,
+  # story, tehran, tic-tac, travis-walton + details.html master index)
+  # plus the aaro/pages/* directory (congressional-press-products,
+  # efoia-reading-room, faq, home, leaders, mission-vision,
+  # official-uap-imagery, resources, submit-a-report,
+  # uap-case-resolution-reports, uap-records, uap-reporting-trends)
+  # plus aaro/assets/* (favicon.svg, og.svg, images/*). All are policed
+  # by scripts/sync-footer.py STORY_META + URL-CONTRACT.txt; missing
+  # them would 404 cross-archive nav links. Copy everything EXCEPT
+  # aaro/index.html (which Astro owns).
+  while IFS= read -r f; do
+    case "$f" in
+      aaro/index.html) continue ;;  # Astro now owns /aaro/ — never copy
+      *) copy_one "$f" ;;
+    esac
+  done < <(git ls-files "aaro/")
 fi
 
 # --- top-level static pages (NOT root index.html — Astro owns wargov at /) ---
