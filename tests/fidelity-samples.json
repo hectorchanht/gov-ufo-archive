@@ -797,7 +797,7 @@
     "selector": "h1.hero-title",
     "source_path": "/uruguay/",
     "expected_text": "Uruguay's CRIDOVNI \u2014 oldest continuously-running UFO office.",
-    "source_file": "uruguay/index.html"
+    "source_file": "src/pages/uruguay/index.astro"
   },
   {
     "archive": "uruguay",
@@ -805,15 +805,15 @@
     "selector": "p.hero-sub",
     "source_path": "/uruguay/",
     "expected_text": "CRIDOVNI (Comisi\u00f3n Receptora e Investigadora de Denuncias de OVNI) was established in 1979 inside Uruguay's Air Force \u2014 the world's oldest continuously-operating state UAP programme. Receives reports from pilots and the public, investigates with a scientific framework, and maintains a classified case archive of nearly five decades of Uruguayan sightings. Source: fau.mil.uy.",
-    "source_file": "uruguay/index.html"
+    "source_file": "src/pages/uruguay/index.astro"
   },
   {
     "archive": "uruguay",
     "kind": "license-footer",
     "selector": "footer p",
     "source_path": "/uruguay/",
-    "expected_text": "Offline gateway to CRIDOVNI. Reusable under Ley n\u00ba 18.381 (acceso a la informaci\u00f3n p\u00fablica).",
-    "source_file": "uruguay/index.html"
+    "expected_text": "Public domain \u2014 Ley n\u00ba 18.381",
+    "source_file": "src/pages/uruguay/index.astro"
   },
   {
     "archive": "uruguay",
@@ -821,7 +821,7 @@
     "selector": "script#arch-data[0].ti",
     "source_path": "/uruguay/",
     "expected_text": "Fuerza A\u00e9rea Uruguaya \u2014 homepage",
-    "source_file": "uruguay/index.html"
+    "source_file": "src/pages/uruguay/index.astro"
   },
   {
     "archive": "uruguay",
@@ -829,7 +829,7 @@
     "selector": "script#arch-data[1].ti",
     "source_path": "/uruguay/",
     "expected_text": "Ministerio de Defensa Nacional \u2014 Uruguay",
-    "source_file": "uruguay/index.html"
+    "source_file": "src/pages/uruguay/index.astro"
   },
   {
     "archive": "uruguay",
@@ -837,6 +837,6 @@
     "selector": "script#arch-data[2].ti",
     "source_path": "/uruguay/",
     "expected_text": "Archivo General de la Naci\u00f3n \u2014 Uruguay",
-    "source_file": "uruguay/index.html"
+    "source_file": "src/pages/uruguay/index.astro"
   }
 ]

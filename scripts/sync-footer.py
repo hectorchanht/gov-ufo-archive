@@ -126,7 +126,7 @@ SKIP_PATHS = {
     'brazil/index.html',
     'chile/index.html',
     'canada/index.html', 'argentina/index.html',
-    'uruguay/index.html', 'peru/index.html', 'spain/index.html', 'italy/index.html',
+    'peru/index.html', 'spain/index.html', 'italy/index.html',
     'aaro/details.html',         # rebuilt by build-details.py
 }
 
