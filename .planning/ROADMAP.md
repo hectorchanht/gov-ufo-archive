@@ -13,7 +13,7 @@ This roadmap derives 6 phases from the v1 REQUIREMENTS.md categories (PMS / INF 
 
 - [ ] **Phase 1: Pre-Migration Safety** — Snapshot the current contract and remove production tripwires before SSG code lands
 - [ ] **Phase 2: Infrastructure & CI Scaffolding** — Stand up Cloudflare Pages, Workers paid, and verification gates against current `main` baselines
-- [ ] **Phase 3: SSG Foundation** — Bring up Astro 5.x alongside the existing build, port the smallest archive end-to-end as a proof
+- [x] **Phase 3: SSG Foundation** — Bring up Astro 5.x alongside the existing build, port the smallest archive end-to-end as a proof (completed 2026-05-27)
 - [ ] **Phase 4: Full Migration, Search, Offline, Performance** — Port the remaining 14 archives, wire Pagefind + injectManifest SW + per-page weight budget
 - [ ] **Phase 5: Scrape Automation** — Move source ingestion to Cloudflare Workers cron with hybrid Akamai fallback and idempotent GH Releases upload
 - [ ] **Phase 6: Hosting & Cutover** — Stabilise preview deploy, swap DNS off GitHub Pages, monitor 7-day window, archive the legacy workflow
@@ -113,21 +113,21 @@ Plans:
 Plans:
 **Wave 1**
 
-- [ ] 03-01-PLAN.md — SSG-01: Astro 5.18.x scaffold + @astrojs/cloudflare adapter + tsconfig + ADR
-- [ ] 03-02-PLAN.md — SSG-02 (schema side): src/content.config.ts Zod schema for all 15 archives + 14 skeleton data/<slug>.json files
+- [x] 03-01-PLAN.md — SSG-01: Astro 5.18.x scaffold + @astrojs/cloudflare adapter + tsconfig + ADR
+- [x] 03-02-PLAN.md — SSG-02 (schema side): src/content.config.ts Zod schema for all 15 archives + 14 skeleton data/<slug>.json files
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 03-03-PLAN.md — SSG-02 (data side, wargov): scripts/normalize-csv.py + data/wargov.json + shards + pnpm prebuild wiring
-- [ ] 03-04-PLAN.md — SSG-03 + SSG-04 (JS invariants): RootLayout + BaseHead + Nav + Footer + global.css + invariants.ts (CLAUDE.md §7)
+- [x] 03-03-PLAN.md — SSG-02 (data side, wargov): scripts/normalize-csv.py + data/wargov.json + shards + pnpm prebuild wiring
+- [x] 03-04-PLAN.md — SSG-03 + SSG-04 (JS invariants): RootLayout + BaseHead + Nav + Footer + global.css + invariants.ts (CLAUDE.md §7)
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
-- [ ] 03-05-PLAN.md — SSG-04 + SSG-05 (output): src/pages/index.astro wargov port + Card.astro + Lightbox.astro + HeroCarousel.astro + wargov.css
+- [x] 03-05-PLAN.md — SSG-04 + SSG-05 (output): src/pages/index.astro wargov port + Card.astro + Lightbox.astro + HeroCarousel.astro + wargov.css
 
 **Wave 4** *(blocked on Wave 3 completion — operator checkpoint)*
 
-- [ ] 03-06-PLAN.md — SSG-05 acceptance: wargov port passes all 7 quality-gates.yml jobs on CF Pages preview URL
+- [x] 03-06-PLAN.md — SSG-05 acceptance: wargov port passes all 7 quality-gates.yml jobs on CF Pages preview URL
 
 ### Phase 4: Full Migration, Search, Offline, Performance
 
@@ -145,7 +145,29 @@ Plans:
   4. The service worker registers structurally from `BaseHead.astro` (impossible to forget on a page), precaches every HTML page + every card thumbnail, applies tiered cache strategies (network-first nav, SWR JSON, cache-first images/fonts, no-cache for PDFs/videos), and ships a versioned `realufo-v<sha>` cache name that cleans up old caches on activate.
   5. All legacy Python build scripts (`build-*.py`, `sync-nav.py`, `sync-footer.py`, `parse-aaro.py`, `extract-evidence.py`, `spider.py`) are deleted from `main` — replaced entirely by Astro components and Content Collections; their CI drift gates are removed.
 
-**Plans**: TBD
+**Plans**: 20 plans
+
+- [ ] 04-01-PLAN.md — SSG-09: lightbox-fix (root-cause + invariants.ts + Card.astro patches)
+- [ ] 04-02-PLAN.md — SSG-06: R2 bucket setup + assets.realufo.org custom domain + r2-sync.yml + scripts/_archive_common.py
+- [ ] 04-03-PLAN.md — SW-01..07 + SRC-05: @vite-pwa/astro injectManifest SW + self-hosted @fontsource + _headers verification
+- [ ] 04-04-PLAN.md — SSG-09: wargov re-paging (50/page → 20/page client-side ?page=N + pagination handler)
+- [ ] 04-05-PLAN.md — SSG-06,08-12: NZ port + ESTABLISHES src/components/CatalogCard.astro template
+- [ ] 04-06-PLAN.md — SSG-06,08-12: Uruguay port (small static, minimal-delta template)
+- [ ] 04-07-PLAN.md — SSG-06,08-12: Peru port (small static)
+- [ ] 04-08-PLAN.md — SSG-06,08-12: Spain port (small static)
+- [ ] 04-09-PLAN.md — SSG-06,08-12: Argentina port (small static)
+- [ ] 04-10-PLAN.md — SSG-06,08-12: Italy port (small static)
+- [ ] 04-11-PLAN.md — SSG-06,08-12: Brazil port (medium catalog + D-10 tone-colour fix #009c3b)
+- [ ] 04-12-PLAN.md — SSG-06,08-12: Chile port (medium catalog + D-10 tone-colour fix #d52b1e)
+- [ ] 04-13-PLAN.md — SSG-06,08-12: Canada port (medium catalog)
+- [ ] 04-14-PLAN.md — SSG-06,08-12: UK port (medium catalog + D-10 tone-colour fix #012169)
+- [ ] 04-15-PLAN.md — SSG-06,08-12: NARA port (medium catalog + Catalog ↗ button support)
+- [ ] 04-16-PLAN.md — SSG-06,08-12: NASA port (medium catalog)
+- [ ] 04-17-PLAN.md — SSG-06,08-12: AARO port (large catalog + retires parse-aaro.py + extract-evidence.py)
+- [ ] 04-18-PLAN.md — SSG-06,08-12 + PERF-01..04: GEIPAN port (3.3 MB → ≤500 KB + ~60 shards + D-10 tone-colour fix #0055a4 + frozen Lighthouse baseline)
+- [ ] 04-19-PLAN.md — SRC-01..04 + SSG-11,12: Pagefind cross-archive index + src/pages/search.astro + delete api/all.json (4.6 MB) + search.html
+- [ ] 04-20-PLAN.md — PERF-04 + SSG-10: Phase 4 close (Lighthouse HARD-flip + retire copy-legacy-archives.sh + sync-nav/footer.py + CI drift gates + verify-python-retired.sh)
+
 
 ### Phase 5: Scrape Automation
 
@@ -191,7 +213,7 @@ Plans:
 |-------|----------------|--------|-----------|
 | 1. Pre-Migration Safety | 0/5 | Not started | - |
 | 2. Infrastructure & CI Scaffolding | 0/8 | Not started | - |
-| 3. SSG Foundation | 0/6 | Not started | - |
+| 3. SSG Foundation | 6/6 | Complete   | 2026-05-27 |
 | 4. Full Migration, Search, Offline, Performance | 0/0 | Not started | - |
 | 5. Scrape Automation | 0/0 | Not started | - |
 | 6. Hosting & Cutover | 0/0 | Not started | - |
