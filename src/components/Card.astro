@@ -80,6 +80,7 @@ const SOURCE_URL = 'https://www.war.gov/UFO/';
   class="arch-card"
   id={`card-${slug}`}
   data-id={rowId}
+  data-row-id={rowId}
   data-idx={idx}
   data-action="open"
   data-type={rtype}
@@ -104,10 +105,23 @@ const SOURCE_URL = 'https://www.war.gov/UFO/';
   </dl>
   <div class="card-actions">
     {url && (
-      <a href={url} class="btn-open" data-action="open" data-idx={idx}>Open</a>
+      <a
+        href="#"
+        class="btn-open"
+        data-action="open"
+        data-row-id={rowId}
+        data-url={url}
+        data-local={row.local || ''}
+      >Open</a>
     )}
     {url && (
-      <a href={url} class="btn-download" download>Download</a>
+      <a
+        href={row.local || url}
+        class="btn-download"
+        data-url={url}
+        data-local={row.local || ''}
+        download
+      >Download</a>
     )}
     <a href={SOURCE_URL} class="btn-source" target="_blank" rel="noopener">Source ↗</a>
     {dvids && (

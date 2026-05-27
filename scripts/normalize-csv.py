@@ -215,6 +215,7 @@ def render_card_html(row: dict[str, str], idx: int) -> str:
       <article class="arch-card"
                id="card-<slug>"
                data-id="r<NNN>"          # 1-based, 3-digit padded
+               data-row-id="r<NNN>"      # NEW (Plan 04-01) — stable lightbox key
                data-idx="<idx>"          # 0-based global row index
                data-action="open"
                data-type="<row.Type>"
@@ -225,8 +226,9 @@ def render_card_html(row: dict[str, str], idx: int) -> str:
         <p class="card-desc">...</p>     (if Description Blurb non-empty)
         <dl class="card-meta">...</dl>
         <div class="card-actions">
-          <a class="btn-open" data-action="open">Open</a>
-          <a class="btn-download" download>Download</a>
+          <a class="btn-open" data-action="open"
+             data-row-id="r<NNN>" data-url="<url>" data-local="<local>">Open</a>
+          <a class="btn-download" data-url="<url>" data-local="<local>" download>Download</a>
           <a class="btn-source" target="_blank" rel="noopener">Source ↗</a>
           <a class="btn-dvids" target="_blank" rel="noopener">DVIDS ↗</a>
         </div>
@@ -264,9 +266,11 @@ def render_card_html(row: dict[str, str], idx: int) -> str:
     dvids = row.get('DVIDS Video ID', '') or ''
 
     parts: list[str] = []
+    local = row.get('local', '') or ''
     parts.append(
         f'<article class="arch-card" id="card-{_e(slug)}" '
-        f'data-id="{_e(row_id)}" data-idx="{idx}" data-action="open" '
+        f'data-id="{_e(row_id)}" data-row-id="{_e(row_id)}" '
+        f'data-idx="{idx}" data-action="open" '
         f'data-type="{_e(rtype)}" data-agency="{_e(agency)}" '
         f'data-date="{_e(date)}">'
     )
@@ -287,11 +291,14 @@ def render_card_html(row: dict[str, str], idx: int) -> str:
     parts.append('<div class="card-actions">')
     if url:
         parts.append(
-            f'<a href="{_e(url)}" class="btn-open" '
-            f'data-action="open" data-idx="{idx}">Open</a>'
+            f'<a href="#" class="btn-open" data-action="open" '
+            f'data-row-id="{_e(row_id)}" data-url="{_e(url)}" '
+            f'data-local="{_e(local)}">Open</a>'
         )
         parts.append(
-            f'<a href="{_e(url)}" class="btn-download" download>Download</a>'
+            f'<a href="{_e(local or url)}" class="btn-download" '
+            f'data-url="{_e(url)}" data-local="{_e(local)}" '
+            f'download>Download</a>'
         )
     parts.append(
         f'<a href="{SOURCE_URL}" class="btn-source" '
