@@ -1,0 +1,122 @@
+---
+// Card.astro — single archive card per CSV row (wargov shape).
+//
+// THIS IS THE MARKUP CONTRACT that scripts/normalize-csv.py:render_card_html()
+// (Plan 03-03) mirrors. Class names, attribute names, attribute presence, and
+// attribute ORDER must match between Card.astro's compiled output and
+// render_card_html()'s string output so that:
+//   (a) the first 50 server-rendered cards (Astro) AND
+//   (b) the lazy-loaded shard cards (Python pre-rendered HTML strings)
+// produce byte-equivalent DOM at runtime per D-10 LOCKED.
+//
+// D-21..D-23: NO client:* directives. NO framework imports. Plain Astro
+// template only — Astro auto-escapes `{expr}` text per docs, so all row
+// values are XSS-safe by default (T-03-15 mitigation; same trust posture
+// as Plan 03-03's html.escape on the shard HTML strings).
+//
+// D-26..D-28: NO smartypants, NO .trim()/.replaceAll()/.replace() on text
+// fields. Astro markdown smartypants is disabled in astro.config.mjs.
+// Pass row values straight through; Astro's auto-escaping handles HTML
+// entity safety without rewriting typography.
+//
+// CLAUDE.md §4.3 — action-button matrix:
+//   Open      : when row['PDF | Image Link'] non-empty
+//   Download  : when row['PDF | Image Link'] non-empty
+//   Source ↗  : always (war.gov source URL)
+//   DVIDS ↗   : only when row['DVIDS Video ID'] non-empty
+// Never show a button that would return HTML 404 — if URL is empty,
+// omit the Open + Download buttons entirely.
+
+interface WargovRow {
+  Title: string;
+  'Release Date'?: string;
+  Type?: string;
+  'Description Blurb'?: string;
+  'DVIDS Video ID'?: string;
+  Agency?: string;
+  'Incident Date'?: string;
+  'Incident Location'?: string;
+  'PDF | Image Link'?: string;
+  'Modal Image'?: string;
+  'Image Alt Text'?: string;
+  'Image VIRIN'?: string;
+  Redaction?: string;
+  'Video Pairing'?: string;
+  'PDF Pairing'?: string;
+  'Video Title'?: string;
+  local?: string;
+}
+
+interface Props {
+  row: WargovRow;
+  /** Global 0-based row index across all rows (matches render_card_html's idx). */
+  idx: number;
+  /** Pre-computed slug for the `#card-<slug>` anchor. Caller MUST use the same
+   *  slugify algorithm as scripts/snapshot-urls.py + scripts/normalize-csv.py. */
+  slug: string;
+}
+
+const { row, idx, slug } = Astro.props;
+
+// 1-based, 3-digit zero-padded — matches render_card_html's `r{idx+1:03d}` (Plan 03-03).
+const rowId = `r${String(idx + 1).padStart(3, '0')}`;
+
+// Field aliases — keep names mirroring render_card_html exactly.
+const title = row.Title ?? '';
+const url = row['PDF | Image Link'] ?? '';
+const thumb = row['Modal Image'] ?? '';
+const alt = row['Image Alt Text'] ?? title;
+const desc = row['Description Blurb'] ?? '';
+const agency = row.Agency ?? '';
+const date = row['Incident Date'] ?? '';
+const rtype = row.Type ?? '';
+const dvids = row['DVIDS Video ID'] ?? '';
+
+// Hard-coded source URL per CLAUDE.md §2 (war.gov / UFO source).
+// Matches scripts/normalize-csv.py:SOURCE_URL exactly.
+const SOURCE_URL = 'https://www.war.gov/UFO/';
+---
+<article
+  class="arch-card"
+  id={`card-${slug}`}
+  data-id={rowId}
+  data-idx={idx}
+  data-action="open"
+  data-type={rtype}
+  data-agency={agency}
+  data-date={date}
+>
+  {thumb && (
+    <img
+      loading="lazy"
+      src={thumb}
+      data-fallback={url}
+      alt={alt}
+      onerror="this.onerror=null;this.src=this.dataset.fallback||''"
+    />
+  )}
+  <h3 class="card-title">{title}</h3>
+  {desc && <p class="card-desc">{desc}</p>}
+  <dl class="card-meta">
+    <dt>Agency</dt><dd>{agency}</dd>
+    <dt>Date</dt><dd>{date}</dd>
+    <dt>Type</dt><dd>{rtype}</dd>
+  </dl>
+  <div class="card-actions">
+    {url && (
+      <a href={url} class="btn-open" data-action="open" data-idx={idx}>Open</a>
+    )}
+    {url && (
+      <a href={url} class="btn-download" download>Download</a>
+    )}
+    <a href={SOURCE_URL} class="btn-source" target="_blank" rel="noopener">Source ↗</a>
+    {dvids && (
+      <a
+        href={`https://www.dvidshub.net/video/${dvids}`}
+        class="btn-dvids"
+        target="_blank"
+        rel="noopener"
+      >DVIDS ↗</a>
+    )}
+  </div>
+</article>

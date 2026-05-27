@@ -1,0 +1,301 @@
+---
+// HeroCarousel.astro — 16:9 hero carousel with ≥4 slides + dots + arrows +
+// caption + autoplay (CLAUDE.md §4).
+//
+// Reuses the slide-data shape from legacy index.html @ line 1568 (SLIDES
+// array), simplified for component consumption: each slide carries `src`,
+// `alt`, optional `caption`, optional `id` (small badge).
+//
+// D-21..D-23: inline `<script is:inline>` for autoplay + arrow + dot
+// navigation. NO framework imports, NO client:* directives. The carousel
+// IS interactive but progressive — without JS it renders the first slide
+// only (which satisfies CLAUDE.md §8 graceful degradation).
+//
+// Autoplay rules per CLAUDE.md §4:
+//   - 5500 ms default interval (matches legacy index.html @ line 1644)
+//   - Paused on hover / focus
+//   - Reset to 7500 ms after a manual prev/next click
+
+interface Slide {
+  src: string;
+  alt: string;
+  caption?: string;
+  /** Small badge displayed alongside the caption (e.g. "PR50"). */
+  id?: string;
+}
+
+interface Props {
+  slides: Slide[];
+  /** Optional aria-label for the region. */
+  label?: string;
+}
+
+const { slides, label = 'Featured imagery' } = Astro.props;
+
+if (!slides || slides.length < 4) {
+  throw new Error(
+    `HeroCarousel requires ≥4 slides per CLAUDE.md §4 (got ${slides?.length ?? 0})`,
+  );
+}
+---
+<div
+  class="hero-carousel"
+  id="hero-carousel"
+  aria-label={label}
+  role="region"
+>
+  <div class="carousel-track" id="carousel-track">
+    {slides.map((slide, i) => (
+      <div class:list={['carousel-slide', i === 0 && 'active']}>
+        <img
+          src={slide.src}
+          alt={slide.alt}
+          loading={i === 0 ? 'eager' : 'lazy'}
+          decoding={i === 0 ? 'sync' : 'async'}
+        />
+      </div>
+    ))}
+  </div>
+
+  <button
+    class="carousel-btn prev"
+    id="carousel-prev"
+    aria-label="Previous slide"
+    type="button"
+  >‹</button>
+  <button
+    class="carousel-btn next"
+    id="carousel-next"
+    aria-label="Next slide"
+    type="button"
+  >›</button>
+
+  <div class="carousel-dots" id="carousel-dots">
+    {slides.map((_, i) => (
+      <button
+        type="button"
+        class:list={[i === 0 && 'active']}
+        aria-label={`Slide ${i + 1} of ${slides.length}`}
+        data-idx={i}
+      ></button>
+    ))}
+  </div>
+
+  <div class="carousel-caption" id="carousel-caption">
+    {slides[0].id && <span class="id">{slides[0].id}</span>}
+    {slides[0].caption ?? slides[0].alt}
+  </div>
+</div>
+
+<script
+  is:inline
+  type="application/json"
+  id="hero-carousel-data"
+  set:html={JSON.stringify(slides.map((s) => ({ id: s.id ?? '', caption: s.caption ?? s.alt })))}
+></script>
+
+<script is:inline>
+  (function () {
+    var dataEl = document.getElementById('hero-carousel-data');
+    var slidesData = [];
+    try { slidesData = JSON.parse((dataEl && dataEl.textContent) || '[]'); } catch (_) { return; }
+
+    var carousel = document.getElementById('hero-carousel');
+    if (!carousel) return;
+    var track = document.getElementById('carousel-track');
+    var dotsBox = document.getElementById('carousel-dots');
+    var cap = document.getElementById('carousel-caption');
+    var prev = document.getElementById('carousel-prev');
+    var next = document.getElementById('carousel-next');
+    if (!track || !dotsBox || !cap || !prev || !next) return;
+
+    var slides = track.children;
+    var dots = dotsBox.children;
+    var cIdx = 0;
+
+    /* (3) CLAUDE.md §7 — img onerror fallback already handled by
+       invariants.ts delegated capture listener. No work needed here. */
+
+    function esc(s) {
+      return (s || '').replace(/[&<>"']/g, function (c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+      });
+    }
+
+    function goTo(i) {
+      if (!slides.length) return;
+      slides[cIdx].classList.remove('active');
+      dots[cIdx].classList.remove('active');
+      cIdx = ((i % slides.length) + slides.length) % slides.length;
+      slides[cIdx].classList.add('active');
+      dots[cIdx].classList.add('active');
+      var s = slidesData[cIdx] || { id: '', caption: '' };
+      var prefix = s.id ? ('<span class="id">' + esc(s.id) + '</span>') : '';
+      cap.innerHTML = prefix + esc(s.caption);
+    }
+
+    prev.addEventListener('click', function () { goTo(cIdx - 1); restart(); });
+    next.addEventListener('click', function () { goTo(cIdx + 1); restart(); });
+
+    /* Dot navigation */
+    for (var di = 0; di < dots.length; di++) {
+      (function (idx, dot) {
+        dot.addEventListener('click', function () { goTo(idx); restart(); });
+      })(di, dots[di]);
+    }
+
+    /* Autoplay — 5500 ms default; 7500 ms after manual interaction
+       (matches legacy index.html @ line 1644). */
+    var timer = setInterval(function () { goTo(cIdx + 1); }, 5500);
+    function restart() {
+      clearInterval(timer);
+      timer = setInterval(function () { goTo(cIdx + 1); }, 7500);
+    }
+
+    /* Pause on hover + focus per CLAUDE.md §4 intent. */
+    carousel.addEventListener('mouseenter', function () { clearInterval(timer); });
+    carousel.addEventListener('mouseleave', restart);
+    carousel.addEventListener('focusin', function () { clearInterval(timer); });
+    carousel.addEventListener('focusout', restart);
+
+    /* Keyboard nav when the carousel has focus. */
+    carousel.setAttribute('tabindex', '0');
+    carousel.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') { goTo(cIdx - 1); restart(); }
+      else if (e.key === 'ArrowRight') { goTo(cIdx + 1); restart(); }
+    });
+  })();
+</script>
+
+<style>
+  /* CLAUDE.md §4 — 16:9 aspect, ≥4 slides + dots + arrows + caption.
+     Mobile: aspect-ratio 16/10 (more height for tiny screens). */
+  .hero-carousel {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    margin-top: 40px;
+    border: 1px solid var(--rule);
+    background: var(--bg-2);
+    border-radius: 4px;
+  }
+
+  @media (max-width: 720px) {
+    .hero-carousel {
+      aspect-ratio: 16 / 10;
+      margin-top: 24px;
+    }
+  }
+
+  .carousel-track {
+    position: absolute;
+    inset: 0;
+  }
+
+  .carousel-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 600ms ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+  }
+
+  .carousel-slide.active {
+    opacity: 1;
+    z-index: 1;
+  }
+
+  .carousel-slide img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  /* Prev/next arrow buttons — edge-pinned, 44+px touch target per §8. */
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    background: rgba(17, 17, 20, 0.7);
+    border: 1px solid var(--rule-strong);
+    border-radius: 50%;
+    color: var(--ink);
+    font-size: 22px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .carousel-btn.prev { left: 12px; }
+  .carousel-btn.next { right: 12px; }
+
+  .carousel-btn:hover {
+    background: var(--bg-2);
+    color: var(--caution);
+  }
+
+  /* Dots — bottom-center, 16 px touch target on a 44 px hit area. */
+  .carousel-dots {
+    position: absolute;
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 3;
+  }
+
+  .carousel-dots button {
+    width: 10px;
+    height: 10px;
+    min-width: 10px;
+    min-height: 10px;
+    padding: 0;
+    border-radius: 50%;
+    background: rgba(232, 227, 216, 0.32);
+    border: 1px solid var(--rule-strong);
+    cursor: pointer;
+    transition: background 200ms ease, transform 200ms ease;
+  }
+
+  .carousel-dots button.active {
+    background: var(--caution);
+    transform: scale(1.2);
+  }
+
+  /* Caption strip — bottom, semi-transparent, monospace ID + serif caption. */
+  .carousel-caption {
+    position: absolute;
+    bottom: 36px;
+    left: 12px;
+    right: 12px;
+    z-index: 3;
+    font-family: var(--serif);
+    font-size: 13px;
+    color: var(--ink);
+    background: rgba(10, 10, 12, 0.6);
+    padding: 8px 12px;
+    border-left: 2px solid var(--caution);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    line-height: 1.4;
+  }
+
+  .carousel-caption .id {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--caution);
+    margin-right: 10px;
+    text-transform: uppercase;
+  }
+</style>

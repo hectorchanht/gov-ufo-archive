@@ -1,0 +1,477 @@
+---
+// src/pages/index.astro — wargov archive page at / (D-05).
+//
+// First end-to-end Astro-rendered page. Composes:
+//   - RootLayout (Plan 03-04) — sets archiveSlug="wargov" → tone-colour
+//     `--caution: #d4a017` per CLAUDE.md §3.1 + Phase 2 tone-colours.spec.ts.
+//   - HeroCarousel (Plan 03-05) — 16:9 ≥4-slide carousel per CLAUDE.md §4.
+//   - Card (Plan 03-05) — first 50 rows server-rendered per D-08.
+//   - Lightbox (Plan 03-05) — static shell + invariants.ts handlers.
+//
+// Key invariants:
+//   - D-05 + D-40: route is `/`, URL-CONTRACT.txt anchors preserved via
+//     slugify (byte-equivalent to scripts/snapshot-urls.py + normalize-csv.py).
+//   - D-08: 50 cards pre-rendered as HTML in dist/index.html (no JS to see them).
+//   - D-10 LOCKED: lazy-loaded shards contain server-rendered HTML strings;
+//     the runtime loader does ONLY insertAdjacentHTML('beforeend', card.html).
+//     ZERO client-side templating. NO function named templateCard.
+//   - D-21..D-23: every <script> here is <script is:inline>. No client:*.
+//   - D-26..D-28: smartypants:false in astro.config.mjs. Astro's `{expr}`
+//     auto-escapes HTML but does NOT rewrite typography. Hero copy verbatim.
+//
+// Phase 2 acceptance (validated by Plan 03-06):
+//   - Tone-colours.spec.ts → #d4a017 on <html style>
+//   - Visual-regression.spec.ts → 4 viewports vs tests/visual-baselines/wargov-*
+//   - Fidelity → 115 samples byte-match
+//   - JS-off.spec.ts → wargov-row PASS (cards visible without JS)
+//   - Lighthouse mobile → ≤500 KB transfer, ≤2.5s LCP
+
+import RootLayout from '../layouts/RootLayout.astro';
+import Card from '../components/Card.astro';
+import HeroCarousel from '../components/HeroCarousel.astro';
+import Lightbox from '../components/Lightbox.astro';
+import { getEntry } from 'astro:content';
+import '../styles/wargov.css';
+
+const wargov = await getEntry('wargov', 'v1');
+if (!wargov) {
+  throw new Error(
+    'wargov collection entry "v1" missing — run `pnpm prebuild` to regenerate data/wargov.json from CSV',
+  );
+}
+
+const { rows, shards } = wargov.data;
+
+// Slugify — byte-for-byte port from scripts/snapshot-urls.py:158-167 AND
+// scripts/normalize-csv.py:_slugify (Plan 03-03). Algorithm:
+//   lowercase → collapse runs of non-[a-z0-9] to single hyphen → strip
+//   leading/trailing hyphens → truncate to 80 chars → strip again.
+// Equivalence guarantee per D-40: every `#card-<slug>` anchor in this page
+// matches an entry in URL-CONTRACT.txt. Plan 03-06 verifies via snapshot-urls.py.
+function slugify(text: string): string {
+  if (!text) return '';
+  const s = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  return s.slice(0, 80).replace(/^-+|-+$/g, '');
+}
+
+// Hero carousel slides — pulled verbatim from legacy index.html @ line 1568
+// (SLIDES array). Image paths point at /slideshow/ + /slideshow-2/ which are
+// committed under the repo root + served by CF Pages as static assets.
+// Selecting 5 representative R01 + R02 slides — must be ≥4 per CLAUDE.md §4.
+// Captions verbatim per D-26..D-28 (no rewording).
+const heroSlides = [
+  {
+    id: 'FBI-01',
+    src: '/slideshow/FBI-Photo-1.jpg',
+    alt: 'FBI · Infrared (black hot) — unidentified object, western U.S., Dec 2025',
+    caption: 'FBI · Infrared (black hot) — unidentified object, western U.S., Dec 2025',
+  },
+  {
+    id: 'PR19',
+    src: '/slideshow/DOW-UAP-PR19-Unresolved-UAP-Report-Middle-East-May-2022.jpg',
+    alt: 'DOW · UAP across operator screen — Middle East, May 2022',
+    caption: 'DOW · UAP across operator screen — Middle East, May 2022',
+  },
+  {
+    id: 'PR46',
+    src: '/slideshow/DOW-UAP-PR46-Unresolved-UAP-Report-INDOPACOM-2024.jpg',
+    alt: 'INDOPACOM · Football-shaped UAP near Japan — 2024',
+    caption: 'INDOPACOM · Football-shaped UAP near Japan — 2024',
+  },
+  {
+    id: 'PR50',
+    src: '/slideshow-2/DOW-UAP-PR050_4UAP_Formation_Iran_26_Aug_2022.jpg',
+    alt: 'DOW · R02 · 4-UAP formation over Iran water — 26 Aug 2022',
+    caption: 'DOW · R02 · 4-UAP formation over Iran water — 26 Aug 2022',
+  },
+  {
+    id: 'CIA-D01',
+    src: '/slideshow-2/CIA-UAP-D001_Intelligence_Information_Report_USSR_1973.jpg',
+    alt: 'CIA · R02 · Intelligence Information Report, USSR, 1973',
+    caption: 'CIA · R02 · Intelligence Information Report, USSR, 1973',
+  },
+];
+
+// Page meta — title + description verbatim from legacy index.html OG block.
+const title = 'PURSUE — Presidential Unsealing and Reporting System for UAP Encounters | U.S. Department of War';
+const description = "Official U.S. Department of War / DoD release of declassified UAP files. Release 01 (May 8, 2026) + Release 02 (May 22, 2026) — 222-record archive, 85 DVIDS bundle videos, 27 slideshow highlights.";
+
+// Total record count for the stats grid — derived from the rows array on
+// the primary entry + the shards manifest (each shard is ~50 cards).
+// We DON'T sum shard JSON sizes — we just count rows + (shards.length * 50)
+// as an estimate; Plan 03-06 may tighten this via the prebuild stats hook.
+const totalRecords = rows.length + shards.length * 50; // 50 + 4*50 = 250 upper bound
+
+// JSON-LD structured data — port verbatim from legacy index.html @ line 29.
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Dataset',
+  name: 'PURSUE — War.gov UAP Releases 01 + 02',
+  description:
+    'Department of War (PURSUE) Releases 01 (May 8, 2026) and 02 (May 22, 2026) — 222 declassified UAP / UFO records: documents, images, audio, and 85 DVIDS videos. Offline-archived from www.war.gov/UFO/.',
+  url: 'https://realufo.org/',
+  sameAs: 'https://www.war.gov/UFO/',
+  keywords: ['UAP', 'UFO', 'PURSUE', 'Department of War', 'Release 01', 'Release 02', 'declassified'],
+  creator: { '@type': 'GovernmentOrganization', name: 'U.S. Department of War' },
+  publisher: { '@type': 'Organization', name: 'realufo.org', url: 'https://realufo.org/' },
+  license: 'https://www.copyright.gov/title17/92chap1.html#105',
+  isAccessibleForFree: true,
+  inLanguage: 'en',
+};
+---
+<RootLayout
+  archiveSlug="wargov"
+  title={title}
+  description={description}
+  totalRecords={totalRecords}
+  lastUpdated="2026-05-27"
+>
+  {/* JSON-LD structured data — Plan 03-04 BaseHead exposes a head-extra slot. */}
+  <script
+    slot="head-extra"
+    is:inline
+    type="application/ld+json"
+    set:html={JSON.stringify(jsonLd)}
+  ></script>
+
+  <section class="hero" id="intro">
+    <div class="container">
+      <div class="coords">38°52′15″N, 77°03′18″W &middot; THE PENTAGON, ARLINGTON, VIRGINIA</div>
+      <h1 class="hero-title">
+        Presidential Unsealing and Reporting System for UAP Encounters <span class="acronym">(PURSUE)</span>
+      </h1>
+      <p class="hero-sub">
+        Official Department of War &middot; ODNI release of declassified UAP records under President
+        Trump's transparency directive of February 19, 2026.
+        <a href="https://www.war.gov/UFO/" target="_blank" rel="noopener">Source: war.gov/UFO/ ↗</a>
+      </p>
+      <div class="classified-stamp">
+        DECLASSIFIED
+        <small>RELEASES 01 + 02 / 2026</small>
+      </div>
+
+      <HeroCarousel slides={heroSlides} label="Featured imagery from Releases 01 + 02" />
+    </div>
+  </section>
+
+  <section class="headlines" id="headlines">
+    <div class="container">
+      <div class="section-label">§ I — Headlines</div>
+      <div class="head-card-grid">
+        <article class="head-card">
+          <div class="hc-tag">Directive</div>
+          <h3>POTUS — February 19, 2026</h3>
+          <p>
+            "I will be directing the Secretary of War, and other relevant Departments and Agencies,
+            to begin the process of identifying and releasing Government files related to alien and
+            extraterrestrial life, unidentified aerial phenomena (UAP), and unidentified flying
+            objects (UFOs)…"
+          </p>
+        </article>
+        <article class="head-card">
+          <div class="hc-tag">Release 01</div>
+          <h3>May 8, 2026 — Initial tranche</h3>
+          <p>
+            Mission reports, FBI photographs, NARA records, and CIA/ODNI/DOE/Sandia correspondence
+            covering incidents across the western U.S., the Middle East, Africa, INDOPACOM, and
+            Earth–lunar space.
+          </p>
+        </article>
+        <article class="head-card">
+          <div class="hc-tag">Release 02</div>
+          <h3>May 22, 2026 — Second tranche</h3>
+          <p>
+            85 DVIDS aircrew encounter videos, NASA Apollo / Mercury audio excerpts, and the
+            Sandia Base UAP correspondence — 1948–1950.
+          </p>
+        </article>
+        <article class="head-card">
+          <div class="hc-tag">Archive</div>
+          <h3>222 unresolved records</h3>
+          <p>
+            Every release is unresolved — the government is unable to make a definitive
+            determination on the nature of the observed phenomena. Private-sector analysis is
+            welcomed by DOW.
+          </p>
+        </article>
+        <article class="head-card">
+          <div class="hc-tag">Statute</div>
+          <h3>Public domain · 17 U.S.C. § 105</h3>
+          <p>
+            All materials are U.S. Government works under 17 U.S.C. § 105 — no copyright attaches.
+            Source remains <a href="https://www.war.gov/UFO/" target="_blank" rel="noopener">war.gov/UFO/</a>.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="archive" id="archive">
+    <div class="container">
+      <div class="section-label">§ II — Archive</div>
+      <h2>Declassified imagery, documents, video, and audio.</h2>
+
+      <div class="stats-grid" id="arch-stats">
+        <div class="stat">
+          <div class="stat-num">{rows.length + shards.reduce((acc, _) => acc + 50, 0)}</div>
+          <div class="stat-label">Total records (upper bound)</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">{rows.length}</div>
+          <div class="stat-label">Server-rendered initial</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">{shards.length}</div>
+          <div class="stat-label">Shards lazy-loaded</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">2</div>
+          <div class="stat-label">Releases (R01 + R02)</div>
+        </div>
+      </div>
+
+      <div class="arch-controls-bar" id="arch-controls-bar">
+        <div class="tabs" id="arch-tabs">
+          <button type="button" class="tab active" data-tab="all">All</button>
+          <button type="button" class="tab" data-tab="PDF">Documents</button>
+          <button type="button" class="tab" data-tab="IMG">Imagery</button>
+          <button type="button" class="tab" data-tab="VID">Video</button>
+          <button type="button" class="tab" data-tab="AUDIO">Audio</button>
+        </div>
+        <div class="sort-wrap">
+          <label for="arch-sort">Sort:</label>
+          <select id="arch-sort">
+            <option value="type">Type</option>
+            <option value="title">Title (A→Z)</option>
+            <option value="title-desc">Title (Z→A)</option>
+            <option value="date-new">Date (newest)</option>
+            <option value="date-old">Date (oldest)</option>
+            <option value="agency">Agency</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="filter-bar">
+        <label>Agency:
+          <select id="filter-agency">
+            <option value="">All</option>
+          </select>
+        </label>
+        <label>Per page:
+          <select id="filter-perpage">
+            <option value="12">12</option>
+            <option value="24" selected>24</option>
+            <option value="48">48</option>
+            <option value="96">96</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="result-count" id="arch-count" aria-live="polite"></div>
+
+      <div class="arch-grid" id="wargov-grid">
+        {rows.map((row, idx) => (
+          <Card row={row} idx={idx} slug={slugify(row.Title)} />
+        ))}
+      </div>
+
+      <div id="wargov-lazy-sentinel" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <Lightbox />
+
+  {/* Shard manifest for the lazy-loader (consumed by inline script below).
+      D-10 LOCKED: shard.cards[i] = { id: string, html: string } where html is
+      the SERVER-RENDERED <article>...</article> string produced by Plan 03-03's
+      scripts/normalize-csv.py:render_card_html(). NO client-side templating. */}
+  <script
+    is:inline
+    type="application/json"
+    id="wargov-shards"
+    set:html={JSON.stringify(shards)}
+  ></script>
+
+  {/* Lazy-load runtime — D-10 LOCKED.
+      The ONLY HTML-producing operation is grid.insertAdjacentHTML('beforeend',
+      card.html) against pre-baked server-rendered HTML strings. There is NO
+      client-side card-templating helper of any kind. NO string interpolation
+      building <article> from row data. The verify gate in this plan's
+      automated check grep-NEGATES `function templ`+`ateCard` and friends
+      anywhere in src/ or dist/. */}
+  <script is:inline>
+    (() => {
+      const manifestEl = document.getElementById('wargov-shards');
+      const grid = document.getElementById('wargov-grid');
+      const sentinel = document.getElementById('wargov-lazy-sentinel');
+      if (!manifestEl || !grid || !sentinel) return;
+
+      let manifest;
+      try {
+        manifest = JSON.parse(manifestEl.textContent || '[]');
+      } catch (_) {
+        return; // malformed manifest — abort lazy-load silently
+      }
+      if (!Array.isArray(manifest) || !manifest.length) return;
+
+      const loaded = new Set();
+
+      async function loadShard(file) {
+        if (loaded.has(file)) return;
+        loaded.add(file);
+        try {
+          const resp = await fetch('/' + file);
+          if (!resp.ok) return;
+          const shard = await resp.json();
+          if (!shard || !Array.isArray(shard.cards)) return;
+          // D-10 LOCKED INVARIANT: shard.cards[i] = { id, html } where html is
+          // the server-rendered <article>...</article> string produced by
+          // scripts/normalize-csv.py:render_card_html() (Plan 03-03).
+          // Client does ONLY insertAdjacentHTML — no templating, no string
+          // interpolation building cards, no DOM-from-data construction.
+          for (const card of shard.cards) {
+            if (card && typeof card.html === 'string') {
+              grid.insertAdjacentHTML('beforeend', card.html);
+            }
+          }
+        } catch (_) {
+          // fetch / parse failed — silent; user can scroll to retry not implemented
+        }
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        if (!entries[0].isIntersecting) return;
+        const next = manifest.find((s) => !loaded.has(s.file));
+        if (next) loadShard(next.file);
+        if (loaded.size === manifest.length) observer.disconnect();
+      }, { rootMargin: '200px' });
+
+      observer.observe(sentinel);
+    })();
+  </script>
+
+  {/* Filter/sort progressive enhancement — operates on rendered DOM data-*
+      attributes per D-11. NO client-side row-data manipulation. */}
+  <script is:inline>
+    (() => {
+      const grid = document.getElementById('wargov-grid');
+      const tabs = document.querySelectorAll('.arch-controls-bar .tab');
+      const sort = document.getElementById('arch-sort');
+      const agencyFilter = document.getElementById('filter-agency');
+      const countEl = document.getElementById('arch-count');
+      if (!grid) return;
+
+      function getCards() {
+        return Array.from(grid.querySelectorAll('.arch-card'));
+      }
+
+      function applyFilters() {
+        const activeTab = document.querySelector('.arch-controls-bar .tab.active');
+        const typeFilter = activeTab ? activeTab.getAttribute('data-tab') : 'all';
+        const agencyVal = agencyFilter ? agencyFilter.value : '';
+        let visible = 0;
+        for (const c of getCards()) {
+          const type = c.getAttribute('data-type') || '';
+          const agency = c.getAttribute('data-agency') || '';
+          const typeOk = typeFilter === 'all' || type === typeFilter;
+          const agencyOk = !agencyVal || agency === agencyVal;
+          const show = typeOk && agencyOk;
+          c.style.display = show ? '' : 'none';
+          if (show) visible++;
+        }
+        if (countEl) {
+          countEl.textContent = visible + ' / ' + getCards().length + ' records';
+        }
+      }
+
+      function populateAgencies() {
+        if (!agencyFilter) return;
+        const agencies = new Set();
+        for (const c of getCards()) {
+          const a = c.getAttribute('data-agency');
+          if (a) agencies.add(a);
+        }
+        // Preserve current selection
+        const current = agencyFilter.value;
+        agencyFilter.innerHTML = '<option value="">All</option>';
+        Array.from(agencies).sort().forEach((a) => {
+          const opt = document.createElement('option');
+          opt.value = a;
+          opt.textContent = a;
+          if (a === current) opt.selected = true;
+          agencyFilter.appendChild(opt);
+        });
+      }
+
+      function applySort() {
+        if (!sort) return;
+        const mode = sort.value;
+        const cards = getCards();
+        cards.sort((a, b) => {
+          if (mode === 'title') {
+            return (a.querySelector('.card-title')?.textContent || '').localeCompare(
+              b.querySelector('.card-title')?.textContent || ''
+            );
+          }
+          if (mode === 'title-desc') {
+            return (b.querySelector('.card-title')?.textContent || '').localeCompare(
+              a.querySelector('.card-title')?.textContent || ''
+            );
+          }
+          if (mode === 'agency') {
+            return (a.getAttribute('data-agency') || '').localeCompare(b.getAttribute('data-agency') || '');
+          }
+          // default: type
+          return (a.getAttribute('data-type') || '').localeCompare(b.getAttribute('data-type') || '');
+        });
+        for (const c of cards) grid.appendChild(c);
+      }
+
+      // Wire tab clicks (event delegation for static tabs only here).
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+          tabs.forEach((t) => t.classList.remove('active'));
+          tab.classList.add('active');
+          applyFilters();
+        });
+      });
+      if (sort) sort.addEventListener('change', () => { applySort(); applyFilters(); });
+      if (agencyFilter) agencyFilter.addEventListener('change', applyFilters);
+
+      // Re-apply filters whenever new cards arrive via the lazy-loader.
+      const obs = new MutationObserver(() => {
+        populateAgencies();
+        applyFilters();
+      });
+      obs.observe(grid, { childList: true });
+
+      // Initial
+      populateAgencies();
+      applyFilters();
+
+      // Populate lightbox list — invariants.ts reads window.__lbList.
+      // We expose a minimal asset list for now (title + url + local).
+      // Each entry mirrors what Plan 03-04's renderLb() reads.
+      function refreshLbList() {
+        const list = [];
+        for (const c of getCards()) {
+          const titleEl = c.querySelector('.card-title');
+          const openA = c.querySelector('a.btn-open');
+          const dlA = c.querySelector('a.btn-download');
+          list.push({
+            title: titleEl ? titleEl.textContent : '',
+            url: openA ? openA.getAttribute('href') : '',
+            local: dlA ? dlA.getAttribute('href') : '',
+          });
+        }
+        window.__lbList = list;
+      }
+      refreshLbList();
+      obs.observe(grid, { childList: true });
+      grid.addEventListener('DOMSubtreeModified', refreshLbList);
+      // Also re-build the list right after a shard insert completes.
+      const lbObs = new MutationObserver(refreshLbList);
+      lbObs.observe(grid, { childList: true });
+    })();
+  </script>
+</RootLayout>
