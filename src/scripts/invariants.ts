@@ -47,17 +47,90 @@ export const INVARIANTS_JS: string = String.raw`
   var lbNext = document.getElementById('lb-next');
   var lbClose = document.getElementById('lb-close');
   var lbCounter = document.getElementById('lb-counter');
+  /* Scope pivot 2026-05-28 — meta panel + dual action buttons. */
+  var lbMeta = document.getElementById('lb-meta');
+  var lbActions = document.getElementById('lb-actions');
+  var lbDownload = document.getElementById('lb-download');
+  var lbSource = document.getElementById('lb-source');
 
   /* lbList is the array of asset objects the current page renders. Pages
      populate it after their card-render pass (Plan 03-05's wargov index will
-     set window.__lbList = assets after pre-rendering the first 50 cards). */
+     set window.__lbList = assets after pre-rendering the first 50 cards).
+     Scope pivot 2026-05-28: each entry now MAY carry desc/agency/date/region/
+     category/source/type alongside the original rowId/title/url/local. Missing
+     fields render as empty (no broken DOM). */
   var lbList = (typeof window !== 'undefined' && window.__lbList) || [];
   var lbIdx = 0;
+
+  function _escAttr(s) {
+    /* Minimal attribute escape — used when writing user-controlled strings
+       into innerHTML below. The cards' dataset values arrive HTML-escaped
+       already (Astro auto-escapes; Python's html.escape mirrors), but we
+       re-escape on the lightbox side defensively. */
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
+  function _hideBtn(el) {
+    if (!el) return;
+    el.setAttribute('aria-hidden', 'true');
+    el.setAttribute('hidden', '');
+    el.setAttribute('href', '#');
+  }
+
+  function _showBtn(el, href, opts) {
+    if (!el) return;
+    el.removeAttribute('aria-hidden');
+    el.removeAttribute('hidden');
+    el.setAttribute('href', href);
+    if (opts && opts.download) el.setAttribute('download', '');
+    else el.removeAttribute('download');
+    if (opts && opts.newTab) {
+      el.setAttribute('target', '_blank');
+      el.setAttribute('rel', 'noopener');
+    }
+  }
+
+  function renderMeta(a) {
+    if (!lbMeta) return;
+    var parts = [];
+    if (a.title) parts.push('<h3>' + _escAttr(a.title) + '</h3>');
+    if (a.desc) parts.push('<p>' + _escAttr(a.desc) + '</p>');
+    var rows = [];
+    if (a.agency) rows.push('<dt>Agency</dt><dd>' + _escAttr(a.agency) + '</dd>');
+    if (a.date) rows.push('<dt>Date</dt><dd>' + _escAttr(a.date) + '</dd>');
+    if (a.region) rows.push('<dt>Region</dt><dd>' + _escAttr(a.region) + '</dd>');
+    if (a.category) rows.push('<dt>Category</dt><dd>' + _escAttr(a.category) + '</dd>');
+    else if (a.type) rows.push('<dt>Type</dt><dd>' + _escAttr(a.type) + '</dd>');
+    if (rows.length) parts.push('<dl>' + rows.join('') + '</dl>');
+    lbMeta.innerHTML = parts.join('');
+  }
+
+  function renderActions(a) {
+    /* "Download from realufo" — prefers local file path; falls back to
+       data-url (R2 custom-domain URL for ported archives, or the official
+       source URL for legacy rows). Hidden when neither is present. */
+    var downloadHref = a.local || a.url || '';
+    if (downloadHref) {
+      _showBtn(lbDownload, downloadHref, { download: true });
+    } else {
+      _hideBtn(lbDownload);
+    }
+    /* "View on source" — official archive page URL (a.s in CatalogCard,
+       war.gov for wargov rows). Hidden when no source URL is known. */
+    var sourceHref = a.source || '';
+    if (sourceHref) {
+      _showBtn(lbSource, sourceHref, { newTab: true });
+    } else {
+      _hideBtn(lbSource);
+    }
+  }
 
   function renderLb() {
     if (!lb || !lbInner) return;
     var a = lbList[lbIdx];
-    if (!a) { lbInner.innerHTML = ''; return; }
+    if (!a) { lbInner.innerHTML = ''; if (lbMeta) lbMeta.innerHTML = ''; return; }
     /* (5) CLAUDE.md §7 — PDF lightbox: iframe ONLY for local files.
        Remote PDFs open in a new tab via Content-Disposition: attachment so
        the user gets a real download instead of an inline render that may
@@ -66,30 +139,56 @@ export const INVARIANTS_JS: string = String.raw`
     var remote = a.url || '';
     var target = local || remote;
     var ext = (target || '').toLowerCase().split('?')[0].split('#')[0].split('.').pop();
-    if (ext === 'pdf') {
+    var assetType = (a.type || '').toUpperCase();
+
+    if (assetType === 'CATALOG') {
+      /* CLAUDE.md §4.3 — CATALOG cards point at the official archive
+         landing page. No inline render; meta panel + Source button do the
+         work. innerHTML cleared so previous asset doesn't bleed through. */
+      lbInner.innerHTML = '<div class="lb-catalog-note">Catalog gateway — see Source button.</div>';
+    } else if (assetType === 'CASE' || assetType === 'PAGE' || ext === 'html') {
+      /* Long-form text rendering — legacy /aaro/cases/*.html or /aaro/pages/
+         *.html. Iframe loads the static HTML page (same-origin so no
+         sandbox restriction). When only a remote URL exists, defer to the
+         meta panel + Source button (cross-origin iframe would be blocked
+         by X-Frame-Options on most government sites). */
+      if (local || (remote && remote.indexOf('://') === -1)) {
+        lbInner.innerHTML = '<iframe src="' + _escAttr(target) + '" title="' + _escAttr(a.title || 'Page') + '" loading="lazy"></iframe>';
+      } else {
+        lbInner.innerHTML = '<div class="lb-catalog-note">External page — see Source button.</div>';
+      }
+    } else if (ext === 'pdf') {
       if (local) {
-        lbInner.innerHTML = '<iframe src="' + local + '" title="' + (a.title || 'PDF') + '" loading="lazy"></iframe>';
+        lbInner.innerHTML = '<iframe src="' + _escAttr(local) + '" title="' + _escAttr(a.title || 'PDF') + '" loading="lazy"></iframe>';
       } else if (remote) {
         // Remote → new tab (handled by anchor target=_blank); the lightbox
         // shows a metadata panel + Download link as a fallback.
-        lbInner.innerHTML = '<div class="lb-meta">Remote PDF — open in new tab.<br><a href="' + remote + '" target="_blank" rel="noopener">Open ' + (a.title || 'PDF') + ' ↗</a></div>';
+        lbInner.innerHTML = '<div class="lb-meta">Remote PDF — open in new tab.<br><a href="' + _escAttr(remote) + '" target="_blank" rel="noopener">Open ' + _escAttr(a.title || 'PDF') + ' ↗</a></div>';
+      } else {
+        lbInner.innerHTML = '';
       }
     } else if (ext === 'mp4' || ext === 'webm' || ext === 'mov') {
       /* (4) CLAUDE.md §7 — Video dual-source.
          Two <source> children when both local + remote exist. NEVER add
          crossorigin="anonymous" (CLAUDE.md §11 — kills cloudfront playback). */
       var srcs = '';
-      if (local) srcs += '<source src="' + local + '" type="video/' + ext + '">';
-      if (remote && remote !== local) srcs += '<source src="' + remote + '" type="video/' + ext + '">';
+      if (local) srcs += '<source src="' + _escAttr(local) + '" type="video/' + ext + '">';
+      if (remote && remote !== local) srcs += '<source src="' + _escAttr(remote) + '" type="video/' + ext + '">';
       lbInner.innerHTML = '<video controls preload="metadata" playsinline>' + srcs + '</video>';
     } else if (ext === 'mp3' || ext === 'wav' || ext === 'ogg') {
-      lbInner.innerHTML = '<audio controls preload="metadata"><source src="' + target + '"></audio>';
-    } else {
+      lbInner.innerHTML = '<audio controls preload="metadata"><source src="' + _escAttr(target) + '"></audio>';
+    } else if (target) {
       /* (3) CLAUDE.md §7 — Image fallback via <img onerror>.
          When local 404s, swap src to the official source URL. */
-      var fb = remote ? 'onerror="this.onerror=null;this.src=\'' + remote + '\';"' : '';
-      lbInner.innerHTML = '<img src="' + target + '" alt="' + (a.title || '') + '" ' + fb + '>';
+      var fb = remote ? 'onerror="this.onerror=null;this.src=\'' + _escAttr(remote) + '\';"' : '';
+      lbInner.innerHTML = '<img src="' + _escAttr(target) + '" alt="' + _escAttr(a.title || '') + '" ' + fb + '>';
+    } else {
+      /* No URL at all — meta-only render (CATALOG without a download). */
+      lbInner.innerHTML = '';
     }
+
+    renderMeta(a);
+    renderActions(a);
     if (lbCounter) lbCounter.textContent = (lbIdx + 1) + ' / ' + lbList.length;
   }
 
@@ -127,6 +226,11 @@ export const INVARIANTS_JS: string = String.raw`
     lb.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
     if (lbInner) lbInner.innerHTML = '';
+    /* Clear meta panel + hide action buttons so the next openAt() starts
+       from a clean slate even if a different card has sparse metadata. */
+    if (lbMeta) lbMeta.innerHTML = '';
+    _hideBtn(lbDownload);
+    _hideBtn(lbSource);
   }
 
   if (lb && lbClose) lbClose.addEventListener('click', closeLb);
