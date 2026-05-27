@@ -99,6 +99,18 @@ import sys
 from pathlib import Path
 from typing import Any
 
+# Local-import: scripts/_archive_common.py exposes the R2 URL rewrite helper
+# consumed by every Wave 3+ per-archive normaliser. Phase 4 plan 04-02 Task 3
+# wires this here for the wargov pipeline. Inserting the scripts/ directory
+# at sys.path[0] keeps this script runnable from any cwd
+# (e.g. `python3 scripts/normalize-csv.py` from repo root) without requiring
+# package install. The slug `scripts._archive_common` is intentionally NOT
+# used as a package import because scripts/ has no __init__.py and the
+# stdlib-only convention (CLAUDE.md §6.2 + Phase 1/2 precedent) excludes
+# turning scripts/ into a package.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _archive_common import rewrite_to_r2  # noqa: E402
+
 REPO = Path(__file__).resolve().parent.parent
 CSV_COMBINED = REPO / 'uap-data.csv'
 CSV_LEGACY = REPO / 'uap-release001.csv'
@@ -150,6 +162,15 @@ def _read_rows(csv_path: Path) -> list[dict[str, str]]:
     Drops rows where `Title` is blank (truthiness filter only — row VALUES
     are preserved verbatim per D-26..D-28; `.strip()` is applied solely to
     the Title-truthiness check, never to any committed text).
+
+    Phase 4 plan 04-02 Task 3: the `PDF | Image Link` field for PDF/VID rows
+    is rewritten to its R2 custom-domain URL
+    (https://assets.realufo.org/<pdfs|videos>/wargov/<basename>) via
+    `_archive_common.rewrite_to_r2`. This is a build-time transform; the
+    source CSV is untouched (T-03-07 guard + CLAUDE.md §11). IMG-type rows
+    and any row whose `PDF | Image Link` ends in an image extension are
+    preserved verbatim per D-01 refinement + Pitfall #7 — Astro Image
+    processes LOCAL files only, so thumbnails must not be R2-rewritten.
     """
     rows: list[dict[str, str]] = []
     # 'utf-8-sig' handles the BOM that spreadsheet exports prepend.
@@ -170,6 +191,28 @@ def _read_rows(csv_path: Path) -> list[dict[str, str]]:
                 for k, v in row.items()
                 if k is not None and k != ''
             }
+            # Phase 4 plan 04-02 — rewrite the binary asset URL to R2 for
+            # PDF + VID rows. Card.astro reads `PDF | Image Link` directly
+            # (src/components/Card.astro line ~66), so mutating this field
+            # at read time propagates to BOTH the first 50 raw rows (Astro
+            # server-renders them via Card.astro) AND the shard HTML strings
+            # (render_card_html reads the same field). Rewrite is idempotent:
+            # the helper returns the input unchanged if it already starts
+            # with the R2 custom domain (basename extraction collapses to
+            # the same path).
+            rtype = (cleaned.get('Type', '') or '').strip()
+            raw_url = cleaned.get('PDF | Image Link', '') or ''
+            if raw_url:
+                if rtype == 'VID':
+                    asset_type = 'videos'
+                elif rtype in ('PDF', 'DOC'):
+                    asset_type = 'pdfs'
+                else:
+                    asset_type = None
+                if asset_type:
+                    cleaned['PDF | Image Link'] = rewrite_to_r2(
+                        raw_url, 'wargov', asset_type,
+                    )
             rows.append(cleaned)
     sys.stderr.write(f'[info] read {len(rows)} non-empty-Title rows\n')
     return rows
@@ -256,6 +299,11 @@ def render_card_html(row: dict[str, str], idx: int) -> str:
     row_id = f'r{idx + 1:03d}'  # 1-based, 3-digit zero-padded
     title = row.get('Title', '') or ''
     slug = _slugify(title)
+    # Phase 4 plan 04-02 Task 3 — `PDF | Image Link` has already been
+    # rewritten to its R2 custom-domain URL by `_read_rows` for PDF + VID
+    # type rows. IMG rows and image-extension URLs were preserved
+    # verbatim. The URL we read here is the FINAL card URL — no per-card
+    # rewrite needed at render time.
     url = row.get('PDF | Image Link', '') or ''
     thumb = row.get('Modal Image', '') or ''
     alt = row.get('Image Alt Text', '') or title
