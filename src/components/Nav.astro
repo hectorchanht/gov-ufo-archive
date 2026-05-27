@@ -1,10 +1,19 @@
 ---
-// Nav.astro — sticky 64px header with seal + brand + hamburger + 15-archive
+// Nav.astro — sticky 64px header with seal + brand + hamburger + 4-archive
 // cross-nav (CLAUDE.md §4 + §4.1 + D-19).
 //
-// CRITICAL per checker B3: ALL 15 archive slugs MUST appear in the rendered
-// output (path strings OR data-archive attrs). Wargov lives at `/` so its
-// href won't contain `/wargov/` — the slug literal travels via data-archive.
+// SCOPE PIVOT (2026-05-28): realufo.org ships ONLY 4 active archives:
+// wargov, aaro, nasa, nara. The 11 dormant archives (geipan, uk, brazil,
+// chile, argentina, canada, italy, nz, peru, spain, uruguay) remain in
+// the repo (code + data + content collections + TONE map preserved) but
+// are NOT linked from the user-facing nav. ArchiveSlug type union still
+// covers all 15 so re-adding any one slug is a 1-line edit to ARCHIVES +
+// BRAND. RootLayout adds data-pagefind-ignore to <main> when archiveSlug
+// is not in the active set (see RootLayout.astro ACTIVE_ARCHIVES).
+//
+// BRAND map is also slimmed to 4 entries. Defensive default still falls
+// back to wargov for any dormant archive that briefly renders the Nav
+// (e.g. nz/uruguay legacy pages preserved for direct-URL access).
 //
 // CLAUDE.md §11 don't: NO inline ↗ arrow in header links (reserved for footer
 // external sources). Internal archive-to-archive links only here.
@@ -17,48 +26,30 @@ interface Props {
 
 const { archiveSlug } = Astro.props;
 
-// 15-archive cross-nav — every slug from CLAUDE.md §2. Each <a> emits the
-// slug verbatim via `data-archive=` so checker B3's per-slug grep passes
-// even for the wargov entry (whose href is `/`, not `/wargov/`).
+// 4-archive active cross-nav (post-2026-05-28 scope pivot). Each <a>
+// emits the slug verbatim via `data-archive=` for consistency with the
+// pre-pivot contract; downstream tooling that greps for any of the 4
+// active slugs continues to work.
 const ARCHIVES = [
-  { slug: 'wargov',    name: 'WAR.GOV',    path: '/' },
-  { slug: 'aaro',      name: 'AARO',       path: '/aaro/' },
-  { slug: 'nasa',      name: 'NASA',       path: '/nasa/' },
-  { slug: 'nara',      name: 'NARA',       path: '/nara/' },
-  { slug: 'geipan',    name: 'GEIPAN',     path: '/geipan/' },
-  { slug: 'uk',        name: 'UK',         path: '/uk/' },
-  { slug: 'brazil',    name: 'BRAZIL',     path: '/brazil/' },
-  { slug: 'chile',     name: 'CHILE',      path: '/chile/' },
-  { slug: 'argentina', name: 'ARGENTINA',  path: '/argentina/' },
-  { slug: 'canada',    name: 'CANADA',     path: '/canada/' },
-  { slug: 'italy',     name: 'ITALY',      path: '/italy/' },
-  { slug: 'nz',        name: 'NZ',         path: '/nz/' },
-  { slug: 'peru',      name: 'PERU',       path: '/peru/' },
-  { slug: 'spain',     name: 'SPAIN',      path: '/spain/' },
-  { slug: 'uruguay',   name: 'URUGUAY',    path: '/uruguay/' },
+  { slug: 'wargov', name: 'WAR.GOV', path: '/' },
+  { slug: 'aaro',   name: 'AARO',    path: '/aaro/' },
+  { slug: 'nasa',   name: 'NASA',    path: '/nasa/' },
+  { slug: 'nara',   name: 'NARA',    path: '/nara/' },
 ] as const;
 
-// Brand text per active archive — short display name only (full name lives in
-// page <h1>). Mirrors legacy index.html's "U.S. Department of War" seal.
-const BRAND: Record<ArchiveSlug, { super: string; name: string; sealMark: string }> = {
-  wargov:    { super: 'U.S. Department of', name: 'War',       sealMark: 'DOW' },
-  aaro:      { super: 'Office of the',      name: 'AARO',      sealMark: 'AARO' },
-  nasa:      { super: 'National Aeronautics & Space', name: 'NASA', sealMark: 'NASA' },
-  nara:      { super: 'National Archives & Records',  name: 'NARA', sealMark: 'NARA' },
-  geipan:    { super: 'GEIPAN — CNES',      name: 'France',    sealMark: 'GEIPAN' },
-  uk:        { super: 'UK National',        name: 'Archives',  sealMark: 'UK' },
-  brazil:    { super: 'Força Aérea',        name: 'Brasileira',sealMark: 'FAB' },
-  chile:     { super: 'CEFAA · SEFAA',      name: 'DGAC',      sealMark: 'SEFAA' },
-  argentina: { super: 'CEFAe · Fuerza Aérea', name: 'Argentina', sealMark: 'CEFAe' },
-  canada:    { super: 'Library & Archives', name: 'Canada',    sealMark: 'LAC' },
-  italy:     { super: 'Aeronautica',        name: 'Militare',  sealMark: 'AM' },
-  nz:        { super: 'New Zealand Defence',name: 'Force',     sealMark: 'NZDF' },
-  peru:      { super: 'OIFAA · Fuerza Aérea', name: 'del Perú', sealMark: 'OIFAA' },
-  spain:     { super: 'Ejército',           name: 'del Aire',  sealMark: 'EdA' },
-  uruguay:   { super: 'CRIDOVNI · Fuerza Aérea', name: 'Uruguaya', sealMark: 'CRIDOVNI' },
+// Brand text per ACTIVE archive — short display name only (full name lives
+// in page <h1>). Mirrors legacy index.html's "U.S. Department of War" seal.
+// Dormant archives (nz, uruguay, etc.) fall through to the wargov default
+// via the lookup below. They are not user-navigable from Nav post-pivot,
+// but direct-URL access still renders a usable seal.
+const BRAND: Partial<Record<ArchiveSlug, { super: string; name: string; sealMark: string }>> = {
+  wargov: { super: 'U.S. Department of',               name: 'War',  sealMark: 'DOW'  },
+  aaro:   { super: 'Office of the',                    name: 'AARO', sealMark: 'AARO' },
+  nasa:   { super: 'National Aeronautics & Space',     name: 'NASA', sealMark: 'NASA' },
+  nara:   { super: 'National Archives & Records',      name: 'NARA', sealMark: 'NARA' },
 };
 
-const brand = BRAND[archiveSlug] ?? BRAND.wargov;
+const brand = BRAND[archiveSlug] ?? BRAND.wargov!;
 ---
 
 <div class="header-wrap">

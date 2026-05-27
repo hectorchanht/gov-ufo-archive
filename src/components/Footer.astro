@@ -2,6 +2,14 @@
 // Footer.astro — Source list + public-domain license per archive
 // (CLAUDE.md §4 footer block + §4.1 + §9 + D-20).
 //
+// SCOPE PIVOT (2026-05-28): realufo.org ships ONLY 4 active archives:
+// wargov, aaro, nasa, nara — all US jurisdiction (17 U.S.C. § 105). The
+// 11 dormant archives remain in the repo but are NOT linked from the
+// user-facing footer columns (Source + Archives). LICENSE + SOURCE_URLS
+// maps stay 15-wide so dormant pages can still render their own license
+// string at the bottom (defensive — they keep working on direct-URL
+// navigation even if not surfaced in the active footer).
+//
 // CLAUDE.md §9 (public-domain attribution per jurisdiction) is VERBATIM:
 // every license string below is copy-pasted from the spec — no paraphrase.
 // Footer external-source links DO use the inline ↗ marker (CLAUDE.md §11
@@ -19,8 +27,16 @@ interface Props {
 
 const { archiveSlug, totalRecords, lastUpdated } = Astro.props;
 
-// Public-domain attribution per CLAUDE.md §9 — verbatim. The US-jurisdiction
-// archives (wargov, aaro, nasa, nara) share 17 U.S.C. § 105.
+// 4-archive ACTIVE list (post-2026-05-28 scope pivot). Both the Source
+// column and the Archives column iterate over this set. Dormant archives
+// are intentionally invisible. Re-adding an archive is a 1-line edit here
+// + Nav.astro ARCHIVES + RootLayout.astro ACTIVE_ARCHIVES set.
+const ACTIVE_ARCHIVES: readonly ArchiveSlug[] = ['wargov', 'aaro', 'nasa', 'nara'] as const;
+
+// Public-domain attribution per CLAUDE.md §9 — verbatim. Map stays 15-wide
+// so dormant pages still render correct license on direct-URL access. The
+// US-jurisdiction archives (wargov, aaro, nasa, nara) all share 17 U.S.C.
+// § 105 — the only license string that surfaces under the active pivot.
 const LICENSE: Record<ArchiveSlug, string> = {
   wargov:    '17 U.S.C. § 105',
   aaro:      '17 U.S.C. § 105',
@@ -39,7 +55,10 @@ const LICENSE: Record<ArchiveSlug, string> = {
   peru:      'Public domain — Gobierno del Perú',
 };
 
-// Per-archive official source URL — CLAUDE.md §2 table verbatim.
+// Per-archive official source URL — CLAUDE.md §2 table verbatim. Map
+// stays 15-wide for the same defensive-default reason as LICENSE. Only
+// the 4 ACTIVE_ARCHIVES entries are surfaced in the rendered Source +
+// Archives columns.
 const SOURCE_URLS: Record<ArchiveSlug, { name: string; url: string }> = {
   wargov:    { name: 'war.gov / UFO',                 url: 'https://www.war.gov/UFO/' },
   aaro:      { name: 'AARO.mil',                      url: 'https://www.aaro.mil/' },
@@ -59,13 +78,17 @@ const SOURCE_URLS: Record<ArchiveSlug, { name: string; url: string }> = {
 };
 
 const license = LICENSE[archiveSlug] ?? LICENSE.wargov;
-const primarySource = SOURCE_URLS[archiveSlug];
+// Use the archive's own source if active; otherwise default to wargov so
+// dormant pages still render a non-empty primary source row.
+const primarySource = SOURCE_URLS[archiveSlug] ?? SOURCE_URLS.wargov;
 
-// All other archives, with the active one removed — supports the "sibling
-// archives" column.
-const siblings = (Object.keys(SOURCE_URLS) as ArchiveSlug[]).filter((s) => s !== archiveSlug);
+// Active archives only (excluding the active page's own source for the
+// "siblings" Source column). Dormant slugs never surface.
+const siblings = ACTIVE_ARCHIVES.filter((s) => s !== archiveSlug);
 
-// CLAUDE.md §2 paths (must match Nav.astro for cross-link parity).
+// CLAUDE.md §2 paths — 4-active. Restricted to ACTIVE_ARCHIVES so the
+// Archives column matches Nav.astro for cross-link parity. Dormant
+// archives keep their paths only for type-completeness; we never iterate.
 const PATH: Record<ArchiveSlug, string> = {
   wargov: '/', aaro: '/aaro/', nasa: '/nasa/', nara: '/nara/',
   geipan: '/geipan/', uk: '/uk/', brazil: '/brazil/', chile: '/chile/',
@@ -90,14 +113,16 @@ const PATH: Record<ArchiveSlug, string> = {
         <ul>
           {/* Active-archive official source first per CLAUDE.md §4.1.
               External link → inline ↗ marker per CLAUDE.md §11 (header rule
-              forbids it; footer source list permits + encourages it). */}
+              forbids it; footer source list permits + encourages it).
+              Post-2026-05-28 scope pivot: only 4 active archives surface. */}
           <li>
             <a href={primarySource.url} target="_blank" rel="noopener">
               {primarySource.name} ↗
             </a>
           </li>
-          {/* Other 14 source URLs follow — CLAUDE.md §4.1 (Source = official
-              URLs only; never internal mirror paths). */}
+          {/* Other ACTIVE source URLs follow — CLAUDE.md §4.1 (Source =
+              official URLs only; never internal mirror paths). Dormant
+              archives intentionally excluded. */}
           {siblings.map((s) => (
             <li>
               <a href={SOURCE_URLS[s].url} target="_blank" rel="noopener">
@@ -123,12 +148,13 @@ const PATH: Record<ArchiveSlug, string> = {
       <div>
         <h4>Archives</h4>
         <ul>
-          <li><a href="/">War.gov</a></li>
-          {(Object.keys(PATH) as ArchiveSlug[])
-            .filter((s) => s !== 'wargov')
-            .map((s) => (
-              <li><a href={PATH[s]}>{SOURCE_URLS[s].name}</a></li>
-            ))}
+          {/* Post-2026-05-28 scope pivot: only 4 active archives surface
+              in the Archives column. Dormant archives stay reachable by
+              direct URL (legacy postbuild-copy + ported nz/uruguay
+              Astro pages) but are intentionally invisible here. */}
+          {ACTIVE_ARCHIVES.map((s) => (
+            <li><a href={PATH[s]}>{SOURCE_URLS[s].name}</a></li>
+          ))}
         </ul>
       </div>
     </div>
