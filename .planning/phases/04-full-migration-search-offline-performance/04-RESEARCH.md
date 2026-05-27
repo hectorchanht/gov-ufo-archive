@@ -1458,7 +1458,7 @@ The Plan 03-03 visual-regression test catches drift if it occurs.
 
 **If this table is empty:** N/A — 8 assumptions logged. Operator confirmation needed on A3 (thumbnails to R2 or stay local) before `04-r2-setup` lands.
 
-## Open Questions
+## Open Questions (RESOLVED — see CONTEXT.md D-01/D-17b/D-33/D-38; A3 thumbs stay local per D-01 refinement)
 
 1. **Thumbnails on R2 or local?** D-01 says "ALL PDFs, videos, AND thumbnails" → R2. Astro Image processing requires local. Recommendation: thumbnails stay local; D-01 narrows to PDFs + videos only. Confirm with operator.
 2. **Pagefind index for legacy archives:** If 14-archive ports happen in waves, intermediate Phase 4 deploys have a mix of Astro-rendered + legacy HTML in `dist/`. Should Pagefind index land BEFORE all 14 ports complete (incremental index value) OR AFTER (clean single-pass)? Decision affects plan ordering. **Recommendation: AFTER** — `04-05-pagefind` lands after Wave 1+2+3 ports complete, just before close.

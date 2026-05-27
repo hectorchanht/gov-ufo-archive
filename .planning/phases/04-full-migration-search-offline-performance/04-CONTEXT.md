@@ -98,6 +98,11 @@ Port the remaining 14 archives to Astro (matching Plan 03-05 wargov pattern), sw
 - **D-39:** **PERF-04 regression check** — NZ/Uruguay/Peru baselines preserved. Per-archive port plans must run Lighthouse SOFT gate; LCP regression flagged.
 - **D-40:** **Phase 4 close = Lighthouse HARD-flip** — per 02-08 phase4-close-toggle, `.lighthouserc.cf.json` assertion levels flip `warn → error`. All archives must pass D-27 budgets (LCP ≤ 2500 ms, transfer ≤ 500 KB) before Phase 4 closes per ROADMAP §Phase 4 SC#2.
 
+### Shared-File Serialization (Plan-Checker Iter 1 fix — race condition addressed)
+
+- **D-41:** **`scripts/copy-legacy-archives.sh` shared-file write serialization** — all 14 archive port plans (04-05..04-18) modify this file to drop their slug from the archive list. Execute-phase workflow §execute_waves Step 1 ("Intra-wave files_modified overlap check") automatically detects this and overrides `parallelization=false` for any wave where ≥2 plans claim this file. Plans within a wave that share `scripts/copy-legacy-archives.sh` in `files_modified` will SERIALIZE rather than parallel-worktree, eliminating the merge-conflict risk plan-checker flagged. Same applies to `scripts/sync-nav.py` + `scripts/sync-footer.py` + `package.json` if multiple plans touch them in the same wave. No per-plan changes needed — execute-phase handles it.
+- **D-42:** **04-20 close plan retires `scripts/copy-legacy-archives.sh` entirely** — by Phase 4 close, every port has dropped its slug; the script is a no-op. 04-20 deletes it + removes `postbuild` hook from package.json.
+
 ### Claude's Discretion
 
 - Per-plan task breakdown (how many tasks per archive plan, atomic commit cadence)
