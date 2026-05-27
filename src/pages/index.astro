@@ -597,6 +597,15 @@ const jsonLd = {
             title: titleEl ? titleEl.textContent : '',
             url: openA ? (openA.dataset.url || '') : '',
             local: openA ? (openA.dataset.local || '') : '',
+            // Scope pivot 2026-05-28 — enrich lbList for lightbox meta panel
+            // + dual action buttons. Card.astro emits these on the article.
+            desc: c.dataset.desc || '',
+            agency: c.dataset.agency || '',
+            date: c.dataset.date || '',
+            region: c.dataset.region || '',
+            category: c.dataset.category || '',
+            type: c.dataset.type || '',
+            source: c.dataset.src || '',
           });
         }
         window.__lbList = list;
