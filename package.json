@@ -10,7 +10,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "prebuild": "python3 scripts/normalize-csv.py"
+    "prebuild": "python3 scripts/normalize-csv.py",
+    "postbuild": "bash scripts/copy-legacy-archives.sh"
   },
   "devDependencies": {
     "@lhci/cli": "0.14.0",
