@@ -28,6 +28,8 @@
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.0",
+    "@fontsource/jetbrains-mono": "^5.2.8",
+    "@fontsource/source-serif-4": "^5.2.9",
     "astro": "~5.18.0",
     "papaparse": "^5",
     "zod": "^3"
