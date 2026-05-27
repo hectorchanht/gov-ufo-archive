@@ -1,0 +1,250 @@
+name: R2 binary sync
+
+# Phase 4 Plan 04-02 Task 3 — Cloudflare R2 binary CDN sync.
+#
+# Triggers:
+#   - push to main when a binary asset (PDF / MP4 / WebM / MOV / MP3) changes
+#   - manual workflow_dispatch with `full_sync` boolean for first-run bulk
+#     migration (skips diff detection — uploads every tracked binary)
+#
+# Auth:
+#   - rclone speaks the R2 S3-compat endpoint
+#     (https://<account>.r2.cloudflarestorage.com)
+#   - CLOUDFLARE_R2_ACCESS_KEY + CLOUDFLARE_R2_SECRET_KEY are the S3 creds
+#     (created via CF Dashboard → R2 → Manage R2 API Tokens, scoped to the
+#     `realufo` bucket only — T-04-06 mitigation per 04-02-PLAN.md)
+#   - CLOUDFLARE_ACCOUNT_ID is used only to template the endpoint URL —
+#     not a secret per se, but kept in secrets vault for consistency
+#
+# Idempotency:
+#   - rclone sync --checksum hashes every file before transfer; re-running
+#     the same workflow against an already-synced bucket is a no-op
+#   - concurrency cancellation: disabled in the concurrency block below
+#     (T-04-07 mitigation — never cancel an in-flight upload mid-transfer)
+#   - timeout-minutes: 30 caps runaway workflows
+#
+# References:
+#   - .planning/decisions/r2-setup.md (this workflow's source ADR)
+#   - .planning/phases/04-full-migration-search-offline-performance/04-RESEARCH.md
+#     §5 (skeleton this workflow was modelled on)
+#   - .github/workflows/quality-gates.yml (analog for `${{ secrets.* }}`
+#     interpolation + concurrency stanza)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'bundles/**/*.pdf'
+      - 'bundles/**/*.mp4'
+      - 'bundles/**/*.webm'
+      - 'slideshow/**'
+      - 'slideshow-2/**'
+      - '**/videos/**/*.mp4'
+      - '**/videos/**/*.webm'
+      - '**/videos/**/*.mov'
+      - '**/bundles/**/*.pdf'
+      - '**/*.pdf'
+      - '**/*.mp4'
+      - '**/*.webm'
+  workflow_dispatch:
+    inputs:
+      full_sync:
+        description: 'Full bulk sync (skip diff detection — uploads every tracked PDF/MP4)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+# T-04-07 — never cancel an in-flight upload. A second push that lands
+# while a sync is running queues behind it (no overlap, no abort).
+concurrency:
+  group: r2-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    name: Sync binaries to Cloudflare R2
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      # ---------------------------------------------------------------
+      # Step 1 — Checkout with fetch-depth: 2 so the diff step can see
+      # HEAD^ for incremental sync. workflow_dispatch full_sync path
+      # bypasses diff anyway, but the extra commit costs ~50 KB of bandwidth.
+      # ---------------------------------------------------------------
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      # ---------------------------------------------------------------
+      # Step 2 — Install rclone from upstream-official install script.
+      # T-04-SC mitigation: rclone.org/install.sh is the project-blessed
+      # path per rclone.org/install/. Pinning to a specific version would
+      # require version-bump PRs every quarter; upstream-latest is the
+      # tradeoff. If a supply-chain incident affects rclone, the team
+      # responds with a pinned commit-sha install.
+      # ---------------------------------------------------------------
+      - name: Install rclone
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location \
+            https://rclone.org/install.sh | sudo bash
+          rclone version
+
+      # ---------------------------------------------------------------
+      # Step 3 — Configure rclone for the realufo R2 bucket via the
+      # S3-compatible endpoint. Secrets are interpolated into the
+      # rclone.conf at file-write time (NOT echoed to stdout/stderr) so
+      # workflow logs never leak the credentials (T-04-05 mitigation).
+      # chmod 600 on the config file restricts to the runner's user.
+      # ---------------------------------------------------------------
+      - name: Configure rclone for R2
+        env:
+          R2_ACCESS_KEY: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY }}
+          R2_SECRET_KEY: ${{ secrets.CLOUDFLARE_R2_SECRET_KEY }}
+          R2_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.config/rclone
+          umask 077
+          cat > ~/.config/rclone/rclone.conf <<EOF
+          [r2-realufo]
+          type = s3
+          provider = Cloudflare
+          endpoint = https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com
+          access_key_id = ${R2_ACCESS_KEY}
+          secret_access_key = ${R2_SECRET_KEY}
+          acl = private
+          # no_check_bucket: assume the bucket exists (it does — Plan 04-02
+          # Task 1 created it via wrangler). Skips a HEAD per sync.
+          no_check_bucket = true
+          EOF
+          chmod 600 ~/.config/rclone/rclone.conf
+          # Smoke: list buckets (proves the creds work without exposing them)
+          rclone lsd r2-realufo:
+
+      # ---------------------------------------------------------------
+      # Step 4 — Detect changed binaries. workflow_dispatch full_sync
+      # short-circuits to "files=ALL" so the sync step runs unconditionally.
+      # Otherwise, diff HEAD^..HEAD for binary file globs. rclone's
+      # --checksum makes us idempotent regardless, but a narrow diff
+      # saves Class A operations on a large bucket.
+      # ---------------------------------------------------------------
+      - name: Detect changed binaries
+        id: diff
+        run: |
+          set -euo pipefail
+          if [ "${{ inputs.full_sync }}" = "true" ]; then
+            echo "files=ALL" >> "$GITHUB_OUTPUT"
+            echo "diff-mode: full_sync (workflow_dispatch input set true)"
+          else
+            # Binary file extensions only; rclone --include filters again
+            # per-directory below so misses here are caught at the sync layer.
+            git diff --name-only HEAD^ HEAD -- \
+              '*.pdf' '*.mp4' '*.webm' '*.mov' '*.mp3' \
+              > /tmp/changed.txt || true
+            count=$(wc -l < /tmp/changed.txt | tr -d ' ')
+            echo "files=$count" >> "$GITHUB_OUTPUT"
+            echo "diff-mode: incremental ($count files changed)"
+            cat /tmp/changed.txt
+          fi
+
+      # ---------------------------------------------------------------
+      # Step 5 — Sync changed (or all) binaries to R2.
+      #
+      # Prefix layout per D-05 + .planning/decisions/r2-setup.md:
+      #   bundles/Release_1/<file>.pdf   → r2://realufo/pdfs/wargov/<file>.pdf
+      #   bundles/videos/<file>.mp4      → r2://realufo/videos/wargov/<file>.mp4
+      #   <slug>/bundles/<file>.pdf       → r2://realufo/pdfs/<slug>/<file>.pdf
+      #   <slug>/videos/<file>.mp4        → r2://realufo/videos/<slug>/<file>.mp4
+      #
+      # The wargov bundles + videos are the only paths populated today;
+      # the per-archive loop is a future-proof scaffold for Wave 3+
+      # archive ports (one archive's bundles + videos land on the next
+      # push that lands them). If the directory doesn't exist, the
+      # rclone sync is skipped via the [ -d "..." ] guard.
+      #
+      # rclone sync flags:
+      #   --checksum   re-hash both ends, skip files with matching SHA
+      #   --progress   stream upload progress to workflow logs
+      #   --include    glob filter per asset type
+      #   --transfers  default 4 (parallel uploads, R2-tuned)
+      # ---------------------------------------------------------------
+      - name: Sync to R2
+        if: steps.diff.outputs.files != '0' && steps.diff.outputs.files != ''
+        run: |
+          set -euo pipefail
+
+          # ----- wargov bundles (PDFs) -----
+          if [ -d "bundles/Release_1" ]; then
+            echo "::group::Sync bundles/Release_1/ → pdfs/wargov/"
+            rclone sync ./bundles/Release_1/ r2-realufo:realufo/pdfs/wargov/ \
+              --include '*.pdf' \
+              --checksum \
+              --progress
+            echo "::endgroup::"
+          fi
+
+          # ----- wargov videos -----
+          if [ -d "bundles/videos" ]; then
+            echo "::group::Sync bundles/videos/ → videos/wargov/"
+            rclone sync ./bundles/videos/ r2-realufo:realufo/videos/wargov/ \
+              --include '*.mp4' \
+              --include '*.webm' \
+              --checksum \
+              --progress
+            echo "::endgroup::"
+          fi
+
+          # ----- per-archive scaffold (extends as Wave 3+ archives port) -----
+          # As each archive ports in Phase 4 Wave 3+, the corresponding
+          # <slug>/bundles/ and <slug>/videos/ directories populate, and
+          # this loop picks them up on the next push automatically.
+          for slug in aaro nasa nara geipan uk brazil chile argentina \
+                      canada italy nz peru spain uruguay; do
+            if [ -d "${slug}/bundles" ]; then
+              echo "::group::Sync ${slug}/bundles/ → pdfs/${slug}/"
+              rclone sync "./${slug}/bundles/" "r2-realufo:realufo/pdfs/${slug}/" \
+                --include '*.pdf' \
+                --checksum \
+                --progress
+              echo "::endgroup::"
+            fi
+            if [ -d "${slug}/videos" ]; then
+              echo "::group::Sync ${slug}/videos/ → videos/${slug}/"
+              rclone sync "./${slug}/videos/" "r2-realufo:realufo/videos/${slug}/" \
+                --include '*.mp4' \
+                --include '*.webm' \
+                --include '*.mov' \
+                --checksum \
+                --progress
+              echo "::endgroup::"
+            fi
+          done
+
+      # ---------------------------------------------------------------
+      # Step 6 — Print post-sync bucket object summary so the operator
+      # can sanity-check the count without leaving GitHub Actions.
+      # ---------------------------------------------------------------
+      - name: Post-sync bucket summary
+        if: steps.diff.outputs.files != '0' && steps.diff.outputs.files != ''
+        run: |
+          set -euo pipefail
+          echo "::group::Bucket object count"
+          rclone size r2-realufo:realufo
+          echo "::endgroup::"
+          echo "::group::Top-level prefixes"
+          rclone lsd r2-realufo:realufo
+          echo "::endgroup::"
+
+      # ---------------------------------------------------------------
+      # Step 7 — Clean up rclone config (defence in depth — runner is
+      # ephemeral, but explicit cleanup means a hung step won't leave
+      # the config on a host that gets reassigned).
+      # ---------------------------------------------------------------
+      - name: Cleanup rclone config
+        if: always()
+        run: |
+          rm -f ~/.config/rclone/rclone.conf
