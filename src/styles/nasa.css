@@ -1,0 +1,35 @@
+/* nasa.css — NASA UAP Independent Study Team per-archive page styles
+ * (Plan 04-16 — fourth per-archive port).
+ *
+ * Inherits ~95% of its layout from src/styles/wargov.css's shared
+ * `.hero`, `.headlines`, `.archive`, `.stats-grid`, `.arch-controls-bar`,
+ * `.filter-bar`, `.result-count`, and `.arch-card` selectors (Plan
+ * 03-05). To avoid duplicating ~500 lines of CSS across 14 archive
+ * pages, this file re-imports the shared wargov layout — every
+ * selector inside is archive-agnostic (uses var(--caution) which the
+ * <html style> attribute from RootLayout.astro sets to #fc3d21 for
+ * NASA per CLAUDE.md §3.1).
+ *
+ * NASA has no per-archive layout deltas beyond the tone-colour:
+ *   - hero structure: same coords + h1 + lede pattern as wargov.
+ *     Hero title uses <em>Independent</em> for italic accent —
+ *     coloured via the global.css `h1.hero-title em` rule (Plan 03-04
+ *     base).
+ *   - headlines: same head-card-grid (6 tiles — Commissioned /
+ *     Members / Lead / Final report / Public meeting / Stance).
+ *   - archive grid: same stats + tabs + filter + arch-grid structure.
+ *
+ * NASA's red tone (#fc3d21) contrasts cleanly against the dark
+ * #0a0a0c background — ≥ 4.5:1 on hero h1 (passes WCAG AA for large
+ * text), ≥ 10:1 on body text where var(--ink) = #e8e3d8. No
+ * per-archive contrast override needed.
+ *
+ * Tone-colour wiring (CLAUDE.md §3.1):
+ *   var(--caution) = #fc3d21 (NASA red), set by RootLayout.astro
+ *   via the TONE map when archiveSlug="nasa".
+ *
+ * Mobile-first per CLAUDE.md §8 — base styles assume 360 px viewport.
+ */
+
+/* Re-use wargov.css layout — same skeleton, different tone-colour. */
+@import url('./wargov.css');

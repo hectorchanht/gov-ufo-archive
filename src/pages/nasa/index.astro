@@ -1,0 +1,476 @@
+---
+// src/pages/nasa/index.astro — NASA UAP Independent Study Team
+// archive page at /nasa/.
+//
+// Fourth per-archive port (Plan 04-16). Wave 5 small-catalog tier
+// (D-08) — 18 assets at capture (11 PDF + 5 VID + 2 IMG). Reuses
+// CatalogCard.astro template established by Plan 04-05 + pagination
+// pattern established by Plan 04-04, both verbatim.
+//
+// Composes:
+//   - RootLayout (Plan 03-04) — archiveSlug="nasa" → tone-colour
+//     `--caution: #fc3d21` per CLAUDE.md §3.1 (NASA red).
+//   - CatalogCard (Plan 04-05 Task 1) — generic over catalogAssetSchema.
+//   - Lightbox (Plan 03-05 + scope-pivot extension) — static shell +
+//     invariants.ts handlers; meta panel reads data-* from cards.
+//
+// Hero copy (h1 + lede + footer license) is verbatim from the legacy
+// nasa/index.html (CLAUDE.md §9 fidelity rule) so tests/fidelity-
+// samples.json's 5+ NASA entries continue to byte-match against the
+// rendered DOM. The legacy nasa/index.html is deleted in this same
+// plan (D-09 — per-archive Python retirement), so /nasa/ now serves
+// Astro-rendered HTML instead of the postbuild-copied legacy file.
+//
+// NASA sub-pages (nasa/story.html + nasa/assets/*) are PRESERVED via
+// a partial-port block in scripts/copy-legacy-archives.sh — same
+// pattern as NZ + Uruguay + NARA (Plans 04-05 / 04-06 / 04-15).
+//
+// Key invariants:
+//   - D-21..D-23: every <script> here is <script is:inline>. NO client:*.
+//   - D-26..D-28: no transforms on text. Astro auto-escapes `{expr}` but
+//     does NOT rewrite typography. Hero copy + card titles round-trip
+//     byte-exact.
+//   - Plan 04-04 (D-27..D-28) pagination contract inherited: PAGE_SIZE=20,
+//     ?page=N URL param. NASA has 18 assets so the handler emits a
+//     single page (renderPaginationNav(1,1) → empty nav). Future growth
+//     past 20 assets Just Works without page-template changes.
+//   - Pitfall #6: refreshLbList walks ALL .arch-card (including
+//     display:none) so lightbox prev/next crosses page boundaries.
+//
+// CLAUDE.md §2 NASA tone:
+//   - Path: /nasa/ (this file → dist/nasa/index.html)
+//   - Tone: #fc3d21 (NASA red)
+//   - Source URL: https://science.nasa.gov/uap/
+//   - License: 17 U.S.C. § 105 (USA federal works — public domain)
+
+import RootLayout from '../../layouts/RootLayout.astro';
+import CatalogCard from '../../components/CatalogCard.astro';
+import Lightbox from '../../components/Lightbox.astro';
+import { getEntry } from 'astro:content';
+import '../../styles/nasa.css';
+
+const nasa = await getEntry('nasa', 'v1');
+if (!nasa) {
+  throw new Error(
+    'nasa collection entry "v1" missing — run `python3 scripts/normalize-nasa.py` to regenerate data/nasa.json',
+  );
+}
+
+const { assets, stats } = nasa.data;
+
+// Slugify — byte-for-byte port of scripts/_archive_common.slugify (and
+// the same rule used by scripts/snapshot-urls.py + normalize-csv.py).
+// Algorithm: lowercase → collapse runs of non-[a-z0-9] to single hyphen →
+// strip leading/trailing hyphens → truncate to 80 chars → strip again.
+function slugify(text: string): string {
+  if (!text) return '';
+  const s = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  return s.slice(0, 80).replace(/^-+|-+$/g, '');
+}
+
+// Page meta — title CLEAN per scope-pivot precedent (DROPS legacy
+// "Offline Mirror" suffix per CLAUDE.md §11 "no mirror in user-facing
+// copy" + NARA 04-15 precedent). Description derived from legacy
+// nasa/index.html <meta name="description"> content verbatim.
+const title = 'NASA UAP Independent Study Team | realufo.org';
+const description = "Offline mirror of NASA's UAP Independent Study Team final report, briefings, and public meeting record.";
+---
+<RootLayout
+  archiveSlug="nasa"
+  title={title}
+  description={description}
+  totalRecords={stats.total}
+  lastUpdated="2026-05-27"
+>
+  <section class="hero" id="intro">
+    <div class="container">
+      <div class="coords">38°53′00″N, 77°00′59″W · NASA HQ · MARY W. JACKSON BUILDING, WASHINGTON, D.C.</div>
+      <h1 class="hero-title">NASA UAP <em>Independent</em> Study</h1>
+      <p class="hero-sub">In June 2022 NASA commissioned a 16-member independent study team led by astrophysicist
+        Dr. David Spergel to examine unidentified anomalous phenomena from a strictly scientific
+        perspective. The team delivered its <a href="https://science.nasa.gov/wp-content/uploads/2023/09/uap-independent-study-team-final-report.pdf" target="_blank" rel="noopener">final report</a>
+        on September 14, 2023 — recommending a unified data pipeline, expanded use of NASA Earth
+        observation assets, and the application of AI/ML to anomaly detection. Source: <a href="https://science.nasa.gov/uap/" target="_blank" rel="noopener">science.nasa.gov/uap</a>.</p>
+    </div>
+  </section>
+
+  <section class="headlines" id="headlines">
+    <div class="container">
+      <div class="section-label">§ Headlines · The study, distilled</div>
+      <div class="head-card-grid">
+        <article class="head-card">
+          <div class="hc-tag">Commissioned</div>
+          <h3>2022</h3>
+          <p>Study team announced June 9, 2022.</p>
+        </article>
+        <article class="head-card">
+          <div class="hc-tag">Members</div>
+          <h3>16</h3>
+          <p>Scientists, astronauts, intelligence and data experts.</p>
+        </article>
+        <article class="head-card">
+          <div class="hc-tag">Lead</div>
+          <h3>Dr. David Spergel</h3>
+          <p>President, Simons Foundation. Princeton astrophysicist.</p>
+        </article>
+        <article class="head-card">
+          <div class="hc-tag">Final report</div>
+          <h3>36 pages</h3>
+          <p>Published Sep 14, 2023 · publicly downloadable.</p>
+        </article>
+        <article class="head-card">
+          <div class="hc-tag">Public meeting</div>
+          <h3>May 31, 2023</h3>
+          <p>Full 4-hour deliberation streamed live.</p>
+        </article>
+        <article class="head-card">
+          <div class="hc-tag">Stance</div>
+          <h3>No conclusive evidence</h3>
+          <p>Of extraterrestrial origin; data is the path forward.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="archive" id="archive">
+    <div class="container">
+      <div class="section-label">§ Evidence · Reports, briefings, public meeting</div>
+      <h2>Every report and presentation the Independent Study Team produced.</h2>
+
+      <div class="stats-grid" id="arch-stats">
+        <div class="stat">
+          <div class="stat-num">{stats.total}</div>
+          <div class="stat-label">Total records</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">{stats.local_total}</div>
+          <div class="stat-label">Locally archived</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">{stats.pdf_total}</div>
+          <div class="stat-label">PDF documents</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">{stats.catalog_total}</div>
+          <div class="stat-label">Catalog gateways</div>
+        </div>
+      </div>
+
+      <div class="arch-controls-bar" id="arch-controls-bar">
+        <div class="tabs" id="arch-tabs">
+          <button type="button" class="tab active" data-tab="all">All</button>
+          <button type="button" class="tab" data-tab="PDF">PDF</button>
+          <button type="button" class="tab" data-tab="VID">Video</button>
+          <button type="button" class="tab" data-tab="IMG">Imagery</button>
+        </div>
+        <div class="sort-wrap">
+          <label for="arch-sort">Sort:</label>
+          <select id="arch-sort">
+            <option value="type">Type</option>
+            <option value="title">Title (A→Z)</option>
+            <option value="title-desc">Title (Z→A)</option>
+            <option value="date-new">Date (newest)</option>
+            <option value="date-old">Date (oldest)</option>
+            <option value="agency">Agency</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="filter-bar">
+        <label>Agency:
+          <select id="filter-agency">
+            <option value="">All</option>
+          </select>
+        </label>
+        <label>Per page:
+          <select id="filter-perpage">
+            <option value="12">12</option>
+            <option value="24" selected>24</option>
+            <option value="48">48</option>
+            <option value="96">96</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="result-count" id="arch-count" aria-live="polite"></div>
+
+      <div class="arch-grid" id="nasa-grid">
+        {assets.map((asset, idx) => (
+          <CatalogCard
+            asset={asset}
+            idx={idx}
+            slug={slugify(asset.ti)}
+            archiveSlug="nasa"
+          />
+        ))}
+      </div>
+
+      {/* Pagination nav — populated by the ?page=N handler below (Plan 04-04
+          contract inherited). data-pagefind-ignore keeps the nav links out of
+          the search index (SRC-04). For NASA (18 assets < PAGE_SIZE=20),
+          the handler short-circuits via renderPaginationNav(1,1) → empty
+          nav. */}
+      <nav class="pagination" id="nasa-pagination" data-pagefind-ignore aria-label="Pagination"></nav>
+    </div>
+  </section>
+
+  <Lightbox />
+
+  {/* Inline arch-data JSON manifest — mirrors the legacy
+      nasa/index.html `<script id="arch-data">` block so external
+      tooling continues to work without per-archive special-cases:
+        - scripts/verify-fidelity.py (card-title extractor reads this
+          via MANIFEST_RE — see scripts/verify-fidelity.py)
+        - tests/fidelity-samples.json (NASA card-title samples
+          reference `script#arch-data[N].ti` selectors)
+        - any future cross-archive aggregator looking for inline data
+      Shape matches the legacy emit: `{ assets: [...], stats: {...} }`
+      with abbreviated catalog keys (same as data/nasa.json's
+      v1.assets, v1.stats — but without the schemaVersion / slug
+      wrapper, since the legacy build-<slug>.py scripts emitted the
+      bare shape). Plan 04-19 Pagefind reads data-pagefind-* attributes
+      from cards (CatalogCard.astro), NOT this manifest — no
+      double-indexing. */}
+  <script
+    is:inline
+    type="application/json"
+    id="arch-data"
+    set:html={JSON.stringify({ assets: assets, stats: stats })}
+  ></script>
+
+  {/* Pagination + filter/sort runtime — Plan 04-04 PAGE_SIZE=20 contract,
+      adapted for NASA. NASA has 18 assets so the handler emits a single
+      page on first load. Pitfall #6: lbList walks ALL .arch-card
+      (including display:none) so lightbox prev/next crosses page
+      boundaries. D-21..D-23: <script is:inline> — no Vite bundling,
+      no hydration. */}
+  <script is:inline>
+    (() => {
+      const PAGE_SIZE = 20; // D-27
+      const grid = document.getElementById('nasa-grid');
+      const paginationNav = document.getElementById('nasa-pagination');
+      if (!grid || !paginationNav) return;
+
+      function readPage() {
+        const raw = new URLSearchParams(location.search).get('page') || '1';
+        const p = parseInt(raw, 10);
+        return Math.max(1, isNaN(p) ? 1 : p);
+      }
+
+      function renderPaginationNav(current, total) {
+        if (!paginationNav) return;
+        if (total <= 1) {
+          paginationNav.innerHTML = '';
+          return;
+        }
+        const parts = [];
+        if (current > 1) {
+          parts.push(
+            '<a href="?page=' + (current - 1) + '" class="pg-prev" rel="prev">← Prev</a>',
+          );
+        }
+        for (let i = 1; i <= total; i++) {
+          if (i === current) {
+            parts.push('<span class="pg-current" aria-current="page">' + i + '</span>');
+          } else {
+            parts.push('<a href="?page=' + i + '">' + i + '</a>');
+          }
+        }
+        if (current < total) {
+          parts.push(
+            '<a href="?page=' + (current + 1) + '" class="pg-next" rel="next">Next →</a>',
+          );
+        }
+        paginationNav.innerHTML = parts.join('');
+      }
+
+      function renderPage(pageNum, opts) {
+        opts = opts || {};
+        const cards = Array.from(grid.querySelectorAll('.arch-card'));
+        if (!cards.length) return;
+        const totalPages = Math.max(1, Math.ceil(cards.length / PAGE_SIZE));
+        pageNum = Math.min(Math.max(1, pageNum), totalPages);
+
+        const start = (pageNum - 1) * PAGE_SIZE;
+        const end = start + PAGE_SIZE;
+        for (let i = 0; i < cards.length; i++) {
+          cards[i].style.display = i >= start && i < end ? '' : 'none';
+        }
+
+        renderPaginationNav(pageNum, totalPages);
+
+        if (location.hash && !opts.fromHash) {
+          let target = null;
+          try { target = document.querySelector(location.hash); } catch (_) { target = null; }
+          if (target && target.classList && target.classList.contains('arch-card')) {
+            const idx = cards.indexOf(target);
+            if (idx >= 0) {
+              const targetPage = Math.floor(idx / PAGE_SIZE) + 1;
+              if (targetPage !== pageNum) {
+                renderPage(targetPage, { fromHash: true });
+                target.scrollIntoView({ block: 'start' });
+                return;
+              }
+              target.scrollIntoView({ block: 'start' });
+            }
+          }
+        } else if (!opts.fromHash && !opts.skipScroll) {
+          try { window.scrollTo({ top: 0, behavior: 'instant' }); }
+          catch (_) { window.scrollTo(0, 0); }
+        }
+
+        try {
+          grid.dispatchEvent(new CustomEvent('nasa:page-rendered', {
+            bubbles: true,
+            detail: { page: pageNum, totalPages: totalPages, totalCards: cards.length },
+          }));
+        } catch (_) { /* CustomEvent unavailable in very old browsers — silent */ }
+      }
+
+      document.addEventListener('click', (e) => {
+        const a = e.target && e.target.closest && e.target.closest('#nasa-pagination a');
+        if (!a) return;
+        e.preventDefault();
+        const url = new URL(a.getAttribute('href'), location.origin + location.pathname);
+        try { history.pushState({}, '', url); }
+        catch (_) { location.search = url.search; return; }
+        const pageNum = parseInt(url.searchParams.get('page') || '1', 10);
+        renderPage(isNaN(pageNum) ? 1 : pageNum);
+      });
+      window.addEventListener('popstate', () => renderPage(readPage()));
+      renderPage(readPage());
+    })();
+  </script>
+
+  {/* Filter/sort progressive enhancement — operates on rendered DOM
+      data-* attributes per D-11. Identical to the wargov + nz + uruguay
+      + nara handler; kept inline so each per-archive page is
+      self-contained. */}
+  <script is:inline>
+    (() => {
+      const grid = document.getElementById('nasa-grid');
+      const tabs = document.querySelectorAll('.arch-controls-bar .tab');
+      const sort = document.getElementById('arch-sort');
+      const agencyFilter = document.getElementById('filter-agency');
+      const countEl = document.getElementById('arch-count');
+      if (!grid) return;
+
+      function getCards() {
+        return Array.from(grid.querySelectorAll('.arch-card'));
+      }
+
+      function applyFilters() {
+        const activeTab = document.querySelector('.arch-controls-bar .tab.active');
+        const typeFilter = activeTab ? activeTab.getAttribute('data-tab') : 'all';
+        const agencyVal = agencyFilter ? agencyFilter.value : '';
+        let visible = 0;
+        for (const c of getCards()) {
+          const type = c.getAttribute('data-type') || '';
+          const agency = c.getAttribute('data-agency') || '';
+          const typeOk = typeFilter === 'all' || type === typeFilter;
+          const agencyOk = !agencyVal || agency === agencyVal;
+          const show = typeOk && agencyOk;
+          c.style.display = show ? '' : 'none';
+          if (show) visible++;
+        }
+        if (countEl) {
+          countEl.textContent = visible + ' / ' + getCards().length + ' records';
+        }
+      }
+
+      function populateAgencies() {
+        if (!agencyFilter) return;
+        const agencies = new Set();
+        for (const c of getCards()) {
+          const a = c.getAttribute('data-agency');
+          if (a) agencies.add(a);
+        }
+        const current = agencyFilter.value;
+        agencyFilter.innerHTML = '<option value="">All</option>';
+        Array.from(agencies).sort().forEach((a) => {
+          const opt = document.createElement('option');
+          opt.value = a;
+          opt.textContent = a;
+          if (a === current) opt.selected = true;
+          agencyFilter.appendChild(opt);
+        });
+      }
+
+      function applySort() {
+        if (!sort) return;
+        const mode = sort.value;
+        const cards = getCards();
+        cards.sort((a, b) => {
+          if (mode === 'title') {
+            return (a.querySelector('.card-title')?.textContent || '').localeCompare(
+              b.querySelector('.card-title')?.textContent || ''
+            );
+          }
+          if (mode === 'title-desc') {
+            return (b.querySelector('.card-title')?.textContent || '').localeCompare(
+              a.querySelector('.card-title')?.textContent || ''
+            );
+          }
+          if (mode === 'agency') {
+            return (a.getAttribute('data-agency') || '').localeCompare(b.getAttribute('data-agency') || '');
+          }
+          return (a.getAttribute('data-type') || '').localeCompare(b.getAttribute('data-type') || '');
+        });
+        for (const c of cards) grid.appendChild(c);
+      }
+
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+          tabs.forEach((t) => t.classList.remove('active'));
+          tab.classList.add('active');
+          applyFilters();
+        });
+      });
+      if (sort) sort.addEventListener('change', () => { applySort(); applyFilters(); });
+      if (agencyFilter) agencyFilter.addEventListener('change', applyFilters);
+
+      const obs = new MutationObserver(() => {
+        populateAgencies();
+        applyFilters();
+      });
+      obs.observe(grid, { childList: true });
+
+      populateAgencies();
+      applyFilters();
+
+      // Populate lightbox list — invariants.ts reads window.__lbList.
+      // Pitfall #6: walk ALL .arch-card (including display:none) so
+      // lightbox prev/next traverses the full set across filter +
+      // pagination boundaries.
+      function refreshLbList() {
+        const list = [];
+        for (const c of grid.querySelectorAll('.arch-card')) {
+          const rowId = c.dataset.rowId;
+          const titleEl = c.querySelector('.card-title');
+          const openA = c.querySelector('a.btn-open');
+          list.push({
+            rowId,
+            title: titleEl ? titleEl.textContent : '',
+            url: openA ? (openA.dataset.url || '') : '',
+            local: openA ? (openA.dataset.local || '') : '',
+            // Scope pivot 2026-05-28 — enrich lbList for lightbox meta
+            // panel + dual action buttons. CatalogCard.astro emits these.
+            desc: c.dataset.desc || '',
+            agency: c.dataset.agency || '',
+            date: c.dataset.date || '',
+            region: c.dataset.region || '',
+            category: c.dataset.category || '',
+            type: c.dataset.type || '',
+            source: c.dataset.src || '',
+          });
+        }
+        window.__lbList = list;
+      }
+      refreshLbList();
+      const lbObs = new MutationObserver(refreshLbList);
+      lbObs.observe(grid, { childList: true });
+      // Plan 04-04 — refresh lbList on page change.
+      grid.addEventListener('nasa:page-rendered', refreshLbList);
+    })();
+  </script>
+</RootLayout>
