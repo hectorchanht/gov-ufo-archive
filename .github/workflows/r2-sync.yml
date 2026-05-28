@@ -297,12 +297,13 @@ jobs:
             echo "::endgroup::"
           fi
 
-          # ----- per-archive scaffold (extends as Wave 3+ archives port) -----
-          # As each archive ports in Phase 4 Wave 3+, the corresponding
-          # <slug>/bundles/ and <slug>/videos/ directories populate, and
-          # this loop picks them up on the next push automatically.
-          for slug in aaro nasa nara geipan uk brazil chile argentina \
-                      canada italy nz peru spain uruguay; do
+          # ----- per-archive scaffold (4 ACTIVE archives per CLAUDE.md §2) -----
+          # Plan 05-01 fix (2026-05-28): restrict loop to ACTIVE slugs only.
+          # wargov is special-cased above (bundles/Release_1/ + bundles/videos/).
+          # The 11 dormant slugs (geipan, uk, brazil, chile, argentina, canada,
+          # italy, nz, peru, spain, uruguay) are excluded from v1 R2 surface;
+          # re-add a slug here only when it returns to active per CLAUDE.md §2.
+          for slug in aaro nasa nara; do
             if [ -d "${slug}/bundles" ]; then
               echo "::group::Sync ${slug}/bundles/ → pdfs/${slug}/"
               rclone sync "./${slug}/bundles/" "r2-realufo:realufo/pdfs/${slug}/" \
