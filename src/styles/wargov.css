@@ -363,12 +363,49 @@ p.hero-sub a {
   transform: translateY(-2px);
 }
 
+/* Card thumbnail container — operator spec 8 (2026-05-29).
+   `.arch-card > img` is the only image directly inside the article. We
+   render the image as a contained, centered preview (was object-fit:cover
+   which cropped off-center for portrait PDFs). The aspect-ratio box is
+   preserved so card heights stay uniform. */
 .arch-card img {
   width: 100%;
   aspect-ratio: 4 / 3;
-  object-fit: cover;
+  object-fit: contain;            /* spec 8 — preserve full image */
+  object-position: center;        /* spec 8 — center horizontally + vertically */
   background: var(--bg);
   display: block;
+  margin-inline: auto;
+}
+
+/* Operator spec 3 (2026-05-29) — VID / AUDIO cards without a thumbnail
+   get a generic poster block so all card types render a clickable image
+   region of identical height. The pseudo-element renders before .card-title
+   when no <img> child exists. Uses :has() — supported in all evergreen
+   browsers (Safari 15.4+, Chrome 105+, Firefox 121+). */
+.arch-card:not(:has(> img))::before {
+  content: "";
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: var(--bg);
+  border-bottom: 1px solid var(--rule);
+  /* Generic film/document iconography via inline SVG. Colour-keyed to
+     ink-faint so it reads as a placeholder, not an active element. */
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 48' fill='none'><rect x='6' y='10' width='52' height='28' rx='2' stroke='%236b665d' stroke-width='1.5'/><polygon points='27,18 27,30 38,24' fill='%236b665d'/></svg>");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 80px auto;
+}
+
+/* PDF placeholder variant — document glyph instead of play triangle. */
+.arch-card[data-type="PDF"]:not(:has(> img))::before {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 48' fill='none'><rect x='18' y='8' width='28' height='34' rx='1' stroke='%236b665d' stroke-width='1.5'/><line x1='24' y1='18' x2='40' y2='18' stroke='%236b665d' stroke-width='1.5'/><line x1='24' y1='24' x2='40' y2='24' stroke='%236b665d' stroke-width='1.5'/><line x1='24' y1='30' x2='34' y2='30' stroke='%236b665d' stroke-width='1.5'/></svg>");
+}
+
+/* Audio placeholder — speaker glyph. */
+.arch-card[data-type="AUDIO"]:not(:has(> img))::before {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 48' fill='none'><polygon points='20,18 28,18 36,12 36,36 28,30 20,30' fill='%236b665d'/><path d='M42 18 Q46 24 42 30' stroke='%236b665d' stroke-width='1.5'/></svg>");
 }
 
 .arch-card .card-title {
