@@ -1,0 +1,16 @@
+{
+  "name": "realufo-akamai-spike",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Throwaway one-shot Worker that probes the 4 active realufo source origins from a Cloudflare Workers IP. Plan 05-02 scope. Deleted after akamai-spike.md ADR locks.",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260528.1",
+    "typescript": "~5",
+    "wrangler": "^4.95.0"
+  }
+}

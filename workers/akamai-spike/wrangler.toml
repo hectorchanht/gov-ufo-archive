@@ -1,0 +1,25 @@
+# Throwaway spike Worker — deleted after `.planning/decisions/akamai-spike.md` closes.
+# Plan 05-02 scope.
+#
+# Purpose: One-shot probe that fetches the 4 active source origins
+# (war.gov / aaro.mil / science.nasa.gov / catalog.archives.gov) from a
+# Cloudflare Workers IP and records HTTP status + response signature.
+# Determines which sources stay on the Workers cron path vs which fall
+# through to the GH Actions `curl_cffi` Akamai-tolerant runner (Plan 05-04 / 05-05).
+#
+# Cost: ~10s wall-clock per invocation; negligible against the Workers Paid
+# CPU budget (see `.planning/decisions/workers-paid.md`).
+#
+# Name MUST stay distinct from the production cron Worker that Plan 05-03
+# scaffolds (e.g. `realufo-scrape-cron`) so this throwaway cannot collide.
+
+name = "realufo-akamai-spike"
+main = "src/index.ts"
+compatibility_date = "2026-05-28"
+
+# KV namespace populated by operator at deploy time:
+#   wrangler kv namespace create AKAMAI_SPIKE
+# Paste the returned `id` into the `id = "..."` field below, then `wrangler deploy`.
+[[kv_namespaces]]
+binding = "AKAMAI_SPIKE"
+id = "<populated-during-deploy>"
