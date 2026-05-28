@@ -122,8 +122,10 @@ jobs:
           no_check_bucket = true
           EOF
           chmod 600 ~/.config/rclone/rclone.conf
-          # Smoke: list buckets (proves the creds work without exposing them)
-          rclone lsd r2-realufo:
+          # Smoke: list inside the `realufo` bucket (the R2 API token is scoped
+          # to this single bucket per Plan 04-02 — ListBuckets at account level
+          # returns 403 even though Object Read/Write works inside the bucket).
+          rclone lsd r2-realufo:realufo
 
       # ---------------------------------------------------------------
       # Step 4 — Detect changed binaries. workflow_dispatch full_sync
