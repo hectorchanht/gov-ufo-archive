@@ -14,7 +14,7 @@ This roadmap derives 6 phases from the v1 REQUIREMENTS.md categories (PMS / INF 
 - [ ] **Phase 1: Pre-Migration Safety** — Snapshot the current contract and remove production tripwires before SSG code lands
 - [ ] **Phase 2: Infrastructure & CI Scaffolding** — Stand up Cloudflare Pages, Workers paid, and verification gates against current `main` baselines
 - [x] **Phase 3: SSG Foundation** — Bring up Astro 5.x alongside the existing build, port the smallest archive end-to-end as a proof (completed 2026-05-27)
-- [ ] **Phase 4: Full Migration, Search, Offline, Performance** — Port the remaining 14 archives, wire Pagefind + injectManifest SW + per-page weight budget
+- [x] **Phase 4: Full Migration, Search, Offline, Performance** — Port the remaining 14 archives, wire Pagefind + injectManifest SW + per-page weight budget (completed 2026-05-28)
 - [ ] **Phase 5: Scrape Automation** — Move source ingestion to Cloudflare Workers cron with hybrid Akamai fallback and idempotent GH Releases upload
 - [ ] **Phase 6: Hosting & Cutover** — Stabilise preview deploy, swap DNS off GitHub Pages, monitor 7-day window, archive the legacy workflow
 
@@ -147,12 +147,12 @@ Plans:
 
 **Plans**: 20 plans
 
-- [ ] 04-01-PLAN.md — SSG-09: lightbox-fix (root-cause + invariants.ts + Card.astro patches)
-- [ ] 04-02-PLAN.md — SSG-06: R2 bucket setup + assets.realufo.org custom domain + r2-sync.yml + scripts/_archive_common.py
-- [ ] 04-03-PLAN.md — SW-01..07 + SRC-05: @vite-pwa/astro injectManifest SW + self-hosted @fontsource + _headers verification
-- [ ] 04-04-PLAN.md — SSG-09: wargov re-paging (50/page → 20/page client-side ?page=N + pagination handler)
-- [ ] 04-05-PLAN.md — SSG-06,08-12: NZ port + ESTABLISHES src/components/CatalogCard.astro template
-- [ ] 04-06-PLAN.md — SSG-06,08-12: Uruguay port (small static, minimal-delta template)
+- [x] 04-01-PLAN.md — SSG-09: lightbox-fix (root-cause + invariants.ts + Card.astro patches)
+- [x] 04-02-PLAN.md — SSG-06: R2 bucket setup + assets.realufo.org custom domain + r2-sync.yml + scripts/_archive_common.py
+- [x] 04-03-PLAN.md — SW-01..07 + SRC-05: @vite-pwa/astro injectManifest SW + self-hosted @fontsource + _headers verification
+- [x] 04-04-PLAN.md — SSG-09: wargov re-paging (50/page → 20/page client-side ?page=N + pagination handler)
+- [x] 04-05-PLAN.md — SSG-06,08-12: NZ port + ESTABLISHES src/components/CatalogCard.astro template
+- [x] 04-06-PLAN.md — SSG-06,08-12: Uruguay port (small static, minimal-delta template)
 - [ ] 04-07-PLAN.md — SSG-06,08-12: Peru port (small static)
 - [ ] 04-08-PLAN.md — SSG-06,08-12: Spain port (small static)
 - [ ] 04-09-PLAN.md — SSG-06,08-12: Argentina port (small static)
@@ -161,12 +161,12 @@ Plans:
 - [ ] 04-12-PLAN.md — SSG-06,08-12: Chile port (medium catalog + D-10 tone-colour fix #d52b1e)
 - [ ] 04-13-PLAN.md — SSG-06,08-12: Canada port (medium catalog)
 - [ ] 04-14-PLAN.md — SSG-06,08-12: UK port (medium catalog + D-10 tone-colour fix #012169)
-- [ ] 04-15-PLAN.md — SSG-06,08-12: NARA port (medium catalog + Catalog ↗ button support)
-- [ ] 04-16-PLAN.md — SSG-06,08-12: NASA port (medium catalog)
-- [ ] 04-17-PLAN.md — SSG-06,08-12: AARO port (large catalog + retires parse-aaro.py + extract-evidence.py)
+- [x] 04-15-PLAN.md — SSG-06,08-12: NARA port (medium catalog + Catalog ↗ button support)
+- [x] 04-16-PLAN.md — SSG-06,08-12: NASA port (medium catalog)
+- [x] 04-17-PLAN.md — SSG-06,08-12: AARO port (large catalog + retires parse-aaro.py + extract-evidence.py)
 - [ ] 04-18-PLAN.md — SSG-06,08-12 + PERF-01..04: GEIPAN port (3.3 MB → ≤500 KB + ~60 shards + D-10 tone-colour fix #0055a4 + frozen Lighthouse baseline)
-- [ ] 04-19-PLAN.md — SRC-01..04 + SSG-11,12: Pagefind cross-archive index + src/pages/search.astro + delete api/all.json (4.6 MB) + search.html
-- [ ] 04-20-PLAN.md — PERF-04 + SSG-10: Phase 4 close (Lighthouse HARD-flip + retire copy-legacy-archives.sh + sync-nav/footer.py + CI drift gates + verify-python-retired.sh)
+- [x] 04-19-PLAN.md — SRC-01..04 + SSG-11,12: Pagefind cross-archive index + src/pages/search.astro + delete api/all.json (4.6 MB) + search.html
+- [x] 04-20-PLAN.md — PERF-04 + SSG-10: Phase 4 close (Lighthouse HARD-flip + retire copy-legacy-archives.sh + sync-nav/footer.py + CI drift gates + verify-python-retired.sh) (completed 2026-05-28)
 
 
 ### Phase 5: Scrape Automation
@@ -185,7 +185,30 @@ Plans:
   4. A Worker → GitHub `repository_dispatch` payload triggers the ingest pipeline that normalises scraped JSON, commits manifest deltas to `data/<slug>.json`, and pushes — closing the loop so a new scrape becomes a new SSG build automatically.
   5. The manual `gh workflow run scrape.yml` trigger still works for ad-hoc / back-fill use, and assets > 2 GB are routed to R2 overflow via a URL-rewrite layer so physical storage location is transparent to the SSG.
 
-**Plans**: TBD
+**Plans**: 7 plans
+
+Plans:
+**Wave 1**
+
+- [ ] 05-01-PLAN.md — R2 bulk seed: operator-gate Phase 4 push + rewrite r2-sync.yml (add repository_dispatch + per-archive scope) + operator workflow_dispatch bulk seed
+- [ ] 05-02-PLAN.md — Akamai spike Worker + `.planning/decisions/akamai-spike.md` ADR with locked AKAMAI_BLOCKED_SOURCES constant
+
+**Wave 2** *(blocked on Wave 1 completion)*
+
+- [ ] 05-03-PLAN.md — Production Workers cron skeleton (`workers/scrape-cron/`) + wrangler.toml R2 + KV bindings + KV cron-lock (SCRP-07)
+
+**Wave 3** *(blocked on Wave 2 completion)*
+
+- [ ] 05-04-PLAN.md — Per-archive scrape lanes for the 4 active archives + ETag fingerprint diff + repository_dispatch emission
+- [ ] 05-05-PLAN.md — GH Action ingest pipeline: ingest.yml + scrape-fallback.yml + release-upload.py (SHA idempotency, SCRP-05/06/10) + r2-promote.sh
+
+**Wave 4** *(blocked on Wave 3 completion)*
+
+- [ ] 05-06-PLAN.md — SCRP-08 fix on legacy scrape.yml (`|| true` removal) + verify-python-retired.sh extension
+
+**Wave 5** *(blocked on Wave 4 completion)*
+
+- [ ] 05-07-PLAN.md — E2E smoke + VERIFICATION matrix + Phase 5 close (STATE.md + ROADMAP.md updated)
 
 ### Phase 6: Hosting & Cutover
 
@@ -214,8 +237,8 @@ Plans:
 | 1. Pre-Migration Safety | 0/5 | Not started | - |
 | 2. Infrastructure & CI Scaffolding | 0/8 | Not started | - |
 | 3. SSG Foundation | 6/6 | Complete   | 2026-05-27 |
-| 4. Full Migration, Search, Offline, Performance | 0/0 | Not started | - |
-| 5. Scrape Automation | 0/0 | Not started | - |
+| 4. Full Migration, Search, Offline, Performance | 12/11 | Complete   | 2026-05-28 |
+| 5. Scrape Automation | 0/7 | Planned     | - |
 | 6. Hosting & Cutover | 0/0 | Not started | - |
 
 ---
