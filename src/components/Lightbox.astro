@@ -88,15 +88,19 @@
   }
 
   /* Frame wraps asset render target + meta panel + action buttons so the
-     three stack vertically inside the 92vw / 86vh viewport. */
+     three stack vertically inside the viewport.
+     Operator 2026-05-28: asset view sized "as big as possible".
+     1280px cap removed; only viewport limits asset width now.
+     Asset gets 82vh (was 70vh); meta-panel + actions fit in remaining
+     ~14vh + chrome. .lb-frame fills 96vw on large desktops. */
   .lb-frame {
     display: flex;
     flex-direction: column;
     align-items: stretch;
     justify-content: center;
-    gap: 12px;
-    max-width: min(92vw, 1280px);
-    max-height: 92vh;
+    gap: 8px;
+    max-width: 96vw;
+    max-height: 96vh;
     position: relative;
     z-index: 2;
   }
@@ -105,26 +109,31 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    max-height: 70vh;
+    max-height: 82vh;
+    flex: 1 1 auto;
   }
 
   .lightbox-inner img,
   .lightbox-inner video {
-    max-width: 100%;
-    max-height: 70vh;
+    max-width: 96vw;
+    max-height: 82vh;
+    width: auto;
+    height: auto;
     border: 1px solid var(--rule-strong);
     background: var(--bg-2);
   }
 
   .lightbox-inner iframe {
-    width: min(92vw, 1280px);
-    height: 70vh;
+    width: 96vw;
+    height: 82vh;
+    max-width: 96vw;
+    max-height: 82vh;
     border: 1px solid var(--rule-strong);
     background: var(--bg-2);
   }
 
   .lightbox-inner audio {
-    width: min(86vw, 700px);
+    width: min(96vw, 900px);
   }
 
   /* Meta panel — dark card with serif description + mono metadata dl.
@@ -134,13 +143,15 @@
     background: var(--bg-2);
     border: 1px solid var(--rule);
     color: var(--ink);
-    padding: 12px 16px;
+    padding: 8px 14px;
     font-family: var(--serif);
-    font-size: 14px;
-    line-height: 1.5;
+    font-size: 13px;
+    line-height: 1.45;
     max-width: 100%;
     overflow-y: auto;
-    max-height: 28vh;
+    /* Compact — operator 2026-05-28 wants asset as big as possible. */
+    max-height: 12vh;
+    flex: 0 0 auto;
   }
 
   .lb-meta-panel:empty {

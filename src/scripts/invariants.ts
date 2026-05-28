@@ -287,6 +287,26 @@ export const INVARIANTS_JS: string = String.raw`
     if (rowId) openAt(rowId);
   });
 
+  /* Operator 2026-05-28: clicking the thumbnail image inside any
+     article[data-action="open"] also opens the lightbox. The existing
+     a[data-action="open"] delegate above ONLY catches the explicit
+     btn-open anchor; thumbnail clicks did nothing. This separate
+     delegate targets <img> elements inside an article-level
+     data-action="open" so the whole card thumb works without
+     breaking native Download / Source ↗ anchor behaviour (those
+     anchors live in .card-actions, not nested in article-level
+     data-action="open" closest() resolution because the article
+     itself is the open trigger; the anchors are SIBLINGS to img). */
+  document.addEventListener('click', function (e) {
+    var t = e.target;
+    if (!t || t.tagName !== 'IMG') return;
+    var article = t.closest && t.closest('article[data-action="open"]');
+    if (!article) return;
+    e.preventDefault();
+    var rowId = article.dataset.rowId || article.dataset.idx;
+    if (rowId) openAt(rowId);
+  });
+
   /* (3) Image fallback — delegated. Any <img data-fallback="..."> swaps src on
      load failure. Plan 03-05's Card.astro emits data-fallback for every
      thumbnail; this listener fires once per failure, with onerror=null logic
