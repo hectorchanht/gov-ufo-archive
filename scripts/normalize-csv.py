@@ -67,6 +67,25 @@ writes:
   `class="card-title"`) are asserted in Task 2 verify. Plan 03-05 verifies
   the byte-level contract against `dist/index.html` Card.astro output.
 
+### Post-Phase-5 VID hydration (2026-05-29)
+
+CSV columns `PDF | Image Link` and `Modal Image` are EMPTY for most VID
+rows (78 VID total: 66 have empty url, all 78 have empty thumb). The
+binary mp4 assets live in R2 at
+``https://assets.realufo.org/videos/wargov/DOD_<id>.mp4``, but the CSV's
+``DVIDS Video ID`` column carries the DVIDS *catalog page* ID
+(``1007706``) not the DVIDS *asset* ID (``111719709``). The bridge JSONs
+``scripts/dvids2dod-r01.json`` + ``scripts/dvids2dod-r02.json`` (emitted
+by ``scripts/resolve-dvids-r01.py``) carry the catalog→asset mapping for
+73 of 78 VID rows. The remaining 5 are R01 entries whose DVIDS resolution
+has not yet been run.
+
+`_hydrate_vid_url()` + `_hydrate_thumb()` patch each VID row at read time
+ONLY when the source CSV field is empty/non-mp4 — never mutating CSV on
+disk (CLAUDE.md §11 unchanged). The hydration is purely additive and
+data-side: Card.astro + render_card_html() are unchanged, byte-equivalent
+contract D-10 stays intact.
+
 CLI:
     python3 scripts/normalize-csv.py
         Read CSV → write data/wargov.json + shards. Exit 0 on success.
@@ -93,6 +112,7 @@ import argparse
 import csv
 import html
 import json
+import os
 import re
 import subprocess
 import sys
@@ -129,6 +149,137 @@ PUBLIC_DATA_DIR = REPO / 'public' / 'data'
 # Slugify regex — BYTE-FOR-BYTE port from scripts/snapshot-urls.py line 92.
 # Same algorithm guarantees `#card-<slug>` anchor parity with URL-CONTRACT.txt.
 _SLUG_RE = re.compile(r'[^a-z0-9]+')
+
+
+# -----------------------------------------------------------------------------
+# VID hydration — DVIDS catalog ID → DOD asset ID → R2 mp4 URL
+# (post-Phase-5 / 2026-05-29; see module docstring "Post-Phase-5 VID hydration")
+# -----------------------------------------------------------------------------
+
+# DVIDS catalog-ID → DOD asset-ID maps. r01 covers the May 8, 2026 tranche;
+# r02 covers the May 22, 2026 tranche. `scripts/resolve-dvids-r01.py` emits
+# both files (Akamai blocks GH Actions egress so the script is dev-only).
+DVIDS_MAP_PATHS = (
+    REPO / 'scripts' / 'dvids2dod-r01.json',
+    REPO / 'scripts' / 'dvids2dod-r02.json',
+)
+
+# Slideshow thumbnail directories. `slideshow/` carries the R01 imagery
+# (legacy snake_case filenames); `slideshow-2/` carries R02 highlights.
+# Both are static-served by Astro from the repo root (public/ symlinked in
+# astro.config.mjs or copied via Astro's public-dir conventions).
+SLIDESHOW_DIRS = (
+    ('slideshow-2', REPO / 'slideshow-2'),
+    ('slideshow', REPO / 'slideshow'),
+)
+
+# Match `PRddd` or `PR-ddd` inside a CSV title to derive a slideshow PR-ID.
+# Case-insensitive; matches the first PR-ID per title (titles have one).
+_PR_ID_RE = re.compile(r'PR-?(\d+)', re.IGNORECASE)
+
+R2_VIDEO_BASE = 'https://assets.realufo.org/videos/wargov'
+
+
+def _load_dvids_to_dod() -> dict[str, str]:
+    """Load DVIDS catalog-ID → DOD asset-ID map, merging r01 + r02 JSON files.
+
+    Returns an empty dict on any I/O / JSON error so the normaliser stays
+    operational even on a fresh clone where the mapping files have not yet
+    been regenerated. Each entry maps a catalog ID (e.g. ``"1007706"``) to
+    a DOD asset ID (e.g. ``"111719709"``); empty / falsy values are
+    filtered (a missing DOD ID is treated the same as a missing entry).
+    """
+    merged: dict[str, str] = {}
+    for path in DVIDS_MAP_PATHS:
+        if not path.exists():
+            continue
+        try:
+            data = json.loads(path.read_text(encoding='utf-8'))
+        except (OSError, json.JSONDecodeError) as exc:
+            sys.stderr.write(f'[warn] could not load {path.name}: {exc}\n')
+            continue
+        if not isinstance(data, dict):
+            continue
+        for k, v in data.items():
+            if isinstance(v, str) and v:
+                merged[str(k)] = v
+    return merged
+
+
+def _load_pr_thumbs() -> dict[str, str]:
+    """Scan slideshow/ + slideshow-2/ and build a PR-ID → relative-URL map.
+
+    Both zero-padded (``PR050``) and unpadded (``PR50``) keys are emitted
+    so the lookup tolerates either CSV title convention. ``slideshow-2/``
+    wins on conflict (R02 imagery is the higher-quality canonical set).
+    Returned URLs are absolute paths (e.g. ``/slideshow-2/DOW...jpg``)
+    suitable for the ``Modal Image`` field consumed by Card.astro.
+    """
+    thumbs: dict[str, str] = {}
+    # Iterate slideshow before slideshow-2 so slideshow-2 entries
+    # overwrite (priority semantics — newer R02 image wins).
+    ordered = list(reversed(SLIDESHOW_DIRS))  # slideshow then slideshow-2
+    for folder_name, folder in ordered:
+        if not folder.is_dir():
+            continue
+        try:
+            names = sorted(os.listdir(folder))
+        except OSError as exc:
+            sys.stderr.write(f'[warn] could not list {folder_name}/: {exc}\n')
+            continue
+        for fname in names:
+            for m in _PR_ID_RE.finditer(fname):
+                n = int(m.group(1))
+                url = f'/{folder_name}/{fname}'
+                thumbs[f'PR{n:03d}'] = url
+                thumbs[f'PR{n}'] = url
+    return thumbs
+
+
+def _hydrate_vid_url(
+    row: dict[str, str],
+    dvids_to_dod: dict[str, str],
+) -> str | None:
+    """Return an R2 mp4 URL for a VID row, or None when no DOD mapping exists.
+
+    Used by `_read_rows` to populate `PDF | Image Link` when the CSV field
+    is empty or points at the paired PDF (the historical convention until
+    Phase 5). The R2 URL format matches `_archive_common.rewrite_to_r2`'s
+    output for ``asset_type='videos'``.
+
+    Returns
+    -------
+    str | None
+        ``https://assets.realufo.org/videos/wargov/DOD_<id>.mp4`` if the
+        DVIDS catalog ID resolves, else None (caller leaves field unchanged).
+    """
+    dvids = (row.get('DVIDS Video ID') or '').strip()
+    if not dvids:
+        return None
+    dod = dvids_to_dod.get(dvids)
+    if not dod:
+        return None
+    return f'{R2_VIDEO_BASE}/DOD_{dod}.mp4'
+
+
+def _hydrate_thumb(
+    row: dict[str, str],
+    pr_thumbs: dict[str, str],
+) -> str | None:
+    """Return a slideshow-folder thumb path for a VID row, or None on miss.
+
+    Extracts the first ``PR\\d+`` token from the Title and tries both
+    zero-padded and unpadded keys against the PR-ID map. Returns None
+    when neither matches; caller leaves the ``Modal Image`` field as-is
+    (typically empty for VID rows — Card.astro's ``{thumb && <img …>}``
+    guard short-circuits rendering when blank).
+    """
+    title = row.get('Title') or ''
+    m = _PR_ID_RE.search(title)
+    if not m:
+        return None
+    n = int(m.group(1))
+    return pr_thumbs.get(f'PR{n:03d}') or pr_thumbs.get(f'PR{n}')
 
 
 # -----------------------------------------------------------------------------
@@ -171,7 +322,25 @@ def _read_rows(csv_path: Path) -> list[dict[str, str]]:
     and any row whose `PDF | Image Link` ends in an image extension are
     preserved verbatim per D-01 refinement + Pitfall #7 — Astro Image
     processes LOCAL files only, so thumbnails must not be R2-rewritten.
+
+    Post-Phase-5 VID hydration (2026-05-29): for VID rows whose CSV
+    `PDF | Image Link` is empty or non-mp4 (the historical convention
+    pointed at the paired PDF, which is not the video asset), look up the
+    DVIDS catalog ID in `scripts/dvids2dod-r0{1,2}.json` and synthesise
+    an R2 mp4 URL. Likewise, when `Modal Image` is empty, derive a
+    slideshow-folder thumb from the title PR-ID. Both transforms are
+    additive (only fill blanks / wrong-type values) — CSV files on disk
+    remain untouched (T-03-07 guard still holds).
     """
+    # Load hydration tables once per read (cheap — file I/O on small JSON
+    # + a dir listing). Empty dicts on missing inputs keep the pipeline
+    # working on a fresh clone without slideshow/ checked in.
+    dvids_to_dod = _load_dvids_to_dod()
+    pr_thumbs = _load_pr_thumbs()
+    hydrated_urls = 0
+    hydrated_thumbs = 0
+    cleared_urls = 0
+
     rows: list[dict[str, str]] = []
     # 'utf-8-sig' handles the BOM that spreadsheet exports prepend.
     # `newline=''` is mandatory for csv module per stdlib docs.
@@ -191,6 +360,44 @@ def _read_rows(csv_path: Path) -> list[dict[str, str]]:
                 for k, v in row.items()
                 if k is not None and k != ''
             }
+            rtype = (cleaned.get('Type', '') or '').strip()
+
+            # Phase 5 VID hydration — run BEFORE the existing R2 rewrite so
+            # the catalogue→asset lookup populates the field with the
+            # correct DOD_<id>.mp4 basename. Without this, VID rows whose
+            # CSV `PDF | Image Link` carried the paired-PDF link would
+            # end up rewritten to `videos/wargov/<paired-pdf>.pdf` (wrong
+            # extension AND wrong file). Empty-link rows would render
+            # without a Play button at all (the user-visible bug).
+            if rtype == 'VID':
+                raw_url = (cleaned.get('PDF | Image Link') or '').strip()
+                # Override when the CSV field is empty OR points at a
+                # non-mp4 (the paired-PDF convention). Preserve direct mp4
+                # links verbatim — the operator may add them later.
+                if not raw_url.lower().endswith('.mp4'):
+                    hydrated = _hydrate_vid_url(cleaned, dvids_to_dod)
+                    if hydrated:
+                        cleaned['PDF | Image Link'] = hydrated
+                        hydrated_urls += 1
+                    elif raw_url:
+                        # No DVIDS→DOD mapping AND the source URL is a
+                        # paired-PDF (non-mp4). Clearing the field avoids
+                        # the downstream rewrite_to_r2() emitting a
+                        # `videos/wargov/<paired-pdf>.pdf` URL that 404s
+                        # against R2. Card.astro then omits Open/Download
+                        # for this row; the DVIDS ↗ external button is
+                        # still rendered (it reads `DVIDS Video ID`).
+                        cleaned['PDF | Image Link'] = ''
+                        cleared_urls += 1
+                # Always try thumb hydration when the field is empty —
+                # CSV-supplied thumbs (none in practice for VID rows)
+                # always win.
+                if not (cleaned.get('Modal Image') or '').strip():
+                    thumb = _hydrate_thumb(cleaned, pr_thumbs)
+                    if thumb:
+                        cleaned['Modal Image'] = thumb
+                        hydrated_thumbs += 1
+
             # Phase 4 plan 04-02 — rewrite the binary asset URL to R2 for
             # PDF + VID rows. Card.astro reads `PDF | Image Link` directly
             # (src/components/Card.astro line ~66), so mutating this field
@@ -200,7 +407,6 @@ def _read_rows(csv_path: Path) -> list[dict[str, str]]:
             # the helper returns the input unchanged if it already starts
             # with the R2 custom domain (basename extraction collapses to
             # the same path).
-            rtype = (cleaned.get('Type', '') or '').strip()
             raw_url = cleaned.get('PDF | Image Link', '') or ''
             if raw_url:
                 if rtype == 'VID':
@@ -215,6 +421,13 @@ def _read_rows(csv_path: Path) -> list[dict[str, str]]:
                     )
             rows.append(cleaned)
     sys.stderr.write(f'[info] read {len(rows)} non-empty-Title rows\n')
+    if hydrated_urls or hydrated_thumbs or cleared_urls:
+        sys.stderr.write(
+            f'[info] VID hydration: {hydrated_urls} mp4 URLs '
+            f'(from DVIDS map), {hydrated_thumbs} thumbs '
+            f'(from slideshow-folder PR-ID match), '
+            f'{cleared_urls} stale paired-PDF URLs cleared\n'
+        )
     return rows
 
 

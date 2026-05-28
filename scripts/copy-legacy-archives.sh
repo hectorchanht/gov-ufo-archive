@@ -148,8 +148,13 @@ for f in search.html stats.html timeline.html whatsnew.html; do
   fi
 done
 
-# --- shared root-level assets + slideshow ---
-for dir in assets slideshow; do
+# --- shared root-level assets + slideshow + slideshow-2 ---
+# slideshow-2/ holds R02 imagery referenced from src/pages/index.astro's
+# hero carousel (PR050, CIA-D01) AND from VID card thumbnails populated
+# by normalize-csv.py's _hydrate_thumb() (2026-05-29 — VID hydration
+# patch). Without copying, the hydrated `Modal Image` paths
+# `/slideshow-2/*.jpg` would 404 on the deployed site.
+for dir in assets slideshow slideshow-2; do
   if [ -d "$dir" ]; then
     while IFS= read -r f; do
       copy_one "$f"
