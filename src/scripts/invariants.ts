@@ -462,6 +462,53 @@ export const INVARIANTS_JS: string = String.raw`
      index.html @ ~line 1637). Names match the legacy IIFE so porting is
      a search-and-replace, not a refactor. */
   window.__lightbox = { openAt: openAt, navLb: navLb, closeLb: closeLb };
+
+  /* Operator spec 4 (2026-05-29) — arch-controls-bar scroll-direction
+     reveal. Hide on scroll-down, show on scroll-up. The bar stays sticky
+     when visible (CSS sticky top:64px already in global.css). We toggle a
+     bar-hidden class that adds transform:translateY(-100%) so the
+     show/hide animation is GPU-accelerated.
+
+     Skip the hide-on-scroll-down toggle when:
+       (a) the lightbox is open (body.lb-open) — the header is also hidden
+           so leaving the bar in place doesn't matter, and any DOM mutation
+           triggers nav listeners we don't want to fire,
+       (b) the user is near the top of the page (< 200 px) — nothing to
+           hide above the bar anyway,
+       (c) the bar is itself off-screen above the viewport (initial state
+           before the user scrolls past .archive).
+  */
+  var archBar = document.getElementById('arch-controls-bar');
+  if (archBar) {
+    var lastScrollY = window.pageYOffset || 0;
+    var scrollTicking = false;
+
+    function updateBarVisibility() {
+      var y = window.pageYOffset || 0;
+      var dy = y - lastScrollY;
+      // Only react past 200px — avoid hiding the bar before the user has
+      // any reason to scroll past it.
+      if (y < 200) {
+        archBar.classList.remove('bar-hidden');
+      } else if (document.body.classList.contains('lb-open')) {
+        // Lightbox open — leave bar untouched.
+      } else if (dy > 4) {
+        // Scrolling down → hide.
+        archBar.classList.add('bar-hidden');
+      } else if (dy < -4) {
+        // Scrolling up → show.
+        archBar.classList.remove('bar-hidden');
+      }
+      lastScrollY = y;
+      scrollTicking = false;
+    }
+
+    window.addEventListener('scroll', function () {
+      if (scrollTicking) return;
+      scrollTicking = true;
+      window.requestAnimationFrame(updateBarVisibility);
+    }, { passive: true });
+  }
 })();
 `;
 

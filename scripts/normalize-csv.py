@@ -530,6 +530,17 @@ def render_card_html(row: dict[str, str], idx: int) -> str:
     # equivalent (D-10 LOCKED pair).
     region = row.get('Incident Location', '') or ''
     category = rtype  # Card.astro uses rtype for both data-type + data-category
+    # Operator spec 4 (2026-05-29) — release-batch filter. Map the CSV
+    # `Release Date` column to a stable two-digit batch identifier so the
+    # client-side filter can match cards by release. Mirrors Card.astro's
+    # releaseBatch() byte-for-byte (D-10 LOCKED pair).
+    release_date = row.get('Release Date', '') or ''
+    if release_date == '5/8/26':
+        release = '01'
+    elif release_date == '5/22/26':
+        release = '02'
+    else:
+        release = ''
 
     parts: list[str] = []
     local = row.get('local', '') or ''
@@ -540,6 +551,7 @@ def render_card_html(row: dict[str, str], idx: int) -> str:
         f'data-type="{_e(rtype)}" data-agency="{_e(agency)}" '
         f'data-date="{_e(date)}" data-desc="{_e(desc)}" '
         f'data-region="{_e(region)}" data-category="{_e(category)}" '
+        f'data-release="{_e(release)}" '
         f'data-src="{_e(SOURCE_URL)}">'
     )
     if thumb:

@@ -257,6 +257,17 @@ const jsonLd = {
             <option value="">All</option>
           </select>
         </label>
+        {/* Operator spec 4 (2026-05-29) — release-batch filter. Wargov-only.
+            Card.astro emits data-release="01" for R01 (5/8/26, 158 rows)
+            and "02" for R02 (5/22/26, 64 rows); the page-local filter
+            script reads it and toggles card visibility. */}
+        <label>Release:
+          <select id="filter-release">
+            <option value="">All</option>
+            <option value="01">Release 01 (May 8, 2026)</option>
+            <option value="02">Release 02 (May 22, 2026)</option>
+          </select>
+        </label>
         <label>Per page:
           <select id="filter-perpage">
             <option value="12">12</option>
@@ -582,6 +593,8 @@ const jsonLd = {
       const tabs = document.querySelectorAll('.arch-controls-bar .tab');
       const sort = document.getElementById('arch-sort');
       const agencyFilter = document.getElementById('filter-agency');
+      // Operator spec 4 (2026-05-29) — release-batch filter (wargov-only).
+      const releaseFilter = document.getElementById('filter-release');
       const countEl = document.getElementById('arch-count');
       if (!grid) return;
 
@@ -593,13 +606,16 @@ const jsonLd = {
         const activeTab = document.querySelector('.arch-controls-bar .tab.active');
         const typeFilter = activeTab ? activeTab.getAttribute('data-tab') : 'all';
         const agencyVal = agencyFilter ? agencyFilter.value : '';
+        const releaseVal = releaseFilter ? releaseFilter.value : '';
         let visible = 0;
         for (const c of getCards()) {
           const type = c.getAttribute('data-type') || '';
           const agency = c.getAttribute('data-agency') || '';
+          const release = c.getAttribute('data-release') || '';
           const typeOk = typeFilter === 'all' || type === typeFilter;
           const agencyOk = !agencyVal || agency === agencyVal;
-          const show = typeOk && agencyOk;
+          const releaseOk = !releaseVal || release === releaseVal;
+          const show = typeOk && agencyOk && releaseOk;
           c.style.display = show ? '' : 'none';
           if (show) visible++;
         }
@@ -661,6 +677,7 @@ const jsonLd = {
       });
       if (sort) sort.addEventListener('change', () => { applySort(); applyFilters(); });
       if (agencyFilter) agencyFilter.addEventListener('change', applyFilters);
+      if (releaseFilter) releaseFilter.addEventListener('change', applyFilters);
 
       // Re-apply filters whenever new cards arrive via the lazy-loader.
       const obs = new MutationObserver(() => {

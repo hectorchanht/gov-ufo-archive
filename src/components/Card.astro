@@ -72,6 +72,19 @@ const date = row['Incident Date'] ?? '';
 const rtype = row.Type ?? '';
 const dvids = row['DVIDS Video ID'] ?? '';
 
+// Operator spec 4 (2026-05-29) — release-batch filter. Map the CSV
+// `Release Date` column (`5/8/26` = R01, `5/22/26` = R02) to a stable
+// two-digit batch identifier. Empty / unknown → empty string so the
+// "All" tab still sees them. NORMALIZE-CSV.PY mirrors this same mapping
+// in render_card_html (D-10 LOCKED).
+function releaseBatch(releaseDate: string): string {
+  if (!releaseDate) return '';
+  if (releaseDate === '5/8/26') return '01';
+  if (releaseDate === '5/22/26') return '02';
+  return '';
+}
+const release = releaseBatch(row['Release Date'] ?? '');
+
 // Hard-coded source URL per CLAUDE.md §2 (war.gov / UFO source).
 // Matches scripts/normalize-csv.py:SOURCE_URL exactly.
 const SOURCE_URL = 'https://www.war.gov/UFO/';
@@ -100,6 +113,7 @@ const pagefindMeta = `title:${title},agency:${agency},date:${date}`;
   data-desc={desc}
   data-region={row['Incident Location'] ?? ''}
   data-category={rtype}
+  data-release={release}
   data-src={SOURCE_URL}
   data-pagefind-filter={pagefindFilter}
   data-pagefind-meta={pagefindMeta}

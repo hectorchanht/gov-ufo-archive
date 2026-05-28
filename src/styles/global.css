@@ -223,7 +223,10 @@ nav.primary a[aria-current="page"] {
   }
 }
 
-/* Sticky filter bar — CLAUDE.md §4 (sticky 64px UNDER header). */
+/* Sticky filter bar — CLAUDE.md §4 (sticky 64px UNDER header).
+   Operator spec 4 (2026-05-29): hide on scroll-down, show on scroll-up
+   via the `.bar-hidden` class toggled by invariants.ts. The transition
+   is GPU-accelerated transform so it stays smooth on mobile. */
 .arch-controls-bar {
   position: sticky;
   top: 64px;
@@ -232,6 +235,13 @@ nav.primary a[aria-current="page"] {
   backdrop-filter: blur(8px);
   padding: 12px 0;
   border-bottom: 1px solid var(--rule);
+  transition: transform 220ms ease;
+  will-change: transform;
+}
+
+.arch-controls-bar.bar-hidden {
+  transform: translateY(-160%);     /* fully off-screen above the header */
+  pointer-events: none;
 }
 
 @media (max-width: 720px) {
