@@ -1,7 +1,7 @@
 ---
 phase: 05-scrape-automation
 plan: "01"
-status: blocked-on-operator
+status: complete
 subsystem: scrape-automation
 tags: [scrape, r2, github-actions, workflow_dispatch, repository_dispatch]
 dependency_graph:
@@ -37,7 +37,44 @@ requirements: [SCRP-03, SCRP-05, SCRP-09]
 
 # Phase 5 Plan 05-01: R2 Bulk Seed + Workflow Rewrite Summary
 
-Status: **BLOCKED ON OPERATOR** — Task 2 (workflow rewrite) shipped; Task 3 (commit/push + workflow_dispatch + curl spot-checks) requires Hector to act on the `hectorchanht/gov-ufo-archive` remote.
+Status: **COMPLETE** — Task 2 (workflow rewrite) shipped + secondary fix `c10dbbf` restricted per-archive loop to active slugs; Task 3 bulk-seed bypassed via direct operator-workstation push (debug session `r2-bulk-seed-wrong-slugs` revealed CI workflow can never seed binaries because they're gitignored; Path A unblock = manual push completed 2026-05-28).
+
+## Task 3 — Bulk seed via operator workstation (2026-05-28)
+
+Workflow run path was abandoned after `gh workflow run r2-sync.yml -f full_sync=true` (run id 26558706277) produced wrong output — only 2 dormant geipan/videos/*.mp4 made it to R2 because every other binary is `.gitignored` (canonical store = GitHub Releases). Full diagnosis: `.planning/debug/r2-bulk-seed-wrong-slugs.md`.
+
+**Path A unblock — direct R2 push from operator workstation:**
+
+- **207 wargov files uploaded** via wrangler r2 object put (OAuth, 300 MiB cap), parallel-8:
+  - 116 PDFs `bundles/Release_1/*.pdf` → `pdfs/wargov/`
+  - 6 PDFs `bundles/release_02_document_bundle/*.pdf` → `pdfs/wargov/`
+  - 28 mp4s `bundles/uapvideos/*.mp4` → `videos/wargov/`
+  - 55 mp4s `bundles/uap052226/*.mp4` (under 300 MiB) → `videos/wargov/`
+- **2 large mp4s via aws s3 cp** (R2 S3-compat multipart upload):
+  - `DOD_111719718.mp4` (513 MB)
+  - `DOD_111721737.mp4` (416 MB)
+- **2 dormant geipan/videos/*.mp4 purged** via `wrangler r2 object delete`. CF edge cache holds 4h `max-age`; origin confirmed 404 via `wrangler r2 object get`.
+- **aaro/videos/*.mp4 (32 files)** were already in R2 from a prior manual seed and had correct `content-type: video/mp4` — not re-uploaded.
+
+**Final R2 state (post-seed, post-purge):**
+- `pdfs/wargov/` — 122 files (R01+R02)
+- `videos/wargov/` — 85 files
+- `videos/aaro/` — 32 files (pre-existing)
+- `videos/geipan/` — empty (purged); CDN cache will catch up in 4h
+- `pdfs/nasa/`, `pdfs/nara/` — still empty (no local source on this workstation; pulls from `pdfs-v1` GH Release tag remain pending — separate follow-up)
+
+**Verification curls (2026-05-28T09:01Z):**
+```
+HTTP/2 200 content-type: application/pdf  pdfs/wargov/059UAP00011.pdf
+HTTP/2 200 content-type: video/mp4         videos/wargov/DOD_111719718.mp4 (513 MB multipart)
+HTTP/2 200 content-type: video/mp4         videos/wargov/DOD_111720861.mp4 (wrangler upload)
+HTTP/2 200 content-type: video/mp4         videos/aaro/DOD_108981629.mp4 (pre-existing)
+geipan origin → 404 (CDN cache 4h until purge)
+```
+
+**Follow-up backlog:**
+- Plan 05-01b (deferred): CI-driven staging script (`scripts/stage-r2-from-releases.py`) reads `data/<slug>.json` + `release-manifest.json`, downloads from GH Releases to `/tmp/r2-stage/`, then rclone syncs. Removes operator-workstation dependency for future seeds.
+- nasa (4 PDFs) + nara (49 PDFs) seed deferred — operator can pull from `pdfs-v1` release tag and re-run wrangler upload helper script (`/tmp/r2-upload-one.sh`).
 
 ## One-Liner
 
