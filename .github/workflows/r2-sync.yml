@@ -1,11 +1,18 @@
 name: R2 binary sync
 
 # Phase 4 Plan 04-02 Task 3 — Cloudflare R2 binary CDN sync.
+# Phase 5 Plan 05-01 rewrite — adds repository_dispatch trigger for Plan 05-05
+# ingest pipeline; preserves Phase 4 Plan 04-02 rclone S3-compat sync logic.
 #
 # Triggers:
 #   - push to main when a binary asset (PDF / MP4 / WebM / MOV / MP3) changes
 #   - manual workflow_dispatch with `full_sync` boolean for first-run bulk
 #     migration (skips diff detection — uploads every tracked binary)
+#   - workflow_dispatch with `archive` string for per-archive narrow re-seed
+#   - workflow_dispatch with `asset_keys` JSON array for incremental promote
+#   - repository_dispatch event_type `scrape-promote` from the Plan 05-04
+#     Worker; payload `{ archive, asset_keys[] }` triggers per-archive
+#     narrow sync without requiring a push to main
 #
 # Auth:
 #   - rclone speaks the R2 S3-compat endpoint
@@ -52,6 +59,21 @@ on:
         description: 'Full bulk sync (skip diff detection — uploads every tracked PDF/MP4)'
         type: boolean
         default: false
+      archive:
+        description: 'Per-archive narrow scope (slug, e.g. aaro/nasa/nara/wargov). Empty = all archives. Plan 05-05 per-archive promote shrinks each invocation to stay under timeout-minutes:30.'
+        type: string
+        default: ''
+      asset_keys:
+        description: 'JSON array of staging object keys for incremental promote (Plan 05-05). Ignored when full_sync=true. Empty = rclone --checksum drives diff.'
+        type: string
+        default: ''
+  # Phase 5 Plan 05-01 — Worker→GH Action ingest pipeline trigger.
+  # The Plan 05-04 Worker fires `scrape-promote` events with payload
+  # `{ archive, asset_keys[] }` after fingerprint-diff detection. Per
+  # T-05-01-01 the auth surface is GH's own dispatch ACL (only
+  # repo-admin tokens can fire repository_dispatch via REST API).
+  repository_dispatch:
+    types: [scrape-promote]
 
 permissions:
   contents: read
@@ -128,11 +150,19 @@ jobs:
           rclone lsd r2-realufo:realufo
 
       # ---------------------------------------------------------------
-      # Step 4 — Detect changed binaries. workflow_dispatch full_sync
-      # short-circuits to "files=ALL" so the sync step runs unconditionally.
-      # Otherwise, diff HEAD^..HEAD for binary file globs. rclone's
-      # --checksum makes us idempotent regardless, but a narrow diff
-      # saves Class A operations on a large bucket.
+      # Step 4 — Detect changed binaries. Three branches:
+      #
+      #   (a) workflow_dispatch full_sync=true → short-circuits to
+      #       "files=ALL" so the sync step runs unconditionally.
+      #   (b) repository_dispatch (event_name=='repository_dispatch') →
+      #       short-circuits to "files=DISPATCH" — Phase 5 Plan 05-04
+      #       Worker has already done the fingerprint diff against KV;
+      #       we trust the dispatch payload + rclone's --checksum flag
+      #       to skip already-synced objects. The dispatch payload's
+      #       `archive` field narrows the sync step's scope below.
+      #   (c) push to main → diff HEAD^..HEAD for binary file globs.
+      #       rclone's --checksum makes us idempotent regardless, but
+      #       a narrow diff saves Class A operations on a large bucket.
       # ---------------------------------------------------------------
       - name: Detect changed binaries
         id: diff
@@ -141,6 +171,10 @@ jobs:
           if [ "${{ inputs.full_sync }}" = "true" ]; then
             echo "files=ALL" >> "$GITHUB_OUTPUT"
             echo "diff-mode: full_sync (workflow_dispatch input set true)"
+          elif [ "${{ github.event_name }}" = "repository_dispatch" ]; then
+            echo "files=DISPATCH" >> "$GITHUB_OUTPUT"
+            echo "diff-mode: repository_dispatch (Plan 05-04 Worker fingerprint-diff already executed; rclone --checksum drives the actual upload set)"
+            echo "client_payload.archive=${{ github.event.client_payload.archive }}"
           else
             # Binary file extensions only; rclone --include filters again
             # per-directory below so misses here are caught at the sync layer.
@@ -168,6 +202,14 @@ jobs:
       # push that lands them). If the directory doesn't exist, the
       # rclone sync is skipped via the [ -d "..." ] guard.
       #
+      # Phase 5 Plan 05-01 — per-archive narrow scope:
+      #   - workflow_dispatch with `archive=<slug>` OR
+      #   - repository_dispatch with client_payload.archive=<slug>
+      #   take the early-return branch: ONLY that one archive's
+      #   pdfs/<slug>/ + videos/<slug>/ prefixes are synced. This keeps
+      #   Plan 05-05's per-archive promote runs well under the 30-min
+      #   timeout-minutes cap.
+      #
       # rclone sync flags:
       #   --checksum   re-hash both ends, skip files with matching SHA
       #   --progress   stream upload progress to workflow logs
@@ -176,8 +218,63 @@ jobs:
       # ---------------------------------------------------------------
       - name: Sync to R2
         if: steps.diff.outputs.files != '0' && steps.diff.outputs.files != ''
+        env:
+          # Resolve narrow-scope archive from EITHER workflow_dispatch
+          # input OR repository_dispatch client_payload. Empty = sync all
+          # archives via the scaffold loop below.
+          NARROW_ARCHIVE: ${{ github.event.inputs.archive || github.event.client_payload.archive || '' }}
         run: |
           set -euo pipefail
+
+          if [ -n "${NARROW_ARCHIVE}" ]; then
+            echo "::notice::Narrow-scope sync requested for archive='${NARROW_ARCHIVE}'"
+            slug="${NARROW_ARCHIVE}"
+            # wargov has a special source layout (bundles/Release_1/
+            # for PDFs, bundles/videos/ for videos) — handle it
+            # explicitly. All other slugs use the <slug>/bundles/ +
+            # <slug>/videos/ convention.
+            if [ "${slug}" = "wargov" ]; then
+              if [ -d "bundles/Release_1" ]; then
+                echo "::group::Sync bundles/Release_1/ → pdfs/wargov/"
+                rclone sync ./bundles/Release_1/ r2-realufo:realufo/pdfs/wargov/ \
+                  --include '*.pdf' \
+                  --checksum \
+                  --progress
+                echo "::endgroup::"
+              fi
+              if [ -d "bundles/videos" ]; then
+                echo "::group::Sync bundles/videos/ → videos/wargov/"
+                rclone sync ./bundles/videos/ r2-realufo:realufo/videos/wargov/ \
+                  --include '*.mp4' \
+                  --include '*.webm' \
+                  --checksum \
+                  --progress
+                echo "::endgroup::"
+              fi
+            else
+              if [ -d "${slug}/bundles" ]; then
+                echo "::group::Sync ${slug}/bundles/ → pdfs/${slug}/"
+                rclone sync "./${slug}/bundles/" "r2-realufo:realufo/pdfs/${slug}/" \
+                  --include '*.pdf' \
+                  --checksum \
+                  --progress
+                echo "::endgroup::"
+              fi
+              if [ -d "${slug}/videos" ]; then
+                echo "::group::Sync ${slug}/videos/ → videos/${slug}/"
+                rclone sync "./${slug}/videos/" "r2-realufo:realufo/videos/${slug}/" \
+                  --include '*.mp4' \
+                  --include '*.webm' \
+                  --include '*.mov' \
+                  --checksum \
+                  --progress
+                echo "::endgroup::"
+              fi
+            fi
+            # Early-return: do NOT fall through to the all-archive
+            # scaffold below when a narrow scope was requested.
+            exit 0
+          fi
 
           # ----- wargov bundles (PDFs) -----
           if [ -d "bundles/Release_1" ]; then
