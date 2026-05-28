@@ -246,10 +246,18 @@ const description = "Offline mirror of NASA's UAP Independent Study Team final r
       no hydration. */}
   <script is:inline>
     (() => {
-      const PAGE_SIZE = 20; // D-27
+      // Operator spec 1 (2026-05-29) — PAGE_SIZE tunable via #filter-perpage.
+      let PAGE_SIZE = 20; // D-27 default
       const grid = document.getElementById('nasa-grid');
       const paginationNav = document.getElementById('nasa-pagination');
       if (!grid || !paginationNav) return;
+
+      function readPerPage() {
+        const sel = document.getElementById('filter-perpage');
+        if (!sel) return PAGE_SIZE;
+        const n = parseInt(sel.value, 10);
+        return (n > 0 && n < 1000) ? n : PAGE_SIZE;
+      }
 
       function readPage() {
         const raw = new URLSearchParams(location.search).get('page') || '1';
@@ -257,35 +265,78 @@ const description = "Offline mirror of NASA's UAP Independent Study Team final r
         return Math.max(1, isNaN(p) ? 1 : p);
       }
 
+      function buildPageList(current, total) {
+        if (total <= 7) {
+          const arr = [];
+          for (let i = 1; i <= total; i++) arr.push(i);
+          return arr;
+        }
+        const pages = new Set([1, total, current - 1, current, current + 1]);
+        if (current <= 4) { pages.add(2); pages.add(3); pages.add(4); pages.add(5); }
+        if (current >= total - 3) { pages.add(total - 4); pages.add(total - 3); pages.add(total - 2); pages.add(total - 1); }
+        const sorted = Array.from(pages).filter((n) => n >= 1 && n <= total).sort((a, b) => a - b);
+        const out = []; let prev = 0;
+        for (const n of sorted) { if (n - prev > 1) out.push('…'); out.push(n); prev = n; }
+        return out;
+      }
+
+      function mountPerPageSelector() {
+        if (!paginationNav) return;
+        const src = document.getElementById('filter-perpage');
+        if (!src) return;
+        const wrap = document.createElement('label');
+        wrap.className = 'pg-perpage';
+        wrap.innerHTML = 'Per page&nbsp;';
+        const mirrorSel = document.createElement('select');
+        mirrorSel.id = 'filter-perpage-mirror';
+        for (const opt of src.options) {
+          const o = document.createElement('option');
+          o.value = opt.value; o.textContent = opt.textContent;
+          if (opt.value === src.value) o.selected = true;
+          mirrorSel.appendChild(o);
+        }
+        mirrorSel.addEventListener('change', () => {
+          if (src.value !== mirrorSel.value) {
+            src.value = mirrorSel.value;
+            src.dispatchEvent(new Event('change', { bubbles: true }));
+          }
+        });
+        wrap.appendChild(mirrorSel);
+        const existing = paginationNav.querySelector('.pg-perpage');
+        if (existing) existing.replaceWith(wrap);
+        else paginationNav.appendChild(wrap);
+      }
+
       function renderPaginationNav(current, total) {
         if (!paginationNav) return;
         if (total <= 1) {
           paginationNav.innerHTML = '';
+          mountPerPageSelector();
           return;
         }
         const parts = [];
         if (current > 1) {
-          parts.push(
-            '<a href="?page=' + (current - 1) + '" class="pg-prev" rel="prev">← Prev</a>',
-          );
+          parts.push('<a href="?page=' + (current - 1) + '" class="pg-prev" rel="prev" aria-label="Previous page">← Prev</a>');
         }
-        for (let i = 1; i <= total; i++) {
-          if (i === current) {
-            parts.push('<span class="pg-current" aria-current="page">' + i + '</span>');
+        for (const entry of buildPageList(current, total)) {
+          if (entry === '…') {
+            parts.push('<span class="pg-ellipsis" aria-hidden="true">…</span>');
+          } else if (entry === current) {
+            parts.push('<span class="pg-current" aria-current="page">' + entry + '</span>');
           } else {
-            parts.push('<a href="?page=' + i + '">' + i + '</a>');
+            parts.push('<a href="?page=' + entry + '" aria-label="Page ' + entry + '">' + entry + '</a>');
           }
         }
         if (current < total) {
-          parts.push(
-            '<a href="?page=' + (current + 1) + '" class="pg-next" rel="next">Next →</a>',
-          );
+          parts.push('<a href="?page=' + (current + 1) + '" class="pg-next" rel="next" aria-label="Next page">Next →</a>');
         }
         paginationNav.innerHTML = parts.join('');
+        mountPerPageSelector();
       }
 
       function renderPage(pageNum, opts) {
         opts = opts || {};
+        PAGE_SIZE = readPerPage();
         const cards = Array.from(grid.querySelectorAll('.arch-card'));
         if (!cards.length) return;
         const totalPages = Math.max(1, Math.ceil(cards.length / PAGE_SIZE));
@@ -315,8 +366,18 @@ const description = "Offline mirror of NASA's UAP Independent Study Team final r
             }
           }
         } else if (!opts.fromHash && !opts.skipScroll) {
-          try { window.scrollTo({ top: 0, behavior: 'instant' }); }
-          catch (_) { window.scrollTo(0, 0); }
+          // Operator spec 1 — scroll to #archive, not page top.
+          const archiveEl = document.getElementById('archive');
+          try {
+            if (archiveEl && archiveEl.scrollIntoView) {
+              archiveEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else { window.scrollTo({ top: 0, behavior: 'instant' }); }
+          } catch (_) {
+            if (archiveEl) {
+              const y = archiveEl.getBoundingClientRect().top + window.pageYOffset;
+              window.scrollTo(0, y);
+            } else { window.scrollTo(0, 0); }
+          }
         }
 
         try {
@@ -338,6 +399,10 @@ const description = "Offline mirror of NASA's UAP Independent Study Team final r
         renderPage(isNaN(pageNum) ? 1 : pageNum);
       });
       window.addEventListener('popstate', () => renderPage(readPage()));
+
+      const ppSrc = document.getElementById('filter-perpage');
+      if (ppSrc) ppSrc.addEventListener('change', () => renderPage(1));
+
       renderPage(readPage());
     })();
   </script>

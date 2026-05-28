@@ -309,11 +309,24 @@ const jsonLd = {
       via the custom 'wargov:page-rendered' event the handler emits below. */}
   <script is:inline>
     (() => {
-      const PAGE_SIZE = 20; // D-27
+      // PAGE_SIZE is now operator-tunable via #filter-perpage (operator
+      // spec 1 — 2026-05-29). Default kept at 20 (D-27) so deep-links
+      // ?page=N continue to land on the same window. The #filter-perpage
+      // <select> default is 24 in markup but the JS-side default below
+      // wins until the user changes it; the visible "24" is then synced
+      // to the JS default by readPerPage() at boot.
+      let PAGE_SIZE = 20;
       const grid = document.getElementById('wargov-grid');
       const manifestEl = document.getElementById('wargov-shards');
       const paginationNav = document.getElementById('wargov-pagination');
       if (!grid || !manifestEl || !paginationNav) return;
+
+      function readPerPage() {
+        const sel = document.getElementById('filter-perpage');
+        if (!sel) return PAGE_SIZE;
+        const n = parseInt(sel.value, 10);
+        return (n > 0 && n < 1000) ? n : PAGE_SIZE;
+      }
 
       let manifest;
       try {
@@ -359,37 +372,101 @@ const jsonLd = {
         materialised = true;
       }
 
+      // Operator spec 1 (2026-05-29) — ellipsis when total>7. Always show
+      // first + last + a 3-wide window around current. Format:
+      //   1 … 4 5 [6] 7 8 … 20
+      function buildPageList(current, total) {
+        if (total <= 7) {
+          const arr = [];
+          for (let i = 1; i <= total; i++) arr.push(i);
+          return arr;
+        }
+        const pages = new Set([1, total, current - 1, current, current + 1]);
+        // Add 2 + (total-1) only when adjacent so the gap reads naturally.
+        if (current <= 4) { pages.add(2); pages.add(3); pages.add(4); pages.add(5); }
+        if (current >= total - 3) { pages.add(total - 4); pages.add(total - 3); pages.add(total - 2); pages.add(total - 1); }
+        const sorted = Array.from(pages).filter((n) => n >= 1 && n <= total).sort((a, b) => a - b);
+        const out = [];
+        let prev = 0;
+        for (const n of sorted) {
+          if (n - prev > 1) out.push('…');
+          out.push(n);
+          prev = n;
+        }
+        return out;
+      }
+
       function renderPaginationNav(current, total) {
         if (!paginationNav) return;
         if (total <= 1) {
           paginationNav.innerHTML = '';
+          mountPerPageSelector();
           return;
         }
         const parts = [];
         if (current > 1) {
           parts.push(
-            '<a href="?page=' + (current - 1) + '" class="pg-prev" rel="prev">← Prev</a>',
+            '<a href="?page=' + (current - 1) + '" class="pg-prev" rel="prev" aria-label="Previous page">← Prev</a>',
           );
         }
-        for (let i = 1; i <= total; i++) {
-          if (i === current) {
-            parts.push('<span class="pg-current" aria-current="page">' + i + '</span>');
+        for (const entry of buildPageList(current, total)) {
+          if (entry === '…') {
+            parts.push('<span class="pg-ellipsis" aria-hidden="true">…</span>');
+          } else if (entry === current) {
+            parts.push('<span class="pg-current" aria-current="page">' + entry + '</span>');
           } else {
-            parts.push('<a href="?page=' + i + '">' + i + '</a>');
+            parts.push('<a href="?page=' + entry + '" aria-label="Page ' + entry + '">' + entry + '</a>');
           }
         }
         if (current < total) {
           parts.push(
-            '<a href="?page=' + (current + 1) + '" class="pg-next" rel="next">Next →</a>',
+            '<a href="?page=' + (current + 1) + '" class="pg-next" rel="next" aria-label="Next page">Next →</a>',
           );
         }
         paginationNav.innerHTML = parts.join('');
+        mountPerPageSelector();
+      }
+
+      // Operator spec 1 (2026-05-29) — mirror the #filter-perpage select
+      // INSIDE the pagination row. We clone the source select into the
+      // pagination nav and two-way-sync via change events. The source
+      // select stays in the filter-bar so the filter-bar layout (the
+      // Agency dropdown lives next to it) is unchanged.
+      function mountPerPageSelector() {
+        if (!paginationNav) return;
+        const src = document.getElementById('filter-perpage');
+        if (!src) return;
+        // Don't re-clone if already mounted for this render pass.
+        let mirror = paginationNav.querySelector('.pg-perpage');
+        const wrap = document.createElement('label');
+        wrap.className = 'pg-perpage';
+        wrap.innerHTML = 'Per page&nbsp;';
+        const mirrorSel = document.createElement('select');
+        mirrorSel.id = 'filter-perpage-mirror';
+        for (const opt of src.options) {
+          const o = document.createElement('option');
+          o.value = opt.value;
+          o.textContent = opt.textContent;
+          if (opt.value === src.value) o.selected = true;
+          mirrorSel.appendChild(o);
+        }
+        mirrorSel.addEventListener('change', () => {
+          if (src.value !== mirrorSel.value) {
+            src.value = mirrorSel.value;
+            src.dispatchEvent(new Event('change', { bubbles: true }));
+          }
+        });
+        wrap.appendChild(mirrorSel);
+        if (mirror) mirror.replaceWith(wrap);
+        else paginationNav.appendChild(wrap);
       }
 
       async function renderPage(pageNum, opts) {
         opts = opts || {};
         await ensureCardsMaterialised();
 
+        // Re-read per-page in case the user changed #filter-perpage.
+        PAGE_SIZE = readPerPage();
         const cards = Array.from(grid.querySelectorAll('.arch-card'));
         if (!cards.length) return;
         const totalPages = Math.max(1, Math.ceil(cards.length / PAGE_SIZE));
@@ -426,12 +503,25 @@ const jsonLd = {
             }
           }
         } else if (!opts.fromHash && !opts.skipScroll) {
-          // Standard page change — reset scroll to top. 'instant' avoids the
-          // smooth-scroll delay on rapid prev/next clicks.
+          // Operator spec 1 (2026-05-29) — scroll to top of #archive
+          // section, NOT page top, so the user lands on the grid header
+          // not back at the hero. block: 'start' aligns the section top
+          // with the viewport top (CSS scroll-padding-top in global.css
+          // already accounts for the sticky 64px header).
+          const archiveEl = document.getElementById('archive');
           try {
-            window.scrollTo({ top: 0, behavior: 'instant' });
+            if (archiveEl && archiveEl.scrollIntoView) {
+              archiveEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+              window.scrollTo({ top: 0, behavior: 'instant' });
+            }
           } catch (_) {
-            window.scrollTo(0, 0);
+            if (archiveEl) {
+              const y = archiveEl.getBoundingClientRect().top + window.pageYOffset;
+              window.scrollTo(0, y);
+            } else {
+              window.scrollTo(0, 0);
+            }
           }
         }
 
@@ -470,6 +560,14 @@ const jsonLd = {
 
       // Browser back/forward — popstate replays the URL's ?page=N.
       window.addEventListener('popstate', () => renderPage(readPage()));
+
+      // Operator spec 1 (2026-05-29) — re-render when the per-page
+      // selector changes (either the original in filter-bar or the
+      // mirror inside the pagination row).
+      const ppSrc = document.getElementById('filter-perpage');
+      if (ppSrc) {
+        ppSrc.addEventListener('change', () => renderPage(1, { skipScroll: false }));
+      }
 
       // Initial render — handles deep-link ?page=N AND #card-<slug>.
       renderPage(readPage());

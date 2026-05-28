@@ -512,5 +512,102 @@ p.hero-sub a {
   /* spec lives in HeroCarousel.astro scoped style — no override here */
 }
 
+/* ── Pagination (operator spec 1, 2026-05-29) ────────────────────────────
+   Centered, current-page highlighted, ellipsis when many pages, per-page
+   selector mirrored inside the pagination row. Scroll-to-#archive on page
+   change happens in the page-local renderPage handler. */
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;        /* spec 1 — center horizontally */
+  align-items: center;
+  margin: 32px 0 16px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+}
+
+.pagination a,
+.pagination .pg-current,
+.pagination .pg-ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
+  padding: 0 10px;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: var(--bg-2);
+  color: var(--ink-dim);
+  text-decoration: none;
+  transition: border-color 160ms ease, color 160ms ease;
+}
+
+.pagination a:hover,
+.pagination a:focus-visible {
+  border-color: var(--caution);
+  color: var(--caution);
+}
+
+/* Current page — bold + caution background per spec 1 ("highlight"). */
+.pagination .pg-current {
+  background: var(--caution);
+  border-color: var(--caution);
+  color: var(--bg);
+  font-weight: 700;
+  cursor: default;
+}
+
+.pagination .pg-ellipsis {
+  border-color: transparent;
+  background: transparent;
+  color: var(--ink-faint);
+  min-width: 24px;
+  padding: 0 4px;
+  cursor: default;
+}
+
+/* Prev/Next pill buttons. */
+.pagination .pg-prev,
+.pagination .pg-next {
+  padding: 0 14px;
+}
+
+/* Per-page selector mirrored INSIDE the pagination row (spec 1). The
+   page-local JS clones the inline #filter-perpage <select> on first
+   render and keeps the two in sync. */
+.pagination .pg-perpage {
+  margin-left: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+}
+.pagination .pg-perpage select {
+  background: var(--bg-2);
+  border: 1px solid var(--rule);
+  color: var(--ink);
+  padding: 6px 10px;
+  font-family: var(--mono);
+  font-size: 12px;
+  height: 40px;
+  min-height: 40px;
+  border-radius: 4px;
+}
+
+@media (max-width: 720px) {
+  .pagination { gap: 4px; }
+  .pagination a,
+  .pagination .pg-current,
+  .pagination .pg-ellipsis { min-width: 36px; height: 36px; padding: 0 8px; font-size: 11px; }
+  .pagination .pg-perpage { width: 100%; justify-content: center; margin: 6px 0 0; }
+}
+
 /* ── Footer breathing space when archive ends ───────────────────────────── */
 .archive + footer { margin-top: 64px; }
