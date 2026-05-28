@@ -75,6 +75,17 @@ const dvids = row['DVIDS Video ID'] ?? '';
 // Hard-coded source URL per CLAUDE.md §2 (war.gov / UFO source).
 // Matches scripts/normalize-csv.py:SOURCE_URL exactly.
 const SOURCE_URL = 'https://www.war.gov/UFO/';
+
+// Plan 04-19 Pagefind filter + meta attributes. Card.astro is wargov-only,
+// so `archive:wargov` is baked in here (CatalogCard.astro emits the same
+// shape parameterised by archiveSlug). These attrs let Pagefind expose
+// per-archive / per-type / per-agency filter facets in the /search UI
+// (SRC-03) and per-card metadata in the result snippet (SRC-02).
+// Idempotent / unconditional add per plan-checker iter 1 finding #7 —
+// skipping the wargov filter would silently exclude 222 wargov cards
+// from the archive-filter dropdown.
+const pagefindFilter = `archive:wargov,type:${rtype},agency:${agency}`;
+const pagefindMeta = `title:${title},agency:${agency},date:${date}`;
 ---
 <article
   class="arch-card"
@@ -90,6 +101,8 @@ const SOURCE_URL = 'https://www.war.gov/UFO/';
   data-region={row['Incident Location'] ?? ''}
   data-category={rtype}
   data-src={SOURCE_URL}
+  data-pagefind-filter={pagefindFilter}
+  data-pagefind-meta={pagefindMeta}
 >
   {thumb && (
     <img

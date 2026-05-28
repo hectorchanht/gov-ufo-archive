@@ -158,3 +158,20 @@ for dir in assets slideshow; do
 done
 
 echo "postbuild: copied $copied_count legacy files into dist/; skipped $skipped_count oversized files"
+
+# ============================================================
+# Plan 04-19 (D-12..D-17) — Pagefind cross-archive search index.
+#
+# MUST run AFTER the legacy copy step so that any legacy HTML that *did*
+# carry data-pagefind-body would also be indexed. In current 4-active-
+# archive scope (CLAUDE.md §2 status table) ONLY the Astro-rendered
+# active pages emit data-pagefind-body via RootLayout.astro, so Pagefind
+# skips every legacy /aaro/<story>.html, /nasa/story.html, /geipan/*.html
+# etc. by design. The full corpus walked: dist/{,/aaro/, /nasa/, /nara/}
+# index.html (4 pages with data-pagefind-body) + per-card facets.
+#
+# pnpm exec is used (NOT npx -y) so the build is hermetic — pagefind is
+# pinned in devDependencies per RESEARCH §2 + version pin guidance.
+# ============================================================
+echo "[postbuild] pagefind: indexing dist/ ..."
+pnpm exec pagefind --site dist
