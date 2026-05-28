@@ -158,11 +158,20 @@ export const INVARIANTS_JS: string = String.raw`
         lbInner.innerHTML = '<div class="lb-catalog-note">External page — see Source button.</div>';
       }
     } else if (ext === 'pdf') {
-      if (local) {
-        lbInner.innerHTML = '<iframe src="' + _escAttr(local) + '" title="' + _escAttr(a.title || 'PDF') + '" loading="lazy"></iframe>';
+      /* Plan 04-UAT 2026-05-28: iframe local AND R2 (assets.realufo.org)
+         PDFs — R2 serves Content-Type: application/pdf inline so the
+         browser PDF reader renders. Only true cross-origin remote PDFs
+         (e.g. github.com release URLs with Content-Disposition: attachment)
+         fall through to the "open in new tab" hint. CLAUDE.md §7
+         invariant #5 was authored under the legacy GH-Releases-only
+         binary CDN — Phase 4 D-01 moved PDFs to R2, which is iframable. */
+      var iframable = !!local;
+      if (!iframable && remote && remote.indexOf('assets.realufo.org') !== -1) {
+        iframable = true;
+      }
+      if (iframable) {
+        lbInner.innerHTML = '<iframe src="' + _escAttr(target) + '" title="' + _escAttr(a.title || 'PDF') + '" loading="lazy"></iframe>';
       } else if (remote) {
-        // Remote → new tab (handled by anchor target=_blank); the lightbox
-        // shows a metadata panel + Download link as a fallback.
         lbInner.innerHTML = '<div class="lb-meta">Remote PDF — open in new tab.<br><a href="' + _escAttr(remote) + '" target="_blank" rel="noopener">Open ' + _escAttr(a.title || 'PDF') + ' ↗</a></div>';
       } else {
         lbInner.innerHTML = '';
@@ -287,20 +296,21 @@ export const INVARIANTS_JS: string = String.raw`
     if (rowId) openAt(rowId);
   });
 
-  /* Operator 2026-05-28: clicking the thumbnail image inside any
-     article[data-action="open"] also opens the lightbox. The existing
-     a[data-action="open"] delegate above ONLY catches the explicit
-     btn-open anchor; thumbnail clicks did nothing. This separate
-     delegate targets <img> elements inside an article-level
-     data-action="open" so the whole card thumb works without
-     breaking native Download / Source ↗ anchor behaviour (those
-     anchors live in .card-actions, not nested in article-level
-     data-action="open" closest() resolution because the article
-     itself is the open trigger; the anchors are SIBLINGS to img). */
+  /* Operator 2026-05-28: clicking ANYWHERE on the card opens lightbox.
+     PDF/VID cards have no thumbnail <img> AND no .btn-open anchor (only
+     article-level data-action="open") so the previous thumb-only +
+     a[data-action="open"] delegates left them completely unclickable.
+     This delegate fires on any click inside article[data-action="open"]
+     EXCEPT clicks on the Download / Source ↗ / btn-open anchors which
+     keep their own native (or btn-open-specific) behaviour. */
   document.addEventListener('click', function (e) {
     var t = e.target;
-    if (!t || t.tagName !== 'IMG') return;
-    var article = t.closest && t.closest('article[data-action="open"]');
+    if (!t || !t.closest) return;
+    // Don't hijack action-button clicks — Download, Source ↗ have hrefs.
+    if (t.closest('a.btn-download, a.btn-source')) return;
+    // btn-open already handled by the a[data-action="open"] delegate above.
+    if (t.closest('a.btn-open')) return;
+    var article = t.closest('article[data-action="open"]');
     if (!article) return;
     e.preventDefault();
     var rowId = article.dataset.rowId || article.dataset.idx;
