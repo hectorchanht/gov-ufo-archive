@@ -359,10 +359,16 @@ footer .colophon {
   z-index: 100;
   background: rgba(10, 10, 12, 0.94);
   display: none;
-  align-items: center;
-  justify-content: center;
+  align-items: stretch;             /* spec 9 — frame fills viewport height for bottom-pinned desc */
+  justify-content: stretch;
 }
 .lightbox.open { display: flex; }
+
+/* Operator spec 6 (2026-05-29) — hide nav header while lightbox is open.
+   `body.lb-open` is toggled by invariants.ts on openAt() / closeLb(). */
+body.lb-open .header-wrap { display: none; }
+body.lb-open                { padding-top: 0 !important; }
+
 .lb-nav {
   position: absolute;
   top: 50%;
@@ -375,6 +381,7 @@ footer .colophon {
   border-radius: 50%;
   font-size: 22px;
   cursor: pointer;
+  z-index: 4;        /* spec 7 — above meta-panel (z:2), below close (z:6) */
 }
 .lb-nav.prev { left: 8px; }
 .lb-nav.next { right: 8px; }
@@ -396,6 +403,7 @@ footer .colophon {
   background: var(--bg-2);
   border: 1px solid var(--rule-strong);
   border-radius: 50%;
+  z-index: 6;        /* spec 7 — above all lightbox chrome */
 }
 
 /* ── Utility ─────────────────────────────────────────────────────────────── */

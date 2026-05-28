@@ -52,6 +52,9 @@ export const INVARIANTS_JS: string = String.raw`
   var lbActions = document.getElementById('lb-actions');
   var lbDownload = document.getElementById('lb-download');
   var lbSource = document.getElementById('lb-source');
+  /* Operator 2026-05-29 — rotate + fullscreen buttons always-on. */
+  var lbRotate = document.getElementById('lb-rotate');
+  var lbFullscreen = document.getElementById('lb-fullscreen');
 
   /* lbList is the array of asset objects the current page renders. Pages
      populate it after their card-render pass (Plan 03-05's wargov index will
@@ -179,18 +182,30 @@ export const INVARIANTS_JS: string = String.raw`
     } else if (ext === 'mp4' || ext === 'webm' || ext === 'mov') {
       /* (4) CLAUDE.md §7 — Video dual-source.
          Two <source> children when both local + remote exist. NEVER add
-         crossorigin="anonymous" (CLAUDE.md §11 — kills cloudfront playback). */
+         crossorigin="anonymous" (CLAUDE.md §11 — kills cloudfront playback).
+         Operator spec 3 (2026-05-29) — autoplay on open. Muted is REQUIRED
+         for iOS Safari autoplay to fire without a user gesture; the user
+         can unmute via the controls. playsinline keeps iOS in-page. */
       var srcs = '';
       if (local) srcs += '<source src="' + _escAttr(local) + '" type="video/' + ext + '">';
       if (remote && remote !== local) srcs += '<source src="' + _escAttr(remote) + '" type="video/' + ext + '">';
-      lbInner.innerHTML = '<video controls preload="metadata" playsinline>' + srcs + '</video>';
+      lbInner.innerHTML = '<video controls autoplay muted preload="metadata" playsinline>' + srcs + '</video>';
     } else if (ext === 'mp3' || ext === 'wav' || ext === 'ogg') {
       lbInner.innerHTML = '<audio controls preload="metadata"><source src="' + _escAttr(target) + '"></audio>';
     } else if (target) {
       /* (3) CLAUDE.md §7 — Image fallback via <img onerror>.
-         When local 404s, swap src to the official source URL. */
+         When local 404s, swap src to the official source URL.
+         Operator spec 2 (2026-05-29) — reuse the already-rendered card
+         thumbnail URL when present so the browser can hit its memory/disk
+         cache (200 from cache) instead of refetching. We prefer the card's
+         thumb URL (a.thumb) when it matches the image extension; the
+         official remote URL stays as the onerror fallback. */
+      var imgSrc = target;
+      if (a.thumb && (ext === 'jpg' || ext === 'jpeg' || ext === 'png' || ext === 'webp' || ext === 'gif' || !ext)) {
+        imgSrc = a.thumb;
+      }
       var fb = remote ? 'onerror="this.onerror=null;this.src=\'' + _escAttr(remote) + '\';"' : '';
-      lbInner.innerHTML = '<img src="' + _escAttr(target) + '" alt="' + _escAttr(a.title || '') + '" ' + fb + '>';
+      lbInner.innerHTML = '<img src="' + _escAttr(imgSrc) + '" alt="' + _escAttr(a.title || '') + '" ' + fb + '>';
     } else {
       /* No URL at all — meta-only render (CATALOG without a download). */
       lbInner.innerHTML = '';
@@ -221,6 +236,8 @@ export const INVARIANTS_JS: string = String.raw`
     lb.classList.add('open');
     lb.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+    /* Operator spec 6 (2026-05-29) — hide site header while lightbox is open. */
+    document.body.classList.add('lb-open');
   }
 
   function navLb(delta) {
@@ -232,8 +249,15 @@ export const INVARIANTS_JS: string = String.raw`
   function closeLb() {
     if (!lb) return;
     lb.classList.remove('open');
+    lb.classList.remove('lb-rotated');
     lb.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+    /* Operator spec 6 (2026-05-29) — restore site header on close. */
+    document.body.classList.remove('lb-open');
+    /* Exit fullscreen if we entered it via the in-lightbox button. */
+    try {
+      if (document.fullscreenElement) document.exitFullscreen();
+    } catch (_) { /* ignore */ }
     if (lbInner) lbInner.innerHTML = '';
     /* Clear meta panel + hide action buttons so the next openAt() starts
        from a clean slate even if a different card has sparse metadata. */
@@ -246,6 +270,41 @@ export const INVARIANTS_JS: string = String.raw`
   if (lbPrev) lbPrev.addEventListener('click', function (e) { e.stopPropagation(); navLb(-1); });
   if (lbNext) lbNext.addEventListener('click', function (e) { e.stopPropagation(); navLb(1); });
   if (lb) lb.addEventListener('click', function (e) { if (e.target === lb) closeLb(); });
+
+  /* Operator spec 10 (2026-05-29) — rotate-90 toggle (always visible). */
+  if (lbRotate && lb) {
+    lbRotate.addEventListener('click', function (e) {
+      e.stopPropagation();
+      lb.classList.toggle('lb-rotated');
+    });
+  }
+
+  /* Operator spec 10 (2026-05-29) — fullscreen toggle. ESC exits via the
+     browser default; fullscreenchange updates the button label. */
+  if (lbFullscreen && lb) {
+    lbFullscreen.addEventListener('click', function (e) {
+      e.stopPropagation();
+      try {
+        if (!document.fullscreenElement) {
+          if (lb.requestFullscreen) lb.requestFullscreen();
+        } else {
+          if (document.exitFullscreen) document.exitFullscreen();
+        }
+      } catch (_) { /* fullscreen API unavailable — silent */ }
+    });
+    document.addEventListener('fullscreenchange', function () {
+      if (!lbFullscreen) return;
+      if (document.fullscreenElement) {
+        lbFullscreen.setAttribute('aria-label', 'Exit fullscreen');
+        lbFullscreen.setAttribute('title', 'Exit fullscreen');
+        lbFullscreen.textContent = '⤡';
+      } else {
+        lbFullscreen.setAttribute('aria-label', 'Enter fullscreen');
+        lbFullscreen.setAttribute('title', 'Fullscreen');
+        lbFullscreen.textContent = '⛶';
+      }
+    });
+  }
 
   /* Keyboard: ArrowLeft / ArrowRight / Escape. */
   document.addEventListener('keydown', function (e) {
