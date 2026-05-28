@@ -1,21 +1,15 @@
 ---
-status: testing
+status: partial
 phase: 04-full-migration-search-offline-performance
 source: [04-01..06, 04-15, 04-16, 04-17, 04-19, 04-20 SUMMARYs + 04-SCOPE-PIVOT-SUMMARY]
 started: 2026-05-28T00:00:00Z
 updated: 2026-05-28T00:00:00Z
+preview_url: https://d57e00d9.realufo.pages.dev
 ---
 
 ## Current Test
 
-number: 3
-name: Lightbox asset view sized "as big as possible"
-expected: |
-  Click thumbnail (or btn-open) on any /aaro/, /nasa/, /nara/, or / (wargov) card.
-  Lightbox opens. Asset (PDF iframe, video, image) renders at viewport-fill scale —
-  up to 96vw wide × 82vh tall. Meta panel (desc + agency/date/region) compressed
-  to ~12vh footer. Dual action buttons (Download + Source ↗) visible.
-awaiting: orchestrator + operator verification
+[testing paused — 1 item outstanding: R2 bulk migration needs operator action]
 
 ## Tests
 
