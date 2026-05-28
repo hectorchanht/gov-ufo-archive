@@ -190,8 +190,8 @@ Plans:
 Plans:
 **Wave 1**
 
-- [ ] 05-01-PLAN.md — R2 bulk seed: operator-gate Phase 4 push + rewrite r2-sync.yml (add repository_dispatch + per-archive scope) + operator workflow_dispatch bulk seed
-- [ ] 05-02-PLAN.md — Akamai spike Worker + `.planning/decisions/akamai-spike.md` ADR with locked AKAMAI_BLOCKED_SOURCES constant
+- [x] 05-01-PLAN.md — R2 bulk seed: operator-gate Phase 4 push + rewrite r2-sync.yml (add repository_dispatch + per-archive scope) + operator workflow_dispatch bulk seed
+- [ ] 05-02-PLAN.md — Akamai spike Worker + `.planning/decisions/akamai-spike.md` ADR with locked AKAMAI_BLOCKED_SOURCES constant *(Task 1 scaffolded; Tasks 2+3 blocked on operator wrangler deploy)*
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
@@ -238,7 +238,7 @@ Plans:
 | 2. Infrastructure & CI Scaffolding | 0/8 | Not started | - |
 | 3. SSG Foundation | 6/6 | Complete   | 2026-05-27 |
 | 4. Full Migration, Search, Offline, Performance | 12/11 | Complete   | 2026-05-28 |
-| 5. Scrape Automation | 0/7 | Planned     | - |
+| 5. Scrape Automation | 2/7 | In Progress|  |
 | 6. Hosting & Cutover | 0/0 | Not started | - |
 
 ---
