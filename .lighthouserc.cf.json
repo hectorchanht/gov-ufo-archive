@@ -5,11 +5,11 @@
     "decisions": {
       "D-26": "Mobile profile + 4x CPU throttle.",
       "D-27": "Budgets: LCP <= 2500 ms, total-byte-weight <= 512000 bytes per archive page.",
-      "D-28": "SOFT fail (warn-only) for Phase 2 + Phase 3. Phase 4 close flips to error-level once PERF-01 (GEIPAN inline-JSON refactor) lands.",
+      "D-28": "HARD fail (error-level) — flipped 2026-05-28 by Plan 04-20 at Phase 4 close. PERF-04 satisfied: both largest-contentful-paint and total-byte-weight now block merges on regression.",
       "D-32": "Coexists with legacy .lighthouserc.json on main; sibling config — never modify the legacy file."
     },
     "preview_url_substitution": "Plan 02-08's CI workflow does `sed s|__PREVIEW_URL__|<cf-pages-preview>|g .lighthouserc.cf.json > /tmp/lhci.json` before invoking `pnpm exec lhci autorun --config=/tmp/lhci.json`. LHCI does not natively interpolate env vars in JSON config; sed-rewrite is simpler than dynamic JSON generation.",
-    "phase4_close_toggle": "To flip soft -> hard, change both assertion levels below from \"warn\" to \"error\". Single edit; no other config change required.",
+    "phase4_close_toggle": "Phase 4 close has applied the toggle: both assertion levels below are now \"error\" (flipped from \"warn\" on 2026-05-28 by Plan 04-20).",
     "viewport_baseline": "360 x 800 + deviceScaleFactor 2 per CLAUDE.md §8 (mobile-first 360 px)."
   },
   "ci": {
@@ -53,8 +53,8 @@
     "assert": {
       "preset": "lighthouse:no-pwa",
       "assertions": {
-        "largest-contentful-paint": ["warn", { "maxNumericValue": 2500 }],
-        "total-byte-weight": ["warn", { "maxNumericValue": 512000 }]
+        "largest-contentful-paint": ["error", { "maxNumericValue": 2500 }],
+        "total-byte-weight": ["error", { "maxNumericValue": 512000 }]
       }
     },
     "upload": {

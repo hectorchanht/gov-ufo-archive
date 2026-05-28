@@ -205,21 +205,17 @@ fi
 # ---------- Rebuild HTML ----------
 if [ "$DO_BUILD" -eq 1 ]; then
   echo ""
-  echo "──── Rebuild mirror pages ────"
-  python3 "$ROOT/scripts/build-wargov.py"
-  python3 "$ROOT/scripts/parse-aaro.py"
-  python3 "$ROOT/scripts/extract-evidence.py"
-  python3 "$ROOT/scripts/build-aaro.py"
-  python3 "$ROOT/scripts/build-details.py"
-  python3 "$ROOT/scripts/build-nasa.py"
-  python3 "$ROOT/scripts/build-nara.py"
-  python3 "$ROOT/scripts/build-geipan.py"
-  python3 "$ROOT/scripts/build-uk.py"
-  python3 "$ROOT/scripts/build-brazil.py"
-  python3 "$ROOT/scripts/build-chile.py"
-  # Catalog-only mirrors (NZ, Canada, Argentina, Uruguay, Peru, Spain, Italy)
-  python3 "$ROOT/scripts/build_batch3.py"
-  echo "  Mirror pages rebuilt."
+  echo "──── Rebuild mirror pages (Astro SSG, Phase 4+) ────"
+  # Phase 4 close (Plan 04-20): the per-archive Python build scripts have
+  # been retired. The 4 active archives (wargov, aaro, nasa, nara) are
+  # built by Astro from src/pages/**; the 11 dormant archives ship as
+  # git-tracked HTML via the postbuild step (scripts/copy-legacy-archives.sh).
+  # `pnpm build` drives both halves end-to-end and emits the full dist/.
+  if command -v pnpm >/dev/null 2>&1; then
+    (cd "$ROOT" && pnpm build) && echo "  dist/ rebuilt by Astro." || echo "  pnpm build failed — investigate." >&2
+  else
+    echo "  pnpm not installed; skipping HTML rebuild. Install with: corepack enable && corepack prepare pnpm@9.15.9 --activate" >&2
+  fi
 fi
 
 echo ""

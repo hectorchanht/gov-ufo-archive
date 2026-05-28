@@ -227,12 +227,14 @@ never at the bare local path.
 └── scripts/
     ├── sync.sh                  master entry, interactive picker
     ├── dl-<slug>.sh             per-archive downloader
-    ├── build-<slug>.py          per-archive site generator
-    ├── build-wargov.py          main page rebuild
-    ├── build-details.py         long-form text pages (AARO + case detail)
-    ├── parse-aaro.py            AARO-only page parser
-    ├── extract-evidence.py      AARO-only evidence-map builder
-    └── spider.py                generic source-page crawler (Chile, UK, …)
+    ├── normalize-<slug>.py      per-archive normaliser (CSV/JSON → content collection)
+    ├── copy-legacy-archives.sh  postbuild: copies 11 dormant archives + partial-port sub-pages
+    ├── build-redirects.py       URL-CONTRACT.txt → _redirects (quality-gates.yml drift gate)
+    ├── verify-redirects.sh      curl harness for canonical routes
+    ├── verify-fidelity.py       fidelity-samples vs live preview text-node diff
+    ├── verify-lighthouse-budgets.py  LHCI output parser (HARD-fail at Phase 4 close)
+    ├── verify-python-retired.sh Phase 4 close invariant guard (Plan 04-20)
+    └── spider.py                generic source-page crawler (Phase 5 SCRP scope)
 ```
 
 ### 5.1 GitHub Releases
@@ -266,14 +268,21 @@ Each `scripts/dl-<slug>.sh` is **idempotent**:
 - If direct blocked (Akamai): fall back to Wayback `https://web.archive.org/web/<ts>id_/<url>`.
 - Failures `rm -f` the partial file.
 
-### 6.2 Per-archive build script
+### 6.2 Per-archive build (Phase 4+)
 
-Each `scripts/build-<slug>.py`:
+The 4 active archives (wargov, aaro, nasa, nara) are built by Astro
+from `src/pages/**` + content collections (`src/content/`) populated
+by `scripts/normalize-<slug>.py`. The 11 dormant archives ship as
+git-tracked HTML via `scripts/copy-legacy-archives.sh` (postbuild).
+The pre-Phase-4 per-archive `scripts/build-<slug>.py` builders were
+retired by Plan 04-20; see `.planning/decisions/python-build-retired.md`.
 
-- Uses `git ls-files <slug>/<subdir>/` (not `os.listdir`) for `a.local`.
-- Falls back to `os.listdir` if git is unavailable.
-- Embeds the manifest as a single inline `<script id="arch-data" type="application/json">` block.
-- Generates a self-contained `.html` (CSS inline, JS inline). Zero build tooling.
+Surviving Python under `scripts/`:
+- `normalize-<slug>.py` — CSV/JSON normalisers feeding content collections
+- `build-redirects.py` — URL-CONTRACT.txt → `_redirects` (drift-gated)
+- `spider.py` + `scrape-<slug>.py` — Phase 5 SCRP scope
+- `verify-fidelity.py`, `verify-lighthouse-budgets.py`,
+  `verify-python-retired.sh` — verification utilities
 
 ### 6.3 sync.sh
 
@@ -397,10 +406,10 @@ function closeLb() { /* lb.classList.remove('open') */ }
 # Add a new release asset
 gh release upload <tag> <files…>
 
-# Rebuild every archive without downloading
-python3 scripts/build-wargov.py && python3 scripts/build-aaro.py && \
-  python3 scripts/build-nasa.py && python3 scripts/build-nara.py && \
-  python3 scripts/build-details.py
+# Rebuild every archive without downloading (Phase 4+ Astro pipeline)
+pnpm build  # Astro builds the 4 active archives; postbuild copies the
+            # 11 dormant archives + partial-port sub-pages; Pagefind
+            # indexes dist/ — full dist/ ready for deploy.
 
 # Check what's tracked in a folder
 git ls-files <dir>/ | wc -l
@@ -411,21 +420,35 @@ gh release view <tag>
 
 ---
 
-## 13. SSG migration in progress (2026-05)
+## 13. SSG migration — Phase 4 COMPLETE (2026-05-28)
 
-The project is migrating from plain HTML + Python build scripts to a formal
-SSG. The design rules in §3–§11 are the **starting contract**; this section
-points at the migration source-of-truth so agents picking up work know where
-the latest decisions live.
+The project migrated from plain HTML + Python build scripts to Astro 5 /
+Cloudflare Pages. Phase 4 (this milestone) closed 2026-05-28 by Plan
+04-20. The design rules in §3–§11 are the **starting contract**; this
+section points at the migration source-of-truth so agents picking up
+work know where the latest decisions live.
 
-**Active milestone (2026-05-28 scope pivot):** v1 ships **4 ACTIVE
-archives** (wargov, aaro, nasa, nara — all US jurisdiction, all 17 U.S.C.
-§ 105) wired into Nav + Footer + Pagefind. The 11 dormant archives stay
-in the repo (full code, data, content collections, tone-colour entries,
-NZ + Uruguay Astro page templates) as a **future-milestone re-add pool**.
-See `.planning/phases/04-full-migration-search-offline-performance/
-04-SCOPE-PIVOT-SUMMARY.md` for rationale + mechanics. Plans 04-15..04-17
-(AARO/NASA/NARA ports) are the in-flight build path for the 4-active set.
+**v1 ships 4 ACTIVE archives** (wargov, aaro, nasa, nara — all US
+jurisdiction, all 17 U.S.C. § 105) wired into Nav + Footer + Pagefind.
+The 11 dormant archives stay in the repo (full code, data, content
+collections, tone-colour entries, NZ + Uruguay Astro page templates) as
+a **future-milestone re-add pool**. See `.planning/phases/04-full-
+migration-search-offline-performance/04-SCOPE-PIVOT-SUMMARY.md` for
+rationale + mechanics; Plans 04-15..04-17 ported AARO/NASA/NARA;
+Plan 04-19 shipped Pagefind; Plan 04-20 closed Phase 4 by HARD-flipping
+Lighthouse and retiring the active-surface Python build legacy.
+
+**Python build retirement (Plan 04-20):** the active-surface builders
+are gone (`build-wargov.py`, `build-details.py`, `sync-nav.py`,
+`sync-footer.py`). Carve-outs that survive Phase 4: `scripts/spider.py`
+(Phase 5 SCRP), `scripts/build-redirects.py` (quality-gates.yml drift
+gate), `scripts/build-{brazil,chile,geipan,uk,api,cases,feeds,geo,og,
+pages-index,stories,sw}.py` + `scripts/build_batch3.py` (still
+referenced by `scrape.yml` — retired in Phase 5 when scrape.yml is
+rewritten), and `scripts/copy-legacy-archives.sh` (ships the 11 dormant
+archives + partial-port sub-pages — retired when dormant archives are
+hard-deleted in a future milestone). See ADR
+`.planning/decisions/python-build-retired.md`.
 
 | Artifact | Path | Purpose |
 | --- | --- | --- |
