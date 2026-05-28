@@ -196,17 +196,17 @@ jobs:
           PREVIEW_URL: ${{ needs.preflight.outputs.preview_url }}
 
   # ----------------------------------------------------------------
-  # lighthouse — D-30 #5. SOFT per D-28 — continue-on-error: true.
-  # Asserts mobile LCP ≤ 2.5 s + total transfer ≤ 500 KB. Phase 4 close
-  # plan flips both .lighthouserc.cf.json assertion levels (warn → error)
-  # and removes continue-on-error here.
+  # lighthouse — D-30 #5. HARD per D-28 (Phase 4 close 2026-05-28 by Plan
+  # 04-20). Asserts mobile LCP ≤ 2.5 s + total transfer ≤ 500 KB on every
+  # preview build; failures BLOCK merge. .lighthouserc.cf.json carries the
+  # matching `error` assertion levels for largest-contentful-paint and
+  # total-byte-weight.
   # ----------------------------------------------------------------
   lighthouse:
-    name: Lighthouse budgets (soft per D-28)
+    name: Lighthouse budgets (HARD per D-28, Phase 4 close)
     needs: preflight
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    continue-on-error: true        # D-28 SOFT for Phase 2/3; flip to false at Phase 4 close
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -225,8 +225,8 @@ jobs:
             .lighthouserc.cf.json > /tmp/lhci.json
       - name: Run lighthouse-ci
         run: pnpm exec lhci autorun --config=/tmp/lhci.json
-      - name: Verify budgets (soft)
-        run: python3 scripts/verify-lighthouse-budgets.py
+      - name: Verify budgets (HARD)
+        run: python3 scripts/verify-lighthouse-budgets.py --hard-fail
       - name: Upload LHCI artifacts
         if: always()
         uses: actions/upload-artifact@v4
