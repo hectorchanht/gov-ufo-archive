@@ -72,9 +72,33 @@ HTTP/2 200 content-type: video/mp4         videos/aaro/DOD_108981629.mp4 (pre-ex
 geipan origin → 404 (CDN cache 4h until purge)
 ```
 
+## Task 3 — Gap closure (nasa + nara + aaro PDFs, 2026-05-28T13:55Z)
+
+Followed up with second pass to close remaining v1 R2 surface gaps:
+- **4 nasa PDFs** downloaded from `pdfs-v1` release + uploaded to `pdfs/nasa/` via wrangler
+- **49 nara PDFs** downloaded from `pdfs-v1` release + uploaded to `pdfs/nara/` (P=8 parallel)
+- **10 aaro PDFs** downloaded from `pdfs-v1` + uploaded to `pdfs/aaro/`
+
+**Final v1 R2 surface (302 objects across 4 active archives):**
+- `pdfs/wargov/` — 122 (R01 116 + R02 6)
+- `pdfs/aaro/` — 10
+- `pdfs/nasa/` — 4
+- `pdfs/nara/` — 49
+- `videos/wargov/` — 85 (R01 28 + R02 57)
+- `videos/aaro/` — 32 (pre-existing, content-type=video/mp4 confirmed)
+- `videos/geipan/` — purged (CDN cache self-clears 4h)
+
+**4 aaro PDFs still missing — referenced in `data/aaro.json` but absent from `pdfs-v1` release tag AND local disk:**
+- `AARO_Declassification_Info_Paper_2025.pdf`
+- `AARO_HISTORICAL_RECORD_REPORT_2024.PDF`
+- `AAROs_Supplement_to_ORNLs_Analysis_of_a_Metallic_Specimen.pdf`
+- `ORNL-Synopsis_Analysis_of_a_Metallic_Specimen.pdf`
+
+These need cron scrape from `aaro.mil` once Plan 05-04 lands — that's the natural ingest path (Worker fetches AARO source → R2 staging → release-upload).
+
 **Follow-up backlog:**
 - Plan 05-01b (deferred): CI-driven staging script (`scripts/stage-r2-from-releases.py`) reads `data/<slug>.json` + `release-manifest.json`, downloads from GH Releases to `/tmp/r2-stage/`, then rclone syncs. Removes operator-workstation dependency for future seeds.
-- nasa (4 PDFs) + nara (49 PDFs) seed deferred — operator can pull from `pdfs-v1` release tag and re-run wrangler upload helper script (`/tmp/r2-upload-one.sh`).
+- 4 aaro PDFs above — defer to Plan 05-04 cron scrape ingest (not a Plan 05-01 gap, since they were never in the release inventory to begin with).
 
 ## One-Liner
 
