@@ -1,0 +1,93 @@
+name: Deploy to Cloudflare Pages
+
+# Fallback for the native CF Pages Git integration. After the
+# hectorchanht/war-gov-ufo-release → hectorchanht/gov-ufo-archive
+# repo rename, CF Pages' GitHub App webhook stopped firing — push
+# events to main no longer triggered a build. This workflow
+# bypasses the native integration by building locally and pushing
+# the dist/ tarball to Pages via wrangler.
+#
+# To remove this workflow later (after operator re-links CF Pages
+# Git integration via the CF dashboard), simply delete this file.
+#
+# Required GitHub repo secrets:
+#   CLOUDFLARE_API_TOKEN  — CF dashboard → My Profile → API Tokens
+#                           → Create Token → "Edit Cloudflare
+#                           Workers" preset (includes Pages:Edit)
+#                           OR a custom token scoped to:
+#                           - Account: Cloudflare Pages:Edit
+#                           - Account: Account Settings:Read
+#   CLOUDFLARE_ACCOUNT_ID — f1868a071996e836eae6da2b65f37929
+#                           (realufo CF account, NOT a secret per se
+#                           but convention is to set as secret)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'public/**'
+      - 'scripts/**'
+      - 'data/**'
+      - 'astro.config.mjs'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'tsconfig.json'
+      - 'uap-data.csv'
+      - 'uap-release001.csv'
+      - 'wrangler.toml'
+      - '.github/workflows/deploy-cf-pages.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: cf-pages-prod
+  # Don't cancel in-flight deploys — a half-uploaded dist/ would
+  # 404 cards until the next deploy completes. Queue instead.
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  deployments: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Need full history so any `git` calls inside normalize-csv
+          # or build scripts (e.g. derive release dates from log) work.
+          # If build is purely filesystem-driven, fetch-depth: 1 is fine.
+          fetch-depth: 1
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Astro site
+        run: pnpm build
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # `pages deploy` flags:
+          #   --project-name realufo     → CF Pages project
+          #   --branch main              → publish to production alias
+          #   --commit-hash + --commit-message → audit trail in CF UI
+          command: >-
+            pages deploy dist/
+            --project-name=realufo
+            --branch=main
+            --commit-hash=${{ github.sha }}
+            --commit-message=${{ github.event.head_commit.message || github.sha }}
