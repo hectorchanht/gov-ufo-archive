@@ -273,6 +273,11 @@ nav.primary a[aria-current="page"] {
   z-index: 2;
 }
 
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+
 main { position: relative; z-index: 2; }
 
 /* ── Form controls (mobile-first) ────────────────────────────────────────── */

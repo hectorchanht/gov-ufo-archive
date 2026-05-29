@@ -93,6 +93,7 @@ p.hero-sub a {
   text-transform: uppercase;
   margin: 8px 0 16px;
   background: rgba(201, 54, 44, 0.06);
+  height: fit-content;
 }
 
 .classified-stamp small {

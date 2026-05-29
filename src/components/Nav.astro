@@ -44,7 +44,7 @@ const ARCHIVES = [
 // but direct-URL access still renders a usable seal.
 const BRAND: Partial<Record<ArchiveSlug, { super: string; name: string; sealMark: string }>> = {
   wargov: { super: 'U.S. Department of',               name: 'War',  sealMark: 'DOW'  },
-  aaro:   { super: 'Office of the',                    name: 'AARO', sealMark: 'AARO' },
+  aaro:   { super: 'All-domain Anomaly Resolution Office',                    name: 'AARO', sealMark: 'AARO' },
   nasa:   { super: 'National Aeronautics & Space',     name: 'NASA', sealMark: 'NASA' },
   nara:   { super: 'National Archives & Records',      name: 'NARA', sealMark: 'NARA' },
 };
@@ -54,7 +54,7 @@ const brand = BRAND[archiveSlug] ?? BRAND.wargov!;
 
 <div class="header-wrap">
   <header>
-    <div class="container">
+    <div class="container flex">
       <div class="brand-row">
         <a href={ARCHIVES.find(a => a.slug === archiveSlug)?.path ?? '/'} class="brand">
           <div class="seal" aria-hidden="true">{brand.sealMark}</div>
