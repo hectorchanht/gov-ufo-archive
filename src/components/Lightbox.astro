@@ -72,7 +72,18 @@
   </div>
 </div>
 
-<style>
+<style is:global>
+  /* is:global — REQUIRED. Lightbox child elements (iframe, dl, dt, dd,
+     img, video, audio) are runtime-injected via lbInner.innerHTML in
+     invariants.ts, so they don't carry the data-astro-cid-* scope
+     attribute. Without is:global, scoped selectors compiled like
+     `.lb-meta-panel[data-astro-cid-...] dl[data-astro-cid-...]` would
+     never match runtime-injected children — dl falls back to default
+     block layout (dt+dd each on own line) and iframe collapses to its
+     intrinsic 300x150 default. 2026-05-29 regression fix.
+
+     Selector ergonomics: every rule below is prefixed with `.lightbox`
+     or `.lb-*` so it can't accidentally bleed into unrelated DOM. */
   /* Scoped polish layered atop global.css's .lightbox base. The base lives
      in src/styles/global.css (Plan 03-04 lines 355-399); this block adds
      the counter + inner sizing per CLAUDE.md §8 + index.html @ ~line 775.
