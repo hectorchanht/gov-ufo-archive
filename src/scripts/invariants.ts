@@ -522,30 +522,28 @@ export const INVARIANTS_JS: string = String.raw`
            before the user scrolls past .archive).
   */
   var archBar = document.getElementById('arch-controls-bar');
-  var archiveSection = document.getElementById('archive');
-  if (archBar && archiveSection) {
+  // Operator spec 2026-05-29 (refined) — use .arch-grid (the cards
+  // container) as the gate, NOT the .archive section top. Hide-on-
+  // scroll-down only fires once the FIRST CARD has crossed the sticky-
+  // header line. That way the bar stays put while the user is still
+  // looking at stats-grid + section heading.
+  var archGrid = document.querySelector('.arch-grid');
+  if (archBar && archGrid) {
     var lastScrollY = window.pageYOffset || 0;
     var scrollTicking = false;
-    // Operator spec 2026-05-29 — hide trigger threshold must be the
-    // ACTUAL archive section top, not a hardcoded 200px. Otherwise the
-    // bar hides while still floating above the stats-grid (between the
-    // hero and the archive section start). Threshold = the y-position
-    // where the bar would naturally clear the sticky header (64px).
-    // The bar is position:sticky top:64px INSIDE #archive, so the bar
-    // only visually overlaps content once y >= archiveTop - 64.
-    function archiveTop() {
-      return archiveSection.getBoundingClientRect().top + (window.pageYOffset || 0);
+    function archGridTop() {
+      return archGrid.getBoundingClientRect().top + (window.pageYOffset || 0);
     }
 
     function updateBarVisibility() {
       var y = window.pageYOffset || 0;
       var dy = y - lastScrollY;
-      // Hide-trigger threshold: bar must be in sticky position (inside
-      // archive section and past the sticky-header offset). Until then,
-      // keep the bar revealed — it's not visually in the way of the
-      // hero or headlines section above #archive.
-      var pastArchiveTop = y >= archiveTop() - 64;
-      if (!pastArchiveTop) {
+      // Threshold: don't hide until the grid top has crossed under the
+      // sticky bar (bar top is at viewport 64px, bar itself is ~96px
+      // tall when wrapped, so the grid starts being usefully visible
+      // ~y >= gridTop - 64).
+      var pastGridTop = y >= archGridTop() - 64;
+      if (!pastGridTop) {
         archBar.classList.remove('bar-hidden');
       } else if (document.body.classList.contains('lb-open')) {
         // Lightbox open — leave bar untouched.
