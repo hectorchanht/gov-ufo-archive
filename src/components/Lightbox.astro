@@ -342,4 +342,25 @@
     max-width: 86vh;
     max-height: 92vw;
   }
+
+  /* Operator spec 2026-05-29 — hide meta-panel in fullscreen so the
+     asset occupies the entire screen. :fullscreen pseudo applies when
+     lb.requestFullscreen() succeeds. Also hide counter, rotate, and
+     fullscreen buttons (the user clearly wants distraction-free view);
+     keep .lb-close so ESC isn't the only exit. .lb-nav stays visible
+     for prev/next navigation while fullscreened. */
+  .lightbox:fullscreen .lb-meta-panel,
+  .lightbox:fullscreen .lb-counter,
+  .lightbox:fullscreen .lb-rotate,
+  .lightbox:fullscreen .lb-fullscreen,
+  .lightbox:fullscreen .lb-actions {
+    display: none;
+  }
+
+  /* In fullscreen the .lb-frame loses its meta-panel sibling, so the
+     .lightbox-inner can flex-grow into the whole viewport. Padding
+     drops to a thin gutter so the asset is genuinely full-bleed. */
+  .lightbox:fullscreen .lb-frame {
+    padding: 8px;
+  }
 </style>
