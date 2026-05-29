@@ -369,7 +369,14 @@ def _read_rows(csv_path: Path) -> list[dict[str, str]]:
             # end up rewritten to `videos/wargov/<paired-pdf>.pdf` (wrong
             # extension AND wrong file). Empty-link rows would render
             # without a Play button at all (the user-visible bug).
-            if rtype == 'VID':
+            # Hydrate VID + AUD identically: NASA Mercury/Gemini/Apollo
+            # audio excerpts live on DVIDS as audio-served-as-mp4 (see
+            # resolve-dvids-r01.py header comment). All 8 AUD rows in
+            # uap-data.csv have DVIDS Video IDs that resolve to DOD_*.mp4
+            # via the same lookup table. Without including AUD here, AUD
+            # cards rendered no Play button and the lightbox showed
+            # nothing on click. 2026-05-29 fix.
+            if rtype in ('VID', 'AUD'):
                 raw_url = (cleaned.get('PDF | Image Link') or '').strip()
                 # Override when the CSV field is empty OR points at a
                 # non-mp4 (the paired-PDF convention). Preserve direct mp4
@@ -390,7 +397,7 @@ def _read_rows(csv_path: Path) -> list[dict[str, str]]:
                         cleaned['PDF | Image Link'] = ''
                         cleared_urls += 1
                 # Always try thumb hydration when the field is empty —
-                # CSV-supplied thumbs (none in practice for VID rows)
+                # CSV-supplied thumbs (none in practice for VID/AUD rows)
                 # always win.
                 if not (cleaned.get('Modal Image') or '').strip():
                     thumb = _hydrate_thumb(cleaned, pr_thumbs)

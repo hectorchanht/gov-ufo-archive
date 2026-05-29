@@ -269,7 +269,22 @@ export const INVARIANTS_JS: string = String.raw`
   if (lb && lbClose) lbClose.addEventListener('click', closeLb);
   if (lbPrev) lbPrev.addEventListener('click', function (e) { e.stopPropagation(); navLb(-1); });
   if (lbNext) lbNext.addEventListener('click', function (e) { e.stopPropagation(); navLb(1); });
-  if (lb) lb.addEventListener('click', function (e) { if (e.target === lb) closeLb(); });
+  /* Operator spec 2026-05-29 — close on empty-space click.
+     After spec-9 desc-pinned-bottom + spec-5 iframe-fill, the .lb-frame
+     element fills the viewport so clicks rarely land on .lightbox root.
+     Allow closing when target is the backdrop (lb), the frame shell
+     (lb-frame), or the asset-container empty area (lightbox-inner — when
+     click misses the asset itself). Interactive children of these
+     (.lb-meta-panel, .lb-actions, .lb-btn, .lb-nav, .lb-close, .lb-rotate,
+     .lb-fs, .lb-counter, img, video, iframe, audio) absorb their own
+     clicks so they won't bubble back here. */
+  if (lb) lb.addEventListener('click', function (e) {
+    var t = e.target as HTMLElement | null;
+    if (!t) return;
+    if (t === lb || t.classList.contains('lb-frame') || t.classList.contains('lightbox-inner')) {
+      closeLb();
+    }
+  });
 
   /* Operator spec 10 (2026-05-29) — rotate-90 toggle (always visible). */
   if (lbRotate && lb) {
