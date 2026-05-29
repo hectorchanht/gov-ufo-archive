@@ -174,22 +174,23 @@ const description = "Offline mirror of NASA's UAP Independent Study Team final r
             <option value="agency">Agency</option>
           </select>
         </div>
-      </div>
-
-      <div class="filter-bar">
-        <label>Agency:
-          <select id="filter-agency">
-            <option value="">All</option>
-          </select>
-        </label>
-        <label>Per page:
-          <select id="filter-perpage">
-            <option value="12">12</option>
-            <option value="24" selected>24</option>
-            <option value="48">48</option>
-            <option value="96">96</option>
-          </select>
-        </label>
+        {/* Operator spec 2026-05-29 — filter-bar inside arch-controls-bar
+            so the whole control surface hides/shows together on scroll. */}
+        <div class="filter-bar">
+          <label>Agency:
+            <select id="filter-agency">
+              <option value="">All</option>
+            </select>
+          </label>
+          <label>Per page:
+            <select id="filter-perpage">
+              <option value="12">12</option>
+              <option value="24" selected>24</option>
+              <option value="48">48</option>
+              <option value="96">96</option>
+            </select>
+          </label>
+        </div>
       </div>
 
       <div class="result-count" id="arch-count" aria-live="polite"></div>

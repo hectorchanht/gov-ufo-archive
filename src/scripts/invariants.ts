@@ -522,16 +522,30 @@ export const INVARIANTS_JS: string = String.raw`
            before the user scrolls past .archive).
   */
   var archBar = document.getElementById('arch-controls-bar');
-  if (archBar) {
+  var archiveSection = document.getElementById('archive');
+  if (archBar && archiveSection) {
     var lastScrollY = window.pageYOffset || 0;
     var scrollTicking = false;
+    // Operator spec 2026-05-29 — hide trigger threshold must be the
+    // ACTUAL archive section top, not a hardcoded 200px. Otherwise the
+    // bar hides while still floating above the stats-grid (between the
+    // hero and the archive section start). Threshold = the y-position
+    // where the bar would naturally clear the sticky header (64px).
+    // The bar is position:sticky top:64px INSIDE #archive, so the bar
+    // only visually overlaps content once y >= archiveTop - 64.
+    function archiveTop() {
+      return archiveSection.getBoundingClientRect().top + (window.pageYOffset || 0);
+    }
 
     function updateBarVisibility() {
       var y = window.pageYOffset || 0;
       var dy = y - lastScrollY;
-      // Only react past 200px — avoid hiding the bar before the user has
-      // any reason to scroll past it.
-      if (y < 200) {
+      // Hide-trigger threshold: bar must be in sticky position (inside
+      // archive section and past the sticky-header offset). Until then,
+      // keep the bar revealed — it's not visually in the way of the
+      // hero or headlines section above #archive.
+      var pastArchiveTop = y >= archiveTop() - 64;
+      if (!pastArchiveTop) {
         archBar.classList.remove('bar-hidden');
       } else if (document.body.classList.contains('lb-open')) {
         // Lightbox open — leave bar untouched.

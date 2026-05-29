@@ -137,18 +137,20 @@ const jsonLd = {
   <section class="hero" id="intro">
     <div class="container">
       <div class="coords">38°52′15″N, 77°03′18″W &middot; THE PENTAGON, ARLINGTON, VIRGINIA</div>
-      <h1 class="hero-title">
-        Presidential Unsealing and Reporting System for UAP Encounters <span class="acronym">(PURSUE)</span>
-      </h1>
+      <div class="flex">
+        <h1 class="hero-title">
+          Presidential Unsealing and Reporting System for UAP Encounters <span class="acronym">(PURSUE)</span>
+        </h1>
+        <div class="classified-stamp">
+          DECLASSIFIED
+          <small>RELEASES 01 + 02 / 2026</small>
+        </div>
+      </div>
       <p class="hero-sub">
         Official Department of War &middot; ODNI release of declassified UAP records under President
         Trump's transparency directive of February 19, 2026.
         <a href="https://www.war.gov/UFO/" target="_blank" rel="noopener">Source: war.gov/UFO/ ↗</a>
       </p>
-      <div class="classified-stamp">
-        DECLASSIFIED
-        <small>RELEASES 01 + 02 / 2026</small>
-      </div>
 
       <HeroCarousel slides={heroSlides} label="Featured imagery from Releases 01 + 02" />
     </div>
@@ -249,33 +251,35 @@ const jsonLd = {
             <option value="agency">Agency</option>
           </select>
         </div>
-      </div>
-
-      <div class="filter-bar">
-        <label>Agency:
-          <select id="filter-agency">
-            <option value="">All</option>
-          </select>
-        </label>
-        {/* Operator spec 4 (2026-05-29) — release-batch filter. Wargov-only.
-            Card.astro emits data-release="01" for R01 (5/8/26, 158 rows)
-            and "02" for R02 (5/22/26, 64 rows); the page-local filter
-            script reads it and toggles card visibility. */}
-        <label>Release:
-          <select id="filter-release">
-            <option value="">All</option>
-            <option value="01">Release 01 (May 8, 2026)</option>
-            <option value="02">Release 02 (May 22, 2026)</option>
-          </select>
-        </label>
-        <label>Per page:
-          <select id="filter-perpage">
-            <option value="12">12</option>
-            <option value="24" selected>24</option>
-            <option value="48">48</option>
-            <option value="96">96</option>
-          </select>
-        </label>
+        {/* Operator spec 2026-05-29 — filter-bar now lives INSIDE the
+            sticky arch-controls-bar so the whole control surface (tabs
+            + sort + filters) hides/shows as one unit on scroll. */}
+        <div class="filter-bar">
+          <label>Agency:
+            <select id="filter-agency">
+              <option value="">All</option>
+            </select>
+          </label>
+          {/* Operator spec 4 (2026-05-29) — release-batch filter. Wargov-only.
+              Card.astro emits data-release="01" for R01 (5/8/26, 158 rows)
+              and "02" for R02 (5/22/26, 64 rows); the page-local filter
+              script reads it and toggles card visibility. */}
+          <label>Release:
+            <select id="filter-release">
+              <option value="">All</option>
+              <option value="01">Release 01 (May 8, 2026)</option>
+              <option value="02">Release 02 (May 22, 2026)</option>
+            </select>
+          </label>
+          <label>Per page:
+            <select id="filter-perpage">
+              <option value="12">12</option>
+              <option value="24" selected>24</option>
+              <option value="48">48</option>
+              <option value="96">96</option>
+            </select>
+          </label>
+        </div>
       </div>
 
       <div class="result-count" id="arch-count" aria-live="polite"></div>
