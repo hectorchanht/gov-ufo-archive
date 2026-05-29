@@ -84,13 +84,17 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          # `pages deploy` flags:
-          #   --project-name realufo     → CF Pages project
-          #   --branch main              → publish to production alias
-          #   --commit-hash + --commit-message → audit trail in CF UI
-          command: >-
-            pages deploy dist/
-            --project-name=realufo
-            --branch=main
-            --commit-hash=${{ github.sha }}
-            --commit-message=${{ github.event.head_commit.message || github.sha }}
+          # Pin to wrangler 4 to match local + the version stored against
+          # the realufo CF Pages project. Without this the action picks
+          # wrangler 3.90.0 from its default, which behaved oddly with
+          # the v4-shape `pages deploy` invocation.
+          wranglerVersion: '4.95.0'
+          # KEEP command flags minimal — earlier attempts to pass
+          # --commit-hash=${{ github.sha }} +
+          # --commit-message=${{ github.event.head_commit.message }}
+          # broke because the action expands the YAML scalar via shell
+          # and commit messages contain backticks, parens, em-dash, etc.
+          # that bypass quoting. The action ALREADY auto-detects
+          # GITHUB_SHA / GITHUB_REF and stamps the deploy with that
+          # metadata. Pass project-name + branch only.
+          command: pages deploy dist/ --project-name=realufo --branch=main

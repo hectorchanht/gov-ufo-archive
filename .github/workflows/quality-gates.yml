@@ -19,7 +19,18 @@ name: Phase 2 quality gates
 #   redirects          — build-redirects.py --check (drift) + verify-redirects.sh (curl)
 
 on:
-  deployment_status:           # CF Pages emits via its GitHub App after each preview deploy
+  # 2026-05-29 — deployment_status trigger disabled. The verify-redirects.sh
+  # curl harness probes Phase 2 legacy URLs (belgian-wave.html, cash-landrum.html,
+  # coyne.html, gimbal.html, jal-1628.html, ohare-2006.html, etc.) that were
+  # retired during the Phase 4 Astro migration (per CLAUDE.md §13 — dormant
+  # archives moved to a different surface, partial-port pages removed). Every
+  # CF Pages deploy now fires this workflow and it fails immediately on
+  # `http://realufo.org/aaro/belgian-wave.html → got 301`. Keep the workflow
+  # for ad-hoc manual runs (Phase 2 baseline reference) but stop auto-firing
+  # on deploys. Re-enable by uncommenting `deployment_status:` when the curl
+  # samples list is refreshed to current Astro routes OR when verify-redirects.sh
+  # is rewritten to handle 301 → 200 via follow-redirects.
+  # deployment_status:           # CF Pages emits via its GitHub App after each preview deploy
   workflow_dispatch:           # manual trigger for debugging
     inputs:
       preview_url:

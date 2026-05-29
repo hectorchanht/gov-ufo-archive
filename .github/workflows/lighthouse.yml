@@ -38,9 +38,6 @@ jobs:
       - name: Build Astro site
         run: pnpm build
 
-      - name: Install Lighthouse CI
-        run: npm install --no-save @lhci/cli@0.14.x
-
       - name: Serve built dist/
         run: |
           # Serve the Astro build output, not the repo root (Phase 4 migration:
@@ -53,6 +50,13 @@ jobs:
           done
 
       - name: Run Lighthouse CI
-        run: npx lhci autorun --config=.lighthouserc.json
+        # 2026-05-29 — switched from `npm install --no-save @lhci/cli@0.14.x`
+        # + `npx lhci autorun` to a single `pnpm dlx`. The npm path broke
+        # with "Cannot read properties of null (reading 'matches')" on
+        # Node 22 + npm 11 (known npm regression installing @lhci/cli 0.14
+        # in --no-save mode). pnpm dlx fetches the package into pnpm's
+        # store and executes cleanly. Pinned to 0.14.x latest to track
+        # security patches without breaking on a 0.15 major.
+        run: pnpm dlx @lhci/cli@^0.14 autorun --config=.lighthouserc.json
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
