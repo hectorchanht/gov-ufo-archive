@@ -117,7 +117,7 @@ from typing import Any
 # sys.path[0] keeps this script runnable from any cwd without requiring
 # package install (stdlib-only convention per CLAUDE.md §6.2).
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from _archive_common import rewrite_to_r2  # noqa: E402
+from _archive_common import pdf_thumb_url, rewrite_to_r2  # noqa: E402
 
 REPO = Path(__file__).resolve().parent.parent
 SOURCE_HTML = REPO / 'nara' / 'index.html'
@@ -292,6 +292,17 @@ def to_catalog_asset(raw: dict[str, Any]) -> dict[str, str]:
             asset['u'] = rewrite_to_r2(asset['u'], 'nara', asset_type)
         if asset['l']:
             asset['l'] = rewrite_to_r2(asset['l'], 'nara', asset_type)
+    # Plan post-05-01 (PDF first-page thumb) — for PDF/DOC rows whose
+    # `th` is empty, derive
+    # `https://assets.realufo.org/pdf-thumbs/nara/<basename>.jpg` from
+    # the R2-rewritten `u`. CatalogCard.astro reads `asset.th` directly
+    # and its <img> onerror falls back to `data-fallback` (the PDF URL).
+    # The matching JPG is rendered + uploaded to R2 by
+    # `scripts/build-pdf-thumbs.py`. Additive — non-empty `th` preserved.
+    if t in ('PDF', 'DOC') and not (asset.get('th') or '').strip():
+        derived = pdf_thumb_url(asset.get('u') or '')
+        if derived:
+            asset['th'] = derived
     # Final defensive guard — ensure ONLY the strict-schema keys leak
     # out. If any future maintainer adds a key to the dict literal
     # above without extending catalogAssetSchema, this filter still

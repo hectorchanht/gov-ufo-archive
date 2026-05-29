@@ -10,7 +10,7 @@
         "region": "",
         "s": "https://science.nasa.gov/wp-content/uploads/2023/09/uap-independent-study-team-final-report.pdf",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nasa/uap-independent-study-team-final-report.jpg",
         "ti": "NASA UAP Independent Study Team — Final Report",
         "u": "https://assets.realufo.org/pdfs/nasa/uap-independent-study-team-final-report.pdf"
       },
@@ -23,7 +23,7 @@
         "region": "",
         "s": "https://science.nasa.gov/wp-content/uploads/2023/04/UAPISTTermsofReference_Signed.pdf",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nasa/UAPISTTermsofReference_Signed.jpg",
         "ti": "UAP Independent Study Team — Terms of Reference",
         "u": "https://assets.realufo.org/pdfs/nasa/UAPISTTermsofReference_Signed.pdf"
       },
@@ -36,7 +36,7 @@
         "region": "",
         "s": "https://science.nasa.gov/wp-content/uploads/2024/01/public-meeting-agenda-tagged.pdf",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nasa/public-meeting-agenda-tagged.jpg",
         "ti": "Public Meeting Agenda — May 31, 2023",
         "u": "https://assets.realufo.org/pdfs/nasa/public-meeting-agenda-tagged.pdf"
       },
@@ -49,7 +49,7 @@
         "region": "",
         "s": "https://science.nasa.gov/wp-content/uploads/2024/01/frn-uapist-public-meeting-tagged.pdf",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nasa/frn-uapist-public-meeting-tagged.jpg",
         "ti": "Federal Register Notice — UAP Public Meeting",
         "u": "https://assets.realufo.org/pdfs/nasa/frn-uapist-public-meeting-tagged.pdf"
       },
@@ -127,7 +127,7 @@
         "region": "",
         "s": "https://science.nasa.gov/uap/",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nasa/uap-independent-study-team-final-report.jpg",
         "ti": "NASA UAP Independent Study Team — Final Report (Sep 2023)",
         "u": "https://assets.realufo.org/pdfs/nasa/uap-independent-study-team-final-report.pdf"
       },
@@ -140,7 +140,7 @@
         "region": "",
         "s": "https://science.nasa.gov/uap/",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nasa/UAPISTTermsofReference_Signed.jpg",
         "ti": "UAP Independent Study Team — Terms of Reference",
         "u": "https://assets.realufo.org/pdfs/nasa/UAPISTTermsofReference_Signed.pdf"
       },
@@ -153,48 +153,9 @@
         "region": "",
         "s": "https://science.nasa.gov/uap/",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nasa/public-meeting-agenda-tagged.jpg",
         "ti": "Public Meeting Agenda — May 31, 2023",
         "u": "https://assets.realufo.org/pdfs/nasa/public-meeting-agenda-tagged.pdf"
-      },
-      {
-        "ag": "NASA",
-        "cat": "Pdf",
-        "date": "May 2023",
-        "de": "Official Federal Register notice announcing the NASA UAP public meeting.",
-        "l": "",
-        "region": "",
-        "s": "https://science.nasa.gov/uap/",
-        "t": "PDF",
-        "th": "",
-        "ti": "Federal Register Notice — UAP Public Meeting",
-        "u": "https://assets.realufo.org/pdfs/nasa/FRN.pdf"
-      },
-      {
-        "ag": "NASA",
-        "cat": "Pdf",
-        "date": "Nov 2023",
-        "de": "Press release announcing Dr. Mark McInerney as inaugural NASA UAP Research Director.",
-        "l": "",
-        "region": "",
-        "s": "https://science.nasa.gov/uap/",
-        "t": "PDF",
-        "th": "",
-        "ti": "NASA UAP Director Appointment — Press Release",
-        "u": "https://assets.realufo.org/pdfs/nasa/"
-      },
-      {
-        "ag": "NASA",
-        "cat": "Pdf",
-        "date": "2024",
-        "de": "NASA annual report on UAP research activities and findings.",
-        "l": "",
-        "region": "",
-        "s": "https://science.nasa.gov/uap/",
-        "t": "PDF",
-        "th": "",
-        "ti": "NASA UAP 2024 Annual Report",
-        "u": "https://assets.realufo.org/pdfs/nasa/nasa-uap-annual-report-2024.pdf"
       },
       {
         "ag": "NASA",
@@ -205,7 +166,7 @@
         "region": "",
         "s": "https://science.nasa.gov/uap/",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nasa/frn-uapist-public-meeting-tagged.jpg",
         "ti": "Agenda",
         "u": "https://assets.realufo.org/pdfs/nasa/frn-uapist-public-meeting-tagged.pdf"
       },
@@ -241,8 +202,8 @@
     "stats": {
       "catalog_total": 0,
       "local_total": 6,
-      "pdf_total": 11,
-      "total": 18
+      "pdf_total": 8,
+      "total": 15
     }
   }
 }

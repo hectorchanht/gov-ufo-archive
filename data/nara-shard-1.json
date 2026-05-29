@@ -10,7 +10,7 @@
         "region": "",
         "s": "https://www.congress.gov/118/bills/hr2670/BILLS-118hr2670enr.pdf",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/2024-NDAA-Public-Law-118-31.jpg",
         "ti": "2024 National Defense Authorization Act — Public Law 118-31",
         "u": "https://assets.realufo.org/pdfs/nara/2024-NDAA-Public-Law-118-31.pdf"
       },
@@ -224,16 +224,16 @@
       },
       {
         "ag": "NARA",
-        "cat": "Pdf",
+        "cat": "Page",
         "date": "2024",
         "de": "NARA guidance on implementation of the UAP Disclosure Act of 2023.",
         "l": "",
         "region": "",
         "s": "https://www.archives.gov/",
-        "t": "PDF",
+        "t": "PAGE",
         "th": "",
         "ti": "UAP Disclosure Act — NARA Implementation Guidance",
-        "u": "https://assets.realufo.org/pdfs/nara/uap-disclosure-act.html"
+        "u": "https://www.archives.gov/foia/uap-records"
       },
       {
         "ag": "NARA",
@@ -257,7 +257,7 @@
         "region": "",
         "s": "https://www.archives.gov/",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/twining-memo-1947.jpg",
         "ti": "Twining Memo — 1947 (AFB Roswell)",
         "u": "https://assets.realufo.org/pdfs/nara/twining-memo-1947.pdf"
       },
@@ -289,16 +289,16 @@
       },
       {
         "ag": "NARA",
-        "cat": "Pdf",
+        "cat": "Page",
         "date": "",
         "de": "ISCAP decisions on UAP-related declassification challenges.",
         "l": "",
         "region": "",
         "s": "https://www.archives.gov/",
-        "t": "PDF",
+        "t": "PAGE",
         "th": "",
         "ti": "ISCAP Appeal Decision — UAP Classification Challenges",
-        "u": "https://assets.realufo.org/pdfs/nara/decisions.html"
+        "u": "https://www.archives.gov/declassification/iscap/decisions.html"
       },
       {
         "ag": "NARA",
@@ -322,7 +322,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Index.jpg",
         "ti": "Index",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Index.pdf"
       },
@@ -335,7 +335,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-I.jpg",
         "ti": "Index",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-I.pdf"
       },
@@ -348,7 +348,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-II.jpg",
         "ti": "[Part I] Vietnam and the U.S., 1940-1950",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-II.pdf"
       },
@@ -361,7 +361,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-III.jpg",
         "ti": "[Part II] U.S. Involvement in the Franco-Viet Minh War, 1950-1954",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-III.pdf"
       },
@@ -374,7 +374,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-IV-A-1.jpg",
         "ti": "[Part III] The Geneva Accords",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-IV-A-1.pdf"
       },
@@ -387,7 +387,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-IV-A-2.jpg",
         "ti": "[Part IV. A. 1.] Evolution of the War. NATO and SEATO: A Comparison",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-IV-A-2.pdf"
       },
@@ -400,7 +400,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-IV-A-3.jpg",
         "ti": "[Part IV. A. 2.] Evolution of the War. Aid for France in Indochina, 1950-54",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-IV-A-3.pdf"
       },
@@ -413,7 +413,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-IV-A-4.jpg",
         "ti": "[Part IV. A. 3.] Evolution of the War. U.S. and France's Withdrawal from Vietnam, 1954-56",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-IV-A-4.pdf"
       },
@@ -426,7 +426,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-IV-A-5.jpg",
         "ti": "[Part IV. A. 4.] Evolution of the War. U.S. Training of Vietnamese National Army, 1954-59",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-IV-A-5.pdf"
       },
@@ -439,7 +439,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-IV-B-1.jpg",
         "ti": "[Part IV. A. 5.] Evolution of the War. Origins of the Insurgency",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-IV-B-1.pdf"
       },
@@ -452,7 +452,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-IV-B-2.jpg",
         "ti": "[Part IV. B. 1.] Evolution of the War. Counterinsurgency: The Kennedy Commitments and Programs, 1961",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-IV-B-2.pdf"
       },
@@ -465,7 +465,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-IV-B-3.jpg",
         "ti": "[Part IV. B. 2.] Evolution of the War. Counterinsurgency: Strategic Hamlet Program, 1961-63",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-IV-B-3.pdf"
       },
@@ -478,7 +478,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-IV-B-4.jpg",
         "ti": "[Part IV. B. 3.] Evolution of the War. Counterinsurgency: The Advisory Build-up, 1961-67",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-IV-B-4.pdf"
       },
@@ -491,7 +491,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-IV-B-5.jpg",
         "ti": "[Part IV. B. 4.] Evolution of the War. Counterinsurgency: Phased Withdrawal of U.S. Forces in Vietnam, 1962-64",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-IV-B-5.pdf"
       },
@@ -504,7 +504,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-IV-C-1.jpg",
         "ti": "[Part IV. B. 5.] Evolution of the War. Counterinsurgency: The Overthrow of Ngo Dinh Diem, May-Nov. 1963",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-IV-C-1.pdf"
       },
@@ -517,7 +517,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-IV-C-2a.jpg",
         "ti": "[Part IV. C. 2. a.] Evolution of the War. Military Pressures Against NVN. February - June 1964",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-IV-C-2a.pdf"
       },
@@ -530,7 +530,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-IV-C-2b.jpg",
         "ti": "[Part IV. C. 2. a.] Evolution of the War. Military Pressures Against NVN. February - June 1964",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-IV-C-2b.pdf"
       },
@@ -543,7 +543,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-IV-C-2c.jpg",
         "ti": "[Part IV. C. 2. b.] Evolution of the War. Military Pressures Against NVN. July - October 1964",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-IV-C-2c.pdf"
       },
@@ -556,7 +556,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-IV-C-3.jpg",
         "ti": "[Part IV. C. 2. c.] Evolution of the War. Military Pressures Against NVN. November - December 1964",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-IV-C-3.pdf"
       },
@@ -569,7 +569,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-IV-C-4.jpg",
         "ti": "[Part IV. C. 3.] Evolution of the War. ROLLING THUNDER Program Begins: January - June 1965",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-IV-C-4.pdf"
       },
@@ -582,7 +582,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-IV-C-5.jpg",
         "ti": "[Part IV. C. 4.] Evolution of the War. Marine Combat Units Go to DaNang, March 1965",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-IV-C-5.pdf"
       },
@@ -595,7 +595,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-IV-C-6-a.jpg",
         "ti": "[Part IV. C. 5.] Evolution of the War. Phase I in the Build-up of U.S. Forces: March - July 1965",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-IV-C-6-a.pdf"
       },
@@ -608,7 +608,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-IV-C-6-b.jpg",
         "ti": "[Part IV. C. 6. b.] Evolution of the War. U.S. Ground Strategy and Force Deployments: 1965 - 1967. Volume II: Program 5",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-IV-C-6-b.pdf"
       },
@@ -621,7 +621,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-IV-C-6-c.jpg",
         "ti": "[Part IV. C. 6. b.] Evolution of the War. U.S. Ground Strategy and Force Deployments: 1965 - 1967. Volume II: Program 5",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-IV-C-6-c.pdf"
       },
@@ -634,7 +634,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-IV-C-7-a.jpg",
         "ti": "[Part IV. C. 7. a.] Evolution of the War. Air War in the North: 1965 - 1968. Volume I",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-IV-C-7-a.pdf"
       },
@@ -647,7 +647,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-IV-C-7-b.jpg",
         "ti": "[Part IV. C. 7. a.] Evolution of the War. Air War in the North: 1965 - 1968. Volume I",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-IV-C-7-b.pdf"
       },
@@ -660,7 +660,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-IV-C-8.jpg",
         "ti": "[Part IV. C. 7. b.] Evolution of the War. Air War in the North: 1965 - 1968. Volume II",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-IV-C-8.pdf"
       },
@@ -673,7 +673,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-IV-C-9a.jpg",
         "ti": "[Part IV. C. 8.] Evolution of the War. Re-emphasis on Pacification: 1965-1967",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-IV-C-9a.pdf"
       },
@@ -686,7 +686,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-IV-C-9b.jpg",
         "ti": "[Part IV. C. 9. a.] Evolution of the War. U.S.-GVN Relations. Volume 1: December 1963 - June 1965",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-IV-C-9b.pdf"
       },
@@ -699,7 +699,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-IV-C-10.jpg",
         "ti": "[Part IV. C. 9. b.] Evolution of the War. U.S.-GVN Relations. Volume 2: July 1965 - December 1967",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-IV-C-10.pdf"
       },
@@ -712,7 +712,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-V-A-Vol-IA.jpg",
         "ti": "[Part IV. C. 10.] Evolution of the War. Statistical Survey of the War, North and South: 1965 - 1967",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-V-A-Vol-IA.pdf"
       },
@@ -725,7 +725,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-V-A-Vol-IB.jpg",
         "ti": "[Part V. A.] Justification of the War. Public Statements. Volume I: A--The Truman Administration",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-V-A-Vol-IB.pdf"
       },
@@ -738,7 +738,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-V-A-Vol-IC.jpg",
         "ti": "[Part V. A.] Justification of the War. Public Statements. Volume I: B--The Eisenhower Administration",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-V-A-Vol-IC.pdf"
       },
@@ -751,7 +751,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-V-A-Vol-IID.jpg",
         "ti": "[Part V. A.] Justification of the War. Public Statements. Volume I: C--The Kennedy Administration",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-V-A-Vol-IID.pdf"
       },
@@ -764,7 +764,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-V-B1.jpg",
         "ti": "[Part V. A.] Justification of the War. Public Statements. Volume II: D--The Johnson Administration",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-V-B1.pdf"
       },
@@ -777,7 +777,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-V-B-2a.jpg",
         "ti": "[Part V. B. 1.] Justification of the War. Internal Documents. The Roosevelt Administration",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-V-B-2a.pdf"
       },
@@ -790,7 +790,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-V-B-2b.jpg",
         "ti": "[Part V. B. 2. a.] Justification of the War. Internal Documents. The Truman Administration. Volume I: 1945 - 1949",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-V-B-2b.pdf"
       },
@@ -803,7 +803,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-V-B-3a.jpg",
         "ti": "[Part V. B. 2. b.] Justification of the War. Internal Documents. The Truman Administration. Volume II: 1950 -1952",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-V-B-3a.pdf"
       },
@@ -816,7 +816,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-V-B-3b.jpg",
         "ti": "[Part V. B. 3. a.] Justification of the War. Internal Documents. The Eisenhower Administration. Volume I: 1953",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-V-B-3b.pdf"
       },
@@ -829,7 +829,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-V-B-3c.jpg",
         "ti": "Pentagon Papers Part V B 3c",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-V-B-3c.pdf"
       },
@@ -842,7 +842,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-V-B-3d.jpg",
         "ti": "Pentagon Papers Part V B 3d",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-V-B-3d.pdf"
       },
@@ -855,7 +855,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-V-B-4-Book-I.jpg",
         "ti": "[Part V. B. 4.] Justification of the War. Internal Documents. The Kennedy Administration. Book I",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-V-B-4-Book-I.pdf"
       },
@@ -868,7 +868,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-V-B-4-Book-II.jpg",
         "ti": "[Part V. B. 4.] Justification of the War. Internal Documents. The Kennedy Administration. Book I",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-V-B-4-Book-II.pdf"
       },
@@ -881,7 +881,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-VI-A.jpg",
         "ti": "[Part V. B. 4.] Justification of the War. Internal Documents. The Kennedy Administration. Book II",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-VI-A.pdf"
       },
@@ -894,7 +894,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-VI-B.jpg",
         "ti": "[Part VI. A.] Settlement of the Conflict. Negotiations, 1965-67: The Public Record",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-VI-B.pdf"
       },
@@ -907,7 +907,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-VI-C-1.jpg",
         "ti": "[Part VI. B.] Settlement of the Conflict. Negotiations, 1965-67: Announced Position Statements",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-VI-C-1.pdf"
       },
@@ -920,7 +920,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-VI-C-2.jpg",
         "ti": "[Part VI. C. 1.] Settlement of the Conflict. Histories of Contacts. 1965-1966",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-VI-C-2.pdf"
       },
@@ -933,7 +933,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-VI-C-3.jpg",
         "ti": "[Part VI. C. 2.] Settlement of the Conflict. Histories of Contacts. Polish Track",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-VI-C-3.pdf"
       },
@@ -946,7 +946,7 @@
         "region": "",
         "s": "https://www.archives.gov/research/pentagon-papers",
         "t": "PDF",
-        "th": "",
+        "th": "https://assets.realufo.org/pdf-thumbs/nara/Pentagon-Papers-Part-VI-C-4.jpg",
         "ti": "[Part VI. C. 3.] Settlement of the Conflict. Histories of Contacts. Moscow-London Track",
         "u": "https://assets.realufo.org/pdfs/nara/Pentagon-Papers-Part-VI-C-4.pdf"
       }
@@ -954,9 +954,9 @@
     "schemaVersion": 1,
     "slug": "nara",
     "stats": {
-      "catalog_total": 20,
+      "catalog_total": 22,
       "local_total": 58,
-      "pdf_total": 53,
+      "pdf_total": 51,
       "total": 73
     }
   }

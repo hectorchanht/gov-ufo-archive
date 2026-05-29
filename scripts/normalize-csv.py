@@ -129,7 +129,7 @@ from typing import Any
 # stdlib-only convention (CLAUDE.md §6.2 + Phase 1/2 precedent) excludes
 # turning scripts/ into a package.
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from _archive_common import rewrite_to_r2  # noqa: E402
+from _archive_common import pdf_thumb_url, rewrite_to_r2  # noqa: E402
 
 REPO = Path(__file__).resolve().parent.parent
 CSV_COMBINED = REPO / 'uap-data.csv'
@@ -340,6 +340,7 @@ def _read_rows(csv_path: Path) -> list[dict[str, str]]:
     hydrated_urls = 0
     hydrated_thumbs = 0
     cleared_urls = 0
+    derived_pdf_thumbs = 0
 
     rows: list[dict[str, str]] = []
     # 'utf-8-sig' handles the BOM that spreadsheet exports prepend.
@@ -426,6 +427,29 @@ def _read_rows(csv_path: Path) -> list[dict[str, str]]:
                     cleaned['PDF | Image Link'] = rewrite_to_r2(
                         raw_url, 'wargov', asset_type,
                     )
+            # Plan post-05-01 (PDF page-1 thumbnail) — for PDF/DOC rows
+            # whose `Modal Image` is empty, derive
+            # `https://assets.realufo.org/pdf-thumbs/wargov/<basename>.jpg`
+            # from the R2-rewritten `PDF | Image Link`. The matching JPG
+            # is rendered + uploaded to R2 by `scripts/build-pdf-thumbs.py`.
+            # Card.astro reads `Modal Image` directly and its <img> onerror
+            # falls back to `data-fallback` (the PDF URL) — so a missing
+            # thumb degrades gracefully to the SVG placeholder via the
+            # CSS `:before` rule on `.arch-card[data-type=PDF]:not(:has(>img))`.
+            # Mutation is additive (only fills blank field); CSV unchanged.
+            if rtype in ('PDF', 'DOC'):
+                existing_thumb = (cleaned.get('Modal Image') or '').strip()
+                # Always prefer R2 pdf-thumbs over war.gov Akamai-fronted
+                # thumbnails: live war.gov CDN URLs 403 against any non-
+                # browser UA (CLAUDE.md §11 — Akamai blocks egress). Also
+                # populate when the CSV field is empty. Any non-war.gov
+                # thumb (rare) is preserved verbatim.
+                if (not existing_thumb) or 'www.war.gov/medialink/' in existing_thumb:
+                    final_url = cleaned.get('PDF | Image Link', '') or ''
+                    derived = pdf_thumb_url(final_url)
+                    if derived:
+                        cleaned['Modal Image'] = derived
+                        derived_pdf_thumbs += 1
             rows.append(cleaned)
     sys.stderr.write(f'[info] read {len(rows)} non-empty-Title rows\n')
     if hydrated_urls or hydrated_thumbs or cleared_urls:
@@ -434,6 +458,11 @@ def _read_rows(csv_path: Path) -> list[dict[str, str]]:
             f'(from DVIDS map), {hydrated_thumbs} thumbs '
             f'(from slideshow-folder PR-ID match), '
             f'{cleared_urls} stale paired-PDF URLs cleared\n'
+        )
+    if derived_pdf_thumbs:
+        sys.stderr.write(
+            f'[info] PDF thumb hydration: {derived_pdf_thumbs} `Modal Image` '
+            f'fields populated from pdf-thumbs/wargov/<basename>.jpg derivation\n'
         )
     return rows
 

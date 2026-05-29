@@ -1,6 +1,6 @@
 """Shared helpers for Phase 4 archive normalisers.
 
-Two public exports:
+Public exports:
 
   * ``R2_BASE`` — module constant ``"https://assets.realufo.org"``. The
     custom-domain front of the Cloudflare R2 bucket ``realufo`` per
@@ -16,6 +16,12 @@ Two public exports:
     ``scripts/normalize-csv.py:_slugify``). Single source of truth for
     Wave 3+ per-archive normalisers so card anchor IDs stay synced with
     ``URL-CONTRACT.txt``.
+  * ``pdf_thumb_url(pdf_url)`` — derive the canonical first-page JPG
+    thumbnail URL for a PDF that lives on the R2 mirror. Used by
+    ``normalize-csv.py`` + Card.astro / CatalogCard.astro to populate
+    the ``Modal Image`` / ``th`` field when the source data carries no
+    explicit thumbnail. ``scripts/build-pdf-thumbs.py`` renders + uploads
+    the matching JPG to ``pdf-thumbs/<slug>/<basename>.jpg``.
 
 Why ``_archive_common.py`` and not ``_r2_urls.py`` (as 04-RESEARCH.md §4
 sketched): Wave 3+ archive normalisers will accumulate other shared
@@ -45,10 +51,13 @@ from any normaliser without side-effects. Matches the
 - ``scripts/snapshot-urls.py`` — slugify source-of-truth.
 - ``scripts/normalize-csv.py`` — first consumer; Wave 3+ archive
   normalisers will follow the same import pattern.
+- ``scripts/build-pdf-thumbs.py`` — companion script that renders +
+  uploads the JPGs ``pdf_thumb_url`` references.
 """
 from __future__ import annotations
 
 import re
+from urllib.parse import unquote, urlparse
 
 # Custom-domain front for the Cloudflare R2 bucket `realufo`
 # (.planning/decisions/r2-setup.md). Constant — NOT configurable per
@@ -70,6 +79,14 @@ _IMAGE_EXTS: frozenset[str] = frozenset({
 # Byte-for-byte port of `scripts/snapshot-urls.py:158-167` and
 # `scripts/normalize-csv.py:117-119` (`_SLUG_RE`).
 _SLUG_RE = re.compile(r'[^a-z0-9]+')
+
+# Recognises an assets.realufo.org PDF URL and lets us derive the matching
+# pdf-thumbs/<slug>/<basename>.jpg URL. Both ``.pdf`` and the rare ``.PDF``
+# (uppercase, e.g. AARO Historical Record Report) match.
+_PDF_URL_RE = re.compile(
+    r'^https://assets\.realufo\.org/pdfs/(?P<slug>[a-z0-9_-]+)/(?P<basename>.+\.pdf)$',
+    re.IGNORECASE,
+)
 
 
 def rewrite_to_r2(local_path: str, archive_slug: str, asset_type: str) -> str:
@@ -133,6 +150,54 @@ def rewrite_to_r2(local_path: str, archive_slug: str, asset_type: str) -> str:
             return local_path
     filename = local_path.rsplit('/', 1)[-1]
     return f'{R2_BASE}/{asset_type}/{archive_slug}/{filename}'
+
+
+def pdf_thumb_url(pdf_url: str) -> str:
+    """Derive the first-page JPG thumbnail URL for an R2-hosted PDF.
+
+    Convention (matches ``scripts/build-pdf-thumbs.py``):
+
+        https://assets.realufo.org/pdfs/<slug>/<basename>.pdf
+            ->
+        https://assets.realufo.org/pdf-thumbs/<slug>/<basename>.jpg
+
+    The basename case is preserved verbatim — wargov keys are lowercase,
+    aaro/nasa/nara keys are mixed-case, so we must NOT toggle case here.
+    URL-encoded characters in ``pdf_url`` (e.g. ``%20`` for spaces, the
+    historical artefact in ``Case_Resolution_of%20_Western_United...``)
+    are preserved in the output too — the thumbnail key in R2 mirrors
+    whatever the consumer reads from the PDF URL field.
+
+    Returns the empty string for inputs that aren't recognisable R2 PDF
+    URLs (anything off the assets.realufo.org/pdfs/ prefix, anything
+    that doesn't end in .pdf). Callers should fall back to the SVG
+    placeholder via Card.astro's CSS :before guard.
+
+    Examples
+    --------
+    >>> pdf_thumb_url('https://assets.realufo.org/pdfs/wargov/059uap00011.pdf')
+    'https://assets.realufo.org/pdf-thumbs/wargov/059uap00011.jpg'
+    >>> pdf_thumb_url('https://assets.realufo.org/pdfs/aaro/Mt-Etna-Object.pdf')
+    'https://assets.realufo.org/pdf-thumbs/aaro/Mt-Etna-Object.jpg'
+    >>> pdf_thumb_url('https://assets.realufo.org/pdfs/aaro/AARO_HISTORICAL_RECORD_REPORT_2024.PDF')
+    'https://assets.realufo.org/pdf-thumbs/aaro/AARO_HISTORICAL_RECORD_REPORT_2024.jpg'
+    >>> pdf_thumb_url('')
+    ''
+    >>> pdf_thumb_url('https://other.example.com/foo.pdf')
+    ''
+    """
+    if not pdf_url:
+        return ''
+    m = _PDF_URL_RE.match(pdf_url)
+    if not m:
+        return ''
+    slug = m.group('slug')
+    basename = m.group('basename')
+    # Strip the .pdf / .PDF extension and any case variants. rsplit on '.'
+    # with limit 1 handles basenames containing dots before the extension
+    # (e.g. western_us_event_slides_5.08.2026.pdf -> western_us_event_slides_5.08.2026).
+    no_ext = basename.rsplit('.', 1)[0]
+    return f'{R2_BASE}/pdf-thumbs/{slug}/{no_ext}.jpg'
 
 
 def slugify(text: str) -> str:
