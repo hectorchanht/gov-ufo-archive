@@ -62,8 +62,11 @@ jobs:
           fetch-depth: 1
 
       - uses: pnpm/action-setup@v4
-        with:
-          version: 9
+        # version intentionally omitted — pnpm/action-setup@v4 errors
+        # ERR_PNPM_BAD_PM_VERSION when both the action `version:` input
+        # AND package.json `packageManager: pnpm@9.15.9` are set. Letting
+        # packageManager drive keeps the runner pnpm version in lockstep
+        # with the lockfile guarantor.
 
       - uses: actions/setup-node@v4
         with:
