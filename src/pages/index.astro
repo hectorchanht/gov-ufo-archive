@@ -516,24 +516,33 @@ const jsonLd = {
         } else if (!opts.fromHash && !opts.skipScroll) {
           // Operator spec 1 (2026-05-29) — scroll to top of #archive
           // section, NOT page top, so the user lands on the grid header
-          // not back at the hero. block: 'start' aligns the section top
-          // with the viewport top (CSS scroll-padding-top in global.css
-          // already accounts for the sticky 64px header).
+          // not back at the hero. Use explicit computed Y + window.scrollTo
+          // rather than scrollIntoView — the browser sometimes restores
+          // the prior scroll position after pushState() in a way that
+          // races scrollIntoView({behavior:'smooth'}). Disabling scroll
+          // restoration + scheduling the scroll in requestAnimationFrame
+          // after the DOM has settled (cards re-displayed via the loop
+          // above) ensures the scroll actually lands. Bug 2 fix 2026-05-29.
+          try { history.scrollRestoration = 'manual'; } catch (_) {}
           const archiveEl = document.getElementById('archive');
-          try {
-            if (archiveEl && archiveEl.scrollIntoView) {
-              archiveEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            } else {
-              window.scrollTo({ top: 0, behavior: 'instant' });
+          requestAnimationFrame(function () {
+            try {
+              if (archiveEl && archiveEl.getBoundingClientRect) {
+                const rect = archiveEl.getBoundingClientRect();
+                const targetY = Math.max(0, rect.top + window.pageYOffset - 80);
+                window.scrollTo({ top: targetY, behavior: 'smooth' });
+              } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
+            } catch (_) {
+              if (archiveEl) {
+                const y = archiveEl.getBoundingClientRect().top + window.pageYOffset - 80;
+                window.scrollTo(0, Math.max(0, y));
+              } else {
+                window.scrollTo(0, 0);
+              }
             }
-          } catch (_) {
-            if (archiveEl) {
-              const y = archiveEl.getBoundingClientRect().top + window.pageYOffset;
-              window.scrollTo(0, y);
-            } else {
-              window.scrollTo(0, 0);
-            }
-          }
+          });
         }
 
         // Notify dependent handlers (refreshLbList, filter agency populate,

@@ -279,8 +279,13 @@ export const INVARIANTS_JS: string = String.raw`
      .lb-fs, .lb-counter, img, video, iframe, audio) absorb their own
      clicks so they won't bubble back here. */
   if (lb) lb.addEventListener('click', function (e) {
-    var t = e.target as HTMLElement | null;
-    if (!t) return;
+    /* NO TypeScript type annotations inside this template — invariants.ts
+       ships its body verbatim via String.raw template literal; an as-cast
+       would land in the browser as a parse error that breaks every
+       subsequent handler. Also no backticks here — they close the outer
+       String.raw template (regression caught 2026-05-29). */
+    var t = e.target;
+    if (!t || !t.classList) return;
     if (t === lb || t.classList.contains('lb-frame') || t.classList.contains('lightbox-inner')) {
       closeLb();
     }
