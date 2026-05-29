@@ -4,14 +4,17 @@ on:
   push:
     branches: [main]
     paths:
-      - '**/*.html'
-      - '**/*.css'
-      - '**/*.js'
+      - 'src/**'
+      - 'public/**'
+      - 'astro.config.mjs'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
       - '.github/workflows/lighthouse.yml'
       - '.lighthouserc.json'
   pull_request:
     paths:
-      - '**/*.html'
+      - 'src/**'
+      - 'public/**'
   workflow_dispatch:
 
 jobs:
@@ -20,17 +23,30 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Astro site
+        run: pnpm build
 
       - name: Install Lighthouse CI
         run: npm install --no-save @lhci/cli@0.14.x
 
-      - name: Serve static site
+      - name: Serve built dist/
         run: |
-          python3 -m http.server 8000 &
-          # wait until port ready
+          # Serve the Astro build output, not the repo root (Phase 4 migration:
+          # repo root no longer has index.html — it lives in src/pages/index.astro
+          # and ships to dist/ via pnpm build). 2026-05-29 fix.
+          cd dist && python3 -m http.server 8000 &
           for i in $(seq 1 30); do
             curl -fs http://localhost:8000/ > /dev/null && break
             sleep 1
