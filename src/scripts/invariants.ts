@@ -192,6 +192,29 @@ export const INVARIANTS_JS: string = String.raw`
       lbInner.innerHTML = '<video controls autoplay muted preload="metadata" playsinline>' + srcs + '</video>';
     } else if (ext === 'mp3' || ext === 'wav' || ext === 'ogg') {
       lbInner.innerHTML = '<audio controls preload="metadata"><source src="' + _escAttr(target) + '"></audio>';
+    } else if (target && /(?:youtube\.com|youtu\.be|vimeo\.com)/i.test(target)) {
+      /* External video platforms — embed via iframe, not <img>. Operator
+         spec 2026-05-29: NASA UAP Independent Study Report media briefings
+         live on YouTube (e.g. https://youtu.be/eoY2sGo7ZiY). Previously
+         these URLs had no recognized extension so they fell through to the
+         <img> branch and rendered as broken images. Convert to embed URL
+         and render in iframe. Supports YouTube (long + short URLs) and
+         Vimeo. allowfullscreen so the lightbox fullscreen button can hand
+         off to the embed's native fullscreen control. */
+      var embedSrc = target;
+      var ytShort = target.match(/youtu\.be\/([A-Za-z0-9_-]{6,})/i);
+      var ytLong = target.match(/youtube\.com\/watch\?(?:.*&)?v=([A-Za-z0-9_-]{6,})/i);
+      var ytEmbed = target.match(/youtube\.com\/embed\/([A-Za-z0-9_-]{6,})/i);
+      var ytId = (ytShort && ytShort[1]) || (ytLong && ytLong[1]) || (ytEmbed && ytEmbed[1]);
+      if (ytId) {
+        embedSrc = 'https://www.youtube-nocookie.com/embed/' + ytId;
+      } else {
+        var vmId = target.match(/vimeo\.com\/(?:video\/)?(\d+)/i);
+        if (vmId) embedSrc = 'https://player.vimeo.com/video/' + vmId[1];
+      }
+      lbInner.innerHTML = '<iframe src="' + _escAttr(embedSrc) +
+        '" title="' + _escAttr(a.title || 'Embedded video') +
+        '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>';
     } else if (target) {
       /* (3) CLAUDE.md §7 — Image fallback via <img onerror>.
          When local 404s, swap src to the official source URL.
