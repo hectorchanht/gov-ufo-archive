@@ -579,7 +579,10 @@ const jsonLd = {
       });
 
       // Browser back/forward — popstate replays the URL's ?page=N.
-      window.addEventListener('popstate', () => renderPage(readPage()));
+      // skipScroll: browser handles its own scroll restoration on
+      // popstate (or the deep-link #card-<slug> hash branch above does).
+      // Don't fight the browser. 2026-05-29 fix.
+      window.addEventListener('popstate', () => renderPage(readPage(), { skipScroll: true }));
 
       // Operator spec 1 (2026-05-29) — re-render when the per-page
       // selector changes (either the original in filter-bar or the
@@ -590,7 +593,11 @@ const jsonLd = {
       }
 
       // Initial render — handles deep-link ?page=N AND #card-<slug>.
-      renderPage(readPage());
+      // skipScroll: NEVER auto-scroll on page LOAD. User just arrived
+      // at the URL and may want to see the hero / read intro / scroll
+      // at their own pace. Scroll-to-#archive ONLY fires on user-driven
+      // pagination clicks + per-page-select changes. 2026-05-29 fix.
+      renderPage(readPage(), { skipScroll: true });
     })();
   </script>
 

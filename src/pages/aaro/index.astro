@@ -408,12 +408,14 @@ const description = 'Offline archival mirror of aaro.mil — official UAP imager
         const pageNum = parseInt(url.searchParams.get('page') || '1', 10);
         renderPage(isNaN(pageNum) ? 1 : pageNum);
       });
-      window.addEventListener('popstate', () => renderPage(readPage()));
+      // skipScroll on popstate + initial load — only USER pagination
+      // clicks should scroll to top of #archive. 2026-05-29 fix.
+      window.addEventListener('popstate', () => renderPage(readPage(), { skipScroll: true }));
 
       const ppSrc = document.getElementById('filter-perpage');
       if (ppSrc) ppSrc.addEventListener('change', () => renderPage(1));
 
-      renderPage(readPage());
+      renderPage(readPage(), { skipScroll: true });
     })();
   </script>
 
