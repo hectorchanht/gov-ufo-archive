@@ -211,7 +211,9 @@ fi
 # slideshow-3/ (R03) + slideshow-4/ (R04) added the same way — the index
 # hero carousel + hydrated VID thumbnails reference `/slideshow-3/*.jpg`
 # and `/slideshow-4/*.jpg`; without this copy they 404 on deploy.
-for dir in assets slideshow slideshow-2 slideshow-3 slideshow-4; do
+# slideshow-6/ (R06) likewise; Release 05 shipped no rotator imagery, so
+# there is no slideshow-5/.
+for dir in assets slideshow slideshow-2 slideshow-3 slideshow-4 slideshow-6; do
   if [ -d "$dir" ]; then
     while IFS= read -r f; do
       copy_one "$f"
