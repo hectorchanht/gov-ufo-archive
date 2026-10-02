@@ -46,7 +46,7 @@ import subprocess
 import sys
 import tempfile
 from pathlib import Path
-from urllib.parse import unquote, urlparse
+from urllib.parse import quote, unquote, urlparse
 
 REPO = Path(__file__).resolve().parent.parent
 DATA_DIR = REPO / 'data'
@@ -167,7 +167,7 @@ def _download_from_r2(slug: str, basename: str, dest: Path) -> bool:
     catalogs). The URL is the public assets.realufo.org CDN path; no R2
     credentials needed. Returns True on success.
     """
-    url = f'{ASSETS_BASE}/pdfs/{slug}/{basename}'
+    url = f'{ASSETS_BASE}/pdfs/{slug}/{quote(basename)}'
     dest.parent.mkdir(parents=True, exist_ok=True)
     cmd = [
         'curl', '-fsSL', '--retry', '2', '--max-time', '120',

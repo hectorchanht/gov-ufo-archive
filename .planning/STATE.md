@@ -104,7 +104,6 @@ None at roadmap-creation time.
 
 ### TODOs
 
-- **build-pdf-thumbs.py:170**: URL-quote basename in `_download_from_r2()` (keys with spaces).
 - **api/stats.json + feeds/**: all-zero output since 2026-06-02 — broken pipeline.
 - Run `/gsd:plan-phase 1` to decompose Phase 1 into executable plans
 - Confirm with user that 6-phase structure matches their mental model
