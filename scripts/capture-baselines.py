@@ -163,7 +163,13 @@ def run_capture(archives_filter: str | None, viewport_filter: int | None,
                 url = base_url.rstrip('/') + path
                 out = OUTPUT_DIR / f'{slug}-{w}.png'
                 try:
-                    page.goto(url, wait_until='networkidle', timeout=30000)
+                    try:
+                        page.goto(url, wait_until='networkidle', timeout=30000)
+                    except Exception:
+                        # First page of a fresh browser never reaches
+                        # networkidle (CF challenge/RUM beacons on cold start);
+                        # a second load idles in ~1.5 s.
+                        page.goto(url, wait_until='networkidle', timeout=30000)
                     page.wait_for_selector('body', state='visible', timeout=10000)
                     # 500 ms settle: CLAUDE.md §3 hero carousel sets a 6500 ms
                     # autoplay interval. 500 ms ensures slide 1 is stable but
