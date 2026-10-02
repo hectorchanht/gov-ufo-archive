@@ -1,0 +1,29 @@
+# realufo-watchdog — daily asset + new-release check. See src/index.ts.
+#
+# Deploy (from this dir, logged in as the account that owns `realufo`):
+#   wrangler secret put GITHUB_TOKEN   # fine-grained PAT, gov-ufo-archive repo, Issues: read & write
+#   wrangler deploy
+#
+# Check now: open the workers.dev URL wrangler prints (JSON report, no issue filed).
+# Logs: wrangler tail
+
+name = "realufo-watchdog"
+main = "src/index.ts"
+compatibility_date = "2026-05-28"
+# Pinned so a deploy can't land in a different logged-in account.
+account_id = "f1868a071996e836eae6da2b65f37929"
+
+[triggers]
+crons = ["0 6 * * *"] # 06:00 UTC daily
+
+[[r2_buckets]]
+binding = "BUCKET"
+bucket_name = "realufo"
+
+[vars]
+SITE = "https://realufo.org"
+ASSETS_ORIGIN = "https://assets.realufo.org"
+GITHUB_REPO = "hectorchanht/gov-ufo-archive"
+
+[observability]
+enabled = true

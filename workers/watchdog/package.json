@@ -1,0 +1,16 @@
+{
+  "name": "realufo-watchdog",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Daily cron Worker: checks every linked R2 asset exists and watches war.gov for new releases; reports via a GitHub issue.",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260528.1",
+    "typescript": "~5",
+    "wrangler": "^4.95.0"
+  }
+}

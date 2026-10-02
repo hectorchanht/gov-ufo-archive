@@ -288,6 +288,7 @@ pnpm exec pagefind --site dist
 # astro.config.mjs `manifest` block.
 # ============================================================
 python3 scripts/build-sitemap.py
+python3 scripts/build-watchdog-index.py
 
 if [ ! -f "$DIST/manifest.webmanifest" ]; then
   cat > "$DIST/manifest.webmanifest" << 'MANIFEST'
