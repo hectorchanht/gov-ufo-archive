@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://realufo.org/sitemap.xml
+Sitemap: https://release.realufo.org/sitemap.xml

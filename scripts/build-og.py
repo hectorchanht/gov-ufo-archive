@@ -147,10 +147,10 @@ def main() -> int:
         # Rewrite the matching index.html's og:image / twitter:image
         if slug == 'wargov':
             idx = os.path.join(ROOT, 'index.html')
-            og_abs = 'https://realufo.org/assets/og.svg'
+            og_abs = 'https://release.realufo.org/assets/og.svg'
         else:
             idx = os.path.join(ROOT, slug, 'index.html')
-            og_abs = f'https://realufo.org/{slug}/assets/og.svg'
+            og_abs = f'https://release.realufo.org/{slug}/assets/og.svg'
         changed = rewrite_meta(idx, og_abs)
         flag = '✓' if changed else '·'
         print(f'  {slug:12s} wrote {rel:30s}  meta {flag}')

@@ -30,7 +30,7 @@ import xml.sax.saxutils as sx
 REPO = Path(__file__).resolve().parent.parent
 URL_CONTRACT = REPO / "URL-CONTRACT.txt"
 DIST = REPO / "dist"
-SITE = "https://realufo.org"
+SITE = "https://release.realufo.org"
 
 
 def parse_url_contract() -> list[str]:

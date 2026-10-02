@@ -169,7 +169,7 @@ def main() -> int:
     payload = {
         '_meta': {
             'description': 'realufo.org per-event geocode dump. Used by /map.html for case pins. Archive HQ centroids included as fallback.',
-            'docs': 'https://realufo.org/api/',
+            'docs': 'https://release.realufo.org/api/',
             'units': 'WGS84 decimal degrees',
         },
         'cases': cases,

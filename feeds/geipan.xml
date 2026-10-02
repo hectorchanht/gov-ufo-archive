@@ -2,17 +2,17 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>realufo.org — France · GEIPAN</title>
   <subtitle>Latest declassified records mirrored from France · GEIPAN.</subtitle>
-  <id>https://realufo.org/feeds/geipan.xml</id>
-  <link rel="self" type="application/atom+xml" href="https://realufo.org/feeds/geipan.xml"/>
-  <link rel="alternate" type="text/html" href="https://realufo.org/geipan/"/>
+  <id>https://release.realufo.org/feeds/geipan.xml</id>
+  <link rel="self" type="application/atom+xml" href="https://release.realufo.org/feeds/geipan.xml"/>
+  <link rel="alternate" type="text/html" href="https://release.realufo.org/geipan/"/>
   <updated>2026-05-24T15:17:13Z</updated>
-  <author><name>realufo.org</name><uri>https://realufo.org/</uri></author>
+  <author><name>realufo.org</name><uri>https://release.realufo.org/</uri></author>
   <rights>Per-source jurisdiction (US 17 U.S.C. §105, UK OGL v3, France Loi 78-753, Brazil LAI 12.527, Chile 20.285, etc.)</rights>
-  <generator uri="https://realufo.org/">realufo.org build-feeds.py</generator>
+  <generator uri="https://release.realufo.org/">realufo.org build-feeds.py</generator>
   <entry>
     <id>tag:realufo.org,2026:geipan/602920901169</id>
     <title>IPACO® team (2025)</title>
-    <link rel="alternate" type="text/html" href="https://realufo.org/geipan/assets/images/IPACO-team-2025.jpg"/>
+    <link rel="alternate" type="text/html" href="https://release.realufo.org/geipan/assets/images/IPACO-team-2025.jpg"/>
     <link rel="via" href="https://www.cnes-geipan.fr/"/>
     <updated>2025-01-01T00:00:00Z</updated>
     <published>2025-01-01T00:00:00Z</published>
@@ -23,7 +23,7 @@
   <entry>
     <id>tag:realufo.org,2026:geipan/902226091100</id>
     <title>Cases by Phenomenon Type (2024)</title>
-    <link rel="alternate" type="text/html" href="https://realufo.org/geipan/assets/images/GEIPAN-Cases-By-Phenomenon-2024.png"/>
+    <link rel="alternate" type="text/html" href="https://release.realufo.org/geipan/assets/images/GEIPAN-Cases-By-Phenomenon-2024.png"/>
     <link rel="via" href="https://www.cnes-geipan.fr/fr/stats"/>
     <updated>2024-01-01T00:00:00Z</updated>
     <published>2024-01-01T00:00:00Z</published>
@@ -34,7 +34,7 @@
   <entry>
     <id>tag:realufo.org,2026:geipan/430526283029</id>
     <title>Starlink satellite flare note</title>
-    <link rel="alternate" type="text/html" href="https://realufo.org/geipan/assets/images/Starlink-flare-note-2024.jpg"/>
+    <link rel="alternate" type="text/html" href="https://release.realufo.org/geipan/assets/images/Starlink-flare-note-2024.jpg"/>
     <link rel="via" href="https://www.cnes-geipan.fr/"/>
     <updated>2024-01-01T00:00:00Z</updated>
     <published>2024-01-01T00:00:00Z</published>
@@ -45,7 +45,7 @@
   <entry>
     <id>tag:realufo.org,2026:geipan/431675555865</id>
     <title>GEIPAN — FAQ (English)</title>
-    <link rel="alternate" type="text/html" href="https://realufo.org/geipan/pdfs/GEIPAN-FAQ-English.pdf"/>
+    <link rel="alternate" type="text/html" href="https://release.realufo.org/geipan/pdfs/GEIPAN-FAQ-English.pdf"/>
     <link rel="via" href="https://www.cnes-geipan.fr/sites/default/files/2021-08/FAQ%20-%20Press%20-%20English.pdf"/>
     <updated>2021-01-01T00:00:00Z</updated>
     <published>2021-01-01T00:00:00Z</published>
@@ -56,7 +56,7 @@
   <entry>
     <id>tag:realufo.org,2026:geipan/343623626237</id>
     <title>GEIPAN — FAQ (Français)</title>
-    <link rel="alternate" type="text/html" href="https://realufo.org/geipan/pdfs/GEIPAN-FAQ-Francais.pdf"/>
+    <link rel="alternate" type="text/html" href="https://release.realufo.org/geipan/pdfs/GEIPAN-FAQ-Francais.pdf"/>
     <link rel="via" href="https://www.cnes-geipan.fr/sites/default/files/2021-08/FAQ%20-%20Dossier%20presse.pdf"/>
     <updated>2021-01-01T00:00:00Z</updated>
     <published>2021-01-01T00:00:00Z</published>
@@ -67,7 +67,7 @@
   <entry>
     <id>tag:realufo.org,2026:geipan/348974535321</id>
     <title>GEIPAN — Mission, History, Methodology (English)</title>
-    <link rel="alternate" type="text/html" href="https://realufo.org/geipan/pdfs/GEIPAN-Mission-Method-English.pdf"/>
+    <link rel="alternate" type="text/html" href="https://release.realufo.org/geipan/pdfs/GEIPAN-Mission-Method-English.pdf"/>
     <link rel="via" href="https://www.cnes-geipan.fr/sites/default/files/2021-08/GEIPAN-informationenglish.pdf"/>
     <updated>2021-01-01T00:00:00Z</updated>
     <published>2021-01-01T00:00:00Z</published>
@@ -78,7 +78,7 @@
   <entry>
     <id>tag:realufo.org,2026:geipan/189677104096</id>
     <title>GEIPAN — Mission, Historique, Méthodologie (Français)</title>
-    <link rel="alternate" type="text/html" href="https://realufo.org/geipan/pdfs/GEIPAN-Mission-Methode-Francais.pdf"/>
+    <link rel="alternate" type="text/html" href="https://release.realufo.org/geipan/pdfs/GEIPAN-Mission-Methode-Francais.pdf"/>
     <link rel="via" href="https://www.cnes-geipan.fr/sites/default/files/2021-08/GEIPAN-informations.pdf"/>
     <updated>2021-01-01T00:00:00Z</updated>
     <published>2021-01-01T00:00:00Z</published>
@@ -89,7 +89,7 @@
   <entry>
     <id>tag:realufo.org,2026:geipan/853442230984</id>
     <title>Saint-Germain-en-Laye (78) — 30 May 2020</title>
-    <link rel="alternate" type="text/html" href="https://realufo.org/geipan/videos/Saint-Germain-en-Laye-2020-05-30.mp4"/>
+    <link rel="alternate" type="text/html" href="https://release.realufo.org/geipan/videos/Saint-Germain-en-Laye-2020-05-30.mp4"/>
     <link rel="via" href="https://www.cnes-geipan.fr/fr/recherche/cas"/>
     <updated>2020-01-01T00:00:00Z</updated>
     <published>2020-01-01T00:00:00Z</published>
@@ -100,7 +100,7 @@
   <entry>
     <id>tag:realufo.org,2026:geipan/102806701205</id>
     <title>Lyon (69) — 19 December 2019</title>
-    <link rel="alternate" type="text/html" href="https://realufo.org/geipan/videos/Lyon-2019-12-19.mp4"/>
+    <link rel="alternate" type="text/html" href="https://release.realufo.org/geipan/videos/Lyon-2019-12-19.mp4"/>
     <link rel="via" href="https://www.cnes-geipan.fr/fr/recherche/cas"/>
     <updated>2019-01-01T00:00:00Z</updated>
     <published>2019-01-01T00:00:00Z</published>

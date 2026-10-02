@@ -23,7 +23,7 @@ from typing import Iterable, List, Optional
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FEEDS_DIR = os.path.join(ROOT, 'feeds')
-SITE_URL = 'https://realufo.org'
+SITE_URL = 'https://release.realufo.org'
 NOW_ISO = time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())
 
 ARCHIVES = [
@@ -140,7 +140,7 @@ def write_feed(slug: str, title: str, records: List[dict], arc_dir: str,
         f'  <link rel="self" type="application/atom+xml" href="{feed_url}"/>',
         f'  <link rel="alternate" type="text/html" href="{site_url}"/>',
         f'  <updated>{NOW_ISO}</updated>',
-        '  <author><name>realufo.org</name><uri>https://realufo.org/</uri></author>',
+        '  <author><name>realufo.org</name><uri>https://release.realufo.org/</uri></author>',
         '  <rights>Per-source jurisdiction (US 17 U.S.C. §105, UK OGL v3, France Loi 78-753, Brazil LAI 12.527, Chile 20.285, etc.)</rights>',
         f'  <generator uri="{SITE_URL}/">realufo.org build-feeds.py</generator>',
     ]
@@ -212,7 +212,7 @@ def main() -> int:
         f'  <link rel="self" type="application/atom+xml" href="{SITE_URL}/feeds/all.xml"/>',
         f'  <link rel="alternate" type="text/html" href="{SITE_URL}/"/>',
         f'  <updated>{NOW_ISO}</updated>',
-        '  <author><name>realufo.org</name><uri>https://realufo.org/</uri></author>',
+        '  <author><name>realufo.org</name><uri>https://release.realufo.org/</uri></author>',
     ]
     for _, _, slug, arc_dir, r in decorated[:100]:
         title_t = html.escape(field(r, 'ti', 'title') or '(Untitled)')

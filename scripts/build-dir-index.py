@@ -50,11 +50,11 @@ HTML_TEMPLATE = """<!doctype html>
 <meta charset="utf-8">
 <title>{title}</title>
 <meta name="description" content="{description}">
-<link rel="canonical" href="https://realufo.org/{slug}/">
+<link rel="canonical" href="https://release.realufo.org/{slug}/">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{description}">
-<meta property="og:url" content="https://realufo.org/{slug}/">
+<meta property="og:url" content="https://release.realufo.org/{slug}/">
 <meta property="og:type" content="website">
 <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
 <style>

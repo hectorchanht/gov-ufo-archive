@@ -2,13 +2,13 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>realufo.org — NARA</title>
   <subtitle>Latest declassified records mirrored from NARA.</subtitle>
-  <id>https://realufo.org/feeds/nara.xml</id>
-  <link rel="self" type="application/atom+xml" href="https://realufo.org/feeds/nara.xml"/>
-  <link rel="alternate" type="text/html" href="https://realufo.org/nara/"/>
+  <id>https://release.realufo.org/feeds/nara.xml</id>
+  <link rel="self" type="application/atom+xml" href="https://release.realufo.org/feeds/nara.xml"/>
+  <link rel="alternate" type="text/html" href="https://release.realufo.org/nara/"/>
   <updated>2026-05-24T15:17:13Z</updated>
-  <author><name>realufo.org</name><uri>https://realufo.org/</uri></author>
+  <author><name>realufo.org</name><uri>https://release.realufo.org/</uri></author>
   <rights>Per-source jurisdiction (US 17 U.S.C. §105, UK OGL v3, France Loi 78-753, Brazil LAI 12.527, Chile 20.285, etc.)</rights>
-  <generator uri="https://realufo.org/">realufo.org build-feeds.py</generator>
+  <generator uri="https://release.realufo.org/">realufo.org build-feeds.py</generator>
   <entry>
     <id>tag:realufo.org,2026:nara/157653241450</id>
     <title>UAP Disclosure Act — NARA Implementation Guidance</title>
@@ -67,7 +67,7 @@
   <entry>
     <id>tag:realufo.org,2026:nara/675352472882</id>
     <title>UAP Records — Topic Gateway</title>
-    <link rel="alternate" type="text/html" href="https://realufo.org/nara/pages/topic.html"/>
+    <link rel="alternate" type="text/html" href="https://release.realufo.org/nara/pages/topic.html"/>
     <updated>2026-05-24T15:17:13Z</updated>
     <published>2026-05-24T15:17:13Z</published>
     <category term="Gateway"/>
@@ -77,7 +77,7 @@
   <entry>
     <id>tag:realufo.org,2026:nara/891931315609</id>
     <title>Record Group 615 — Unidentified Anomalous Phenomena Records Collection</title>
-    <link rel="alternate" type="text/html" href="https://realufo.org/nara/pages/rg-615.html"/>
+    <link rel="alternate" type="text/html" href="https://release.realufo.org/nara/pages/rg-615.html"/>
     <updated>2026-05-24T15:17:13Z</updated>
     <published>2026-05-24T15:17:13Z</published>
     <category term="Record Group"/>
@@ -87,7 +87,7 @@
   <entry>
     <id>tag:realufo.org,2026:nara/821665327926</id>
     <title>Photographs</title>
-    <link rel="alternate" type="text/html" href="https://realufo.org/nara/pages/photographs.html"/>
+    <link rel="alternate" type="text/html" href="https://release.realufo.org/nara/pages/photographs.html"/>
     <updated>2026-05-24T15:17:13Z</updated>
     <published>2026-05-24T15:17:13Z</published>
     <category term="Imagery"/>
@@ -97,7 +97,7 @@
   <entry>
     <id>tag:realufo.org,2026:nara/136941788981</id>
     <title>Moving Images and Sound Recordings</title>
-    <link rel="alternate" type="text/html" href="https://realufo.org/nara/pages/moving-images-and-sound.html"/>
+    <link rel="alternate" type="text/html" href="https://release.realufo.org/nara/pages/moving-images-and-sound.html"/>
     <updated>2026-05-24T15:17:13Z</updated>
     <published>2026-05-24T15:17:13Z</published>
     <category term="A/V"/>
@@ -107,7 +107,7 @@
   <entry>
     <id>tag:realufo.org,2026:nara/236479807723</id>
     <title>Textual and Microfilm</title>
-    <link rel="alternate" type="text/html" href="https://realufo.org/nara/pages/textual-and-microfilm.html"/>
+    <link rel="alternate" type="text/html" href="https://release.realufo.org/nara/pages/textual-and-microfilm.html"/>
     <updated>2026-05-24T15:17:13Z</updated>
     <published>2026-05-24T15:17:13Z</published>
     <category term="Textual"/>
@@ -117,7 +117,7 @@
   <entry>
     <id>tag:realufo.org,2026:nara/708866062630</id>
     <title>Presidential Libraries</title>
-    <link rel="alternate" type="text/html" href="https://realufo.org/nara/pages/presidential-libraries.html"/>
+    <link rel="alternate" type="text/html" href="https://release.realufo.org/nara/pages/presidential-libraries.html"/>
     <updated>2026-05-24T15:17:13Z</updated>
     <published>2026-05-24T15:17:13Z</published>
     <category term="Presidential"/>
@@ -127,7 +127,7 @@
   <entry>
     <id>tag:realufo.org,2026:nara/112088032129</id>
     <title>Research by Record Group or Collection</title>
-    <link rel="alternate" type="text/html" href="https://realufo.org/nara/pages/federal-agency.html"/>
+    <link rel="alternate" type="text/html" href="https://release.realufo.org/nara/pages/federal-agency.html"/>
     <updated>2026-05-24T15:17:13Z</updated>
     <published>2026-05-24T15:17:13Z</published>
     <category term="Index"/>
@@ -137,7 +137,7 @@
   <entry>
     <id>tag:realufo.org,2026:nara/995483413513</id>
     <title>NARA Publications, Blogs &amp; Articles</title>
-    <link rel="alternate" type="text/html" href="https://realufo.org/nara/pages/blogs-and-articles.html"/>
+    <link rel="alternate" type="text/html" href="https://release.realufo.org/nara/pages/blogs-and-articles.html"/>
     <updated>2026-05-24T15:17:13Z</updated>
     <published>2026-05-24T15:17:13Z</published>
     <category term="Reference"/>
@@ -147,7 +147,7 @@
   <entry>
     <id>tag:realufo.org,2026:nara/229640785525</id>
     <title>Frequently Asked Questions</title>
-    <link rel="alternate" type="text/html" href="https://realufo.org/nara/pages/faqs.html"/>
+    <link rel="alternate" type="text/html" href="https://release.realufo.org/nara/pages/faqs.html"/>
     <updated>2026-05-24T15:17:13Z</updated>
     <published>2026-05-24T15:17:13Z</published>
     <category term="FAQ"/>

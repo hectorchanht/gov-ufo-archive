@@ -164,7 +164,7 @@ export default defineConfig({
   ],
 
   // Production canonical (CONTEXT.md §URL structure — wargov stays at /).
-  site: 'https://realufo.org',
+  site: 'https://release.realufo.org',
 
   // Matches current GH Pages behaviour; _redirects already handles trailing
   // slash 301s (Phase 2 plan 02-05). Setting 'ignore' lets Astro accept both

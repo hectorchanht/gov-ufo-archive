@@ -29,12 +29,12 @@ TEMPLATE = '''<!DOCTYPE html>
 <title>{name_short} — story · realufo.org</title>
 <meta name="description" content="The mission, history, and public record of {name_short_attr}, as published by the source agency. Verbatim official-source text mirrored from {official_host}.">
 <meta name="robots" content="index,follow">
-<link rel="canonical" href="https://realufo.org/{slug}/story.html">
+<link rel="canonical" href="https://release.realufo.org/{slug}/story.html">
 <meta property="og:title" content="{name_short_attr} — story · realufo.org">
 <meta property="og:description" content="Mission and history of {name_short_attr}, mirrored verbatim from the source agency.">
-<meta property="og:url" content="https://realufo.org/{slug}/story.html">
+<meta property="og:url" content="https://release.realufo.org/{slug}/story.html">
 <meta property="og:type" content="article">
-<meta property="og:image" content="https://realufo.org/{slug}/assets/og.svg">
+<meta property="og:image" content="https://release.realufo.org/{slug}/assets/og.svg">
 <meta property="og:site_name" content="realufo.org">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
@@ -208,8 +208,8 @@ def render(arc: dict) -> str:
         '@type': 'AboutPage',
         'name': f'{name} — story',
         'description': strip_html(arc['lede'])[:300],
-        'url': f'https://realufo.org/{arc["slug"]}/story.html',
-        'publisher': {'@type': 'Organization', 'name': 'realufo.org', 'url': 'https://realufo.org/'},
+        'url': f'https://release.realufo.org/{arc["slug"]}/story.html',
+        'publisher': {'@type': 'Organization', 'name': 'realufo.org', 'url': 'https://release.realufo.org/'},
         'sourceOrganization': {'@type': 'GovernmentOrganization', 'name': name, 'url': arc['official_url']},
         'license': arc['licence'],
         'isAccessibleForFree': True,

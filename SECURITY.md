@@ -2,7 +2,7 @@
 
 realufo.org is a **static archive** of public-domain government UAP records.
 There is no backend, no user authentication, no database, no paid third-party
-service. The whole site is served as static files from GitHub Pages.
+service. The whole site is served as static files from Cloudflare Pages at `release.realufo.org`.
 
 ## What we care about
 
@@ -18,7 +18,7 @@ Please report any of the following:
 ## What we don't care about (will close as not applicable)
 
 - Findings against `vercel.io`, `*.vercel.app`, `*.amazonaws.com` — we do not
-  use these services. realufo.org is hosted on GitHub Pages.
+  use these services. realufo.org is hosted on Cloudflare Pages.
 - "Missing Content-Security-Policy header" without a demonstrated exploit.
 - Self-XSS that requires the user to paste code into their own console.
 - Reports against the public domain content itself.

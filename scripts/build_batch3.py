@@ -27,7 +27,7 @@ CONFIG = [
         'meta_desc': "Offline mirror of New Zealand's declassified MoD/RNZAF UFO files at Archives New Zealand — 2,010 pages spanning 1952-2009.",
         'og_title': 'NZDF UFO Files — Archives New Zealand | realufo.org',
         'og_desc':  "New Zealand's declassified UFO archive (1952-2009). 2,010 pages including AIR 1080/6/897 (Kaikoura 1978). Held at Archives NZ.",
-        'og_image': 'https://realufo.org/slideshow/FBI-Photo-A5.jpg',
+        'og_image': 'https://release.realufo.org/slideshow/FBI-Photo-A5.jpg',
         'coords': '41°17′S, 174°47′E · WELLINGTON · ARCHIVES NEW ZEALAND',
         'h1_pre':  "New Zealand's ",
         'h1_em':   'declassified',
@@ -116,7 +116,7 @@ CONFIG = [
         'meta_desc': "Offline mirror of Canada's UFO records: Wilbert B. Smith's 1950s Operation Magnet at DOT, plus the Library and Archives Canada UFO collection.",
         'og_title': 'Canada — Operation Magnet | realufo.org',
         'og_desc':  "Wilbert B. Smith's 1950s Operation Magnet, Project Second Story (DRB), and the Library and Archives Canada UFO collection — Canada's official UAP record.",
-        'og_image': 'https://realufo.org/slideshow/NASA-UAP-VM6-Apollo-17-1972.jpg',
+        'og_image': 'https://release.realufo.org/slideshow/NASA-UAP-VM6-Apollo-17-1972.jpg',
         'coords': '45°25′N, 75°41′W · LIBRARY &amp; ARCHIVES CANADA · OTTAWA',
         'h1_pre':  "Canada's ",
         'h1_em':   'Operation Magnet',
@@ -201,7 +201,7 @@ CONFIG = [
         'meta_desc': "Offline mirror of Argentina's CEFAe — the Fuerza Aérea Argentina's UAP investigation commission since 2011.",
         'og_title': 'CEFAe — Argentina | realufo.org',
         'og_desc':  "Argentina's Comisión de Estudio de Fenómenos Aeroespaciales (CEFAe) — the Fuerza Aérea Argentina's official UAP investigation arm since 2011.",
-        'og_image': 'https://realufo.org/slideshow/NASA-UAP-VM6-Apollo-17-1972.jpg',
+        'og_image': 'https://release.realufo.org/slideshow/NASA-UAP-VM6-Apollo-17-1972.jpg',
         'coords': '34°36′S, 58°22′W · FUERZA AÉREA ARGENTINA · BUENOS AIRES',
         'h1_pre':  "Argentina's ",
         'h1_em':   'CEFAe',
@@ -268,7 +268,7 @@ CONFIG = [
         'meta_desc': "Offline mirror of CRIDOVNI — Uruguay's UFO investigation commission, world's oldest continuously-operating state UAP programme (1979→).",
         'og_title': 'CRIDOVNI — Uruguay | realufo.org',
         'og_desc':  "Uruguay's CRIDOVNI — the world's oldest continuously-operating state UFO programme. Founded 1979 inside the Fuerza Aérea Uruguaya.",
-        'og_image': 'https://realufo.org/slideshow/NASA-UAP-VM6-Apollo-17-1972.jpg',
+        'og_image': 'https://release.realufo.org/slideshow/NASA-UAP-VM6-Apollo-17-1972.jpg',
         'coords': '34°54′S, 56°10′W · FUERZA AÉREA URUGUAYA · MONTEVIDEO',
         'h1_pre':  "Uruguay's ",
         'h1_em':   'CRIDOVNI',
@@ -336,7 +336,7 @@ CONFIG = [
         'meta_desc': "Offline mirror of Peru's OIFAA — Fuerza Aérea del Perú's anomalous aerial phenomena investigation office, reactivated 2022.",
         'og_title': 'OIFAA — Peru | realufo.org',
         'og_desc':  "Peru's Oficina de Investigación de Fenómenos Aéreos Anómalos (OIFAA), reactivated 2022 inside the Fuerza Aérea del Perú.",
-        'og_image': 'https://realufo.org/slideshow/NASA-UAP-VM6-Apollo-17-1972.jpg',
+        'og_image': 'https://release.realufo.org/slideshow/NASA-UAP-VM6-Apollo-17-1972.jpg',
         'coords': '12°02′S, 77°02′W · FUERZA AÉREA DEL PERÚ · LIMA',
         'h1_pre':  "Peru's ",
         'h1_em':   'OIFAA',
@@ -403,7 +403,7 @@ CONFIG = [
         'meta_desc': "Offline mirror of Spain's declassified Air Force UFO archive — 1,900 pages, 86 cases, released 1992-1999 under General Alfredo Chamorro Chapinal.",
         'og_title': 'Ejército del Aire — Spain | realufo.org',
         'og_desc':  "Spain's declassified Air Force UFO archive — 86 cases, ~1,900 pages, 1962-1995. Released over 1992-1999 by Mando Operativo Aéreo.",
-        'og_image': 'https://realufo.org/slideshow/NASA-UAP-VM6-Apollo-17-1972.jpg',
+        'og_image': 'https://release.realufo.org/slideshow/NASA-UAP-VM6-Apollo-17-1972.jpg',
         'coords': '40°25′N, 3°43′W · CUARTEL GENERAL DEL AIRE · MADRID',
         'h1_pre':  "Spain's ",
         'h1_em':   'pioneering',
@@ -470,7 +470,7 @@ CONFIG = [
         'meta_desc': "Offline mirror of Italy's Aeronautica Militare UFO records — Reparto Generale Sicurezza Stato Maggiore Aeronautica declassifications since 2008.",
         'og_title': 'Aeronautica Militare — Italy | realufo.org',
         'og_desc':  "Italy's Aeronautica Militare UFO archive — declassified by Stato Maggiore Aeronautica from 2008 onward via the Sicurezza Aerea web portal.",
-        'og_image': 'https://realufo.org/slideshow/NASA-UAP-VM6-Apollo-17-1972.jpg',
+        'og_image': 'https://release.realufo.org/slideshow/NASA-UAP-VM6-Apollo-17-1972.jpg',
         'coords': '41°54′N, 12°29′E · STATO MAGGIORE AERONAUTICA · ROMA',
         'h1_pre':  "Italy's ",
         'h1_em':   'Aeronautica Militare',
@@ -626,11 +626,11 @@ def build_mirror(cfg):
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{cfg['page_title']}</title>
 <meta name="description" content="{cfg['meta_desc']}">
-<link rel="canonical" href="https://realufo.org/{slug}/">
+<link rel="canonical" href="https://release.realufo.org/{slug}/">
 <meta property="og:title" content="{cfg['og_title']}">
 <meta property="og:description" content="{cfg['og_desc']}">
 <meta property="og:image" content="{cfg['og_image']}">
-<meta property="og:url" content="https://realufo.org/{slug}/">
+<meta property="og:url" content="https://release.realufo.org/{slug}/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="realufo.org">
 <meta name="twitter:card" content="summary_large_image">

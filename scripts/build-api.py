@@ -170,8 +170,8 @@ def main() -> int:
         'generatedAt': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()),
         'totalRecords': grand_total,
         'totalArchives': len(ARCHIVES),
-        'license': 'See per-archive source jurisdictions on https://realufo.org/',
-        'docs': 'https://realufo.org/api/',
+        'license': 'See per-archive source jurisdictions on https://release.realufo.org/',
+        'docs': 'https://release.realufo.org/api/',
     }
     stats = {
         '_meta': meta,

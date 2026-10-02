@@ -40,7 +40,7 @@ from any normaliser without side-effects. Matches the
 - **T-04-08** (CORS misconfiguration): irrelevant here — the helper
   emits URLs against the bound custom-domain origin which the bucket's
   CORS rules (operator-applied via ``wrangler r2 bucket cors set``)
-  already restrict to ``https://realufo.org`` + preview origins.
+  already restrict to ``https://release.realufo.org`` + preview origins.
 
 ### Cross-references
 

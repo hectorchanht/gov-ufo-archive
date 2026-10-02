@@ -8,7 +8,7 @@ and writes one PNG per (archive, viewport) under
 `tests/visual-baselines/<slug>-<width>.png`.
 
 Why: Per CONTEXT D-12, Phase 2 freezes the current production-rendered
-pixels (https://realufo.org via GitHub Pages) as the regression target
+pixels (https://release.realufo.org via GitHub Pages) as the regression target
 that every Phase 3-5 CF Pages preview MUST match within 0.1 %
 (D-16). The baselines are committed as raw PNGs (D-13). The Playwright
 test runner (`tests/visual-regression.spec.ts`) compares the preview
@@ -25,7 +25,7 @@ CLI:
     python3 scripts/capture-baselines.py --archive aaro    # one archive × 4 viewports
     python3 scripts/capture-baselines.py --viewport 360    # all 15 archives at 360 px
     python3 scripts/capture-baselines.py --check           # exit 1 if any PNG missing
-    python3 scripts/capture-baselines.py --base-url https://realufo.org  # override
+    python3 scripts/capture-baselines.py --base-url https://release.realufo.org  # override
 
 `--check` walks `tests/visual-baselines/` and asserts every expected
 `<slug>-<width>.png` exists with size > 0. Useful from CI when verifying
@@ -56,7 +56,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
 OUTPUT_DIR = REPO / 'tests' / 'visual-baselines'
-DEFAULT_BASE = 'https://realufo.org'
+DEFAULT_BASE = 'https://release.realufo.org'
 
 # Canonical archive slug list. Source: CLAUDE.md §2 (15 archives). The wargov
 # landing page lives at `/` (historical: it predates the others); every other

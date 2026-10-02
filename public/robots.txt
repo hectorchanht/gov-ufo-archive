@@ -14,4 +14,4 @@ Disallow: /sw.js.map
 Disallow: /pagefind/index/
 Disallow: /pagefind/fragment/
 
-Sitemap: https://realufo.org/sitemap.xml
+Sitemap: https://release.realufo.org/sitemap.xml

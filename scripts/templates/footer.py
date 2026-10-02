@@ -109,7 +109,7 @@ def make_footer_sources(source_links, license_text: str = '', colophon: str = ''
     <div>
       <h4>Project</h4>
       <ul>
-        <li><a href="https://realufo.org/">realufo.org</a></li>
+        <li><a href="https://release.realufo.org/">realufo.org</a></li>
         <li><a href="https://github.com/hectorchanht/war-gov-ufo-release">GitHub</a></li>
       </ul>
       {f'<p style="margin-top:14px;font-size:10px;color:var(--ink-faint);line-height:1.6;">{license_text}</p>' if license_text else ''}

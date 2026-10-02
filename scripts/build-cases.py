@@ -52,10 +52,10 @@ def build_jsonld(case: dict) -> str:
         'headline': j['headline'],
         'description': j['description'],
         'datePublished': j['datePublished'],
-        'url': f'https://realufo.org/{case["archive"]}/{case["slug"]}.html',
-        'image': case.get('twitter_image', 'https://realufo.org/assets/og.svg'),
+        'url': f'https://release.realufo.org/{case["archive"]}/{case["slug"]}.html',
+        'image': case.get('twitter_image', 'https://release.realufo.org/assets/og.svg'),
         'author': {'@type': 'Organization', 'name': 'realufo.org'},
-        'publisher': {'@type': 'Organization', 'name': 'realufo.org', 'url': 'https://realufo.org/'},
+        'publisher': {'@type': 'Organization', 'name': 'realufo.org', 'url': 'https://release.realufo.org/'},
         'sourceOrganization': {'@type': 'GovernmentOrganization', 'name': j['sourceOrganization']},
         'about': about_nodes[0] if len(about_nodes) == 1 else about_nodes,
         'keywords': j['keywords'],
@@ -146,10 +146,10 @@ TEMPLATE = '''<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title_html} — case file · {archive_label} · realufo.org</title>
 <meta name="description" content="{desc}">
-<link rel="canonical" href="https://realufo.org/{archive}/{slug}.html">
+<link rel="canonical" href="https://release.realufo.org/{archive}/{slug}.html">
 <meta property="og:title" content="{title_html} · {archive_label} case file">
 <meta property="og:description" content="{desc_short}">
-<meta property="og:url" content="https://realufo.org/{archive}/{slug}.html">
+<meta property="og:url" content="https://release.realufo.org/{archive}/{slug}.html">
 <meta property="og:type" content="article">
 <meta property="og:image" content="{twitter_image}">
 <meta property="og:site_name" content="realufo.org">
@@ -332,7 +332,7 @@ def render(case: dict) -> str:
         archive_label=html.escape(case['archive_label']),
         desc=html.escape(desc_full, quote=True),
         desc_short=html.escape(desc_short, quote=True),
-        twitter_image=case.get('twitter_image', 'https://realufo.org/assets/og.svg'),
+        twitter_image=case.get('twitter_image', 'https://release.realufo.org/assets/og.svg'),
         jsonld=build_jsonld(case),
         accent=case['accent'],
         g1=case['gradient'][0], g2=case['gradient'][1], g3=case['gradient'][2],
