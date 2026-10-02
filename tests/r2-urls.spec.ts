@@ -3,7 +3,7 @@
 // Asserts that the R2 custom-domain (`https://assets.realufo.org/...`) URLs
 // emitted by `scripts/normalize-csv.py` into `data/wargov.json` resolve to
 // real R2 objects with HTTP 200 + the expected CORS echo for the
-// `https://realufo.org` origin.
+// `https://release.realufo.org` origin.
 //
 // This spec is intentionally SKIPPABLE during the pre-migration window
 // (after this plan merges to main but before the operator triggers
@@ -31,7 +31,7 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 const R2_BASE = 'https://assets.realufo.org';
-const ORIGIN = 'https://realufo.org';
+const ORIGIN = 'https://release.realufo.org';
 
 // `R2_MIGRATED` env-gate. Default unset → skip the HEAD-checks.
 // Set to `1` / `true` / `yes` once the bulk migration is done.

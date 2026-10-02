@@ -114,7 +114,7 @@ h2 em{font-style:italic;color:var(--caution)}
       '<div class="brand" style="color:var(--caution);margin-bottom:14px">realufo.org · embed widget</div>' +
       '<h2 style="margin-bottom:12px;font-size:22px"><em>Embed</em> a case anywhere</h2>' +
       '<p style="color:var(--ink-dim);font-family:var(--serif);font-size:14px;margin-bottom:14px">Drop this snippet into any blog, Substack, or static page:</p>' +
-      '<pre style="background:var(--bg-2);border:1px solid var(--rule);border-radius:6px;padding:14px;font-family:var(--mono);font-size:11px;color:var(--ink);overflow-x:auto;line-height:1.5;margin-bottom:18px;white-space:pre-wrap"><code>&lt;iframe src="https://realufo.org/embed.html?case=rendlesham"\n  width="100%" height="320" loading="lazy"\n  style="border:0;border-radius:8px"\n  sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox"\n  title="realufo.org · Rendlesham Forest 1980"&gt;\n&lt;/iframe&gt;</code></pre>' +
+      '<pre style="background:var(--bg-2);border:1px solid var(--rule);border-radius:6px;padding:14px;font-family:var(--mono);font-size:11px;color:var(--ink);overflow-x:auto;line-height:1.5;margin-bottom:18px;white-space:pre-wrap"><code>&lt;iframe src="https://release.realufo.org/embed.html?case=rendlesham"\n  width="100%" height="320" loading="lazy"\n  style="border:0;border-radius:8px"\n  sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox"\n  title="realufo.org · Rendlesham Forest 1980"&gt;\n&lt;/iframe&gt;</code></pre>' +
       '<p style="color:var(--ink-dim);font-family:var(--serif);font-size:14px;margin-bottom:14px"><strong style="color:var(--ink)">Available case slugs (' + Object.keys(CASES).length + '):</strong></p>' +
       '<ul style="list-style:none;padding:0;column-count:2;column-gap:24px">' + listing + '</ul>' +
       '<p style="color:var(--ink-faint);font-family:var(--mono);font-size:10px;margin-top:24px;letter-spacing:0.08em">' +
@@ -133,8 +133,8 @@ h2 em{font-style:italic;color:var(--caution)}
     '<h2><em>' + esc(c.name.split(' ')[0]) + '</em> ' + esc(c.name.split(' ').slice(1).join(' ')) + '</h2>' +
     (lede ? '<div class="lede">' + esc(lede) + '</div>' : '') +
     '<div class="cta">' +
-      '<a href="https://realufo.org' + esc(c.href) + '" target="_blank" rel="noopener" style="border-color:' + esc(c.accent) + ';color:' + esc(c.accent) + ';background:' + esc(c.accent) + '20">Open case &rarr;</a>' +
-      '<span class="powered">Powered by <a href="https://realufo.org/" target="_blank" rel="noopener">realufo.org</a></span>' +
+      '<a href="https://release.realufo.org' + esc(c.href) + '" target="_blank" rel="noopener" style="border-color:' + esc(c.accent) + ';color:' + esc(c.accent) + ';background:' + esc(c.accent) + '20">Open case &rarr;</a>' +
+      '<span class="powered">Powered by <a href="https://release.realufo.org/" target="_blank" rel="noopener">realufo.org</a></span>' +
     '</div>' +
     '</div>'
   );

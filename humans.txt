@@ -8,7 +8,7 @@
 /* TEAM */
   Project lead: Frank Chan
   Code: MIT licensed in scripts/ and download.py
-  Site: realufo.org · https://realufo.org/
+  Site: realufo.org · https://release.realufo.org/
 
 /* SOURCES (alphabetical) */
   AARO — All-domain Anomaly Resolution Office          — aaro.mil
@@ -51,4 +51,4 @@
 
 /* CONTACT */
   Site issues: https://github.com/hectorchanht/war-gov-ufo-release/issues
-  Security:    https://realufo.org/.well-known/security.txt
+  Security:    https://release.realufo.org/.well-known/security.txt

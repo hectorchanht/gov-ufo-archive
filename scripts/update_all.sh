@@ -81,7 +81,7 @@ step "4/5  Regenerate sitemap.xml"
 cat > /tmp/build_sitemap.py <<'PY'
 import os, datetime
 ROOT = os.environ['ROOT']
-BASE = 'https://realufo.org'
+BASE = 'https://release.realufo.org'
 today = datetime.datetime.utcnow().strftime('%Y-%m-%d')
 URLS = [
     ('/', 'weekly', '1.0'),

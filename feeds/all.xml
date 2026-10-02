@@ -2,15 +2,15 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>realufo.org — every archive, latest records</title>
   <subtitle>Cross-archive Atom feed of the 100 most recent declassified UAP records across 15 government sources.</subtitle>
-  <id>https://realufo.org/feeds/all.xml</id>
-  <link rel="self" type="application/atom+xml" href="https://realufo.org/feeds/all.xml"/>
-  <link rel="alternate" type="text/html" href="https://realufo.org/"/>
+  <id>https://release.realufo.org/feeds/all.xml</id>
+  <link rel="self" type="application/atom+xml" href="https://release.realufo.org/feeds/all.xml"/>
+  <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
   <updated>2026-05-24T15:17:13Z</updated>
-  <author><name>realufo.org</name><uri>https://realufo.org/</uri></author>
+  <author><name>realufo.org</name><uri>https://release.realufo.org/</uri></author>
   <entry>
     <id>tag:realufo.org,2026:geipan/909348028331</id>
     <title>IPACO® team (2025)</title>
-    <link rel="alternate" type="text/html" href="https://realufo.org/geipan/assets/images/IPACO-team-2025.jpg"/>
+    <link rel="alternate" type="text/html" href="https://release.realufo.org/geipan/assets/images/IPACO-team-2025.jpg"/>
     <updated>2025-01-01T00:00:00Z</updated>
     <published>2025-01-01T00:00:00Z</published>
     <category term="geipan"/>
@@ -37,7 +37,7 @@
   <entry>
     <id>tag:realufo.org,2026:geipan/400319242149</id>
     <title>Cases by Phenomenon Type (2024)</title>
-    <link rel="alternate" type="text/html" href="https://realufo.org/geipan/assets/images/GEIPAN-Cases-By-Phenomenon-2024.png"/>
+    <link rel="alternate" type="text/html" href="https://release.realufo.org/geipan/assets/images/GEIPAN-Cases-By-Phenomenon-2024.png"/>
     <updated>2024-01-01T00:00:00Z</updated>
     <published>2024-01-01T00:00:00Z</published>
     <category term="geipan"/>
@@ -46,7 +46,7 @@
   <entry>
     <id>tag:realufo.org,2026:geipan/532303418159</id>
     <title>Starlink satellite flare note</title>
-    <link rel="alternate" type="text/html" href="https://realufo.org/geipan/assets/images/Starlink-flare-note-2024.jpg"/>
+    <link rel="alternate" type="text/html" href="https://release.realufo.org/geipan/assets/images/Starlink-flare-note-2024.jpg"/>
     <updated>2024-01-01T00:00:00Z</updated>
     <published>2024-01-01T00:00:00Z</published>
     <category term="geipan"/>
@@ -136,7 +136,7 @@
   <entry>
     <id>tag:realufo.org,2026:nasa/600837105035</id>
     <title>UAP Study Team — Public Meeting Group Photo</title>
-    <link rel="alternate" type="text/html" href="https://realufo.org/nasa/assets/images/uap-meeting-2023.jpeg"/>
+    <link rel="alternate" type="text/html" href="https://release.realufo.org/nasa/assets/images/uap-meeting-2023.jpeg"/>
     <updated>2023-01-01T00:00:00Z</updated>
     <published>2023-01-01T00:00:00Z</published>
     <category term="nasa"/>
@@ -145,7 +145,7 @@
   <entry>
     <id>tag:realufo.org,2026:nasa/777662107932</id>
     <title>UAP Final Report — Cover</title>
-    <link rel="alternate" type="text/html" href="https://realufo.org/nasa/assets/images/uap-report-cover.png"/>
+    <link rel="alternate" type="text/html" href="https://release.realufo.org/nasa/assets/images/uap-report-cover.png"/>
     <updated>2023-01-01T00:00:00Z</updated>
     <published>2023-01-01T00:00:00Z</published>
     <category term="nasa"/>
@@ -244,7 +244,7 @@
   <entry>
     <id>tag:realufo.org,2026:geipan/657067011437</id>
     <title>GEIPAN — FAQ (English)</title>
-    <link rel="alternate" type="text/html" href="https://realufo.org/geipan/pdfs/GEIPAN-FAQ-English.pdf"/>
+    <link rel="alternate" type="text/html" href="https://release.realufo.org/geipan/pdfs/GEIPAN-FAQ-English.pdf"/>
     <updated>2021-01-01T00:00:00Z</updated>
     <published>2021-01-01T00:00:00Z</published>
     <category term="geipan"/>
@@ -253,7 +253,7 @@
   <entry>
     <id>tag:realufo.org,2026:geipan/297819617925</id>
     <title>GEIPAN — FAQ (Français)</title>
-    <link rel="alternate" type="text/html" href="https://realufo.org/geipan/pdfs/GEIPAN-FAQ-Francais.pdf"/>
+    <link rel="alternate" type="text/html" href="https://release.realufo.org/geipan/pdfs/GEIPAN-FAQ-Francais.pdf"/>
     <updated>2021-01-01T00:00:00Z</updated>
     <published>2021-01-01T00:00:00Z</published>
     <category term="geipan"/>
@@ -262,7 +262,7 @@
   <entry>
     <id>tag:realufo.org,2026:geipan/764291065265</id>
     <title>GEIPAN — Mission, History, Methodology (English)</title>
-    <link rel="alternate" type="text/html" href="https://realufo.org/geipan/pdfs/GEIPAN-Mission-Method-English.pdf"/>
+    <link rel="alternate" type="text/html" href="https://release.realufo.org/geipan/pdfs/GEIPAN-Mission-Method-English.pdf"/>
     <updated>2021-01-01T00:00:00Z</updated>
     <published>2021-01-01T00:00:00Z</published>
     <category term="geipan"/>
@@ -271,7 +271,7 @@
   <entry>
     <id>tag:realufo.org,2026:geipan/959901486692</id>
     <title>GEIPAN — Mission, Historique, Méthodologie (Français)</title>
-    <link rel="alternate" type="text/html" href="https://realufo.org/geipan/pdfs/GEIPAN-Mission-Methode-Francais.pdf"/>
+    <link rel="alternate" type="text/html" href="https://release.realufo.org/geipan/pdfs/GEIPAN-Mission-Methode-Francais.pdf"/>
     <updated>2021-01-01T00:00:00Z</updated>
     <published>2021-01-01T00:00:00Z</published>
     <category term="geipan"/>
@@ -289,7 +289,7 @@
   <entry>
     <id>tag:realufo.org,2026:geipan/906492059076</id>
     <title>Saint-Germain-en-Laye (78) — 30 May 2020</title>
-    <link rel="alternate" type="text/html" href="https://realufo.org/geipan/videos/Saint-Germain-en-Laye-2020-05-30.mp4"/>
+    <link rel="alternate" type="text/html" href="https://release.realufo.org/geipan/videos/Saint-Germain-en-Laye-2020-05-30.mp4"/>
     <updated>2020-01-01T00:00:00Z</updated>
     <published>2020-01-01T00:00:00Z</published>
     <category term="geipan"/>
@@ -316,7 +316,7 @@
   <entry>
     <id>tag:realufo.org,2026:geipan/196286697879</id>
     <title>Lyon (69) — 19 December 2019</title>
-    <link rel="alternate" type="text/html" href="https://realufo.org/geipan/videos/Lyon-2019-12-19.mp4"/>
+    <link rel="alternate" type="text/html" href="https://release.realufo.org/geipan/videos/Lyon-2019-12-19.mp4"/>
     <updated>2019-01-01T00:00:00Z</updated>
     <published>2019-01-01T00:00:00Z</published>
     <category term="geipan"/>
@@ -325,7 +325,7 @@
   <entry>
     <id>tag:realufo.org,2026:chile/939950620573</id>
     <title>DGAC — CEFAA: An Investigative Model for Anomalous Aerial Phenomena</title>
-    <link rel="alternate" type="text/html" href="https://realufo.org/chile/pdfs/DGAC-CEFAA-Publicacion-Web-2019.pdf"/>
+    <link rel="alternate" type="text/html" href="https://release.realufo.org/chile/pdfs/DGAC-CEFAA-Publicacion-Web-2019.pdf"/>
     <updated>2019-01-01T00:00:00Z</updated>
     <published>2019-01-01T00:00:00Z</published>
     <category term="chile"/>
@@ -361,7 +361,7 @@
   <entry>
     <id>tag:realufo.org,2026:uk/147358074523</id>
     <title>Final Tranche of UFO Files Released — Press Release</title>
-    <link rel="alternate" type="text/html" href="https://realufo.org/uk/pdfs/Final-Tranche-UFO-Files-Press-Release.pdf"/>
+    <link rel="alternate" type="text/html" href="https://release.realufo.org/uk/pdfs/Final-Tranche-UFO-Files-Press-Release.pdf"/>
     <updated>2013-01-01T00:00:00Z</updated>
     <published>2013-01-01T00:00:00Z</published>
     <category term="uk"/>

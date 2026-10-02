@@ -21,7 +21,7 @@ binding = "BUCKET"
 bucket_name = "realufo"
 
 [vars]
-SITE = "https://realufo.org"
+SITE = "https://release.realufo.org"
 ASSETS_ORIGIN = "https://assets.realufo.org"
 GITHUB_REPO = "hectorchanht/gov-ufo-archive"
 

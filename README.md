@@ -1,6 +1,6 @@
 # realufo.org — every official UAP archive, in one place
 
-**Live at [realufo.org](https://realufo.org/)** · official government UAP
+**Live at [realufo.org](https://release.realufo.org/)** · official government UAP
 releases preserved side-by-side — offline-first, mobile-first, verbatim.
 
 Built with **Astro 5** (static output) and deployed on **Cloudflare Pages**.
@@ -16,10 +16,10 @@ keeps working with no network.
 
 | # | Archive | Source | Route |
 | --: | --- | --- | --- |
-| 1 | **PURSUE — Department of War / Release 01–03** | <https://www.war.gov/UFO/> | [`/`](https://realufo.org/) |
-| 2 | **AARO — All-domain Anomaly Resolution Office** | <https://www.aaro.mil/> | [`/aaro/`](https://realufo.org/aaro/) |
-| 3 | **NASA UAP Independent Study Team** | <https://science.nasa.gov/uap/> | [`/nasa/`](https://realufo.org/nasa/) |
-| 4 | **NARA — Project Blue Book + JFK + UAP** | <https://catalog.archives.gov/> | [`/nara/`](https://realufo.org/nara/) |
+| 1 | **PURSUE — Department of War / Release 01–03** | <https://www.war.gov/UFO/> | [`/`](https://release.realufo.org/) |
+| 2 | **AARO — All-domain Anomaly Resolution Office** | <https://www.aaro.mil/> | [`/aaro/`](https://release.realufo.org/aaro/) |
+| 3 | **NASA UAP Independent Study Team** | <https://science.nasa.gov/uap/> | [`/nasa/`](https://release.realufo.org/nasa/) |
+| 4 | **NARA — Project Blue Book + JFK + UAP** | <https://catalog.archives.gov/> | [`/nara/`](https://release.realufo.org/nara/) |
 
 **11 DORMANT** — full code + data + content-collection entries preserved in the
 repo; not linked from nav/footer/search yet, but direct-URL access still works.
@@ -39,7 +39,7 @@ repo; not linked from nav/footer/search yet, but direct-URL access still works.
 | Spain — Ejército del Aire | <https://ejercitodelaire.defensa.gob.es/> | `/spain/` |
 | Uruguay — CRIDOVNI | <https://www.fau.mil.uy/> | `/uruguay/` |
 
-Cross-archive search lives at [`/search/`](https://realufo.org/search/).
+Cross-archive search lives at [`/search/`](https://release.realufo.org/search/).
 Re-activating a dormant archive is a 3-line edit (its slug into `Nav.astro`,
 `Footer.astro`, and `RootLayout.astro`).
 

@@ -59,7 +59,7 @@ new markup, CLAUDE.md §3.1 tone-colour update, etc.):
 
 ## Capture source
 
-**D-12: live <https://realufo.org> production GitHub Pages origin.** Not
+**D-12: live <https://release.realufo.org> production GitHub Pages origin.** Not
 the CF Pages preview, not local dev server, not Wayback. Rationale:
 pixel-true to what real users see today; CSS fonts that the browser
 fetches from Google Fonts at runtime must render identically to what the

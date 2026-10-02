@@ -120,7 +120,7 @@ const description = bodyHtml
 const pageTitle = `${entry.title} — ${source.name} · realufo.org`;
 
 // JSON-LD Article schema (Phase 04.1 audit `jsonld-structured-data`).
-const storyUrl = `https://realufo.org/stories/${entry.slug}/`;
+const storyUrl = `https://release.realufo.org/stories/${entry.slug}/`;
 const datePublished = entry.incidentDate || '2026-01-01';
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -134,15 +134,15 @@ const jsonLd = {
   publisher: {
     '@type': 'Organization',
     name: 'realufo.org',
-    url: 'https://realufo.org',
-    logo: { '@type': 'ImageObject', url: 'https://realufo.org/assets/favicon.svg' },
+    url: 'https://release.realufo.org',
+    logo: { '@type': 'ImageObject', url: 'https://release.realufo.org/assets/favicon.svg' },
   },
   author: { '@type': 'GovernmentOrganization', name: source.name, url: source.url },
   mainEntityOfPage: { '@type': 'WebPage', '@id': storyUrl },
-  image: 'https://realufo.org/assets/favicon.svg',
+  image: 'https://release.realufo.org/assets/favicon.svg',
   isPartOf: {
     '@type': 'CollectionPage',
-    url: 'https://realufo.org/stories/',
+    url: 'https://release.realufo.org/stories/',
     name: 'Stories — realufo.org',
   },
   keywords: ['UAP', 'UFO', archive, source.name, 'public domain'],

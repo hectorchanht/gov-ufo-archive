@@ -2,13 +2,13 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>realufo.org — NASA UAP</title>
   <subtitle>Latest declassified records mirrored from NASA UAP.</subtitle>
-  <id>https://realufo.org/feeds/nasa.xml</id>
-  <link rel="self" type="application/atom+xml" href="https://realufo.org/feeds/nasa.xml"/>
-  <link rel="alternate" type="text/html" href="https://realufo.org/nasa/"/>
+  <id>https://release.realufo.org/feeds/nasa.xml</id>
+  <link rel="self" type="application/atom+xml" href="https://release.realufo.org/feeds/nasa.xml"/>
+  <link rel="alternate" type="text/html" href="https://release.realufo.org/nasa/"/>
   <updated>2026-05-24T15:17:13Z</updated>
-  <author><name>realufo.org</name><uri>https://realufo.org/</uri></author>
+  <author><name>realufo.org</name><uri>https://release.realufo.org/</uri></author>
   <rights>Per-source jurisdiction (US 17 U.S.C. §105, UK OGL v3, France Loi 78-753, Brazil LAI 12.527, Chile 20.285, etc.)</rights>
-  <generator uri="https://realufo.org/">realufo.org build-feeds.py</generator>
+  <generator uri="https://release.realufo.org/">realufo.org build-feeds.py</generator>
   <entry>
     <id>tag:realufo.org,2026:nasa/331146340433</id>
     <title>NASA UAP 2024 Annual Report</title>
@@ -97,7 +97,7 @@
   <entry>
     <id>tag:realufo.org,2026:nasa/378938392284</id>
     <title>UAP Study Team — Public Meeting Group Photo</title>
-    <link rel="alternate" type="text/html" href="https://realufo.org/nasa/assets/images/uap-meeting-2023.jpeg"/>
+    <link rel="alternate" type="text/html" href="https://release.realufo.org/nasa/assets/images/uap-meeting-2023.jpeg"/>
     <updated>2023-01-01T00:00:00Z</updated>
     <published>2023-01-01T00:00:00Z</published>
     <category term="Imagery"/>
@@ -107,7 +107,7 @@
   <entry>
     <id>tag:realufo.org,2026:nasa/595259766733</id>
     <title>UAP Final Report — Cover</title>
-    <link rel="alternate" type="text/html" href="https://realufo.org/nasa/assets/images/uap-report-cover.png"/>
+    <link rel="alternate" type="text/html" href="https://release.realufo.org/nasa/assets/images/uap-report-cover.png"/>
     <updated>2023-01-01T00:00:00Z</updated>
     <published>2023-01-01T00:00:00Z</published>
     <category term="Imagery"/>

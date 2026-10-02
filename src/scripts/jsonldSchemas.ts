@@ -5,10 +5,10 @@
  * Returns plain objects ready to JSON.stringify into <script
  * type="application/ld+json">. Consumed by src/components/StructuredData.astro.
  *
- * All schemas use https://realufo.org as the canonical origin.
+ * All schemas use https://release.realufo.org as the canonical origin.
  */
 
-const ORIGIN = 'https://realufo.org';
+const ORIGIN = 'https://release.realufo.org';
 const PUBLISHER = {
   '@type': 'Organization',
   name: 'realufo.org',

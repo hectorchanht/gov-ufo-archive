@@ -4,6 +4,7 @@
       "allowed": {
         "origins": [
           "https://realufo.org",
+          "https://release.realufo.org",
           "https://*.realufo.pages.dev",
           "https://realufo.pages.dev",
           "http://localhost:4321",

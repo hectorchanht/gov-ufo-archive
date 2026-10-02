@@ -4,7 +4,7 @@
 Contact: mailto:security@realufo.org
 Contact: https://github.com/hectorchanht/war-gov-ufo-release/security/advisories/new
 Preferred-Languages: en, fr, pt, es
-Canonical: https://realufo.org/.well-known/security.txt
+Canonical: https://release.realufo.org/.well-known/security.txt
 Policy: https://github.com/hectorchanht/war-gov-ufo-release/blob/main/SECURITY.md
 Acknowledgments: https://github.com/hectorchanht/war-gov-ufo-release/security/advisories
 Expires: 2027-01-01T00:00:00.000Z

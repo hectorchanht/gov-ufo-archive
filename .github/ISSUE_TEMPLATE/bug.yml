@@ -12,7 +12,7 @@ body:
     attributes:
       label: Page URL
       description: Where does the bug happen?
-      placeholder: https://realufo.org/aaro/tic-tac.html
+      placeholder: https://release.realufo.org/aaro/tic-tac.html
     validations:
       required: true
   - type: input

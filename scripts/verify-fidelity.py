@@ -23,7 +23,7 @@ operator can immediately see which selector drifted and what changed.
 CLI:
     python3 scripts/verify-fidelity.py
         # Default base URL = https://realufo.pages.dev (CF Pages preview)
-    python3 scripts/verify-fidelity.py --base-url https://realufo.org
+    python3 scripts/verify-fidelity.py --base-url https://release.realufo.org
         # Sanity: same content as main → exit 0
     python3 scripts/verify-fidelity.py --base-url https://X.pages.dev --color
         # CI: PR-preview URL + ANSI-colored diff in the log
