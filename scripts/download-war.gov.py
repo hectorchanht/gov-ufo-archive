@@ -35,9 +35,10 @@ SLIDES_DIR    = ROOT / "slideshow"
 SLIDES_2_DIR  = ROOT / "slideshow-2"             # Release 02 carousel images
 SLIDES_3_DIR  = ROOT / "slideshow-3"             # Release 03 carousel images
 SLIDES_4_DIR  = ROOT / "slideshow-4"             # Release 04 carousel images
+SLIDES_6_DIR  = ROOT / "slideshow-6"             # Release 06 carousel images
 BUNDLES_DIR   = ROOT / "bundles"
 ASSETS_DIR    = ROOT / "assets"
-for d in (SLIDES_DIR, SLIDES_2_DIR, SLIDES_3_DIR, SLIDES_4_DIR, BUNDLES_DIR, ASSETS_DIR):
+for d in (SLIDES_DIR, SLIDES_2_DIR, SLIDES_3_DIR, SLIDES_4_DIR, SLIDES_6_DIR, BUNDLES_DIR, ASSETS_DIR):
     d.mkdir(parents=True, exist_ok=True)
 
 HEADERS = {
@@ -191,6 +192,26 @@ DOCS_4 = [
     "FBI-UAP-D014_Correspondence-Relating-to-UFO-Sightings_1967_1974.pdf",
 ]
 
+# Release 05 (2026-08-07) — no rotator imagery; 41 records (22 PDF, 16 VID,
+# 3 IMG). Documents + videos come from the two bundles in BUNDLES below.
+
+# Release 06 (2026-09-18) — sixth tranche under PURSUE. 75 records
+# (59 PDF, 15 VID, 1 AUD). Top-rotator imagery lives under /09182026/;
+# filenames verbatim from the live www.war.gov/UFO/ markup (the uppercase
+# .JPG extensions are real).
+SLIDESHOW_6_BASE = "https://www.war.gov/portals/1/Interactive/2026/UFO/09182026/top-rotator-images/"
+SLIDES_6 = [
+    "DOW-UAP-D102_Project-Blue-Book-File-on-Tremonton-Film-Utah-1952.jpg",
+    "DOW-UAP-D110_AAWSAP-Statement-of-Objectives-July-18-2008.jpg",
+    "DOW-UAP-D111_AAWSAP-Solicitation-and-Original-Order-September-22-2008.jpg",
+    "DOW-UAP-D117_AAWSAP-DIRD-Metallic-Glasses-for-Aerospace-Applications-December-14-2009.jpg",
+    "DOW-UAP-D129_AAWSAP-DIRD-Metallic-Spintronics-March-23-2010.jpg",
+    "DOW-UAP-D154_Transcript-of-a-Presentation-by-Captain-Edward-J-Ruppelt-1952.jpg",
+    "DOW-UAP-PR159_Archival-Film-of-Reported-UFOs-Utah-1952.JPG",
+    "LLE-UAP-PR001_Unresolved-UAP-Report-Colorado-October-2023.JPG",
+    "LLE-UAP-PR002_Unresolved-UAP-Report-Colorado-October-2023.JPG",
+]
+
 # Master manifest. As of Release 02 (5/22/26), war.gov serves a single
 # combined CSV (uap-data.csv) that includes both Release 01 and 02 rows.
 # The legacy /uap-release001.csv is still served verbatim — we keep both.
@@ -220,6 +241,16 @@ BUNDLES = [
     # cloudfront video archive (23 DOD_*.mp4). URL verbatim from war.gov/UFO/.
     ("https://d34w7g4gy10iej.cloudfront.net/release_04/uap_release04_videos_071026.zip",
      "uap_release04_videos_071026.zip"),
+    # Release 05 (8/7/26) — ~130 MB docs bundle + ~538 MB cloudfront video archive.
+    ("https://www.war.gov/medialink/ufo/release_05/Aug_07/release_05_Aug_07_documents.zip",
+     "release_05_Aug_07_documents.zip"),
+    ("https://d34w7g4gy10iej.cloudfront.net/release_05/uap_videos_080726.zip",
+     "uap_videos_080726.zip"),
+    # Release 06 (9/18/26) — ~2.23 GB docs bundle + ~1.48 GB cloudfront video archive.
+    ("https://www.war.gov/medialink/ufo/sept-18/release-06/documents_release_06_sept_18_2026.zip",
+     "documents_release_06_sept_18_2026.zip"),
+    ("https://d34w7g4gy10iej.cloudfront.net/release_06/pursue_vids_091826.zip",
+     "pursue_vids_091826.zip"),
 ]
 
 
@@ -243,6 +274,11 @@ def main():
              for f in SLIDES_4)
     print(f"  ({ok}/{len(SLIDES_4)} ok)")
 
+    print("\n=== Slideshow images — Release 06 (9) ===")
+    ok = sum(fetch(SLIDESHOW_6_BASE + f.replace(" ", "%20"), SLIDES_6_DIR / f)
+             for f in SLIDES_6)
+    print(f"  ({ok}/{len(SLIDES_6)} ok)")
+
     print("\n=== Release 04 document PDFs (14) ===")
     DOCS_4_DIR.mkdir(parents=True, exist_ok=True)
     ok = sum(fetch(DOCS_4_BASE + f.replace(" ", "%20"), DOCS_4_DIR / f)
@@ -261,6 +297,9 @@ def main():
     print("  Release 01: Release_1.zip (~1.2 GB docs+imgs), uapvideos.zip (~1.3 GB)")
     print("  Release 02: release_02_document_bundle.zip (~70 MB), uap052226.zip (~5.6 GB)")
     print("  Release 03: release_03_documents.zip (~866 MB), uap_videos_061226.zip (~4.96 GB)")
+    print("  Release 04: uap_release04_videos_071026.zip (~1.55 GB)")
+    print("  Release 05: release_05_Aug_07_documents.zip (~130 MB), uap_videos_080726.zip (~538 MB)")
+    print("  Release 06: documents_release_06_sept_18_2026.zip (~2.23 GB), pursue_vids_091826.zip (~1.48 GB)")
     for url, name in BUNDLES:
         fetch(url, BUNDLES_DIR / name)
 
