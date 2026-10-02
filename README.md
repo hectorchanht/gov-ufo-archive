@@ -215,8 +215,10 @@ Secrets used in CI: `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`,
 ## Hosting
 
 **Cloudflare Pages** (project `realufo`, production branch `main`). Build
-command `pnpm build`, output `dist/`. Custom domain `realufo.org`; per-deploy
-previews at `https://<sha>.realufo.pages.dev/`.
+command `pnpm build`, output `dist/`. Custom domain `release.realufo.org`; per-deploy
+previews at `https://<sha>.realufo.pages.dev/`. The apex `realufo.org` is served
+by the separate `realufo-superpower` Cloudflare Worker (route `realufo.org/*`),
+not by this repo.
 
 **Binary CDN.** Committed images stay in Git (small, frequently shown). PDFs and
 videos are excluded (`.gitignore` §5.2: any file > 100 MB, all PDF dirs, all

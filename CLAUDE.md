@@ -3,6 +3,7 @@
 This file is the master spec for **realufo.org** — an offline-first archive
 of every official government UAP source. Read it before changing anything.
 New archives follow these rules to the letter.
+This archive is served at <https://release.realufo.org>; the apex `realufo.org` is a separate repo (realufo-superpower Worker).
 
 ---
 
