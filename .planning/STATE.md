@@ -99,12 +99,11 @@ None at roadmap-creation time.
 |---|-------------|------|--------|--------|-----------|
 | 260615-3e3 | Fetch war.gov Release 03 (6/12/26, +72 rows) + wire site + upload to R2 | 2026-06-15 | 4dc5255 | Mostly complete — 53 PDFs + 7/9 videos live on R2; 2 large videos (>300 MiB) pending S3 upload | [260615-3e3](./quick/260615-3e3-fetch-third-war-gov-ufo-release-and-upda/) |
 | 261001-p8k | Ingest war.gov Release 05 (8/7/26, +41) + Release 06 (9/18/26, +75) — 334→450 | 2026-10-01 | 6c983ba | Complete — on main + deployed; all wargov keys on R2 (verified by 261001-qex) | [261001-p8k](./quick/261001-p8k-ingest-war-gov-pursue-release-05-and-06/) |
-| 261001-q6n | Host this repo at release.realufo.org (canonical origin rewrite, 131 files; apex = realufo-superpower Worker) | 2026-10-02 | c636d8f | Code + R2 CORS done; Pages domain attached (pending) — needs DNS CNAME release→realufo.pages.dev; deploy on merge | [261001-q6n](./quick/261001-q6n-host-this-repo-as-release-realufo-org/) |
-| 261001-qex | Release-mention sweep (Releases 01–06 / 450, 12 files) + `.agents/skills/wargov-release-ingest` skill + R2 diff (0 missing) + ship | 2026-10-02 | 31bbb4d | Pushing to main (ships q6n too); release.realufo.org CNAME pending user DNS edit | [261001-qex](./quick/261001-qex-release-mention-content-sweep-r2-upload-/) |
+| 261001-q6n | Host this repo at release.realufo.org (canonical origin rewrite, 131 files; apex = realufo-superpower Worker) | 2026-10-02 | c636d8f | Complete — on main + deployed; CNAME added 2026-10-02, Pages domain active, release.realufo.org 200 | [261001-q6n](./quick/261001-q6n-host-this-repo-as-release-realufo-org/) |
+| 261001-qex | Release-mention sweep (Releases 01–06 / 450, 12 files) + `.agents/skills/wargov-release-ingest` skill + R2 diff (0 missing) + ship | 2026-10-02 | 31bbb4d | Complete — main 6749f1f deployed; live on release.realufo.org | [261001-qex](./quick/261001-qex-release-mention-content-sweep-r2-upload-/) |
 
 ### TODOs
 
-- **release.realufo.org**: add proxied CNAME `release` → `realufo.pages.dev` in f147259 CF account (no local token has DNS write); then PATCH Pages domain validation.
 - **build-pdf-thumbs.py:170**: URL-quote basename in `_download_from_r2()` (keys with spaces).
 - **api/stats.json + feeds/**: all-zero output since 2026-06-02 — broken pipeline.
 - Run `/gsd:plan-phase 1` to decompose Phase 1 into executable plans
