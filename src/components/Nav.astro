@@ -17,7 +17,9 @@
 //
 // CLAUDE.md §11 don't: NO inline upper-right arrow (U+2197) in header links
 // (reserved for footer external sources). Internal archive-to-archive links
-// only here. The single-direction right-arrow (U+2192) on "All stories" is
+// only here, with one exception: the trailing "RealUFO ↗" link to the apex
+// https://realufo.org/ (a different origin; §11 permits U+2197 on explicit
+// external links). The single-direction right-arrow (U+2192) on "All stories" is
 // the internal-flow "more" marker per UI-SPEC §2.1 — a different glyph from
 // the forbidden external-link upper-right arrow (U+2197).
 //
@@ -205,6 +207,7 @@ const brand = BRAND[archiveSlug] ?? BRAND.wargov!;
               page-injected via <slot name="nav-extra" /> so this component
               stays archive-agnostic. */}
           <slot name="nav-extra" />
+          <li><a href="https://realufo.org/" data-external="apex">RealUFO <span aria-hidden="true">↗</span></a></li>
         </ul>
       </nav>
     </div>
