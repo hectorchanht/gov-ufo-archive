@@ -18,6 +18,12 @@ bundles/uap052226/
 # only images for fast page loads. Source: ./scripts/sync.sh re-populates.
 bundles/Release_1/*.pdf
 bundles/release_02_document_bundle/*.pdf
+
+# Release 05 / 06 bundles (zips + extracted docs/videos) — served from R2.
+bundles/release_05_Aug_07_documents*
+bundles/uap_videos_080726*
+bundles/documents_release_06_sept_18_2026*
+bundles/pursue_vids_091826*
 aaro/pdfs/
 nasa/pdfs/
 nara/pdfs/
