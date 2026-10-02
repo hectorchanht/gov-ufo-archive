@@ -101,6 +101,7 @@ None at roadmap-creation time.
 | 261001-p8k | Ingest war.gov Release 05 (8/7/26, +41) + Release 06 (9/18/26, +75) — 334→450 | 2026-10-01 | 6c983ba | Complete — on main + deployed; all wargov keys on R2 (verified by 261001-qex) | [261001-p8k](./quick/261001-p8k-ingest-war-gov-pursue-release-05-and-06/) |
 | 261001-q6n | Host this repo at release.realufo.org (canonical origin rewrite, 131 files; apex = realufo-superpower Worker) | 2026-10-02 | c636d8f | Complete — on main + deployed; CNAME added 2026-10-02, Pages domain active, release.realufo.org 200 | [261001-q6n](./quick/261001-q6n-host-this-repo-as-release-realufo-org/) |
 | 261001-qex | Release-mention sweep (Releases 01–06 / 450, 12 files) + `.agents/skills/wargov-release-ingest` skill + R2 diff (0 missing) + ship | 2026-10-02 | 31bbb4d | Complete — main 6749f1f deployed; live on release.realufo.org | [261001-qex](./quick/261001-qex-release-mention-content-sweep-r2-upload-/) |
+| 261002-0ke | Add RealUFO ↗ apex link (https://realufo.org/) to header nav | 2026-10-02 | a3aa27b | Complete — build green; 360px drawer check manual | [261002-0ke](./quick/261002-0ke-add-realufo-org-apex-link-to-nav/) |
 
 ### TODOs
 
@@ -112,7 +113,7 @@ None at roadmap-creation time.
 
 ### Last Action
 
-Last activity: 2026-10-02 - Completed quick task 261001-qex: release-mention sweep + skill + R2 verify
+Last activity: 2026-10-02 - Completed quick task 261002-0ke: RealUFO apex link in nav
 
 Roadmap drafted from `.planning/REQUIREMENTS.md` (56 v1 reqs) + `.planning/research/{STACK,ARCHITECTURE,FEATURES,PITFALLS}.md` + `.planning/codebase/CONCERNS.md`. 6-phase horizontal-layers structure aligned with research's recommended migration path. 100 % requirement coverage validated (see `REQUIREMENTS.md` traceability table).
 
