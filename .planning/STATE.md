@@ -104,7 +104,6 @@ None at roadmap-creation time.
 
 ### TODOs
 
-- **api/stats.json + feeds/**: all-zero output since 2026-06-02 — broken pipeline.
 - Run `/gsd:plan-phase 1` to decompose Phase 1 into executable plans
 - Confirm with user that 6-phase structure matches their mental model
 - Confirm with user whether v2 social/curation features (SOCL-*, FED-*, A11Y-*) are correctly deferred

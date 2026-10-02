@@ -12,6 +12,7 @@ Usage:
 """
 from __future__ import annotations
 
+import hashlib
 import html
 import json
 import os
@@ -20,6 +21,8 @@ import sys
 import time
 import urllib.parse
 from typing import Iterable, List, Optional
+
+from archive_records import load
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FEEDS_DIR = os.path.join(ROOT, 'feeds')
@@ -44,44 +47,7 @@ ARCHIVES = [
     ('uruguay',   'Uruguay · CRIDOVNI',        'uruguay/index.html',   '/uruguay/'),
 ]
 
-SCRIPT_IDS = ('arch-data', 'archive-manifest')
-
-
 # ── helpers ─────────────────────────────────────────────────────────────────
-def load_records(rel_html: str) -> List[dict]:
-    path = os.path.join(ROOT, rel_html)
-    if not os.path.exists(path):
-        return []
-    src = open(path, encoding='utf-8').read()
-    m = None
-    for sid in SCRIPT_IDS:
-        m = re.search(
-            r'<script[^>]+id=["\']' + sid + r'["\'][^>]*>([\s\S]*?)</script>',
-            src, re.I)
-        if m:
-            break
-    if not m:
-        return []
-    try:
-        data = json.loads(m.group(1).strip())
-    except json.JSONDecodeError:
-        return []
-    if isinstance(data, dict) and data.get('_external'):
-        ext = os.path.join(os.path.dirname(path), data['_external'])
-        if os.path.exists(ext):
-            try:
-                data = json.loads(open(ext, encoding='utf-8').read())
-            except json.JSONDecodeError:
-                return []
-    if isinstance(data, list):
-        return [r for r in data if isinstance(r, dict)]
-    if isinstance(data, dict):
-        for k in ('assets', 'records', 'rows'):
-            if isinstance(data.get(k), list):
-                return [r for r in data[k] if isinstance(r, dict)]
-    return []
-
-
 def field(r: dict, *keys) -> str:
     for k in keys:
         v = r.get(k)
@@ -158,8 +124,8 @@ def write_feed(slug: str, title: str, records: List[dict], arc_dir: str,
         if not link:
             link = site_url
         # Deterministic id
-        seed = f'{slug}|{title_t}|{date_iso}|{link}'
-        eid = f'tag:realufo.org,2026:{slug}/{abs(hash(seed)) % (10**12):012d}'
+        seed = f'{slug}|{title_t}|{parse_date(r) or ""}|{link}'
+        eid = f'tag:realufo.org,2026:{slug}/{hashlib.sha1(seed.encode()).hexdigest()[:12]}'
         out.append('  <entry>')
         out.append(f'    <id>{eid}</id>')
         out.append(f'    <title>{title_t}</title>')
@@ -185,7 +151,7 @@ def main() -> int:
     all_records: List[tuple] = []     # (slug, dir, record)
     written = []
     for slug, label, rel_html, arc_dir in ARCHIVES:
-        recs = load_records(rel_html)
+        recs = load(slug)
         if not recs:
             print(f'  {slug:12s}    empty — skipping')
             continue
@@ -222,7 +188,7 @@ def main() -> int:
         link = absolute_url(local, arc_dir) if local else (
             ext if ext.startswith('http') else (src if src.startswith('http') else SITE_URL + arc_dir)
         )
-        eid = f'tag:realufo.org,2026:{slug}/{abs(hash(title_t+link)) % (10**12):012d}'
+        eid = f'tag:realufo.org,2026:{slug}/{hashlib.sha1((title_t+link).encode()).hexdigest()[:12]}'
         out.append('  <entry>')
         out.append(f'    <id>{eid}</id>')
         out.append(f'    <title>{title_t}</title>')

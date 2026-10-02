@@ -25,6 +25,8 @@ import sys
 import time
 from typing import Dict, List
 
+from archive_records import load
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 API_DIR = os.path.join(ROOT, 'api')
 
@@ -45,47 +47,6 @@ ARCHIVES = [
     ('spain',     'Spain · Ejército del Aire', 'spain/index.html',          'spain/'),
     ('uruguay',   'Uruguay · CRIDOVNI',        'uruguay/index.html',        'uruguay/'),
 ]
-
-SCRIPT_IDS = ('arch-data', 'archive-manifest')
-
-
-def load_archive(rel_html: str) -> List[dict]:
-    """Return the raw records list for one archive's HTML page."""
-    path = os.path.join(ROOT, rel_html)
-    if not os.path.exists(path):
-        return []
-    src = open(path, encoding='utf-8').read()
-    m = None
-    for sid in SCRIPT_IDS:
-        m = re.search(
-            r'<script[^>]+id=["\']' + sid + r'["\'][^>]*>([\s\S]*?)</script>',
-            src, re.I,
-        )
-        if m:
-            break
-    if not m:
-        return []
-    raw = m.group(1).strip()
-    try:
-        data = json.loads(raw)
-    except json.JSONDecodeError:
-        return []
-    # External-pointer (e.g. GEIPAN cases.json split).
-    if isinstance(data, dict) and data.get('_external'):
-        ext = os.path.join(os.path.dirname(path), data['_external'])
-        if os.path.exists(ext):
-            try:
-                data = json.loads(open(ext, encoding='utf-8').read())
-            except json.JSONDecodeError:
-                return []
-    if isinstance(data, list):
-        return [r for r in data if isinstance(r, dict)]
-    if isinstance(data, dict):
-        for k in ('assets', 'records', 'rows'):
-            if isinstance(data.get(k), list):
-                return [r for r in data[k] if isinstance(r, dict)]
-    return []
-
 
 def pdf_text_for(local_path: str, arc_id: str) -> str:
     """Return first ~1500 chars of extracted PDF text if companion exists.
@@ -156,7 +117,7 @@ def main() -> int:
     locals_by_arc: Dict[str, int] = {}
 
     for arc_id, arc_label, rel_html, arc_dir in ARCHIVES:
-        raw = load_archive(rel_html)
+        raw = load(arc_id)
         recs = [normalise(r, arc_id, arc_label, arc_dir) for r in raw]
         by_archive[arc_id] = recs
         counts[arc_id] = len(recs)

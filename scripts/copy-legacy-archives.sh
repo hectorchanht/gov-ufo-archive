@@ -233,6 +233,8 @@ done
 # Per CLAUDE.md §5.2 the 100 MB rule plus copy_one's MAX_BYTES guard
 # stops anything oversized from sneaking in. See
 # .planning/debug/site-pages-broken-round2.md for repro.
+python3 "$REPO/scripts/build-api.py" >/dev/null && python3 "$REPO/scripts/build-feeds.py" >/dev/null || \
+  echo "postbuild: WARN build-api/build-feeds failed — shipping committed api/ + feeds/" >&2
 for dir in api feeds; do
   if [ -d "$dir" ]; then
     while IFS= read -r f; do

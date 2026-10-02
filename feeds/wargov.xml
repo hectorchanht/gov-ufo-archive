@@ -5,458 +5,528 @@
   <id>https://release.realufo.org/feeds/wargov.xml</id>
   <link rel="self" type="application/atom+xml" href="https://release.realufo.org/feeds/wargov.xml"/>
   <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-  <updated>2026-05-24T15:17:13Z</updated>
+  <updated>2026-10-02T01:27:43Z</updated>
   <author><name>realufo.org</name><uri>https://release.realufo.org/</uri></author>
   <rights>Per-source jurisdiction (US 17 U.S.C. §105, UK OGL v3, France Loi 78-753, Brazil LAI 12.527, Chile 20.285, etc.)</rights>
   <generator uri="https://release.realufo.org/">realufo.org build-feeds.py</generator>
   <entry>
-    <id>tag:realufo.org,2026:wargov/559182944900</id>
-    <title>DOW-UAP-PR050, &quot;4 UAP Formation Iran 26 Aug 2022 over water [CALLSIGN]&quot;</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
+    <id>tag:realufo.org,2026:wargov/2ee2e483bd36</id>
+    <title>DOW-UAP-D102, Project Blue Book File on Tremonton Film, Utah, 1952</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D102_Project-Blue-Book-File-on-Tremonton-Film-Utah-1952.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="PDF"/>
+    <category term="War.gov / PURSUE"/>
+    <summary type="text">This document records the Project Blue Book investigation and subsequent assessments of an incident near Tremonton, Utah, on July 2, 1952. Project Blue Book was a 1952-1969 U.S. Air Force program to investigate the nature and origin of unidentified flying objects (UFOs). The file describes the Air Force’s assessment of the principal witness, Delbert C. Newhouse, a U.S. Navy Warrant Officer specializing in photography, as honest and reliable, and as an expert with more than 1,000 hours of aerial-photography experience. Newhouse reported observing 12 to 14 reflective objects and recorded the eve</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/8fb979414322</id>
+    <title>DOW-UAP-D110, AAWSAP Statement of Objectives, July 2008</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D110_AAWSAP-Statement-of-Objectives-July-18-2008.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="PDF"/>
+    <category term="War.gov / PURSUE"/>
+    <summary type="text">This document is an administrative or programmatic record related to the Advanced Aerospace Weapon System Applications Program (AAWSAP), a Defense Intelligence Agency (DIA)-administered program active from 2008 to 2012. AAWSAP’s official scope of work identified 12 technical research areas relating to potential aerospace threats over a time horizon of more than 40 years. As an administrative record, the file documents how AAWSAP was scoped, organized, tasked, funded, or described at a particular point in time.
+
+This July 2008 Statement of Objectives defines AAWSAP as a contractor-supported res</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/1b0b4c5c8135</id>
+    <title>DOW-UAP-D111, AAWSAP Solicitation and Original Order, September 2008</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D111_AAWSAP-Solicitation-and-Original-Order-September-22-2008.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="PDF"/>
+    <category term="War.gov / PURSUE"/>
+    <summary type="text">This document is an administrative or programmatic record related to the Advanced Aerospace Weapon System Applications Program (AAWSAP), a Defense Intelligence Agency (DIA)-administered program active from 2008 to 2012. AAWSAP’s official scope of work identified 12 technical research areas relating to potential aerospace threats over a time horizon of more than 40 years. As an administrative record, the file documents how AAWSAP was scoped, organized, tasked, funded, or described at a particular point in time.
+
+This September 2008 solicitation/contract/order document serves as the original con</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/517801fa6259</id>
+    <title>DOW-UAP-D117, AAWSAP DIRD, Metallic Glasses for Aerospace Applications, December 2009</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D117_AAWSAP-DIRD-Metallic-Glasses-for-Aerospace-Applications-December-14-2009.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="PDF"/>
+    <category term="War.gov / PURSUE"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications Program (AAWSAP) between 2009 and 2011. Because AAWSAP’s scope permitted a broad range of supporting topics, not every DIRD in the series directly concerns aerospace systems or future threat assessment</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/814c2c287de5</id>
+    <title>DOW-UAP-D129, AAWSAP DIRD, Metallic Spintronics, March 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D129_AAWSAP-DIRD-Metallic-Spintronics-March-23-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="PDF"/>
+    <category term="War.gov / PURSUE"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications Program (AAWSAP) between 2009 and 2011. Because AAWSAP’s scope permitted a broad range of supporting topics, not every DIRD in the series directly concerns aerospace systems or future threat assessment</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/b510498a1c4c</id>
+    <title>DOW-UAP-D154, Transcript of a Presentation by Captain Edward J. Ruppelt, 1952</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D154_Transcript-of-a-Presentation-by-Captain-Edward-J-Ruppelt-1952.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="PDF"/>
+    <category term="War.gov / PURSUE"/>
+    <summary type="text">This document is a transcript of a March 1952 presentation by Captain Edward J. Ruppelt outlining the U.S. Air Force’s reorganized investigation into unidentified flying objects (UFOs). The presentation previews prospective technical methodologies, such as diffraction-grating photography and radar-scope synchronization, that were subsequently incorporated into Project Blue Book, a U.S. Air Force program active from 1952 to 1969 that investigated the nature and origin of UFOs. Ruppelt explains that out of approximately 800 historical cases reviewed by the Air Force, approximately 20% remained u</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/e36e3e03c0c0</id>
+    <title>DOW-UAP-PR159, Historical Film of Reported UFOs, Utah, 1952</title>
+    <link rel="alternate" type="text/html" href="https://www.dvidshub.net/video/1023402"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
     <category term="VID"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">This archival footage is a digitization of a 16mm print of Kodachrome color motion-picture film shot on a handheld Bell &amp; Howell Auto Master camera near Tremonton, Utah, on July 2, 1952. U.S. Navy Chief Warrant Officer Delbert C. Newhouse reported observing and filming a group of bright airborne objects and shortly thereafter submitted the footage to the U.S. Air Force. The film later became one of the visual cases reviewed by Project Blue Book, the 1952–1969 U.S. Air Force program that investigated the nature and origin of unidentified flying objects (UFOs). The film’s limited detail and lack</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/590965682401</id>
-    <title>DOW-UAP-PR051, &quot;Syrian UAP instant acceleration&quot;</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
-    <category term="VID"/>
-    <category term="War.gov / PURSUE"/>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:wargov/500079019445</id>
-    <title>DOW-UAP-D017, UAP Reported at Sandia Base, 1948-1950</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
-    <category term="PDF"/>
-    <category term="War.gov / PURSUE"/>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:wargov/817869138015</id>
-    <title>CIA-UAP-D001, Intelligence Information Report, USSR, 1973</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
-    <category term="PDF"/>
-    <category term="War.gov / PURSUE"/>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:wargov/887432915862</id>
-    <title>ODNI-UAP-D001, USPER Narrative, Senior USIC Official</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
-    <category term="PDF"/>
-    <category term="War.gov / PURSUE"/>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:wargov/983684395455</id>
-    <title>NASA-UAP-D008, Apollo 12 Medical Debriefing - Tape 12, 1969</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
+    <id>tag:realufo.org,2026:wargov/ad03ef02b858</id>
+    <title>DOW-UAP-PR160, Presentation by Captain Edward J. Ruppelt, 1952</title>
+    <link rel="alternate" type="text/html" href="https://www.dvidshub.net/video/1023407"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
     <category term="AUD"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">This audio file records a March 1952 presentation by Captain Edward J. Ruppelt, outlining the U.S. Air Force’s reorganized investigation into unidentified flying objects (UFOs). The presentation previews prospective technical methodologies, such as diffraction-grating photography and radar-scope synchronization, that were subsequently incorporated into Project Blue Book, a U.S. Air Force program active from 1952 to 1969 that investigated the nature and origin of UFOs. Ruppelt explains that out of approximately 800 historical cases reviewed by the Air Force, approximately 20% remained unexplain</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/041612582005</id>
-    <title>DOE-UAP-D001, Enhanced PANTEX Imagery</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
-    <category term="PDF"/>
+    <id>tag:realufo.org,2026:wargov/e0dc5ac7ccca</id>
+    <title>LLE-UAP-PR001, Unresolved UAP Report, Colorado, 2023</title>
+    <link rel="alternate" type="text/html" href="https://www.dvidshub.net/video/1023409"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="VID"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">A local law enforcement officer submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office consisting of 1 minute and 19 seconds of video footage from a commercially available cellular device’s rear-facing camera in October 2023. The reporting officer described the phenomenon as “silent” and as featuring “red, blue, and green flashing lights.” 
+
+Video Description: AARO digitally altered this footage by blurring the bottom half to obscure information whose release could be reasonably expected to affect the privacy or other protected interest of a U.S.</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/529033034832</id>
-    <title>18_100754_ General 1946-7_Vol_2</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
-    <category term="PDF"/>
+    <id>tag:realufo.org,2026:wargov/b698b90975e2</id>
+    <title>LLE-UAP-PR002, Unresolved UAP Report, Colorado, October 2023</title>
+    <link rel="alternate" type="text/html" href="https://www.dvidshub.net/video/1023412"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="VID"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">A local law enforcement officer submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office consisting of 15 minutes of video footage from a commercially available cellular device’s rear-facing camera in October 2023. The reporting officer described the phenomenon as “silent” and as featuring “red, blue, and green flashing lights.” 
+
+Video Description: AARO digitally altered this footage by blurring the bottom half to obscure information whose release could be reasonably expected to affect the privacy or other protected interest of a U.S. person or co</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/293159565113</id>
-    <title>18_6369445_General_1948_Vol_1</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
+    <id>tag:realufo.org,2026:wargov/8dedd3bccbfa</id>
+    <title>DOW-UAP-D103, Project Blue Book Photo File Relating to Tremonton Film, Utah, 1952</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D103_Project-Blue-Book-Photo-File-Relating-to-Tremonton-Film-Utah-1952.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">During its investigation of a July 1952 film of an incident reported near Tremonton, Utah, Project Blue Book examined whether the objects recorded on film might have been “pillow balloons.” Project Blue Book was a U.S. Air Force program active from 1952 to 1969 that investigated the nature and origin of unidentified flying objects (UFOs). In December 1952, investigators contacted General Mills, Inc., the only known manufacturer of pillow balloons at the time, to determine whether a balloon release could account for the incident.
+
+The file includes example imagery of pillow balloons supplied by</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/194666158875</id>
-    <title>255_413270_UFO&#x27;s_and_Defense_What_Should_we_Prepare_For</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
+    <id>tag:realufo.org,2026:wargov/73bc38249222</id>
+    <title>DOW-UAP-D104, Final Personnel Record for Newhouse, Delbert C., U.S. Navy, 1957</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D104_Final-Personnel-Record-for-Newhouse-Delbert-C-US-Navy-1957.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">This file contains the final personnel record of U.S. Navy Chief Warrant Officer Delbert C. Newhouse, who left naval service as a Chief Warrant Officer 4, then the highest Warrant Officer grade. In July 1952, Newhouse recorded 16mm motion-picture film near Tremonton, Utah; the film later became the subject of a Project Blue Book investigation. Project Blue Book was the U.S. Air Force program active from 1952 to 1969 that investigated the nature and origin of unidentified flying objects (UFOs). In addition to documenting routine assignments and training, the file records Newhouse’s career progr</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/051468604043</id>
-    <title>331_120752_Numeric_Files_1944–1945_37153_German_Armament_Equipment_Documents</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
+    <id>tag:realufo.org,2026:wargov/74e63931a003</id>
+    <title>DOW-UAP-D105, U.S. Air Force Flying Discs File, 1952</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D105_US-Air-Force-Flying-Discs-File-September-December-1952.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">This file is an archival collection of U.S. Air Force Director of Intelligence records relating to reported “flying disc” incidents during the period from September through December 1952. Drawn from multiple governmental and non-governmental sources, it compiles a wide range of material associated with reported sightings and official handling of those observations, rather than presenting a single analytical conclusion on the nature or origin of “flying discs.” The contents include correspondence, memoranda, reporting forms, case summaries, distribution and routing material, and other administr</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/823677301510</id>
-    <title>341_110448_Records_Relating_to_the_Collection_and_Dissemination_of_Intelligence_1948-1955-TS_CONT_No.2_2-5300-2-5399</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
+    <id>tag:realufo.org,2026:wargov/67c8fd113f23</id>
+    <title>DOW-UAP-D106, Mission Report, Iraq, 2022</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D106_Mission-Report-Iraq-2022.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">This document is a Mission Report (MISREP), a standardized reporting form the U.S. military uses to record the circumstances surrounding its operations. U.S. military services often use MISREPs to report unidentiﬁed anomalous phenomena (UAP) to the All-domain Anomaly Resolution Office (AARO). The GENTEXT, or “general text” section of these reports often contains important qualitative, contextual information, distinguishing it from the more quantitative, or numerical, data found elsewhere in the report. This mission report accompanies still imagery derived from an infrared system aboard a U.S. </summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/520558300672</id>
-    <title>341_110677_Numerical_File,_5-2500</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
+    <id>tag:realufo.org,2026:wargov/e21976a246dd</id>
+    <title>DOW-UAP-D107, Mission Report, Middle East, 2025</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D107_Mission-Report-Middle-East-2025.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">This document is a Mission Report (MISREP), a standardized reporting form the U.S. military uses to record the circumstances surrounding its operations. U.S. military services often use MISREPs to report unidentiﬁed anomalous phenomena (UAP) to the All-domain Anomaly Resolution Office (AARO). The GENTEXT, or “general text” section of these reports often contains important qualitative, contextual information, distinguishing it from the more quantitative, or numerical, data found elsewhere in the report. This mission report accompanies video footage derived from an infrared system aboard a U.S. </summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/278098941225</id>
-    <title>342_HS1-416511228_319.1 Flying Discs 1949</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
+    <id>tag:realufo.org,2026:wargov/858abb8010d5</id>
+    <title>DOW-UAP-D108, Mission Report, Middle East, 2025</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D108_Mission-Report-Middle-East-2025.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">This document is a Mission Report (MISREP), a standardized reporting form the U.S. military uses to record the circumstances surrounding its operations. U.S. military services often use MISREPs to report unidentiﬁed anomalous phenomena (UAP) to the All-domain Anomaly Resolution Office (AARO). The GENTEXT, or “general text” section of these reports often contains important qualitative, contextual information, distinguishing it from the more quantitative, or numerical, data found elsewhere in the report. This mission report accompanies video footage derived from an infrared system aboard a U.S. </summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/924144015658</id>
-    <title>38_143685_box_Incident_Summaries_101-172</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
+    <id>tag:realufo.org,2026:wargov/86b0390ee8c1</id>
+    <title>DOW-UAP-D109, Mission Report, Middle East, 2022</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D109_Mission-Report-Middle-East-2022.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">This document is a Mission Report (MISREP), a standardized reporting form the U.S. military uses to record the circumstances surrounding its operations. U.S. military services often use MISREPs to report unidentiﬁed anomalous phenomena (UAP) to the All-domain Anomaly Resolution Office (AARO). The GENTEXT, or “general text” section of these reports often contains important qualitative, contextual information, distinguishing it from the more quantitative, or numerical, data found elsewhere in the report. This mission report accompanies video footage derived from an infrared system aboard a U.S. </summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/959306211699</id>
-    <title>38_143685_box_Incident_Summaries_173-233</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
+    <id>tag:realufo.org,2026:wargov/e9a20e2066f8</id>
+    <title>DOW-UAP-D112, AAWSAP Contract Modification P00001, September 2009</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D112_AAWSAP-Contract-Modification-P00001-September-2-2009.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">This document is an administrative or programmatic record related to the Advanced Aerospace Weapon System Applications Program (AAWSAP), a Defense Intelligence Agency (DIA)-administered program active from 2008 to 2012. AAWSAP’s official scope of work identified 12 technical research areas relating to potential aerospace threats over a time horizon of more than 40 years. As an administrative record, the file documents how AAWSAP was scoped, organized, tasked, funded, or described at a particular point in time.
+
+This September 2009 contract modification formally extends the Bigelow Aerospace Ad</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/838631028446</id>
-    <title>38_143685_box7_Incident_Summaries_1-100</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
+    <id>tag:realufo.org,2026:wargov/b8b723081588</id>
+    <title>DOW-UAP-D113, AAWSAP Contract Modification P00002, February 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D113_AAWSAP-Contract-Modification-P00002-February-2-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">This document is an administrative or programmatic record related to the Advanced Aerospace Weapon System Applications Program (AAWSAP), a Defense Intelligence Agency (DIA)-administered program active from 2008 to 2012. AAWSAP’s official scope of work identified 12 technical research areas relating to potential aerospace threats over a time horizon of more than 40 years. As an administrative record, the file documents how AAWSAP was scoped, organized, tasked, funded, or described at a particular point in time.
+
+This February 2010 contract modification provides funding for the exercise of Optio</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/363236779592</id>
-    <title>59_214434_SP 16 [7.18.1963]</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
+    <id>tag:realufo.org,2026:wargov/e20bcfdb8649</id>
+    <title>DOW-UAP-D114, AAWSAP Contract Modification P00003, May 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D114_AAWSAP-Contract-Modification-P00003-May-18- 2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">This document is an administrative or programmatic record related to the Advanced Aerospace Weapon System Applications Program (AAWSAP), a Defense Intelligence Agency (DIA)-administered program active from 2008 to 2012. AAWSAP’s official scope of work identified 12 technical research areas relating to potential aerospace threats over a time horizon of more than 40 years. As an administrative record, the file documents how AAWSAP was scoped, organized, tasked, funded, or described at a particular point in time.
+
+This May 2010 contract modification is an administrative change to contract HHM402-</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/969250436628</id>
-    <title>59_64634_711.5612[7-2852</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
+    <id>tag:realufo.org,2026:wargov/76b0b60a7d17</id>
+    <title>DOW-UAP-D115, AAWSAP Contract Modification P00004, May 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D115_AAWSAP-Contract-Modification-P00004-May-18-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">This document is an administrative or programmatic record related to the Advanced Aerospace Weapon System Applications Program (AAWSAP), a Defense Intelligence Agency (DIA)-administered program active from 2008 to 2012. AAWSAP’s official scope of work identified 12 technical research areas relating to potential aerospace threats over a time horizon of more than 40 years. As an administrative record, the file documents how AAWSAP was scoped, organized, tasked, funded, or described at a particular point in time.
+
+This May 2010 contract modification records a minor administrative action associate</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/978696629064</id>
-    <title>65_HS1-101634279_100-DE-18221_Serial_844</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
+    <id>tag:realufo.org,2026:wargov/89612e6608f0</id>
+    <title>DOW-UAP-D116, AAWSAP Contract Modification P00005, September 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D116_AAWSAP-Contract-Modification-P00005-September-28-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">This document is an administrative or programmatic record related to the Advanced Aerospace Weapon System Applications Program (AAWSAP), a Defense Intelligence Agency (DIA)-administered program active from 2008 to 2012. AAWSAP’s official scope of work identified 12 technical research areas relating to potential aerospace threats over a time horizon of more than 40 years. As an administrative record, the file documents how AAWSAP was scoped, organized, tasked, funded, or described at a particular point in time.
+
+This September 2010 contract modification extends the period of performance for the</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/059329872230</id>
-    <title>65_HS1-101634279_100-DE-26505</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
+    <id>tag:realufo.org,2026:wargov/7cd1843ea422</id>
+    <title>DOW-UAP-D118, AAWSAP DIRD, Aerospace Applications of Programmable Matter, December 2009</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D118_AAWSAP-DIRD-Aerospace-Applications-of-Programmable-Matter-December-14-2009.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications Program (AAWSAP) between 2009 and 2011. Because AAWSAP’s scope permitted a broad range of supporting topics, not every DIRD in the series directly concerns aerospace systems or future threat assessment</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/634884958593</id>
-    <title>65_HS1-834228961_62-HQ-83894_Section_001</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
+    <id>tag:realufo.org,2026:wargov/feb90b450320</id>
+    <title>DOW-UAP-D119, AAWSAP DIRD, Biomaterials, January 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D119_AAWSAP-DIRD-Biomaterials-January-7-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications Program (AAWSAP) between 2009 and 2011. Because AAWSAP’s scope permitted a broad range of supporting topics, not every DIRD in the series directly concerns aerospace systems or future threat assessment</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/344564335078</id>
-    <title>65_HS1-834228961_62-HQ-83894_Section_002</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
+    <id>tag:realufo.org,2026:wargov/11a0c4f8ec3b</id>
+    <title>DOW-UAP-D120, AAWSAP DIRD, Materials for Advanced Aerospace Platforms, January 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D120_AAWSAP-DIRD-Materials-for-Advanced-Aerospace-Platforms-January-12-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications Program (AAWSAP) between 2009 and 2011. Because AAWSAP’s scope permitted a broad range of supporting topics, not every DIRD in the series directly concerns aerospace systems or future threat assessment</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/812750391688</id>
-    <title>65_HS1-834228961_62-HQ-83894_Section_003</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
+    <id>tag:realufo.org,2026:wargov/d65a6fb620f8</id>
+    <title>DOW-UAP-D121, AAWSAP DIRD, Pulsed High-Power Microwave Source Technology, January 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D121_AAWSAP-DIRD-Pulsed-High-Power-Microwave-Source-Technology-January-28-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications Program (AAWSAP) between 2009 and 2011. Because AAWSAP’s scope permitted a broad range of supporting topics, not every DIRD in the series directly concerns aerospace systems or future threat assessment</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/234206798729</id>
-    <title>65_HS1-834228961_62-HQ-83894_Section_004</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
+    <id>tag:realufo.org,2026:wargov/f4615fdcf424</id>
+    <title>DOW-UAP-D122, AAWSAP DIRD, Invisibility Cloaking Theory and Experiments, March 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D122_AAWSAP-DIRD-Invisibility-Cloaking-Theory-and-Experiments-March-2-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications Program (AAWSAP) between 2009 and 2011. Because AAWSAP’s scope permitted a broad range of supporting topics, not every DIRD in the series directly concerns aerospace systems or future threat assessment</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/950984590031</id>
-    <title>65_HS1-834228961_62-HQ-83894_Section_005</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
+    <id>tag:realufo.org,2026:wargov/1e1b6beb1142</id>
+    <title>DOW-UAP-D123, AAWSAP DIRD, Positron Aerospace Propulsion, March 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D123_AAWSAP-DIRD-Positron-Aerospace-Propulsion-March-2-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications Program (AAWSAP) between 2009 and 2011. Because AAWSAP’s scope permitted a broad range of supporting topics, not every DIRD in the series directly concerns aerospace systems or future threat assessment</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/020716900601</id>
-    <title>65_HS1-834228961_62-HQ-83894_Section_006</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
+    <id>tag:realufo.org,2026:wargov/fd29804c6062</id>
+    <title>DOW-UAP-D124, AAWSAP DIRD, Space Access: Where We’ve Been and Where We Could Go, March 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D124_AAWSAP-DIRD-Space Access-Where-Weve-Been-and-Where-We-Could-Go-March-8-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications Program (AAWSAP) between 2009 and 2011. Because AAWSAP’s scope permitted a broad range of supporting topics, not every DIRD in the series directly concerns aerospace systems or future threat assessment</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/955645547622</id>
-    <title>65_HS1-834228961_62-HQ-83894_Section_007</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
+    <id>tag:realufo.org,2026:wargov/15aabd5cea53</id>
+    <title>DOW-UAP-D125, AAWSAP DIRD, Inertial Electrostatic Confinement Fusion, March 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D125_AAWSA-DIRD-Inertial-Electrostatic-Confinement-Fusion-March-10-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications Program (AAWSAP) between 2009 and 2011. Because AAWSAP’s scope permitted a broad range of supporting topics, not every DIRD in the series directly concerns aerospace systems or future threat assessment</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/950745678149</id>
-    <title>65_HS1-834228961_62-HQ-83894_Section_008</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
+    <id>tag:realufo.org,2026:wargov/6f57d607510a</id>
+    <title>DOW-UAP-D126, AAWSAP DIRD, Advanced Nuclear Propulsion for Manned Deep Space Missions, March 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D126_AAWSAP-DIRD-Advanced-Nuclear-Propulsion-for-Manned-Deep-Space-Missions-March-11-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications Program (AAWSAP) between 2009 and 2011. Because AAWSAP’s scope permitted a broad range of supporting topics, not every DIRD in the series directly concerns aerospace systems or future threat assessment</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/664356757669</id>
-    <title>65_HS1-834228961_62-HQ-83894_Section_009</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
+    <id>tag:realufo.org,2026:wargov/0e3e1785a05f</id>
+    <title>DOW-UAP-D127, AAWSAP DIRD, An Introduction to the Statistical Drake Equation, March 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D127_AAWSAP-DIRD-An-Introduction-to-the-Statistical-Drake-Equation-March-11-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications Program (AAWSAP) between 2009 and 2011. Because AAWSAP’s scope permitted a broad range of supporting topics, not every DIRD in the series directly concerns aerospace systems or future threat assessment</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/232237995062</id>
-    <title>65_HS1-834228961_62-HQ-83894_Section_010</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
+    <id>tag:realufo.org,2026:wargov/ee0adb3c4a9d</id>
+    <title>DOW-UAP-D128, AAWSAP DIRD, Anomalous Acute and Subacute Field Effects on Human Biological Tissues, March 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D128_AAWSAP-DIRD-Anomalous-Acute-and-Subacute-Field-Effects-on-Human-Biological-Tissues-March-11-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications Program (AAWSAP) between 2009 and 2011. Because AAWSAP’s scope permitted a broad range of supporting topics, not every DIRD in the series directly concerns aerospace systems or future threat assessment</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/370968995269</id>
-    <title>65_HS1-834228961_62-HQ-83894_Serial_130</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
+    <id>tag:realufo.org,2026:wargov/78bf57b7753c</id>
+    <title>DOW-UAP-D130, AAWSAP DIRD, Technological Approaches to Controlling External Devices, March 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D130_AAWSAP-DIRD-Technological-Approaches-to-Controlling-External-Devices-March-23-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications Program (AAWSAP) between 2009 and 2011. Because AAWSAP’s scope permitted a broad range of supporting topics, not every DIRD in the series directly concerns aerospace systems or future threat assessment</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/690014660459</id>
-    <title>65_HS1-834228961_62-HQ-83894_Serial_153</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
+    <id>tag:realufo.org,2026:wargov/cdd4bddfd227</id>
+    <title>DOW-UAP-D131, AAWSAP DIRD, The Role of Superconductors in Gravity Research, March 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D131_AAWSAP-DIRD-The-Role-of-Superconductors-in-Gravity-Research-March-23-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications Program (AAWSAP) between 2009 and 2011. Because AAWSAP’s scope permitted a broad range of supporting topics, not every DIRD in the series directly concerns aerospace systems or future threat assessment</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/130526427229</id>
-    <title>65_HS1-834228961_62-HQ-83894_Serial_164</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
+    <id>tag:realufo.org,2026:wargov/137bd50bf43e</id>
+    <title>DOW-UAP-D132, AAWSAP DIRD, Advanced Space Propulsion Based on Vacuum (Spacetime Metric) Engineering, March 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D132_AAWSAP-DIRD-Advanced-Space-Propulsion-Based-on-Vacuum-Spacetime Metric-Engineering-March-29-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications Program (AAWSAP) between 2009 and 2011. Because AAWSAP’s scope permitted a broad range of supporting topics, not every DIRD in the series directly concerns aerospace systems or future threat assessment</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/946836689595</id>
-    <title>65_HS1-834228961_62-HQ-83894_Serial_220</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
+    <id>tag:realufo.org,2026:wargov/0ba4903b93a3</id>
+    <title>DOW-UAP-D133, AAWSAP DIRD, The Space Communication Implications of Quantum Entanglement and Nonlocality, March 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D133_AAWSAP-DIRD-The-Space-Communication-Implications-of-Quantum-Entanglement-and-Nonlocality-March-30-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications Program (AAWSAP) between 2009 and 2011. Because AAWSAP’s scope permitted a broad range of supporting topics, not every DIRD in the series directly concerns aerospace systems or future threat assessment</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/367072805717</id>
-    <title>65_HS1-834228961_62-HQ-83894_Serial_403</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
+    <id>tag:realufo.org,2026:wargov/1059949b9e71</id>
+    <title>DOW-UAP-D134, AAWSAP DIRD, Maverick Inventor Versus Corporate Inventor: Where Will the Next Major Innovations Arise, March 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D134_AAWSAP-DIRD-Maverick-Inventor-Versus-Corporate-Inventor-Where-Will-the-Next-Major-Innovations-Arise-March-30-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications Program (AAWSAP) between 2009 and 2011. Because AAWSAP’s scope permitted a broad range of supporting topics, not every DIRD in the series directly concerns aerospace systems or future threat assessment</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/019461558765</id>
-    <title>65_HS1-834228961_62-HQ-83894_Serial_438</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
+    <id>tag:realufo.org,2026:wargov/040abb180264</id>
+    <title>DOW-UAP-D135, AAWSAP DIRD, Antigravity for Aerospace Applications, March 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D135_ AAWSAP-DIRD-Antigravity-for-Aerospace-Applications-March-30-2010-V2.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications Program (AAWSAP) between 2009 and 2011. Because AAWSAP’s scope permitted a broad range of supporting topics, not every DIRD in the series directly concerns aerospace systems or future threat assessment</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/367031020942</id>
-    <title>65_HS1-834228961_62-HQ-83894_Serial_449</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
+    <id>tag:realufo.org,2026:wargov/1a707e047140</id>
+    <title>DOW-UAP-D136, AAWSAP DIRD, Biosensors and BioMEMS: A Survey of the Present Field, March 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D136_AAWSAP-DIRD-Biosensors-and-BioMEMS-A-Survey-of-the-Present-Field-March-31-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications Program (AAWSAP) between 2009 and 2011. Because AAWSAP’s scope permitted a broad range of supporting topics, not every DIRD in the series directly concerns aerospace systems or future threat assessment</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/566146807397</id>
-    <title>65_HS1-834228961_62-HQ-83894_SUB_A</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
+    <id>tag:realufo.org,2026:wargov/7c3b9790fb5d</id>
+    <title>DOW-UAP-D137, AAWSAP DIRD, State of the Art and Evolution of High-Energy Lasers, March 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D137_AAWSAP-DIRD-State-of-the-Art-and-Evolution-of-High-Energy-Lasers-March-31-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications Program (AAWSAP) between 2009 and 2011. Because AAWSAP’s scope permitted a broad range of supporting topics, not every DIRD in the series directly concerns aerospace systems or future threat assessment</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/441170473782</id>
-    <title>DOE-UAP-D002, James Tuck Correspondence, 1970s</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
+    <id>tag:realufo.org,2026:wargov/04eeafcc2788</id>
+    <title>DOW-UAP-D138, AAWSAP DIRD, Warp Drive, Dark Energy, and the Manipulation of Extra Dimensions, April 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D138_AAWSAP-DIRD-Warp-Drive-Dark-Energy-and-the-Manipulation-of-Extra-Dimensions-April-2-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications Program (AAWSAP) between 2009 and 2011. Because AAWSAP’s scope permitted a broad range of supporting topics, not every DIRD in the series directly concerns aerospace systems or future threat assessment</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/436297040569</id>
-    <title>DOE-UAP-D003, Pajarito Astronomers Invitation, 1986</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
+    <id>tag:realufo.org,2026:wargov/0ad1f7ce2622</id>
+    <title>DOW-UAP-D139, AAWSAP DIRD, Traversable Wormholes, Stargates, and Negative Energy, April 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D139_AAWSAP-DIRD-Traversable-Wormholes-Stargates-and-Negative-Energy-April-6-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications Program (AAWSAP) between 2009 and 2011. Because AAWSAP’s scope permitted a broad range of supporting topics, not every DIRD in the series directly concerns aerospace systems or future threat assessment</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/842676692847</id>
-    <title>DOW-UAP-D003, Mission Report, Arabian Gulf, 2020</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
+    <id>tag:realufo.org,2026:wargov/9e28cb0c49e2</id>
+    <title>DOW-UAP-D140, AAWSAP DIRD, High-Frequency Gravitational Wave Communications, April 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D140_AAWSAP-DIRD-High-Frequency-Gravitational-Wave-Communications-April-6-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications Program (AAWSAP) between 2009 and 2011. Because AAWSAP’s scope permitted a broad range of supporting topics, not every DIRD in the series directly concerns aerospace systems or future threat assessment</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/558417540698</id>
-    <title>DOW-UAP-D004, Mission Report, Arabian Gulf, 2020</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
+    <id>tag:realufo.org,2026:wargov/cb37a9faddcd</id>
+    <title>DOW-UAP-D141, AAWSAP DIRD, Metamaterials for Aerospace Applications, April 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D141_AAWSAP-DIRD-Metamaterials-for-Aerospace-Applications-April-6-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications Program (AAWSAP) between 2009 and 2011. Because AAWSAP’s scope permitted a broad range of supporting topics, not every DIRD in the series directly concerns aerospace systems or future threat assessment</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/198383299933</id>
-    <title>DOW-UAP-D005, Mission Report, Arabian Gulf, 2020</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
+    <id>tag:realufo.org,2026:wargov/b93bb6919806</id>
+    <title>DOW-UAP-D142, AAWSAP DIRD, Concepts for Extracting Energy from the Quantum Vacuum, April 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D142_AAWSAP-DIRD-Concepts-for-Extracting-Energy-from-the-Quantum-Vacuum-April-6-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications Program (AAWSAP) between 2009 and 2011. Because AAWSAP’s scope permitted a broad range of supporting topics, not every DIRD in the series directly concerns aerospace systems or future threat assessment</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/437665128166</id>
-    <title>DOW-UAP-D006, Mission Report, Arabian Gulf, 2020</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
+    <id>tag:realufo.org,2026:wargov/261e59af9b85</id>
+    <title>DOW-UAP-D143, AAWSAP DIRD, Laser Lightcraft Nanosatellites, November 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D143_AAWSAP-DIRD-Laser-Lightcraft-Nanosatellites-November-1-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications Program (AAWSAP) between 2009 and 2011. Because AAWSAP’s scope permitted a broad range of supporting topics, not every DIRD in the series directly concerns aerospace systems or future threat assessment</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/458323555575</id>
-    <title>DOW-UAP-D007, Mission Report, Arabian Gulf, 2020</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
+    <id>tag:realufo.org,2026:wargov/69d7d0a5ed60</id>
+    <title>DOW-UAP-D144, AAWSAP DIRD, Cockpits in the Era of Breakthrough Flight, November 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D144_AAWSAP-DIRD-Cockpits-in-the-Era-of-Breakthrough-Flight-November-1-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications Program (AAWSAP) between 2009 and 2011. Because AAWSAP’s scope permitted a broad range of supporting topics, not every DIRD in the series directly concerns aerospace systems or future threat assessment</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/080013487781</id>
-    <title>DOW-UAP-D008, Mission Report, Djibouti, 2025</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
+    <id>tag:realufo.org,2026:wargov/c113c1c7a073</id>
+    <title>DOW-UAP-D145, AAWSAP DIRD, Aneutronic Fusion Propulsion I, November 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D145_AAWSAP-DIRD-Aneutronic-Fusion-Propulsion-I-November-1-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications Program (AAWSAP) between 2009 and 2011. Because AAWSAP’s scope permitted a broad range of supporting topics, not every DIRD in the series directly concerns aerospace systems or future threat assessment</summary>
   </entry>
   <entry>
-    <id>tag:realufo.org,2026:wargov/559104416008</id>
-    <title>DOW-UAP-D010, Mission Report, Middle East, May 2022</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
+    <id>tag:realufo.org,2026:wargov/f2335944caaa</id>
+    <title>DOW-UAP-D146, AAWSAP DIRD, Aneutronic Fusion Propulsion II, November 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D146_AAWSAP-DIRD-Aneutronic-Fusion-Propulsion-II-November-1-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
     <category term="PDF"/>
     <category term="War.gov / PURSUE"/>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:wargov/305391935844</id>
-    <title>DOW-UAP-D012, Mission Report, Iraq, May 2022</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
-    <category term="PDF"/>
-    <category term="War.gov / PURSUE"/>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:wargov/476005723312</id>
-    <title>DOW-UAP-D014, Mission Report, Iraq, May 2022</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-    <updated>2026-05-24T15:17:13Z</updated>
-    <published>2026-05-24T15:17:13Z</published>
-    <category term="PDF"/>
-    <category term="War.gov / PURSUE"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications Program (AAWSAP) between 2009 and 2011. Because AAWSAP’s scope permitted a broad range of supporting topics, not every DIRD in the series directly concerns aerospace systems or future threat assessment</summary>
   </entry>
 </feed>

@@ -5,906 +5,962 @@
   <id>https://release.realufo.org/feeds/all.xml</id>
   <link rel="self" type="application/atom+xml" href="https://release.realufo.org/feeds/all.xml"/>
   <link rel="alternate" type="text/html" href="https://release.realufo.org/"/>
-  <updated>2026-05-24T15:17:13Z</updated>
+  <updated>2026-10-02T01:27:43Z</updated>
   <author><name>realufo.org</name><uri>https://release.realufo.org/</uri></author>
   <entry>
-    <id>tag:realufo.org,2026:geipan/909348028331</id>
-    <title>IPACO® team (2025)</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/geipan/assets/images/IPACO-team-2025.jpg"/>
-    <updated>2025-01-01T00:00:00Z</updated>
-    <published>2025-01-01T00:00:00Z</published>
-    <category term="geipan"/>
-    <summary type="text">GEIPAN&#x27;s IPACO® image/video authentication software team.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:nasa/657265642526</id>
-    <title>NASA UAP 2024 Annual Report</title>
-    <link rel="alternate" type="text/html" href="https://smd-cms.nasa.gov/wp-content/uploads/2024/07/nasa-uap-annual-report-2024.pdf"/>
-    <updated>2024-01-01T00:00:00Z</updated>
-    <published>2024-01-01T00:00:00Z</published>
-    <category term="nasa"/>
-    <summary type="text">NASA annual report on UAP research activities and findings.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:nara/199734262265</id>
-    <title>UAP Disclosure Act — NARA Implementation Guidance</title>
-    <link rel="alternate" type="text/html" href="https://www.archives.gov/about/laws/uap-disclosure-act.html"/>
-    <updated>2024-01-01T00:00:00Z</updated>
-    <published>2024-01-01T00:00:00Z</published>
-    <category term="nara"/>
-    <summary type="text">NARA guidance on implementation of the UAP Disclosure Act of 2023.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:geipan/400319242149</id>
-    <title>Cases by Phenomenon Type (2024)</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/geipan/assets/images/GEIPAN-Cases-By-Phenomenon-2024.png"/>
-    <updated>2024-01-01T00:00:00Z</updated>
-    <published>2024-01-01T00:00:00Z</published>
-    <category term="geipan"/>
-    <summary type="text">GEIPAN&#x27;s 2024 breakdown of identified phenomena.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:geipan/532303418159</id>
-    <title>Starlink satellite flare note</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/geipan/assets/images/Starlink-flare-note-2024.jpg"/>
-    <updated>2024-01-01T00:00:00Z</updated>
-    <published>2024-01-01T00:00:00Z</published>
-    <category term="geipan"/>
-    <summary type="text">GEIPAN&#x27;s 2024 information note on Starlink-related misidentifications.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:chile/339174695089</id>
-    <title>SEFAA dispatch — January 2024</title>
-    <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/2024/01/"/>
-    <updated>2024-01-01T00:00:00Z</updated>
-    <published>2024-01-01T00:00:00Z</published>
-    <category term="chile"/>
-    <summary type="text">SEFAA monthly resolved-cases report for January 2024.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:nz/175275197390</id>
-    <title>NZDF — UFO/UAP reporting OIA response (2024-5199)</title>
-    <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/OIA-2024-5199-UFO-and-UAP-Reporting.pdf"/>
-    <updated>2024-01-01T00:00:00Z</updated>
-    <published>2024-01-01T00:00:00Z</published>
-    <category term="nz"/>
-    <summary type="text">More recent OIA response on NZDF&#x27;s UFO/UAP reporting practices — clarifies the post-2010 division of responsibility between NZDF and the Civil Aviation Authority.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:nasa/082855707978</id>
-    <title>NASA UAP Independent Study Team — Final Report</title>
-    <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/uap-independent-study-team-final-report.pdf"/>
-    <updated>2023-01-01T00:00:00Z</updated>
-    <published>2023-01-01T00:00:00Z</published>
-    <category term="nasa"/>
-    <summary type="text">The 36-page final report of the NASA UAP Independent Study Team (Sep 2023). Recommends a unified data-collection strategy, expanded use of NASA Earth-observing assets, and AI/ML for anomaly detection. Led by astrophysicist David Spergel.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:nasa/393257180140</id>
-    <title>UAP Independent Study Team — Terms of Reference</title>
-    <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/UAPISTTermsofReference_Signed.pdf"/>
-    <updated>2023-01-01T00:00:00Z</updated>
-    <published>2023-01-01T00:00:00Z</published>
-    <category term="nasa"/>
-    <summary type="text">Signed charter establishing the UAP Independent Study Team. Defines scope, deliverables, and the 9-month study period (June 2022 → Mar 2023).</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:nasa/294065621840</id>
-    <title>Public Meeting Agenda — May 31, 2023</title>
-    <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/public-meeting-agenda-tagged.pdf"/>
-    <updated>2023-01-01T00:00:00Z</updated>
-    <published>2023-01-01T00:00:00Z</published>
-    <category term="nasa"/>
-    <summary type="text">Agenda for the NASA UAP Independent Study Team public meeting held May 31 2023. Lists every team member presentation and topic.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:nasa/216740804833</id>
-    <title>Federal Register Notice — UAP Public Meeting</title>
-    <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/frn-uapist-public-meeting-tagged.pdf"/>
-    <updated>2023-01-01T00:00:00Z</updated>
-    <published>2023-01-01T00:00:00Z</published>
-    <category term="nasa"/>
-    <summary type="text">Official Federal Register notice announcing the NASA UAP Independent Study Team public meeting and inviting public participation.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:nasa/167436809836</id>
-    <title>Media Briefing: UAP Independent Study Report (Sep 14, 2023)</title>
-    <link rel="alternate" type="text/html" href="https://youtu.be/eoY2sGo7ZiY"/>
-    <updated>2023-01-01T00:00:00Z</updated>
-    <published>2023-01-01T00:00:00Z</published>
-    <category term="nasa"/>
-    <summary type="text">NASA holds a media briefing to discuss the findings of the UAP Independent Study Team Report. Administrator Bill Nelson opens; study lead David Spergel presents findings.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:nasa/980798047689</id>
-    <title>NASA UAP Telecon — Pre-meeting Briefing</title>
-    <link rel="alternate" type="text/html" href="https://www.youtube.com/watch?v=C3uXUfgSadU"/>
-    <updated>2023-01-01T00:00:00Z</updated>
-    <published>2023-01-01T00:00:00Z</published>
-    <category term="nasa"/>
-    <summary type="text">Pre-meeting press telecon held ahead of the May 31 2023 UAP Independent Study Team public meeting.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:nasa/621619015166</id>
-    <title>UAP Independent Study Team Public Meeting (May 31, 2023)</title>
-    <link rel="alternate" type="text/html" href="https://www.youtube.com/watch?v=bQo08JRY0iM"/>
-    <updated>2023-01-01T00:00:00Z</updated>
-    <published>2023-01-01T00:00:00Z</published>
-    <category term="nasa"/>
-    <summary type="text">Full 4-hour public meeting of the NASA UAP Independent Study Team. Each panellist presents their analysis tasking; Q&amp;A from press and public.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:nasa/600837105035</id>
-    <title>UAP Study Team — Public Meeting Group Photo</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/nasa/assets/images/uap-meeting-2023.jpeg"/>
-    <updated>2023-01-01T00:00:00Z</updated>
-    <published>2023-01-01T00:00:00Z</published>
-    <category term="nasa"/>
-    <summary type="text">Group photo of the NASA UAP Independent Study Team at the May 31 2023 public meeting at NASA HQ.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:nasa/777662107932</id>
-    <title>UAP Final Report — Cover</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/nasa/assets/images/uap-report-cover.png"/>
-    <updated>2023-01-01T00:00:00Z</updated>
-    <published>2023-01-01T00:00:00Z</published>
-    <category term="nasa"/>
-    <summary type="text">Cover image of the UAP Independent Study Team final report (Sep 2023). Northern hemisphere of earth, deep black background.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:nasa/493871237221</id>
-    <title>NASA UAP Independent Study Team — Final Report (Sep 2023)</title>
-    <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/uap-independent-study-team-final-report.pdf"/>
-    <updated>2023-01-01T00:00:00Z</updated>
-    <published>2023-01-01T00:00:00Z</published>
-    <category term="nasa"/>
-    <summary type="text">The 36-page final report of the NASA UAP Independent Study Team.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:nasa/393257180140</id>
-    <title>UAP Independent Study Team — Terms of Reference</title>
-    <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/UAPISTTermsofReference_Signed.pdf"/>
-    <updated>2023-01-01T00:00:00Z</updated>
-    <published>2023-01-01T00:00:00Z</published>
-    <category term="nasa"/>
-    <summary type="text">Signed charter establishing the UAP Independent Study Team.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:nasa/294065621840</id>
-    <title>Public Meeting Agenda — May 31, 2023</title>
-    <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/public-meeting-agenda-tagged.pdf"/>
-    <updated>2023-01-01T00:00:00Z</updated>
-    <published>2023-01-01T00:00:00Z</published>
-    <category term="nasa"/>
-    <summary type="text">Agenda for the NASA UAP Independent Study Team public meeting.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:nasa/604062679856</id>
-    <title>Federal Register Notice — UAP Public Meeting</title>
-    <link rel="alternate" type="text/html" href="https://science.nasa.gov/wp-content/uploads/2023/05/FRN.pdf"/>
-    <updated>2023-01-01T00:00:00Z</updated>
-    <published>2023-01-01T00:00:00Z</published>
-    <category term="nasa"/>
-    <summary type="text">Official Federal Register notice announcing the NASA UAP public meeting.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:nasa/072897068354</id>
-    <title>NASA UAP Director Appointment — Press Release</title>
-    <link rel="alternate" type="text/html" href="https://www.nasa.gov/news-release/nasa-appoints-new-director-of-uap-research/"/>
-    <updated>2023-01-01T00:00:00Z</updated>
-    <published>2023-01-01T00:00:00Z</published>
-    <category term="nasa"/>
-    <summary type="text">Press release announcing Dr. Mark McInerney as inaugural NASA UAP Research Director.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:nara/744841690851</id>
-    <title>2024 National Defense Authorization Act — Public Law 118-31</title>
-    <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/2024-NDAA-Public-Law-118-31.pdf"/>
-    <updated>2023-01-01T00:00:00Z</updated>
-    <published>2023-01-01T00:00:00Z</published>
-    <category term="nara"/>
-    <summary type="text">The 2024 NDAA established Record Group 615 (&#x27;Unidentified Anomalous Phenomena Records Collection&#x27;) at NARA, mandating that federal agencies transfer UAP records and authorising a 25-year sealing review.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:chile/806990512836</id>
-    <title>SEFAA dispatch — December 2023</title>
-    <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/2023/12/"/>
-    <updated>2023-01-01T00:00:00Z</updated>
-    <published>2023-01-01T00:00:00Z</published>
-    <category term="chile"/>
-    <summary type="text">SEFAA monthly resolved-cases report for December 2023.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:chile/564026757646</id>
-    <title>SEFAA dispatch — November 2023</title>
-    <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/2023/11/"/>
-    <updated>2023-01-01T00:00:00Z</updated>
-    <published>2023-01-01T00:00:00Z</published>
-    <category term="chile"/>
-    <summary type="text">SEFAA monthly resolved-cases report for November 2023.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:nz/753028566317</id>
-    <title>NZDF — UAP/UFO/USO OIA response (2023-4763)</title>
-    <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/OIA-2023-4763_UAP-UFO-USO.pdf"/>
-    <updated>2023-01-01T00:00:00Z</updated>
-    <published>2023-01-01T00:00:00Z</published>
-    <category term="nz"/>
-    <summary type="text">NZDF&#x27;s response to a 2023 OIA request on contemporary UAP/UFO/USO reporting procedure. Confirms NZDF no longer maintains a UFO file but redirects to Civil Aviation Authority.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:chile/635176045926</id>
-    <title>SEFAA dispatch — annual 2022</title>
-    <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/2022/"/>
-    <updated>2022-01-01T00:00:00Z</updated>
-    <published>2022-01-01T00:00:00Z</published>
-    <category term="chile"/>
-    <summary type="text">SEFAA 2022 annual archive of monthly resolved-cases dispatches.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:geipan/657067011437</id>
-    <title>GEIPAN — FAQ (English)</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/geipan/pdfs/GEIPAN-FAQ-English.pdf"/>
-    <updated>2021-01-01T00:00:00Z</updated>
-    <published>2021-01-01T00:00:00Z</published>
-    <category term="geipan"/>
-    <summary type="text">Official press FAQ — history, methodology, classification scheme.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:geipan/297819617925</id>
-    <title>GEIPAN — FAQ (Français)</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/geipan/pdfs/GEIPAN-FAQ-Francais.pdf"/>
-    <updated>2021-01-01T00:00:00Z</updated>
-    <published>2021-01-01T00:00:00Z</published>
-    <category term="geipan"/>
-    <summary type="text">Dossier de presse officiel — historique, méthodologie, classification PAN A/B/C/D.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:geipan/764291065265</id>
-    <title>GEIPAN — Mission, History, Methodology (English)</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/geipan/pdfs/GEIPAN-Mission-Method-English.pdf"/>
-    <updated>2021-01-01T00:00:00Z</updated>
-    <published>2021-01-01T00:00:00Z</published>
-    <category term="geipan"/>
-    <summary type="text">Mission, 1977-present history, scientific methodology, PAN A/B/C/D taxonomy.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:geipan/959901486692</id>
-    <title>GEIPAN — Mission, Historique, Méthodologie (Français)</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/geipan/pdfs/GEIPAN-Mission-Methode-Francais.pdf"/>
-    <updated>2021-01-01T00:00:00Z</updated>
-    <published>2021-01-01T00:00:00Z</published>
-    <category term="geipan"/>
-    <summary type="text">Document officiel — mission, historique, méthodologie, classification PAN A/B/C/D.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:chile/400929058377</id>
-    <title>SEFAA dispatch — annual 2021</title>
-    <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/2021/"/>
-    <updated>2021-01-01T00:00:00Z</updated>
-    <published>2021-01-01T00:00:00Z</published>
-    <category term="chile"/>
-    <summary type="text">SEFAA 2021 annual archive of monthly resolved-cases dispatches.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:geipan/906492059076</id>
-    <title>Saint-Germain-en-Laye (78) — 30 May 2020</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/geipan/videos/Saint-Germain-en-Laye-2020-05-30.mp4"/>
-    <updated>2020-01-01T00:00:00Z</updated>
-    <published>2020-01-01T00:00:00Z</published>
-    <category term="geipan"/>
-    <summary type="text">Witness video of an unidentified luminous object.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:chile/877108712054</id>
-    <title>DGAC — CEFAA→SEFAA transition announcement</title>
-    <link rel="alternate" type="text/html" href="https://www.dgac.gob.cl/con-nuevo-ano-nuevos-cambios-el-cefaa-pasa-a-ser-ahora-sefaa/"/>
-    <updated>2020-01-01T00:00:00Z</updated>
-    <published>2020-01-01T00:00:00Z</published>
-    <category term="chile"/>
-    <summary type="text">DGAC&#x27;s announcement of the 2020 transition from CEFAA (Comité) to SEFAA (Sección) — formalising the unit&#x27;s place inside the directorate.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:chile/255386569732</id>
-    <title>SEFAA dispatch — annual 2020</title>
-    <link rel="alternate" type="text/html" href="https://sefaa.dgac.gob.cl/2020/"/>
-    <updated>2020-01-01T00:00:00Z</updated>
-    <published>2020-01-01T00:00:00Z</published>
-    <category term="chile"/>
-    <summary type="text">SEFAA 2020 annual archive — first year operating under new SEFAA designation.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:geipan/196286697879</id>
-    <title>Lyon (69) — 19 December 2019</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/geipan/videos/Lyon-2019-12-19.mp4"/>
-    <updated>2019-01-01T00:00:00Z</updated>
-    <published>2019-01-01T00:00:00Z</published>
-    <category term="geipan"/>
-    <summary type="text">Witness video of an unidentified phenomenon.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:chile/939950620573</id>
-    <title>DGAC — CEFAA: An Investigative Model for Anomalous Aerial Phenomena</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/chile/pdfs/DGAC-CEFAA-Publicacion-Web-2019.pdf"/>
-    <updated>2019-01-01T00:00:00Z</updated>
-    <published>2019-01-01T00:00:00Z</published>
-    <category term="chile"/>
-    <summary type="text">DGAC&#x27;s 2019 white paper laying out CEFAA&#x27;s methodology and case work. Sets out the civilian-aviation framework that later became SEFAA.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:chile/178810657895</id>
-    <title>DGAC — CEFAA: An Investigative Model for Anomalous Aerial Phenomena (2019)</title>
-    <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/PUBLICACI%C3%93N-WEB-DGAC-CEFAA-CORREGIDA-11-SEPT-2019-1.pdf"/>
-    <updated>2019-01-01T00:00:00Z</updated>
-    <published>2019-01-01T00:00:00Z</published>
-    <category term="chile"/>
-    <summary type="text">DGAC&#x27;s 2019 white paper laying out CEFAA&#x27;s methodology and case work — sets out the civilian-aviation framework that later became SEFAA.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:brazil/531707294854</id>
-    <title>Tranche 5 — final OVNI release (Dec 2016)</title>
-    <link rel="alternate" type="text/html" href="https://www.gov.br/arquivonacional/pt-br/canais_atendimento/sala-virtual-de-imprensa/divulgacao-de-documentos-1/divulgacao-de-documentos-ovni#t5"/>
-    <updated>2016-01-01T00:00:00Z</updated>
-    <published>2016-01-01T00:00:00Z</published>
-    <category term="brazil"/>
-    <summary type="text">Fifth and final tranche closing the OVNI declassification programme — covers reports 2010-2016.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:brazil/161535269803</id>
-    <title>FAB Notimp 173 (21/06/2015) — UFO reporting update</title>
-    <link rel="alternate" type="text/html" href="https://www.fab.mil.br/notimp/mostra/21-06-2015"/>
-    <updated>2015-01-01T00:00:00Z</updated>
-    <published>2015-01-01T00:00:00Z</published>
-    <category term="brazil"/>
-    <summary type="text">A 2015 FAB update reaffirming the role of COMDABRA (Brazilian Aerospace Defense Command) in receiving and cataloging UFO reports.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/147358074523</id>
-    <title>Final Tranche of UFO Files Released — Press Release</title>
-    <link rel="alternate" type="text/html" href="https://release.realufo.org/uk/pdfs/Final-Tranche-UFO-Files-Press-Release.pdf"/>
-    <updated>2013-01-01T00:00:00Z</updated>
-    <published>2013-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">TNA&#x27;s press release accompanying the final tranche (24 files, 6,000+ pages spanning 1994–2000) — closing the MoD&#x27;s 50-year UFO investigation programme.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/530784979393</id>
-    <title>Final Tranche of UFO Files Released — Press Release (2013)</title>
-    <link rel="alternate" type="text/html" href="https://github.com/hectorchanht/war-gov-ufo-release/releases/download/pdfs-v1/final-tranche-of-UFO-files-released.pdf"/>
-    <updated>2013-01-01T00:00:00Z</updated>
-    <published>2013-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">TNA press release accompanying the final tranche (24 files, 6,000+ pages spanning 1994–2000) — closing the MoD&#x27;s 50-year UFO investigation programme.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:brazil/417943714121</id>
-    <title>FAB Notimp 250 (08/09/2013) — OVNI policy ordinance</title>
-    <link rel="alternate" type="text/html" href="https://www.fab.mil.br/notimp/mostra/08-09-2013"/>
-    <updated>2013-01-01T00:00:00Z</updated>
-    <published>2013-01-01T00:00:00Z</published>
-    <category term="brazil"/>
-    <summary type="text">The 2013 FAB instruction (COMAER) that formalised the procedure for registering, handling, and forwarding UFO reports to the Arquivo Nacional.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:brazil/943635545404</id>
-    <title>Tranche 4 — V COMAR Recife files (May 2013)</title>
-    <link rel="alternate" type="text/html" href="https://www.gov.br/arquivonacional/pt-br/canais_atendimento/sala-virtual-de-imprensa/divulgacao-de-documentos-1/divulgacao-de-documentos-ovni#t4"/>
-    <updated>2013-01-01T00:00:00Z</updated>
-    <published>2013-01-01T00:00:00Z</published>
-    <category term="brazil"/>
-    <summary type="text">Fourth release: V COMAR Recife regional command records + 1986 &quot;Noite Oficial dos UFOs&quot; radar contacts.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:brazil/078484075718</id>
-    <title>Tranche 3 — Operação Prato + Colares files (Mar 2011)</title>
-    <link rel="alternate" type="text/html" href="https://www.gov.br/arquivonacional/pt-br/canais_atendimento/sala-virtual-de-imprensa/divulgacao-de-documentos-1/divulgacao-de-documentos-ovni#t3"/>
-    <updated>2011-01-01T00:00:00Z</updated>
-    <published>2011-01-01T00:00:00Z</published>
-    <category term="brazil"/>
-    <summary type="text">Third release including the full Operação Prato (Operation Saucer) investigation — mass UFO sightings over Colares, Pará (1977).</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:brazil/769435307297</id>
-    <title>Tranche 2 — CINDACTA + ITA documents (Mar 2010)</title>
-    <link rel="alternate" type="text/html" href="https://www.gov.br/arquivonacional/pt-br/canais_atendimento/sala-virtual-de-imprensa/divulgacao-de-documentos-1/divulgacao-de-documentos-ovni#t2"/>
-    <updated>2010-01-01T00:00:00Z</updated>
-    <published>2010-01-01T00:00:00Z</published>
-    <category term="brazil"/>
-    <summary type="text">Second OVNI release: CINDACTA air-traffic-control records + ITA institute documents.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/935785683287</id>
-    <title>UFOs: reports</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C13442559"/>
-    <updated>2009-01-01T00:00:00Z</updated>
-    <published>2009-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/202572524153</id>
-    <title>UFOs: reports</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C13442561"/>
-    <updated>2009-01-01T00:00:00Z</updated>
-    <published>2009-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/211853259813</id>
-    <title>UFOs: correspondence</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C13442549"/>
-    <updated>2009-01-01T00:00:00Z</updated>
-    <published>2009-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/498062338426</id>
-    <title>UFOs: reports</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C13442558"/>
-    <updated>2009-01-01T00:00:00Z</updated>
-    <published>2009-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/476740141814</id>
-    <title>UFOs: reports</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C13442563"/>
-    <updated>2009-01-01T00:00:00Z</updated>
-    <published>2009-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/856588496400</id>
-    <title>UFOs: correspondence</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C13442550"/>
-    <updated>2009-01-01T00:00:00Z</updated>
-    <published>2009-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/731798463454</id>
-    <title>UFOs: reports</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C13442560"/>
-    <updated>2009-01-01T00:00:00Z</updated>
-    <published>2009-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/319952037831</id>
-    <title>UFOs: reports</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C13442562"/>
-    <updated>2009-01-01T00:00:00Z</updated>
-    <published>2009-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/751855396868</id>
-    <title>UFOs: reports</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C13442557"/>
-    <updated>2009-01-01T00:00:00Z</updated>
-    <published>2009-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/308138468786</id>
-    <title>UFOs: Ministerial correspondence</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C13442555"/>
-    <updated>2009-01-01T00:00:00Z</updated>
-    <published>2009-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/423478255504</id>
-    <title>UFOs: Ministerial correspondence</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C13442551"/>
-    <updated>2009-01-01T00:00:00Z</updated>
-    <published>2009-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/133985968470</id>
-    <title>UFOs: Freedom of Information (FOI) requests</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C13442553"/>
-    <updated>2009-01-01T00:00:00Z</updated>
-    <published>2009-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/410966072460</id>
-    <title>UFOs: Freedom of Information (FOI) requests</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C13442552"/>
-    <updated>2009-01-01T00:00:00Z</updated>
-    <published>2009-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/686125735637</id>
-    <title>UFOs: Freedom of Information (FOI) requests</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C13442554"/>
-    <updated>2009-01-01T00:00:00Z</updated>
-    <published>2009-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/699253604757</id>
-    <title>UFOs: Ministry of Defence policy on sightings</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C13442556"/>
-    <updated>2009-01-01T00:00:00Z</updated>
-    <published>2009-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/101862744300</id>
-    <title>UFO reports</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C13442567"/>
-    <updated>2008-01-01T00:00:00Z</updated>
-    <published>2008-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/087379952141</id>
-    <title>UFO reports</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C13442565"/>
-    <updated>2008-01-01T00:00:00Z</updated>
-    <published>2008-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/710301824026</id>
-    <title>UFO reports</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C13442568"/>
-    <updated>2008-01-01T00:00:00Z</updated>
-    <published>2008-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/129469246611</id>
-    <title>UFO reports</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C13442566"/>
-    <updated>2008-01-01T00:00:00Z</updated>
-    <published>2008-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/779742344717</id>
-    <title>The National Archives - UFOs Website</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C17011"/>
-    <updated>2008-01-01T00:00:00Z</updated>
-    <published>2008-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">The National Archives - UFOs Website. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/430301329459</id>
-    <title>UFO Parliamentary questions and correspondence</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C13442570"/>
-    <updated>2008-01-01T00:00:00Z</updated>
-    <published>2008-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/934209528818</id>
-    <title>UFOs: Freedom of Information (FOI) requests</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C13442547"/>
-    <updated>2008-01-01T00:00:00Z</updated>
-    <published>2008-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/638968023199</id>
-    <title>UFOs: Freedom of Information (FOI) requests</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C13442548"/>
-    <updated>2008-01-01T00:00:00Z</updated>
-    <published>2008-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/962563064710</id>
-    <title>UFOs: Freedom of Information (FOI) requests</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C13442546"/>
-    <updated>2008-01-01T00:00:00Z</updated>
-    <published>2008-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:brazil/104146055808</id>
-    <title>Tranche 1 — initial OVNI release (Mar 2008)</title>
-    <link rel="alternate" type="text/html" href="https://www.gov.br/arquivonacional/pt-br/canais_atendimento/sala-virtual-de-imprensa/divulgacao-de-documentos-1/divulgacao-de-documentos-ovni#t1"/>
-    <updated>2008-01-01T00:00:00Z</updated>
-    <published>2008-01-01T00:00:00Z</published>
-    <category term="brazil"/>
-    <summary type="text">First Arquivo Nacional OVNI release: documents from COMDABRA, IV COMAR, V COMAR covering 1952-1980.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/504580197203</id>
-    <title>UFO reports</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C12738112"/>
-    <updated>2007-01-01T00:00:00Z</updated>
-    <published>2007-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/004854836160</id>
-    <title>UFO correspondence</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C13442569"/>
-    <updated>2007-01-01T00:00:00Z</updated>
-    <published>2007-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/709954033286</id>
-    <title>UFO reports</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C13442564"/>
-    <updated>2007-01-01T00:00:00Z</updated>
-    <published>2007-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/278753577089</id>
-    <title>UFO - Transfer of Files to TNA - Selected Papers 2007-2008</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C17428613"/>
-    <updated>2007-01-01T00:00:00Z</updated>
-    <published>2007-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/482393019478</id>
-    <title>Requests for information on UFOs under the Freedom of Information Act 2000</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C11691606"/>
-    <updated>2007-01-01T00:00:00Z</updated>
-    <published>2007-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/499350949956</id>
-    <title>Requests for information on UFOs under the Freedom of Information Act 2000</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C12738106"/>
-    <updated>2007-01-01T00:00:00Z</updated>
-    <published>2007-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/590080796587</id>
-    <title>Requests for information on UFOs under the Freedom of Information Act 2000</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C12738107"/>
-    <updated>2007-01-01T00:00:00Z</updated>
-    <published>2007-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/249856219507</id>
-    <title>Requests for information on UFOs under the Freedom of Information Act 2000</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C11691602"/>
-    <updated>2007-01-01T00:00:00Z</updated>
-    <published>2007-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/095938626848</id>
-    <title>UFO reports</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C11691603"/>
-    <updated>2006-01-01T00:00:00Z</updated>
-    <published>2006-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/915349713817</id>
-    <title>UFO reports</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C11691604"/>
-    <updated>2006-01-01T00:00:00Z</updated>
-    <published>2006-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/043444685993</id>
-    <title>UFO correspondence</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C12738113"/>
-    <updated>2006-01-01T00:00:00Z</updated>
-    <published>2006-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/951912556744</id>
-    <title>Requests for information on UFOs under the Freedom of Information Act 2000</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C11691622"/>
-    <updated>2006-01-01T00:00:00Z</updated>
-    <published>2006-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/120280655202</id>
-    <title>Requests for information on UFOs under the Freedom of Information Act 2000</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C12738104"/>
-    <updated>2006-01-01T00:00:00Z</updated>
-    <published>2006-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/982381318382</id>
-    <title>Requests for information on UFOs under the Freedom of Information Act 2000</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C11691601"/>
-    <updated>2006-01-01T00:00:00Z</updated>
-    <published>2006-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/565686291943</id>
-    <title>Requests for information on UFOs under the Freedom of Information Act 2000</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C11691624"/>
-    <updated>2006-01-01T00:00:00Z</updated>
-    <published>2006-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/715802016132</id>
-    <title>Requests for information on UFOs under the Freedom of Information Act 2000</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C12738103"/>
-    <updated>2006-01-01T00:00:00Z</updated>
-    <published>2006-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/054843262533</id>
-    <title>Requests for information on UFOs under the Freedom of Information Act 2000</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C11691620"/>
-    <updated>2006-01-01T00:00:00Z</updated>
-    <published>2006-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/058455282760</id>
-    <title>Requests for information on UFOs under the Freedom of Information Act 2000</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C11691621"/>
-    <updated>2006-01-01T00:00:00Z</updated>
-    <published>2006-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/059500007973</id>
-    <title>UFO reports</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C12738109"/>
-    <updated>2005-01-01T00:00:00Z</updated>
-    <published>2005-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/308983096891</id>
-    <title>UFO correspondence</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C11602673"/>
-    <updated>2005-01-01T00:00:00Z</updated>
-    <published>2005-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/977011827035</id>
-    <title>UFO reports</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C11602670"/>
-    <updated>2005-01-01T00:00:00Z</updated>
-    <published>2005-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/830378360320</id>
-    <title>UFO correspondence</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C12738110"/>
-    <updated>2005-01-01T00:00:00Z</updated>
-    <published>2005-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/268937631335</id>
-    <title>UFO correspondence with Dr D Clarke</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C12738114"/>
-    <updated>2005-01-01T00:00:00Z</updated>
-    <published>2005-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/687598561282</id>
-    <title>Requests for information on UFOs under the Freedom of Information Act 2000</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C11691616"/>
-    <updated>2005-01-01T00:00:00Z</updated>
-    <published>2005-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/289177776131</id>
-    <title>Requests for information on UFOs under the Freedom of Information Act 2000</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C11691618"/>
-    <updated>2005-01-01T00:00:00Z</updated>
-    <published>2005-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/520654646975</id>
-    <title>Requests for information on UFOs under the Freedom of Information Act 2000</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C11602662"/>
-    <updated>2005-01-01T00:00:00Z</updated>
-    <published>2005-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/883973332657</id>
-    <title>Requests for information on UFOs under the Freedom of Information Act 2000</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C11602664"/>
-    <updated>2005-01-01T00:00:00Z</updated>
-    <published>2005-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/754061945237</id>
-    <title>Requests for information on UFOs under the Freedom of Information Act 2000</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C11602666"/>
-    <updated>2005-01-01T00:00:00Z</updated>
-    <published>2005-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/136019145675</id>
-    <title>Requests for information on UFOs under the Freedom of Information Act 2000</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C11602663"/>
-    <updated>2005-01-01T00:00:00Z</updated>
-    <published>2005-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
-  </entry>
-  <entry>
-    <id>tag:realufo.org,2026:uk/388626641749</id>
-    <title>UFO policy</title>
-    <link rel="alternate" type="text/html" href="https://discovery.nationalarchives.gov.uk/details/r/C16459706"/>
-    <updated>2004-01-01T00:00:00Z</updated>
-    <published>2004-01-01T00:00:00Z</published>
-    <category term="uk"/>
-    <summary type="text">Ministry of Defence: Defence Secretariat Branches and their Predecessors: Registered Files. Held by The National Archives, Kew.</summary>
+    <id>tag:realufo.org,2026:wargov/137d3c47dfa8</id>
+    <title>DOW-UAP-D102, Project Blue Book File on Tremonton Film, Utah, 1952</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D102_Project-Blue-Book-File-on-Tremonton-Film-Utah-1952.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document records the Project Blue Book investigation and subsequent assessments of an incident near Tremonton, Utah, on July 2, 1952. Project Blue Book was a 1952-1969 U.S. Air Force program to investigate the nature and origin of unidentified flying objects (UFOs). The file describes the Air Force’s assessment of the principal witness, Delbert C. Newhouse, a U.S. Navy Warrant Officer special</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/bd7a26383e74</id>
+    <title>DOW-UAP-D110, AAWSAP Statement of Objectives, July 2008</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D110_AAWSAP-Statement-of-Objectives-July-18-2008.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is an administrative or programmatic record related to the Advanced Aerospace Weapon System Applications Program (AAWSAP), a Defense Intelligence Agency (DIA)-administered program active from 2008 to 2012. AAWSAP’s official scope of work identified 12 technical research areas relating to potential aerospace threats over a time horizon of more than 40 years. As an administrative recor</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/10f54f83696c</id>
+    <title>DOW-UAP-D111, AAWSAP Solicitation and Original Order, September 2008</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D111_AAWSAP-Solicitation-and-Original-Order-September-22-2008.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is an administrative or programmatic record related to the Advanced Aerospace Weapon System Applications Program (AAWSAP), a Defense Intelligence Agency (DIA)-administered program active from 2008 to 2012. AAWSAP’s official scope of work identified 12 technical research areas relating to potential aerospace threats over a time horizon of more than 40 years. As an administrative recor</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/f59975f88bbd</id>
+    <title>DOW-UAP-D117, AAWSAP DIRD, Metallic Glasses for Aerospace Applications, December 2009</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D117_AAWSAP-DIRD-Metallic-Glasses-for-Aerospace-Applications-December-14-2009.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications P</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/b6f5fa24775e</id>
+    <title>DOW-UAP-D129, AAWSAP DIRD, Metallic Spintronics, March 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D129_AAWSAP-DIRD-Metallic-Spintronics-March-23-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications P</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/c29ad6ffd61e</id>
+    <title>DOW-UAP-D154, Transcript of a Presentation by Captain Edward J. Ruppelt, 1952</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D154_Transcript-of-a-Presentation-by-Captain-Edward-J-Ruppelt-1952.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a transcript of a March 1952 presentation by Captain Edward J. Ruppelt outlining the U.S. Air Force’s reorganized investigation into unidentified flying objects (UFOs). The presentation previews prospective technical methodologies, such as diffraction-grating photography and radar-scope synchronization, that were subsequently incorporated into Project Blue Book, a U.S. Air Force p</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/4d93f16a85b7</id>
+    <title>DOW-UAP-PR159, Historical Film of Reported UFOs, Utah, 1952</title>
+    <link rel="alternate" type="text/html" href="https://www.dvidshub.net/video/1023402"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This archival footage is a digitization of a 16mm print of Kodachrome color motion-picture film shot on a handheld Bell &amp; Howell Auto Master camera near Tremonton, Utah, on July 2, 1952. U.S. Navy Chief Warrant Officer Delbert C. Newhouse reported observing and filming a group of bright airborne objects and shortly thereafter submitted the footage to the U.S. Air Force. The film later became one o</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/2ba72f22232c</id>
+    <title>DOW-UAP-PR160, Presentation by Captain Edward J. Ruppelt, 1952</title>
+    <link rel="alternate" type="text/html" href="https://www.dvidshub.net/video/1023407"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This audio file records a March 1952 presentation by Captain Edward J. Ruppelt, outlining the U.S. Air Force’s reorganized investigation into unidentified flying objects (UFOs). The presentation previews prospective technical methodologies, such as diffraction-grating photography and radar-scope synchronization, that were subsequently incorporated into Project Blue Book, a U.S. Air Force program a</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/1e8529ea2ef3</id>
+    <title>LLE-UAP-PR001, Unresolved UAP Report, Colorado, 2023</title>
+    <link rel="alternate" type="text/html" href="https://www.dvidshub.net/video/1023409"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">A local law enforcement officer submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office consisting of 1 minute and 19 seconds of video footage from a commercially available cellular device’s rear-facing camera in October 2023. The reporting officer described the phenomenon as “silent” and as featuring “red, blue, and green flashing lights.” 
+
+Video De</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/afb5e8c69c54</id>
+    <title>LLE-UAP-PR002, Unresolved UAP Report, Colorado, October 2023</title>
+    <link rel="alternate" type="text/html" href="https://www.dvidshub.net/video/1023412"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">A local law enforcement officer submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office consisting of 15 minutes of video footage from a commercially available cellular device’s rear-facing camera in October 2023. The reporting officer described the phenomenon as “silent” and as featuring “red, blue, and green flashing lights.” 
+
+Video Description: AA</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/5b5f2473adf8</id>
+    <title>DOW-UAP-D103, Project Blue Book Photo File Relating to Tremonton Film, Utah, 1952</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D103_Project-Blue-Book-Photo-File-Relating-to-Tremonton-Film-Utah-1952.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">During its investigation of a July 1952 film of an incident reported near Tremonton, Utah, Project Blue Book examined whether the objects recorded on film might have been “pillow balloons.” Project Blue Book was a U.S. Air Force program active from 1952 to 1969 that investigated the nature and origin of unidentified flying objects (UFOs). In December 1952, investigators contacted General Mills, In</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/f41d3e3bc499</id>
+    <title>DOW-UAP-D104, Final Personnel Record for Newhouse, Delbert C., U.S. Navy, 1957</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D104_Final-Personnel-Record-for-Newhouse-Delbert-C-US-Navy-1957.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This file contains the final personnel record of U.S. Navy Chief Warrant Officer Delbert C. Newhouse, who left naval service as a Chief Warrant Officer 4, then the highest Warrant Officer grade. In July 1952, Newhouse recorded 16mm motion-picture film near Tremonton, Utah; the film later became the subject of a Project Blue Book investigation. Project Blue Book was the U.S. Air Force program activ</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/3fbd6e113334</id>
+    <title>DOW-UAP-D105, U.S. Air Force Flying Discs File, 1952</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D105_US-Air-Force-Flying-Discs-File-September-December-1952.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This file is an archival collection of U.S. Air Force Director of Intelligence records relating to reported “flying disc” incidents during the period from September through December 1952. Drawn from multiple governmental and non-governmental sources, it compiles a wide range of material associated with reported sightings and official handling of those observations, rather than presenting a single </summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/832c90975cea</id>
+    <title>DOW-UAP-D106, Mission Report, Iraq, 2022</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D106_Mission-Report-Iraq-2022.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a Mission Report (MISREP), a standardized reporting form the U.S. military uses to record the circumstances surrounding its operations. U.S. military services often use MISREPs to report unidentiﬁed anomalous phenomena (UAP) to the All-domain Anomaly Resolution Office (AARO). The GENTEXT, or “general text” section of these reports often contains important qualitative, contextual i</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/7c066ded4f0d</id>
+    <title>DOW-UAP-D107, Mission Report, Middle East, 2025</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D107_Mission-Report-Middle-East-2025.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a Mission Report (MISREP), a standardized reporting form the U.S. military uses to record the circumstances surrounding its operations. U.S. military services often use MISREPs to report unidentiﬁed anomalous phenomena (UAP) to the All-domain Anomaly Resolution Office (AARO). The GENTEXT, or “general text” section of these reports often contains important qualitative, contextual i</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/58c9b1b8ae0e</id>
+    <title>DOW-UAP-D108, Mission Report, Middle East, 2025</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D108_Mission-Report-Middle-East-2025.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a Mission Report (MISREP), a standardized reporting form the U.S. military uses to record the circumstances surrounding its operations. U.S. military services often use MISREPs to report unidentiﬁed anomalous phenomena (UAP) to the All-domain Anomaly Resolution Office (AARO). The GENTEXT, or “general text” section of these reports often contains important qualitative, contextual i</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/9dee204cb19a</id>
+    <title>DOW-UAP-D109, Mission Report, Middle East, 2022</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D109_Mission-Report-Middle-East-2022.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a Mission Report (MISREP), a standardized reporting form the U.S. military uses to record the circumstances surrounding its operations. U.S. military services often use MISREPs to report unidentiﬁed anomalous phenomena (UAP) to the All-domain Anomaly Resolution Office (AARO). The GENTEXT, or “general text” section of these reports often contains important qualitative, contextual i</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/471da6578fd7</id>
+    <title>DOW-UAP-D112, AAWSAP Contract Modification P00001, September 2009</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D112_AAWSAP-Contract-Modification-P00001-September-2-2009.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is an administrative or programmatic record related to the Advanced Aerospace Weapon System Applications Program (AAWSAP), a Defense Intelligence Agency (DIA)-administered program active from 2008 to 2012. AAWSAP’s official scope of work identified 12 technical research areas relating to potential aerospace threats over a time horizon of more than 40 years. As an administrative recor</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/1bc488a4baa3</id>
+    <title>DOW-UAP-D113, AAWSAP Contract Modification P00002, February 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D113_AAWSAP-Contract-Modification-P00002-February-2-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is an administrative or programmatic record related to the Advanced Aerospace Weapon System Applications Program (AAWSAP), a Defense Intelligence Agency (DIA)-administered program active from 2008 to 2012. AAWSAP’s official scope of work identified 12 technical research areas relating to potential aerospace threats over a time horizon of more than 40 years. As an administrative recor</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/b6919336a787</id>
+    <title>DOW-UAP-D114, AAWSAP Contract Modification P00003, May 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D114_AAWSAP-Contract-Modification-P00003-May-18- 2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is an administrative or programmatic record related to the Advanced Aerospace Weapon System Applications Program (AAWSAP), a Defense Intelligence Agency (DIA)-administered program active from 2008 to 2012. AAWSAP’s official scope of work identified 12 technical research areas relating to potential aerospace threats over a time horizon of more than 40 years. As an administrative recor</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/fbbda53ac3d9</id>
+    <title>DOW-UAP-D115, AAWSAP Contract Modification P00004, May 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D115_AAWSAP-Contract-Modification-P00004-May-18-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is an administrative or programmatic record related to the Advanced Aerospace Weapon System Applications Program (AAWSAP), a Defense Intelligence Agency (DIA)-administered program active from 2008 to 2012. AAWSAP’s official scope of work identified 12 technical research areas relating to potential aerospace threats over a time horizon of more than 40 years. As an administrative recor</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/51d0d0a116c4</id>
+    <title>DOW-UAP-D116, AAWSAP Contract Modification P00005, September 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D116_AAWSAP-Contract-Modification-P00005-September-28-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is an administrative or programmatic record related to the Advanced Aerospace Weapon System Applications Program (AAWSAP), a Defense Intelligence Agency (DIA)-administered program active from 2008 to 2012. AAWSAP’s official scope of work identified 12 technical research areas relating to potential aerospace threats over a time horizon of more than 40 years. As an administrative recor</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/ee5e0f5c9550</id>
+    <title>DOW-UAP-D118, AAWSAP DIRD, Aerospace Applications of Programmable Matter, December 2009</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D118_AAWSAP-DIRD-Aerospace-Applications-of-Programmable-Matter-December-14-2009.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications P</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/70fc841bcca1</id>
+    <title>DOW-UAP-D119, AAWSAP DIRD, Biomaterials, January 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D119_AAWSAP-DIRD-Biomaterials-January-7-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications P</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/75718f28c754</id>
+    <title>DOW-UAP-D120, AAWSAP DIRD, Materials for Advanced Aerospace Platforms, January 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D120_AAWSAP-DIRD-Materials-for-Advanced-Aerospace-Platforms-January-12-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications P</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/7847d4c96004</id>
+    <title>DOW-UAP-D121, AAWSAP DIRD, Pulsed High-Power Microwave Source Technology, January 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D121_AAWSAP-DIRD-Pulsed-High-Power-Microwave-Source-Technology-January-28-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications P</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/941ba9fd4991</id>
+    <title>DOW-UAP-D122, AAWSAP DIRD, Invisibility Cloaking Theory and Experiments, March 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D122_AAWSAP-DIRD-Invisibility-Cloaking-Theory-and-Experiments-March-2-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications P</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/f8e10bc212bb</id>
+    <title>DOW-UAP-D123, AAWSAP DIRD, Positron Aerospace Propulsion, March 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D123_AAWSAP-DIRD-Positron-Aerospace-Propulsion-March-2-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications P</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/74ca29e066aa</id>
+    <title>DOW-UAP-D124, AAWSAP DIRD, Space Access: Where We’ve Been and Where We Could Go, March 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D124_AAWSAP-DIRD-Space Access-Where-Weve-Been-and-Where-We-Could-Go-March-8-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications P</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/98d903f533cf</id>
+    <title>DOW-UAP-D125, AAWSAP DIRD, Inertial Electrostatic Confinement Fusion, March 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D125_AAWSA-DIRD-Inertial-Electrostatic-Confinement-Fusion-March-10-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications P</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/09aa6aadc3d2</id>
+    <title>DOW-UAP-D126, AAWSAP DIRD, Advanced Nuclear Propulsion for Manned Deep Space Missions, March 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D126_AAWSAP-DIRD-Advanced-Nuclear-Propulsion-for-Manned-Deep-Space-Missions-March-11-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications P</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/537984b1f2ff</id>
+    <title>DOW-UAP-D127, AAWSAP DIRD, An Introduction to the Statistical Drake Equation, March 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D127_AAWSAP-DIRD-An-Introduction-to-the-Statistical-Drake-Equation-March-11-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications P</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/d9aa6317b804</id>
+    <title>DOW-UAP-D128, AAWSAP DIRD, Anomalous Acute and Subacute Field Effects on Human Biological Tissues, March 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D128_AAWSAP-DIRD-Anomalous-Acute-and-Subacute-Field-Effects-on-Human-Biological-Tissues-March-11-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications P</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/0327d700a48c</id>
+    <title>DOW-UAP-D130, AAWSAP DIRD, Technological Approaches to Controlling External Devices, March 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D130_AAWSAP-DIRD-Technological-Approaches-to-Controlling-External-Devices-March-23-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications P</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/1fcdc1ce4117</id>
+    <title>DOW-UAP-D131, AAWSAP DIRD, The Role of Superconductors in Gravity Research, March 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D131_AAWSAP-DIRD-The-Role-of-Superconductors-in-Gravity-Research-March-23-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications P</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/2875c6370e6c</id>
+    <title>DOW-UAP-D132, AAWSAP DIRD, Advanced Space Propulsion Based on Vacuum (Spacetime Metric) Engineering, March 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D132_AAWSAP-DIRD-Advanced-Space-Propulsion-Based-on-Vacuum-Spacetime Metric-Engineering-March-29-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications P</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/261640bfcc32</id>
+    <title>DOW-UAP-D133, AAWSAP DIRD, The Space Communication Implications of Quantum Entanglement and Nonlocality, March 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D133_AAWSAP-DIRD-The-Space-Communication-Implications-of-Quantum-Entanglement-and-Nonlocality-March-30-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications P</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/ffc86ca90c0e</id>
+    <title>DOW-UAP-D134, AAWSAP DIRD, Maverick Inventor Versus Corporate Inventor: Where Will the Next Major Innovations Arise, March 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D134_AAWSAP-DIRD-Maverick-Inventor-Versus-Corporate-Inventor-Where-Will-the-Next-Major-Innovations-Arise-March-30-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications P</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/26aa78c57892</id>
+    <title>DOW-UAP-D135, AAWSAP DIRD, Antigravity for Aerospace Applications, March 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D135_ AAWSAP-DIRD-Antigravity-for-Aerospace-Applications-March-30-2010-V2.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications P</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/6c3235b4b361</id>
+    <title>DOW-UAP-D136, AAWSAP DIRD, Biosensors and BioMEMS: A Survey of the Present Field, March 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D136_AAWSAP-DIRD-Biosensors-and-BioMEMS-A-Survey-of-the-Present-Field-March-31-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications P</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/0979bbc78802</id>
+    <title>DOW-UAP-D137, AAWSAP DIRD, State of the Art and Evolution of High-Energy Lasers, March 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D137_AAWSAP-DIRD-State-of-the-Art-and-Evolution-of-High-Energy-Lasers-March-31-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications P</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/fca08061be7d</id>
+    <title>DOW-UAP-D138, AAWSAP DIRD, Warp Drive, Dark Energy, and the Manipulation of Extra Dimensions, April 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D138_AAWSAP-DIRD-Warp-Drive-Dark-Energy-and-the-Manipulation-of-Extra-Dimensions-April-2-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications P</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/f40340f2aa74</id>
+    <title>DOW-UAP-D139, AAWSAP DIRD, Traversable Wormholes, Stargates, and Negative Energy, April 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D139_AAWSAP-DIRD-Traversable-Wormholes-Stargates-and-Negative-Energy-April-6-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications P</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/fd2cceb7e43e</id>
+    <title>DOW-UAP-D140, AAWSAP DIRD, High-Frequency Gravitational Wave Communications, April 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D140_AAWSAP-DIRD-High-Frequency-Gravitational-Wave-Communications-April-6-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications P</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/8bb40e85c399</id>
+    <title>DOW-UAP-D141, AAWSAP DIRD, Metamaterials for Aerospace Applications, April 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D141_AAWSAP-DIRD-Metamaterials-for-Aerospace-Applications-April-6-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications P</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/7a7b0ba2a05b</id>
+    <title>DOW-UAP-D142, AAWSAP DIRD, Concepts for Extracting Energy from the Quantum Vacuum, April 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D142_AAWSAP-DIRD-Concepts-for-Extracting-Energy-from-the-Quantum-Vacuum-April-6-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications P</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/daf132de99ed</id>
+    <title>DOW-UAP-D143, AAWSAP DIRD, Laser Lightcraft Nanosatellites, November 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D143_AAWSAP-DIRD-Laser-Lightcraft-Nanosatellites-November-1-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications P</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/a0ad312365ec</id>
+    <title>DOW-UAP-D144, AAWSAP DIRD, Cockpits in the Era of Breakthrough Flight, November 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D144_AAWSAP-DIRD-Cockpits-in-the-Era-of-Breakthrough-Flight-November-1-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications P</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/57d6f6dec29a</id>
+    <title>DOW-UAP-D145, AAWSAP DIRD, Aneutronic Fusion Propulsion I, November 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D145_AAWSAP-DIRD-Aneutronic-Fusion-Propulsion-I-November-1-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications P</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/76fde3b43c31</id>
+    <title>DOW-UAP-D146, AAWSAP DIRD, Aneutronic Fusion Propulsion II, November 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D146_AAWSAP-DIRD-Aneutronic-Fusion-Propulsion-II-November-1-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications P</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/ed92d4d47e56</id>
+    <title>DOW-UAP-D147, AAWSAP DIRD, Ultracapacitors as Energy and Power Storage Devices, November 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D147_AAWSAP-DIRD-Ultracapacitors-as-Energy-and-Power-Storage-Devices-November-1-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications P</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/555380554f5e</id>
+    <title>DOW-UAP-D148, AAWSAP DIRD, Detection and High-Resolution Tracking of Vehicles at Hypersonic Velocities, November 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D148_AAWSAP-DIRD-Detection-and-High-Resolution-Tracking-of-Vehicles-at-Hypersonic-Velocities-November-20-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications P</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/e652cd77b002</id>
+    <title>DOW-UAP-D149, AAWSAP DIRD, MHD Air Breathing Propulsion and Power for Aerospace Applications, November 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D149_AAWSAP-DIRD-MHD-Air-Breathing-Propulsion-and-Power-for-Aerospace-Applications-November-21-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications P</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/85b4823d43a6</id>
+    <title>DOW-UAP-D150, AAWSAP DIRD, Quantum Computing and Utilizing Organic Molecules in Automation Technology, December 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D150_AAWSAP-DIRD-Quantum-Computing-and-Utilizing-Organic-Molecules-in-Automation-Technology-December-10-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications P</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/f07a9efa0e0e</id>
+    <title>DOW-UAP-D151, AAWSAP DIRD, Cognitive Limits on Simultaneous Control of Multiple Unmanned Spacecraft, December 2010</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D151_AAWSAP-DIRD-Cognitive-Limits-on-Simultaneous-Control-of-Multiple-Unmanned-Spacecraft-December-15-2010.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications P</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/865c4fbd4ce4</id>
+    <title>DOW-UAP-D152, AAWSAP DIRD, Negative Mass Propulsion, January 2011</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D152_AAWSAP-DIRD-Negative-Mass-Propulsion-January-3-2011.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications P</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/ec5e82440438</id>
+    <title>DOW-UAP-D153, AAWSAP DIRD, Quantum Tomography of Negative Energy States in the Vacuum, January 2011</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-D153_AAWSAP-DIRD-Quantum-Tomography-of-Negative-Energy-States-in-the-Vacuum-January-11-2011.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a Defense Intelligence Reference Document (DIRD), a technical reference format used by the Defense Intelligence Agency (DIA) to capture baseline knowledge on a specific topic for later analytic use. DIRDs are best understood as reference and synthesis products rather than as original research. It is one of 38 DIRDs produced under the Advanced Aerospace Weapon System Applications P</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/5874a7f970ca</id>
+    <title>DOW-UAP-PR130, Unresolved UAP Report, Iraq, 2022</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-PR130_Unresolved-UAP-Report-Iraq-2022.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">The United States Central Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of a still image derived from an infrared system aboard a U.S. military system in 2022. An accompanying mission report, DOW-UAP-D106, described the UAP as “flying sporadically… at various speeds between 80-180 miles per hour.”
+
+Image Description</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/009c97100b0e</id>
+    <title>DOW-UAP-PR131, Unresolved UAP Report, Iraq, 2022</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/DOW-UAP-PR131_Unresolved-UAP-Report-Iraq-2022.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">The United States Central Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of a still image derived from an infrared system aboard a U.S. military system in 2022. An accompanying mission report, DOW-UAP-D106, described the UAP as “flying sporadically… at various speeds between 80-180 miles per hour.”
+
+Image Description</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/0d8fede86ca6</id>
+    <title>DOW-UAP-PR133, Unresolved UAP Report, Middle East, 2025</title>
+    <link rel="alternate" type="text/html" href="https://www.dvidshub.net/video/1023396"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">The United States Central Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of 4 minutes and 58 seconds of video footage from an infrared sensor aboard a U.S. military platform in 2024. An accompanying mission report, DOW-UAP-D107, described the UAP as “look[ing] like a white round orbit… moving as fast as 500 miles per</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/0c0c6a52e0e4</id>
+    <title>DOW-UAP-PR135, Unresolved UAP Report, Middle East, 2025</title>
+    <link rel="alternate" type="text/html" href="https://www.dvidshub.net/video/1023397"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">The United States Central Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of 1 minute of video footage from an infrared sensor aboard a U.S. military platform in 2025. An accompanying mission report, DOW-UAP-D108, described the UAP as “six small spherical objects grouped together, and characterized their behavior as “</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/1e70d20d2488</id>
+    <title>DOW-UAP-PR140, Unresolved UAP Report, Middle East, 2022</title>
+    <link rel="alternate" type="text/html" href="https://www.dvidshub.net/video/1023398"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">The United States Central Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of 1 minute and 47 seconds of video footage from an electro-optical and infrared sensor aboard a U.S. military platform in 2022. An accompanying mission report, DOW-UAP-D109, described the UAP as “traveling at various speeds between 80-180 miles</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/6179cacd726a</id>
+    <title>DOW-UAP-PR141, Unresolved UAP Report, Middle East, 2022</title>
+    <link rel="alternate" type="text/html" href="https://www.dvidshub.net/video/1023400"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">The United States Central Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of 2 minutes and 36 seconds of video footage from an electro-optical (right) and infrared (left) sensor aboard a
+U.S. military platform in 2022. An accompanying mission report, DOW-UAP-D109, described the UAP as “traveling at various speeds betw</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/5db6d3bcd473</id>
+    <title>DOW-UAP-PR143, Unresolved UAP Report, Yellow Sea, 2023</title>
+    <link rel="alternate" type="text/html" href="https://www.dvidshub.net/video/1023403"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">The United States Indo-Pacific Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of 19 seconds of video footage from an infrared sensor aboard a U.S. military platform in 2023.
+
+Video Description:
+00:00-00:19: The sensor pans to track an area of contrast, keeping it generally within the center of the frame.
+
+This video </summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/25dae867c8a0</id>
+    <title>DOW-UAP-PR144, Unresolved UAP Report, Yellow Sea, 2023</title>
+    <link rel="alternate" type="text/html" href="https://www.dvidshub.net/video/1023404"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">The United States Indo-Pacific Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of 27 seconds of video footage from an infrared sensor aboard a U.S. military platform in 2023.
+
+Video Description:
+00:00-00:02: An area of contrast is visible above and to the left of the center of the frame.
+00:03-00:27: The sensor increa</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/055073d45ddc</id>
+    <title>DOW-UAP-PR148, Unresolved UAP Report, East China Sea, 2023</title>
+    <link rel="alternate" type="text/html" href="https://www.dvidshub.net/video/1023405"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">The United States Indo-Pacific Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of 59 seconds of video footage from an infrared sensor aboard a U.S. military platform in 2023.
+
+Video Description:
+00:00-00:03: No content.
+00:04-00:46: The sensor pans to track an area of contrast, keeping it generally within the center o</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/e63ceec28340</id>
+    <title>DOW-UAP-PR150, Unresolved UAP Report, Yellow Sea, 2023</title>
+    <link rel="alternate" type="text/html" href="https://www.dvidshub.net/video/1023406"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">The United States Indo-Pacific Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of 57 seconds of video footage from an infrared sensor aboard a U.S. military platform in 2023.
+
+Video Description:
+00:00-00:05: No content.
+00:06-00:07: An area of contrast enters the sensor field-of view from the bottom edge.
+00:08-00:51:</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/3325d311e3b9</id>
+    <title>DOW-UAP-PR151, Unresolved UAP Report, Yellow Sea, 2023</title>
+    <link rel="alternate" type="text/html" href="https://www.dvidshub.net/video/1023408"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">The United States Indo-Pacific Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of 49 seconds of video footage from an infrared sensor aboard a U.S. military platform in 2023.
+
+Video Description:
+00:00-00:15: The sensor pans to track an area of contrast.
+00:16-00:18: The sensor increases its level of magnification and </summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/1d174baae060</id>
+    <title>DOW-UAP-PR152, Unresolved UAP Report, Yellow Sea, 2023</title>
+    <link rel="alternate" type="text/html" href="https://www.dvidshub.net/video/1023410"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">The United States Indo-Pacific Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of 1 minute and 38 seconds of video footage from an infrared sensor aboard a U.S. military platform in 2023.
+
+Video Description:
+00:00-01:38: The sensor pans to track an area of contrast, keeping it generally within the center of the frame.</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/24e0e6b1b7be</id>
+    <title>LLE-UAP-D001, Transcript of an Unresolved UAP Report, Colorado, October 2023</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/LLE-UAP-D001_Transcript-of-an-Unresolved-UAP-Report-Colorado-October-2023.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a transcript of a 1-minute, 19-second video recording contained in this collection under the title LLE-UAP-PR001, captured by a law enforcement officer in Colorado in October 2023. AARO removed the audio from the original recording to protect information whose release could reasonably be expected to affect the privacy or other protected interests of a U.S. person or commercial ent</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/b607deb4c530</id>
+    <title>LLE-UAP-D002, Transcript of an Unresolved UAP Report, Colorado, October 2023</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/LLE-UAP-D002_Transcript-of-an-Unresolved-UAP-Report-Colorado-October-2023.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a transcript of a 15-minute video recording contained in this collection under the title LLE-UAP-PR002, captured by a law enforcement officer in Colorado in October 2023. AARO removed the audio from the original recording to protect information whose release could reasonably be expected to affect the privacy or other protected interests of a U.S. person or commercial entity. This </summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/bb10596d0371</id>
+    <title>LLE-UAP-D003, Transcript of an Unresolved UAP Report, Colorado, October 2023</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/LLE-UAP-D003_Transcript-of-an-Unresolved-UAP-Report-Colorado-October-2023.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a transcript of a 27-second video recording contained in this collection under the title LLE-UAP-PR003, captured by a law enforcement officer in Colorado in October 2023. AARO removed the audio from the original recording to protect information whose release could reasonably be expected to affect the privacy or other protected interests of a U.S. person or commercial entity. This </summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/ff101db96b25</id>
+    <title>LLE-UAP-D004, Transcript of an Unresolved UAP Report, Colorado, January 2024</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/sept-18/release-06/assets/LLE-UAP-D004_Transcript-of-an-Unresolved-UAP-Report-Colorado-January-2024.pdf"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a transcript of a 1-minute, 42-second video recording contained in this collection under the title LLE-UAP-PR004, captured by a law enforcement officer in Colorado in January 2024. AARO removed the audio from the original recording to protect information whose release could reasonably be expected to affect the privacy or other protected interests of a U.S. person or commercial ent</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/d5c8dbe1af4f</id>
+    <title>LLE-UAP-PR003, Unresolved UAP Report, Colorado, October 2023</title>
+    <link rel="alternate" type="text/html" href="https://www.dvidshub.net/video/1023414"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">A local law enforcement officer submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office consisting of 27 seconds of video footage from a commercially available cellular device’s rear-facing camera in October 2023. The reporting officer described the phenomenon as “silent” and as featuring “red, blue, and green flashing lights.” 
+
+Video Description: In</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/6a8dd6f73f0c</id>
+    <title>LLE-UAP-PR004, Unresolved UAP Report, Colorado, January 2024</title>
+    <link rel="alternate" type="text/html" href="https://www.dvidshub.net/video/1023416"/>
+    <updated>2026-09-18T00:00:00Z</updated>
+    <published>2026-09-18T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">A local law enforcement officer submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office consisting of 1 minute and 42 seconds of video footage from a commercially available cellular device’s rear-facing camera in January 2024. The reporting officer described the phenomenon as “silent” and as featuring “red, blue, and green flashing lights.” 
+
+Video De</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/9d2c5368e07d</id>
+    <title>CIA-UAP-D022, Unidentified Flying Object Reported near Puerto Rico, 1965</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/release_05/Aug_07/documents/CIA-UAP-D022_Unidentified-Flying-Object-Reported-near-Puerto-Rico_1965.pdf"/>
+    <updated>2026-08-07T00:00:00Z</updated>
+    <published>2026-08-07T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This file contains Central Intelligence Agency (CIA) memoranda exchanged between the Assistant Director for Special Activities (AD/SA) and the Assistant Director for Scientific Intelligence (AD/SI) regarding an incident allegedly involving unidentified aircraft in the vicinity of Puerto Rico. The AD/SI was then-responsible for analyzing foreign scientific advancements and technological threats, su</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/faeb629c8743</id>
+    <title>CIA-UAP-D023, Briefing Notes for Mr. Walter Elder</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/release_05/Aug_07/documents/CIA-UAP-D023_Briefing-Notes-for-Mr-Walter-Elder.pdf"/>
+    <updated>2026-08-07T00:00:00Z</updated>
+    <published>2026-08-07T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document contains briefing material prepared for Mr. Walter N. Elder, Executive Assistant to the Director of the Central Intelligence Agency (CIA), regarding a November 19, 1964, incident allegedly involving unidentified aircraft in the vicinity of Puerto Rico. The previous entry in this collection, CIA-UAP-D022, contains CIA memoranda on the same subject matter. The briefing includes additio</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/2f8565e7d8ca</id>
+    <title>DOS-UAP-D001, Diplomatic Cable, Brazil, November 14, 1963</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/release_05/Aug_07/documents/DOS-UAP-D001_Diplomatic-Cable_Brazil_November-14-1963.pdf"/>
+    <updated>2026-08-07T00:00:00Z</updated>
+    <published>2026-08-07T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a U.S. Department of State diplomatic cable from the U.S. Embassy in Rio de Janeiro, Brazil to the Office of the Secretary of State in Washington, D.C., on November 14, 1963. This cable documents an effort by the Embassy to verify that the Department had assessed certain content published in a local newspaper as inauthentic, following a discussion on a poor-quality telephone conne</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/5b5dd4adb205</id>
+    <title>DOS-UAP-D002, Diplomatic Cable, Brazil, November 20, 1963</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/release_05/Aug_07/documents/DOS-UAP-D002_Diplomatic-Cable_Brazil_November-20-1963.pdf"/>
+    <updated>2026-08-07T00:00:00Z</updated>
+    <published>2026-08-07T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a U.S. Department of State diplomatic cable from the U.S. Embassy in Rio de Janeiro, Brazil to the Office of the Secretary of State in Washington, D.C., on November 20, 1963. This cable relays the findings of the scientific attaché at the American Consulate in Salvador, Bahia, Brazil, that a widely reported incident allegedly involving a crashed unidentified object was unsubstanti</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/13bc5043499c</id>
+    <title>DOW-UAP-D098, Film Analysis of Unidentified Objects, 1953</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/release_05/Aug_07/documents/DOW-UAP-D098_Film-Analysis-of-Unidentified-Objects_1953.pdf"/>
+    <updated>2026-08-07T00:00:00Z</updated>
+    <published>2026-08-07T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This file contains a memorandum relating to the U.S. Naval Photographic Interpretation Center’s assessment of two films allegedly depicting unidentified airborne objects, captured in Montana and Utah in 1950 and 1952, respectively. The file documents the Center’s analytic process, assumptions that constrained its confidence level, tentative conclusions, and recommendations for future research. The</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/e04293331177</id>
+    <title>DOW-UAP-D099, Intelligence Review of “Ghost Rocket” Incidents, 1947</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/release_05/Aug_07/documents/DOW-UAP-D099_Intelligence-Review-of-Ghost-Rocket-Incidents_1947.pdf"/>
+    <updated>2026-08-07T00:00:00Z</updated>
+    <published>2026-08-07T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a U.S. Department of War General Staff intelligence review assessing incidents involving unidentified “Ghost Rockets” reported over Sweden and other Scandinavian countries beginning in May 1946. The review includes an analysis of observational reports, statements from the Swedish government, and reporting from the U.S. military attaché in Stockholm. The review highlights the incon</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/a6cc96d9bc61</id>
+    <title>DOW-UAP-D100, Air Materiel Command Report on Unidentified Flying Objects, 1947-1948</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/release_05/Aug_07/documents/DOW-UAP-D100_Air-Materiel-Command-Report-on-UFOs_1947-1948.pdf"/>
+    <updated>2026-08-07T00:00:00Z</updated>
+    <published>2026-08-07T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This file is a collection of U.S. Government memoranda and correspondence relating to “Project Sign,” a 1948 U.S. Air Force program to investigate reports of high-performance airborne objects. The documents characterize some of these reports as being consistent with “real” objects rather than fabrications or resulting from perceptual errors. The U.S. Air Force cites the reported characteristics of</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/6720a64b58d6</id>
+    <title>DOW-UAP-D101, Intelligence Information Report, Unresolved UAP Report, Gulf of Oman, 2021</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/release_05/Aug_07/documents/DOW-UAP-D101_IIR_Unresolved-UAP-Report-Gulf-of-Oman_2021.pdf"/>
+    <updated>2026-08-07T00:00:00Z</updated>
+    <published>2026-08-07T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is an Intelligence Information Report (IIR), the primary standardized format utilized by the Department of War, military services, and the broader Intelligence Community to disseminate unevaluated intelligence information derived from human sources (HUMINT), open sources, and field collection activities. IIRs are not finished intelligence products; they serve as inputs for subsequent</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/33e83cd43326</id>
+    <title>DOW-UAP-PR117, Unresolved UAP Report, Gulf of Oman, 2021</title>
+    <link rel="alternate" type="text/html" href="https://www.dvidshub.net/video/1017793"/>
+    <updated>2026-08-07T00:00:00Z</updated>
+    <published>2026-08-07T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">The United States Central Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of 16 seconds of video footage. This footage is a secondary capture, recorded via a cellular device, of an infrared sensor display aboard a U.S. Special Operations Forces AC-130J Gunship. This footage does not represent native primary sensor dat</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/b3eb5d030eb4</id>
+    <title>DOW-UAP-PR118, Unresolved UAP Report, Gulf of Oman, 2021</title>
+    <link rel="alternate" type="text/html" href="https://www.dvidshub.net/video/1017795"/>
+    <updated>2026-08-07T00:00:00Z</updated>
+    <published>2026-08-07T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">The United States Central Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of 30 seconds of video footage. This footage is a secondary capture, recorded via a cellular device, of an infrared sensor display aboard a U.S. Special Operations Forces AC-130J Gunship. This footage does not represent native primary sensor dat</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/17047018c061</id>
+    <title>DOW-UAP-PR119, Unresolved UAP Report, Gulf of Oman, 2021</title>
+    <link rel="alternate" type="text/html" href="https://www.dvidshub.net/video/1017798"/>
+    <updated>2026-08-07T00:00:00Z</updated>
+    <published>2026-08-07T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">The United States Central Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of two seconds of video footage. This footage is a secondary capture, recorded via a cellular device, of an infrared sensor display aboard a U.S. Special Operations Forces AC-130J Gunship. This footage does not represent native primary sensor da</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/463ce196e87f</id>
+    <title>DOW-UAP-PR120, Unresolved UAP Report, Gulf of Oman, 2021</title>
+    <link rel="alternate" type="text/html" href="https://www.dvidshub.net/video/1017800"/>
+    <updated>2026-08-07T00:00:00Z</updated>
+    <published>2026-08-07T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">The United States Central Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of 13 seconds of video footage. This footage is a secondary capture, recorded via a cellular device, of an infrared sensor display aboard a U.S. Special Operations Forces AC-130J Gunship. This footage does not represent native primary sensor dat</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/ee1248f37d11</id>
+    <title>DOW-UAP-PR121, Unresolved UAP Report, Gulf of Oman, 2021</title>
+    <link rel="alternate" type="text/html" href="https://www.dvidshub.net/video/1017802"/>
+    <updated>2026-08-07T00:00:00Z</updated>
+    <published>2026-08-07T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">The United States Central Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of 34 seconds of video footage. This footage is a secondary capture, recorded via a cellular device, of an infrared sensor display aboard a U.S. Special Operations Forces AC-130J Gunship. This footage does not represent native primary sensor dat</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/6903861690be</id>
+    <title>DOW-UAP-PR122, Unresolved UAP Report, Gulf of Oman, 2021</title>
+    <link rel="alternate" type="text/html" href="https://www.dvidshub.net/video/1017803"/>
+    <updated>2026-08-07T00:00:00Z</updated>
+    <published>2026-08-07T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">The United States Central Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of 26 seconds of video footage. This footage is a secondary capture, recorded via a cellular device, of an infrared sensor display aboard a U.S. Special Operations Forces AC-130J Gunship. This footage does not represent native primary sensor dat</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/36cf8e7ed325</id>
+    <title>DOW-UAP-PR123, Unresolved UAP Report, Pacific Ocean, 2019</title>
+    <link rel="alternate" type="text/html" href="https://www.dvidshub.net/video/1017805"/>
+    <updated>2026-08-07T00:00:00Z</updated>
+    <published>2026-08-07T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">The United States Navy Unidentified Anomalous Phenomena Task Force (UAPTF) transferred this media to the All-domain Anomaly Resolution Office (AARO) in 2022. The video contains 1 minute and 4 seconds of footage. This footage is a secondary capture, recorded via a hand-held recording device, of an infrared sensor display aboard a U.S. military platform. This footage does not represent native primar</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/a08ede427b8c</id>
+    <title>DOW-UAP-PR124, Unresolved UAP Report, Pacific Ocean, 2019</title>
+    <link rel="alternate" type="text/html" href="https://www.dvidshub.net/video/1017806"/>
+    <updated>2026-08-07T00:00:00Z</updated>
+    <published>2026-08-07T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">The United States Navy Unidentified Anomalous Phenomena Task Force (UAPTF) transferred this media to the All-domain Anomaly Resolution Office (AARO) in 2022. The video contains 53 seconds of footage. This footage is a secondary capture, recorded via a hand-held recording device, of an infrared sensor display aboard a U.S. military platform. This footage does not represent native primary sensor dat</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/38384a91db6b</id>
+    <title>DOW-UAP-PR125, Unresolved UAP Report, Pacific Ocean, 2019</title>
+    <link rel="alternate" type="text/html" href="https://www.dvidshub.net/video/1017788"/>
+    <updated>2026-08-07T00:00:00Z</updated>
+    <published>2026-08-07T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">The United States Navy Unidentified Anomalous Phenomena Task Force (UAPTF) transferred this media to the All-domain Anomaly Resolution Office (AARO) in 2022. The video contains 28 seconds of footage. This footage is a secondary capture, recorded via a hand-held recording device, of an infrared sensor display aboard a U.S. military platform. This footage does not represent native primary sensor dat</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/415b46d7cadd</id>
+    <title>DOW-UAP-PR126, Unresolved UAP Report, Pacific Ocean, 2019</title>
+    <link rel="alternate" type="text/html" href="https://www.dvidshub.net/video/1017790"/>
+    <updated>2026-08-07T00:00:00Z</updated>
+    <published>2026-08-07T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">The United States Navy Unidentified Anomalous Phenomena Task Force (UAPTF) transferred this media to the All-domain Anomaly Resolution Office (AARO) in 2022. The video contains 2 minutes and 32 seconds of footage captured via hand-held recording device by a U.S. military service member in 2019. Low-light conditions at the time of capture influence the overall visual quality of the footage. The foo</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/74b0cdd4960e</id>
+    <title>DOW-UAP-PR127, Unresolved UAP Report, Pacific Ocean, 2019</title>
+    <link rel="alternate" type="text/html" href="https://www.dvidshub.net/video/1017791"/>
+    <updated>2026-08-07T00:00:00Z</updated>
+    <published>2026-08-07T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">The United States Navy Unidentified Anomalous Phenomena Task Force (UAPTF) transferred this media to the All-domain Anomaly Resolution Office (AARO) in 2022. The video contains 2 minutes and 29 seconds of footage captured via a hand-held recording device by a U.S. military service member in 2019. Low-light conditions at the time of capture influence the overall visual quality of the footage. The f</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/5c3ec5adc00b</id>
+    <title>DOW-UAP-PR134, Unresolved UAP Report, Middle East, 2025</title>
+    <link rel="alternate" type="text/html" href="https://www.dvidshub.net/video/1017792"/>
+    <updated>2026-08-07T00:00:00Z</updated>
+    <published>2026-08-07T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">The United States Central Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of 1 minute and 39 seconds of video footage from an electro-optical and infrared sensor aboard a U.S. military platform in 2025.
+
+Video description: 
+
+00:00-01:39: The sensor pans to track an area of contrast from left to right across the backgr</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/5b8c475c1315</id>
+    <title>DOW-UAP-PR136, Unresolved UAP Report, Middle East, 2023</title>
+    <link rel="alternate" type="text/html" href="https://www.dvidshub.net/video/1017796"/>
+    <updated>2026-08-07T00:00:00Z</updated>
+    <published>2026-08-07T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">The United States Central Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of 30 seconds of video footage from an infrared sensor aboard a U.S. military platform in 2023.
+
+Video description: 
+
+00:00-00:08: The sensor pans to track an area of contrast, keeping it generally centered within the frame. The sensor is partia</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/b73d9c39ed90</id>
+    <title>DOW-UAP-PR142, Unresolved UAP Report, Middle East, 2025</title>
+    <link rel="alternate" type="text/html" href="https://www.dvidshub.net/video/1017797"/>
+    <updated>2026-08-07T00:00:00Z</updated>
+    <published>2026-08-07T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">The United States Central Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of 14 seconds of video footage from an infrared sensor aboard a U.S. military platform in 2025.
+
+Video description: 
+
+00:00-00:04: No content.
+
+00:05-00:08: An area of contrast enters the sensor field-of-view from the left edge, transits from le</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/dd3f20dddb02</id>
+    <title>DOW-UAP-PR149, Unresolved UAP Report, Middle East, 2023</title>
+    <link rel="alternate" type="text/html" href="https://www.dvidshub.net/video/1017799"/>
+    <updated>2026-08-07T00:00:00Z</updated>
+    <published>2026-08-07T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">The United States Central Command submitted a report of an unidentified anomalous phenomenon to the All-domain Anomaly Resolution Office (AARO) consisting of 51 seconds of video footage from an infrared sensor aboard a U.S. military platform in 2023.
+
+Video description: 
+
+00:00-00:04: An area of contrast transits the frame from the bottom right edge to the lower left edge of the sensor field-of-vi</summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/7ba25be9c472</id>
+    <title>EOP-UAP-D001, NASC Inquiry into Bahia, Brazil Incident, November 13, 1963</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/release_05/Aug_07/documents/EOP-UAP-D001_NASC-Inquiry-into-Bahia-Brazil-Incident_November-13-1963.pdf"/>
+    <updated>2026-08-07T00:00:00Z</updated>
+    <published>2026-08-07T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is a Central Intelligence Agency (CIA) Foreign Broadcast Information Service (FBIS) wire report dated November 9, 1963, tracking a local Portuguese-language radio broadcast from Rio de Janeiro, Brazil, regarding an alleged crash of a “large metal sphere” containing a deceased occupant in Conde, Bahia, Brazil. This FBIS report is excerpted from the files of Edward C. Welsh, Executive </summary>
+  </entry>
+  <entry>
+    <id>tag:realufo.org,2026:wargov/2e4f75e3d3d6</id>
+    <title>FBI-UAP-D024, FD-302, “Airborne Lights and Triangle,” 2002, 2023-2024</title>
+    <link rel="alternate" type="text/html" href="https://www.war.gov/medialink/ufo/release_05/Aug_07/documents/FBI-UAP-D024_FD-302_Airborne-Lights-and-Triangle_2002_2023-2024.pdf"/>
+    <updated>2026-08-07T00:00:00Z</updated>
+    <published>2026-08-07T00:00:00Z</published>
+    <category term="wargov"/>
+    <summary type="text">This document is an FBI FD-302, a form the Federal Bureau of Investigation (FBI) uses to record interviews. This FD-302 records a March 2024 interview with a former U.S. military pilot, in which the interviewee describes several incidents potentially involving unidentified anomalous phenomena (UAP) in 2023 and 2024. The interviewee also recalls a 2002 incident potentially involving UAP, while depl</summary>
   </entry>
 </feed>
