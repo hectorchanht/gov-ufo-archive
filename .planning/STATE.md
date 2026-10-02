@@ -98,13 +98,15 @@ None at roadmap-creation time.
 | # | Description | Date | Commit | Status | Directory |
 |---|-------------|------|--------|--------|-----------|
 | 260615-3e3 | Fetch war.gov Release 03 (6/12/26, +72 rows) + wire site + upload to R2 | 2026-06-15 | 4dc5255 | Mostly complete — 53 PDFs + 7/9 videos live on R2; 2 large videos (>300 MiB) pending S3 upload | [260615-3e3](./quick/260615-3e3-fetch-third-war-gov-ufo-release-and-upda/) |
-| 261001-p8k | Ingest war.gov Release 05 (8/7/26, +41) + Release 06 (9/18/26, +75) — 334→450 | 2026-10-01 | 6c983ba | Local build done — R2 upload / GH release / push+deploy pending; DOD_111985823.mp4 (765 MiB) needs S3 multipart | [261001-p8k](./quick/261001-p8k-ingest-war-gov-pursue-release-05-and-06/) |
+| 261001-p8k | Ingest war.gov Release 05 (8/7/26, +41) + Release 06 (9/18/26, +75) — 334→450 | 2026-10-01 | 6c983ba | Complete — on main + deployed; all wargov keys on R2 (verified by 261001-qex) | [261001-p8k](./quick/261001-p8k-ingest-war-gov-pursue-release-05-and-06/) |
 | 261001-q6n | Host this repo at release.realufo.org (canonical origin rewrite, 131 files; apex = realufo-superpower Worker) | 2026-10-02 | c636d8f | Code + R2 CORS done; Pages domain attached (pending) — needs DNS CNAME release→realufo.pages.dev; deploy on merge | [261001-q6n](./quick/261001-q6n-host-this-repo-as-release-realufo-org/) |
+| 261001-qex | Release-mention sweep (Releases 01–06 / 450, 12 files) + `.agents/skills/wargov-release-ingest` skill + R2 diff (0 missing) + ship | 2026-10-02 | 31bbb4d | Pushing to main (ships q6n too); release.realufo.org CNAME pending user DNS edit | [261001-qex](./quick/261001-qex-release-mention-content-sweep-r2-upload-/) |
 
 ### TODOs
 
-- **wargov R05/R06**: upload 162 PDFs + 32 videos (bundles/ release_05*, uap_videos_080726, documents_release_06*, pursue_vids_091826) to R2; `DOD_111985823.mp4` (765 MiB) needs S3 multipart. Then push `quick/261001-p8k-wargov-release-05-06`, merge, deploy.
-- **wargov R03**: upload 2 large videos to R2 via S3 multipath — `DOD_111764796.mp4` (2.99 GiB) + `DOD_111764902.mp4` (1.19 GiB) exceed wrangler's 300 MiB cap. Source: `/Users/laichan/UFO/AARO061226/`. Until done, 2 AUD cards (DVIDS 1010319, 1010336) play → 404.
+- **release.realufo.org**: add proxied CNAME `release` → `realufo.pages.dev` in f147259 CF account (no local token has DNS write); then PATCH Pages domain validation.
+- **build-pdf-thumbs.py:170**: URL-quote basename in `_download_from_r2()` (keys with spaces).
+- **api/stats.json + feeds/**: all-zero output since 2026-06-02 — broken pipeline.
 - Run `/gsd:plan-phase 1` to decompose Phase 1 into executable plans
 - Confirm with user that 6-phase structure matches their mental model
 - Confirm with user whether v2 social/curation features (SOCL-*, FED-*, A11Y-*) are correctly deferred
@@ -112,6 +114,8 @@ None at roadmap-creation time.
 ## Session Continuity
 
 ### Last Action
+
+Last activity: 2026-10-02 - Completed quick task 261001-qex: release-mention sweep + skill + R2 verify
 
 Roadmap drafted from `.planning/REQUIREMENTS.md` (56 v1 reqs) + `.planning/research/{STACK,ARCHITECTURE,FEATURES,PITFALLS}.md` + `.planning/codebase/CONCERNS.md`. 6-phase horizontal-layers structure aligned with research's recommended migration path. 100 % requirement coverage validated (see `REQUIREMENTS.md` traceability table).
 
