@@ -158,14 +158,17 @@ _SLUG_RE = re.compile(r'[^a-z0-9]+')
 
 # DVIDS catalog-ID → DOD asset-ID maps. r01 covers the May 8, 2026 tranche;
 # r02 covers the May 22, 2026 tranche; r03 covers the June 12, 2026 tranche;
-# r04 covers the July 10, 2026 tranche.
-# `scripts/resolve-dvids-r0{1,3,4}.py` emit these files (Akamai blocks GH
+# r04 covers the July 10, 2026 tranche; r05 covers the August 7, 2026
+# tranche; r06 covers the September 18, 2026 tranche.
+# `scripts/resolve-dvids-r0{1,3,4,5,6}.py` emit these files (Akamai blocks GH
 # Actions egress so the scripts are dev-only).
 DVIDS_MAP_PATHS = (
     REPO / 'scripts' / 'dvids2dod-r01.json',
     REPO / 'scripts' / 'dvids2dod-r02.json',
     REPO / 'scripts' / 'dvids2dod-r03.json',
     REPO / 'scripts' / 'dvids2dod-r04.json',
+    REPO / 'scripts' / 'dvids2dod-r05.json',
+    REPO / 'scripts' / 'dvids2dod-r06.json',
 )
 
 # Slideshow thumbnail directories. `slideshow/` carries the R01 imagery
@@ -583,6 +586,10 @@ def render_card_html(row: dict[str, str], idx: int) -> str:
         release = '03'
     elif release_date == '7/10/26':
         release = '04'
+    elif release_date == '8/7/26':
+        release = '05'
+    elif release_date == '9/18/26':
+        release = '06'
     else:
         release = ''
 

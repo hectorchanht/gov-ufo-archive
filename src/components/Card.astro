@@ -83,6 +83,8 @@ function releaseBatch(releaseDate: string): string {
   if (releaseDate === '5/22/26') return '02';
   if (releaseDate === '6/12/26') return '03';
   if (releaseDate === '7/10/26') return '04';
+  if (releaseDate === '8/7/26') return '05';
+  if (releaseDate === '9/18/26') return '06';
   return '';
 }
 const release = releaseBatch(row['Release Date'] ?? '');
