@@ -73,7 +73,7 @@ done
 if [ "$INTERACTIVE" -eq 1 ] && [ -t 0 ]; then
   echo ""
   echo "Which sites? (comma-separated, e.g. 1,3,5)"
-  echo "  [1]  war.gov / UFO Release 01"
+  echo "  [1]  war.gov / UFO Releases 01–06"
   echo "  [2]  AARO (U.S.)"
   echo "  [3]  NASA UAP Independent Study"
   echo "  [4]  NARA UAP records gateway"

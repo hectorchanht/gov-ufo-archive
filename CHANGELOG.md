@@ -9,6 +9,16 @@ and the project loosely adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added — War.gov / PURSUE Releases 03–06 (June 12 – September 18, 2026)
+- **Release 03** (6/12/26) — +72 records.
+- **Release 04** (7/10/26) — +40 records.
+- **Release 05** (8/7/26) — +41 records; no rotator imagery published.
+- **Release 06** (9/18/26) — +75 records.
+- `uap-data.csv` now holds 450 rows (158 + 64 + 72 + 40 + 41 + 75).
+- DVIDS → DOD maps `scripts/dvids2dod-r03.json` … `scripts/dvids2dod-r06.json`.
+- Release filter on `/#archive` covers Releases 01–06.
+- Hero imagery `slideshow-3/`, `slideshow-4/`, `slideshow-6/` (tracked).
+
 ### Added — War.gov / PURSUE Release 02 (May 22, 2026)
 - **Release 02 catalogue (64 records)** — second tranche of declassified UAP
   files from the U.S. Department of War, merged into the main archive

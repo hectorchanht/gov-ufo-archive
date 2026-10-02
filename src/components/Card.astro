@@ -99,7 +99,7 @@ const SOURCE_URL = 'https://www.war.gov/UFO/';
 // per-archive / per-type / per-agency filter facets in the /search UI
 // (SRC-03) and per-card metadata in the result snippet (SRC-02).
 // Idempotent / unconditional add per plan-checker iter 1 finding #7 —
-// skipping the wargov filter would silently exclude 222 wargov cards
+// skipping the wargov filter would silently exclude every wargov card
 // from the archive-filter dropdown.
 const pagefindFilter = `archive:wargov,type:${rtype},agency:${agency}`;
 const pagefindMeta = `title:${title},agency:${agency},date:${date}`;

@@ -16,7 +16,7 @@ keeps working with no network.
 
 | # | Archive | Source | Route |
 | --: | --- | --- | --- |
-| 1 | **PURSUE — Department of War / Release 01–03** | <https://www.war.gov/UFO/> | [`/`](https://release.realufo.org/) |
+| 1 | **PURSUE — Department of War / Releases 01–06** | <https://www.war.gov/UFO/> | [`/`](https://release.realufo.org/) |
 | 2 | **AARO — All-domain Anomaly Resolution Office** | <https://www.aaro.mil/> | [`/aaro/`](https://release.realufo.org/aaro/) |
 | 3 | **NASA UAP Independent Study Team** | <https://science.nasa.gov/uap/> | [`/nasa/`](https://release.realufo.org/nasa/) |
 | 4 | **NARA — Project Blue Book + JFK + UAP** | <https://catalog.archives.gov/> | [`/nara/`](https://release.realufo.org/nara/) |
@@ -77,7 +77,7 @@ falling back to the official source URL otherwise.
 ├── legacy/                     # git-tracked pre-Astro HTML — 11 dormant archives + site-page sources
 ├── scripts/                    # normalise / scrape / verify (Python + bash) — see below
 ├── tests/                      # Playwright specs + visual baselines + fidelity samples
-├── slideshow/ slideshow-2/ 3/  # hero-carousel imagery for Release 01 / 02 / 03 (git-tracked)
+├── slideshow/ slideshow-2/ 3/ 4/ 6/  # hero-carousel imagery for Releases 01–04 + 06 (R05 shipped none; git-tracked)
 ├── bundles/                    # PDF/zip source bundles (mostly gitignored; restored via sync.sh)
 │
 ├── uap-data.csv                # ⭐ source-of-truth manifest (never hand-edit — CLAUDE.md §11)
@@ -274,11 +274,11 @@ data-center / VPN IP that Akamai blocks — run from a residential connection.
   v3, France Loi 78-753, Brazil LAI 12.527/2011, Chile 20.285, Argentina
   27.275, Italy D.lgs. 33/2013, Spain 19/2013, Uruguay 18.381. Content
   reproduced verbatim from the original publications.
-- **Release 03** (war.gov, 12 Jun 2026) added 72 rows. Most assets are live on
-  R2; two large AARO videos (`DOD_111764796.mp4` ≈ 2.99 GiB, `DOD_111764902.mp4`
-  ≈ 1.19 GiB) exceed wrangler's 300 MiB single-request cap and await an
-  S3-multipart upload path — until then their two AUD cards click through to a
-  404. Tracked in `.planning/STATE.md`.
+- **Releases 03–06** (war.gov, 12 Jun – 18 Sep 2026) added 228 rows (72 + 40 +
+  41 + 75). All linked PDFs and videos are on R2. Files over wrangler's 300 MiB
+  single-PUT cap (e.g. `DOD_111764796.mp4` ≈ 2.99 GiB, `DOD_111985823.mp4`
+  ≈ 765 MiB) go up by S3 multipart with the aws CLI. Ingest recipe:
+  `.agents/skills/wargov-release-ingest/SKILL.md`.
 - Some AARO PDFs/images were never archived by the Wayback Machine and no longer
   resolve from aaro.mil directly (Akamai) — they show a `SOURCE` badge; the
   click-through may 403.

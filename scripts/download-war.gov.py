@@ -212,8 +212,8 @@ SLIDES_6 = [
     "LLE-UAP-PR002_Unresolved-UAP-Report-Colorado-October-2023.JPG",
 ]
 
-# Master manifest. As of Release 02 (5/22/26), war.gov serves a single
-# combined CSV (uap-data.csv) that includes both Release 01 and 02 rows.
+# Master manifest. war.gov serves a single combined CSV (uap-data.csv)
+# holding every release's rows (01–06 as of 9/18/26).
 # The legacy /uap-release001.csv is still served verbatim — we keep both.
 MANIFESTS = [
     ("https://www.war.gov/Portals/1/Interactive/2026/UFO/uap-data.csv",

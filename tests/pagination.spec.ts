@@ -4,7 +4,7 @@
 // playwright.config.ts). Defaults to https://realufo.pages.dev for unset env.
 //
 // Coverage matrix (must-haves truths in 04-04-PLAN.md, success criteria
-// "Page 1..12 ... bookmarkable ... popstate ... hash ... lightbox cross-page"):
+// "Page 1..23 ... bookmarkable ... popstate ... hash ... lightbox cross-page"):
 //   1. `/` shows exactly 20 visible cards (D-27 PAGE_SIZE=20)
 //   2. `/?page=2` shows cards 21..40 (first visible is r021)
 //   3. Footer reachable on every page without scrolling thousands of px (D-31)
@@ -21,17 +21,17 @@
 //
 // Helper note: each test waits for grid.dataset.fullyLoaded === '1' which the
 // Plan 04-04 pagination handler sets after Promise.all(shards) resolves and
-// all 222 cards are materialised via insertAdjacentHTML (D-10 LOCKED).
+// all TOTAL_CARDS cards are materialised via insertAdjacentHTML (D-10 LOCKED).
 
 import { test, expect, type Page } from '@playwright/test';
 
 const WARGOV_PATH = '/';
 const PAGE_SIZE = 20;
-const TOTAL_CARDS = 222; // 50 SSR + 50 + 50 + 50 + 22 across 4 shards (D-32)
-// Total pages = 12 (Math.ceil(222 / 20)); not asserted directly but the
-// rendered nav must contain anchors for pages 2..12 + Next on page 1.
+const TOTAL_CARDS = 450; // 50 SSR + 8 shards (wargov-shard-2..9) at Release 06 (D-32)
+// Total pages = 23 (Math.ceil(450 / 20)); not asserted directly but the
+// rendered nav must contain anchors for pages 2..23 + Next on page 1.
 
-// Wait until the pagination handler has materialised all 222 cards into the
+// Wait until the pagination handler has materialised all TOTAL_CARDS cards into the
 // grid AND laid out the first page. Returns the visible-card count for
 // callers that want to assert on it.
 async function waitForFullyLoaded(page: Page): Promise<number> {
@@ -59,7 +59,7 @@ test.describe.parallel('Pagination — Plan 04-04 wargov-repaging', () => {
     const visible = await waitForFullyLoaded(page);
     expect(visible).toBe(PAGE_SIZE);
 
-    // Total card universe is 222 (sanity — guards against shard fetch failure).
+    // Total card universe is all TOTAL_CARDS (sanity — guards against shard fetch failure).
     const total = await page.locator('#wargov-grid .arch-card').count();
     expect(total).toBe(TOTAL_CARDS);
   });
@@ -249,7 +249,7 @@ test.describe.parallel('Pagination — Plan 04-04 wargov-repaging', () => {
     // Open the 20th card (last on page 1, data-row-id="r020").
     await page.locator('#wargov-grid .arch-card[data-row-id="r020"] a.btn-open').click();
     await expect(page.locator('#lightbox')).toHaveClass(/open/);
-    // Counter "20 / 222" — confirms __lbList walked all 222 cards regardless
+    // Counter "20 / TOTAL_CARDS" — confirms __lbList walked all TOTAL_CARDS cards regardless
     // of display:none (Pitfall #6).
     await expect(page.locator('#lb-counter')).toHaveText(new RegExp(`^20 \\/ ${TOTAL_CARDS}$`));
 

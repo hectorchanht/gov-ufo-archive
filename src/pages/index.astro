@@ -180,7 +180,7 @@ const jsonLd = {
   title={title}
   description={description}
   totalRecords={totalRecords}
-  lastUpdated="2026-05-27"
+  lastUpdated="2026-10-01"
 >
   {/* JSON-LD structured data — Plan 03-04 BaseHead exposes a head-extra slot.
       Dataset schema for the wargov corpus + WebSite + SearchAction for the
@@ -219,7 +219,7 @@ const jsonLd = {
       <div class="coords">38°52′15″N, 77°03′18″W &middot; THE PENTAGON, ARLINGTON, VIRGINIA</div>
       <div class="classified-stamp">
         DECLASSIFIED
-        <small>RELEASES 01 + 02 + 03 + 04 / 2026</small>
+        <small>RELEASES 01–06 / 2026</small>
       </div>
       <h1 class="hero-title">
         Presidential Unsealing and Reporting System for UAP Encounters <span class="acronym">(PURSUE)</span>
@@ -439,7 +439,7 @@ const jsonLd = {
       server-rendered HTML strings. ZERO client-side templating.
       D-27 PAGE_SIZE = 20. D-28 URL = ?page=N (page 1 = no param OR ?page=1).
       D-31 footer reachable below the 20-card window.
-      D-32 server-side shard unit unchanged (50 cards/shard, 222 total).
+      D-32 server-side shard unit unchanged (50 cards/shard).
       D-33 IntersectionObserver removed; client fetches all shards upfront in
       parallel, then toggles display:none to window 20 cards per page.
       Pitfall #6: lbList walks ALL .arch-card (including display:none) so
@@ -918,8 +918,8 @@ const jsonLd = {
       lbObs.observe(grid, { childList: true });
       // Plan 04-04 — when ?page=N changes, re-derive lbList so the lightbox
       // list reflects the current full card universe (the page change itself
-      // doesn't add/remove cards, but the FIRST page-render materialises all
-      // 222 cards, after which lbList MUST cover the full set).
+      // doesn't add/remove cards, but the FIRST page-render materialises every
+      // card, after which lbList MUST cover the full set).
       grid.addEventListener('wargov:page-rendered', refreshLbList);
     })();
   </script>
