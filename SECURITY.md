@@ -18,7 +18,7 @@ Please report any of the following:
 ## What we don't care about (will close as not applicable)
 
 - Findings against `vercel.io`, `*.vercel.app`, `*.amazonaws.com` — we do not
-  use these services. realufo.org is hosted on Cloudflare Pages.
+  use these services. release.realufo.org is hosted on Cloudflare Pages.
 - "Missing Content-Security-Policy header" without a demonstrated exploit.
 - Self-XSS that requires the user to paste code into their own console.
 - Reports against the public domain content itself.
