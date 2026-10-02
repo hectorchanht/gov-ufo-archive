@@ -332,25 +332,6 @@ const jsonLd = {
       <div class="section-label">§ II — Archive</div>
       <h2>Declassified imagery, documents, video, and audio.</h2>
 
-      <div class="stats-grid" id="arch-stats">
-        <div class="stat">
-          <div class="stat-num">{rows.length + shards.reduce((acc, _) => acc + 50, 0)}</div>
-          <div class="stat-label">Total records (upper bound)</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">{rows.length}</div>
-          <div class="stat-label">Server-rendered initial</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">{shards.length}</div>
-          <div class="stat-label">Shards lazy-loaded</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">2</div>
-          <div class="stat-label">Releases (R01 + R02)</div>
-        </div>
-      </div>
-
       <div class="arch-controls-bar" id="arch-controls-bar">
         <div class="tabs" id="arch-tabs">
           <button type="button" class="tab active" data-tab="all">All</button>
