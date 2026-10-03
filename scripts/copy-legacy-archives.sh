@@ -309,3 +309,8 @@ if [ ! -f "$DIST/manifest.webmanifest" ]; then
 MANIFEST
   echo "[postbuild] wrote dist/manifest.webmanifest fallback"
 fi
+
+# Ship the generated Cloudflare Pages redirect rules: the deploy uploads dist/ only
+# (deploy-cf-pages.yml), so without this copy _redirects never reaches Pages.
+cp _redirects dist/_redirects
+echo "[postbuild] copied _redirects to dist/"

@@ -69,13 +69,16 @@ interface StoryEntry {
   featured: boolean;
   order: number;
   incidentDate: string | null;
+  /** Folded into realufo.org: the story now lives at this apex case page. */
+  movedTo?: string;
 }
 
 export function getStaticPaths() {
   // Astro frontmatter is ESM; the top-level imports of readFileSync /
   // resolve / extractMain / scrubChrome are in scope here. Each entry
   // produces ONE static path via fs read + cascade extract + scrub.
-  return (stories as StoryEntry[]).map((entry) => {
+  // Moved stories get no page here: _redirects sends their URLs to the apex.
+  return (stories as StoryEntry[]).filter((entry) => !entry.movedTo).map((entry) => {
     const abs = resolve(process.cwd(), entry.legacyPath);
     const raw = readFileSync(abs, 'utf8');
     const anchor = extractMain(raw, entry.legacyPath); // throws (B-3)
@@ -186,7 +189,7 @@ const siblings = (stories as StoryEntry[])
       <div class="related-grid">
         {siblings.map((s) => (
           <article class="story-card">
-            <a class="card-link" href={`/stories/${s.slug}/`}>
+            <a class="card-link" href={s.movedTo ?? `/stories/${s.slug}/`}>
               <div class="card-agency">{source.name}</div>
               <h3 class="card-title">{s.title}</h3>
               {s.incidentDate && <div class="card-date">{s.incidentDate}</div>}

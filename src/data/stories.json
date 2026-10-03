@@ -42,7 +42,8 @@
     "legacyPath": "legacy/aaro/jal-1628.html",
     "featured": false,
     "order": 103,
-    "incidentDate": "1986-11-17"
+    "incidentDate": "1986-11-17",
+    "movedTo": "https://realufo.org/case/jal-1628"
   },
   {
     "slug": "ohare-2006",
@@ -51,7 +52,8 @@
     "legacyPath": "legacy/aaro/ohare-2006.html",
     "featured": false,
     "order": 104,
-    "incidentDate": "2006-11-07"
+    "incidentDate": "2006-11-07",
+    "movedTo": "https://realufo.org/case/ohare-2006"
   },
   {
     "slug": "phoenix-lights",
@@ -69,7 +71,8 @@
     "legacyPath": "legacy/aaro/stephenville.html",
     "featured": false,
     "order": 105,
-    "incidentDate": "2008-01-08"
+    "incidentDate": "2008-01-08",
+    "movedTo": "https://realufo.org/case/stephenville"
   },
   {
     "slug": "aaro-overview",
@@ -87,7 +90,8 @@
     "legacyPath": "legacy/aaro/tehran.html",
     "featured": false,
     "order": 106,
-    "incidentDate": "1976-09-19"
+    "incidentDate": "1976-09-19",
+    "movedTo": "https://realufo.org/case/tehran"
   },
   {
     "slug": "tic-tac",
@@ -105,7 +109,8 @@
     "legacyPath": "legacy/aaro/travis-walton.html",
     "featured": false,
     "order": 107,
-    "incidentDate": "1975-11-05"
+    "incidentDate": "1975-11-05",
+    "movedTo": "https://realufo.org/case/travis-walton"
   },
   {
     "slug": "argentina-overview",
@@ -159,7 +164,8 @@
     "legacyPath": "legacy/canada/falcon-lake.html",
     "featured": true,
     "order": 7,
-    "incidentDate": "1967-05-20"
+    "incidentDate": "1967-05-20",
+    "movedTo": "https://realufo.org/case/falcon-lake"
   },
   {
     "slug": "shag-harbour",
@@ -168,7 +174,8 @@
     "legacyPath": "legacy/canada/shag-harbour.html",
     "featured": false,
     "order": 220,
-    "incidentDate": "1967-10-04"
+    "incidentDate": "1967-10-04",
+    "movedTo": "https://realufo.org/case/shag-harbour"
   },
   {
     "slug": "canada-overview",
@@ -213,7 +220,8 @@
     "legacyPath": "legacy/geipan/trans-en-provence.html",
     "featured": true,
     "order": 5,
-    "incidentDate": "1981-01-08"
+    "incidentDate": "1981-01-08",
+    "movedTo": "https://realufo.org/case/trans-en-provence"
   },
   {
     "slug": "valensole",
@@ -303,7 +311,8 @@
     "legacyPath": "legacy/nara/roswell.html",
     "featured": true,
     "order": 3,
-    "incidentDate": "1947-07"
+    "incidentDate": "1947-07",
+    "movedTo": "https://realufo.org/case/roswell"
   },
   {
     "slug": "socorro",
@@ -312,7 +321,8 @@
     "legacyPath": "legacy/nara/socorro.html",
     "featured": false,
     "order": 267,
-    "incidentDate": "1964-04-24"
+    "incidentDate": "1964-04-24",
+    "movedTo": "https://realufo.org/case/socorro"
   },
   {
     "slug": "nara-overview",
@@ -339,7 +349,8 @@
     "legacyPath": "legacy/nz/kaikoura.html",
     "featured": false,
     "order": 280,
-    "incidentDate": "1978-12-31"
+    "incidentDate": "1978-12-31",
+    "movedTo": "https://realufo.org/case/kaikoura"
   },
   {
     "slug": "nz-overview",
@@ -366,7 +377,8 @@
     "legacyPath": "legacy/spain/manises.html",
     "featured": false,
     "order": 300,
-    "incidentDate": "1979-11-11"
+    "incidentDate": "1979-11-11",
+    "movedTo": "https://realufo.org/case/manises"
   },
   {
     "slug": "spain-overview",

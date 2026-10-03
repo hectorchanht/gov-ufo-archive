@@ -27,6 +27,8 @@ interface StoryEntry {
   featured: boolean;
   order: number;
   incidentDate: string | null;
+  /** Folded into realufo.org: the story now lives at this apex case page. */
+  movedTo?: string;
 }
 
 // Display names mirror Footer.astro / [slug].astro SOURCE_URLS for
@@ -87,7 +89,7 @@ const jsonLd = {
   },
   hasPart: stories.map((s) => ({
     '@type': 'Article',
-    url: `https://release.realufo.org/stories/${s.slug}/`,
+    url: (s as { movedTo?: string }).movedTo ?? `https://release.realufo.org/stories/${s.slug}/`,
     headline: s.title,
   })),
 };
@@ -156,7 +158,7 @@ const jsonLd = {
             data-date={s.incidentDate ?? ''}
             data-featured={s.featured ? '1' : '0'}
           >
-            <a class="card-link" href={`/stories/${s.slug}/`}>
+            <a class="card-link" href={s.movedTo ?? `/stories/${s.slug}/`}>
               <div class="card-agency">{ARCHIVE_DISPLAY_NAME[s.archive as ArchiveSlug] ?? s.archive}</div>
               <h3 class="card-title">{s.title}</h3>
               {s.incidentDate && <div class="card-date">{s.incidentDate}</div>}

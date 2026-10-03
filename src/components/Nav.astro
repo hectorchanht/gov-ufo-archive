@@ -167,7 +167,7 @@ const brand = BRAND[archiveSlug] ?? BRAND.wargov!;
             >
               {FEATURED_STORIES.map((s) => (
                 <li role="none">
-                  <a role="menuitem" tabindex="-1" href={`/stories/${s.slug}/`}>{s.title}</a>
+                  <a role="menuitem" tabindex="-1" href={(s as { movedTo?: string }).movedTo ?? `/stories/${s.slug}/`}>{s.title}</a>
                 </li>
               ))}
               <li class="nav-dropdown-divider" role="separator" aria-hidden="true"></li>

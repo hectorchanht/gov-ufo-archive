@@ -251,7 +251,8 @@ def build_legacy_301_block() -> str:
             )
             continue
         src = '/' + m.group(1) + '.html'
-        rules.add(emit_rule(src, f'/stories/{slug}/', 301))
+        # Stories folded into realufo.org case pages go straight there (no double hop).
+        rules.add(emit_rule(src, entry.get('movedTo') or f'/stories/{slug}/', 301))
 
     # 2. Site pages — /<slug>.html → /<slug>/
     try:
@@ -287,6 +288,27 @@ def build_legacy_301_block() -> str:
     return sentinel + '\n'.join(sorted(rules))
 
 
+def build_moved_block() -> str:
+    """Render the block for stories moved to realufo.org (`movedTo` in stories.json).
+
+    Emitted BEFORE the canonical 200 rewrites: CF Pages uses the first matching
+    rule, and these slugs have no page here any more. Both the slashed and the
+    unslashed form go straight to the apex case page (one hop).
+    """
+    stories = json.loads(STORIES_JSON.read_text(encoding='utf-8'))
+    rules = []
+    for entry in stories:
+        target = entry.get('movedTo')
+        slug = entry.get('slug')
+        if not target or not slug:
+            continue
+        rules.append(emit_rule(f'/stories/{slug}/', target, 301))
+        rules.append(emit_rule(f'/stories/{slug}', target, 301))
+    if not rules:
+        return ''
+    return '\n'.join(['# Moved to realufo.org (apex case pages) — before the 200 block, first match wins', *sorted(rules)])
+
+
 def render_redirects(routes: list[str]) -> str:
     """Render the full `_redirects` body for `routes`.
 
@@ -320,6 +342,10 @@ def render_redirects(routes: list[str]) -> str:
     lines.append('# DO NOT EDIT — re-run scripts/build-redirects.py (D-09 / D-11)')
     lines.append('# Status codes — 200 = rewrite (URL stays); 301 = permanent redirect.')
     lines.append('')
+    moved = build_moved_block()
+    if moved:
+        lines.append(moved)
+        lines.append('')
 
     for route in routes:
         lines.append(emit_rule(route, route, 200))
