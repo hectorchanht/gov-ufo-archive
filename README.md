@@ -1,7 +1,11 @@
 # realufo.org — every official UAP archive, in one place
 
-**Live at [realufo.org](https://release.realufo.org/)** · official government UAP
-releases preserved side-by-side — offline-first, mobile-first, verbatim.
+**Live at [release.realufo.org](https://release.realufo.org/)** · official government UAP
+releases from 14 archives preserved side-by-side — offline-first, mobile-first, verbatim.
+
+The main archive — searchable U.S. records (PURSUE, AARO, FBI, CIA, NASA) with full text,
+page-cited topics, a release tracker and fact-checked case stories — is
+**[realufo.org](https://realufo.org)** ([source](https://github.com/hectorchanht/realufo)).
 
 Built with **Astro 5** (static output) and deployed on **Cloudflare Pages**.
 Binary payloads (PDFs, videos) live on **GitHub Releases** + **Cloudflare R2**;
