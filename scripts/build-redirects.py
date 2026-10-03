@@ -53,6 +53,7 @@ CLI:
     python3 scripts/build-redirects.py             # write _redirects
     python3 scripts/build-redirects.py --stdout    # print, do not write
     python3 scripts/build-redirects.py --check     # CI: exit 1 on drift
+    python3 scripts/build-redirects.py --moved-legacy-files  # postbuild skip list
 
 `--check` strips the volatile `# Generated ... @ <sha> on <date>` line
 from both the freshly-rendered text and the on-disk file before
@@ -310,6 +311,21 @@ def build_moved_block() -> str:
     return '\n'.join(['# Moved to realufo.org (apex case pages) — before the 200 block, first match wins', *sorted(rules)])
 
 
+def moved_legacy_files() -> list[str]:
+    """Repo paths of the legacy pages whose stories moved to realufo.org.
+
+    Cloudflare Pages serves an existing static asset before a `_redirects`
+    rule, so scripts/copy-legacy-archives.sh must keep these out of dist/ or
+    their 301s (legacy block above) never fire. Includes the AARO master case
+    index, which redirects with aaro-overview.
+    """
+    stories = json.loads(STORIES_JSON.read_text(encoding='utf-8'))
+    files = [e['legacyPath'] for e in stories if e.get('movedTo') and e.get('legacyPath')]
+    if any(e.get('slug') == 'aaro-overview' and e.get('movedTo') for e in stories):
+        files.append('legacy/aaro/details.html')
+    return sorted(files)
+
+
 def render_redirects(routes: list[str]) -> str:
     """Render the full `_redirects` body for `routes`.
 
@@ -373,7 +389,15 @@ def main() -> int:
         '--check', action='store_true',
         help='Regenerate in memory and exit non-zero if _redirects is stale.',
     )
+    parser.add_argument(
+        '--moved-legacy-files', action='store_true',
+        help='Print the legacy files the postbuild must not copy (stories moved to realufo.org).',
+    )
     args = parser.parse_args()
+
+    if args.moved_legacy_files:
+        print('\n'.join(moved_legacy_files()))
+        return 0
 
     routes = load_routes()
     text = render_redirects(routes)

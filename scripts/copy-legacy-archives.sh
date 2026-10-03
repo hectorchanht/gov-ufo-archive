@@ -57,9 +57,18 @@ skipped_count=0
 # CF Pages hard limit per file (25 MiB) per https://developers.cloudflare.com/pages/platform/limits/
 MAX_BYTES=$((25 * 1024 * 1024))
 
+# Legacy pages of stories moved to realufo.org (stories.json movedTo). CF Pages
+# serves a static asset before its _redirects rule, so shipping these would
+# shadow their 301s with stale self-canonical duplicates.
+MOVED_LEGACY=$'\n'"$(python3 scripts/build-redirects.py --moved-legacy-files)"$'\n'
+moved_count=0
+
 copy_one() {
   local f="$1"
   local size dest
+  case "$MOVED_LEGACY" in
+    *$'\n'"$f"$'\n'*) moved_count=$((moved_count + 1)); return ;;
+  esac
   size=$(stat -f %z "$f" 2>/dev/null || stat -c %s "$f" 2>/dev/null || echo 0)
   if [ "${size:-0}" -gt "$MAX_BYTES" ]; then
     echo "postbuild: SKIP $f (${size} bytes > 25 MiB CF Pages limit; belongs in GitHub Releases per CLAUDE.md §5.1)" >&2
@@ -256,7 +265,7 @@ python3 "$REPO/scripts/build-dir-index.py" || \
 python3 "$REPO/scripts/rewrite-dist-legacy-links.py" || \
   echo "postbuild: WARN rewrite-dist-legacy-links.py failed (non-fatal)" >&2
 
-echo "postbuild: copied $copied_count legacy files into dist/; skipped $skipped_count oversized files"
+echo "postbuild: copied $copied_count legacy files into dist/; skipped $skipped_count oversized files + $moved_count moved to realufo.org"
 
 # ============================================================
 # Plan 04-19 (D-12..D-17) — Pagefind cross-archive search index.

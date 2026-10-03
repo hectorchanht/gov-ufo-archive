@@ -26,3 +26,15 @@ if dist.exists():
     assert shipped.exists(), "dist/_redirects missing — the build doesn't ship the redirect rules"
     assert shipped.read_text() == (REPO / "_redirects").read_text(), "dist/_redirects differs from the generated _redirects"
     print("ok: dist/_redirects matches the generated file")
+
+    # CF Pages serves a static asset before its _redirects rule: a moved story's
+    # legacy page in dist/ would shadow its 301 (stale duplicate, status 200).
+    gone = subprocess.run([sys.executable, str(REPO / "scripts/build-redirects.py"), "--moved-legacy-files"], capture_output=True, text=True, check=True).stdout.split()
+    assert len(gone) == len(moved) + 1 and "legacy/aaro/details.html" in gone, gone
+    for f in gone:
+        assert not (dist / f.removeprefix("legacy/")).exists(), f"moved story's legacy page still shipped: {f}"
+        assert f"/{f.removeprefix('legacy/')} " in out, f"no 301 for the dropped page: {f}"
+    for s in stories:
+        if not s.get("movedTo"):
+            assert (dist / s["legacyPath"].removeprefix("legacy/")).exists(), f"unmoved story dropped: {s['legacyPath']}"
+    print(f"ok: {len(gone)} moved legacy pages kept out of dist/, unmoved stories still shipped")
