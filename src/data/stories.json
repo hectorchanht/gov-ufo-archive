@@ -6,7 +6,8 @@
     "legacyPath": "legacy/aaro/belgian-wave.html",
     "featured": false,
     "order": 100,
-    "incidentDate": "1989"
+    "incidentDate": "1989",
+    "movedTo": "https://realufo.org/case/belgian-wave"
   },
   {
     "slug": "cash-landrum",
@@ -15,7 +16,8 @@
     "legacyPath": "legacy/aaro/cash-landrum.html",
     "featured": false,
     "order": 101,
-    "incidentDate": "1980-12-29"
+    "incidentDate": "1980-12-29",
+    "movedTo": "https://realufo.org/case/cash-landrum"
   },
   {
     "slug": "coyne",
@@ -24,7 +26,8 @@
     "legacyPath": "legacy/aaro/coyne.html",
     "featured": false,
     "order": 102,
-    "incidentDate": "1973-10-18"
+    "incidentDate": "1973-10-18",
+    "movedTo": "https://realufo.org/case/coyne"
   },
   {
     "slug": "gimbal",
@@ -33,7 +36,8 @@
     "legacyPath": "legacy/aaro/gimbal.html",
     "featured": true,
     "order": 2,
-    "incidentDate": "2015-01"
+    "incidentDate": "2015-01",
+    "movedTo": "https://realufo.org/case/gimbal"
   },
   {
     "slug": "jal-1628",
@@ -62,7 +66,8 @@
     "legacyPath": "legacy/aaro/phoenix-lights.html",
     "featured": true,
     "order": 8,
-    "incidentDate": "1997-03-13"
+    "incidentDate": "1997-03-13",
+    "movedTo": "https://realufo.org/case/phoenix-lights"
   },
   {
     "slug": "stephenville",
@@ -81,7 +86,8 @@
     "legacyPath": "legacy/aaro/story.html",
     "featured": false,
     "order": 110,
-    "incidentDate": null
+    "incidentDate": null,
+    "movedTo": "https://realufo.org/agency/aaro"
   },
   {
     "slug": "tehran",
@@ -100,7 +106,8 @@
     "legacyPath": "legacy/aaro/tic-tac.html",
     "featured": true,
     "order": 1,
-    "incidentDate": "2004-11-14"
+    "incidentDate": "2004-11-14",
+    "movedTo": "https://realufo.org/case/tic-tac"
   },
   {
     "slug": "travis-walton",
@@ -128,7 +135,8 @@
     "legacyPath": "legacy/brazil/operacao-prato.html",
     "featured": false,
     "order": 210,
-    "incidentDate": "1977"
+    "incidentDate": "1977",
+    "movedTo": "https://realufo.org/case/operacao-prato"
   },
   {
     "slug": "brazil-overview",
@@ -146,7 +154,8 @@
     "legacyPath": "legacy/brazil/trindade.html",
     "featured": false,
     "order": 211,
-    "incidentDate": "1958-01-16"
+    "incidentDate": "1958-01-16",
+    "movedTo": "https://realufo.org/case/trindade"
   },
   {
     "slug": "varginha",
@@ -155,7 +164,8 @@
     "legacyPath": "legacy/brazil/varginha.html",
     "featured": true,
     "order": 6,
-    "incidentDate": "1996-01"
+    "incidentDate": "1996-01",
+    "movedTo": "https://realufo.org/case/varginha"
   },
   {
     "slug": "falcon-lake",
@@ -193,7 +203,8 @@
     "legacyPath": "legacy/chile/el-bosque.html",
     "featured": false,
     "order": 230,
-    "incidentDate": "2010-11-05"
+    "incidentDate": "2010-11-05",
+    "movedTo": "https://realufo.org/case/el-bosque"
   },
   {
     "slug": "chile-overview",
@@ -230,7 +241,8 @@
     "legacyPath": "legacy/geipan/valensole.html",
     "featured": false,
     "order": 241,
-    "incidentDate": "1965-07-01"
+    "incidentDate": "1965-07-01",
+    "movedTo": "https://realufo.org/case/valensole"
   },
   {
     "slug": "italy-overview",
@@ -248,7 +260,8 @@
     "legacyPath": "legacy/nara/chiles-whitted.html",
     "featured": false,
     "order": 260,
-    "incidentDate": "1948-07-24"
+    "incidentDate": "1948-07-24",
+    "movedTo": "https://realufo.org/case/chiles-whitted"
   },
   {
     "slug": "condon-committee",
@@ -257,7 +270,8 @@
     "legacyPath": "legacy/nara/condon-committee.html",
     "featured": false,
     "order": 261,
-    "incidentDate": "1966"
+    "incidentDate": "1966",
+    "movedTo": "https://realufo.org/case/condon-committee"
   },
   {
     "slug": "levelland",
@@ -266,7 +280,8 @@
     "legacyPath": "legacy/nara/levelland.html",
     "featured": false,
     "order": 262,
-    "incidentDate": "1957-11-02"
+    "incidentDate": "1957-11-02",
+    "movedTo": "https://realufo.org/case/levelland"
   },
   {
     "slug": "lubbock-lights",
@@ -275,7 +290,8 @@
     "legacyPath": "legacy/nara/lubbock-lights.html",
     "featured": false,
     "order": 263,
-    "incidentDate": "1951-08"
+    "incidentDate": "1951-08",
+    "movedTo": "https://realufo.org/case/lubbock-lights"
   },
   {
     "slug": "mantell",
@@ -284,7 +300,8 @@
     "legacyPath": "legacy/nara/mantell.html",
     "featured": false,
     "order": 264,
-    "incidentDate": "1948-01-07"
+    "incidentDate": "1948-01-07",
+    "movedTo": "https://realufo.org/case/mantell"
   },
   {
     "slug": "mcminnville",
@@ -293,7 +310,8 @@
     "legacyPath": "legacy/nara/mcminnville.html",
     "featured": false,
     "order": 265,
-    "incidentDate": "1950-05-11"
+    "incidentDate": "1950-05-11",
+    "movedTo": "https://realufo.org/case/mcminnville"
   },
   {
     "slug": "robertson-panel",
@@ -302,7 +320,8 @@
     "legacyPath": "legacy/nara/robertson-panel.html",
     "featured": false,
     "order": 266,
-    "incidentDate": "1953-01"
+    "incidentDate": "1953-01",
+    "movedTo": "https://realufo.org/case/robertson-panel"
   },
   {
     "slug": "roswell",
@@ -340,7 +359,8 @@
     "legacyPath": "legacy/nasa/story.html",
     "featured": false,
     "order": 270,
-    "incidentDate": "2023"
+    "incidentDate": "2023",
+    "movedTo": "https://realufo.org/agency/nasa"
   },
   {
     "slug": "kaikoura",
@@ -396,7 +416,8 @@
     "legacyPath": "legacy/uk/cosford.html",
     "featured": false,
     "order": 310,
-    "incidentDate": "1993-03-30"
+    "incidentDate": "1993-03-30",
+    "movedTo": "https://realufo.org/case/cosford"
   },
   {
     "slug": "rendlesham",
@@ -405,7 +426,8 @@
     "legacyPath": "legacy/uk/rendlesham.html",
     "featured": true,
     "order": 4,
-    "incidentDate": "1980-12-26"
+    "incidentDate": "1980-12-26",
+    "movedTo": "https://realufo.org/case/rendlesham"
   },
   {
     "slug": "uk-overview",

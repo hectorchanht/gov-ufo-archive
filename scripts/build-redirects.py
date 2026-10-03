@@ -273,8 +273,9 @@ def build_legacy_301_block() -> str:
     for slug in PARKED_UTILITIES:
         rules.add(emit_rule(f'/{slug}.html', PARKED_TARGET, 301))
 
-    # 4. AARO master case index special case.
-    rules.add(emit_rule('/aaro/details.html', AARO_DETAILS_TARGET, 301))
+    # 4. AARO master case index special case — straight to the overview's new home if it moved.
+    moved = {e.get('slug'): e.get('movedTo') for e in stories if e.get('movedTo')}
+    rules.add(emit_rule('/aaro/details.html', moved.get('aaro-overview') or AARO_DETAILS_TARGET, 301))
 
     # 5. Legacy /search.html → /search/ (audit 2026-06-02 — Astro owns /search/).
     rules.add(emit_rule('/search.html', '/search/', 301))

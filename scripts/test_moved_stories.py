@@ -4,7 +4,7 @@ import json, pathlib, subprocess, sys
 REPO = pathlib.Path(__file__).resolve().parent.parent
 stories = json.loads((REPO / "src/data/stories.json").read_text())
 moved = {s["slug"]: s["movedTo"] for s in stories if s.get("movedTo")}
-assert len(moved) == 12, f"expected 12 moved stories, got {len(moved)}"
+assert len(moved) == 34, f"expected 34 moved stories, got {len(moved)}"
 out = subprocess.run([sys.executable, str(REPO / "scripts/build-redirects.py"), "--stdout"], capture_output=True, text=True, check=True).stdout
 lines = [l for l in out.splitlines() if l and not l.startswith("#")]
 first200 = next(i for i, l in enumerate(lines) if l.endswith(" 200"))
@@ -14,6 +14,8 @@ for slug, target in moved.items():
         assert rule in lines, f"missing: {rule}"
         assert lines.index(rule) < first200, f"after the 200 block: {rule}"
     assert f"/stories/{slug}/ /stories/{slug}/ 200" not in lines, f"still rewritten: {slug}"
+    hops = [l for l in lines if l.split()[1] in (f"/stories/{slug}/", f"/stories/{slug}")]
+    assert not hops, f"still routed through the old story URL: {hops}"
 print(f"ok: {len(moved)} moved stories redirect to the apex")
 
 # The deploy uploads dist/ only (deploy-cf-pages.yml: `pages deploy dist/`), so the
