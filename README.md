@@ -293,3 +293,7 @@ data-center / VPN IP that Akamai blocks — run from a residential connection.
 
 Code in `scripts/` and `src/`: MIT.
 Archived content: each source's national public-domain regime (see above).
+
+## Contact
+
+- hello@realufo.org
